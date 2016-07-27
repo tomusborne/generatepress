@@ -541,8 +541,6 @@ function generate_construct_logo()
 	if ( empty( $logo ) )
 		return;
 	
-	do_action( 'generate_before_logo' );
-	
 	// Print our HTML
 	printf( 
 		'<div class="site-logo">
@@ -554,8 +552,6 @@ function generate_construct_logo()
 		apply_filters( 'generate_logo_title', esc_attr( get_bloginfo( 'name', 'display' ) ) ),
 		apply_filters( 'generate_logo', esc_url( $logo ) )
 	);
-	
-	do_action( 'generate_after_logo' );
 }
 endif;
 

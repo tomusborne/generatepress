@@ -12,30 +12,18 @@
 	.active-footer-widgets-3 .footer-widget-3,
 	.active-footer-widgets-5 .footer-widget-5 {
 		width: 100%;
-		margin-bottom: 0;
-	}
-	
-	.active-footer-widgets-2 .inside-footer-widgets > div,
-	.active-footer-widgets-4 .footer-widget-3,
-	.active-footer-widgets-4 .footer-widget-4 {
-		margin-bottom: 0;
 	}
 }
 
 /* Portrait tablet and below */
 @media (max-width: 768px) {
 	.sidebar,
-	.content-area,
-	.inside-footer-widgets > div {
+	.content-area {
 		float: none;
 		width: 100%;
 		left: 0;
 		right: 0;
 	}
-	
-	.inside-footer-widgets > div:last-child {
-        margin-bottom: 0;
-    }
 	
 	/* Mobile navigation */
 	.menu-toggle,
