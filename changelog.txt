@@ -1,0 +1,266 @@
+=== changelog ===
+
+= (7/14/2016) - 1.3.34 =
+* Fix issue where full width content was displaying without being set in BuddyPress and Events Calendar
+
+= (7/10/2016) - 1.3.33 =
+* Fix error on PHP 5.2 installations
+
+= (7/10/2016) - 1.3.32 =
+* Enqueue HTML5 shiv and IE8 stylesheet using wp_enqueue_* functions
+* Fix .container class clash with bootstrap
+* Re-organize Layout section in the Customizer
+* Fix cropping issue with the site logo
+* Add Page Header Integration metabox with full width content option
+* Add RTL language support
+* Add selective refresh to widgets
+* Fix footer widget layout issue if heights are different on tablets
+* Add title tag to read more link
+
+= (5/29/2016) - 1.3.31 =
+* Fix issue where images are enlarging in content if Photon is activated
+
+= (5/28/2016) - 1.3.30 =
+* Add before and entry title hooks to content-link.php
+* Remove check for post post type in generate_posted_on()
+* Remove check for post post type in generate_entry_meta()
+* Adjust label size in Typography sections in Customizer for longer translations
+* Add comment-logout class to the comment log out link
+* Add a filter to set the responsive image size to the width of the container
+* Make sure WooCommerce products are full width on mobile
+* Fix bug where "0" value for footer widgets wasn't working
+* Update Font Awesome to 4.6.3
+* Adjust some Beaver Builder styling
+* Add the footer entry meta into a function which we can hook into different actions
+* When dropdown click - arrow is set, clicking entire menu item if URL is # will drop down submenu
+
+= (4/30/2016) - 1.3.29 =
+* Adjust metaboxes to not save empty postmeta
+* Only make container full width with Beaver Builder when no sidebars is set
+* Remove decrease in main title size on mobile to make way for new mobile typography options
+* Minify style.css
+* New hook: generate_before_entry_title
+* New hook: generate_after_entry_title
+* Move post meta to a function so it can be hooked into before the title to after the title
+* Change comments icon to: http://fontawesome.io/icon/comments/
+* Make WooCommerce product full width on mobile
+* Fix spacing to the right of the dropdown menu toggle
+* Minify HTML5 Shiv
+* Adjust child comment spacing on mobile
+* Update to Font Awesome 4.6.1
+* Remove edit link at the bottom of the page when logged in
+* Switch the site logo option to use the new custom logo feature in WordPress 4.5
+* Change metabox capability to edit_theme_options from activate_plugins
+* Add new filter to strip Font Awesome down to the essentials (+1 performance): generate_fontawesome_essentials
+
+= (3/11/2016) - 1.3.28 =
+* New hook: generate_inside_comments
+* New hook: generate_below_comments_title
+* Fix javascript error in IE8
+* Adjust menu toggle icon line height
+* Remove query strings from Font Awesome calls
+* Reduce space between dropdown arrow and menu item
+* Improve touch functionality on hover dropdown menus
+* Center alignright and alignleft images on mobile
+* Remove WP default hide site title/tagline control from Customizer
+* Remove woocommerce.php file as integration is handled by hooks
+* Open sub-menu in mobile menu on item click if URL is # or empty
+* Prevent elements within fieldets from overflowing in WebKit
+* New function: generate_construct_site_title
+* New function: generate_construct_logo
+* New function: generate_construct_header_widget
+* Clean up generate_header_items function
+* Float dropdown arrow to the right when navigation is in a sidebar
+* Remove language files to allow WordPress.org language packs to take effect: https://translate.wordpress.org/projects/wp-themes/generatepress
+
+= (2/1/2016) - 1.3.27
+* Fix arrow alignment on mobile menu
+
+= (2/1/2016) - 1.3.26
+* Fix issue with sub-menu item padding
+
+= (1/31/2016) - 1.3.25 =
+* Fix undefined 404 page is no menu item URL exists and you click on dropdown arrow
+* Fix dropdown arrow in IE
+* Czech translation updated
+
+= (1/28/2016) - 1.3.24 =
+* Add fixed width class to menu fallback search icon
+* Add subtle fade back to slide down drop menu
+* Clean up some CSS in style.css
+* Add container width input field in addition to slider for more control
+* New Feature: Click menu item to open dropdown
+* New Feature: Click arrow to open dropdown
+* Change navigation dropdown arrow to Font Awesome icon
+* Change "Header Layout" option name to "Header Width"
+* Change "Navigation Layout" option name to "Navigation Width"
+* Change "Footer Layout" option name to "Footer Width"
+* Improve schema.org handling
+* Add Back to Top button option
+* New filter: generate_back_to_top_icon
+* New filter: generate_back_to_top_scroll_speed
+* New filter: generate_back_to_top_start_scroll
+* Move archive title to template-tags.php and attach it to archive.php with hook
+* Add ability to use your keyboard tab key to move through navigation items/dropdown menus
+* Make WooCommerce responsive
+* Reduce copyright text font size to 15px
+
+= (12/21/2015) - 1.3.23 =
+* Match dropdown open and close delay
+
+= (12/21/2015) - 1.3.22 =
+* Add new filter: generate_comment_avatar_size
+* Add fixed width to navigation search icon when no menu is set
+* Chinese Simplified translation added (thank you Kerry!)
+* Turkish translation updated (thank you Larry!)
+* Remove "About" from the top of author pages
+* Add generate_category_post_navigation filter to force post navigation to be category specific
+* Improve WooCommerce compatibility by using hooks instead of woocommerce.php template
+* Removed superfish menu script
+* Removed hoverintent menu script
+* Re-write navigation dropdown menu script and minify it
+* Re-write navigation.js and minify it
+* Re-write navigation-search.js and minify it
+* Rename generate_contruct_sidebars to generate_construct_sidebars
+* Tighten up padding when one container is set as your content layout
+* Add live update to link color and link color hover in Customizer
+* Remove widget padding if one container is set
+* Minify mobile.css
+* Improve logic dealing with widget padding when one container is set
+* Add generatepress class to <body>
+
+= (11/27/2015) - 1.3.21 =
+* Czech translation updated (thank you Ondrej!)
+* Fix issue where custom post types (bbPress etc..) were highlighting blog menu item
+* Remove colors CSS for current_page_item classes
+* Add current-menu-item classes to wp_list_pages (if no Theme Location is set in Menus)
+* Reduce amount of colors CSS in <head>
+* Reduce amount of spacing CSS in <head>
+* Reduce amount of typography CSS in <head>
+* Add fix for Beaver Builder full width layouts
+* Update to Font Awesome 4.5.0
+* Turkish translation added (thank you Larry!)
+
+= (11/15/2015) - 1.3.20 =
+* Slovak language updated (thank you Jan!)
+* Add Navigation Float Left option
+* Show date and author on single post even if content title is hidden
+* generatepress.pot updated
+* Fix jump between navigation search icons
+
+= (11/9/2015) - 1.3.19 =
+* Czech translation updated (thank you Ondrej!)
+* Remove padding and border from fieldset
+* Update readme.txt
+* Add filter to site title URL: generate_site_title_href
+* Add support button to admin page
+* Add knowledgebase button to admin page
+* Update all translations
+
+= (10/29/2015) - 1.3.18 =
+* Fix donate text
+* Update all translations
+* Added to Russian translation
+* Adjust IE10 specific CSS for responsive features
+* Move mobile search button out of <button> to comply with HTML5
+* Fix bug where mobile search button wasn't working in Firefox
+* Add new filter: generate_post_date - allows for post date to be removed
+* Add new filter: generate_post_author - allows for post author to be removed
+* Add new filter: generate_show_categories - allows for post categories to be removed
+* Add new filter: generate_show_tags - allows for post tags to be removed
+* Add new filter: generate_show_comments - allows for the comments link to be removed
+* Remove wp_title() function to avoid warning in WP 4.4 - please make sure you're updated
+* Add primary-menu ID to the primary menu for accessibility reasons
+* Add new function/filter: generate_show_title - allows you to fully remove the title
+* Add metabox to disable the content title on specific pages
+* Add class to read more link container
+
+= (10/18/2015) - 1.3.17 =
+* Adjust grid CSS for Windows mobile phones
+* Fix WooCommerce specific styling to mobile
+* Update generatepress.pot translation file
+* Update Czech translation
+* All translations updated - ** please check your translations **
+* Adjust calendar widget styling
+* Add BuddyPress "Post in" styling
+
+= (10/11/2015) - 1.3.16 =
+* Improve schema markup throughout theme
+* Added generate_body_schema function to output the schema itemtype for the <body> element
+* Added generate_article_schema function to output the schema itemtype for the <article> elements
+* Added generate_show_excerpt function/filter to determine whether to show the excerpt or not
+* content.php has been altered to work with the generate_show_excerpt function
+* Add styling for bbPress login widget
+* Add footer font size value
+* Remove excess spacing above leave a comment title
+* Update 404 text
+* Change placeholder widget titles to h4
+
+= (10/3/2015) - 1.3.15 =
+* Make default calendar widget responsive
+* Fix mobile spacing issue between content and footer when no sidebar is set
+* Adjust margin below comment form textarea in anticipation of WordPress 4.4
+
+= (9/20/2015) - 1.3.14 =
+* Improve CSS dealing with mobile search icon
+* Compress add-on icons to reduce file size
+* Removed disable mobile functions from core theme. Use "Generate Disable Mobile" plugin.
+* Russian translation updated
+
+= (9/10/2015) - 1.3.13 =
+* Adjust main title line height on mobile
+* Improve navigation search when navigation is in a sidebar
+* Fix double search icon on mobile when menu is opened
+
+= (9/4/2015) - 1.3.12 =
+* Fix subscription toggle link in bbPress
+* Fix bug in Dutch translation
+* generatepress.pot updated (translations will have to be updated)
+* Update changelog formatting
+* Enqueue jQuery in case it isn't already added
+* Navigation search added to menu toggle on mobile
+* Fix caption alignment
+* Reduce filesize of screenshot
+* Reduce filesize of container width and typography range slider
+* Reduce main title font size on mobile
+
+
+= (8/23/2015) - 1.3.11 =
+* Remove unnecessary file
+
+
+= (8/23/2015) - 1.3.10 =
+* Fix mobile menu text hover color
+* Update some text strings
+
+
+= (8/15/2015) - 1.3.09 =
+* Add jump to anchor when using read more tag
+* Mobile menu toggle changed from <h3> to <button>
+	* If you've used h3.menu-toggle in any custom CSS, you'll need to adjust it (.menu-toggle is fine)
+* Updated HTML5Shiv
+* Move HTML5Shiv below all other stylesheets
+
+
+= (8/8/2015) - 1.3.08 =
+* Remove Customizer changes to nav section in anticipation of WordPress 4.3
+
+
+= (8/1/2015) - 1.3.07 =
+* If site title or tagline is empty (not disabled), don't print the surrounding HTML
+* FontAwesome updated to 4.4
+* Add some Easy Digital Downloads styling
+* Make it so base text colors works
+* Make some customizer changes happen instantly (no refresh), including:
+	* site title
+	* site tagline
+	* background color
+	* text color
+	* link color
+	* container width
+* Buy me a coffee link updated
+* Change "Header Content" Customizer name to "Site Identity"
+
+
+== Changelog archives ==
+* See more at https://generatepress.com/category/development/

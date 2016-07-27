@@ -1,0 +1,14 @@
+#customize-control-blogname {
+	margin-bottom: 0;
+}
+
+.customize-control-title.addon {
+	display:inline;
+}
+
+.get-addon {
+	background: #D54E21;
+	color:#FFF;
+	text-transform: uppercase;
+	font-size:12px;
+}
