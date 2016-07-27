@@ -1,5 +1,12 @@
 === changelog ===
 
+= () - 1.3.35 =
+* New hook: generate_before_logo
+* New hook: generate_after_logo
+* Fix some grid issues when browser is zoomed in
+* Remove metaboxes from attachment post type
+* Tighten up footer widget spacing on tablet and mobile
+
 = (7/14/2016) - 1.3.34 =
 * Fix issue where full width content was displaying without being set in BuddyPress and Events Calendar
 

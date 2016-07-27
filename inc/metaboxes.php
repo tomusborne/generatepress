@@ -14,15 +14,16 @@ function generate_add_layout_meta_box() {
 		
 	$post_types = get_post_types();
 	foreach ($post_types as $type) {
-		add_meta_box
-		(  
-			'generate_layout_meta_box', // $id  
-			__('Sidebar Layout','generatepress'), // $title   
-			'generate_show_layout_meta_box', // $callback  
-			$type, // $page  
-			'side', // $context  
-			'high' // $priority  
-		); 
+		if ( 'attachment' !== $type ) {
+			add_meta_box (  
+				'generate_layout_meta_box', // $id  
+				__('Sidebar Layout','generatepress'), // $title   
+				'generate_show_layout_meta_box', // $callback  
+				$type, // $page  
+				'side', // $context  
+				'high' // $priority  
+			); 
+		}
 	}
 }  
 add_action('add_meta_boxes', 'generate_add_layout_meta_box');
@@ -75,7 +76,6 @@ function generate_show_layout_meta_box( $post ) {
 }
 // Save the Data  
 function generate_save_layout_meta($post_id) {  
-    
 	// Checks save status
     $is_autosave = wp_is_post_autosave( $post_id );
     $is_revision = wp_is_post_revision( $post_id );
@@ -112,15 +112,16 @@ function generate_add_footer_widget_meta_box() {
 		
 	$post_types = get_post_types();
 	foreach ($post_types as $type) {
-		add_meta_box
-		(  
-			'generate_footer_widget_meta_box', // $id  
-			__('Footer Widgets','generatepress'), // $title   
-			'generate_show_footer_widget_meta_box', // $callback  
-			$type, // $page  
-			'side', // $context  
-			'high' // $priority  
-		); 
+		if ( 'attachment' !== $type ) {
+			add_meta_box(  
+				'generate_footer_widget_meta_box', // $id  
+				__('Footer Widgets','generatepress'), // $title   
+				'generate_show_footer_widget_meta_box', // $callback  
+				$type, // $page  
+				'side', // $context  
+				'high' // $priority  
+			); 
+		}
 	}
 }  
 add_action('add_meta_boxes', 'generate_add_footer_widget_meta_box');
@@ -209,15 +210,16 @@ function generate_add_page_builder_meta_box() {
 		
 	$post_types = get_post_types();
 	foreach ($post_types as $type) {
-		add_meta_box
-		(  
-			'generate_page_builder_meta_box', // $id  
-			__('Page Builder Integration','generatepress'), // $title   
-			'generate_show_page_builder_meta_box', // $callback  
-			$type, // $page  
-			'side', // $context  
-			'default' // $priority  
-		); 
+		if ( 'attachment' !== $type ) {
+			add_meta_box(  
+				'generate_page_builder_meta_box', // $id  
+				__('Page Builder Integration','generatepress'), // $title   
+				'generate_show_page_builder_meta_box', // $callback  
+				$type, // $page  
+				'side', // $context  
+				'default' // $priority  
+			); 
+		}
 	}
 }  
 add_action('add_meta_boxes', 'generate_add_page_builder_meta_box');
