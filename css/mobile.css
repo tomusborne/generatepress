@@ -33,6 +33,15 @@
 		right: 0;
 	}
 	
+	.active-footer-widgets-1 .footer-widget-1,
+	.active-footer-widgets-3 .footer-widget-3,
+	.active-footer-widgets-5 .footer-widget-5,
+	.active-footer-widgets-2 .inside-footer-widgets > div,
+	.active-footer-widgets-4 .footer-widget-3,
+	.active-footer-widgets-4 .footer-widget-4	{
+		margin-bottom: 50px;
+	}
+	
 	.inside-footer-widgets > div:last-child {
         margin-bottom: 0;
     }
