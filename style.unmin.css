@@ -1531,6 +1531,11 @@ footer.entry-meta .byline {
 	margin: 0;
 }
 
+.full-width-content.separate-containers .inside-article,
+.full-width-content.one-container .site-content {
+	padding: 0;
+}
+
 /* WooCommerce */
 .woocommerce .page-header-image-single {
 	display: none;
