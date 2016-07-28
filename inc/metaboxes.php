@@ -28,10 +28,23 @@ function generate_add_layout_meta_box() {
 }  
 add_action('add_meta_boxes', 'generate_add_layout_meta_box');
 
+
+/**
+ * register the scripts
+ * @since 1.3.35
+ */
+function generate_enqueue_scripts() { 
+	wp_register_script( 'generate_press_metaboxes', GENERATE_URI . '/inc/js/metaboxes.js', array( 'jquery' ), '1.0.0', true );
+}  
+add_action( 'admin_enqueue_scripts', 'generate_enqueue_scripts' );
+
+
 /**
  * Outputs the content of the metabox
  */
 function generate_show_layout_meta_box( $post ) {  
+
+	wp_enqueue_script( 'generate_press_metaboxes' );
 
     wp_nonce_field( basename( __FILE__ ), 'generate_layout_nonce' );
     $stored_meta = get_post_meta( $post->ID );
