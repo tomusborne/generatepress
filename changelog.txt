@@ -6,6 +6,8 @@
 * Fix some grid issues when browser is zoomed in
 * Remove metaboxes from attachment post type
 * Tighten up footer widget spacing on tablet and mobile
+* Remove padding from full width content pages
+* Add triggers to hide/show GP metaboxes
 
 = (7/14/2016) - 1.3.34 =
 * Fix issue where full width content was displaying without being set in BuddyPress and Events Calendar
