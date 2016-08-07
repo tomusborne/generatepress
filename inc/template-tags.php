@@ -634,7 +634,7 @@ function generate_back_to_top()
 	$scroll_speed = apply_filters( 'generate_back_to_top_scroll_speed', 400 );
 	$start_scroll = apply_filters( 'generate_back_to_top_start_scroll', 300 );
 	?>
-	<a title="<?php _e( 'Scroll back to top','generatepress' ); ?>" rel="nofollow" href="#" class="generate-back-to-top" style="display:none;" data-scroll-speed="<?php echo $scroll_speed; ?>" data-start-scroll="<?php echo $start_scroll; ?>"><i class="fa <?php echo $icon;?>"></i></a>
+	<a title="<?php _e( 'Scroll back to top','generatepress' ); ?>" rel="nofollow" href="#" class="generate-back-to-top" style="display:none;" data-scroll-speed="<?php echo $scroll_speed; ?>" data-start-scroll="<?php echo $start_scroll; ?>"><i class="fa <?php echo $icon;?>" aria-hidden="true"></i><span class="screen-reader-text"><?php _e( 'Scroll back to top','generatepress' ); ?></span></a>
 	<?php
 }
 endif;
