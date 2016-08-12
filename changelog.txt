@@ -9,6 +9,8 @@
 * Remove padding from full width content pages
 * Add triggers to hide/show GP metaboxes
 * Make back to top button accessible to screen readers
+* Use get_bloginfo instead of bloginfo for the site tagline
+* Remove duplicate CSS for menu item height when navigation is floating right
 
 = (7/14/2016) - 1.3.34 =
 * Fix issue where full width content was displaying without being set in BuddyPress and Events Calendar
