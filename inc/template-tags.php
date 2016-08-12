@@ -590,7 +590,7 @@ function generate_construct_site_title()
 			<?php endif;
 				
 			if ( false == $disable_tagline ) : ?>
-				<p class="site-description"><?php echo html_entity_decode( bloginfo( 'description' ) ); ?></p>
+				<p class="site-description"><?php echo html_entity_decode( get_bloginfo( 'description' ) ); ?></p>
 			<?php endif; ?>
 		</div>
 	<?php endif;
