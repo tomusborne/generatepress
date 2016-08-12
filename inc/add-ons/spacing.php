@@ -103,10 +103,6 @@ if ( !function_exists('generate_spacing_css') ) :
 				'line-height' => ( isset( $spacing_settings['menu_item_height'] ) ) ? $spacing_settings['menu_item_height'] . 'px' : null,
 			),
 			
-			'.nav-float-right .main-navigation .main-nav ul li a' => array(
-				'line-height' => ( isset( $spacing_settings['menu_item_height'] ) ) ? $spacing_settings['menu_item_height'] . 'px' : null,
-			),
-			
 			'.main-navigation .main-nav ul ul li a' => array(
 				'padding' => generate_padding_css( $spacing_settings[ 'sub_menu_item_height' ], $spacing_settings[ 'menu_item' ], $spacing_settings[ 'sub_menu_item_height' ], $spacing_settings[ 'menu_item' ] )
 			),
