@@ -469,14 +469,16 @@ input[type="file"] {
 .dropdown-click .secondary-navigation ul li.sfHover > ul.toggled-on {
 	display: block;
 }
-.nav-float-right .main-navigation {
+.nav-float-right .inside-header .main-navigation {
 	float:right;
+	clear: right;
 }
-.nav-float-left .main-navigation {
+.nav-float-left .inside-header .main-navigation {
 	float: left;
+	clear: left;
 }
-.nav-float-left .site-branding,
-.nav-float-left .site-logo {
+.nav-float-left .inside-header .site-branding,
+.nav-float-left .inside-header .site-logo {
 	float: right;
 	clear: right;
 }
