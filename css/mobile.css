@@ -88,15 +88,21 @@
 		display: none;
 	}
 	
-	.nav-float-right .main-navigation,
-	.nav-float-left .main-navigation {
+	.nav-float-right .inside-header .main-navigation,
+	.nav-float-right .inside-header .site-branding,
+	.nav-float-right .inside-header .site-logo,
+	.nav-float-left .inside-header .main-navigation,
+	.nav-float-left .inside-header .site-branding,
+	.nav-float-left .inside-header .site-logo {
 		float: none;
-		margin-bottom:20px;
+		clear: both;
 	}
 	
-	.nav-float-left .site-branding,
-	.nav-float-left .site-logo {
-		float: none;
+	.nav-float-left  .inside-header > .site-branding,
+	.nav-float-left  .inside-header > .site-logo,
+	.nav-float-right  .inside-header > .site-branding,
+	.nav-float-right  .inside-header > .site-logo {
+		margin-bottom: 20px;
 	}
 	
 	.navigation-search {
