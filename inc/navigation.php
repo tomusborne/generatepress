@@ -29,7 +29,7 @@ function generate_add_navigation_before_header()
 	endif;
 	
 }
-add_action( 'generate_after_header_content', 'generate_add_navigation_float_right', 5 );
+add_action( 'generate_before_header_content', 'generate_add_navigation_float_right', 5 );
 function generate_add_navigation_float_right()
 {
 	$generate_settings = wp_parse_args( 
