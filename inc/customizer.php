@@ -916,7 +916,7 @@ function generate_customize_preview_js()
 	?>
 	<script>
 		jQuery( window ).load( function() {
-			jQuery('#customize-info').append('<span class="get-addon" style="display:block;"><a style="display:block;padding-left: 15px;padding-right:0;" href="<?php echo esc_url('https://generatepress.com/add-ons');?>" target="_blank"><?php _e('Add-ons Available! Take a look','generatepress');?> &rarr;</a></span>');
+			jQuery('#accordion-section-themes').append('<span class="get-addon" style="display:block;position:relative;top:-15px;"><a style="display:block;padding-left: 15px;padding-right:0;" href="<?php echo esc_url('https://generatepress.com/add-ons');?>" target="_blank"><?php _e('Add-ons Available! Take a look','generatepress');?> &rarr;</a></span>');
 		});
 	</script>
 	<?php
