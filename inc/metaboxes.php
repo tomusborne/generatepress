@@ -4,6 +4,7 @@ if ( ! function_exists( 'generate_add_layout_meta_box' ) ) :
  * Generate the layout metabox
  * @since 0.1
  */
+add_action( 'add_meta_boxes', 'generate_add_layout_meta_box' );
 function generate_add_layout_meta_box() { 
 	
 	// Set user role - make filterable
@@ -27,7 +28,6 @@ function generate_add_layout_meta_box() {
 		}
 	}
 }  
-add_action('add_meta_boxes', 'generate_add_layout_meta_box');
 endif;
 
 if ( ! function_exists( 'generate_enqueue_metabox_scripts' ) ) :
@@ -35,10 +35,10 @@ if ( ! function_exists( 'generate_enqueue_metabox_scripts' ) ) :
  * register the scripts
  * @since 1.3.35
  */
+add_action( 'admin_enqueue_scripts', 'generate_enqueue_metabox_scripts' );
 function generate_enqueue_metabox_scripts() { 
 	wp_register_script( 'generate_press_metaboxes', GENERATE_URI . '/inc/js/metaboxes.js', array( 'jquery' ), '1.0.0', true );
 }  
-add_action( 'admin_enqueue_scripts', 'generate_enqueue_metabox_scripts' );
 endif;
 
 if ( ! function_exists( 'generate_show_layout_meta_box' ) ) :
@@ -93,7 +93,8 @@ function generate_show_layout_meta_box( $post ) {
 endif;
 
 if ( ! function_exists( 'generate_save_layout_meta' ) ) :
-// Save the Data  
+// Save the Data
+add_action( 'save_post', 'generate_save_layout_meta' );
 function generate_save_layout_meta($post_id) {  
 	// Checks save status
     $is_autosave = wp_is_post_autosave( $post_id );
@@ -114,7 +115,6 @@ function generate_save_layout_meta($post_id) {
 		delete_post_meta( $post_id, $key );
 	
 }  
-add_action('save_post', 'generate_save_layout_meta');
 endif;
 
 if ( ! function_exists( 'generate_add_footer_widget_meta_box' ) ) :
@@ -122,6 +122,7 @@ if ( ! function_exists( 'generate_add_footer_widget_meta_box' ) ) :
  * Generate the footer widget metabox
  * @since 0.1
  */
+add_action( 'add_meta_boxes', 'generate_add_footer_widget_meta_box' );
 function generate_add_footer_widget_meta_box() {  
 
 	// Set user role - make filterable
@@ -145,7 +146,6 @@ function generate_add_footer_widget_meta_box() {
 		}
 	}
 }  
-add_action('add_meta_boxes', 'generate_add_footer_widget_meta_box');
 endif;
 
 if ( ! function_exists( 'generate_show_footer_widget_meta_box' ) ) :
@@ -198,7 +198,8 @@ function generate_show_footer_widget_meta_box( $post ) {
 endif;
 
 if ( ! function_exists( 'generate_save_footer_widget_meta' ) ) :
-// Save the Data  
+// Save the Data
+add_action( 'save_post', 'generate_save_footer_widget_meta' );
 function generate_save_footer_widget_meta($post_id) {  
     
 	// Checks save status
@@ -219,7 +220,6 @@ function generate_save_footer_widget_meta($post_id) {
 	else
 		delete_post_meta( $post_id, $key );
 }  
-add_action('save_post', 'generate_save_footer_widget_meta');
 endif;
 
 if ( ! function_exists( 'generate_add_page_builder_meta_box' ) ) :
@@ -227,6 +227,7 @@ if ( ! function_exists( 'generate_add_page_builder_meta_box' ) ) :
  * Generate the page builder integration metabox
  * @since 1.3.32
  */
+add_action('add_meta_boxes', 'generate_add_page_builder_meta_box');
 function generate_add_page_builder_meta_box() {  
 
 	// Set user role - make filterable
@@ -249,8 +250,7 @@ function generate_add_page_builder_meta_box() {
 			); 
 		}
 	}
-}  
-add_action('add_meta_boxes', 'generate_add_page_builder_meta_box');
+}
 endif;
 
 if ( ! function_exists( 'generate_show_page_builder_meta_box' ) ) :
@@ -278,7 +278,8 @@ function generate_show_page_builder_meta_box( $post ) {
 endif;
 
 if ( ! function_exists( 'generate_save_page_builder_meta' ) ) :
-// Save the Data  
+// Save the Data
+add_action( 'save_post', 'generate_save_page_builder_meta' );
 function generate_save_page_builder_meta($post_id) {  
     
 	// Checks save status
@@ -298,6 +299,5 @@ function generate_save_page_builder_meta($post_id) {
 		update_post_meta( $post_id, $key, $value );
 	else
 		delete_post_meta( $post_id, $key );
-}  
-add_action('save_post', 'generate_save_page_builder_meta');
+}
 endif;
