@@ -392,7 +392,7 @@ function generate_menu_search_icon( $nav, $args )
 	
 	// If our primary menu is set, add the search icon
     if( $args->theme_location == 'primary' )
-        return $nav . '<li class="search-item" title="' . _x( 'Search', 'submit button', 'generatepress' ) . '"><a href="#"><i class="fa fa-fw fa-search"></i></a></li>';
+        return $nav . '<li class="search-item" title="' . _x( 'Search', 'submit button', 'generatepress' ) . '"><a href="#"><i class="fa fa-fw fa-search" aria-hidden="true"></i><span class="screen-reader-text">' . _x( 'Search', 'submit button', 'generatepress' ) . '</span></a></li>';
 	
 	// Our primary menu isn't set, return the regular nav
 	// In this case, the search icon is added to the generate_menu_fallback() function in navigation.php
@@ -422,7 +422,10 @@ function generate_mobile_menu_search_icon()
 	<div class="mobile-bar-items">
 		<?php do_action( 'generate_inside_mobile_menu_bar' ); ?>
 		<span class="search-item" title="<?php _ex( 'Search', 'submit button', 'generatepress' ); ?>">
-			<a href="#"><i class="fa fa-fw fa-search"></i></a>
+			<a href="#">
+				<i class="fa fa-fw fa-search" aria-hidden="true"></i>
+				<span class="screen-reader-text"><?php _ex( 'Search', 'submit button', 'generatepress' ); ?></span>
+			</a>
 		</span>
 	</div><!-- .mobile-bar-items -->
 	<?php
