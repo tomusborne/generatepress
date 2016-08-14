@@ -613,7 +613,7 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle {
 	float: right;
 }
 
-nav:not(.toggled) ul ul .menu-item-has-children .dropdown-menu-toggle {
+nav:not(.toggled):not(.slideout-navigation) ul ul .menu-item-has-children .dropdown-menu-toggle {
 	padding-right: 15px;
 }
 
