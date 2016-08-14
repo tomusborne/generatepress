@@ -52,20 +52,18 @@
 		display: block;
 	}
 	
-	.main-navigation ul li.sfHover > ul {
+	.main-navigation ul li.sfHover > ul,
+	.main-navigation ul,
+	.main-navigation .menu li.search-item {
 		display: none;
 	}
 	
-	button.menu-toggle {
-		background-color: transparent;
-		width: 100%;
-		border: 0;
-	}
-	
+	button.menu-toggle,
 	button.menu-toggle:hover,
 	button.menu-toggle:active,
 	button.menu-toggle:focus {
 		background-color: transparent;
+		width: 100%;
 		border: 0;
 		outline: 0;
 	}
@@ -83,31 +81,14 @@
 	.sfHover > a .dropdown-menu-toggle:before {
 		content: "\f106" !important;
 	}
-
-	.main-navigation ul {
-		display: none;
-	}
 	
-	.nav-float-right .inside-header .main-navigation,
-	.nav-float-right .inside-header .site-branding,
-	.nav-float-right .inside-header .site-logo,
-	.nav-float-left .inside-header .main-navigation,
-	.nav-float-left .inside-header .site-branding,
-	.nav-float-left .inside-header .site-logo {
+	[class*="nav-float-"] .site-header .inside-header > * {
 		float: none;
 		clear: both;
 	}
 	
-	.nav-float-left  .inside-header > .site-branding,
-	.nav-float-left  .inside-header > .site-logo,
-	.nav-float-right  .inside-header > .site-branding,
-	.nav-float-right  .inside-header > .site-logo {
+	.inside-header > *:not(:last-child) {
 		margin-bottom: 20px;
-	}
-	
-	.navigation-search {
-		bottom: auto;
-		top: 0;
 	}
 	
 	.mobile-bar-items {
@@ -121,15 +102,6 @@
 	
 	.mobile-bar-items a {
 		display: inline-block;
-	}
-	
-	.main-navigation .menu li.search-item {
-		display: none !important;
-	}
-	
-	li.search-item a {
-		padding-left: 20px;
-		padding-right: 20px;
 	}
 	
 	.menu-toggle {
@@ -167,12 +139,6 @@
 	
 	.main-navigation {
 		text-align:left;
-	}
-	
-	.navigation-search,
-	.navigation-search input {
-		width: 100%;
-		max-width: 100%;
 	}
 	
 	.sf-menu > li.menu-item-float-right {
