@@ -53,9 +53,12 @@
 	}
 	
 	.main-navigation ul li.sfHover > ul,
-	.main-navigation ul,
-	.main-navigation .menu li.search-item {
+	.main-navigation ul {
 		display: none;
+	}
+	
+	.main-navigation .menu li.search-item {
+		display: none !important;
 	}
 	
 	button.menu-toggle,
