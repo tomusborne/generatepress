@@ -1,4 +1,5 @@
 <?php
+if ( ! function_exists( 'generate_sanitize_integer' ) ) :
 /**
  * Sanitize integers
  * @since 1.0.8
@@ -6,7 +7,9 @@
 function generate_sanitize_integer( $input ) {
 	return absint( $input );
 }
+endif;
 
+if ( ! function_exists( 'generate_sanitize_checkbox' ) ) :
 /**
  * Sanitize checkbox values
  * @since 1.0.8
@@ -19,7 +22,9 @@ function generate_sanitize_checkbox( $input ) {
 	}
 	return $output;
 }
+endif;
 
+if ( ! function_exists( 'generate_sanitize_typography' ) ) :
 /**
  * Sanitize typography dropdown
  * @since 1.1.10
@@ -64,7 +69,9 @@ function generate_sanitize_typography( $input )
         return 'Open Sans';
     }
 }
+endif;
 
+if ( ! function_exists( 'generate_sanitize_font_weight' ) ) :
 /**
  * Sanitize font weight
  * @since 1.1.10
@@ -91,7 +98,9 @@ function generate_sanitize_font_weight( $input ) {
         return 'normal';
     }
 }
+endif;
 
+if ( ! function_exists( 'generate_sanitize_text_transform' ) ) :
 /**
  * Sanitize text transform
  * @since 1.1.10
@@ -111,7 +120,9 @@ function generate_sanitize_text_transform( $input ) {
         return 'none';
     }
 }
+endif;
 
+if ( ! function_exists( 'generate_sanitize_blog_excerpt' ) ) :
 /**
  * Sanitize blog excerpt
  * @since 1.0.8
@@ -128,7 +139,9 @@ function generate_sanitize_blog_excerpt( $input ) {
         return 'full';
     }
 }
+endif;
 
+if ( ! function_exists( 'generate_sanitize_hex_color' ) ) :
 /**
  * Sanitize colors
  * Allow blank value
@@ -144,7 +157,9 @@ function generate_sanitize_hex_color( $color ) {
  
     return '';
 }
+endif;
 
+if ( ! function_exists( 'generate_sanitize_choices' ) ) :
 /**
  * Sanitize choices
  * @since 1.3.24
@@ -162,3 +177,4 @@ function generate_sanitize_choices( $input, $setting ) {
 	// otherwise, return the default
 	return ( array_key_exists( $input, $choices ) ? $input : $setting->default );
 }
+endif;

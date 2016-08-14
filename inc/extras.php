@@ -7,6 +7,7 @@
  * @package GeneratePress
  */
 
+if ( ! function_exists( 'generate_page_menu_args' ) ) :
 /**
  * Get our wp_nav_menu() fallback, wp_page_menu(), to show a home link.
  */
@@ -15,7 +16,9 @@ function generate_page_menu_args( $args ) {
 	return $args;
 }
 add_filter( 'wp_page_menu_args', 'generate_page_menu_args' );
+endif;
 
+if ( ! function_exists( 'generate_body_classes' ) ) :
 /**
  * Adds custom classes to the array of body classes.
  * @since 0.1
@@ -95,7 +98,9 @@ function generate_body_classes( $classes )
 
 	return $classes;
 }
+endif;
 
+if ( ! function_exists( 'generate_right_sidebar_classes' ) ) :
 /**
  * Adds custom classes to the right sidebar
  * @since 0.1
@@ -134,7 +139,9 @@ function generate_right_sidebar_classes( $classes )
 	return $classes;
 	
 }
+endif;
 
+if ( ! function_exists( 'generate_left_sidebar_classes' ) ) :
 /**
  * Adds custom classes to the left sidebar
  * @since 0.1
@@ -178,7 +185,9 @@ function generate_left_sidebar_classes( $classes )
 	return $classes;
 	
 }
+endif;
 
+if ( ! function_exists( 'generate_content_classes' ) ) :
 /**
  * Adds custom classes to the content container
  * @since 0.1
@@ -245,7 +254,9 @@ function generate_content_classes( $classes )
 	return $classes;
 	
 }
-  
+endif;
+
+if ( ! function_exists( 'generate_enhanced_image_navigation' ) ) :
 /**
  * Filter in a link to a content ID attribute for the next/previous image links on image attachment pages
  */
@@ -260,7 +271,9 @@ function generate_enhanced_image_navigation( $url, $id ) {
 
 	return $url;
 }
+endif;
 
+if ( ! function_exists( 'generate_header_classes' ) ) :
 /**
  * Adds custom classes to the header
  * @since 0.1
@@ -286,7 +299,9 @@ function generate_header_classes( $classes )
 	return $classes;
 	
 }
+endif;
 
+if ( ! function_exists( 'generate_inside_header_classes' ) ) :
 /**
  * Adds custom classes to inside the header
  * @since 0.1
@@ -312,7 +327,9 @@ function generate_inside_header_classes( $classes )
 	return $classes;
 	
 }
+endif;
 
+if ( ! function_exists( 'generate_navigation_classes' ) ) :
 /**
  * Adds custom classes to the navigation
  * @since 0.1
@@ -338,7 +355,9 @@ function generate_navigation_classes( $classes )
 	return $classes;
 	
 }
+endif;
 
+if ( ! function_exists( 'generate_menu_classes' ) ) :
 /**
  * Adds custom classes to the menu
  * @since 0.1
@@ -352,7 +371,9 @@ function generate_menu_classes( $classes )
 	return $classes;
 	
 }
+endif;
 
+if ( ! function_exists( 'generate_footer_classes' ) ) :
 /**
  * Adds custom classes to the footer
  * @since 0.1
@@ -377,7 +398,9 @@ function generate_footer_classes( $classes )
 	return $classes;
 	
 }
+endif;
 
+if ( ! function_exists( 'generate_main_classes' ) ) :
 /**
  * Adds custom classes to the <main> element
  * @since 1.1.0
@@ -390,3 +413,4 @@ function generate_main_classes( $classes )
 	return $classes;
 	
 }
+endif;

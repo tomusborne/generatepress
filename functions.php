@@ -96,6 +96,7 @@ function generate_setup()
 }
 endif; // generate_setup
 
+if ( ! function_exists( 'generate_get_defaults' ) ) :
 /**
  * Set default options
  */
@@ -130,7 +131,9 @@ function generate_get_defaults()
 	
 	return apply_filters( 'generate_option_defaults', $generate_defaults );
 }
+endif;
 
+if ( ! function_exists( 'generate_widgets_init' ) ) :
 /**
  * Register widgetized area and update sidebar with default widgets
  */
@@ -161,6 +164,7 @@ function generate_widgets_init()
 		) );
 	}
 }
+endif;
 
 /**
  * Custom template tags for this theme.
@@ -207,6 +211,7 @@ require get_template_directory() . '/inc/add-ons.php';
  */
 require get_template_directory() . '/inc/woocommerce.php';
 
+if ( ! function_exists( 'generate_get_min_suffix' ) ) :
 /** 
  * Figure out if we should use minified scripts or not
  * @since 1.3.29
@@ -215,7 +220,9 @@ function generate_get_min_suffix()
 {
 	return defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 }
+endif;
 
+if ( ! function_exists( 'generate_scripts' ) ) :
 /**
  * Enqueue scripts and styles
  */
@@ -289,7 +296,9 @@ function generate_scripts()
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
+endif;
 
+if ( ! function_exists( 'generate_get_layout' ) ) :
 /**
  * Get the layout for the current page
  */
@@ -337,7 +346,9 @@ function generate_get_layout()
 	// Finally, return the layout
 	return apply_filters( 'generate_sidebar_layout', $layout );
 }
+endif;
 
+if ( ! function_exists( 'generate_get_footer_widgets' ) ) :
 /**
  * Get the footer widgets for the current page
  */
@@ -371,7 +382,9 @@ function generate_get_footer_widgets()
 	// Finally, return the layout
 	return apply_filters( 'generate_footer_widgets', $widgets );
 }
+endif;
 
+if ( ! function_exists( 'generate_construct_sidebars' ) ) :
 /**
  * Construct the sidebars
  * @since 0.1
@@ -398,7 +411,9 @@ function generate_construct_sidebars()
 		get_sidebar(); 
 	endif;
 }
+endif;
 
+if ( ! function_exists( 'generate_add_footer_info' ) ) :
 add_action('generate_credits','generate_add_footer_info');
 function generate_add_footer_info()
 {
@@ -406,7 +421,9 @@ function generate_add_footer_info()
 	<span class="copyright"><?php _e('Copyright','generatepress');?> &copy; <?php echo date('Y'); ?></span> <?php do_action('generate_copyright_line');?>
 	<?php
 }
+endif;
 
+if ( ! function_exists( 'generate_add_login_attribution' ) ) :
 add_action('generate_copyright_line','generate_add_login_attribution');
 function generate_add_login_attribution()
 {
@@ -414,7 +431,9 @@ function generate_add_login_attribution()
 	&#x000B7; <a href="<?php echo esc_url('https://generatepress.com');?>" target="_blank" title="GeneratePress" itemprop="url">GeneratePress</a>
 	<?php
 }
+endif;
 
+if ( ! function_exists( 'generate_base_css' ) ) :
 /**
  * Generate the CSS in the <head> section using the Theme Customizer
  * @since 0.1
@@ -486,7 +505,9 @@ function generate_base_css()
 	$output = str_replace(array("\r", "\n"), '', $output);
 	return $output;
 }
+endif;
 
+if ( ! function_exists( 'generate_add_viewport' ) ) :
 /** 
  * Add viewport to wp_head
  * @since 1.1.0
@@ -496,7 +517,9 @@ function generate_add_viewport()
 {
 	echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
 }
+endif;
 
+if ( ! function_exists( 'generate_ie_compatibility' ) ) :
 /** 
  * Add compatibility for IE8 and lower
  * No need to run this if wp_script_add_data() exists
@@ -515,6 +538,7 @@ function generate_ie_compatibility()
 	<![endif]-->
 	<?php
 }
+endif;
 
 if ( ! function_exists( 'generate_remove_caption_padding' ) ) :
 /**
@@ -664,6 +688,7 @@ function generate_show_title()
 }
 endif;
 
+if ( ! function_exists( 'generate_update_logo_setting' ) ) :
 /**
  * Migrate the old logo database entry to the new custom_logo theme mod (WordPress 4.5)
  *
@@ -709,3 +734,4 @@ function generate_update_logo_setting()
 		update_option( 'generate_settings', $update_settings );
 	endif;
 }
+endif;

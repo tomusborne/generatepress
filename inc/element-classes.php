@@ -1,4 +1,5 @@
 <?php
+if ( ! function_exists( 'generate_right_sidebar_class' ) ) :
 /**
  * Display the classes for the sidebar.
  *
@@ -9,7 +10,9 @@ function generate_right_sidebar_class( $class = '' ) {
 	// Separates classes with a single space, collates classes for post DIV
 	echo 'class="' . join( ' ', generate_get_right_sidebar_class( $class ) ) . '"';
 }
+endif;
 
+if ( ! function_exists( 'generate_get_right_sidebar_class' ) ) :
 /**
  * Retrieve the classes for the sidebar.
  *
@@ -31,7 +34,9 @@ function generate_get_right_sidebar_class( $class = '' ) {
 
 	return apply_filters('generate_right_sidebar_class', $classes, $class);
 }
+endif;
 
+if ( ! function_exists( 'generate_left_sidebar_class' ) ) :
 /**
  * Display the classes for the sidebar.
  *
@@ -42,7 +47,9 @@ function generate_left_sidebar_class( $class = '' ) {
 	// Separates classes with a single space, collates classes for post DIV
 	echo 'class="' . join( ' ', generate_get_left_sidebar_class( $class ) ) . '"';
 }
+endif;
 
+if ( ! function_exists( 'generate_get_left_sidebar_class' ) ) :
 /**
  * Retrieve the classes for the sidebar.
  *
@@ -64,7 +71,9 @@ function generate_get_left_sidebar_class( $class = '' ) {
 
 	return apply_filters('generate_left_sidebar_class', $classes, $class);
 }
+endif;
 
+if ( ! function_exists( 'generate_content_class' ) ) :
 /**
  * Display the classes for the content.
  *
@@ -75,7 +84,9 @@ function generate_content_class( $class = '' ) {
 	// Separates classes with a single space, collates classes for post DIV
 	echo 'class="' . join( ' ', generate_get_content_class( $class ) ) . '"';
 }
+endif;
 
+if ( ! function_exists( 'generate_get_content_class' ) ) :
 /**
  * Retrieve the classes for the content.
  *
@@ -97,7 +108,9 @@ function generate_get_content_class( $class = '' ) {
 
 	return apply_filters('generate_content_class', $classes, $class);
 }
+endif;
 
+if ( ! function_exists( 'generate_header_class' ) ) :
 /**
  * Display the classes for the header.
  *
@@ -108,7 +121,9 @@ function generate_header_class( $class = '' ) {
 	// Separates classes with a single space, collates classes for post DIV
 	echo 'class="' . join( ' ', generate_get_header_class( $class ) ) . '"';
 }
+endif;
 
+if ( ! function_exists( 'generate_get_header_class' ) ) :
 /**
  * Retrieve the classes for the content.
  *
@@ -130,7 +145,9 @@ function generate_get_header_class( $class = '' ) {
 
 	return apply_filters('generate_header_class', $classes, $class);
 }
+endif;
 
+if ( ! function_exists( 'generate_inside_header_class' ) ) :
 /**
  * Display the classes for inside the header.
  *
@@ -141,7 +158,9 @@ function generate_inside_header_class( $class = '' ) {
 	// Separates classes with a single space, collates classes for post DIV
 	echo 'class="' . join( ' ', generate_get_inside_header_class( $class ) ) . '"';
 }
+endif;
 
+if ( ! function_exists( 'generate_get_inside_header_class' ) ) :
 /**
  * Retrieve the classes for inside the header.
  *
@@ -163,7 +182,9 @@ function generate_get_inside_header_class( $class = '' ) {
 
 	return apply_filters('generate_inside_header_class', $classes, $class);
 }
+endif;
 
+if ( ! function_exists( 'generate_container_class' ) ) :
 /**
  * Display the classes for the container.
  *
@@ -174,7 +195,9 @@ function generate_container_class( $class = '' ) {
 	// Separates classes with a single space, collates classes for post DIV
 	echo 'class="' . join( ' ', generate_get_container_class( $class ) ) . '"';
 }
+endif;
 
+if ( ! function_exists( 'generate_get_container_class' ) ) :
 /**
  * Retrieve the classes for the content.
  *
@@ -196,7 +219,9 @@ function generate_get_container_class( $class = '' ) {
 
 	return apply_filters('generate_container_class', $classes, $class);
 }
+endif;
 
+if ( ! function_exists( 'generate_navigation_class' ) ) :
 /**
  * Display the classes for the navigation.
  *
@@ -207,7 +232,9 @@ function generate_navigation_class( $class = '' ) {
 	// Separates classes with a single space, collates classes for post DIV
 	echo 'class="' . join( ' ', generate_get_navigation_class( $class ) ) . '"';
 }
+endif;
 
+if ( ! function_exists( 'generate_get_navigation_class' ) ) :
 /**
  * Retrieve the classes for the navigation.
  *
@@ -229,7 +256,9 @@ function generate_get_navigation_class( $class = '' ) {
 
 	return apply_filters('generate_navigation_class', $classes, $class);
 }
+endif;
 
+if ( ! function_exists( 'generate_menu_class' ) ) :
 /**
  * Display the classes for the navigation.
  *
@@ -240,7 +269,9 @@ function generate_menu_class( $class = '' ) {
 	// Separates classes with a single space, collates classes for post DIV
 	echo 'class="' . join( ' ', generate_get_menu_class( $class ) ) . '"';
 }
+endif;
 
+if ( ! function_exists( 'generate_get_menu_class' ) ) :
 /**
  * Retrieve the classes for the navigation.
  *
@@ -262,7 +293,9 @@ function generate_get_menu_class( $class = '' ) {
 
 	return apply_filters('generate_menu_class', $classes, $class);
 }
+endif;
 
+if ( ! function_exists( 'generate_footer_class' ) ) :
 /**
  * Display the classes for the footer.
  *
@@ -273,7 +306,9 @@ function generate_footer_class( $class = '' ) {
 	// Separates classes with a single space, collates classes for post DIV
 	echo 'class="' . join( ' ', generate_get_footer_class( $class ) ) . '"';
 }
+endif;
 
+if ( ! function_exists( 'generate_get_footer_class' ) ) :
 /**
  * Retrieve the classes for the footer.
  *
@@ -295,7 +330,9 @@ function generate_get_footer_class( $class = '' ) {
 
 	return apply_filters('generate_footer_class', $classes, $class);
 }
+endif;
 
+if ( ! function_exists( 'generate_main_class' ) ) :
 /**
  * Display the classes for the <main> container.
  *
@@ -306,7 +343,9 @@ function generate_main_class( $class = '' ) {
 	// Separates classes with a single space, collates classes for post DIV
 	echo 'class="' . join( ' ', generate_get_main_class( $class ) ) . '"';
 }
+endif;
 
+if ( ! function_exists( 'generate_get_main_class' ) ) :
 /**
  * Retrieve the classes for the footer.
  *
@@ -328,3 +367,4 @@ function generate_get_main_class( $class = '' ) {
 
 	return apply_filters('generate_main_class', $classes, $class);
 }
+endif;
