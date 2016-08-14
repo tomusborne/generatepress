@@ -9,7 +9,6 @@ define( 'GENERATE_VERSION', '1.3.34');
 define( 'GENERATE_URI', get_template_directory_uri() );
 define( 'GENERATE_DIR', get_template_directory() );
 
-add_action( 'after_setup_theme', 'generate_setup' );
 if ( ! function_exists( 'generate_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -18,6 +17,7 @@ if ( ! function_exists( 'generate_setup' ) ) :
  * before the init hook. The init hook is too late for some features, such as indicating
  * support post thumbnails.
  */
+add_action( 'after_setup_theme', 'generate_setup' );
 function generate_setup() 
 {
 	/**
