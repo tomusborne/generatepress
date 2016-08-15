@@ -1,5 +1,8 @@
 === changelog ===
 
+= (8/15/2016) - 1.3.37 =
+* Fix warning in "Appearance > GeneratePress"
+
 = (8/14/2016) - 1.3.36 =
 * Fix grid issue if users aren't using mobile-grid-* classes
 
