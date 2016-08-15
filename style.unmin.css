@@ -482,6 +482,10 @@ input[type="file"] {
 	float: right;
 	clear: right;
 }
+
+.nav-float-right .inside-header .site-branding {
+	display: inline-block;
+}
 .site-header {
 	position:relative;
 }
