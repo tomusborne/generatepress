@@ -414,3 +414,15 @@ function generate_main_classes( $classes )
 	
 }
 endif;
+
+if ( ! function_exists( 'generate_post_classes' ) ) :
+add_filter( 'post_class','generate_post_classes' );
+function generate_post_classes( $classes )
+{
+	if ( 'page' == get_post_type() ) {
+		$classes = array_diff( $classes, array( 'hentry' ) );
+	}
+	
+	return $classes;
+}
+endif;
