@@ -6,6 +6,10 @@
  *
  * @package GeneratePress
  */
+ 
+// No direct access, please
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>

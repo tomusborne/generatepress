@@ -15,6 +15,9 @@
  * @license  http://www.opensource.org/licenses/gpl-license.php GPL v2.0 (or later)
  * @link     http://www.generatepress.com
  */
+ 
+// No direct access, please
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 require get_template_directory() . '/inc/add-ons/typography.php';
 require get_template_directory() . '/inc/add-ons/colors.php';
