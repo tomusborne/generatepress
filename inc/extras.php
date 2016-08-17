@@ -416,6 +416,11 @@ function generate_main_classes( $classes )
 endif;
 
 if ( ! function_exists( 'generate_post_classes' ) ) :
+/**
+ * Adds custom classes to the <article> element
+ * Remove .hentry class from pages to comply with structural data guidelines
+ * @since 1.3.39
+ */
 add_filter( 'post_class','generate_post_classes' );
 function generate_post_classes( $classes )
 {
