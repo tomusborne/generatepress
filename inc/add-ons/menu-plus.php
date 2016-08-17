@@ -1,4 +1,7 @@
 <?php
+// No direct access, please
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 if ( function_exists( 'generate_menu_plus_get_defaults' ) ) :
 /**
  * Enqueue inline CSS

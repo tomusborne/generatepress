@@ -16,6 +16,9 @@
  * @link     http://www.generatepress.com
  */
  
+// No direct access, please
+if ( ! defined( 'ABSPATH' ) ) exit;
+ 
 if ( !function_exists('generate_get_default_fonts') && !function_exists('generate_font_css') && !function_exists('generate_display_google_fonts') ) :
 	/**
 	 * Set default options

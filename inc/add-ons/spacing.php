@@ -15,6 +15,9 @@
  * @license  http://www.opensource.org/licenses/gpl-license.php GPL v2.0 (or later)
  * @link     http://www.generatepress.com
  */
+ 
+// No direct access, please
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 if ( !function_exists('generate_spacing_get_defaults') ) :
 	function generate_spacing_get_defaults()

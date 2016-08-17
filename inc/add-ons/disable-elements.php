@@ -1,4 +1,7 @@
 <?php
+// No direct access, please
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 if ( ! function_exists( 'generate_disable_elements' ) ) :
 /**
  * Add any necessary CSS for disabling these elements
