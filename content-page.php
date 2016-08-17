@@ -4,6 +4,9 @@
  *
  * @package GeneratePress
  */
+ 
+// No direct access, please
+if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php generate_article_schema( 'CreativeWork' ); ?>>
