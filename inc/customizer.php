@@ -703,8 +703,7 @@ function generate_customize_register( $wp_customize ) {
 			'title' => __( 'Blog', 'generatepress' ),
 			'capability' => 'edit_theme_options',
 			'description' => '',
-			'priority' => 35,
-			'active_callback' => 'generate_is_posts_page'
+			'priority' => 35
 		)
 	);
 	
@@ -730,8 +729,7 @@ function generate_customize_register( $wp_customize ) {
 				'excerpt' => __( 'Show excerpt', 'generatepress' )
 			),
 			'settings' => 'generate_settings[post_content]',
-			'priority' => 10,
-			'active_callback' => 'generate_is_posts_page'
+			'priority' => 10
 		)
 	);
 	
