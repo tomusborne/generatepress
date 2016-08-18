@@ -1,4 +1,7 @@
 <?php
+// No direct access, please
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 /***********************
 /*
 /*	Generate_Customize_Slider_Control
@@ -18,7 +21,7 @@ if ( !class_exists('Generate_Customize_Width_Slider_Control') ) :
 		// Override content render function to output slider HTML
 		public function render_content()
 		{ ?>
-			<label><p style="margin-bottom:0;"><span class="customize-control-title" style="margin:0;display:inline-block;"><?php echo esc_html( $this->label ); ?></span> <span class="value"><input name="<?php echo $this->id; ?>" type="text" <?php $this->link(); ?> value="<?php echo $this->value(); ?>" class="slider-input" /><span class="px">px</span></span></p></label>
+			<label><p style="margin-bottom:0;"><span class="customize-control-title" style="margin:0;display:inline-block;"><?php echo esc_html( $this->label ); ?></span> <span class="value"><input name="<?php echo $this->id; ?>" type="number" <?php $this->link(); ?> value="<?php echo $this->value(); ?>" class="slider-input" /><span class="px">px</span></span></p></label>
 			<div class="slider"></div>
 		<?php
 		}

@@ -1,4 +1,7 @@
 <?php
+// No direct access, please
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 /**
  * GeneratePress Customizer
  *
@@ -867,22 +870,23 @@ function generate_customize_preview_css() {
 		}
 		
 		.slider-input {
-			width: 40px !important;
+			width: 60px !important;
 			font-size: 12px;
 			padding: 2px;
 			text-align: center;
+			height: auto !important;
 		}
 		
 		span.value {
 			display: inline-block;
 			float: right;
-			width: 30%;
+			width: 35%;
 			text-align: right;
 		}
 		
 		span.typography-size-label {
 			display: inline-block;
-			width: 70%;
+			width: 65%;
 		}
 		
 		div.slider {
