@@ -6,6 +6,9 @@
  *
  * @package GeneratePress
  */
+ 
+// No direct access, please
+if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 
 <section class="no-results not-found">

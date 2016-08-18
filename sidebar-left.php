@@ -4,6 +4,10 @@
  *
  * @package GeneratePress
  */
+ 
+// No direct access, please
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 $generate_settings = wp_parse_args( 
 	get_option( 'generate_settings', array() ), 
 	generate_get_defaults() 
