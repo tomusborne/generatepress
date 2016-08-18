@@ -1,4 +1,7 @@
 <?php
+// No direct access, please
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 if ( ! function_exists( 'generate_add_navigation_after_header' ) ) :
 /**
  * Generate the navigation based on settings

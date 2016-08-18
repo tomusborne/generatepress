@@ -4,6 +4,10 @@
  *
  * @package GeneratePress
  */
+ 
+// No direct access, please
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 if ( ! function_exists( 'generate_paging_nav' ) ) :
 /**
  * Build the pagination links

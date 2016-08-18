@@ -1,4 +1,7 @@
 <?php
+// No direct access, please
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 /** 
  * Remove default WooCommerce wrappers
  * @since 1.3.22
