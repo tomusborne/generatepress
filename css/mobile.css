@@ -27,12 +27,17 @@
 		display: none !important;
 	}
 	
-	button.menu-toggle,
+	button.menu-toggle {
+		background-color: transparent;
+		width: 100%;
+		border: 0;
+		outline: 0;
+	}
+	
 	button.menu-toggle:hover,
 	button.menu-toggle:active,
 	button.menu-toggle:focus {
 		background-color: transparent;
-		width: 100%;
 		border: 0;
 		outline: 0;
 	}
