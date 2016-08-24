@@ -26,7 +26,7 @@ function generate_add_layout_meta_box() {
 				'generate_show_layout_meta_box', // $callback  
 				$type, // $page  
 				'side', // $context  
-				'high' // $priority  
+				'default' // $priority  
 			); 
 		}
 	}
@@ -144,7 +144,7 @@ function generate_add_footer_widget_meta_box() {
 				'generate_show_footer_widget_meta_box', // $callback  
 				$type, // $page  
 				'side', // $context  
-				'high' // $priority  
+				'default' // $priority  
 			); 
 		}
 	}
