@@ -1181,13 +1181,12 @@ h4, h5, h6 {
 .site-main {
 	margin: 30px 0;
 }
+.site-content {
+	word-wrap: break-word;
+}
 .separate-containers .site-main > *:last-child,
 .one-container .site-main > *:last-child {
 	margin-bottom: 0;
-}
-.inside-right-sidebar,
-.inside-left-sidebar {
-	margin: 30px 0;
 }
 .one-container .site-main {
 	margin-top: 0;
