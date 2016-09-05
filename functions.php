@@ -136,6 +136,17 @@ function generate_get_defaults()
 }
 endif;
 
+if ( ! function_exists( 'generate_get_setting' ) ) :
+function generate_get_setting( $setting ) {
+	$generate_settings = wp_parse_args( 
+		get_option( 'generate_settings', array() ), 
+		generate_get_defaults() 
+	);
+	
+	return $generate_settings[ $setting ];
+}
+endif;
+
 if ( ! function_exists( 'generate_widgets_init' ) ) :
 /**
  * Register widgetized area and update sidebar with default widgets
