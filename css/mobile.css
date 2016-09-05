@@ -12,6 +12,14 @@
 		margin-bottom: 40px;
 	}
 	
+	.one-container .sidebar {
+		margin-top: 40px;
+	}
+	
+	.separate-containers #left-sidebar + #right-sidebar .inside-right-sidebar {
+		margin-top: 0;
+	}
+	
 	/* Mobile navigation */
 	.menu-toggle,
 	.main-navigation.toggled .main-nav > ul {
