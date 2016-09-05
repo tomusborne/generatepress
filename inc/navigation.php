@@ -160,14 +160,14 @@ function generate_menu_fallback( $args )
 }
 endif;
 
-if ( ! class_exists( 'Generate_Page_Walker' ) ) :
+if ( ! class_exists( 'Generate_Page_Walker' ) && class_exists( 'Walker_Page' ) ) :
 /**
  * Add current-menu-item to the current item if no theme location is set
  * This means we don't have to duplicate CSS properties for current_page_item and current-menu-item
  *
  * @since 1.3.21
  */
-class Generate_Page_Walker extends Walker_page 
+class Generate_Page_Walker extends Walker_Page 
 {
 	function start_el( &$output, $page, $depth = 0, $args = array(), $current_page = 0 ) 
 	{
