@@ -174,6 +174,10 @@ if ( !function_exists('generate_spacing_css') ) :
 				'margin-bottom' => ( isset( $spacing_settings['separator'] ) ) ? $spacing_settings['separator'] . 'px' : null,
 			),
 			
+			'.separate-containers.page .comments-area' => array(
+				'margin-top' => ( isset( $spacing_settings['separator'] ) ) ? $spacing_settings['separator'] . 'px' : null
+			),
+			
 			'.both-left.separate-containers .inside-left-sidebar' => array(
 				'margin-right' => ( isset( $spacing_settings['separator'] ) ) ? $spacing_settings['separator'] / 2 . 'px' : null,
 			),
