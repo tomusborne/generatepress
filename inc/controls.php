@@ -38,3 +38,18 @@ if ( !class_exists('Generate_Customize_Width_Slider_Control') ) :
 		}
 	}
 endif;
+
+if ( class_exists( 'WP_Customize_Section' ) && ! class_exists( 'GeneratePress_Upsell_Section' ) ) :
+class GeneratePress_Upsell_Section extends WP_Customize_Section {
+
+	public $type = 'upsell';
+	public $settings = 'blogname';
+	protected function render() {
+		?>
+		<li id="accordion-section-<?php echo esc_attr( $this->id ); ?>" class="generate-upsell-accordion-section accordion-section">
+			<h3><a href="<?php echo esc_url('https://generatepress.com/add-ons');?>" target="_blank"><?php echo esc_html( $this->title ); ?></a></h3>
+		</li>
+		<?php
+	}
+}
+endif;
