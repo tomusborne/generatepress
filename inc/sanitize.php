@@ -59,7 +59,8 @@ function generate_sanitize_typography( $input )
 		'Palatino Linotype',
 		'Tahoma, Geneva, sans-serif',
 		'Trebuchet MS, Helvetica, sans-serif',
-		'Verdana, Geneva, sans-serif'
+		'Verdana, Geneva, sans-serif',
+		'Segoe UI, Helvetica, sans-serif'
 	);
 
 	// Merge them both into one array
