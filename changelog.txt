@@ -1,6 +1,28 @@
 === changelog ===
 
-= () - 1.3.39 =
+= () - 1.3.40 =
+* Make sidebar and footer metaboxes appear lower than publish metabox
+* Force words to break if too long for the container
+* Fix some content spacing on mobile
+* Add separating space above comments area on pages
+* Fix Walker_Page class name to match WP
+* Content layout is now instant preview
+* Header width is now instant preview
+* Header alignment is now instant preview
+* Navigation width is now instant preview
+* Navigation position is now instant preview
+* Navigation alignment is now instant preview
+* Footer width is now instant preview
+* Only show sidebar layout setting for the page you're viewing
+* Only show top 200 popular Google Fonts in Customizer (increases Customizer performance)
+* generate_number_of_fonts filter added so you can choose how many fonts to include in the Customizer list
+* Remove 2 database queries
+* Add Segoe UI font to default list
+* Fix header clearing bug when navigation is set to float left
+* Revamp how Google fonts get their category and variants (big increase in performance)
+* Change widget initialization array to avoid widget areas breaking due to bad translations
+
+= (8/17/2016) - 1.3.39 =
 * Target .post class instead of .hentry in CSS
 * Remove .hentry class from pages to stop schema structual errors (missing author, published etc..)
 * Improve grid to handle browser zooming even better
