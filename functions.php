@@ -137,6 +137,10 @@ function generate_get_defaults()
 endif;
 
 if ( ! function_exists( 'generate_get_setting' ) ) :
+/**
+ * A wrapper function to get our settings
+ * @since 1.3.40
+ */
 function generate_get_setting( $setting ) {
 	$generate_settings = wp_parse_args( 
 		get_option( 'generate_settings', array() ), 
@@ -154,23 +158,39 @@ if ( ! function_exists( 'generate_widgets_init' ) ) :
 add_action( 'widgets_init', 'generate_widgets_init' );
 function generate_widgets_init() 
 {
-	// Set up our array of widgets
+	// Set up our array of widgets	
 	$widgets = array(
-		__( 'Right Sidebar', 'generatepress' ) => 'sidebar-1',
-		__( 'Left Sidebar', 'generatepress' ) => 'sidebar-2',
-		__( 'Header', 'generatepress' ) => 'header',
-		__( 'Footer Widget 1', 'generatepress' ) => 'footer-1',
-		__( 'Footer Widget 2', 'generatepress' ) => 'footer-2',
-		__( 'Footer Widget 3', 'generatepress' ) => 'footer-3',
-		__( 'Footer Widget 4', 'generatepress' ) => 'footer-4',
-		__( 'Footer Widget 5', 'generatepress' ) => 'footer-5'
+		'sidebar-1' => array(
+			'name' => __( 'Right Sidebar', 'generatepress' )
+		),
+		'sidebar-2' => array(
+			'name' => __( 'Left Sidebar', 'generatepress' )
+		),
+		'header' => array(
+			'name' => __( 'Header', 'generatepress' )
+		),
+		'footer-1' => array(
+			'name' => __( 'Footer Widget 1', 'generatepress' )
+		),
+		'footer-2' => array(
+			'name' => __( 'Footer Widget 2', 'generatepress' )
+		),
+		'footer-3' => array(
+			'name' => __( 'Footer Widget 3', 'generatepress' )
+		),
+		'footer-4' => array(
+			'name' => __( 'Footer Widget 4', 'generatepress' )
+		),
+		'footer-5' => array(
+			'name' => __( 'Footer Widget 5', 'generatepress' )
+		),
 	);
 	
 	// Loop through them to create our widget areas
 	foreach ( $widgets as $widget => $id ) {
 		register_sidebar( array(
-			'name'          => $widget,
-			'id'            => $id,
+			'name'          => $id[ 'name' ],
+			'id'            => $widget,
 			'before_widget' => '<aside id="%1$s" class="widget inner-padding %2$s">',
 			'after_widget'  => '</aside>',
 			'before_title'  => apply_filters( 'generate_start_widget_title', '<h4 class="widget-title">' ),
@@ -352,7 +372,7 @@ function generate_get_layout()
 	endif;
 	
 	// If we're on the blog, archive, attachment etc..
-	if ( is_home() || is_archive() || is_search() || is_attachment() || is_tax() ) :
+	if ( is_home() || is_archive() || is_search() || is_tax() ) :
 		$layout = null;
 		$layout = $generate_settings['blog_layout_setting'];
 	endif;
