@@ -31,3 +31,27 @@ jQuery(window).load(function(){
 	generate_range_slider( 'generate_settings[heading_4_font_size]', 10, 80, 1 );
 
 });
+
+( function( $, api ) {
+	api.controlConstructor['gp-width-slider'] = api.Control.extend( {
+		ready: function() {
+			var control = this;
+			$( '.slider-input', control.container ).on( 'change keyup',
+				function() {
+					control.setting.set( $( this ).val() );
+				}
+			);
+		}
+	} );
+	
+	api.sectionConstructor['gp-upsell-section'] = api.Section.extend( {
+
+		// No events for this type of section.
+		attachEvents: function () {},
+
+		// Always make the section active.
+		isContextuallyActive: function () {
+			return true;
+		}
+	} );
+} )( jQuery, wp.customize );

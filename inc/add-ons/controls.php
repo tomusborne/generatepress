@@ -12,68 +12,167 @@ if ( ! class_exists( 'WP_Customize_Control' ) )
 if ( ! class_exists( 'Generate_Google_Font_Dropdown_Custom_Control' ) ) :
 class Generate_Google_Font_Dropdown_Custom_Control extends WP_Customize_Control
 {
-    private $fonts = false;
+	public $type = 'gp-customizer-fonts';
+	
+	public function enqueue() {
+		wp_enqueue_script( 'generatepress-customizer-fonts', get_template_directory_uri() . '/inc/js/fonts-customizer.js', array( 'customize-controls' ), GENERATE_VERSION, true );
+		wp_localize_script( 'generatepress-customizer-fonts', 'gp_customize', array( 'nonce' => wp_create_nonce( 'gp_customize_nonce' ) ) );
+	}
+	
+	public function to_json() {
+		parent::to_json();
+		
+		$number_of_fonts = apply_filters( 'generate_number_of_fonts', 200 );
+		$this->json[ 'link' ] = $this->get_link();
+		$this->json[ 'value' ] = $this->value();
+		$this->json[ 'default_fonts_title'] = __( 'Default fonts', 'generatepress' );
+		$this->json[ 'google_fonts_title'] = __( 'Google fonts', 'generatepress' );
+		$this->json[ 'description' ] = __( 'Font family','generatepress' );
+		$this->json[ 'google_fonts' ] = apply_filters( 'generate_typography_customize_list', generate_all_google_fonts( $number_of_fonts ) );
+		$this->json[ 'default_fonts' ] = generate_typography_default_fonts();
+	}
+	
+	public function content_template() {
+		?>
+		<label>
+			<span class="customize-control-title">{{ data.label }}</span>
+			<select {{{ data.link }}}>
+				<optgroup label="{{ data.default_fonts_title }}">
+					<# for ( var key in data.default_fonts ) { #>
+						<# var name = data.default_fonts[ key ].split(',')[0]; #>
+						<option value="{{ data.default_fonts[ key ] }}"  <# if ( data.default_fonts[ key ] === data.value ) { #>selected="selected"<# } #>>{{ name }}</option>
+					<# } #>
+				</optgroup>
+				<optgroup label="{{ data.google_fonts_title }}">
+					<# for ( var key in data.google_fonts ) { #>
+						<option value="{{ data.google_fonts[ key ].name }}"  <# if ( data.google_fonts[ key ].name === data.value ) { #>selected="selected"<# } #>>{{ data.google_fonts[ key ].name }}</option>
+					<# } #>
+				</optgroup>
+			</select>
+			<p class="description">{{ data.description }}</p>
+		</label>
+		<?php
+	}
+}
+endif;
 
-    public function __construct($manager, $id, $args = array(), $options = array())
-    {
-        parent::__construct( $manager, $id, $args );
-    }
+if ( !class_exists('Generate_Customize_Slider_Control') ) :
+/**
+ *	Create our container width slider control
+ */
+class Generate_Customize_Slider_Control extends WP_Customize_Control
+{
+	// Setup control type
+	public $type = 'gp-typography-slider';
+	public $id = '';
+	
+	public function to_json() {
+		parent::to_json();
+		$this->json[ 'link' ] = $this->get_link();
+		$this->json[ 'value' ] = $this->value();
+		$this->json[ 'id' ] = $this->id;
+	}
+	
+	public function content_template() {
+		?>
+		<label>
+			<p class="description">
+				<span class="typography-size-label">
+					{{ data.label }}
+				</span> 
+				<span class="value">
+					<input name="{{ data.id }}" type="number" {{{ data.link }}} value="{{{ data.value }}}" class="slider-input" /><span class="px">px</span>
+				</span>
+			</p>
+		</label>
+		<div class="slider"></div>
+		<?php
+	}
+	
+	// Function to enqueue the right jquery scripts and styles
+	public function enqueue() {
+		
+		wp_enqueue_script( 'jquery-ui-core' );
+		wp_enqueue_script( 'jquery-ui-slider' );
+		wp_enqueue_script( 'generate-slider-js', get_template_directory_uri() . '/inc/js/customcontrol.slider.js', array('jquery-ui-slider'), GENERATE_VERSION );
+		wp_enqueue_style('jquery-ui-slider', get_template_directory_uri() . '/inc/css/jquery-ui.structure.css');
+		wp_enqueue_style('jquery-ui-slider-theme', get_template_directory_uri() . '/inc/css/jquery-ui.theme.css');
+		
+	}
+}
+endif;
 
-    /**
-     * Render the content of the category dropdown
-     *
-     * @return HTML
-     */
-    public function render_content()
-    {
-		unset($fonts);
-		$fonts = ( get_transient('generate_all_google_fonts') ? get_transient('generate_all_google_fonts') : '' );
-        if(!empty($fonts))
-        {
-            ?>
-                <label>
-                    <span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
-                    <select <?php $this->link(); ?> class="fonts" data-value="<?php echo $this->value();?>">
-						<optgroup label="<?php _e( 'Default fonts', 'generatepress' ) ?>" class="default_label">
-							<?php 
-							printf('<option value="%s" %s>%s</option>', 'inherit', selected($this->value(), 'inherit', false), 'inherit');
-							printf('<option value="%s" %s>%s</option>', 'Arial, Helvetica, sans-serif', selected($this->value(), 'Arial, Helvetica, sans-serif', false), 'Arial');
-							printf('<option value="%s" %s>%s</option>', 'Century Gothic', selected($this->value(), 'Century Gothic', false), 'Century Gothic');
-							printf('<option value="%s" %s>%s</option>', 'Comic Sans MS', selected($this->value(), 'Comic Sans MS', false), 'Comic Sans MS');
-							printf('<option value="%s" %s>%s</option>', 'Courier New', selected($this->value(), 'Courier New', false), 'Courier New');
-							printf('<option value="%s" %s>%s</option>', 'Georgia, Times New Roman, Times, serif', selected($this->value(), 'Georgia, Times New Roman, Times, serif', false), 'Georgia');
-							printf('<option value="%s" %s>%s</option>', 'Helvetica', selected($this->value(), 'Helvetica', false), 'Helvetica');
-							printf('<option value="%s" %s>%s</option>', 'Impact', selected($this->value(), 'Impact', false), 'Impact');
-							printf('<option value="%s" %s>%s</option>', 'Lucida Console', selected($this->value(), 'Lucida Console', false), 'Lucida Console');
-							printf('<option value="%s" %s>%s</option>', 'Lucida Sans Unicode', selected($this->value(), 'Lucida Sans Unicode', false), 'Lucida Sans Unicode');
-							printf('<option value="%s" %s>%s</option>', 'Palatino Linotype', selected($this->value(), 'Palatino Linotype', false), 'Palatino Linotype');
-							printf('<option value="%s" %s>%s</option>', 'Tahoma, Geneva, sans-serif', selected($this->value(), 'Tahoma, Geneva, sans-serif', false), 'Tahoma');
-							printf('<option value="%s" %s>%s</option>', 'Trebuchet MS, Helvetica, sans-serif', selected($this->value(), 'Trebuchet MS, Helvetica, sans-serif', false), 'Trebuchet MS');
-							printf('<option value="%s" %s>%s</option>', 'Verdana, Geneva, sans-serif', selected($this->value(), 'Verdana, Geneva, sans-serif', false), 'Verdana');	
-							?>
-						</optgroup>
-						
-						<optgroup label="<?php _e( 'Google fonts', 'generatepress' ) ?>" class="google_label">
-							<?php
-							foreach ( $fonts as $k => $fam )
-							{
-								printf('<option value="%s" %s>%s</option>', $fam['name'], selected($this->value(), $fam['name'], false), $fam['name']);
-							}
-							?>
-						</optgroup>
-                    </select>
-					<p class="description"><?php _e('Font family','generatepress'); ?></p>
-                </label>
-            <?php
-        }
-    }
-    
+if ( ! class_exists( 'Generate_Select_Control' ) ) :
+/**
+ * A class to create a dropdown for font weight
+ */
+class Generate_Select_Control extends WP_Customize_Control
+{	
+	public $type = 'gp-typography-select';
+	public $choices = array();
+	
+	public function to_json() {
+		parent::to_json();
+	
+		foreach ( $this->choices as $name => $choice ) {
+			$this->choices[ $name ] = $choice;
+		}
+
+		$this->json[ 'choices' ] = $this->choices;
+		$this->json[ 'link' ] = $this->get_link();
+		$this->json[ 'value' ] = $this->value();
+		
+	}
+	
+	public function content_template() {
+		?>
+		<# if ( ! data.choices )
+			return;
+		#>
+		<label>
+			<select {{{ data.link }}}>
+				<# jQuery.each( data.choices, function( label, choice ) { #>
+					<option value="{{ choice }}" <# if ( choice === data.value ) { #> selected="selected"<# } #>>{{ choice }}</option>
+				<# } ) #>
+			</select>
+			<# if ( data.label ) { #>
+				<p class="description">{{ data.label }}</p>
+			<# } #>
+		</label>
+		<?php
+	}
+}
+endif;
+
+if ( ! class_exists( 'Generate_Hidden_Input_Control' ) ) :
+/**
+ *	Create our hidden input control
+ */
+class Generate_Hidden_Input_Control extends WP_Customize_Control
+{
+	// Setup control type
+	public $type = 'gp-hidden-input';
+	public $id = '';
+	
+	public function to_json() {
+		parent::to_json();
+		$this->json[ 'link' ] = $this->get_link();
+		$this->json[ 'value' ] = $this->value();
+		$this->json[ 'id' ] = $this->id;
+	}
+	
+	public function content_template() {
+		?>
+		<input name="{{ data.id }}" type="text" {{{ data.link }}} value="{{{ data.value }}}" class="gp-hidden-input" />
+		<?php
+	}
 }
 endif;
 
 if ( ! class_exists( 'Generate_Font_Weight_Custom_Control' ) ) :
 /**
  * A class to create a dropdown for font weight
+ * @deprecated since 1.3.40
  */
 class Generate_Font_Weight_Custom_Control extends WP_Customize_Control
 {
@@ -117,6 +216,7 @@ endif;
 if ( ! class_exists( 'Generate_Text_Transform_Custom_Control' ) ) :
 /**
  * A class to create a dropdown for text-transform
+ * @deprecated since 1.3.40
  */
 class Generate_Text_Transform_Custom_Control extends WP_Customize_Control
 {
@@ -148,41 +248,4 @@ class Generate_Text_Transform_Custom_Control extends WP_Customize_Control
         <?php
     }
 }
-endif;
-
-/***********************
-/*
-/*	Generate_Customize_Slider_Control
-/* 
-/***********************/
-if ( !class_exists('Generate_Customize_Slider_Control') ) :
-	class Generate_Customize_Slider_Control extends WP_Customize_Control
-	{
-		// Setup control type
-		public $type = 'slider';
-		
-		public function __construct($manager, $id, $args = array(), $options = array())
-		{
-			parent::__construct( $manager, $id, $args );
-		}
-
-		// Override content render function to output slider HTML
-		public function render_content()
-		{ ?>
-			<label><p class="description"><span class="typography-size-label"><?php echo esc_html( $this->label ); ?></span> <span class="value"><input name="<?php echo $this->id; ?>" type="number" <?php $this->link(); ?> value="<?php echo $this->value(); ?>" class="slider-input" /><span class="px">px</span></span></p></label>
-			<div class="slider"></div>
-		<?php
-		}
-		
-		// Function to enqueue the right jquery scripts and styles
-		public function enqueue() {
-			
-			wp_enqueue_script( 'jquery-ui-core' );
-			wp_enqueue_script( 'jquery-ui-slider' );
-			wp_enqueue_script( 'generate-slider-js', get_template_directory_uri() . '/inc/js/customcontrol.slider.js', array('jquery'), GENERATE_VERSION );
-			wp_enqueue_style('jquery-ui-slider', get_template_directory_uri() . '/inc/css/jquery-ui.structure.css');
-			wp_enqueue_style('jquery-ui-slider-theme', get_template_directory_uri() . '/inc/css/jquery-ui.theme.css');
-			
-		}
-	}
 endif;
