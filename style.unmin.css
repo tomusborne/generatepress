@@ -423,7 +423,8 @@ input[type="file"] {
 }
 .search-item .screen-reader-text {
 	top: 0;
-	left: 0;
+	right: 0;
+	left: auto;
 }
 .main-navigation li {
 	float: left;
@@ -485,6 +486,12 @@ input[type="file"] {
 .nav-float-left .inside-header .site-logo {
 	float: right;
 	clear: right;
+}
+
+.nav-float-left .inside-header:after {
+	clear: both;
+	content: '';
+	display: table;
 }
 
 .nav-float-right .inside-header .site-branding {
@@ -974,6 +981,10 @@ object {
 	padding-top:0;
 	margin-top:0;
 	border-top: 0;
+}
+
+ol.comment-list {
+	margin-bottom: 1.5em;
 }
 
 /* =Widgets
