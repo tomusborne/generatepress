@@ -33,17 +33,6 @@ function generate_add_layout_meta_box() {
 }  
 endif;
 
-if ( ! function_exists( 'generate_enqueue_metabox_scripts' ) ) :
-/**
- * register the scripts
- * @since 1.3.35
- */
-add_action( 'admin_enqueue_scripts', 'generate_enqueue_metabox_scripts' );
-function generate_enqueue_metabox_scripts() { 
-	wp_register_script( 'generate_press_metaboxes', GENERATE_URI . '/inc/js/metaboxes.js', array( 'jquery' ), '1.0.0', true );
-}  
-endif;
-
 if ( ! function_exists( 'generate_show_layout_meta_box' ) ) :
 /**
  * Outputs the content of the metabox
