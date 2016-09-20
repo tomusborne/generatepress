@@ -3,10 +3,13 @@ jQuery(window).load(function($) {
 	mobile = jQuery( '.menu-toggle' );
 			
 	function generateCheckWidth() {
+		if ( ! jQuery( '.gen-sidebar-nav' ) )
+			return;
+		
 		if ( mobile.is( ':visible' ) ) {
-			jQuery('.main-navigation').insertAfter('.site-header');
+			jQuery('#site-navigation:first').insertAfter('.site-header');
 		} else {
-			jQuery('.main-navigation').appendTo('.gen-sidebar-nav');
+			jQuery('#site-navigation:first').appendTo('.gen-sidebar-nav');
 		}
 	}
 			
