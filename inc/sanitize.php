@@ -36,7 +36,7 @@ function generate_sanitize_typography( $input )
 {
 
 	// Grab all of our fonts
-	$fonts = ( get_transient('generate_all_google_fonts') ? get_transient('generate_all_google_fonts') : array() );
+	$fonts = generate_all_google_fonts();
 	
 	// Loop through all of them and grab their names
 	$font_names = array();
@@ -45,22 +45,7 @@ function generate_sanitize_typography( $input )
 	}
 	
 	// Get all non-Google font names
-	$not_google = array(
-		'inherit',
-		'Arial, Helvetica, sans-serif',
-		'Century Gothic',
-		'Comic Sans MS',
-		'Courier New',
-		'Georgia, Times New Roman, Times, serif',
-		'Helvetica',
-		'Impact',
-		'Lucida Console',
-		'Lucida Sans Unicode',
-		'Palatino Linotype',
-		'Tahoma, Geneva, sans-serif',
-		'Trebuchet MS, Helvetica, sans-serif',
-		'Verdana, Geneva, sans-serif'
-	);
+	$not_google = generate_typography_default_fonts();
 
 	// Merge them both into one array
 	$valid = array_merge( $font_names, $not_google );
@@ -74,69 +59,19 @@ function generate_sanitize_typography( $input )
 }
 endif;
 
-if ( ! function_exists( 'generate_sanitize_font_weight' ) ) :
-/**
- * Sanitize font weight
- * @since 1.1.10
- */
-function generate_sanitize_font_weight( $input ) {
-
-    $valid = array(
-        'normal',
-		'bold',
-		'100',
-		'200',
-		'300',
-		'400',
-		'500',
-		'600',
-		'700',
-		'800',
-		'900'
-    );
- 
-    if ( in_array( $input, $valid ) ) {
-        return $input;
-    } else {
-        return 'normal';
-    }
-}
-endif;
-
-if ( ! function_exists( 'generate_sanitize_text_transform' ) ) :
-/**
- * Sanitize text transform
- * @since 1.1.10
- */
-function generate_sanitize_text_transform( $input ) {
-
-    $valid = array(
-        'none',
-		'capitalize',
-		'uppercase',
-		'lowercase'
-    );
- 
-    if ( in_array( $input, $valid ) ) {
-        return $input;
-    } else {
-        return 'none';
-    }
-}
-endif;
-
 if ( ! function_exists( 'generate_sanitize_blog_excerpt' ) ) :
 /**
  * Sanitize blog excerpt
  * @since 1.0.8
+ * Needed because GP Premium calls the control ID which is different from the settings ID
  */
 function generate_sanitize_blog_excerpt( $input ) {
     $valid = array(
-        'full' => __( 'Show full post', 'generatepress' ),
-		'excerpt' => __( 'Show excerpt', 'generatepress' )
+        'full',
+		'excerpt'
     );
  
-    if ( array_key_exists( $input, $valid ) ) {
+    if ( in_array( $input, $valid ) ) {
         return $input;
     } else {
         return 'full';
@@ -179,5 +114,58 @@ function generate_sanitize_choices( $input, $setting ) {
 	// If the input is a valid key, return it;
 	// otherwise, return the default
 	return ( array_key_exists( $input, $choices ) ? $input : $setting->default );
+}
+endif;
+
+if ( ! function_exists( 'generate_sanitize_font_weight' ) ) :
+/**
+ * Sanitize font weight
+ * @since 1.1.10
+ * @deprecated 1.3.40
+ */
+function generate_sanitize_font_weight( $input ) {
+
+    $valid = array(
+        'normal',
+		'bold',
+		'100',
+		'200',
+		'300',
+		'400',
+		'500',
+		'600',
+		'700',
+		'800',
+		'900'
+    );
+ 
+    if ( in_array( $input, $valid ) ) {
+        return $input;
+    } else {
+        return 'normal';
+    }
+}
+endif;
+
+if ( ! function_exists( 'generate_sanitize_text_transform' ) ) :
+/**
+ * Sanitize text transform
+ * @since 1.1.10
+ * @deprecated 1.3.40
+ */
+function generate_sanitize_text_transform( $input ) {
+
+    $valid = array(
+        'none',
+		'capitalize',
+		'uppercase',
+		'lowercase'
+    );
+ 
+    if ( in_array( $input, $valid ) ) {
+        return $input;
+    } else {
+        return 'none';
+    }
 }
 endif;
