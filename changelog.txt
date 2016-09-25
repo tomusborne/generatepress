@@ -21,6 +21,8 @@
 * Fix header clearing bug when navigation is set to float left
 * Revamp how Google fonts get their category and variants (big increase in performance)
 * Change widget initialization array to avoid widget areas breaking due to bad translations
+* Improve RTL in mobile menu and navigation search
+* Remove navigation search close button added by Chrome and IE
 
 = (8/17/2016) - 1.3.39 =
 * Target .post class instead of .hentry in CSS
