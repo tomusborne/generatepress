@@ -530,9 +530,19 @@ input[type="file"] {
 	z-index: 21;
 }
 
+.rtl .main-navigation li.search-item,
+.rtl.nav-aligned-right.nav-below-header .main-navigation .menu > li.search-item {
+	float: left;
+}
+
 .nav-aligned-center .main-navigation li.search-item.current-menu-item {
 	position: absolute;
 	right: 0;
+}
+
+.rtl.nav-aligned-center .main-navigation li.search-item.current-menu-item {
+	position: absolute;
+	left: 0;
 }
 
 .main-navigation li.search-item i {
@@ -558,7 +568,22 @@ input[type="file"] {
 }
 
 .navigation-search input::-ms-clear {
-    display: none;
+	display: none; 
+	width: 0; 
+	height: 0;
+}
+
+.navigation-search input::-ms-reveal {
+	display: none;
+	width: 0; 
+	height: 0; 
+}
+
+.navigation-search input::-webkit-search-decoration,
+.navigation-search input::-webkit-search-cancel-button,
+.navigation-search input::-webkit-search-results-button,
+.navigation-search input::-webkit-search-results-decoration {
+	display: none;
 }
 
 .nav-left-sidebar .main-navigation li.search-item,

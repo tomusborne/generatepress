@@ -17,6 +17,10 @@ th {
 .menu-item-has-children ul .dropdown-menu-toggle {
 	transform: rotate(180deg);
 }
+
+.menu-item-has-children .dropdown-menu-toggle {
+	float: left;
+}
 .alignleft {
     float: right;
     margin-left: 1.5em;
@@ -71,7 +75,7 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle {
 nav:not(.toggled) ul ul .menu-item-has-children .dropdown-menu-toggle {
     padding-left: 15px;
 }
-.menu-item-has-children .dropdown-menu-toggle {
+nav:not(.toggled) .menu-item-has-children .dropdown-menu-toggle {
     padding-right: 10px;
 }
 .main-navigation ul,
