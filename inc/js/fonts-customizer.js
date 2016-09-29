@@ -54,12 +54,12 @@ jQuery( document ).ready( function($) {
 		// Get the value of our select
 		var _this = $( this ).val();
 		
-		// Send our request to the generate_get_all_google_fonts function
+		// Send our request to the generate_get_all_google_fonts_ajax function
 		var response = jQuery.getJSON({
 			type: 'POST',
 			url: ajaxurl,
 			data: {
-				action: 'generate_get_all_google_fonts',
+				action: 'generate_get_all_google_fonts_ajax',
 				gp_customize_nonce: gp_customize.nonce
 			},
 			async: false,
