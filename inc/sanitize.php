@@ -34,9 +34,8 @@ if ( ! function_exists( 'generate_sanitize_typography' ) ) :
  */
 function generate_sanitize_typography( $input ) 
 {
-
 	// Grab all of our fonts
-	$fonts = generate_all_google_fonts();
+	$fonts = generate_get_all_google_fonts();
 	
 	// Loop through all of them and grab their names
 	$font_names = array();
