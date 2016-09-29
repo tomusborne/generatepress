@@ -594,7 +594,7 @@ function generate_get_all_google_fonts( $amount = 'all' )
 }
 endif;
 
-if ( ! function_exists( 'generate_get_all_google_fonts' ) ) :
+if ( ! function_exists( 'generate_get_all_google_fonts_ajax' ) ) :
 /**
  * Return an array of all of our Google Fonts
  * @since 1.3.0
