@@ -888,6 +888,7 @@ function generate_customize_preview_css() {
 		
 		.generate-upsell-accordion-section h3 {
 			margin: 0;
+			position: relative;
 		}
 		
 		.generate-upsell-accordion-section h3 a:after {
