@@ -28,7 +28,7 @@ class Generate_Google_Font_Dropdown_Custom_Control extends WP_Customize_Control
 		$this->json[ 'default_fonts_title'] = __( 'Default fonts', 'generatepress' );
 		$this->json[ 'google_fonts_title'] = __( 'Google fonts', 'generatepress' );
 		$this->json[ 'description' ] = __( 'Font family','generatepress' );
-		$this->json[ 'google_fonts' ] = apply_filters( 'generate_typography_customize_list', generate_all_google_fonts( $number_of_fonts ) );
+		$this->json[ 'google_fonts' ] = apply_filters( 'generate_typography_customize_list', generate_get_all_google_fonts( $number_of_fonts ) );
 		$this->json[ 'default_fonts' ] = generate_typography_default_fonts();
 	}
 	
