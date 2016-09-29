@@ -27,45 +27,57 @@ if ( !function_exists('generate_get_default_fonts') && !function_exists('generat
 	{
 		$generate_font_defaults = array(
 			'font_body' => 'Open Sans',
+			'font_body_category' => 'sans-serif',
+			'font_body_variants' => '300,300italic,regular,italic,600,600italic,700,700italic,800,800italic',
 			'body_font_weight' => 'normal',
 			'body_font_transform' => 'none',
 			'body_font_size' => '17',
 			'font_site_title' => 'inherit',
+			'font_site_title_category' => '',
+			'font_site_title_variants' => '',
 			'site_title_font_weight' => 'bold',
 			'site_title_font_transform' => 'none',
 			'site_title_font_size' => '45',
 			'mobile_site_title_font_size' => '30',
 			'font_site_tagline' => 'inherit',
+			'font_site_tagline_category' => '',
+			'font_site_tagline_variants' => '',
 			'site_tagline_font_weight' => 'normal',
 			'site_tagline_font_transform' => 'none',
 			'site_tagline_font_size' => '15',
 			'font_navigation' => 'inherit',
+			'font_navigation_category' => '',
+			'font_navigation_variants' => '',
 			'navigation_font_weight' => 'normal',
 			'navigation_font_transform' => 'none',
 			'navigation_font_size' => '15',
 			'font_widget_title' => 'inherit',
+			'font_widget_title_category' => '',
+			'font_widget_title_variants' => '',
 			'widget_title_font_weight' => 'normal',
 			'widget_title_font_transform' => 'none',
 			'widget_title_font_size' => '20',
 			'widget_content_font_size' => '17',
 			'font_heading_1' => 'inherit',
+			'font_heading_1_category' => '',
+			'font_heading_1_variants' => '',
 			'heading_1_weight' => '300',
 			'heading_1_transform' => 'none',
 			'heading_1_font_size' => '40',
 			'mobile_heading_1_font_size' => '30',
 			'font_heading_2' => 'inherit',
+			'font_heading_2_category' => '',
+			'font_heading_2_variants' => '',
 			'heading_2_weight' => '300',
 			'heading_2_transform' => 'none',
 			'heading_2_font_size' => '30',
 			'mobile_heading_2_font_size' => '25',
 			'font_heading_3' => 'inherit',
+			'font_heading_3_category' => '',
+			'font_heading_3_variants' => '',
 			'heading_3_weight' => 'normal',
 			'heading_3_transform' => 'none',
 			'heading_3_font_size' => '20',
-			'font_heading_4' => 'inherit',
-			'heading_4_weight' => 'normal',
-			'heading_4_transform' => 'none',
-			'heading_4_font_size' => '15',
 			'footer_font_size' => '16'
 		);
 		
@@ -540,12 +552,12 @@ function generate_typography_customize_preview_css() {
 }
 endif;
 
-if ( ! function_exists( 'generate_all_google_fonts' ) ) :
+if ( ! function_exists( 'generate_get_all_google_fonts' ) ) :
 /**
  * Return an array of all of our Google Fonts
  * @since 1.3.0
  */
-function generate_all_google_fonts( $amount = 'all' )
+function generate_get_all_google_fonts( $amount = 'all' )
 {
 	// Our big list Google Fonts
 	// We use json_decode to reduce PHP memory usage
@@ -574,7 +586,8 @@ function generate_all_google_fonts( $amount = 'all' )
 		$fonts = array_slice( $fonts, 0, $amount );
 	
 	// Alphabetize our fonts
-	asort( $fonts );
+	$alphabetize = apply_filters( 'generate_alphabetize_google_fonts', true );
+	if ( $alphabetize ) asort( $fonts );
 	
 	// Filter to allow us to modify the fonts array
 	return apply_filters( 'generate_google_fonts_array', $fonts );
@@ -586,8 +599,8 @@ if ( ! function_exists( 'generate_get_all_google_fonts' ) ) :
  * Return an array of all of our Google Fonts
  * @since 1.3.0
  */
-add_action( 'wp_ajax_generate_get_all_google_fonts', 'generate_get_all_google_fonts' );
-function generate_get_all_google_fonts()
+add_action( 'wp_ajax_generate_get_all_google_fonts_ajax', 'generate_get_all_google_fonts_ajax' );
+function generate_get_all_google_fonts_ajax()
 {
 	// Bail if the nonce doesn't check out
 	if ( ! isset( $_POST[ 'gp_customize_nonce' ] ) || ! wp_verify_nonce( $_POST[ 'gp_customize_nonce' ], 'gp_customize_nonce' ) )
@@ -601,7 +614,7 @@ function generate_get_all_google_fonts()
 		wp_die();
 	
 	// Get all of our fonts
-	$fonts = generate_all_google_fonts();
+	$fonts = generate_get_all_google_fonts();
 	
 	// Send all of our fonts in JSON format
 	echo wp_json_encode( $fonts );
@@ -625,10 +638,16 @@ function generate_get_google_font_variants( $font, $key = '' )
 	
 	// Return if we have our variants saved
 	if ( '' !== $key && get_theme_mod( $key . '_variants' ) ) return get_theme_mod( $key . '_variants' );
+	
+	// Get our defaults
+	$defaults = generate_get_default_fonts();
+	
+	// If our default font is selected and the category isn't saved, we already know the category
+	if ( $defaults[ $key ] == $font ) return $defaults[ $key . '_variants' ];
 
 	// Grab all of our fonts
 	// It's a big list, so hopefully we're not even still reading
-	$fonts = generate_all_google_fonts();
+	$fonts = generate_get_all_google_fonts();
 	
 	// Get the ID from our font
 	$id = strtolower( str_replace( ' ', '_', $font ) );
@@ -646,7 +665,7 @@ function generate_get_google_font_variants( $font, $key = '' )
 		foreach ( $variants as $variant ) {
 			$output[] = $variant;
 		}
-		return implode(',', $output);
+		return implode(',', apply_filters( 'generate_typography_variants', $output ) );
 	endif;
 	
 }
@@ -667,9 +686,15 @@ function generate_get_google_font_category( $font, $key = '' )
 	// Return if we have our variants saved
 	if ( '' !== $key && get_theme_mod( $key . '_category' ) ) return ', ' . get_theme_mod( $key . '_category' );
 	
+	// Get our defaults
+	$defaults = generate_get_default_fonts();
+	
+	// If our default font is selected and the category isn't saved, we already know the category
+	if ( $defaults[ $key ] == $font ) return ', ' . $defaults[ $key . '_category' ];
+	
 	// Grab all of our fonts
 	// It's a big list, so hopefully we're not even still reading
-	$fonts = generate_all_google_fonts();
+	$fonts = generate_get_all_google_fonts();
 	
 	// Get the ID from our font
 	$id = strtolower( str_replace( ' ', '_', $font ) );
@@ -858,64 +883,62 @@ endif;
 if ( ! function_exists( 'generate_typography_set_font_data' ) ) :
 /**
  * This function will check to see if your category and variants are saved
- * If not, it will set them for you, and won't run again
+ * If not, it will set them for you
+ * Generally, set_theme_mod isn't best practice, but this is here for migration purposes for a set amount of time only
+ * Any time a user saves a font in the Customizer from now on, the category and variants are saved as theme_mods, so this function won't be necessary
  * @since 1.3.40
  */
-add_action( 'customize_save_after','generate_typography_set_font_data' );
+add_action( 'admin_init','generate_typography_set_font_data' );
 function generate_typography_set_font_data() 
-{
-	// If we have the body font category set, the rest is probably set as well
-	if ( get_theme_mod( 'font_body_category' ) )
-		return;
+{	
+	// Get our defaults
+	$defaults = generate_get_default_fonts();
 	
 	// Get our settings
 	$generate_settings = wp_parse_args( 
 		get_option( 'generate_settings', array() ), 
-		generate_get_default_fonts()
+		$defaults
 	);
+	
+	// We don't need to do this if we're using the default font, as these values have defaults already
+	if ( $defaults[ 'font_body' ] == $generate_settings[ 'font_body' ] )
+		return;
+	
+	// Don't need to continue if we're using a system font or our default font
+	if ( in_array( $generate_settings[ 'font_body' ], generate_typography_default_fonts() ) )
+		return;
+	
+	// Don't continue if our category and variants are already set
+	if ( get_theme_mod( 'font_body_category' ) && get_theme_mod( 'font_body_variants' ) )
+		return;
 	
 	// Get all of our fonts
-	$fonts = generate_all_google_fonts();
+	$fonts = generate_get_all_google_fonts();
+
+	// Get the ID from our font
+	$id = strtolower( str_replace( ' ', '_', $generate_settings[ 'font_body' ] ) );
 	
-	// We need to loop through these settings
-	$font_settings = array(
-		'font_body',
-		'font_site_title',
-		'font_site_tagline',
-		'font_navigation',
-		'font_widget_title',
-		'font_heading_1',
-		'font_heading_2',
-		'font_heading_3'
-	);
+	// If the ID doesn't exist within our fonts, we can bail
+	if ( ! array_key_exists( $id, $fonts ) )
+		return;
 	
-	// Start looping
-	foreach( $font_settings as $setting ) {
-		// Get the ID from our font
-		$id = strtolower( str_replace( ' ', '_', $generate_settings[ $setting ] ) );
-		
-		// If the ID doesn't exist within our fonts, we can bail
-		if ( ! array_key_exists( $id, $fonts ) )
-			return;
-		
-		// Let's grab our category to go with our font
-		$category = ! empty( $fonts[$id]['category'] ) ? $fonts[$id]['category'] : '';
-		
-		// Grab all of the variants associated with our font
-		$variants = $fonts[$id]['variants'];
-		
-		// Loop through our variants and put them into an array, then turn them into a comma separated list
-		$output = array();
-		if ( $variants ) :
-			foreach ( $variants as $variant ) {
-				$output[] = $variant;
-			}
-			$variants = implode(',', $output);
-		endif;
-		
-		// Set our theme mods with our new settings
-		if ( '' !== $category ) set_theme_mod( $setting . '_category', $category );
-		if ( '' !== $variants ) set_theme_mod( $setting . '_variants', $variants );
-	}
+	// Let's grab our category to go with our font
+	$category = ! empty( $fonts[$id]['category'] ) ? $fonts[$id]['category'] : '';
+	
+	// Grab all of the variants associated with our font
+	$variants = $fonts[$id]['variants'];
+	
+	// Loop through our variants and put them into an array, then turn them into a comma separated list
+	$output = array();
+	if ( $variants ) :
+		foreach ( $variants as $variant ) {
+			$output[] = $variant;
+		}
+		$variants = implode(',', $output);
+	endif;
+	
+	// Set our theme mods with our new settings
+	if ( '' !== $category ) set_theme_mod( 'font_body_category', $category );
+	if ( '' !== $variants ) set_theme_mod( 'font_body_variants', $variants );
 }
 endif;
