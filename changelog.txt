@@ -23,6 +23,7 @@
 * Change widget initialization array to avoid widget areas breaking due to bad translations
 * Improve RTL in mobile menu and navigation search
 * Remove navigation search close button added by Chrome and IE
+* Add spacing above comments area when one container is set
 
 = (8/17/2016) - 1.3.39 =
 * Target .post class instead of .hentry in CSS

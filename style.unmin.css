@@ -1166,6 +1166,10 @@ fieldset legend {
 	padding: 40px;
 }
 
+.one-container .comments-area {
+	margin-top: 1.5em;
+}
+
 h1 {
 	font-size: 35px;
 	margin-bottom: 20px;
