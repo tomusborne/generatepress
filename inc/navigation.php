@@ -151,7 +151,8 @@ function generate_menu_fallback( $args )
 			);
 			wp_list_pages( $args );
 			if ( 'enable' == $generate_settings['nav_search'] ) :
-				echo '<li class="search-item" title="' . _x( 'Search', 'submit button', 'generatepress' ) . '"><a href="#"><i class="fa fa-fw fa-search" aria-hidden="true"></i><span class="screen-reader-text">' . _x( 'Search', 'submit button', 'generatepress' ) . '</span></a></li>';
+				$nav_search_icon = apply_filters( 'generate_navigation_search_icon', '<i class="fa fa-fw fa-search" aria-hidden="true"></i>' );
+				echo '<li class="search-item" title="' . _x( 'Search', 'submit button', 'generatepress' ) . '"><a href="#">' . $nav_search_icon . '<span class="screen-reader-text">' . _x( 'Search', 'submit button', 'generatepress' ) . '</span></a></li>';
 			endif;
 			?>
 		</ul>
