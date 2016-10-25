@@ -340,7 +340,6 @@ if ( ! function_exists( 'generate_post_image' ) ) :
 add_action( 'generate_after_entry_header', 'generate_post_image' );
 function generate_post_image()
 {
-		
 	// If there's no featured image, return
 	if ( ! has_post_thumbnail() )
 		return;
@@ -349,7 +348,7 @@ function generate_post_image()
 	if ( ! is_singular() && ! is_404() ) {
 	?>
 		<div class="post-image">
-			<a href="<?php the_permalink();?>" title="<?php the_title(); ?>"><?php the_post_thumbnail( apply_filters( 'generate_page_header_default_size', 'full' ), array('itemprop' => 'image') ); ?></a>
+			<a href="<?php the_permalink();?>" title="<?php esc_attr( the_title() ); ?>"><?php the_post_thumbnail( apply_filters( 'generate_page_header_default_size', 'full' ), array('itemprop' => 'image') ); ?></a>
 		</div>
 	<?php
 	}
@@ -645,7 +644,7 @@ function generate_back_to_top()
 	$scroll_speed = apply_filters( 'generate_back_to_top_scroll_speed', 400 );
 	$start_scroll = apply_filters( 'generate_back_to_top_start_scroll', 300 );
 	?>
-	<a title="<?php _e( 'Scroll back to top','generatepress' ); ?>" rel="nofollow" href="#" class="generate-back-to-top" style="display:none;" data-scroll-speed="<?php echo $scroll_speed; ?>" data-start-scroll="<?php echo $start_scroll; ?>"><i class="fa <?php echo $icon;?>" aria-hidden="true"></i><span class="screen-reader-text"><?php _e( 'Scroll back to top','generatepress' ); ?></span></a>
+	<a title="<?php _e( 'Scroll back to top','generatepress' ); ?>" rel="nofollow" href="#" class="generate-back-to-top" style="opacity:0;visibility:hidden;" data-scroll-speed="<?php echo $scroll_speed; ?>" data-start-scroll="<?php echo $start_scroll; ?>"><i class="fa <?php echo $icon;?>" aria-hidden="true"></i><span class="screen-reader-text"><?php _e( 'Scroll back to top','generatepress' ); ?></span></a>
 	<?php
 }
 endif;

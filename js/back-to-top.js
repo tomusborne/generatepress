@@ -3,9 +3,15 @@ var scrollSpeed = jQuery( '.generate-back-to-top' ).data( 'scroll-speed' );
 
 jQuery(window).scroll(function() {
 	if ( jQuery(window).scrollTop() > amountScrolled ) {
-		jQuery('a.generate-back-to-top').show();
+		jQuery('a.generate-back-to-top').css({
+			'opacity': '1',
+			'visibility': 'visible'
+		});
 	} else {
-		jQuery('a.generate-back-to-top').hide();
+		jQuery('a.generate-back-to-top').css({
+			'opacity': '0',
+			'visibility' : 'hidden'
+		});
 	}
 });
 
