@@ -17,7 +17,8 @@ function generate_add_layout_meta_box() {
 	if ( ! current_user_can( $allowed ) )
 		return;
 		
-	$post_types = get_post_types();
+	$args = array( 'public' => true );
+	$post_types = get_post_types( $args );
 	foreach ($post_types as $type) {
 		if ( 'attachment' !== $type ) {
 			add_meta_box (  
@@ -124,7 +125,8 @@ function generate_add_footer_widget_meta_box() {
 	if ( ! current_user_can( $allowed ) )
 		return;
 		
-	$post_types = get_post_types();
+	$args = array( 'public' => true );
+	$post_types = get_post_types( $args );
 	foreach ($post_types as $type) {
 		if ( 'attachment' !== $type ) {
 			add_meta_box(  
@@ -229,7 +231,8 @@ function generate_add_page_builder_meta_box() {
 	if ( ! current_user_can( $allowed ) )
 		return;
 		
-	$post_types = get_post_types();
+	$args = array( 'public' => true );
+	$post_types = get_post_types( $args );
 	foreach ($post_types as $type) {
 		if ( 'attachment' !== $type ) {
 			add_meta_box(  
