@@ -555,7 +555,7 @@ input[type="file"] {
 	display: none;
 	z-index: 20;
 	width: 100%;
-	bottom: 0;
+	top: 0;
 }
 
 .navigation-search input {
@@ -821,17 +821,9 @@ nav:not(.toggled):not(.slideout-navigation) ul ul .menu-item-has-children .dropd
 	max-width: 100%;
 }
 .wp-caption .wp-caption-text {
-	padding: 8px 10px;
-	margin: 0;
-	background: rgba(0, 0, 0, 0.5);
-	color:#FFF;
-	position:absolute;
-	bottom: 0;
-	left: 0;
-}
-.wp-caption .wp-caption-text a, .wp-caption .wp-caption-text a:visited, .wp-caption .wp-caption-text a:hover {
-	color:#FFF;
-	text-decoration: underline;
+	font-size: 75%;
+	padding-top: 5px;
+	opacity: 0.8;
 }
 
 .wp-caption img {
@@ -1608,6 +1600,16 @@ footer.entry-meta .byline {
 .woocommerce .entry-content,
 .woocommerce .product .entry-summary {
 	margin-top: 0;
+}
+
+.related.products {
+    clear: both;
+}
+
+.checkout-subscribe-prompt.clear {
+	visibility: visible;
+	height: initial;
+	width: initial;
 }
 
 /* bbPress */
