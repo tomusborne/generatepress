@@ -249,7 +249,7 @@ if ( !function_exists('generate_get_default_fonts') && !function_exists('generat
 	 * @since 0.1
 	 */
 	add_action('wp_enqueue_scripts','generate_display_google_fonts', 0);
-	function generate_display_google_fonts($google_fonts) {
+	function generate_display_google_fonts() {
 		
 		if ( is_admin() )
 			return;
