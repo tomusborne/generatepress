@@ -130,6 +130,14 @@
 	
 	/* end mobile navigation */
 	
+	.both-right.separate-containers .inside-left-sidebar,
+	.both-left.separate-containers .inside-left-sidebar,
+	.both-right.separate-containers .inside-right-sidebar,
+	.both-left.separate-containers .inside-right-sidebar {
+		margin-right: 0;
+		margin-left: 0;
+	}
+	
 	.site-main {
 		margin-left: 0 !important;
 		margin-right: 0 !important;
