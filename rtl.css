@@ -137,3 +137,22 @@ footer.entry-meta .author:before,
 footer.entry-meta .posted-on:before {
     margin-left: 5px;
 }
+
+.menu-toggle,
+.nav-search-enabled .main-navigation .menu-toggle {
+	text-align: right;
+}
+
+.main-navigation .mobile-bar-items {
+	float: left;
+}
+
+.main-navigation li {
+	text-align: right !important;
+}
+
+@media (min-width: 768px) {
+	.inside-footer-widgets > div {
+		float: right;
+	}
+}
