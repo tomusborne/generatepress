@@ -76,7 +76,9 @@ function generate_settings_page()
 										<?php endif; ?>
 										<a class="button button-primary" href="<?php echo esc_url( 'https://generatepress.com/support' ); ?>" target="_blank"><?php _e('Support','generatepress');?></a>  
 										<a class="button button-primary" href="<?php echo esc_url( 'https://generatepress.com/knowledgebase' ); ?>" target="_blank"><?php _e('Knowledgebase','generatepress');?></a>  
-										<a title="<?php _e('Please help support the ongoing development of GeneratePress by buying me a coffee :)','generatepress');?>" class="button button-secondary" target="_blank" href="<?php echo esc_url('https://generatepress.com/ongoing-development');?>"><?php _e('Buy me a coffee :)','generatepress');?></a>
+										<?php if ( generate_addons_available() ) : ?>
+											<a title="<?php _e('Please help support the ongoing development of GeneratePress by buying me a coffee :)','generatepress');?>" class="button button-secondary" target="_blank" href="<?php echo esc_url('https://generatepress.com/ongoing-development');?>"><?php _e('Buy me a coffee :)','generatepress');?></a>
+										<?php endif; ?>
 									</p>
 								</div>
 							</div>
