@@ -41,6 +41,9 @@ function generate_body_classes( $classes )
 	// Get the layout
 	$layout = generate_get_layout();
 	
+	// Get the navigation location
+	$navigation_location = generate_get_navigation_location();
+	
 	// Get the footer widgets
 	$widgets = generate_get_footer_widgets();
 	
@@ -55,7 +58,7 @@ function generate_body_classes( $classes )
 	
 	// Layout classes
 	$classes[] = ( $layout ) ? $layout : 'right-sidebar';
-	$classes[] = ( $generate_settings['nav_position_setting'] ) ? $generate_settings['nav_position_setting'] : 'nav-below-header';
+	$classes[] = ( $navigation_location ) ? $navigation_location : 'nav-below-header';
 	$classes[] = ( $generate_settings['header_layout_setting'] ) ? $generate_settings['header_layout_setting'] : 'fluid-header';
 	$classes[] = ( $generate_settings['content_layout_setting'] ) ? $generate_settings['content_layout_setting'] : 'separate-containers';
 	$classes[] = ( '' !== $widgets ) ? 'active-footer-widgets-' . $widgets : 'active-footer-widgets-3';

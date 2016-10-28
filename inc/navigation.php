@@ -2,6 +2,18 @@
 // No direct access, please
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+if ( ! function_exists( 'generate_get_navigation_location' ) ) :
+/**
+ * Get the location of the navigation and filter it
+ * @since 1.3.41
+ */
+function generate_get_navigation_location()
+{
+	$location = generate_get_setting( 'nav_position_setting' );
+	return apply_filters( 'generate_navigation_location', $location );
+}
+endif;
+
 if ( ! function_exists( 'generate_add_navigation_after_header' ) ) :
 /**
  * Generate the navigation based on settings
@@ -10,31 +22,19 @@ if ( ! function_exists( 'generate_add_navigation_after_header' ) ) :
 add_action( 'generate_after_header', 'generate_add_navigation_after_header', 5 );
 function generate_add_navigation_after_header()
 {
-	$generate_settings = wp_parse_args( 
-		get_option( 'generate_settings', array() ), 
-		generate_get_defaults() 
-	);
-	
-	if ( 'nav-below-header' == $generate_settings['nav_position_setting'] ) :
+	if ( 'nav-below-header' == generate_get_navigation_location() ) {
 		generate_navigation_position();
-	endif;
-	
+	}
 }
 endif;
 
 if ( ! function_exists( 'generate_add_navigation_before_header' ) ) :
 add_action( 'generate_before_header', 'generate_add_navigation_before_header', 5 );
 function generate_add_navigation_before_header()
-{
-	$generate_settings = wp_parse_args( 
-		get_option( 'generate_settings', array() ), 
-		generate_get_defaults() 
-	);
-	
-	if ( 'nav-above-header' == $generate_settings['nav_position_setting'] ) :
+{	
+	if ( 'nav-above-header' == generate_get_navigation_location() ) {
 		generate_navigation_position();
-	endif;
-	
+	}
 }
 endif;
 
@@ -42,15 +42,9 @@ if ( ! function_exists( 'generate_add_navigation_float_right' ) ) :
 add_action( 'generate_after_header_content', 'generate_add_navigation_float_right', 5 );
 function generate_add_navigation_float_right()
 {
-	$generate_settings = wp_parse_args( 
-		get_option( 'generate_settings', array() ), 
-		generate_get_defaults() 
-	);
-	
-	if ( 'nav-float-right' == $generate_settings['nav_position_setting'] || 'nav-float-left' == $generate_settings[ 'nav_position_setting' ] ) :
+	if ( 'nav-float-right' == generate_get_navigation_location() || 'nav-float-left' == generate_get_navigation_location() ) {
 		generate_navigation_position();
-	endif;
-	
+	}
 }
 endif;
 
@@ -58,17 +52,11 @@ if ( ! function_exists( 'generate_add_navigation_before_right_sidebar' ) ) :
 add_action( 'generate_before_right_sidebar_content', 'generate_add_navigation_before_right_sidebar', 5 );
 function generate_add_navigation_before_right_sidebar()
 {
-	$generate_settings = wp_parse_args( 
-		get_option( 'generate_settings', array() ), 
-		generate_get_defaults() 
-	);
-	
-	if ( 'nav-right-sidebar' == $generate_settings['nav_position_setting'] ) :
+	if ( 'nav-right-sidebar' == generate_get_navigation_location() ) {
 		echo '<div class="gen-sidebar-nav">';
 			generate_navigation_position();
 		echo '</div>';
-	endif;
-	
+	}
 }
 endif;
 
@@ -76,17 +64,11 @@ if ( ! function_exists( 'generate_add_navigation_before_left_sidebar' ) ) :
 add_action( 'generate_before_left_sidebar_content', 'generate_add_navigation_before_left_sidebar', 5 );
 function generate_add_navigation_before_left_sidebar()
 {
-	$generate_settings = wp_parse_args( 
-		get_option( 'generate_settings', array() ), 
-		generate_get_defaults() 
-	);
-	
-	if ( 'nav-left-sidebar' == $generate_settings['nav_position_setting'] ) :
+	if ( 'nav-left-sidebar' == generate_get_navigation_location() ) {
 		echo '<div class="gen-sidebar-nav">';
 			generate_navigation_position();
 		echo '</div>';
-	endif;
-	
+	}
 }
 endif;
 
