@@ -90,7 +90,13 @@
 								click = false;
 
 								// Hide other open dropdowns
-								$dropdowns.removeClass('sfHover');
+								$this.siblings().removeClass('sfHover');
+								$this.siblings().children( 'ul' ).css({
+									'display': 'none',
+									'opacity': 0
+								});
+								
+								// Show this dropdown
 								$this.addClass('sfHover');
 								$this.children( 'ul' ).css({
 									'display': 'block',
