@@ -1394,8 +1394,13 @@ footer.entry-meta {
 	margin-top: 2em;
 }
 
-footer.entry-meta .author:before {
-	content: "\f007";
+footer.entry-meta .author:before,
+footer.entry-meta .posted-on:before,
+.cat-links:before,
+.tags-links:before,
+.comments-link:before,
+.nav-previous .prev:before,
+.nav-next .next:before {
 	font-family: FontAwesome;
   	font-weight: normal;
  	font-style: normal;
@@ -1405,78 +1410,28 @@ footer.entry-meta .author:before {
 	margin-right: 5px;
 	width: 13px;
 	text-align:center;
+}
+
+footer.entry-meta .author:before {
+	content: "\f007";
 }
 footer.entry-meta .posted-on:before {
 	content: "\f073";
-	font-family: FontAwesome;
-  	font-weight: normal;
- 	font-style: normal;
-	display: inline-block;
-	text-decoration: inherit;
-	position:relative;
-	margin-right: 5px;
-	width: 13px;
-	text-align:center;
 }
 .cat-links:before {
 	content: "\f07b";
-	font-family: FontAwesome;
-  	font-weight: normal;
- 	font-style: normal;
-	display: inline-block;
-	text-decoration: inherit;
-	position:relative;
-	margin-right: 5px;
-	width: 13px;
-	text-align:center;
 }
 .tags-links:before {
 	content: "\f02c";
-	font-family: FontAwesome;
-  	font-weight: normal;
- 	font-style: normal;
-	display: inline-block;
-	text-decoration: inherit;
-	position:relative;
-	margin-right: 5px;
-	width: 13px;
-	text-align:center;
 }
 .comments-link:before {
 	content: "\f086";
-	font-family: FontAwesome;
-  	font-weight: normal;
- 	font-style: normal;
-	display: inline-block;
-	text-decoration: inherit;
-	position:relative;
-	margin-right: 5px;
-	width: 13px;
-	text-align:center;
 }
 .nav-previous .prev:before {
 	content: "\f104";
-	font-family: FontAwesome;
-  	font-weight: normal;
- 	font-style: normal;
-	display: inline-block;
-	text-decoration: inherit;
-	position:relative;
-	margin-right: 5px;
-	width: 13px;
-	text-align:center;
 }
 .nav-next .next:before {
 	content: "\f105";
-	font-family: FontAwesome;
-  	font-weight: normal;
- 	font-style: normal;
-	display: inline-block;
-	text-decoration: inherit;
-	position:relative;
-	margin-right: 5px;
-	width: 13px;
-	text-align:center;
 }
 
 .cat-links,
