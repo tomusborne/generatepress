@@ -1308,6 +1308,9 @@ h4, h5, h6 {
 .widget .search-field {
 	width: 100%;
 }
+.widget-area .widget.widget_search {
+	padding: 0;
+}
 .widget:last-child,
 .separate-containers .widget:last-child {
 	margin-bottom: 0;
