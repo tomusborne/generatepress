@@ -111,11 +111,11 @@ function generate_get_defaults()
 		'logo' => '',
 		'container_width' => '1100',
 		'header_layout_setting' => 'fluid-header',
-		'header_inner_width' => '',
+		'header_inner_width' => 'contained',
 		'nav_alignment_setting' => ( is_rtl() ) ? 'right' : 'left',
 		'header_alignment_setting' => ( is_rtl() ) ? 'right' : 'left',
 		'nav_layout_setting' => 'fluid-nav',
-		'nav_inner_width' => '',
+		'nav_inner_width' => 'contained',
 		'nav_position_setting' => 'nav-below-header',
 		'nav_dropdown_type' => 'hover',
 		'nav_search' => 'disable',
@@ -125,7 +125,7 @@ function generate_get_defaults()
 		'single_layout_setting' => 'right-sidebar',
 		'post_content' => 'full',
 		'footer_layout_setting' => 'fluid-footer',
-		'footer_inner_width' => '',
+		'footer_inner_width' => 'contained',
 		'footer_widget_setting' => '3',
 		'back_to_top' => '',
 		'background_color' => '#efefef',
@@ -488,30 +488,30 @@ function generate_base_css()
 	
 		// Body CSS
 		'body'  => array(
-			'background-color' => $generate_settings['background_color'],
-			'color' => $generate_settings['text_color']
+			'background-color' => esc_attr( $generate_settings['background_color'] ),
+			'color' => esc_attr( $generate_settings['text_color'] )
 		),
 		
 		// Link CSS
 		'a, a:visited' => array(
-			'color'				=> $generate_settings['link_color'],
-			'text-decoration' 	=> 'none'
+			'color' => esc_attr( $generate_settings['link_color'] ),
+			'text-decoration' => 'none'
 		),
 		
 		// Visited link color if specified
 		'a:visited' => array(
-			'color' 			=> ( !empty( $generate_settings['link_color_visited'] ) ) ? $generate_settings['link_color_visited'] : null,
+			'color' => ( !empty( $generate_settings['link_color_visited'] ) ) ? esc_attr( $generate_settings['link_color_visited'] ) : null,
 		),
 		
 		// Link hover
 		'a:hover, a:focus, a:active' => array(
-			'color' 			=> $generate_settings['link_color_hover'],
-			'text-decoration' 	=> null
+			'color' => esc_attr( $generate_settings['link_color_hover'] ),
+			'text-decoration' => null
 		),
 		
 		// Grid container
 		'body .grid-container' => array(
-			'max-width' => $generate_settings['container_width'] . 'px'
+			'max-width' => absint( $generate_settings['container_width'] ) . 'px'
 		)
 		
 	);

@@ -44,12 +44,13 @@ function generate_customize_register( $wp_customize ) {
 		$wp_customize->register_section_type( 'GeneratePress_Upsell_Section' );
 	}
 	
+	// Add our upsell section
 	if ( generate_addons_available() ) {
 		$wp_customize->add_section( 
 			new GeneratePress_Upsell_Section( $wp_customize, 'generatepress_upsell_section',
 				array(
 					'pro_text' => __( 'Add-ons Available! Take a look', 'generatepress' ),
-					'pro_url' => 'https://generatepress.com/add-ons',
+					'pro_url' => 'https://generatepress.com/premium',
 					'capability' => 'edit_theme_options',
 					'priority' => 0,
 					'type' => 'gp-upsell-section'
@@ -78,6 +79,7 @@ function generate_customize_register( $wp_customize ) {
 		)
 	);
 	
+	// Remove tagline
 	$wp_customize->add_setting( 
 		'generate_settings[hide_tagline]', 
 		array(
@@ -328,7 +330,7 @@ function generate_customize_register( $wp_customize ) {
 			'label' => __( 'Inner Header Width', 'generatepress' ),
 			'section' => 'generate_layout_header',
 			'choices' => array(
-				'' => __( 'Contained', 'generatepress' ),
+				'contained' => __( 'Contained', 'generatepress' ),
 				'full-width' => __( 'Full', 'generatepress' )
 			),
 			'settings' => 'generate_settings[header_inner_width]',
@@ -420,7 +422,7 @@ function generate_customize_register( $wp_customize ) {
 			'label' => __( 'Inner Navigation Width', 'generatepress' ),
 			'section' => 'generate_layout_navigation',
 			'choices' => array(
-				'' => __( 'Contained', 'generatepress' ),
+				'contained' => __( 'Contained', 'generatepress' ),
 				'full-width' => __( 'Full', 'generatepress' )
 			),
 			'settings' => 'generate_settings[nav_inner_width]',
@@ -574,7 +576,14 @@ function generate_customize_register( $wp_customize ) {
 			'title' => __( 'Sidebars', 'generatepress' ),
 			'capability' => 'edit_theme_options',
 			'priority' => 40,
-			'panel' => 'generate_layout_panel'
+			'panel' => 'generate_layout_panel',
+			'description_hidden' => true,
+			'description'        => sprintf( '%s<br /><a href="%s" class="external-link" target="_blank">%s<span class="screen-reader-text">%s</span></a>',
+				__( 'Change your global sidebar layouts. Sidebar layouts can be specified for specific pages using the Sidebar Layout meta box.','generatepress' ),
+				'https://generatepress.com/knowledgebase/choosing-sidebar-layouts/',
+				__( 'Learn more about Sidebar Layouts','generatepress' ),
+				__( '(link opens in a new window)','generatepress' )
+			),
 		)
 	);
 	
@@ -724,7 +733,7 @@ function generate_customize_register( $wp_customize ) {
 			'label' => __( 'Inner Footer Width', 'generatepress' ),
 			'section' => 'generate_layout_footer',
 			'choices' => array(
-				'' => __( 'Contained', 'generatepress' ),
+				'contained' => __( 'Contained', 'generatepress' ),
 				'full-width' => __( 'Full', 'generatepress' )
 			),
 			'settings' => 'generate_settings[footer_inner_width]',
