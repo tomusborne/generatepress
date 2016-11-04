@@ -484,41 +484,31 @@ function generate_base_css()
 	);
 	
 	// Start the magic
-	$visual_css = array (
-	
-		// Body CSS
+	$visual_css = array(
 		'body'  => array(
 			'background-color' => esc_attr( $generate_settings['background_color'] ),
 			'color' => esc_attr( $generate_settings['text_color'] )
 		),
 		
-		// Link CSS
 		'a, a:visited' => array(
-			'color' => esc_attr( $generate_settings['link_color'] ),
-			'text-decoration' => 'none'
+			'color' => esc_attr( $generate_settings['link_color'] )
 		),
 		
-		// Visited link color if specified
 		'a:visited' => array(
-			'color' => ( !empty( $generate_settings['link_color_visited'] ) ) ? esc_attr( $generate_settings['link_color_visited'] ) : null,
+			'color' => ( ! empty( $generate_settings['link_color_visited'] ) ) ? esc_attr( $generate_settings['link_color_visited'] ) : null
 		),
 		
-		// Link hover
 		'a:hover, a:focus, a:active' => array(
-			'color' => esc_attr( $generate_settings['link_color_hover'] ),
-			'text-decoration' => null
+			'color' => esc_attr( $generate_settings['link_color_hover'] )
 		),
 		
-		// Grid container
 		'body .grid-container' => array(
 			'max-width' => absint( $generate_settings['container_width'] ) . 'px'
 		),
 		
-		// Remove top margin from pages that have no title
 		'.page .entry-content' => array(
 			'margin-top' => ( ! generate_show_title() ) ? '0px' : null
-		),
-		
+		)
 	);
 	
 	// Output the above CSS
