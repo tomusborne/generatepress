@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		if ( $widgets == 5 ) $widget_width = '20';
 		?>
 		<div id="footer-widgets" class="site footer-widgets">
-			<div class="inside-footer-widgets grid-container grid-parent">
+			<div <?php generate_inside_footer_class(); ?>>
 				<?php if ( $widgets >= 1 ) : ?>
 					<div class="footer-widget-1 grid-parent grid-<?php echo apply_filters( 'generate_footer_widget_1_width', $widget_width ); ?> tablet-grid-<?php echo apply_filters( 'generate_footer_widget_1_tablet_width', '50' ); ?> mobile-grid-100">
 						<?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('footer-1')): ?>
@@ -109,7 +109,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	do_action('generate_after_footer_widgets');
 	?>
 	<footer class="site-info" itemtype="http://schema.org/WPFooter" itemscope="itemscope">
-		<div class="inside-site-info grid-container grid-parent">
+		<div class="inside-site-info <?php if ( 'full-width' !== generate_get_setting( 'footer_inner_width' ) ) : ?>grid-container grid-parent<?php endif; ?>">
 			<?php do_action( 'generate_credits' ); ?>
 		</div>
 	</footer><!-- .site-info -->

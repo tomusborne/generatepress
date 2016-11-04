@@ -261,6 +261,31 @@ function generate_get_navigation_class( $class = '' ) {
 }
 endif;
 
+if ( ! function_exists( 'generate_inside_navigation_class' ) ) :
+/**
+ * Display the classes for the navigation.
+ *
+ * @since 0.1
+ * @param string|array $class One or more classes to add to the class list.
+ */
+function generate_inside_navigation_class( $class = '' ) {
+	$classes = array();
+
+	if ( !empty($class) ) {
+		if ( !is_array( $class ) )
+			$class = preg_split('#\s+#', $class);
+		$classes = array_merge($classes, $class);
+	}
+
+	$classes = array_map('esc_attr', $classes);
+
+	$return = apply_filters('generate_inside_navigation_class', $classes, $class);
+	
+	// Separates classes with a single space, collates classes for post DIV
+	echo 'class="' . join( ' ', $return ) . '"';
+}
+endif;
+
 if ( ! function_exists( 'generate_menu_class' ) ) :
 /**
  * Display the classes for the navigation.
@@ -295,6 +320,43 @@ function generate_get_menu_class( $class = '' ) {
 	$classes = array_map('esc_attr', $classes);
 
 	return apply_filters('generate_menu_class', $classes, $class);
+}
+endif;
+
+if ( ! function_exists( 'generate_main_class' ) ) :
+/**
+ * Display the classes for the <main> container.
+ *
+ * @since 1.1.0
+ * @param string|array $class One or more classes to add to the class list.
+ */
+function generate_main_class( $class = '' ) {
+	// Separates classes with a single space, collates classes for post DIV
+	echo 'class="' . join( ' ', generate_get_main_class( $class ) ) . '"';
+}
+endif;
+
+if ( ! function_exists( 'generate_get_main_class' ) ) :
+/**
+ * Retrieve the classes for the footer.
+ *
+ * @since 0.1
+ * @param string|array $class One or more classes to add to the class list.
+ * @return array Array of classes.
+ */
+function generate_get_main_class( $class = '' ) {
+
+	$classes = array();
+
+	if ( !empty($class) ) {
+		if ( !is_array( $class ) )
+			$class = preg_split('#\s+#', $class);
+		$classes = array_merge($classes, $class);
+	}
+
+	$classes = array_map('esc_attr', $classes);
+
+	return apply_filters('generate_main_class', $classes, $class);
 }
 endif;
 
@@ -335,29 +397,14 @@ function generate_get_footer_class( $class = '' ) {
 }
 endif;
 
-if ( ! function_exists( 'generate_main_class' ) ) :
+if ( ! function_exists( 'generate_inside_footer_class' ) ) :
 /**
- * Display the classes for the <main> container.
- *
- * @since 1.1.0
- * @param string|array $class One or more classes to add to the class list.
- */
-function generate_main_class( $class = '' ) {
-	// Separates classes with a single space, collates classes for post DIV
-	echo 'class="' . join( ' ', generate_get_main_class( $class ) ) . '"';
-}
-endif;
-
-if ( ! function_exists( 'generate_get_main_class' ) ) :
-/**
- * Retrieve the classes for the footer.
+ * Display the classes for the footer.
  *
  * @since 0.1
  * @param string|array $class One or more classes to add to the class list.
- * @return array Array of classes.
  */
-function generate_get_main_class( $class = '' ) {
-
+function generate_inside_footer_class( $class = '' ) {
 	$classes = array();
 
 	if ( !empty($class) ) {
@@ -367,7 +414,10 @@ function generate_get_main_class( $class = '' ) {
 	}
 
 	$classes = array_map('esc_attr', $classes);
-
-	return apply_filters('generate_main_class', $classes, $class);
+	
+	$return = apply_filters( 'generate_inside_footer_class', $classes, $class );
+	
+	// Separates classes with a single space, collates classes for post DIV
+	echo 'class="' . join( ' ', $return ) . '"';
 }
 endif;

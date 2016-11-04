@@ -16,7 +16,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) :
  */
 add_action( 'customize_register', 'generate_customize_register' );
 function generate_customize_register( $wp_customize ) {
-
+	// Get our default values
 	$defaults = generate_get_defaults();
 
 	// Load custom controls
@@ -34,9 +34,13 @@ function generate_customize_register( $wp_customize ) {
 	}
 	
 	// Add control types so controls can be built using JS
-	if ( method_exists( $wp_customize,'register_control_type' ) ) {
+	if ( method_exists( $wp_customize, 'register_control_type' ) ) {
 		$wp_customize->register_control_type( 'Generate_Customize_Misc_Control' );
 		$wp_customize->register_control_type( 'Generate_Customize_Width_Slider_Control' );
+	}
+	
+	// Add upsell section type
+	if ( method_exists( $wp_customize, 'register_section_type' ) ) {
 		$wp_customize->register_section_type( 'GeneratePress_Upsell_Section' );
 	}
 	
@@ -305,6 +309,33 @@ function generate_customize_register( $wp_customize ) {
 		)
 	);
 	
+	// Add Inside Header Layout setting
+	$wp_customize->add_setting(
+		'generate_settings[header_inner_width]',
+		array(
+			'default' => $defaults['header_inner_width'],
+			'type' => 'option',
+			'sanitize_callback' => 'generate_sanitize_choices',
+			'transport' => 'postMessage'
+		)
+	);
+	
+	// Add Header Layout control
+	$wp_customize->add_control(
+		'generate_settings[header_inner_width]',
+		array(
+			'type' => 'select',
+			'label' => __( 'Inner Header Width', 'generatepress' ),
+			'section' => 'generate_layout_header',
+			'choices' => array(
+				'' => __( 'Contained', 'generatepress' ),
+				'full-width' => __( 'Full', 'generatepress' )
+			),
+			'settings' => 'generate_settings[header_inner_width]',
+			'priority' => 6
+		)
+	);
+	
 	// Add navigation setting
 	$wp_customize->add_setting(
 		'generate_settings[header_alignment_setting]',
@@ -367,6 +398,33 @@ function generate_customize_register( $wp_customize ) {
 			),
 			'settings' => 'generate_settings[nav_layout_setting]',
 			'priority' => 15
+		)
+	);
+	
+	// Add navigation setting
+	$wp_customize->add_setting(
+		'generate_settings[nav_inner_width]',
+		array(
+			'default' => $defaults['nav_inner_width'],
+			'type' => 'option',
+			'sanitize_callback' => 'generate_sanitize_choices',
+			'transport' => 'postMessage'
+		)
+	);
+	
+	// Add navigation control
+	$wp_customize->add_control(
+		'generate_settings[nav_inner_width]',
+		array(
+			'type' => 'select',
+			'label' => __( 'Inner Navigation Width', 'generatepress' ),
+			'section' => 'generate_layout_navigation',
+			'choices' => array(
+				'' => __( 'Contained', 'generatepress' ),
+				'full-width' => __( 'Full', 'generatepress' )
+			),
+			'settings' => 'generate_settings[nav_inner_width]',
+			'priority' => 16
 		)
 	);
 	
@@ -546,8 +604,7 @@ function generate_customize_register( $wp_customize ) {
 				'both-right' => __( 'Content / Sidebar / Sidebar', 'generatepress' )
 			),
 			'settings' => 'generate_settings[layout_setting]',
-			'priority' => 30,
-			'active_callback' => 'generate_is_page'
+			'priority' => 30
 		)
 	);
 	
@@ -577,8 +634,7 @@ function generate_customize_register( $wp_customize ) {
 				'both-right' => __( 'Content / Sidebar / Sidebar', 'generatepress' )
 			),
 			'settings' => 'generate_settings[blog_layout_setting]',
-			'priority' => 35,
-			'active_callback' => 'generate_is_posts_page'
+			'priority' => 35
 		)
 	);
 	
@@ -608,8 +664,7 @@ function generate_customize_register( $wp_customize ) {
 				'both-right' => __( 'Content / Sidebar / Sidebar', 'generatepress' )
 			),
 			'settings' => 'generate_settings[single_layout_setting]',
-			'priority' => 36,
-			'active_callback' => 'generate_is_single'
+			'priority' => 36
 		)
 	);
 	
@@ -647,6 +702,33 @@ function generate_customize_register( $wp_customize ) {
 			),
 			'settings' => 'generate_settings[footer_layout_setting]',
 			'priority' => 40
+		)
+	);
+	
+	// Add footer setting
+	$wp_customize->add_setting(
+		'generate_settings[footer_inner_width]',
+		array(
+			'default' => $defaults['footer_inner_width'],
+			'type' => 'option',
+			'sanitize_callback' => 'generate_sanitize_choices',
+			'transport' => 'postMessage'
+		)
+	);
+	
+	// Add content control
+	$wp_customize->add_control(
+		'generate_settings[footer_inner_width]',
+		array(
+			'type' => 'select',
+			'label' => __( 'Inner Footer Width', 'generatepress' ),
+			'section' => 'generate_layout_footer',
+			'choices' => array(
+				'' => __( 'Contained', 'generatepress' ),
+				'full-width' => __( 'Full', 'generatepress' )
+			),
+			'settings' => 'generate_settings[footer_inner_width]',
+			'priority' => 41
 		)
 	);
 	

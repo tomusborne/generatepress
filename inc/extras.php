@@ -317,15 +317,9 @@ function generate_inside_header_classes( $classes )
 {
 	
 	$classes[] = 'inside-header';
-
-	// Get theme options
-	$generate_settings = wp_parse_args( 
-		get_option( 'generate_settings', array() ), 
-		generate_get_defaults() 
-	);
-	$header_layout = $generate_settings['header_layout_setting'];
+	$inner_header_width = generate_get_setting( 'header_inner_width' );
 	
-	if ( $header_layout == 'fluid-header' || $header_layout == '' ) :
+	if ( $inner_header_width !== 'full-width' ) :
 		$classes[] = 'grid-container';
 		$classes[] = 'grid-parent';
 	endif;
@@ -354,6 +348,28 @@ function generate_navigation_classes( $classes )
 	$nav_layout = $generate_settings['nav_layout_setting'];
 	
 	if ( $nav_layout == 'contained-nav' ) :
+		$classes[] = 'grid-container';
+		$classes[] = 'grid-parent';
+	endif;
+
+	return $classes;
+	
+}
+endif;
+
+if ( ! function_exists( 'generate_inside_navigation_classes' ) ) :
+/**
+ * Adds custom classes to the navigation
+ * @since 0.1
+ */
+add_filter( 'generate_inside_navigation_class', 'generate_inside_navigation_classes');
+function generate_inside_navigation_classes( $classes )
+{
+	
+	$classes[] = 'inside-navigation';
+	$inner_nav_width = generate_get_setting( 'nav_inner_width' );
+	
+	if ( $inner_nav_width !== 'full-width' ) :
 		$classes[] = 'grid-container';
 		$classes[] = 'grid-parent';
 	endif;
@@ -397,6 +413,27 @@ function generate_footer_classes( $classes )
 	$footer_layout = $generate_settings['footer_layout_setting'];
 	
 	if ( $footer_layout == 'contained-footer' ) :
+		$classes[] = 'grid-container';
+		$classes[] = 'grid-parent';
+	endif;
+
+	return $classes;
+	
+}
+endif;
+
+if ( ! function_exists( 'generate_inside_footer_classes' ) ) :
+/**
+ * Adds custom classes to the footer
+ * @since 0.1
+ */
+add_filter( 'generate_inside_footer_class', 'generate_inside_footer_classes');
+function generate_inside_footer_classes( $classes )
+{
+	$classes[] = 'inside-footer-widgets';
+	$inside_footer_width = generate_get_setting( 'footer_inner_width' );
+	
+	if ( $inside_footer_width !== 'full-width' ) :
 		$classes[] = 'grid-container';
 		$classes[] = 'grid-parent';
 	endif;

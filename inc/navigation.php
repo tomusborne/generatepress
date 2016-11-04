@@ -83,7 +83,7 @@ function generate_navigation_position()
 {
 	?>
 	<nav itemtype="http://schema.org/SiteNavigationElement" itemscope="itemscope" id="site-navigation" <?php generate_navigation_class(); ?>>
-		<div class="inside-navigation grid-container grid-parent">
+		<div <?php generate_inside_navigation_class(); ?>>
 			<?php do_action( 'generate_inside_navigation' ); ?>
 			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
 				<?php do_action( 'generate_inside_mobile_menu' ); ?>
@@ -203,8 +203,15 @@ if ( ! function_exists( 'generate_nav_dropdown' ) ) :
 add_filter( 'walker_nav_menu_start_el', 'generate_nav_dropdown', 10, 4 );
 function generate_nav_dropdown( $item_output, $item, $depth, $args ) 
 {
-	// If we're working with the primary or secondary theme locations
-	if ( 'primary' == $args->theme_location || 'secondary' == $args->theme_location || 'slideout' == $args->theme_location ) {
+	// Build an array with our theme location
+	$theme_locations = array(
+		'primary',
+		'secondary',
+		'slideout'
+	);
+	
+	// Add the arrow if we're working with a GP menu
+	if ( in_array( $args->theme_location, apply_filters( 'generate_menu_arrow_theme_locations', $theme_locations ) ) ) {
 		// If a dropdown menu is detected
 		$dropdown = ( in_array( 'menu-item-has-children', $item->classes ) ) ? true : false;
 		if ( $dropdown ) :
