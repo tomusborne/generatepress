@@ -512,7 +512,12 @@ function generate_base_css()
 		// Grid container
 		'body .grid-container' => array(
 			'max-width' => absint( $generate_settings['container_width'] ) . 'px'
-		)
+		),
+		
+		// Remove top margin from pages that have no title
+		'.page .entry-content' => array(
+			'margin-top' => ( ! generate_show_title() ) ? '0px' : null
+		),
 		
 	);
 	
