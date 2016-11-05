@@ -1205,35 +1205,17 @@ h4, h5, h6 {
 }
 
 /* Layout spacing */
-.right-sidebar .site-main {
-	margin: 30px 30px 30px 0;
-}
-.left-sidebar .site-main {
-	margin: 30px 0 30px 30px;
-}
-.both-sidebars.separate-containers .site-main {
-	margin: 30px;
-}
-.both-right.separate-containers .site-main {
-	margin: 30px 30px 30px 0;
-}
-.both-left.separate-containers .site-main {
-	margin: 30px 0px 30px 30px;
-}
-.both-left .inside-left-sidebar {
+.one-container.both-left .inside-left-sidebar {
 	margin-right: 15px;
 }
-.both-left .inside-right-sidebar {
+.one-container.both-left .inside-right-sidebar {
 	margin-left: 15px;
 }
-.both-right .inside-left-sidebar {
+.one-container.both-right .inside-left-sidebar {
 	margin-right: 15px;
 }
-.both-right .inside-right-sidebar {
+.one-container.both-right .inside-right-sidebar {
 	margin-left: 15px;
-}
-.site-main {
-	margin: 30px 0;
 }
 .site-content {
 	word-wrap: break-word;
@@ -1246,25 +1228,10 @@ h4, h5, h6 {
 	margin-top: 0;
 	margin-bottom: 0;
 }
-.one-container .site-content {
-	padding: 40px;
-}
 .one-container .site-main {
 	margin-top: 0;
 	margin-left: 0;
 	margin-right: 0;
-}
-.one-container.both-right .site-main,
-.one-container.right-sidebar .site-main {
-	margin-right: 60px;
-}
-.one-container.both-left .site-main,
-.one-container.left-sidebar .site-main {
-	margin-left: 60px;
-}
-.one-container.both-sidebars .site-main {
-	margin-left: 60px;
-	margin-right: 60px;
 }
 .one-container .inside-right-sidebar,
 .one-container .inside-left-sidebar {
