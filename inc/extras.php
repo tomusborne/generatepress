@@ -359,8 +359,8 @@ endif;
 
 if ( ! function_exists( 'generate_inside_navigation_classes' ) ) :
 /**
- * Adds custom classes to the navigation
- * @since 0.1
+ * Adds custom classes to the inner navigation
+ * @since 1.3.41
  */
 add_filter( 'generate_inside_navigation_class', 'generate_inside_navigation_classes');
 function generate_inside_navigation_classes( $classes )

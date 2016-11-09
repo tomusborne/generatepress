@@ -263,9 +263,9 @@ endif;
 
 if ( ! function_exists( 'generate_inside_navigation_class' ) ) :
 /**
- * Display the classes for the navigation.
+ * Display the classes for the inner navigation.
  *
- * @since 0.1
+ * @since 1.3.41
  * @param string|array $class One or more classes to add to the class list.
  */
 function generate_inside_navigation_class( $class = '' ) {
