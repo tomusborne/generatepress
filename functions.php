@@ -7,7 +7,7 @@
 
 // No direct access, please
 if ( ! defined( 'ABSPATH' ) ) exit;
-	
+
 define( 'GENERATE_VERSION', '1.3.40');
 define( 'GENERATE_URI', get_template_directory_uri() );
 define( 'GENERATE_DIR', get_template_directory() );
@@ -65,9 +65,7 @@ function generate_setup()
 	/*
 	 * Add HTML5 theme support
 	 */
-	add_theme_support( 'html5', array(
-		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
-	) );
+	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ) );
 	
 	/*
 	 * Add Logo support
