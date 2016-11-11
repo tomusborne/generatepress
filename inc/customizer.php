@@ -1016,26 +1016,6 @@ function generate_is_posts_page()
 }
 endif;
 
-if ( ! function_exists( 'generate_is_single' ) ) :
-function generate_is_single()
-{
-	// Set up BuddyPress variable
-	$buddypress = false;
-	if ( function_exists( 'is_buddypress' ) ) :
-		$buddypress = ( is_buddypress() ) ? true : false;
-	endif;
-	
-	return ( is_single()  && ! $buddypress ) ? true : false;
-}
-endif;
-
-if ( ! function_exists( 'generate_is_page' ) ) :
-function generate_is_page()
-{
-	return ( ! generate_is_posts_page() && ! generate_is_single() ) ? true : false;
-}
-endif;
-
 if ( ! function_exists( 'generate_hidden_navigation' ) && function_exists( 'is_customize_preview' ) ) :
 /**
  * Adds a hidden navigation if no navigation is set
