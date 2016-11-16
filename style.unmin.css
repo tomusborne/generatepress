@@ -570,6 +570,8 @@ input[type="file"] {
 	opacity: 0.9;
 	width: 100%;
 	z-index: 20;
+	border-radius: 0;
+	-webkit-appearance: none;
 }
 
 .navigation-search input::-ms-clear {
