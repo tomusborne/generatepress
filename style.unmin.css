@@ -558,6 +558,11 @@ input[type="file"] {
 	top: 0;
 }
 
+.gen-sidebar-nav .navigation-search {
+	top: auto;
+	bottom: 0;
+}
+
 .navigation-search input {
 	border: 0;
 	vertical-align: bottom;
