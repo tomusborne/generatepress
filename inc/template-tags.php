@@ -596,7 +596,11 @@ function generate_construct_site_title()
 	if ( false == $disable_title || false == $disable_tagline ) : ?>
 		<div class="site-branding">
 			<?php if ( false == $disable_title ) : ?>
-				<p class="main-title" itemprop="headline"><a href="<?php echo apply_filters( 'generate_site_title_href', esc_url( home_url( '/' ) ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+				<?php if ( is_front_page() && is_home() ) : ?>
+					<h1 class="main-title" itemprop="headline"><a href="<?php echo apply_filters( 'generate_site_title_href', esc_url( home_url( '/' ) ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+				<?php else : ?>
+					<p class="main-title" itemprop="headline"><a href="<?php echo apply_filters( 'generate_site_title_href', esc_url( home_url( '/' ) ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+				<?php endif; ?>
 			<?php endif;
 				
 			if ( false == $disable_tagline ) : ?>
