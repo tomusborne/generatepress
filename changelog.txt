@@ -1,5 +1,29 @@
 === changelog ===
 
+= () - 1.3.41 =
+* Align navigation search to the top. Fixes a bug when mobile menu is open.
+* Make footer widgets RTL compatible
+* Only show metaboxes on public post types
+* Remove parameter in generate_display_google_fonts() to avoid error in child theme configurators
+* Move image captions below image and remove black semi-transparent background
+* Remove the buy me a coffee button if you're using GP Premium
+* Escape various HTML attributes/translations throughout the theme
+* Change how back to top button appears to allow transitions
+* Fix sidebar spacing issue with mobile
+* New filter: generate_navigation_location
+* New: Allow inner header container to be full width
+* New: Allow inner navigation container to be full width
+* New: Allow inner footer area to be full width
+* Improve menu dropdown functionality for touch screens
+* New filter: generate_menu_arrow_theme_locations
+* Remove search widget padding
+* Remove redundant CSS from style.css
+* Remove title attribute from site title
+* Fix navigation search on mobile when navigation is in a sidebar
+* Move navigation from sidebar to below the header on mobile on orientation change
+* Make site title an H1 on the blog page
+* Increase z-index of back to top button
+
 = (10/2/2016) - 1.3.40 =
 * Make sidebar and footer metaboxes appear lower than publish metabox
 * Force words to break if too long for the container
@@ -163,163 +187,6 @@
 * Add ability to use your keyboard tab key to move through navigation items/dropdown menus
 * Make WooCommerce responsive
 * Reduce copyright text font size to 15px
-
-= (12/21/2015) - 1.3.23 =
-* Match dropdown open and close delay
-
-= (12/21/2015) - 1.3.22 =
-* Add new filter: generate_comment_avatar_size
-* Add fixed width to navigation search icon when no menu is set
-* Chinese Simplified translation added (thank you Kerry!)
-* Turkish translation updated (thank you Larry!)
-* Remove "About" from the top of author pages
-* Add generate_category_post_navigation filter to force post navigation to be category specific
-* Improve WooCommerce compatibility by using hooks instead of woocommerce.php template
-* Removed superfish menu script
-* Removed hoverintent menu script
-* Re-write navigation dropdown menu script and minify it
-* Re-write navigation.js and minify it
-* Re-write navigation-search.js and minify it
-* Rename generate_contruct_sidebars to generate_construct_sidebars
-* Tighten up padding when one container is set as your content layout
-* Add live update to link color and link color hover in Customizer
-* Remove widget padding if one container is set
-* Minify mobile.css
-* Improve logic dealing with widget padding when one container is set
-* Add generatepress class to <body>
-
-= (11/27/2015) - 1.3.21 =
-* Czech translation updated (thank you Ondrej!)
-* Fix issue where custom post types (bbPress etc..) were highlighting blog menu item
-* Remove colors CSS for current_page_item classes
-* Add current-menu-item classes to wp_list_pages (if no Theme Location is set in Menus)
-* Reduce amount of colors CSS in <head>
-* Reduce amount of spacing CSS in <head>
-* Reduce amount of typography CSS in <head>
-* Add fix for Beaver Builder full width layouts
-* Update to Font Awesome 4.5.0
-* Turkish translation added (thank you Larry!)
-
-= (11/15/2015) - 1.3.20 =
-* Slovak language updated (thank you Jan!)
-* Add Navigation Float Left option
-* Show date and author on single post even if content title is hidden
-* generatepress.pot updated
-* Fix jump between navigation search icons
-
-= (11/9/2015) - 1.3.19 =
-* Czech translation updated (thank you Ondrej!)
-* Remove padding and border from fieldset
-* Update readme.txt
-* Add filter to site title URL: generate_site_title_href
-* Add support button to admin page
-* Add knowledgebase button to admin page
-* Update all translations
-
-= (10/29/2015) - 1.3.18 =
-* Fix donate text
-* Update all translations
-* Added to Russian translation
-* Adjust IE10 specific CSS for responsive features
-* Move mobile search button out of <button> to comply with HTML5
-* Fix bug where mobile search button wasn't working in Firefox
-* Add new filter: generate_post_date - allows for post date to be removed
-* Add new filter: generate_post_author - allows for post author to be removed
-* Add new filter: generate_show_categories - allows for post categories to be removed
-* Add new filter: generate_show_tags - allows for post tags to be removed
-* Add new filter: generate_show_comments - allows for the comments link to be removed
-* Remove wp_title() function to avoid warning in WP 4.4 - please make sure you're updated
-* Add primary-menu ID to the primary menu for accessibility reasons
-* Add new function/filter: generate_show_title - allows you to fully remove the title
-* Add metabox to disable the content title on specific pages
-* Add class to read more link container
-
-= (10/18/2015) - 1.3.17 =
-* Adjust grid CSS for Windows mobile phones
-* Fix WooCommerce specific styling to mobile
-* Update generatepress.pot translation file
-* Update Czech translation
-* All translations updated - ** please check your translations **
-* Adjust calendar widget styling
-* Add BuddyPress "Post in" styling
-
-= (10/11/2015) - 1.3.16 =
-* Improve schema markup throughout theme
-* Added generate_body_schema function to output the schema itemtype for the <body> element
-* Added generate_article_schema function to output the schema itemtype for the <article> elements
-* Added generate_show_excerpt function/filter to determine whether to show the excerpt or not
-* content.php has been altered to work with the generate_show_excerpt function
-* Add styling for bbPress login widget
-* Add footer font size value
-* Remove excess spacing above leave a comment title
-* Update 404 text
-* Change placeholder widget titles to h4
-
-= (10/3/2015) - 1.3.15 =
-* Make default calendar widget responsive
-* Fix mobile spacing issue between content and footer when no sidebar is set
-* Adjust margin below comment form textarea in anticipation of WordPress 4.4
-
-= (9/20/2015) - 1.3.14 =
-* Improve CSS dealing with mobile search icon
-* Compress add-on icons to reduce file size
-* Removed disable mobile functions from core theme. Use "Generate Disable Mobile" plugin.
-* Russian translation updated
-
-= (9/10/2015) - 1.3.13 =
-* Adjust main title line height on mobile
-* Improve navigation search when navigation is in a sidebar
-* Fix double search icon on mobile when menu is opened
-
-= (9/4/2015) - 1.3.12 =
-* Fix subscription toggle link in bbPress
-* Fix bug in Dutch translation
-* generatepress.pot updated (translations will have to be updated)
-* Update changelog formatting
-* Enqueue jQuery in case it isn't already added
-* Navigation search added to menu toggle on mobile
-* Fix caption alignment
-* Reduce filesize of screenshot
-* Reduce filesize of container width and typography range slider
-* Reduce main title font size on mobile
-
-
-= (8/23/2015) - 1.3.11 =
-* Remove unnecessary file
-
-
-= (8/23/2015) - 1.3.10 =
-* Fix mobile menu text hover color
-* Update some text strings
-
-
-= (8/15/2015) - 1.3.09 =
-* Add jump to anchor when using read more tag
-* Mobile menu toggle changed from <h3> to <button>
-	* If you've used h3.menu-toggle in any custom CSS, you'll need to adjust it (.menu-toggle is fine)
-* Updated HTML5Shiv
-* Move HTML5Shiv below all other stylesheets
-
-
-= (8/8/2015) - 1.3.08 =
-* Remove Customizer changes to nav section in anticipation of WordPress 4.3
-
-
-= (8/1/2015) - 1.3.07 =
-* If site title or tagline is empty (not disabled), don't print the surrounding HTML
-* FontAwesome updated to 4.4
-* Add some Easy Digital Downloads styling
-* Make it so base text colors works
-* Make some customizer changes happen instantly (no refresh), including:
-	* site title
-	* site tagline
-	* background color
-	* text color
-	* link color
-	* container width
-* Buy me a coffee link updated
-* Change "Header Content" Customizer name to "Site Identity"
-
 
 == Changelog archives ==
 * See more at https://generatepress.com/category/development/
