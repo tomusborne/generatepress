@@ -1644,6 +1644,7 @@ div.bbp-topic-tags {
 	line-height: 40px;
 	width: 40px;
 	text-align: center;
+	z-index: 10;
 }
 
 .generate-back-to-top:hover,
