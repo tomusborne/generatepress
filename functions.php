@@ -483,13 +483,14 @@ function generate_base_css()
 	
 	// Start the magic
 	$visual_css = array(
-		'body'  => array(
+		'body' => array(
 			'background-color' => esc_attr( $generate_settings['background_color'] ),
 			'color' => esc_attr( $generate_settings['text_color'] )
 		),
 		
 		'a, a:visited' => array(
-			'color' => esc_attr( $generate_settings['link_color'] )
+			'color' => esc_attr( $generate_settings['link_color'] ),
+			'text-decoration' => 'none'
 		),
 		
 		'a:visited' => array(
@@ -497,7 +498,8 @@ function generate_base_css()
 		),
 		
 		'a:hover, a:focus, a:active' => array(
-			'color' => esc_attr( $generate_settings['link_color_hover'] )
+			'color' => esc_attr( $generate_settings['link_color_hover'] ),
+			'text-decoration' => 'none'
 		),
 		
 		'body .grid-container' => array(
