@@ -1270,6 +1270,7 @@ h4, h5, h6 {
 .widget-title {
 	margin-bottom: 30px;
 	font-size: 20px;
+	line-height: 1.5;
 }
 .widget ul,
 .widget ol {
@@ -1288,6 +1289,7 @@ h4, h5, h6 {
 }
 .widget-area .widget.widget_search {
 	padding: 0;
+	line-height: 0;
 }
 .widget:last-child,
 .separate-containers .widget:last-child {
@@ -1363,6 +1365,7 @@ h4, h5, h6 {
 .entry-meta {
 	font-size: 85%;
 	margin-top: .5em;
+	line-height: 1.5;
 }
 footer.entry-meta {
 	margin-top: 2em;
@@ -1381,7 +1384,7 @@ footer.entry-meta .posted-on:before,
 	display: inline-block;
 	text-decoration: inherit;
 	position:relative;
-	margin-right: 5px;
+	margin-right: 0.6em;
 	width: 13px;
 	text-align:center;
 }
@@ -1468,6 +1471,7 @@ footer.entry-meta .byline {
 }
 .site-description {
 	margin: 0;
+	line-height: 1.5;
 }
 .header-widget {
 	float: right;
