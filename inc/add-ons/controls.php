@@ -65,12 +65,17 @@ class Generate_Customize_Slider_Control extends WP_Customize_Control
 	// Setup control type
 	public $type = 'gp-typography-slider';
 	public $id = '';
+	public $default_value = '';
+	public $unit = '';
 	
 	public function to_json() {
 		parent::to_json();
 		$this->json[ 'link' ] = $this->get_link();
 		$this->json[ 'value' ] = $this->value();
 		$this->json[ 'id' ] = $this->id;
+		$this->json[ 'default_value' ] = $this->default_value;
+		$this->json[ 'reset_title' ] = esc_attr__( 'Reset','generatepress' );
+		$this->json[ 'unit' ] = $this->unit;
 	}
 	
 	public function content_template() {
@@ -81,11 +86,12 @@ class Generate_Customize_Slider_Control extends WP_Customize_Control
 					{{ data.label }}
 				</span> 
 				<span class="value">
-					<input name="{{ data.id }}" type="number" {{{ data.link }}} value="{{{ data.value }}}" class="slider-input" /><span class="px">px</span>
+					<input <# if ( '' == data.unit ) { #>style="display:none;"<# } #> name="{{ data.id }}" type="number" {{{ data.link }}} value="{{{ data.value }}}" class="slider-input" /><span <# if ( '' == data.unit ) { #>style="display:none;"<# } #> class="px">{{ data.unit }}</span>
 				</span>
 			</p>
 		</label>
-		<div class="slider"></div>
+		<div class="slider <# if ( '' !== data.default_value ) { #>show-reset<# } #>"></div>
+		<# if ( '' !== data.default_value ) { #><span style="cursor:pointer;" title="{{ data.reset_title }}" class="gp-slider-default-value" data-default-value="{{ data.default_value }}"><span class="dashicons dashicons-image-rotate" aria-hidden="true"></span><span class="screen-reader-text">{{ data.reset_title }}</span></span><# } #>
 		<?php
 	}
 	

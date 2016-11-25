@@ -32,6 +32,8 @@ if ( !function_exists('generate_get_default_fonts') && !function_exists('generat
 			'body_font_weight' => 'normal',
 			'body_font_transform' => 'none',
 			'body_font_size' => '17',
+			'body_line_height' => '1.5', // no unit
+			'paragraph_margin' => '1.5', // em
 			'font_site_title' => 'inherit',
 			'font_site_title_category' => '',
 			'font_site_title_variants' => '',
@@ -78,7 +80,7 @@ if ( !function_exists('generate_get_default_fonts') && !function_exists('generat
 			'heading_3_weight' => 'normal',
 			'heading_3_transform' => 'none',
 			'heading_3_font_size' => '20',
-			'footer_font_size' => '16'
+			'footer_font_size' => '14'
 		);
 		
 		return apply_filters( 'generate_font_option_defaults', $generate_font_defaults );
@@ -117,6 +119,16 @@ if ( !function_exists('generate_get_default_fonts') && !function_exists('generat
 				'font-weight' => 'normal' == $generate_settings['body_font_weight'] ? '' : $generate_settings['body_font_weight'],
 				'text-transform' => 'none' == $generate_settings['body_font_transform'] ? '' : $generate_settings['body_font_transform'],
 				'font-size' => $generate_settings['body_font_size'] . 'px'
+			),
+			
+			// Line height
+			'body' => array(
+				'line-height' => $generate_settings['body_line_height'],
+			),
+			
+			// Paragraph margin
+			'p' => array(
+				'margin-bottom' => $generate_settings[ 'paragraph_margin' ] . 'em'
 			),
 			
 			// Main title font
@@ -509,7 +521,61 @@ if ( ! function_exists( 'generate_fonts_customize_register' ) ) :
 					'section' => 'font_section',
 					'settings' => 'generate_settings[body_font_size]',
 					'priority' => 40,
-					'type' => 'gp-typography-slider'
+					'type' => 'gp-typography-slider',
+					'default_value' => $defaults['body_font_size'],
+					'unit' => 'px'
+				)
+			)
+		);
+		
+		$wp_customize->add_setting( 
+			'generate_settings[body_line_height]', 
+			array(
+				'default' => $defaults['body_line_height'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_decimal_integer',
+				'transport' => 'postMessage'
+			)
+		);
+			
+		$wp_customize->add_control( 
+			new Generate_Customize_Slider_Control( 
+				$wp_customize, 
+				'generate_settings[body_line_height]', 
+				array(
+					'label' => __('Line height','generatepress'),
+					'section' => 'font_section',
+					'settings' => 'generate_settings[body_line_height]',
+					'priority' => 45,
+					'type' => 'gp-typography-slider',
+					'default_value' => $defaults['body_line_height'],
+					'unit' => ''
+				)
+			)
+		);
+		
+		$wp_customize->add_setting( 
+			'generate_settings[paragraph_margin]', 
+			array(
+				'default' => $defaults['paragraph_margin'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_decimal_integer',
+				'transport' => 'postMessage'
+			)
+		);
+			
+		$wp_customize->add_control( 
+			new Generate_Customize_Slider_Control( 
+				$wp_customize, 
+				'generate_settings[paragraph_margin]', 
+				array(
+					'label' => __('Paragraph margin','generatepress'),
+					'section' => 'font_section',
+					'settings' => 'generate_settings[paragraph_margin]',
+					'priority' => 47,
+					'type' => 'gp-typography-slider',
+					'default_value' => $defaults['paragraph_margin'],
+					'unit' => ''
 				)
 			)
 		);

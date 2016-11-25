@@ -268,7 +268,9 @@ function generate_customize_register( $wp_customize ) {
 				'section' => 'generate_layout_container',
 				'settings' => 'generate_settings[container_width]',
 				'priority' => 0,
-				'type' => 'gp-width-slider'
+				'type' => 'gp-width-slider',
+				'default_value' => $defaults['container_width'],
+				'unit' => 'px'
 			)
 		)
 	);
@@ -935,17 +937,37 @@ function generate_customize_preview_css() {
 		span.value {
 			display: inline-block;
 			float: right;
-			width: 35%;
+			width: 40%;
 			text-align: right;
 		}
 		
 		span.typography-size-label {
 			display: inline-block;
-			width: 65%;
+			width: 60%;
 		}
 		
 		div.slider {
 			margin-top: 8px;
+		}
+		
+		.gp-slider-default-value {
+			cursor: pointer;
+			padding-top: 3px;
+			float: right;
+		}
+		
+		.gp-slider-default-value .dashicons {
+			font-size: 13px;
+			height: 13px;
+			width: 13px;
+			position: relative;
+			vertical-align: middle;
+		}
+		
+		.customize-control-gp-typography-slider .slider.show-reset,
+		.customize-control-gp-width-slider .slider.show-reset {
+			width: 90%;
+			float: left;
 		}
 		
 		span.px {

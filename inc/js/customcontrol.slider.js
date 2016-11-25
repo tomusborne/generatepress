@@ -1,12 +1,19 @@
 jQuery(window).load(function(){
 	jQuery( '.slider-input' ).change(function () {
 		var value = this.value;
-		jQuery( this ).parent().parent().parent().next( 'div.slider' ).slider( 'value', parseInt(value));
+		jQuery( this ).closest( 'label' ).next( 'div.slider' ).slider( 'value', parseFloat(value));
+	});
+	
+	jQuery( '.gp-slider-default-value' ).on( 'click', function(e) {
+		e.preventDefault();
+		var default_value = jQuery( this ).data( 'default-value' );
+		jQuery( this ).prevAll( 'label' ).find( 'input' ).attr( 'value', default_value ).trigger( 'change' );
+		return false;
 	});
 	
 	function generate_range_slider( name, min, max, step ) {
 		setTimeout(function() {
-			jQuery('input[name="' + name + '"]').parent().parent().parent().next('div.slider').slider({
+			jQuery('input[name="' + name + '"]').closest( 'label' ).next('div.slider').slider({
 				value: jQuery('input[name="' + name + '"]').val(),
 				min: min,
 				max: max,
@@ -21,6 +28,8 @@ jQuery(window).load(function(){
 	
 	generate_range_slider( 'generate_settings[container_width]', 700, 2000, 5 );
 	generate_range_slider( 'generate_settings[body_font_size]', 6, 25, 1 );
+	generate_range_slider( 'generate_settings[body_line_height]', 1, 3, .1 );
+	generate_range_slider( 'generate_settings[paragraph_margin]', 0, 5, .1 );
 	generate_range_slider( 'generate_settings[site_title_font_size]', 10, 200, 1 );
 	generate_range_slider( 'generate_settings[site_tagline_font_size]', 6, 50, 1 );
 	generate_range_slider( 'generate_settings[navigation_font_size]', 6, 30, 1 );

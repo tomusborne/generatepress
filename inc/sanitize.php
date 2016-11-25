@@ -12,6 +12,16 @@ function generate_sanitize_integer( $input ) {
 }
 endif;
 
+if ( ! function_exists( 'generate_sanitize_decimal_integer' ) ) :
+/**
+ * Sanitize integers that can use decimals
+ * @since 1.3.41
+ */
+function generate_sanitize_decimal_integer( $input ) {
+	return abs( floatval( $input ) );
+}
+endif;
+
 if ( ! function_exists( 'generate_sanitize_checkbox' ) ) :
 /**
  * Sanitize checkbox values

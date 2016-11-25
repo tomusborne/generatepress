@@ -103,6 +103,41 @@ function generatepress_classes_live_update( id, classes, selector, prefix ) {
 					jQuery( 'style#body_font_size' ).not( ':last' ).remove();
 				}, 100);
 			}
+			setTimeout("jQuery('body').trigger('generate_spacing_updated');", 1000);
+		} );
+	} );
+	
+	/** 
+	 * Body line height
+	 */
+	wp.customize( 'generate_settings[body_line_height]', function( value ) {
+		value.bind( function( newval ) {
+			if ( jQuery( 'style#body_line_height' ).length ) {
+				jQuery( 'style#body_line_height' ).html( 'body{line-height:' + newval + ';}' );
+			} else {
+				jQuery( 'head' ).append( '<style id="body_line_height">body{line-height:' + newval + ';}</style>' );
+				setTimeout(function() {
+					jQuery( 'style#body_line_height' ).not( ':last' ).remove();
+				}, 100);
+			}
+			setTimeout("jQuery('body').trigger('generate_spacing_updated');", 1000);
+		} );
+	} );
+	
+	/** 
+	 * Paragraph margin
+	 */
+	wp.customize( 'generate_settings[paragraph_margin]', function( value ) {
+		value.bind( function( newval ) {
+			if ( jQuery( 'style#paragraph_margin' ).length ) {
+				jQuery( 'style#paragraph_margin' ).html( 'p{margin-bottom:' + newval + 'em;}' );
+			} else {
+				jQuery( 'head' ).append( '<style id="paragraph_margin">p{margin-bottom:' + newval + 'em;}</style>' );
+				setTimeout(function() {
+					jQuery( 'style#paragraph_margin' ).not( ':last' ).remove();
+				}, 100);
+			}
+			setTimeout("jQuery('body').trigger('generate_spacing_updated');", 1000);
 		} );
 	} );
 	
