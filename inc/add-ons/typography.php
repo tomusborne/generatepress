@@ -599,7 +599,8 @@ if ( ! function_exists( 'generate_fonts_customize_register' ) ) :
 								__( 'Check out Generate Typography', 'generatepress' )
 							)
 						),
-						'priority'    => 50
+						'priority'    => 50,
+						'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname'
 					)
 				)
 			);
