@@ -37,7 +37,7 @@ class Generate_Customize_Width_Slider_Control extends WP_Customize_Control
 			</p>
 		</label>
 		<div class="slider <# if ( '' !== data.default_value ) { #>show-reset<# } #>"></div>
-		<# if ( '' !== data.default_value ) { #><span style="cursor:pointer;" title="{{ data.reset_title }}" class="gp-slider-default-value" data-default-value="{{ data.default_value }}"><span class="dashicons dashicons-image-rotate" aria-hidden="true"></span><span class="screen-reader-text">{{ data.reset_title }}</span></span><# } #>
+		<# if ( '' !== data.default_value ) { #><span style="cursor:pointer;" title="{{ data.reset_title }}" class="gp-slider-default-value" data-default-value="{{ data.default_value }}"><span class="gp-customizer-icon-undo" aria-hidden="true"></span><span class="screen-reader-text">{{ data.reset_title }}</span></span><# } #>
 		<?php
 	}
 	
@@ -88,7 +88,6 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Customi
  * Create our in-section upsell controls
  */
 class Generate_Customize_Misc_Control extends WP_Customize_Control {
-	public $settings = 'blogname';
 	public $description = '';
 	public $url = '';
 	public $type = 'addon';
@@ -106,6 +105,25 @@ class Generate_Customize_Misc_Control extends WP_Customize_Control {
 		</span>
 		<p class="description" style="margin-top: 5px;">{{{ data.description }}}</p>
 		<?php
+	}
+}
+endif;
+
+if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'GenerateLabelControl' ) ) :
+/**
+ * Heading area
+ * @since 0.1
+ * @depreceted 1.3.41
+ **/
+class GenerateLabelControl extends WP_Customize_Control {
+	public $type = 'label';
+	public function __construct( $manager, $id, $args = array() ) {
+		$this->statuses = array( '' => __( 'Default', 'generatepress' ) );
+		parent::__construct( $manager, $id, $args );
+	}
+
+	public function render_content() {
+		echo '<span class="generate_customize_label">' . esc_html( $this->label ) . '</span>';
 	}
 }
 endif;

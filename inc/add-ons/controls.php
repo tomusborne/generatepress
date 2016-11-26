@@ -91,7 +91,7 @@ class Generate_Customize_Slider_Control extends WP_Customize_Control
 			</p>
 		</label>
 		<div class="slider <# if ( '' !== data.default_value ) { #>show-reset<# } #>"></div>
-		<# if ( '' !== data.default_value ) { #><span style="cursor:pointer;" title="{{ data.reset_title }}" class="gp-slider-default-value" data-default-value="{{ data.default_value }}"><span class="dashicons dashicons-image-rotate" aria-hidden="true"></span><span class="screen-reader-text">{{ data.reset_title }}</span></span><# } #>
+		<# if ( '' !== data.default_value ) { #><span style="cursor:pointer;" title="{{ data.reset_title }}" class="gp-slider-default-value" data-default-value="{{ data.default_value }}"><span class="gp-customizer-icon-undo" aria-hidden="true"></span><span class="screen-reader-text">{{ data.reset_title }}</span></span><# } #>
 		<?php
 	}
 	
