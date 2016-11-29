@@ -592,14 +592,7 @@ function generate_customize_register( $wp_customize ) {
 			'title' => __( 'Sidebars', 'generatepress' ),
 			'capability' => 'edit_theme_options',
 			'priority' => 40,
-			'panel' => 'generate_layout_panel',
-			'description_hidden' => true,
-			'description'        => sprintf( '%s<br /><a href="%s" class="external-link" target="_blank">%s<span class="screen-reader-text">%s</span></a>',
-				__( 'Change your global sidebar layouts. Sidebar layouts can be specified for specific pages using the Sidebar Layout meta box.','generatepress' ),
-				'https://generatepress.com/knowledgebase/choosing-sidebar-layouts/',
-				__( 'Learn more about Sidebar Layouts','generatepress' ),
-				__( '(link opens in a new window)','generatepress' )
-			),
+			'panel' => 'generate_layout_panel'
 		)
 	);
 	
