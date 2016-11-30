@@ -291,6 +291,8 @@ function generate_additional_spacing()
 	// Start the magic
 	$spacing_css = array (
 		
+		// Since 1.3.41
+		// Compatibility for GP Premium 1.2.92
 		'.menu-item-has-children .dropdown-menu-toggle' => array(
 			'padding-right' => ( isset( $spacing_settings['menu_item'] ) && ! is_rtl() ) ? $spacing_settings['menu_item'] . 'px' : null,
 			'padding-left' => ( isset( $spacing_settings['menu_item'] ) && is_rtl() ) ? $spacing_settings['menu_item'] . 'px' : null,
