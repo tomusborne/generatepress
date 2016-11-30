@@ -197,7 +197,8 @@ if ( !function_exists('generate_spacing_css') ) :
 			),
 			
 			'.menu-item-has-children .dropdown-menu-toggle' => array(
-				'padding-right' => ( isset( $spacing_settings['menu_item'] ) ) ? $spacing_settings['menu_item'] . 'px' : null,
+				'padding-right' => ( isset( $spacing_settings['menu_item'] ) && ! is_rtl() ) ? $spacing_settings['menu_item'] . 'px' : null,
+				'padding-left' => ( isset( $spacing_settings['menu_item'] ) && is_rtl() ) ? $spacing_settings['menu_item'] . 'px' : null,
 			),
 			
 			'.main-navigation .main-nav ul li.menu-item-has-children > a' => array(
@@ -271,6 +272,69 @@ if ( !function_exists('generate_spacing_css') ) :
 		wp_add_inline_style( 'generate-style', generate_spacing_css() );
 	
 	}
+endif;
+
+if ( ! function_exists( 'generate_additional_spacing' ) ) :
+/**
+ * Add fallback CSS for our mobile search icon color
+ */
+function generate_additional_spacing()
+{
+	if ( function_exists( 'generate_spacing_get_defaults' ) ) :
+		$spacing_settings = wp_parse_args( 
+			get_option( 'generate_spacing_settings', array() ), 
+			generate_spacing_get_defaults() 
+		);
+	endif;
+		
+	$space = ' ';
+	// Start the magic
+	$spacing_css = array (
+		
+		'.menu-item-has-children .dropdown-menu-toggle' => array(
+			'padding-right' => ( isset( $spacing_settings['menu_item'] ) && ! is_rtl() ) ? $spacing_settings['menu_item'] . 'px' : null,
+			'padding-left' => ( isset( $spacing_settings['menu_item'] ) && is_rtl() ) ? $spacing_settings['menu_item'] . 'px' : null,
+		)
+		
+	);
+	
+	// Output the above CSS
+	$output = '';
+	foreach($spacing_css as $k => $properties) {
+		if(!count($properties))
+			continue;
+
+		$temporary_output = $k . ' {';
+		$elements_added = 0;
+
+		foreach($properties as $p => $v) {
+			if(empty($v))
+				continue;
+
+			$elements_added++;
+			$temporary_output .= $p . ': ' . $v . '; ';
+		}
+
+		$temporary_output .= "}";
+
+		if($elements_added > 0)
+			$output .= $temporary_output;
+	}
+	
+	$output = str_replace(array("\r", "\n", "\t"), '', $output);
+	return $output;
+}
+endif;
+
+if ( ! function_exists( 'generate_mobile_search_spacing_fallback_css' ) ) :
+/**
+ * Enqueue our mobile search icon color fallback CSS
+ */
+add_action( 'wp_enqueue_scripts', 'generate_mobile_search_spacing_fallback_css', 50 );
+function generate_mobile_search_spacing_fallback_css() 
+{
+	wp_add_inline_style( 'generate-style', generate_additional_spacing() );
+}
 endif;
 
 if ( ! function_exists( 'generate_padding_css' ) ) :
