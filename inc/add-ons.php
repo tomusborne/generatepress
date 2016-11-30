@@ -23,7 +23,6 @@ require get_template_directory() . '/inc/add-ons/typography.php';
 require get_template_directory() . '/inc/add-ons/colors.php';
 require get_template_directory() . '/inc/add-ons/spacing.php';
 require get_template_directory() . '/inc/add-ons/disable-elements.php';
-require get_template_directory() . '/inc/add-ons/menu-plus.php';
 
 if ( ! function_exists( 'generate_addons_available' ) ) :
 /** 
