@@ -212,4 +212,30 @@
 		width: 100%;
 		float: none;
 	}
+	
+	/* Backwards compatibility until Slideout is updated */
+	.slideout-mobile.dropdown-hover .dropdown-menu-toggle,
+	.slideout-both.dropdown-hover .dropdown-menu-toggle {
+		display: none;
+	}
+	
+	.slideout-mobile.dropdown-hover .dropdown-toggle,
+	.slideout-both.dropdown-hover .dropdown-toggle {
+		display: block !important;
+		position: absolute !important;
+	}
+	
+	.slideout-mobile.dropdown-hover .secondary-navigation .main-nav ul li.menu-item-has-children a,
+	.slideout-both.dropdown-hover .secondary-navigation .main-nav ul li.menu-item-has-children a {
+		padding-right: 20px;
+	}
+	
+	.slideout-mobile.dropdown-click .secondary-navigation ul li.sfHover > ul,
+	.slideout-both.dropdown-click .secondary-navigation ul li.sfHover > ul {
+		display: block;
+	}
+	
+	.dropdown-click .secondary-navigation .main-nav ul li .dropdown-toggle {
+		display: none;
+	}
 }
