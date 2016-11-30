@@ -1667,3 +1667,22 @@ div.bbp-topic-tags {
 	display: none;
 	cursor: pointer;
 }
+
+/* Backwards compatibility until Slideout is updated */
+.slideout-mobile.dropdown-hover .slideout-navigation .dropdown-menu-toggle,
+.slideout-both.dropdown-hover .slideout-navigation .dropdown-menu-toggle {
+	display: none;
+}
+
+.slideout-desktop.dropdown-hover #generate-slideout-menu .slideout-menu .menu-item-has-children>a:first-child,
+.dropdown-click #generate-slideout-menu .slideout-menu .menu-item-has-children>a:first-child {
+	padding-right: 0;
+}
+
+.dropdown-click #generate-slideout-menu.main-navigation .main-nav ul li .dropdown-toggle {
+	display: none;
+}
+
+.slideout-navigation .menu-item-has-children .dropdown-menu-toggle {
+	float: right;
+}
