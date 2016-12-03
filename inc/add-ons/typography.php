@@ -590,12 +590,12 @@ if ( ! function_exists( 'generate_fonts_customize_register' ) ) :
 						'section'     => 'font_section',
 						'type'        => 'addon',
 						'label'			=> __( 'More Settings','generatepress' ),
-						'url' => 'https://generatepress.com/downloads/generate-typography/',
+						'url' => generate_get_premium_url('https://generatepress.com/downloads/generate-typography/'),
 						'description' => sprintf(
 							__( 'Looking to add more typography settings?<br /> %s.', 'generatepress' ),
 							sprintf(
 								'<a href="%1$s" target="_blank">%2$s</a>',
-								esc_url( 'https://generatepress.com/downloads/generate-typography/' ),
+								generate_get_premium_url( 'https://generatepress.com/downloads/generate-typography/' ),
 								__( 'Check out Generate Typography', 'generatepress' )
 							)
 						),

@@ -63,7 +63,7 @@ function generate_customize_register( $wp_customize ) {
 			new GeneratePress_Upsell_Section( $wp_customize, 'generatepress_upsell_section',
 				array(
 					'pro_text' => __( 'Add-ons Available! Take a look', 'generatepress' ),
-					'pro_url' => 'https://generatepress.com/premium',
+					'pro_url' => generate_get_premium_url( 'https://generatepress.com/premium' ),
 					'capability' => 'edit_theme_options',
 					'priority' => 0,
 					'type' => 'gp-upsell-section'
@@ -223,12 +223,12 @@ function generate_customize_register( $wp_customize ) {
 					'section'     => 'body_section',
 					'type'        => 'addon',
 					'label'			=> __( 'More Settings','generatepress' ),
-					'url' => 'https://generatepress.com/downloads/generate-colors/',
+					'url' => generate_get_premium_url('https://generatepress.com/downloads/generate-colors/'),
 					'description' => sprintf(
 						__( 'Looking to add more color settings?<br /> %s.', 'generatepress' ),
 						sprintf(
 							'<a href="%1$s" target="_blank">%2$s</a>',
-							esc_url( 'https://generatepress.com/downloads/generate-colors/' ),
+							generate_get_premium_url( 'https://generatepress.com/downloads/generate-colors/' ),
 							__( 'Check out Generate Colors', 'generatepress' )
 						)
 					),
@@ -853,12 +853,12 @@ function generate_customize_register( $wp_customize ) {
 					'section'     => 'blog_section',
 					'type'        => 'addon',
 					'label'			=> __( 'More Settings','generatepress' ),
-					'url' => 'https://generatepress.com/downloads/generate-blog/',
+					'url' => generate_get_premium_url('https://generatepress.com/downloads/generate-blog/'),
 					'description' => sprintf(
 						__( 'Looking to add more blog settings?<br /> %s.', 'generatepress' ),
 						sprintf(
 							'<a href="%1$s" target="_blank">%2$s</a>',
-							esc_url( 'https://generatepress.com/downloads/generate-blog/' ),
+							generate_get_premium_url( 'https://generatepress.com/downloads/generate-blog/' ),
 							__( 'Check out Generate Blog', 'generatepress' )
 						)
 					),

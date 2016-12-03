@@ -72,7 +72,7 @@ function generate_settings_page()
 									</p>		
 									<p>
 										<?php if ( generate_addons_available() ) : ?>
-											<a id="generate_addon_button" class="button button-primary" href="<?php echo esc_url('https://generatepress.com/add-ons');?>" target="_blank"><?php _e('Add-ons','generatepress');?></a> 
+											<a id="generate_addon_button" class="button button-primary" href="<?php echo generate_get_premium_url('https://generatepress.com/premium/');?>" target="_blank"><?php _e('Add-ons','generatepress');?></a> 
 										<?php endif; ?>
 										<a class="button button-primary" href="<?php echo esc_url( 'https://generatepress.com/support' ); ?>" target="_blank"><?php _e('Support','generatepress');?></a>  
 										<a class="button button-primary" href="<?php echo esc_url( 'https://generatepress.com/knowledgebase' ); ?>" target="_blank"><?php _e('Knowledgebase','generatepress');?></a>  
@@ -131,69 +131,69 @@ function generate_settings_page()
 										$addons = array(
 											'0' => array(
 													'name' => 'Colors',
-													'url' => esc_url('https://generatepress.com/downloads/generate-colors/'),
+													'url' => generate_get_premium_url('https://generatepress.com/downloads/generate-colors/'),
 													'img' => get_template_directory_uri() . '/inc/add-ons/images/colors.png'
 								
 											),
 											'10' => array(
 													'name' => 'Sections',
-													'url' => esc_url('https://generatepress.com/downloads/generate-sections/'),
+													'url' => generate_get_premium_url('https://generatepress.com/downloads/generate-sections/'),
 													'img' => get_template_directory_uri() . '/inc/add-ons/images/sections.png'
 								
 											),
 											'20' => array(
 													'name' => 'Typography',
-													'url' => esc_url('https://generatepress.com/downloads/generate-typography/'),
+													'url' => generate_get_premium_url('https://generatepress.com/downloads/generate-typography/'),
 													'img' => get_template_directory_uri() . '/inc/add-ons/images/typography.png'
 											 ),
 											'30' => array(
 													'name' => 'Menu Plus',
-													'url' => esc_url('https://generatepress.com/downloads/generate-menu-plus/'),
+													'url' => generate_get_premium_url('https://generatepress.com/downloads/generate-menu-plus/'),
 													'img' => get_template_directory_uri() . '/inc/add-ons/images/menu-plus.png'
 											 ),
 											'40' => array(
 													'name' => 'Page Header',
-													'url' => esc_url('https://generatepress.com/downloads/generate-page-header/'),
+													'url' => generate_get_premium_url('https://generatepress.com/downloads/generate-page-header/'),
 													'img' => get_template_directory_uri() . '/inc/add-ons/images/page-header.png'
 											),
 											'50' => array(
 													'name' => 'Import / Export',
-													'url' => esc_url('https://generatepress.com/downloads/generate-import-export/'),
+													'url' => generate_get_premium_url('https://generatepress.com/downloads/generate-import-export/'),
 													'img' => get_template_directory_uri() . '/inc/add-ons/images/importexport.png'
 											),
 											'60' => array(
 													'name' => 'Copyright',
-													'url' => esc_url('https://generatepress.com/downloads/generate-copyright/'),
+													'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-copyright/' ),
 													'img' => get_template_directory_uri() . '/inc/add-ons/images/copyright.png'
 											),
 											'70' => array(
 													'name' => 'Disable Elements',
-													'url' => esc_url('https://generatepress.com/downloads/generate-disable-elements/'),
+													'url' => generate_get_premium_url('https://generatepress.com/downloads/generate-disable-elements/'),
 													'img' => get_template_directory_uri() . '/inc/add-ons/images/disable-items.png'
 											),
 											'80' => array(
 													'name' => 'Blog',
-													'url' => esc_url('https://generatepress.com/downloads/generate-blog/'),
+													'url' => generate_get_premium_url('https://generatepress.com/downloads/generate-blog/'),
 													'img' => get_template_directory_uri() . '/inc/add-ons/images/blog.png'
 											),
 											'90' => array(
 													'name' => 'Hooks',
-													'url' => esc_url('https://generatepress.com/downloads/generate-hooks/'),
+													'url' => generate_get_premium_url('https://generatepress.com/downloads/generate-hooks/'),
 													'img' => get_template_directory_uri() . '/inc/add-ons/images/hooks.png'
 											),
 											'100' => array(
 													'name' => 'Spacing',
-													'url' => esc_url('https://generatepress.com/downloads/generate-spacing/'),
+													'url' => generate_get_premium_url('https://generatepress.com/downloads/generate-spacing/'),
 													'img' => get_template_directory_uri() . '/inc/add-ons/images/spacing.png'
 											),
 											'110' => array(
 													'name' => 'Backgrounds',
-													'url' => esc_url('https://generatepress.com/downloads/generate-backgrounds/'),
+													'url' => generate_get_premium_url('https://generatepress.com/downloads/generate-backgrounds/'),
 													'img' => get_template_directory_uri() . '/inc/add-ons/images/backgrounds.png'
 											),
 											'120' => array(
 													'name' => 'Secondary Nav',
-													'url' => esc_url('https://generatepress.com/downloads/generate-secondary-nav/'),
+													'url' => generate_get_premium_url('https://generatepress.com/downloads/generate-secondary-nav/'),
 													'img' => get_template_directory_uri() . '/inc/add-ons/images/secondarynav.png'
 											)
 										);
@@ -262,5 +262,21 @@ function generate_admin_errors()
 	}
 
 	settings_errors( 'generate-notices' );
+}
+endif;
+
+if ( ! function_exists( 'generate_get_premium_url' ) ) :
+/**
+ * Generate a URL to our premium add-ons
+ * Allows the use of a referral ID in the URL
+ * @since 1.3.42
+ */
+function generate_get_premium_url( $url ) {
+	// Bail if we don't have a URL
+	if ( '' == $url )
+		return;
+	
+	// Return our URL with the optional referral ID
+	return esc_url( trailingslashit( $url )  . apply_filters( 'generatepress_affiliate_ref','' ) );
 }
 endif;
