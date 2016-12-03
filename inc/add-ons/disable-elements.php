@@ -89,7 +89,7 @@ function generate_show_de_meta_box( $post )
 		</label>
 		<?php if ( generate_addons_available() ) : ?>
 			<span style="display:block;padding-top:1em;border-top:1px solid #EFEFEF;">
-				<a href="<?php echo esc_url('https://generatepress.com/downloads/generate-disable-elements');?>" target="_blank"><?php _e( 'Add-on available', 'generatepress' ); ?></a>
+				<a href="<?php echo generate_get_premium_url('https://generatepress.com/downloads/generate-disable-elements');?>" target="_blank"><?php _e( 'Add-on available', 'generatepress' ); ?></a>
 			</span>
 		<?php endif; ?>
 	</div>
