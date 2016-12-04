@@ -84,9 +84,12 @@ function generate_settings_page()
 							</div>
 
 							<?php do_action('generate_inside_options_form'); ?>
-							<?php if ( ! generate_no_addons() ) : ?>
+							<?php 
+							// @todo
+							// This block is marked for removal in 6 months
+							// December 3, 2016
+							if ( ! generate_no_addons() ) : ?>
 								<div class="postbox generate-metabox" id="gen-license-keys">
-									<h3 class="hndle"><?php _e('Add-on Updates','generatepress');?></h3>
 									<div class="inside">
 										<?php do_action('generate_license_key_items'); ?>
 									</div>
