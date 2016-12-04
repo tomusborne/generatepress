@@ -264,19 +264,3 @@ function generate_admin_errors()
 	settings_errors( 'generate-notices' );
 }
 endif;
-
-if ( ! function_exists( 'generate_get_premium_url' ) ) :
-/**
- * Generate a URL to our premium add-ons
- * Allows the use of a referral ID in the URL
- * @since 1.3.42
- */
-function generate_get_premium_url( $url ) {
-	// Bail if we don't have a URL
-	if ( '' == $url )
-		return;
-	
-	// Return our URL with the optional referral ID
-	return esc_url( trailingslashit( $url )  . apply_filters( 'generatepress_affiliate_ref','' ) );
-}
-endif;
