@@ -547,7 +547,7 @@ if ( ! function_exists( 'generate_add_viewport' ) ) :
 add_action('wp_head','generate_add_viewport');
 function generate_add_viewport()
 {
-	echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
+	echo apply_filters( 'generate_meta_viewport', '<meta name="viewport" content="width=device-width, initial-scale=1">' );
 }
 endif;
 
