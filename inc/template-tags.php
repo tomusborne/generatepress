@@ -768,3 +768,16 @@ function generate_footer_meta()
 	<?php endif;
 }
 endif;
+
+if ( ! function_exists( 'generate_pingback_header' ) ) :
+/**
+ * Add a pingback url auto-discovery header for singularly identifiable articles.
+ * @since 1.3.42
+ */
+add_action( 'wp_head', 'generate_pingback_header' );
+function generate_pingback_header() {
+	if ( is_singular() && pings_open() ) {
+		echo '<link rel="pingback" href="' . esc_url( get_bloginfo( 'pingback_url' ) ) . '">';
+	}
+}
+endif;
