@@ -394,9 +394,11 @@ input[type="file"] {
 	content: "\f0c9";
 	font-family: FontAwesome;
 	line-height: 1em;
+	speak: none;
 }
 .toggled .menu-toggle:before {
 	content: "\f00d";
+	speak: none;
 }
 .menu-toggle .mobile-menu {
 	margin-left: 10px;
@@ -672,6 +674,7 @@ nav:not(.toggled):not(.slideout-navigation) ul ul .menu-item-has-children .dropd
 	content: "\f107";
 	font-family: FontAwesome;
 	line-height: 1em;
+	speak: none;
 }
 
 .dropdown-click .menu-item-has-children.sfHover > a .dropdown-menu-toggle:before {
@@ -1383,6 +1386,7 @@ footer.entry-meta .posted-on:before,
 	margin-right: 0.6em;
 	width: 13px;
 	text-align:center;
+	speak: none;
 }
 
 footer.entry-meta .author:before {
