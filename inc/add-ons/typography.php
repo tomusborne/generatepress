@@ -947,6 +947,27 @@ function generate_add_to_font_customizer_list( $fonts )
 }
 endif;
 
+if ( ! function_exists( 'generate_resource_hints' ) ) :
+/**
+ * Add resource hints to our Google fonts call
+ * @since 1.3.42
+ */
+add_filter( 'wp_resource_hints', 'generate_resource_hints', 10, 2 );
+function generate_resource_hints( $urls, $relation_type ) {
+	if ( wp_style_is( 'generate-fonts', 'queue' ) && 'preconnect' === $relation_type ) {
+		if ( version_compare( $GLOBALS['wp_version'], '4.7-alpha', '>=' ) ) {
+			$urls[] = array(
+				'href' => 'https://fonts.gstatic.com',
+				'crossorigin',
+			);
+		} else {
+			$urls[] = 'https://fonts.gstatic.com';
+		}
+	}
+	return $urls;
+}
+endif;
+
 if ( ! function_exists( 'generate_typography_set_font_data' ) ) :
 /**
  * This function will check to see if your category and variants are saved
