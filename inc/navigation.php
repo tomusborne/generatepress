@@ -193,16 +193,14 @@ class Generate_Page_Walker extends Walker_Page
 }
 endif;
 
-if ( ! function_exists( 'generate_nav_dropdown' ) ) :
+if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) :
 /**
+ * Add dropdown icon if menu item has children.
  *
- * Build the dropdown arrow
- * @since 1.3.24
- *
+ * @since 1.3.42
  */
-add_filter( 'walker_nav_menu_start_el', 'generate_nav_dropdown', 10, 4 );
-function generate_nav_dropdown( $item_output, $item, $depth, $args ) 
-{
+add_filter( 'nav_menu_item_title', 'generate_dropdown_icon_to_menu_link', 10, 4 );
+function generate_dropdown_icon_to_menu_link( $title, $item, $args, $depth ) {
 	// Build an array with our theme location
 	$theme_locations = array(
 		'primary',
@@ -210,17 +208,16 @@ function generate_nav_dropdown( $item_output, $item, $depth, $args )
 		'slideout'
 	);
 	
-	// Add the arrow if we're working with a GP menu
+	// Loop through our menu items and add our dropdown icons
 	if ( in_array( $args->theme_location, apply_filters( 'generate_menu_arrow_theme_locations', $theme_locations ) ) ) {
-		// If a dropdown menu is detected
-		$dropdown = ( in_array( 'menu-item-has-children', $item->classes ) ) ? true : false;
-		if ( $dropdown ) :
-			// Add our arrow icon
-			$item_output = str_replace( $args->link_after . '</a>', $args->link_after . '<span role="button" class="dropdown-menu-toggle" aria-expanded="false"></span></a>', $item_output );
-		endif;
+		foreach ( $item->classes as $value ) {
+			if ( 'menu-item-has-children' === $value  ) {
+				$title = $title . '<span role="button" class="dropdown-menu-toggle" aria-expanded="false"></span>';
+			}
+		}
 	}
-	
-	// Return the output
-	return $item_output;
+
+	// Return our title
+	return $title;
 }
 endif;

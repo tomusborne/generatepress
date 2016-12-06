@@ -203,7 +203,13 @@ if ( !function_exists('generate_spacing_css') ) :
 			
 			'.main-navigation .main-nav ul li.menu-item-has-children > a' => array(
 				'padding-right' => ( is_rtl() ) ? $spacing_settings['menu_item'] . 'px' : null
-			)
+			),
+			
+			// Add spacing back where dropdown arrow should be
+			// WP versions prior to 4.4 don't get an arrow (update!)
+			'.main-navigation .main-nav ul li.menu-item-has-children>a, .secondary-navigation .main-nav ul li.menu-item-has-children>a' => array(
+				'padding-right' => ( version_compare( $GLOBALS['wp_version'], '4.4', '<' ) && isset( $spacing_settings['menu_item'] ) ) ? $spacing_settings['menu_item'] . 'px' : null
+			),
 			
 		);
 		
@@ -296,7 +302,13 @@ function generate_additional_spacing()
 		'.menu-item-has-children .dropdown-menu-toggle' => array(
 			'padding-right' => ( isset( $spacing_settings['menu_item'] ) && ! is_rtl() ) ? $spacing_settings['menu_item'] . 'px' : null,
 			'padding-left' => ( isset( $spacing_settings['menu_item'] ) && is_rtl() ) ? $spacing_settings['menu_item'] . 'px' : null,
-		)
+		),
+		
+		// Add spacing back where dropdown arrow should be
+		// WP versions prior to 4.4 don't get an arrow (update!)
+		'.main-navigation .main-nav ul li.menu-item-has-children>a, .secondary-navigation .main-nav ul li.menu-item-has-children>a' => array(
+			'padding-right' => ( version_compare( $GLOBALS['wp_version'], '4.4', '<' ) && isset( $spacing_settings['menu_item'] ) ) ? $spacing_settings['menu_item'] . 'px' : null
+		),
 		
 	);
 	
