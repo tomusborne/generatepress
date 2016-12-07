@@ -62,7 +62,15 @@ function generate_settings_page()
 							<?php settings_fields( 'generate-settings-group' ); ?>
 							<?php do_settings_sections( 'generate-settings-group' ); ?>
 							<div class="customize-button hide-on-desktop">
-								<a id="generate_customize_button" class="button button-primary" href="<?php echo admin_url('customize.php'); ?>"><?php _e('Customize','generatepress');?></a>  
+								<?php
+								printf(
+									'<a id="generate_customize_button" class="button button-primary" href="%1$s">%2$s</a>',
+									esc_url( add_query_arg( array(
+										'return' => urlencode( wp_unslash( $_SERVER['REQUEST_URI'] ) ),
+									), admin_url( 'customize.php' ) ) ),
+									__( 'Customize', 'generatepress' )
+								);
+								?>
 							</div>
 							<div class="postbox generate-metabox" id="gen-1">
 								<h3 class="hndle">GeneratePress <?php echo GENERATE_VERSION; ?></h3>
@@ -123,7 +131,15 @@ function generate_settings_page()
 						
 					<div class="generate-right-sidebar grid-30" style="padding-right:0;">
 						<div class="customize-button hide-on-mobile">
-							<a id="generate_customize_button" class="button button-primary" href="<?php echo admin_url('customize.php'); ?>"><?php _e('Customize','generatepress');?></a>  
+							<?php
+							printf(
+								'<a id="generate_customize_button" class="button button-primary" href="%1$s">%2$s</a>',
+								esc_url( add_query_arg( array(
+									'return' => urlencode( wp_unslash( $_SERVER['REQUEST_URI'] ) ),
+								), admin_url( 'customize.php' ) ) ),
+								__( 'Customize', 'generatepress' )
+							);
+							?>
 						</div>
 						<?php if ( generate_addons_available() ) : ?>
 							<div class="postbox generate-metabox addon-metabox" id="gen-2">
