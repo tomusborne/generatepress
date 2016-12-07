@@ -777,7 +777,7 @@ if ( ! function_exists( 'generate_pingback_header' ) ) :
 add_action( 'wp_head', 'generate_pingback_header' );
 function generate_pingback_header() {
 	if ( is_singular() && pings_open() ) {
-		echo '<link rel="pingback" href="' . esc_url( get_bloginfo( 'pingback_url' ) ) . '">';
+		printf( '<link rel="pingback" href="%s">' . "\n", esc_url( get_bloginfo( 'pingback_url' ) ) );
 	}
 }
 endif;
