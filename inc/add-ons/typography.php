@@ -590,7 +590,7 @@ if ( ! function_exists( 'generate_fonts_customize_register' ) ) :
 						'section'     => 'font_section',
 						'type'        => 'addon',
 						'label'			=> __( 'More Settings','generatepress' ),
-						'url' => generate_get_premium_url('https://generatepress.com/downloads/generate-typography/'),
+						'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-typography/' ),
 						'description' => sprintf(
 							__( 'Looking to add more typography settings?<br /> %s.', 'generatepress' ),
 							sprintf(

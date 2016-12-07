@@ -223,7 +223,7 @@ function generate_customize_register( $wp_customize ) {
 					'section'     => 'body_section',
 					'type'        => 'addon',
 					'label'			=> __( 'More Settings','generatepress' ),
-					'url' => generate_get_premium_url('https://generatepress.com/downloads/generate-colors/'),
+					'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-colors/' ),
 					'description' => sprintf(
 						__( 'Looking to add more color settings?<br /> %s.', 'generatepress' ),
 						sprintf(
@@ -853,7 +853,7 @@ function generate_customize_register( $wp_customize ) {
 					'section'     => 'blog_section',
 					'type'        => 'addon',
 					'label'			=> __( 'More Settings','generatepress' ),
-					'url' => generate_get_premium_url('https://generatepress.com/downloads/generate-blog/'),
+					'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-blog/' ),
 					'description' => sprintf(
 						__( 'Looking to add more blog settings?<br /> %s.', 'generatepress' ),
 						sprintf(
