@@ -63,8 +63,7 @@ function generate_settings_page()
 							<?php do_settings_sections( 'generate-settings-group' ); ?>
 							<div class="customize-button hide-on-desktop">
 								<?php
-								printf(
-									'<a id="generate_customize_button" class="button button-primary" href="%1$s">%2$s</a>',
+								printf( '<a id="generate_customize_button" class="button button-primary" href="%1$s">%2$s</a>',
 									esc_url( add_query_arg( array(
 										'return' => urlencode( wp_unslash( $_SERVER['REQUEST_URI'] ) ),
 									), admin_url( 'customize.php' ) ) ),
@@ -132,8 +131,7 @@ function generate_settings_page()
 					<div class="generate-right-sidebar grid-30" style="padding-right:0;">
 						<div class="customize-button hide-on-mobile">
 							<?php
-							printf(
-								'<a id="generate_customize_button" class="button button-primary" href="%1$s">%2$s</a>',
+							printf( '<a id="generate_customize_button" class="button button-primary" href="%1$s">%2$s</a>',
 								esc_url( add_query_arg( array(
 									'return' => urlencode( wp_unslash( $_SERVER['REQUEST_URI'] ) ),
 								), admin_url( 'customize.php' ) ) ),
