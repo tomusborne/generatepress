@@ -31,8 +31,17 @@ if ( ! function_exists( 'generate_get_premium_url' ) ) :
  * @since 1.3.42
  */
 function generate_get_premium_url( $url = 'https://generatepress.com/premium' ) {
+	
+	// Get our affiliate ID
+	$id = apply_filters( 'generatepress_affiliate_id', '' );
+	
+	// Set up our URL if we have an ID
+	if ( '' !== $id ) {
+		$id = '?ref=' . absint( $id );
+	}
+	
 	// Return our URL with the optional referral ID
-	return esc_url( trailingslashit( $url )  . apply_filters( 'generatepress_affiliate_ref','' ) );
+	return esc_url( trailingslashit( $url )  . $id );
 }
 endif;
 
