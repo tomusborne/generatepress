@@ -456,3 +456,44 @@ if ( !function_exists('generate_get_color_defaults') && !function_exists('genera
 	
 	}
 endif;
+
+if ( ! function_exists( 'generate_get_default_color_palettes' ) ) :
+/**
+ * Set up our colors for the color picker palettes and filter them so you can change them
+ * @since 1.3.42
+ */
+function generate_get_default_color_palettes() {
+	$palettes = array(
+		'#000000',
+		'#FFFFFF',
+		'#F1C40F',
+		'#E74C3C',
+		'#1ABC9C',
+		'#3498DB',
+		'#8E44AD',
+		'#00CC77',
+	);
+	
+	return apply_filters( 'generate_default_color_palettes', $palettes );
+}
+endif;
+
+if ( ! function_exists( 'generate_enqueue_color_palettes' ) ):
+/**
+ * Add our custom color palettes to the color pickers in the Customizer
+ * @since 1.3.42
+ */
+add_action( 'customize_controls_enqueue_scripts','generate_enqueue_color_palettes' );
+function generate_enqueue_color_palettes() 
+{
+	// Old versions of WP don't get nice things
+	if ( ! function_exists( 'wp_add_inline_script' ) )
+		return;
+	
+	// Grab our palette array and turn it into JS
+	$palettes = json_encode( generate_get_default_color_palettes() );
+	
+	// Add our custom palettes
+	wp_add_inline_script( 'wp-color-picker', 'jQuery.wp.wpColorPicker.prototype.options.palettes = ' . sanitize_text_field( $palettes ) . ';' );
+}
+endif;
