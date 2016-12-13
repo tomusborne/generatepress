@@ -34,6 +34,7 @@ function generate_spacing_get_defaults()
 		'content_right' => '40',
 		'content_bottom' => '40',
 		'content_left' => '40',
+		'mobile_content_padding' => '30',
 		'separator' => '20',
 		'left_sidebar_width' => '25',
 		'right_sidebar_width' => '25',
@@ -264,6 +265,26 @@ if ( !function_exists('generate_spacing_css') ) :
 		if ( count( array_unique( $widget_padding ) ) === 1 && end( $widget_padding ) === '40' && $colors_match ) {
 			$output .= '.one-container .sidebar .widget{padding:0px;}';
 		}
+		
+		// Add mobile padding to the content
+		$mobile = apply_filters( 'generate_mobile_breakpoint', '768px' );
+		$mobile_content_padding = ( isset( $spacing_settings[ 'mobile_content_padding' ] ) ) ? $spacing_settings[ 'mobile_content_padding' ] : '30';
+		$output .= '@media (max-width:' . $mobile . ') {
+			.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content {
+				padding: ' . $mobile_content_padding . 'px;
+			}
+			.ignore-x-spacing {
+				margin-right: -' . $mobile_content_padding . 'px;
+				margin-bottom: ' . $mobile_content_padding . 'px;
+				margin-left: -' . $mobile_content_padding . 'px;
+			}
+			.ignore-xy-spacing {
+				margin-top: -' . $mobile_content_padding . 'px;
+				margin-right: -' . $mobile_content_padding . 'px;
+				margin-bottom: ' . $mobile_content_padding . 'px;
+				margin-left: -' . $mobile_content_padding . 'px;
+			}
+		}';
 
 		$output = str_replace(array("\r", "\n", "\t"), '', $output);
 		return $output; 
