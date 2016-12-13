@@ -469,7 +469,7 @@ function generate_get_default_color_palettes() {
 		'#F1C40F',
 		'#E74C3C',
 		'#1ABC9C',
-		'#3498DB',
+		'#1e72bd',
 		'#8E44AD',
 		'#00CC77',
 	);
