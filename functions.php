@@ -452,9 +452,13 @@ if ( ! function_exists( 'generate_add_footer_info' ) ) :
 add_action('generate_credits','generate_add_footer_info');
 function generate_add_footer_info()
 {
-	?>
-	<span class="copyright"><?php _e('Copyright','generatepress');?> &copy; <?php echo date('Y'); ?></span> &#x000B7; <a href="<?php echo esc_url('https://generatepress.com');?>" target="_blank" title="GeneratePress" itemprop="url">GeneratePress</a>
-	<?php
+	$copyright = sprintf( '<span class="copyright">&copy; %1$s</span> &bull; <a href="%2$s" target="_blank" itemprop="url">%3$s</a>',
+		date( 'Y' ),
+		esc_url( 'https://generatepress.com' ),
+		__( 'GeneratePress','generatepress' )
+	);
+	
+	echo apply_filters( 'generate_copyright', $copyright );
 }
 endif;
 
