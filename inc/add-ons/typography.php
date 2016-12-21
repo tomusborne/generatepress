@@ -80,7 +80,7 @@ if ( !function_exists('generate_get_default_fonts') && !function_exists('generat
 			'heading_3_weight' => 'normal',
 			'heading_3_transform' => 'none',
 			'heading_3_font_size' => '20',
-			'footer_font_size' => '14'
+			'footer_font_size' => '15'
 		);
 		
 		return apply_filters( 'generate_font_option_defaults', $generate_font_defaults );
