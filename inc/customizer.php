@@ -462,7 +462,7 @@ function generate_customize_register( $wp_customize ) {
 		'generate_settings[nav_position_setting]',
 		array(
 			'type' => 'select',
-			'label' => __( 'Navigation Position', 'generatepress' ),
+			'label' => __( 'Navigation Location', 'generatepress' ),
 			'section' => 'generate_layout_navigation',
 			'choices' => array(
 				'nav-below-header' => __( 'Below Header', 'generatepress' ),
