@@ -445,6 +445,7 @@ input[type="file"] {
 	z-index: 99999;
 	width:200px;
 	text-align:left;
+	top: auto;
 }
 .main-navigation ul ul ul {
 	left: 100%;

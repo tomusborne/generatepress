@@ -111,10 +111,6 @@ if ( !function_exists('generate_spacing_css') ) :
 				'padding' => generate_padding_css( $spacing_settings[ 'sub_menu_item_height' ], $spacing_settings[ 'menu_item' ], $spacing_settings[ 'sub_menu_item_height' ], $spacing_settings[ 'menu_item' ] )
 			),
 			
-			'.main-navigation ul ul' => array(
-				'top' => ( isset( $spacing_settings['menu_item_height'] ) ) ? $spacing_settings['menu_item_height'] . 'px' : null
-			),
-			
 			'.navigation-search' => array(
 				'height' => ( isset( $spacing_settings['menu_item_height'] ) ) ? $spacing_settings['menu_item_height'] . 'px' : null,
 				'line-height' => '0px'
