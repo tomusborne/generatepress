@@ -27,21 +27,32 @@ require get_template_directory() . '/inc/add-ons/disable-elements.php';
 if ( ! function_exists( 'generate_get_premium_url' ) ) :
 /**
  * Generate a URL to our premium add-ons
- * Allows the use of a referral ID in the URL
+ * Allows the use of a referral ID and campaign
  * @since 1.3.42
  */
-function generate_get_premium_url( $url = 'https://generatepress.com/premium' ) {
+function generate_get_premium_url( $url = 'https://generatepress.com/premium' ) 
+{
+	// Get our URL
+	$url = trailingslashit( $url );
 	
-	// Get our affiliate ID
-	$id = apply_filters( 'generatepress_affiliate_id', '' );
+	// Set up args
+	$args = apply_filters( 'generatepress_premium_url_args', array(
+		'ref' => null,
+		'campaign' => null
+	) );
 	
 	// Set up our URL if we have an ID
-	if ( '' !== $id ) {
-		$id = '?ref=' . absint( $id );
+	if ( isset( $args[ 'ref' ] ) ) {
+		$url = esc_url( add_query_arg( 'ref', absint( $args[ 'ref' ] ), $url ) );
+	}
+	
+	// Set up our URL if we have a campaign
+	if ( isset( $args[ 'campaign' ] ) ) {
+		$url = esc_url( add_query_arg( 'campaign', sanitize_text_field( $args[ 'campaign' ] ), $url ) );
 	}
 	
 	// Return our URL with the optional referral ID
-	return esc_url( trailingslashit( $url )  . $id );
+	return esc_url( $url );
 }
 endif;
 

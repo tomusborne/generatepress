@@ -56,7 +56,8 @@ endif;
 
 if ( class_exists( 'WP_Customize_Section' ) && ! class_exists( 'GeneratePress_Upsell_Section' ) ) :
 /**
- *	Create our upsell section
+ * Create our upsell section
+ * Escape your URL in the Customizer using esc_url()!
  */
 class GeneratePress_Upsell_Section extends WP_Customize_Section {
 
@@ -76,7 +77,7 @@ class GeneratePress_Upsell_Section extends WP_Customize_Section {
 	protected function render_template() {
 		?>
 		<li id="accordion-section-{{ data.id }}" class="generate-upsell-accordion-section control-section-{{ data.type }} cannot-expand accordion-section">
-			<h3><a href="{{ data.pro_url }}" target="_blank">{{ data.pro_text }}</a></h3>
+			<h3><a href="{{{ data.pro_url }}}" target="_blank">{{ data.pro_text }}</a></h3>
 		</li>
 		<?php
 	}
@@ -86,6 +87,7 @@ endif;
 if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Customize_Misc_Control' ) ) :
 /**
  * Create our in-section upsell controls
+ * Escape your URL in the Customizer using esc_url()!
  */
 class Generate_Customize_Misc_Control extends WP_Customize_Control {
 	public $description = '';
@@ -101,7 +103,7 @@ class Generate_Customize_Misc_Control extends WP_Customize_Control {
 	public function content_template() {
 		?>
 		<span class="get-addon">
-			<a href="{{ data.url }}" target="_blank">{{ data.message }}</a>
+			<a href="{{{ data.url }}}" target="_blank">{{ data.message }}</a>
 		</span>
 		<p class="description" style="margin-top: 5px;">{{{ data.description }}}</p>
 		<?php
