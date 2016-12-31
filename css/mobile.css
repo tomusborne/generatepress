@@ -1,3 +1,99 @@
+/* 
+ * Mobile menu styles
+ * These don't need to be inside a media query as we have the .toggled class added by javascript
+ */
+.main-navigation.toggled .main-nav > ul {
+	display: block;
+}
+
+.main-navigation.toggled .menu li.search-item {
+	display: none !important;
+}
+
+button.menu-toggle {
+	background-color: transparent;
+	width: 100%;
+	border: 0;
+	outline: 0;
+	text-align: center;
+}
+
+button.menu-toggle:hover,
+button.menu-toggle:active,
+button.menu-toggle:focus {
+	background-color: transparent;
+	border: 0;
+	outline: 0;
+}
+
+.sub-menu.toggled-on,
+.children.toggled-on {
+	display: block !important;
+	opacity: 1 !important;
+}
+
+.toggled .dropdown-menu-toggle:before {
+	content: "\f107" !important;
+}
+
+.toggled .sfHover > a .dropdown-menu-toggle:before {
+	content: "\f106" !important;
+}
+
+.main-navigation .mobile-bar-items {
+	display: none;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 21;
+	list-style-type: none;
+}
+
+.main-navigation .mobile-bar-items a {
+	display: inline-block;
+}
+
+.nav-search-enabled .main-navigation .menu-toggle {
+	text-align: left;
+}
+
+.toggled .main-nav .sf-menu > li {
+	float: none;
+	clear: both;
+}
+
+.nav-aligned-right.nav-below-header .main-navigation.toggled .sf-menu > li, 
+.nav-aligned-right.nav-above-header .main-navigation.toggled .sf-menu > li, 
+.nav-aligned-center.nav-below-header .main-navigation.toggled .sf-menu > li, 
+.nav-aligned-center.nav-above-header .main-navigation.toggled .sf-menu > li {
+	display: block;
+	margin: 0;
+	text-align: left;
+}
+
+.main-navigation.toggled .main-nav ul ul {
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+.toggled .menu-item-has-children .dropdown-menu-toggle {
+	float: right;
+}
+
+.main-navigation.toggled {
+	text-align:left;
+}
+
+.toggled .sf-menu > li.menu-item-float-right {
+	float: none !important;
+	display: inline-block;
+}
+
+/*
+ * Start our CSS that require a media query
+ */
 @media (max-width: 768px) {
 	.sidebar,
 	.content-area,
@@ -29,47 +125,15 @@
 	
 	/* Mobile navigation */
 	.menu-toggle,
-	.main-navigation.toggled .main-nav > ul {
+	.main-navigation .mobile-bar-items {
 		display: block;
 	}
 	
-	.main-navigation ul li.sfHover > ul,
 	.main-navigation ul {
 		display: none;
 	}
 	
-	.main-navigation .menu li.search-item {
-		display: none !important;
-	}
-	
-	button.menu-toggle {
-		background-color: transparent;
-		width: 100%;
-		border: 0;
-		outline: 0;
-	}
-	
-	button.menu-toggle:hover,
-	button.menu-toggle:active,
-	button.menu-toggle:focus {
-		background-color: transparent;
-		border: 0;
-		outline: 0;
-	}
-	
-	.sub-menu.toggled-on,
-	.children.toggled-on {
-		display: block !important;
-		opacity: 1 !important;
-	}
-	
-	.dropdown-menu-toggle:before {
-		content: "\f107" !important;
-	}
-	
-	.sfHover > a .dropdown-menu-toggle:before {
-		content: "\f106" !important;
-	}
+	/* end mobile navigation */
 	
 	[class*="nav-float-"] .site-header .inside-header > * {
 		float: none;
@@ -79,63 +143,6 @@
 	.inside-header > *:not(:last-child) {
 		margin-bottom: 20px;
 	}
-	
-	.mobile-bar-items {
-		display: block;
-		position: absolute;
-		right: 0;
-		top: 0;
-		z-index: 21;
-		list-style-type: none;
-	}
-	
-	.mobile-bar-items a {
-		display: inline-block;
-	}
-	
-	.menu-toggle {
-		text-align: center;
-	}
-	
-	.nav-search-enabled .main-navigation .menu-toggle {
-		text-align: left;
-	}
-	
-	.main-nav .sf-menu > li {
-		float: none;
-		clear: both;
-	}
-	
-	.nav-aligned-right.nav-below-header .main-navigation .sf-menu > li, 
-	.nav-aligned-right.nav-above-header .main-navigation .sf-menu > li, 
-	.nav-aligned-center.nav-below-header .main-navigation .sf-menu > li, 
-	.nav-aligned-center.nav-above-header .main-navigation .sf-menu > li {
-		display: block;
-		margin: 0;
-		text-align: left;
-	}
-	
-	.main-navigation .main-nav ul ul {
-		position: relative;
-		top: 0;
-		left: 0;
-		width: 100%;
-	}
-	
-	.menu-item-has-children .dropdown-menu-toggle {
-		float: right;
-	}
-	
-	.main-navigation {
-		text-align:left;
-	}
-	
-	.sf-menu > li.menu-item-float-right {
-		float: none !important;
-		display: inline-block;
-	}
-	
-	/* end mobile navigation */
 	
 	.both-right.separate-containers .inside-left-sidebar,
 	.both-left.separate-containers .inside-left-sidebar,
