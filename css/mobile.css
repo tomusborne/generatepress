@@ -60,17 +60,12 @@ button.menu-toggle:focus {
 		transition: all 0s ease-in-out;
 	}
 	
-	[class*="nav-float-"] .site-header .inside-header > * {
-		float: none;
-		clear: both;
-	}
-	
 	.inside-header > *:not(:last-child) {
 		margin-bottom: 20px;
 	}
 	
-	/* Mobile navigation */
-	.menu-toggle {
+	/* Start mobile navigation */
+	.main-navigation .menu-toggle {
 		display: block;
 	}
 	
@@ -89,32 +84,32 @@ button.menu-toggle:focus {
 		width: 100%;
 	}
 	
-	.main-nav .sf-menu > li {
+	.main-navigation .main-nav .sf-menu > li {
 		float: none;
 		clear: both;
 		display: block !important;
 		text-align: left !important;
 	}
 	
-	.sub-menu.toggled-on,
-	.children.toggled-on {
+	.main-navigation .sub-menu.toggled-on,
+	.main-navigation .children.toggled-on {
 		display: block !important;
 		opacity: 1 !important;
 	}
 	
-	.dropdown-menu-toggle:before {
+	.main-navigation .dropdown-menu-toggle:before {
 		content: "\f107" !important;
 	}
 	
-	.sfHover > a .dropdown-menu-toggle:before {
+	.main-navigation .sfHover > a .dropdown-menu-toggle:before {
 		content: "\f106" !important;
 	}
 	
-	.menu-item-has-children .dropdown-menu-toggle {
+	.main-navigation .menu-item-has-children .dropdown-menu-toggle {
 		float: right;
 	}
 	
-	.mobile-bar-items {
+	.main-navigation .mobile-bar-items {
 		display: block;
 	}
 	
@@ -122,12 +117,16 @@ button.menu-toggle:focus {
 		display: none !important;
 	}
 	
-	.sf-menu > li.menu-item-float-right {
+	.main-navigation .sf-menu > li.menu-item-float-right {
 		float: none !important;
 		display: inline-block;
 	}
 	
-	/* end mobile navigation */
+	[class*="nav-float-"] .site-header .inside-header > * {
+		float: none;
+		clear: both;
+	}
+	/* End mobile navigation */
 	
 	.both-right.separate-containers .inside-left-sidebar,
 	.both-left.separate-containers .inside-left-sidebar,

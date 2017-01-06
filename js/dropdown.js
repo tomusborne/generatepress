@@ -22,10 +22,11 @@
 		});
 		
 		over = function() {
+			var $this = $(this);
+			mobile = $this.closest( '.main-nav' ).prevAll( '.menu-toggle' );
+			
 			if ( mobile.is( ':visible' ) )
 				return;
-			
-			var $this = $(this);
 
 			if ($this.prop('hoverTimeout')) {
 				$this.prop('hoverTimeout', clearTimeout($this.prop('hoverTimeout')));
@@ -47,10 +48,11 @@
 		}
 		
 		out = function() {
+			var $this = $(this);
+			mobile = $this.closest( '.main-nav' ).prevAll( '.menu-toggle' );
+			
 			if ( mobile.is( ':visible' ) )
 				return;
-			
-			var $this = $(this);
 
 			if ($this.prop('hoverIntent')) {
 				$this.prop('hoverIntent', clearTimeout($this.prop('hoverIntent')));
@@ -69,11 +71,12 @@
 		
 		if (  document.addEventListener  ) {
 			if ('ontouchstart' in document.documentElement) {
-				if ( mobile.is( ':visible' ) )
-					return;
-				
 				$dropdowns.each(function() {
 					var $this = $(this);
+					mobile = $this.closest( '.main-nav' ).prevAll( '.menu-toggle' );
+					
+					if ( mobile.is( ':visible' ) )
+						return;
 
 					this.addEventListener('touchstart', function(e) {
 						if (e.touches.length === 1) {
@@ -122,6 +125,7 @@
 		}
 
 		$( '.dropdown-menu-toggle' ).on( 'click', function() {
+			mobile = $( this ).closest( '.main-nav' ).prevAll( '.menu-toggle' );
 			if ( mobile.is( ':visible' ) || 'visible' == slideout.css( 'visibility' ) ) {
 				return;
 			}
