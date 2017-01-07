@@ -670,7 +670,7 @@ add_action( 'wp_ajax_generate_get_all_google_fonts_ajax', 'generate_get_all_goog
 function generate_get_all_google_fonts_ajax()
 {
 	// Bail if the nonce doesn't check out
-	if ( ! isset( $_POST[ 'gp_customize_nonce' ] ) || ! wp_verify_nonce( $_POST[ 'gp_customize_nonce' ], 'gp_customize_nonce' ) )
+	if ( ! isset( $_POST[ 'gp_customize_nonce' ] ) || ! wp_verify_nonce( sanitize_key( $_POST[ 'gp_customize_nonce' ] ), 'gp_customize_nonce' ) )
 		wp_die();
 	
 	// Do another nonce check

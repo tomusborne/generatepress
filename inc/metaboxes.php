@@ -92,7 +92,7 @@ function generate_save_layout_meta($post_id) {
 	// Checks save status
     $is_autosave = wp_is_post_autosave( $post_id );
     $is_revision = wp_is_post_revision( $post_id );
-    $is_valid_nonce = ( isset( $_POST[ 'generate_layout_nonce' ] ) && wp_verify_nonce( $_POST[ 'generate_layout_nonce' ], basename( __FILE__ ) ) ) ? true : false;
+    $is_valid_nonce = ( isset( $_POST[ 'generate_layout_nonce' ] ) && wp_verify_nonce( sanitize_key( $_POST[ 'generate_layout_nonce' ] ), basename( __FILE__ ) ) ) ? true : false;
  
     // Exits script depending on save status
     if ( $is_autosave || $is_revision || ! $is_valid_nonce ) {
@@ -199,7 +199,7 @@ function generate_save_footer_widget_meta($post_id) {
 	// Checks save status
     $is_autosave = wp_is_post_autosave( $post_id );
     $is_revision = wp_is_post_revision( $post_id );
-    $is_valid_nonce = ( isset( $_POST[ 'generate_footer_widget_nonce' ] ) && wp_verify_nonce( $_POST[ 'generate_footer_widget_nonce' ], basename( __FILE__ ) ) ) ? true : false;
+    $is_valid_nonce = ( isset( $_POST[ 'generate_footer_widget_nonce' ] ) && wp_verify_nonce( sanitize_key( $_POST[ 'generate_footer_widget_nonce' ] ), basename( __FILE__ ) ) ) ? true : false;
  
     // Exits script depending on save status
     if ( $is_autosave || $is_revision || ! $is_valid_nonce ) {
@@ -280,7 +280,7 @@ function generate_save_page_builder_meta($post_id) {
 	// Checks save status
     $is_autosave = wp_is_post_autosave( $post_id );
     $is_revision = wp_is_post_revision( $post_id );
-    $is_valid_nonce = ( isset( $_POST[ 'generate_page_builder_nonce' ] ) && wp_verify_nonce( $_POST[ 'generate_page_builder_nonce' ], basename( __FILE__ ) ) ) ? true : false;
+    $is_valid_nonce = ( isset( $_POST[ 'generate_page_builder_nonce' ] ) && wp_verify_nonce( sanitize_key( $_POST[ 'generate_page_builder_nonce' ] ), basename( __FILE__ ) ) ) ? true : false;
  
     // Exits script depending on save status
     if ( $is_autosave || $is_revision || ! $is_valid_nonce ) {

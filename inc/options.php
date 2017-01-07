@@ -242,7 +242,7 @@ function generate_reset_customizer_settings() {
 	if( empty( $_POST['generate_reset_customizer'] ) || 'generate_reset_customizer_settings' !== $_POST['generate_reset_customizer'] )
 		return;
 
-	if( ! wp_verify_nonce( $_POST['generate_reset_customizer_nonce'], 'generate_reset_customizer_nonce' ) )
+	if( ! wp_verify_nonce( sanitize_key( $_POST['generate_reset_customizer_nonce'] ), 'generate_reset_customizer_nonce' ) )
 		return;
 
 	if( ! current_user_can( 'manage_options' ) )
