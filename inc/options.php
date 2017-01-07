@@ -82,7 +82,7 @@ function generate_settings_page()
 											<a id="generate_addon_button" class="button button-primary" href="<?php echo generate_get_premium_url( 'https://generatepress.com/premium/' );?>" target="_blank"><?php _e('Add-ons','generatepress');?></a> 
 										<?php endif; ?>
 										<a class="button button-primary" href="<?php echo esc_url( 'https://generatepress.com/support' ); ?>" target="_blank"><?php _e('Support','generatepress');?></a>  
-										<a class="button button-primary" href="<?php echo esc_url( 'https://generatepress.com/knowledgebase' ); ?>" target="_blank"><?php _e('Knowledgebase','generatepress');?></a>  
+										<a class="button button-primary" href="<?php echo esc_url( 'https://docs.generatepress.com' ); ?>" target="_blank"><?php _e('Documentation','generatepress');?></a>  
 										<?php if ( generate_addons_available() ) : ?>
 											<a title="<?php _e('Please help support the ongoing development of GeneratePress by buying me a coffee :)','generatepress');?>" class="button button-secondary" target="_blank" href="<?php echo esc_url('https://generatepress.com/ongoing-development');?>"><?php _e('Buy me a coffee :)','generatepress');?></a>
 										<?php endif; ?>
