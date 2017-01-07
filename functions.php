@@ -545,27 +545,6 @@ function generate_add_viewport()
 }
 endif;
 
-if ( ! function_exists( 'generate_ie_compatibility' ) ) :
-/** 
- * Add compatibility for IE8 and lower
- * No need to run this if wp_script_add_data() exists
- * @since 1.1.9
- */
-add_action('wp_footer','generate_ie_compatibility');
-function generate_ie_compatibility()
-{
-	if ( function_exists( 'wp_script_add_data' ) )
-		return;
-	
-	$suffix = generate_get_min_suffix();
-	?>
-	<!--[if lt IE 9]>
-		<script src="<?php echo get_template_directory_uri();?>/js/html5shiv<?php echo $suffix;?>.js"></script>
-	<![endif]-->
-	<?php
-}
-endif;
-
 if ( ! function_exists( 'generate_remove_caption_padding' ) ) :
 /**
  * Remove WordPress's default padding on images with captions
