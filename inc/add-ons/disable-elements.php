@@ -2,50 +2,6 @@
 // No direct access, please
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! function_exists( 'generate_disable_elements' ) ) :
-/**
- * Add any necessary CSS for disabling these elements
- * The function_exists call above is different from the function name
- * This is so the plugin function generate_disable_elements() is taken ahead of this function
- * @since 1.3.18
- */
-function generate_disable_elements_css()
-{
-	// Don't run the function unless we're on a page it applies to
-	if ( ! is_singular() )
-		return;
-	
-	// Get the post
-	global $post;
-	
-	// Get our option
-	$disable_headline = ( isset( $post ) ) ? get_post_meta( $post->ID, '_generate-disable-headline', true ) : '';
-	
-	// Set up our return variable
-	$return = '';
-	
-	// If our option is set, get the CSS
-	if ( ( !empty( $disable_headline ) && false !== $disable_headline ) && ! is_single() ) :
-		$return .= '.entry-header {display:none} .page-content, .entry-content, .entry-summary {margin-top:0}';
-	endif;
-	
-	// Print our CSS
-	return $return;
-}
-endif;
-
-if ( ! function_exists( 'generate_de_scripts' ) ) :
-/**
- * Add CSS to wp_head
- * @since 1.3.18
- */
-add_action( 'wp_enqueue_scripts', 'generate_de_scripts', 50 );
-function generate_de_scripts() 
-{
-	wp_add_inline_style( 'generate-style', generate_disable_elements_css() );
-}
-endif;
-
 if ( !function_exists('generate_add_de_meta_box') ) :
 /**
  * Create the metabox
