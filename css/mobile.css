@@ -175,6 +175,35 @@ button.menu-toggle:focus {
 		padding-right: 10px;
 	}
 	
+	.footer-bar-active .site-info {
+		text-align: center;
+	}
+
+	.footer-bar-active .copyright-bar {
+		float: none;
+		padding-left: 0;
+	}
+
+	.footer-bar {
+		float: none;
+		margin-bottom: 20px;
+	}
+	
+	.footer-bar-active .footer-bar .widget {
+		text-align: center;
+	}
+
+	.footer-bar .widget_nav_menu li {
+		margin: 0 10px;
+		float: none;
+		display: inline-block;
+		padding: 0;
+	}
+
+	.footer-bar .widget_nav_menu > div > ul {
+		float: none;
+	}
+	
 	.comment .children {
 		padding-left: 10px;
 		margin-left: 0;

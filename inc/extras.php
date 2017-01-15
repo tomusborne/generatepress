@@ -96,6 +96,9 @@ function generate_body_classes( $classes )
 	} else {
 		$classes[] = 'dropdown-hover';
 	}
+	
+	// Footer bar
+	$classes[] = ( is_active_sidebar( 'footer-bar' ) ) ? 'footer-bar-active' : '';
 
 	return $classes;
 }

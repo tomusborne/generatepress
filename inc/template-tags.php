@@ -781,3 +781,17 @@ function generate_pingback_header() {
 	}
 }
 endif;
+
+if ( ! function_exists( 'generate_footer_bar' ) ) :
+add_action( 'generate_before_copyright','generate_footer_bar', 15 );
+function generate_footer_bar() {
+	if ( ! is_active_sidebar( 'footer-bar' ) )
+		return;
+	
+	?>
+	<div class="footer-bar">
+		<?php dynamic_sidebar( 'footer-bar' ); ?>
+	</div>
+	<?php
+}
+endif;

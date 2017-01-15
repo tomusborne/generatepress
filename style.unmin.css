@@ -1339,6 +1339,38 @@ h4, h5, h6 {
 	text-align: center;
 }
 
+.footer-bar-active .site-info {
+	text-align: left;
+}
+
+.footer-bar-active .copyright-bar {
+	float: left;
+	padding-left: 10px;
+}
+
+.footer-bar {
+	float: right;
+}
+
+.footer-bar-active .footer-bar .widget {
+	padding: 0;
+	text-align: right;
+}
+
+.footer-bar .widget_nav_menu li {
+	margin: 0 10px;
+	float: left;
+	padding: 0;
+}
+
+.footer-bar .widget_nav_menu > div > ul {
+	float: right;
+}
+
+.footer-bar .widget_nav_menu li ul {
+	display: none;
+}
+
 /* Posts */
 .entry-title {
 	margin-bottom: 0;

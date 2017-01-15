@@ -185,6 +185,9 @@ function generate_widgets_init()
 		'footer-5' => array(
 			'name' => __( 'Footer Widget 5', 'generatepress' )
 		),
+		'footer-bar' => array(
+			'name' => __( 'Footer Bar','generatepress' )
+		)
 	);
 	
 	// Loop through them to create our widget areas
@@ -457,8 +460,11 @@ function generate_add_footer_info()
 		esc_url( 'https://generatepress.com' ),
 		__( 'GeneratePress','generatepress' )
 	);
-	
-	echo apply_filters( 'generate_copyright', $copyright );
+	?>
+	<div class="copyright-bar">
+		<?php echo apply_filters( 'generate_copyright', $copyright ); ?>
+	</div>
+	<?php
 }
 endif;
 
