@@ -460,11 +460,8 @@ function generate_add_footer_info()
 		esc_url( 'https://generatepress.com' ),
 		__( 'GeneratePress','generatepress' )
 	);
-	?>
-	<div class="copyright-bar">
-		<?php echo apply_filters( 'generate_copyright', $copyright ); ?>
-	</div>
-	<?php
+	
+	echo apply_filters( 'generate_copyright', $copyright );
 }
 endif;
 
