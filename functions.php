@@ -246,6 +246,11 @@ require get_template_directory() . '/inc/options.php';
 require get_template_directory() . '/inc/add-ons.php';
 
 /**
+ * Load our CSS builder
+ */
+require get_template_directory() . '/inc/css.php';
+
+/**
  * Load WooCommerce compatibility
  */
 require get_template_directory() . '/inc/woocommerce.php';
