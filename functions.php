@@ -479,67 +479,48 @@ if ( ! function_exists( 'generate_base_css' ) ) :
  */
 function generate_base_css()
 {
-	
+	// Get our settings
 	$generate_settings = wp_parse_args( 
 		get_option( 'generate_settings', array() ), 
 		generate_get_defaults() 
 	);
 	
-	// Start the magic
-	$visual_css = array(
-		'body' => array(
-			'background-color' => esc_attr( $generate_settings['background_color'] ),
-			'color' => esc_attr( $generate_settings['text_color'] )
-		),
-		
-		'a, a:visited' => array(
-			'color' => esc_attr( $generate_settings['link_color'] ),
-			'text-decoration' => 'none'
-		),
-		
-		'a:visited' => array(
-			'color' => ( ! empty( $generate_settings['link_color_visited'] ) ) ? esc_attr( $generate_settings['link_color_visited'] ) : null
-		),
-		
-		'a:hover, a:focus, a:active' => array(
-			'color' => esc_attr( $generate_settings['link_color_hover'] ),
-			'text-decoration' => 'none'
-		),
-		
-		'body .grid-container' => array(
-			'max-width' => absint( $generate_settings['container_width'] ) . 'px'
-		),
-		
-		'.page .entry-content' => array(
-			'margin-top' => ( ! generate_show_title() ) ? '0px' : null
-		)
-	);
+	// Initiate our class
+	$css = new GeneratePress_CSS;
 	
-	// Output the above CSS
-	$output = '';
-	foreach($visual_css as $k => $properties) {
-		if(!count($properties))
-			continue;
-
-		$temporary_output = $k . ' {';
-		$elements_added = 0;
-
-		foreach($properties as $p => $v) {
-			if(empty($v))
-				continue;
-
-			$elements_added++;
-			$temporary_output .= $p . ': ' . $v . '; ';
-		}
-
-		$temporary_output .= "}";
-
-		if($elements_added > 0)
-			$output .= $temporary_output;
+	// Body
+	$css->set_selector( 'body' );
+	$css->add_property( 'background-color', esc_attr( $generate_settings[ 'background_color' ] ) );
+	$css->add_property( 'color', esc_attr( $generate_settings[ 'text_color' ] ) );
+	
+	// Links
+	$css->set_selector( 'a, a:visited' );
+	$css->add_property( 'color', esc_attr( $generate_settings[ 'link_color' ] ) );
+	$css->add_property( 'text-decoration', 'none' ); // Temporary until people can get their browser caches cleared
+	
+	// Visited links
+	$css->set_selector( 'a:visited' )->add_property( 'color', esc_attr( $generate_settings[ 'link_color_visited' ] ) );
+	
+	// Hover/focused links
+	$css->set_selector( 'a:hover, a:focus, a:active' );
+	$css->add_property( 'color', esc_attr( $generate_settings[ 'link_color_hover' ] ) );
+	$css->add_property( 'text-decoration', 'none' ); // Temporary until people can get their browser caches cleared
+	
+	// Container width
+	$css->set_selector( 'body .grid-container' )->add_property( 'max-width', absint( $generate_settings['container_width'] ), false, 'px' );
+	
+	// Content margin if there's no title
+	if ( ! generate_show_title() ) {
+		$css->set_selector( '.page .entry-content' )->add_property( 'margin-top', '0px' );
 	}
+	
+	// Allow us to hook CSS into our output
+	do_action( 'generate_base_css', $css );
+	
+	return $css->css_output();
+}
+endif;
 
-	$output = str_replace(array("\r", "\n"), '', $output);
-	return $output;
 if ( ! function_exists( 'generate_add_base_inline_css' ) ) :
 /**
  * Add our base inline CSS

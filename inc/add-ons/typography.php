@@ -19,593 +19,568 @@
 // No direct access, please
 if ( ! defined( 'ABSPATH' ) ) exit;
  
-if ( !function_exists('generate_get_default_fonts') && !function_exists('generate_font_css') && !function_exists('generate_display_google_fonts') ) :
-	/**
-	 * Set default options
-	 */
-	function generate_get_default_fonts()
-	{
-		$generate_font_defaults = array(
-			'font_body' => 'Open Sans',
-			'font_body_category' => 'sans-serif',
-			'font_body_variants' => '300,300italic,regular,italic,600,600italic,700,700italic,800,800italic',
-			'body_font_weight' => 'normal',
-			'body_font_transform' => 'none',
-			'body_font_size' => '17',
-			'body_line_height' => '1.5', // no unit
-			'paragraph_margin' => '1.5', // em
-			'font_site_title' => 'inherit',
-			'font_site_title_category' => '',
-			'font_site_title_variants' => '',
-			'site_title_font_weight' => 'bold',
-			'site_title_font_transform' => 'none',
-			'site_title_font_size' => '45',
-			'mobile_site_title_font_size' => '30',
-			'font_site_tagline' => 'inherit',
-			'font_site_tagline_category' => '',
-			'font_site_tagline_variants' => '',
-			'site_tagline_font_weight' => 'normal',
-			'site_tagline_font_transform' => 'none',
-			'site_tagline_font_size' => '15',
-			'font_navigation' => 'inherit',
-			'font_navigation_category' => '',
-			'font_navigation_variants' => '',
-			'navigation_font_weight' => 'normal',
-			'navigation_font_transform' => 'none',
-			'navigation_font_size' => '15',
-			'font_widget_title' => 'inherit',
-			'font_widget_title_category' => '',
-			'font_widget_title_variants' => '',
-			'widget_title_font_weight' => 'normal',
-			'widget_title_font_transform' => 'none',
-			'widget_title_font_size' => '20',
-			'widget_content_font_size' => '17',
-			'font_heading_1' => 'inherit',
-			'font_heading_1_category' => '',
-			'font_heading_1_variants' => '',
-			'heading_1_weight' => '300',
-			'heading_1_transform' => 'none',
-			'heading_1_font_size' => '40',
-			'mobile_heading_1_font_size' => '30',
-			'font_heading_2' => 'inherit',
-			'font_heading_2_category' => '',
-			'font_heading_2_variants' => '',
-			'heading_2_weight' => '300',
-			'heading_2_transform' => 'none',
-			'heading_2_font_size' => '30',
-			'mobile_heading_2_font_size' => '25',
-			'font_heading_3' => 'inherit',
-			'font_heading_3_category' => '',
-			'font_heading_3_variants' => '',
-			'heading_3_weight' => 'normal',
-			'heading_3_transform' => 'none',
-			'heading_3_font_size' => '20',
-			'footer_font_size' => '15'
-		);
-		
+if ( !function_exists('generate_get_default_fonts') ) :
+/**
+ * Set default options
+ */
+function generate_get_default_fonts( $filter = true )
+{
+	$generate_font_defaults = array(
+		'font_body' => 'Open Sans',
+		'font_body_category' => 'sans-serif',
+		'font_body_variants' => '300,300italic,regular,italic,600,600italic,700,700italic,800,800italic',
+		'body_font_weight' => 'normal',
+		'body_font_transform' => 'none',
+		'body_font_size' => '17',
+		'body_line_height' => '1.5', // no unit
+		'paragraph_margin' => '1.5', // em
+		'font_site_title' => 'inherit',
+		'font_site_title_category' => '',
+		'font_site_title_variants' => '',
+		'site_title_font_weight' => 'bold',
+		'site_title_font_transform' => 'none',
+		'site_title_font_size' => '45',
+		'mobile_site_title_font_size' => '30',
+		'font_site_tagline' => 'inherit',
+		'font_site_tagline_category' => '',
+		'font_site_tagline_variants' => '',
+		'site_tagline_font_weight' => 'normal',
+		'site_tagline_font_transform' => 'none',
+		'site_tagline_font_size' => '15',
+		'font_navigation' => 'inherit',
+		'font_navigation_category' => '',
+		'font_navigation_variants' => '',
+		'navigation_font_weight' => 'normal',
+		'navigation_font_transform' => 'none',
+		'navigation_font_size' => '15',
+		'font_widget_title' => 'inherit',
+		'font_widget_title_category' => '',
+		'font_widget_title_variants' => '',
+		'widget_title_font_weight' => 'normal',
+		'widget_title_font_transform' => 'none',
+		'widget_title_font_size' => '20',
+		'widget_content_font_size' => '17',
+		'font_heading_1' => 'inherit',
+		'font_heading_1_category' => '',
+		'font_heading_1_variants' => '',
+		'heading_1_weight' => '300',
+		'heading_1_transform' => 'none',
+		'heading_1_font_size' => '40',
+		'mobile_heading_1_font_size' => '30',
+		'font_heading_2' => 'inherit',
+		'font_heading_2_category' => '',
+		'font_heading_2_variants' => '',
+		'heading_2_weight' => '300',
+		'heading_2_transform' => 'none',
+		'heading_2_font_size' => '30',
+		'mobile_heading_2_font_size' => '25',
+		'font_heading_3' => 'inherit',
+		'font_heading_3_category' => '',
+		'font_heading_3_variants' => '',
+		'heading_3_weight' => 'normal',
+		'heading_3_transform' => 'none',
+		'heading_3_font_size' => '20',
+		'footer_font_size' => '15'
+	);
+	
+	if ( $filter )
 		return apply_filters( 'generate_font_option_defaults', $generate_font_defaults );
+	
+	return $generate_font_defaults;
+}
+endif;
+
+if ( ! function_exists( 'generate_font_css' ) ) :
+/**
+ * Generate the CSS in the <head> section using the Theme Customizer
+ * @since 0.1
+ */
+function generate_font_css()
+{
+
+	$generate_settings = wp_parse_args( 
+		get_option( 'generate_settings', array() ), 
+		generate_get_default_fonts() 
+	);
+	
+	$og_defaults = generate_get_default_fonts( false );
+
+	$css = new GeneratePress_CSS;
+	
+	// Get our sub-navigation font size
+	$subnav_font_size = $generate_settings['navigation_font_size'] >= 17 ? $generate_settings['navigation_font_size'] - 3 : $generate_settings['navigation_font_size'] - 1;
+	
+	// Create all of our font family entries
+	$body_family = generate_get_font_family_css( 'font_body', 'generate_settings', generate_get_default_fonts() );
+	$site_title_family = generate_get_font_family_css( 'font_site_title', 'generate_settings', generate_get_default_fonts() );
+	$site_tagline_family = generate_get_font_family_css( 'font_site_tagline', 'generate_settings', generate_get_default_fonts() );
+	$navigation_family = generate_get_font_family_css( 'font_navigation', 'generate_settings', generate_get_default_fonts() );
+	$widget_family = generate_get_font_family_css( 'font_widget_title', 'generate_settings', generate_get_default_fonts() );
+	$h1_family = generate_get_font_family_css( 'font_heading_1', 'generate_settings', generate_get_default_fonts() );
+	$h2_family = generate_get_font_family_css( 'font_heading_2', 'generate_settings', generate_get_default_fonts() );
+	$h3_family = generate_get_font_family_css( 'font_heading_3', 'generate_settings', generate_get_default_fonts() );
+	
+	// Body
+	$css->set_selector( 'body, button, input, select, textarea' );
+	$css->add_property( 'font-family', $body_family );
+	$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'body_font_weight' ] ), $og_defaults[ 'body_font_weight' ] );
+	$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'body_font_transform' ] ), $og_defaults[ 'body_font_transform' ] );
+	$css->add_property( 'font-size', absint( $generate_settings[ 'body_font_size' ] ), $og_defaults[ 'body_font_size' ], 'px' );
+	
+	// Line hieght
+	$css->set_selector( 'body' );
+	$css->add_property( 'line-height', $generate_settings['body_line_height'], $og_defaults['body_line_height'] );
+	
+	// Paragraph margin
+	$css->set_selector( 'p' );
+	$css->add_property( 'margin-bottom', $generate_settings['paragraph_margin'], $og_defaults['paragraph_margin'], 'em' );
+	
+	// Site title
+	$title = get_bloginfo( 'title' );
+	if ( '1' !== generate_get_setting( 'hide_title' ) && '' !== $title ) {
+		$css->set_selector( '.main-title' );
+		$css->add_property( 'font-family', $og_defaults[ 'font_site_title' ] !== $generate_settings[ 'font_site_title' ] ? $site_title_family : null );
+		$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'site_title_font_weight' ] ), $og_defaults[ 'site_title_font_weight' ] );
+		$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'site_title_font_transform' ] ), $og_defaults[ 'site_title_font_transform' ] );
+		$css->add_property( 'font-size', absint( $generate_settings[ 'site_title_font_size' ] ), $og_defaults[ 'site_title_font_size' ], 'px' );
 	}
-	/**
-	 * Generate the CSS in the <head> section using the Theme Customizer
-	 * @since 0.1
-	 */
-	function generate_font_css()
-	{
+	
+	// Site description
+	$tagline = get_bloginfo( 'description' );
+	if ( '1' !== generate_get_setting( 'hide_tagline' ) && '' !== $tagline ) {
+		$css->set_selector( '.site-description' );
+		$css->add_property( 'font-family', $og_defaults[ 'font_site_tagline' ] !== $generate_settings[ 'font_site_tagline' ] ? $site_tagline_family : null );
+		$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'site_tagline_font_weight' ] ), $og_defaults[ 'site_tagline_font_weight' ] );
+		$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'site_tagline_font_transform' ] ), $og_defaults[ 'site_tagline_font_transform' ] );
+		$css->add_property( 'font-size', absint( $generate_settings[ 'site_tagline_font_size' ] ), $og_defaults[ 'site_tagline_font_size' ], 'px' );
+	}
+	
+	// Navigation
+	if ( '' !== generate_get_navigation_location() || is_customize_preview() ) {
+		$css->set_selector( '.main-navigation a, .menu-toggle' );
+		$css->add_property( 'font-family', $og_defaults[ 'font_navigation' ] !== $generate_settings[ 'font_navigation' ] ? $navigation_family : null );
+		$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'navigation_font_weight' ] ), $og_defaults[ 'navigation_font_weight' ] );
+		$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'navigation_font_transform' ] ), $og_defaults[ 'navigation_font_transform' ] );
+		$css->add_property( 'font-size', absint( $generate_settings[ 'navigation_font_size' ] ), $og_defaults[ 'navigation_font_size' ], 'px' );
+		
+		// Sub-navigation font size
+		$css->set_selector( '.main-navigation .main-nav ul ul li a' );
+		$css->add_property( 'font-size', absint( $subnav_font_size ), false, 'px' );
+	}
+	
+	// Widget title
+	$css->set_selector( '.widget-title' );
+	$css->add_property( 'font-family', $og_defaults[ 'font_widget_title' ] !== $generate_settings[ 'font_widget_title' ] ? $widget_family : null );
+	$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'widget_title_font_weight' ] ), $og_defaults[ 'widget_title_font_weight' ] );
+	$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'widget_title_font_transform' ] ), $og_defaults[ 'widget_title_font_transform' ] );
+	$css->add_property( 'font-size', absint( $generate_settings[ 'widget_title_font_size' ] ), $og_defaults[ 'widget_title_font_size' ], 'px' );
+	
+	// Widget font size
+	$css->set_selector( '.sidebar .widget, .footer-widgets .widget' );
+	$css->add_property( 'font-size', absint( $generate_settings['widget_content_font_size'] ), $og_defaults['widget_content_font_size'], 'px' );
+	
+	// H1
+	$css->set_selector( 'h1' );
+	$css->add_property( 'font-family', $og_defaults[ 'font_heading_1' ] !== $generate_settings[ 'font_heading_1' ] ? $h1_family : null );
+	$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'heading_1_weight' ] ), $og_defaults[ 'heading_1_weight' ] );
+	$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'heading_1_transform' ] ), $og_defaults[ 'heading_1_transform' ] );
+	$css->add_property( 'font-size', absint( $generate_settings[ 'heading_1_font_size' ] ), $og_defaults[ 'heading_1_font_size' ], 'px' );
+	
+	// H2
+	$css->set_selector( 'h2' );
+	$css->add_property( 'font-family', $og_defaults[ 'font_heading_2' ] !== $generate_settings[ 'font_heading_2' ] ? $h2_family : null );
+	$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'heading_2_weight' ] ), $og_defaults[ 'heading_2_weight' ] );
+	$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'heading_2_transform' ] ), $og_defaults[ 'heading_2_transform' ] );
+	$css->add_property( 'font-size', absint( $generate_settings[ 'heading_2_font_size' ] ), $og_defaults[ 'heading_2_font_size' ], 'px' );
+	
+	// H3
+	$css->set_selector( 'h3' );
+	$css->add_property( 'font-family', $og_defaults[ 'font_heading_3' ] !== $generate_settings[ 'font_heading_3' ] ? $h3_family : null );
+	$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'heading_3_weight' ] ), $og_defaults[ 'heading_3_weight' ] );
+	$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'heading_3_transform' ] ), $og_defaults[ 'heading_3_transform' ] );
+	$css->add_property( 'font-size', absint( $generate_settings[ 'heading_3_font_size' ] ), $og_defaults[ 'heading_3_font_size' ], 'px' );
+	
+	// Footer
+	$css->set_selector( '.site-info' );
+	$css->add_property( 'font-size', absint( $generate_settings['footer_font_size'] ), $og_defaults['footer_font_size'], 'px' );
+	
+	// Mobile CSS
+	$output = '';
+	$mobile = apply_filters( 'generate_mobile_breakpoint', '768px' );
+	$mobile_site_title = ( isset( $generate_settings[ 'mobile_site_title_font_size' ] ) ) ? $generate_settings[ 'mobile_site_title_font_size' ] : '30';
+	$mobile_h1 = ( isset( $generate_settings[ 'mobile_heading_1_font_size' ] ) ) ? $generate_settings[ 'mobile_heading_1_font_size' ] : '30';
+	$mobile_h2 = ( isset( $generate_settings[ 'mobile_heading_2_font_size' ] ) ) ? $generate_settings[ 'mobile_heading_2_font_size' ] : '25';
+	$output .= '@media (max-width:' . esc_attr( $mobile ) . ') {.main-title{font-size:' . absint( $mobile_site_title ) . 'px;}h1{font-size:' . absint( $mobile_h1 ) . 'px;}h2{font-size:' . absint( $mobile_h2 ) . 'px;}}';
+	
+	// Allow us to hook CSS into our output
+	do_action( 'generate_typography_css', $css );
+	
+	return $css->css_output() . $output;
+}
+endif;
 
-		$generate_settings = wp_parse_args( 
-			get_option( 'generate_settings', array() ), 
-			generate_get_default_fonts() 
-		);
-		
-		// Get our sub-navigation font size
-		$subnav_font_size = $generate_settings['navigation_font_size'] >= 17 ? $generate_settings['navigation_font_size'] - 3 : $generate_settings['navigation_font_size'] - 1;
-		
-		// Create all of our font family entries
-		$body_family = generate_get_font_family_css( 'font_body', 'generate_settings', generate_get_default_fonts() );
-		$site_title_family = generate_get_font_family_css( 'font_site_title', 'generate_settings', generate_get_default_fonts() );
-		$site_tagline_family = generate_get_font_family_css( 'font_site_tagline', 'generate_settings', generate_get_default_fonts() );
-		$navigation_family = generate_get_font_family_css( 'font_navigation', 'generate_settings', generate_get_default_fonts() );
-		$widget_family = generate_get_font_family_css( 'font_widget_title', 'generate_settings', generate_get_default_fonts() );
-		$h1_family = generate_get_font_family_css( 'font_heading_1', 'generate_settings', generate_get_default_fonts() );
-		$h2_family = generate_get_font_family_css( 'font_heading_2', 'generate_settings', generate_get_default_fonts() );
-		$h3_family = generate_get_font_family_css( 'font_heading_3', 'generate_settings', generate_get_default_fonts() );
-		
-		// Start the magic
-		$visual_css = array(
-		
-			// Body font
-			'body, button, input, select, textarea' => array(
-				'font-family' => $body_family,
-				'font-weight' => 'normal' == $generate_settings['body_font_weight'] ? '' : $generate_settings['body_font_weight'],
-				'text-transform' => 'none' == $generate_settings['body_font_transform'] ? '' : $generate_settings['body_font_transform'],
-				'font-size' => $generate_settings['body_font_size'] . 'px'
-			),
-			
-			// Line height
-			'body' => array(
-				'line-height' => $generate_settings['body_line_height'],
-			),
-			
-			// Paragraph margin
-			'p' => array(
-				'margin-bottom' => $generate_settings[ 'paragraph_margin' ] . 'em'
-			),
-			
-			// Main title font
-			'.main-title' => array(
-				'font-family' => $site_title_family,
-				'font-weight' => 'normal' == $generate_settings['site_title_font_weight'] ? '' : $generate_settings['site_title_font_weight'],
-				'text-transform' => 'none' == $generate_settings['site_title_font_transform'] ? '' : $generate_settings['site_title_font_transform'],
-				'font-size' => $generate_settings['site_title_font_size'] . 'px'
-			),
-			
-			// Main tagline font
-			'.site-description' => array(
-				'font-family' => $site_tagline_family,
-				'font-weight' => 'normal' == $generate_settings['site_tagline_font_weight'] ? '' : $generate_settings['site_tagline_font_weight'],
-				'text-transform' => 'none' == $generate_settings['site_tagline_font_transform'] ? '' : $generate_settings['site_tagline_font_transform'],
-				'font-size' => $generate_settings['site_tagline_font_size'] . 'px'
-			),
-			
-			// Navigation font
-			'.main-navigation a, .menu-toggle' => array(
-				'font-family' => $navigation_family,
-				'font-weight' => 'normal' == $generate_settings['navigation_font_weight'] ? '' : $generate_settings['navigation_font_weight'],
-				'text-transform' => 'none' == $generate_settings['navigation_font_transform'] ? '' : $generate_settings['navigation_font_transform'],
-				'font-size' => $generate_settings['navigation_font_size'] . 'px'
-			),
-			
-			'.main-navigation .main-nav ul ul li a' => array(
-				'font-size' => $subnav_font_size . 'px'
-			),
-			
-			// Widget title font
-			'.widget-title' => array(
-				'font-family' => $widget_family,
-				'font-weight' => 'normal' == $generate_settings['widget_title_font_weight'] ? '' : $generate_settings['widget_title_font_weight'],
-				'text-transform' => 'none' == $generate_settings['widget_title_font_transform'] ? '' : $generate_settings['widget_title_font_transform'],
-				'font-size' => $generate_settings['widget_title_font_size'] . 'px'
-			),
-			
-			// Widget font size
-			'.sidebar .widget, .footer-widgets .widget' => array(
-				'font-size' => $generate_settings['widget_content_font_size'] . 'px'
-			),
-			
-			// Heading 1 font
-			'h1' => array(
-				'font-family' => $h1_family,
-				'font-weight' => 'normal' == $generate_settings['heading_1_weight'] ? '' : $generate_settings['heading_1_weight'],
-				'text-transform' => 'none' == $generate_settings['heading_1_transform'] ? '' : $generate_settings['heading_1_transform'],
-				'font-size' => $generate_settings['heading_1_font_size'] . 'px'
-			),
-			
-			// Heading 2 font
-			'h2' => array(
-				'font-family' => $h2_family,
-				'font-weight' => 'normal' == $generate_settings['heading_2_weight'] ? '' : $generate_settings['heading_2_weight'],
-				'text-transform' => 'none' == $generate_settings['heading_2_transform'] ? '' : $generate_settings['heading_2_transform'],
-				'font-size' => $generate_settings['heading_2_font_size'] . 'px'
-			),
-			
-			// Heading 3 font
-			'h3' => array(
-				'font-family' => $h3_family,
-				'font-weight' => 'normal' == $generate_settings['heading_3_weight'] ? '' : $generate_settings['heading_3_weight'],
-				'text-transform' => 'none' == $generate_settings['heading_3_transform'] ? '' : $generate_settings['heading_3_transform'],
-				'font-size' => $generate_settings['heading_3_font_size'] . 'px'
-			),
-			
-			// Footer font
-			'.site-info' => array(
-				'font-size' => $generate_settings['footer_font_size'] . 'px'
-			)
-			
-		);
-		
-		// Output the above CSS
-		$output = '';
-		foreach($visual_css as $k => $properties) {
-			if(!count($properties))
-				continue;
+if ( ! function_exists( 'generate_typography_scripts' ) ) :
+/**
+ * Enqueue scripts and styles
+ */
+add_action( 'wp_enqueue_scripts', 'generate_typography_scripts', 50 );
+function generate_typography_scripts() {
+	$name = ( wp_style_is( 'generate-defaults', 'enqueued' ) ) ? 'generate-defaults' : 'generate-style';
+	wp_add_inline_style( $name, generate_font_css() );
+}
+endif;
 
-			$temporary_output = $k . ' {';
-			$elements_added = 0;
-
-			foreach($properties as $p => $v) {
-				if(empty($v))
-					continue;
-
-				$elements_added++;
-				$temporary_output .= $p . ': ' . $v . '; ';
+if ( ! function_exists( 'generate_enqueue_google_fonts' ) ) :
+/** 
+ * Add Google Fonts to wp_head if needed
+ * @since 0.1
+ */
+add_action( 'wp_enqueue_scripts','generate_enqueue_google_fonts', 0 );
+function generate_enqueue_google_fonts() {
+	
+	if ( is_admin() )
+		return;
+	
+	// Grab our options
+	$generate_settings = wp_parse_args( 
+		get_option( 'generate_settings', array() ), 
+		generate_get_default_fonts() 
+	);
+	
+	// List our non-Google fonts
+	$not_google = str_replace( ' ', '+', generate_typography_default_fonts() );
+	
+	// Grab our font family settings
+	$font_settings = array(
+		'font_body',
+		'font_site_title',
+		'font_site_tagline',
+		'font_navigation',
+		'font_widget_title',
+		'font_heading_1',
+		'font_heading_2',
+		'font_heading_3'
+	);
+	
+	// Create our Google Fonts array
+	$google_fonts = array();
+	if ( ! empty( $font_settings ) ) :
+	
+		foreach ( $font_settings as $key ) {
+		
+			// If our value is still using the old format, fix it
+			if ( strpos( $generate_settings[$key], ':' ) !== false )
+				$generate_settings[$key] = current( explode( ':', $generate_settings[$key] ) );
+		
+			// Replace the spaces in the names with a plus
+			$value = str_replace( ' ', '+', $generate_settings[$key] );
+			
+			// Grab the variants using the plain name
+			$variants = generate_get_google_font_variants( $generate_settings[$key], $key );
+			
+			// If we have variants, add them to our value
+			$value = ! empty( $variants ) ? $value . ':' . $variants : $value;
+			
+			// Make sure we don't add the same font twice
+			if( ! in_array( $value, $google_fonts ) ) {
+				$google_fonts[] = $value;
 			}
-
-			$temporary_output .= "}";
-
-			if($elements_added > 0)
-				$output .= $temporary_output;
+			
 		}
 		
-		$mobile = apply_filters( 'generate_mobile_breakpoint', '768px' );
-		$mobile_site_title = ( isset( $generate_settings[ 'mobile_site_title_font_size' ] ) ) ? $generate_settings[ 'mobile_site_title_font_size' ] : '30';
-		$mobile_h1 = ( isset( $generate_settings[ 'mobile_heading_1_font_size' ] ) ) ? $generate_settings[ 'mobile_heading_1_font_size' ] : '30';
-		$mobile_h2 = ( isset( $generate_settings[ 'mobile_heading_2_font_size' ] ) ) ? $generate_settings[ 'mobile_heading_2_font_size' ] : '25';
-		$output .= '@media (max-width:' . $mobile . ') {
-			.main-title {
-				font-size: ' . $mobile_site_title . 'px;
-			}
-			h1 {
-				font-size: ' . $mobile_h1 . 'px;
-			}
-			
-			h2 {
-				font-size: ' . $mobile_h2 . 'px;
-			}
-		}';
-		$output = str_replace(array("\r", "\n", "\t"), '', $output);
-		return $output;
-	}
-	
-	/**
-	 * Enqueue scripts and styles
-	 */
-	add_action( 'wp_enqueue_scripts', 'generate_typography_scripts', 50 );
-	function generate_typography_scripts() {
+	endif;
 
-		wp_add_inline_style( 'generate-style', generate_font_css() );
+	// Ignore any non-Google fonts
+	$google_fonts = array_diff($google_fonts, $not_google);
 	
-	}
+	// Separate each different font with a bar
+	$google_fonts = implode('|', $google_fonts);
 	
-	/** 
-	 * Add Google Fonts to wp_head if needed
-	 * @since 0.1
-	 */
-	add_action('wp_enqueue_scripts','generate_display_google_fonts', 0);
-	function generate_display_google_fonts() {
-		
-		if ( is_admin() )
-			return;
-		
-		// Grab our options
-		$generate_settings = wp_parse_args( 
-			get_option( 'generate_settings', array() ), 
-			generate_get_default_fonts() 
-		);
-		
-		// List our non-Google fonts
-		$not_google = str_replace( ' ', '+', generate_typography_default_fonts() );
-		
-		// Grab our font family settings
-		$font_settings = array(
-			'font_body',
-			'font_site_title',
-			'font_site_tagline',
-			'font_navigation',
-			'font_widget_title',
-			'font_heading_1',
-			'font_heading_2',
-			'font_heading_3'
-		);
-		
-		// Create our Google Fonts array
-		$google_fonts = array();
-		if ( ! empty( $font_settings ) ) :
-		
-			foreach ( $font_settings as $key ) {
-			
-				// If our value is still using the old format, fix it
-				if ( strpos( $generate_settings[$key], ':' ) !== false )
-					$generate_settings[$key] = current( explode( ':', $generate_settings[$key] ) );
-			
-				// Replace the spaces in the names with a plus
-				$value = str_replace( ' ', '+', $generate_settings[$key] );
-				
-				// Grab the variants using the plain name
-				$variants = generate_get_google_font_variants( $generate_settings[$key], $key );
-				
-				// If we have variants, add them to our value
-				$value = ! empty( $variants ) ? $value . ':' . $variants : $value;
-				
-				// Make sure we don't add the same font twice
-				if( ! in_array( $value, $google_fonts ) ) {
-					$google_fonts[] = $value;
-				}
-				
-			}
-			
-		endif;
-
-		// Ignore any non-Google fonts
-		$google_fonts = array_diff($google_fonts, $not_google);
-		
-		// Separate each different font with a bar
-		$google_fonts = implode('|', $google_fonts);
-		
-		// Apply a filter to the output
-		$google_fonts = apply_filters( 'generate_typography_google_fonts', $google_fonts );
-		
-		// Get the subset
-		$subset = apply_filters( 'generate_fonts_subset','' );
-		
-		// Set up our arguments
-		$font_args = array();
-		$font_args[ 'family' ] = $google_fonts;
-		if ( '' !== $subset )
-			$font_args[ 'subset' ] = urlencode( $subset );
-		
-		// Create our URL using the arguments
-        $fonts_url = add_query_arg( $font_args, '//fonts.googleapis.com/css' );
-		
-		// Enqueue our fonts
-		if ( $google_fonts ) { 
-			wp_enqueue_style('generate-fonts', $fonts_url, array(), null, 'all' );
-		}
+	// Apply a filter to the output
+	$google_fonts = apply_filters( 'generate_typography_google_fonts', $google_fonts );
+	
+	// Get the subset
+	$subset = apply_filters( 'generate_fonts_subset','' );
+	
+	// Set up our arguments
+	$font_args = array();
+	$font_args[ 'family' ] = $google_fonts;
+	if ( '' !== $subset )
+		$font_args[ 'subset' ] = urlencode( $subset );
+	
+	// Create our URL using the arguments
+	$fonts_url = add_query_arg( $font_args, '//fonts.googleapis.com/css' );
+	
+	// Enqueue our fonts
+	if ( $google_fonts ) { 
+		wp_enqueue_style('generate-fonts', $fonts_url, array(), null, 'all' );
 	}
+}
 endif;
 
 if ( ! function_exists( 'generate_fonts_customize_register' ) ) :
-	add_action( 'customize_register', 'generate_default_fonts_customize_register' );
-	function generate_default_fonts_customize_register( $wp_customize ) {
+add_action( 'customize_register', 'generate_default_fonts_customize_register' );
+function generate_default_fonts_customize_register( $wp_customize ) {
+
+	require_once get_template_directory() . '/inc/add-ons/controls.php';
+
+	$defaults = generate_get_default_fonts();
 	
-		require_once get_template_directory() . '/inc/add-ons/controls.php';
+	if ( method_exists( $wp_customize,'register_control_type' ) ) {
+		$wp_customize->register_control_type( 'Generate_Google_Font_Dropdown_Custom_Control' );
+		$wp_customize->register_control_type( 'Generate_Select_Control' );
+		$wp_customize->register_control_type( 'Generate_Customize_Slider_Control' );
+		$wp_customize->register_control_type( 'Generate_Hidden_Input_Control' );
+	}
 
-		$defaults = generate_get_default_fonts();
+	$wp_customize->add_section(
+		// ID
+		'font_section',
+		// Arguments array
+		array(
+			'title' => __( 'Typography', 'generatepress' ),
+			'capability' => 'edit_theme_options',
+			'description' => '',
+			'priority' => 30
+		)
+	);
+	
+	// Add body fonts
+	$wp_customize->add_setting( 
+		'generate_settings[font_body]', 
+		array(
+			'default' => $defaults['font_body'],
+			'type' => 'option',
+			'sanitize_callback' => 'generate_sanitize_typography'
+		)
+	);
 		
-		if ( method_exists( $wp_customize,'register_control_type' ) ) {
-			$wp_customize->register_control_type( 'Generate_Google_Font_Dropdown_Custom_Control' );
-			$wp_customize->register_control_type( 'Generate_Select_Control' );
-			$wp_customize->register_control_type( 'Generate_Customize_Slider_Control' );
-			$wp_customize->register_control_type( 'Generate_Hidden_Input_Control' );
-		}
-
-		$wp_customize->add_section(
-			// ID
-			'font_section',
-			// Arguments array
+	$wp_customize->add_control( 
+		new Generate_Google_Font_Dropdown_Custom_Control( 
+			$wp_customize, 
+			'google_font_body_control', 
 			array(
-				'title' => __( 'Typography', 'generatepress' ),
-				'capability' => 'edit_theme_options',
-				'description' => '',
-				'priority' => 30
+				'label' => __('Body','generatepress'),
+				'section' => 'font_section',
+				'settings' => 'generate_settings[font_body]',
+				'priority' => 1,
+				'type' => 'gp-customizer-fonts'
 			)
-		);
+		)
+	);
+	
+	$wp_customize->add_setting( 
+		'font_body_category', 
+		array(
+			'default' => '',
+			'sanitize_callback' => 'sanitize_text_field'
+		)
+	);
 		
-		// Add body fonts
-		$wp_customize->add_setting( 
-			'generate_settings[font_body]', 
-			array(
-				'default' => $defaults['font_body'],
-				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_typography'
-			)
-		);
-			
-		$wp_customize->add_control( 
-			new Generate_Google_Font_Dropdown_Custom_Control( 
-				$wp_customize, 
-				'google_font_body_control', 
-				array(
-					'label' => __('Body','generatepress'),
-					'section' => 'font_section',
-					'settings' => 'generate_settings[font_body]',
-					'priority' => 1,
-					'type' => 'gp-customizer-fonts'
-				)
-			)
-		);
-		
-		$wp_customize->add_setting( 
+	$wp_customize->add_control( 
+		new Generate_Hidden_Input_Control( 
+			$wp_customize, 
 			'font_body_category', 
 			array(
-				'default' => '',
-				'sanitize_callback' => 'sanitize_text_field'
+				'section' => 'font_section',
+				'settings' => 'font_body_category',
+				'type' => 'gp-hidden-input'
 			)
-		);
-			
-		$wp_customize->add_control( 
-			new Generate_Hidden_Input_Control( 
-				$wp_customize, 
-				'font_body_category', 
-				array(
-					'section' => 'font_section',
-					'settings' => 'font_body_category',
-					'type' => 'gp-hidden-input'
-				)
-			)
-		);
+		)
+	);
+	
+	$wp_customize->add_setting( 
+		'font_body_variants', 
+		array(
+			'default' => '',
+			'sanitize_callback' => 'sanitize_text_field'
+		)
+	);
 		
-		$wp_customize->add_setting( 
+	$wp_customize->add_control( 
+		new Generate_Hidden_Input_Control( 
+			$wp_customize, 
 			'font_body_variants', 
 			array(
-				'default' => '',
-				'sanitize_callback' => 'sanitize_text_field'
+				'section' => 'font_section',
+				'settings' => 'font_body_variants',
+				'type' => 'gp-hidden-input'
 			)
-		);
-			
-		$wp_customize->add_control( 
-			new Generate_Hidden_Input_Control( 
-				$wp_customize, 
-				'font_body_variants', 
-				array(
-					'section' => 'font_section',
-					'settings' => 'font_body_variants',
-					'type' => 'gp-hidden-input'
-				)
-			)
-		);
+		)
+	);
+	
+	$wp_customize->add_setting( 
+		'generate_settings[body_font_weight]', 
+		array(
+			'default' => $defaults['body_font_weight'],
+			'type' => 'option',
+			'sanitize_callback' => 'generate_sanitize_choices',
+			'transport' => 'postMessage'
+		)
+	);
 		
-		$wp_customize->add_setting( 
+	$wp_customize->add_control( 
+		new Generate_Select_Control( 
+			$wp_customize, 
 			'generate_settings[body_font_weight]', 
 			array(
-				'default' => $defaults['body_font_weight'],
-				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_choices',
-				'transport' => 'postMessage'
-			)
-		);
-			
-		$wp_customize->add_control( 
-			new Generate_Select_Control( 
-				$wp_customize, 
-				'generate_settings[body_font_weight]', 
-				array(
-					'label' => __('Font weight','generatepress'),
-					'section' => 'font_section',
-					'settings' => 'generate_settings[body_font_weight]',
-					'priority' => 20,
-					'type' => 'gp-typography-select',
-					'choices' => array(
-						'normal' => 'normal',
-						'bold' => 'bold',
-						'100' => '100',
-						'200' => '200',
-						'300' => '300',
-						'400' => '400',
-						'500' => '500',
-						'600' => '600',
-						'700' => '700',
-						'800' => '800',
-						'900' => '900'
-					)
+				'label' => __('Font weight','generatepress'),
+				'section' => 'font_section',
+				'settings' => 'generate_settings[body_font_weight]',
+				'priority' => 20,
+				'type' => 'gp-typography-select',
+				'choices' => array(
+					'normal' => 'normal',
+					'bold' => 'bold',
+					'100' => '100',
+					'200' => '200',
+					'300' => '300',
+					'400' => '400',
+					'500' => '500',
+					'600' => '600',
+					'700' => '700',
+					'800' => '800',
+					'900' => '900'
 				)
 			)
-		);
+		)
+	);
+	
+	$wp_customize->add_setting( 
+		'generate_settings[body_font_transform]', 
+		array(
+			'default' => $defaults['body_font_transform'],
+			'type' => 'option',
+			'sanitize_callback' => 'generate_sanitize_text_transform',
+			'transport' => 'postMessage'
+			
+		)
+	);
 		
-		$wp_customize->add_setting( 
+	$wp_customize->add_control( 
+		new Generate_Select_Control( 
+			$wp_customize, 
 			'generate_settings[body_font_transform]', 
 			array(
-				'default' => $defaults['body_font_transform'],
-				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_text_transform',
-				'transport' => 'postMessage'
-				
-			)
-		);
-			
-		$wp_customize->add_control( 
-			new Generate_Select_Control( 
-				$wp_customize, 
-				'generate_settings[body_font_transform]', 
-				array(
-					'label' => __('Text transform','generatepress'),
-					'section' => 'font_section',
-					'settings' => 'generate_settings[body_font_transform]',
-					'priority' => 30,
-					'type' => 'gp-typography-select',
-					'choices' => array(
-						'none',
-						'capitalize',
-						'uppercase',
-						'lowercase'
-					)
+				'label' => __('Text transform','generatepress'),
+				'section' => 'font_section',
+				'settings' => 'generate_settings[body_font_transform]',
+				'priority' => 30,
+				'type' => 'gp-typography-select',
+				'choices' => array(
+					'none',
+					'capitalize',
+					'uppercase',
+					'lowercase'
 				)
 			)
-		);
+		)
+	);
+	
+	$wp_customize->add_setting( 
+		'generate_settings[body_font_size]', 
+		array(
+			'default' => $defaults['body_font_size'],
+			'type' => 'option',
+			'sanitize_callback' => 'generate_sanitize_integer',
+			'transport' => 'postMessage'
+		)
+	);
 		
-		$wp_customize->add_setting( 
+	$wp_customize->add_control( 
+		new Generate_Customize_Slider_Control( 
+			$wp_customize, 
 			'generate_settings[body_font_size]', 
 			array(
-				'default' => $defaults['body_font_size'],
-				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_integer',
-				'transport' => 'postMessage'
+				'label' => __('Font size','generatepress'),
+				'section' => 'font_section',
+				'settings' => 'generate_settings[body_font_size]',
+				'priority' => 40,
+				'type' => 'gp-typography-slider',
+				'default_value' => $defaults['body_font_size'],
+				'unit' => 'px'
 			)
-		);
-			
-		$wp_customize->add_control( 
-			new Generate_Customize_Slider_Control( 
-				$wp_customize, 
-				'generate_settings[body_font_size]', 
-				array(
-					'label' => __('Font size','generatepress'),
-					'section' => 'font_section',
-					'settings' => 'generate_settings[body_font_size]',
-					'priority' => 40,
-					'type' => 'gp-typography-slider',
-					'default_value' => $defaults['body_font_size'],
-					'unit' => 'px'
-				)
-			)
-		);
+		)
+	);
+	
+	$wp_customize->add_setting( 
+		'generate_settings[body_line_height]', 
+		array(
+			'default' => $defaults['body_line_height'],
+			'type' => 'option',
+			'sanitize_callback' => 'generate_sanitize_decimal_integer',
+			'transport' => 'postMessage'
+		)
+	);
 		
-		$wp_customize->add_setting( 
+	$wp_customize->add_control( 
+		new Generate_Customize_Slider_Control( 
+			$wp_customize, 
 			'generate_settings[body_line_height]', 
 			array(
-				'default' => $defaults['body_line_height'],
-				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_decimal_integer',
-				'transport' => 'postMessage'
+				'label' => __('Line height','generatepress'),
+				'section' => 'font_section',
+				'settings' => 'generate_settings[body_line_height]',
+				'priority' => 45,
+				'type' => 'gp-typography-slider',
+				'default_value' => $defaults['body_line_height'],
+				'unit' => ''
 			)
-		);
-			
-		$wp_customize->add_control( 
-			new Generate_Customize_Slider_Control( 
-				$wp_customize, 
-				'generate_settings[body_line_height]', 
-				array(
-					'label' => __('Line height','generatepress'),
-					'section' => 'font_section',
-					'settings' => 'generate_settings[body_line_height]',
-					'priority' => 45,
-					'type' => 'gp-typography-slider',
-					'default_value' => $defaults['body_line_height'],
-					'unit' => ''
-				)
-			)
-		);
+		)
+	);
+	
+	$wp_customize->add_setting( 
+		'generate_settings[paragraph_margin]', 
+		array(
+			'default' => $defaults['paragraph_margin'],
+			'type' => 'option',
+			'sanitize_callback' => 'generate_sanitize_decimal_integer',
+			'transport' => 'postMessage'
+		)
+	);
 		
-		$wp_customize->add_setting( 
+	$wp_customize->add_control( 
+		new Generate_Customize_Slider_Control( 
+			$wp_customize, 
 			'generate_settings[paragraph_margin]', 
 			array(
-				'default' => $defaults['paragraph_margin'],
-				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_decimal_integer',
-				'transport' => 'postMessage'
+				'label' => __('Paragraph margin','generatepress'),
+				'section' => 'font_section',
+				'settings' => 'generate_settings[paragraph_margin]',
+				'priority' => 47,
+				'type' => 'gp-typography-slider',
+				'default_value' => $defaults['paragraph_margin'],
+				'unit' => ''
 			)
-		);
-			
-		$wp_customize->add_control( 
-			new Generate_Customize_Slider_Control( 
-				$wp_customize, 
-				'generate_settings[paragraph_margin]', 
-				array(
-					'label' => __('Paragraph margin','generatepress'),
-					'section' => 'font_section',
-					'settings' => 'generate_settings[paragraph_margin]',
-					'priority' => 47,
-					'type' => 'gp-typography-slider',
-					'default_value' => $defaults['paragraph_margin'],
-					'unit' => ''
-				)
-			)
-		);
-		
-		if ( !function_exists( 'generate_fonts_customize_register' ) && ! defined( 'GP_PREMIUM_VERSION' ) ) {
+		)
+	);
+	
+	if ( !function_exists( 'generate_fonts_customize_register' ) && ! defined( 'GP_PREMIUM_VERSION' ) ) {
 
-			$wp_customize->add_control(
-				new Generate_Customize_Misc_Control(
-					$wp_customize,
-					'typography_get_addon_desc',
-					array(
-						'section'     => 'font_section',
-						'type'        => 'addon',
-						'label'			=> __( 'More Settings','generatepress' ),
-						'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-typography/' ),
-						'description' => sprintf(
-							__( 'Looking to add more typography settings?<br /> %s.', 'generatepress' ),
-							sprintf(
-								'<a href="%1$s" target="_blank">%2$s</a>',
-								generate_get_premium_url( 'https://generatepress.com/downloads/generate-typography/' ),
-								__( 'Check out Generate Typography', 'generatepress' )
-							)
-						),
-						'priority'    => 50,
-						'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname'
-					)
+		$wp_customize->add_control(
+			new Generate_Customize_Misc_Control(
+				$wp_customize,
+				'typography_get_addon_desc',
+				array(
+					'section'     => 'font_section',
+					'type'        => 'addon',
+					'label'			=> __( 'More Settings','generatepress' ),
+					'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-typography/' ),
+					'description' => sprintf(
+						__( 'Looking to add more typography settings?<br /> %s.', 'generatepress' ),
+						sprintf(
+							'<a href="%1$s" target="_blank">%2$s</a>',
+							generate_get_premium_url( 'https://generatepress.com/downloads/generate-typography/' ),
+							__( 'Check out Generate Typography', 'generatepress' )
+						)
+					),
+					'priority'    => 50,
+					'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname'
 				)
-			);
-		}
+			)
+		);
 	}
+}
 endif;
 
 if ( ! function_exists( 'generate_typography_customize_preview_css' ) ) :
