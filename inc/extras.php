@@ -96,10 +96,6 @@ function generate_body_classes( $classes )
 	} else {
 		$classes[] = 'dropdown-hover';
 	}
-	
-	// Footer bar
-	$classes[] = ( is_active_sidebar( 'footer-bar' ) ) ? 'footer-bar-active' : '';
-	$classes[] = ( is_active_sidebar( 'footer-bar' ) && 'right' !== $generate_settings[ 'footer_bar_alignment' ] ) ? 'footer-bar-align-' . $generate_settings[ 'footer_bar_alignment' ] : '';
 
 	return $classes;
 }
@@ -415,6 +411,10 @@ function generate_footer_classes( $classes )
 		$classes[] = 'grid-container';
 		$classes[] = 'grid-parent';
 	endif;
+	
+	// Footer bar
+	$classes[] = ( is_active_sidebar( 'footer-bar' ) ) ? 'footer-bar-active' : '';
+	$classes[] = ( is_active_sidebar( 'footer-bar' ) ) ? 'footer-bar-align-' . $generate_settings[ 'footer_bar_alignment' ] : '';
 
 	return $classes;
 	

@@ -327,6 +327,6 @@ function generatepress_classes_live_update( id, classes, selector, prefix ) {
 	/** 
 	 * Footer bar alignment
 	 */
-	generatepress_classes_live_update( 'footer_bar_alignment', [ 'left', 'center', 'right' ], 'body', 'footer-bar-align-' );
+	generatepress_classes_live_update( 'footer_bar_alignment', [ 'left', 'center', 'right' ], '.site-footer', 'footer-bar-align-' );
 	
 } )( jQuery );
