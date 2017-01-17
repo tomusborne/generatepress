@@ -1335,69 +1335,53 @@ h4, h5, h6 {
 .inside-footer-widgets .inner-padding {
 	padding: 0 40px;
 }
+
 .site-info {
 	text-align: center;
 }
 
-.footer-bar-active .site-info {
-	text-align: left;
-}
-
-/* Footer bar aligned right */
-.footer-bar-active .copyright-bar {
-	float: left;
-	padding-left: 10px;
-}
-
-.footer-bar {
-	float: right;
-}
-
+/* Footer bar */
 .footer-bar-active .footer-bar .widget {
 	padding: 0;
-	text-align: right;
 }
 
 .footer-bar .widget_nav_menu > div > ul {
+	display: inline-block;
+}
+
+/* Footer bar aligned right */
+.footer-bar-align-right .copyright-bar {
+	float: left;
+	padding: 0 0 0 10px;
+}
+
+.footer-bar-align-right .footer-bar {
 	float: right;
+	text-align: right;
 }
 
 /* Footer bar aligned left */
-.footer-bar-active.footer-bar-align-left .copyright-bar {
+.footer-bar-align-left .copyright-bar {
 	float: right;
+	text-align: right;
 	padding: 0 10px 0 0;
 }
 
-.footer-bar-active.footer-bar-align-left .footer-bar {
-	float: left;
-}
-
-.footer-bar-active.footer-bar-align-left .footer-bar .widget {
-	text-align: left;
-}
-
-.footer-bar-active.footer-bar-align-left .footer-bar .widget_nav_menu > div > ul {
+.footer-bar-align-left .footer-bar {
 	float: left;
 }
 
 /* Footer bar aligned center */
-.footer-bar-active.footer-bar-align-center .copyright-bar {
+.footer-bar-align-center .copyright-bar {
 	float: none;
+	text-align: center;
 	padding: 0 10px 0 10px;
-	text-align: center;
 }
 
-.footer-bar-active.footer-bar-align-center .footer-bar {
+.footer-bar-align-center .footer-bar {
 	float: none;
+	text-align: center;
 	margin-bottom: 10px;
-}
-
-.footer-bar-active.footer-bar-align-center .footer-bar .widget {
-	text-align: center;
-}
-
-.footer-bar-active.footer-bar-align-center .footer-bar .widget_nav_menu > div > ul {
-	float: none;
 }
 
 /* Footer bar menu */
@@ -1405,12 +1389,6 @@ h4, h5, h6 {
 	margin: 0 10px;
 	float: left;
 	padding: 0;
-}
-
-.footer-bar-align-center .footer-bar .widget_nav_menu li {
-	float: none;
-	display: inline-block;
-	margin: 0 5px;
 }
 
 .footer-bar .widget_nav_menu li ul {
