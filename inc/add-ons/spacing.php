@@ -47,9 +47,9 @@ function generate_spacing_get_defaults( $filter = true )
 		'footer_widget_container_bottom' => '40',
 		'footer_widget_container_left' => '0',
 		'footer_top' => '20',
-		'footer_right' => '10',
+		'footer_right' => '20',
 		'footer_bottom' => '20',
-		'footer_left' => '10',
+		'footer_left' => '20',
 	);
 	
 	if ( $filter )
