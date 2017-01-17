@@ -10,6 +10,10 @@
 			// Get the clicked element
 			var _this = $( this );
 			
+			// Bail if we're clicking a mega menu sub-menu item
+			if ( _this.closest( '.sub-menu' ).closest( '.menu-item-has-children' ).hasClass( 'mega-menu' ) )
+				return;
+			
 			// Get clicked parent
 			var _parent = _this.closest( 'nav' );
 			

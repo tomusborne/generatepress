@@ -126,6 +126,11 @@ button.menu-toggle:focus {
 		float: none;
 		clear: both;
 	}
+	
+	nav .mega-menu>ul>li {
+		display: block;
+		width: 100% !important;
+	}
 	/* End mobile navigation */
 	
 	.both-right.separate-containers .inside-left-sidebar,

@@ -15,7 +15,6 @@
 		slideout = $( '.slideout-navigation' );
 		
 		$dropdowns.attr( 'aria-haspopup', 'true' );
-		
 		$dropdowns.children( 'ul' ).css( {
 			'display': 'none',
 			'opacity': 0
@@ -26,6 +25,9 @@
 			mobile = $this.closest( '.main-nav' ).prevAll( '.menu-toggle' );
 			
 			if ( mobile.is( ':visible' ) )
+				return;
+			
+			if ( $this.parent().closest( '.menu-item-has-children' ).hasClass( 'mega-menu' ) )
 				return;
 
 			if ($this.prop('hoverTimeout')) {
@@ -76,6 +78,9 @@
 					mobile = $this.closest( '.main-nav' ).prevAll( '.menu-toggle' );
 					
 					if ( mobile.is( ':visible' ) )
+						return;
+					
+					if ( $this.parent().closest( '.menu-item-has-children' ).hasClass( 'mega-menu' ) )
 						return;
 
 					this.addEventListener('touchstart', function(e) {
