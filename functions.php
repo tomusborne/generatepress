@@ -302,11 +302,8 @@ function generate_scripts()
 	wp_enqueue_script( 'generate-navigation', get_template_directory_uri() . "/js/navigation{$suffix}.js", array( 'jquery' ), GENERATE_VERSION, true );
 	
 	// Add our hover or click dropdown menu scripts
-	if ( 'click' == $generate_settings[ 'nav_dropdown_type' ] || 'click-arrow' == $generate_settings[ 'nav_dropdown_type' ] ) {
-		wp_enqueue_script( 'generate-dropdown-click', get_template_directory_uri() . "/js/dropdown-click{$suffix}.js", array( 'jquery' ), GENERATE_VERSION, true );
-	} else {
-		wp_enqueue_script( 'generate-dropdown', get_template_directory_uri() . "/js/dropdown{$suffix}.js", array( 'jquery' ), GENERATE_VERSION, true );
-	}
+	$click = ( 'click' == $generate_settings[ 'nav_dropdown_type' ] || 'click-arrow' == $generate_settings[ 'nav_dropdown_type' ] ) ? '-click' : '';
+	wp_enqueue_script( 'generate-dropdown', get_template_directory_uri() . "/js/dropdown{$click}{$suffix}.js", array( 'jquery' ), GENERATE_VERSION, true );
 	
 	// Add our navigation search if it's enabled
 	if ( 'enable' == $generate_settings['nav_search'] ) {
