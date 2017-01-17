@@ -1352,7 +1352,6 @@ h4, h5, h6 {
 /* Footer bar aligned right */
 .footer-bar-align-right .copyright-bar {
 	float: left;
-	padding: 0 0 0 10px;
 }
 
 .footer-bar-align-right .footer-bar {
@@ -1364,7 +1363,6 @@ h4, h5, h6 {
 .footer-bar-align-left .copyright-bar {
 	float: right;
 	text-align: right;
-	padding: 0 10px 0 0;
 }
 
 .footer-bar-align-left .footer-bar {
@@ -1375,7 +1373,6 @@ h4, h5, h6 {
 .footer-bar-align-center .copyright-bar {
 	float: none;
 	text-align: center;
-	padding: 0 10px 0 10px;
 }
 
 .footer-bar-align-center .footer-bar {
@@ -1389,6 +1386,14 @@ h4, h5, h6 {
 	margin: 0 10px;
 	float: left;
 	padding: 0;
+}
+
+.footer-bar .widget_nav_menu li:first-child {
+	margin-left: 0;
+}
+
+.footer-bar .widget_nav_menu li:last-child {
+	margin-right: 0;
 }
 
 .footer-bar .widget_nav_menu li ul {

@@ -180,33 +180,25 @@ button.menu-toggle:focus {
 		padding-right: 10px;
 	}
 	
-	.footer-bar-active .site-info {
+	.site-info {
 		text-align: center;
 	}
 
-	.footer-bar-active .copyright-bar {
-		float: none;
-		padding-left: 0;
+	.copyright-bar {
+		float: none !important;
+		text-align: center !important;
 	}
 
 	.footer-bar {
-		float: none;
+		float: none !important;
+		text-align: center !important;
 		margin-bottom: 20px;
 	}
 	
-	.footer-bar-active .footer-bar .widget {
-		text-align: center;
-	}
-
 	.footer-bar .widget_nav_menu li {
-		margin: 0 10px;
 		float: none;
 		display: inline-block;
-		padding: 0;
-	}
-
-	.footer-bar .widget_nav_menu > div > ul {
-		float: none;
+		padding: 5px 0;
 	}
 	
 	.comment .children {
