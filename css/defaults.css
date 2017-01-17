@@ -1,13 +1,13 @@
 /* Spacing */
 .inside-header {
-    padding: 40px 40px 40px 40px;
+    padding: 40px;
 }
 .separate-containers .inside-article,
 .separate-containers .comments-area,
 .separate-containers .page-header,
 .separate-containers .paging-navigation,
 .one-container .site-content {
-    padding: 40px 40px 40px 40px;
+    padding: 40px;
 }
 .one-container.right-sidebar .site-main,
 .one-container.both-right .site-main {
@@ -28,7 +28,7 @@
     line-height: 60px;
 }
 .main-navigation .main-nav ul ul li a {
-    padding: 10px 20px 10px 20px;
+    padding: 10px 20px;
 }
 .main-navigation ul ul {
     top: 60px;
@@ -42,10 +42,10 @@
     line-height: 0px;
 }
 .widget-area .widget {
-    padding: 40px 40px 40px 40px;
+    padding: 40px;
 }
 .footer-widgets {
-    padding: 40px 0px 40px 0px;
+    padding: 40px 0px;
 }
 .site-info {
     padding: 20px 0px 20px 0px;
