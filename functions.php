@@ -125,6 +125,7 @@ function generate_get_defaults()
 		'footer_layout_setting' => 'fluid-footer',
 		'footer_inner_width' => 'contained',
 		'footer_widget_setting' => '3',
+		'footer_bar_alignment' => 'right',
 		'back_to_top' => '',
 		'background_color' => '#efefef',
 		'text_color' => '#3a3a3a',
