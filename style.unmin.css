@@ -1761,19 +1761,13 @@ nav .main-nav .mega-menu.mega-menu-col-3>ul>li {
 	width: 33.3333%;
 }
 
-nav .main-nav .mega-menu.mega-menu-col-4>ul>li {
-	width: 25%;
-}
-
 nav .main-nav .mega-menu.mega-menu-col-5>ul>li {
 	width: 20%;
 }
 
 nav .main-nav .mega-menu > ul > li > a:hover,
 nav .main-nav .mega-menu > ul > li > a:focus,
-nav .main-nav .mega-menu > ul > li.current-menu-item > a,
-nav .main-nav .mega-menu > ul > li.current-menu-parent > a,
-nav .main-nav .mega-menu > ul > li.current-menu-ancestor > a {
+nav .main-nav .mega-menu > ul > li[class*="current-"] > a {
 	background-color: transparent !important;
 }
 
