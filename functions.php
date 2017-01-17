@@ -286,7 +286,6 @@ function generate_scripts()
 	wp_enqueue_style( 'generate-style-grid', get_template_directory_uri() . "/css/unsemantic-grid{$suffix}.css", false, GENERATE_VERSION, 'all' );
 	wp_enqueue_style( 'generate-style', get_template_directory_uri() . '/style.css', array( 'generate-style-grid' ), GENERATE_VERSION, 'all' );
 	wp_enqueue_style( 'generate-mobile-style', get_template_directory_uri() . "/css/mobile{$suffix}.css", array( 'generate-style' ), GENERATE_VERSION, 'all' );
-	wp_add_inline_style( 'generate-style', generate_base_css() );
 	
 	// Add the child theme CSS if child theme is active.
 	if ( is_child_theme() )
@@ -536,6 +535,14 @@ function generate_base_css()
 
 	$output = str_replace(array("\r", "\n"), '', $output);
 	return $output;
+if ( ! function_exists( 'generate_add_base_inline_css' ) ) :
+/**
+ * Add our base inline CSS
+ * @since 1.3.42
+ */
+add_action( 'wp_enqueue_scripts','generate_add_base_inline_css', 40 );
+function generate_add_base_inline_css() {
+	wp_add_inline_style( 'generate-style', generate_base_css() );
 }
 endif;
 
