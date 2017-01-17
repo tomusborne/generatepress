@@ -18,15 +18,7 @@
     margin-left: 40px;
 }
 .one-container.both-sidebars .site-main {
-    margin: 0px 40px 0px 40px;
-}
-.ignore-x-spacing {
-    margin-right: -40px;
-    margin-bottom: 40px;
-    margin-left: -40px;
-}
-.ignore-xy-spacing {
-    margin: -40px -40px 40px -40px;
+    margin: 0px 40px;
 }
 .main-navigation .main-nav ul li a,
 .menu-toggle,
