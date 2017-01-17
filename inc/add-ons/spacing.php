@@ -165,17 +165,6 @@ function generate_spacing_css()
 		}
 	}
 	
-	$css->set_selector( '.ignore-x-spacing' );
-	$css->add_property( 'margin-right', '-' . absint( $spacing_settings['content_right'] ), '-' . absint( $og_defaults['content_right'] ), 'px' );
-	$css->add_property( 'margin-bottom', absint( $spacing_settings['content_bottom'] ), absint( $og_defaults['content_bottom'] ), 'px' );
-	$css->add_property( 'margin-left', '-' . absint( $spacing_settings['content_left'] ), '-' . absint( $og_defaults['content_left'] ), 'px' );
-	
-	$css->set_selector( '.ignore-xy-spacing' );
-	$css->add_property( 'margin-top', '-' . absint( $spacing_settings[ 'content_top' ] ), '-' . absint( $og_defaults[ 'content_top' ] ), 'px' );
-	$css->add_property( 'margin-right', '-' . absint( $spacing_settings[ 'content_right' ] ), '-' . absint( $og_defaults[ 'content_right' ] ), 'px' );
-	$css->add_property( 'margin-bottom', absint( $spacing_settings[ 'content_bottom' ] ), absint( $og_defaults[ 'content_bottom' ] ), 'px' );
-	$css->add_property( 'margin-left', '-' . absint( $spacing_settings[ 'content_left' ] ), '-' . absint( $og_defaults[ 'content_left' ] ), 'px' );
-	
 	// Navigation spacing
 	if ( '' !== generate_get_navigation_location() || is_customize_preview() ) {
 		// Menu item size
@@ -277,19 +266,7 @@ function generate_spacing_css()
 	// Add mobile padding to the content
 	$mobile = apply_filters( 'generate_mobile_breakpoint', '768px' );
 	$mobile_content_padding = ( isset( $spacing_settings[ 'mobile_content_padding' ] ) ) ? absint( $spacing_settings[ 'mobile_content_padding' ] ) : '30';
-	$output .= '@media (max-width:' . esc_attr( $mobile ) . ') {
-		.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content {
-			padding: ' . $mobile_content_padding . 'px;
-		}
-		.ignore-x-spacing {
-			margin: 0 -' . $mobile_content_padding . 'px ' . $mobile_content_padding . 'px -' . $mobile_content_padding . 'px;
-		}
-		.ignore-xy-spacing {
-			margin: -' . $mobile_content_padding . 'px -' . $mobile_content_padding . 'px ' . $mobile_content_padding . 'px -' . $mobile_content_padding . 'px;
-		}
-	}';
-
-	$output = str_replace(array("\r", "\n", "\t"), '', $output);
+	$output .= '@media (max-width:' . esc_attr( $mobile ) . ') {.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content {padding: ' . $mobile_content_padding . 'px;}}';
 	
 	// Allow us to hook CSS into our output
 	do_action( 'generate_spacing_css', $css );
