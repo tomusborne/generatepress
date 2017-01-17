@@ -26,7 +26,7 @@ function generatepress_classes_live_update( id, classes, selector, prefix ) {
 	wp.customize( 'generate_settings[' + id + ']', function( value ) {
 		value.bind( function( newval ) {
 			jQuery.each( classes, function( i, v ) {
-				jQuery( selector ).removeClass( v );
+				jQuery( selector ).removeClass( prefix + v );
 			});
 			jQuery( selector ).addClass( prefix + newval );
 		} );
@@ -205,7 +205,7 @@ function generatepress_classes_live_update( id, classes, selector, prefix ) {
 	/** 
 	 * Header alignment
 	 */
-	generatepress_classes_live_update( 'header_alignment_setting', [ 'header-aligned-left', 'header-aligned-center', 'header-aligned-right' ], 'body', 'header-aligned-' );
+	generatepress_classes_live_update( 'header_alignment_setting', [ 'left', 'center', 'right' ], 'body', 'header-aligned-' );
 	
 	/** 
 	 * Navigation width
@@ -292,7 +292,7 @@ function generatepress_classes_live_update( id, classes, selector, prefix ) {
 	/** 
 	 * Navigation alignment
 	 */
-	generatepress_classes_live_update( 'nav_alignment_setting', [ 'nav-aligned-left', 'nav-aligned-center', 'nav-aligned-right' ], 'body', 'nav-aligned-' );
+	generatepress_classes_live_update( 'nav_alignment_setting', [ 'left', 'center', 'right' ], 'body', 'nav-aligned-' );
 	
 	/** 
 	 * Footer width
