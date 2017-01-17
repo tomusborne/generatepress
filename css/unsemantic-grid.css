@@ -1506,6 +1506,14 @@
   }
   
   /* GP specific grid */
+  .inside-footer-widgets .inner-padding{
+	padding: 0 0 0 40px;
+  }
+  
+  .footer-widget-1{
+	margin-left:-40px;
+  }
+  
   .inside-footer-widgets > div {
     margin-bottom: 0;
   }
