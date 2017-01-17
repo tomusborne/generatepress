@@ -338,6 +338,11 @@ function generate_padding_css( $top, $right, $bottom, $left )
 	$padding_bottom = ( isset( $bottom ) && '' !== $bottom ) ? absint( $bottom ) . 'px ' : '0px ';
 	$padding_left = ( isset( $left ) && '' !== $left ) ? absint( $left ) . 'px' : '0px';
 	
+	// If all of our values are the same, we can return one value only
+	if ( ( absint( $padding_top ) === absint( $padding_right ) ) && ( absint( $padding_right ) === absint( $padding_bottom ) ) && ( absint( $padding_bottom ) === absint( $padding_left ) ) ) {
+		return $padding_left;
+	}
+	
 	return $padding_top . $padding_right . $padding_bottom . $padding_left;
 }
 endif;
