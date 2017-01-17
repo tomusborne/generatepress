@@ -99,6 +99,7 @@ function generate_body_classes( $classes )
 	
 	// Footer bar
 	$classes[] = ( is_active_sidebar( 'footer-bar' ) ) ? 'footer-bar-active' : '';
+	$classes[] = ( is_active_sidebar( 'footer-bar' ) && 'right' !== $generate_settings[ 'footer_bar_alignment' ] ) ? 'footer-bar-align-' . $generate_settings[ 'footer_bar_alignment' ] : '';
 
 	return $classes;
 }

@@ -1343,6 +1343,7 @@ h4, h5, h6 {
 	text-align: left;
 }
 
+/* Footer bar aligned right */
 .footer-bar-active .copyright-bar {
 	float: left;
 	padding-left: 10px;
@@ -1357,14 +1358,59 @@ h4, h5, h6 {
 	text-align: right;
 }
 
+.footer-bar .widget_nav_menu > div > ul {
+	float: right;
+}
+
+/* Footer bar aligned left */
+.footer-bar-active.footer-bar-align-left .copyright-bar {
+	float: right;
+	padding: 0 10px 0 0;
+}
+
+.footer-bar-active.footer-bar-align-left .footer-bar {
+	float: left;
+}
+
+.footer-bar-active.footer-bar-align-left .footer-bar .widget {
+	text-align: left;
+}
+
+.footer-bar-active.footer-bar-align-left .footer-bar .widget_nav_menu > div > ul {
+	float: left;
+}
+
+/* Footer bar aligned center */
+.footer-bar-active.footer-bar-align-center .copyright-bar {
+	float: none;
+	padding: 0 10px 0 10px;
+	text-align: center;
+}
+
+.footer-bar-active.footer-bar-align-center .footer-bar {
+	float: none;
+	margin-bottom: 10px;
+}
+
+.footer-bar-active.footer-bar-align-center .footer-bar .widget {
+	text-align: center;
+}
+
+.footer-bar-active.footer-bar-align-center .footer-bar .widget_nav_menu > div > ul {
+	float: none;
+}
+
+/* Footer bar menu */
 .footer-bar .widget_nav_menu li {
 	margin: 0 10px;
 	float: left;
 	padding: 0;
 }
 
-.footer-bar .widget_nav_menu > div > ul {
-	float: right;
+.footer-bar-align-center .footer-bar .widget_nav_menu li {
+	float: none;
+	display: inline-block;
+	margin: 0 5px;
 }
 
 .footer-bar .widget_nav_menu li ul {

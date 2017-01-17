@@ -780,6 +780,35 @@ function generate_customize_register( $wp_customize ) {
 		)
 	);
 	
+	// Add footer widget setting
+	$wp_customize->add_setting(
+		'generate_settings[footer_bar_alignment]',
+		array(
+			'default' => $defaults['footer_bar_alignment'],
+			'type' => 'option',
+			'sanitize_callback' => 'generate_sanitize_choices',
+			'transport' => 'postMessage'
+		)
+	);
+	
+	// Add footer widget control
+	$wp_customize->add_control(
+		'generate_settings[footer_bar_alignment]',
+		array(
+			'type' => 'select',
+			'label' => __( 'Footer Bar Alignment', 'generatepress' ),
+			'section' => 'generate_layout_footer',
+			'choices' => array(
+				'left' => __( 'Left','generatepress' ),
+				'center' => __( 'Center','generatepress' ),
+				'right' => __( 'Right','generatepress' )
+			),
+			'settings' => 'generate_settings[footer_bar_alignment]',
+			'priority' => 47,
+			'active_callback' => 'generate_is_footer_bar_active'
+		)
+	);
+	
 	// Add back to top setting
 	$wp_customize->add_setting(
 		'generate_settings[back_to_top]',
@@ -906,6 +935,18 @@ if ( ! function_exists( 'generate_is_posts_page' ) ) :
 function generate_is_posts_page()
 {
 	return ( is_home() || is_archive() || is_tax() ) ? true : false;
+}
+endif;
+
+if ( ! function_exists( 'generate_is_footer_bar_active' ) ) :
+/**
+ * Check to see if we're using our footer bar widget
+ *
+ * @since 1.3.42
+ */
+function generate_is_footer_bar_active() 
+{
+	return ( is_active_sidebar( 'footer-bar' ) ) ? true : false;
 }
 endif;
 
