@@ -47,9 +47,9 @@ function generate_spacing_get_defaults( $filter = true )
 		'footer_widget_container_bottom' => '40',
 		'footer_widget_container_left' => '0',
 		'footer_top' => '20',
-		'footer_right' => '10',
+		'footer_right' => '0',
 		'footer_bottom' => '20',
-		'footer_left' => '10',
+		'footer_left' => '0',
 	);
 	
 	if ( $filter )
@@ -337,11 +337,6 @@ function generate_padding_css( $top, $right, $bottom, $left )
 	$padding_right = ( isset( $right ) && '' !== $right ) ? absint( $right ) . 'px ' : '0px ';
 	$padding_bottom = ( isset( $bottom ) && '' !== $bottom ) ? absint( $bottom ) . 'px ' : '0px ';
 	$padding_left = ( isset( $left ) && '' !== $left ) ? absint( $left ) . 'px' : '0px';
-	
-	// If all of our values are the same, we can return one value only
-	if ( ( absint( $padding_top ) === absint( $padding_right ) ) && ( absint( $padding_right ) === absint( $padding_bottom ) ) && ( absint( $padding_bottom ) === absint( $padding_left ) ) ) {
-		return $padding_left;
-	}
 	
 	return $padding_top . $padding_right . $padding_bottom . $padding_left;
 }
