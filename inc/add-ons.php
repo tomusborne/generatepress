@@ -115,3 +115,24 @@ function generate_no_addons()
 		endif;
 }
 endif;
+
+if ( ! function_exists( 'generate_include_default_styles' ) ) :
+/** 
+ * Check whether we should include our defaults.css file
+ * @since 1.3.42
+ */
+function generate_include_default_styles() 
+{
+	// Check if Spacing and Typography add-ons are active
+	if ( defined( 'GENERATE_SPACING_VERSION' ) && defined( 'GENERATE_FONT_VERSION' ) ) {
+		// If neither of these functions exist, don't add our defaults.css
+		if ( function_exists( 'generate_include_spacing_defaults' ) && function_exists( 'generate_include_typography_defaults' ) ) {
+			return apply_filters( 'generate_include_default_styles', true );
+		} else {
+			return false;
+		}
+	}
+	
+	return apply_filters( 'generate_include_default_styles', true );
+}
+endif;

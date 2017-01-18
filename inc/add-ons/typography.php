@@ -23,7 +23,7 @@ if ( !function_exists('generate_get_default_fonts') ) :
 /**
  * Set default options
  */
-function generate_get_default_fonts()
+function generate_get_default_fonts( $filter = true )
 {
 	$generate_font_defaults = array(
 		'font_body' => 'Open Sans',
@@ -83,7 +83,10 @@ function generate_get_default_fonts()
 		'footer_font_size' => '15'
 	);
 	
-	return apply_filters( 'generate_font_option_defaults', $generate_font_defaults );
+	if ( $filter )
+		return apply_filters( 'generate_font_option_defaults', $generate_font_defaults );
+	
+	return $generate_font_defaults;
 }
 endif;
 
@@ -99,6 +102,8 @@ function generate_font_css()
 		get_option( 'generate_settings', array() ), 
 		generate_get_default_fonts() 
 	);
+	
+	$og_defaults = generate_get_default_fonts( false );
 
 	$css = new GeneratePress_CSS;
 	
@@ -118,86 +123,86 @@ function generate_font_css()
 	// Body
 	$css->set_selector( 'body, button, input, select, textarea' );
 	$css->add_property( 'font-family', $body_family );
-	$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'body_font_weight' ] ) );
-	$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'body_font_transform' ] ) );
-	$css->add_property( 'font-size', absint( $generate_settings[ 'body_font_size' ] ), 'px' );
+	$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'body_font_weight' ] ), $og_defaults[ 'body_font_weight' ] );
+	$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'body_font_transform' ] ), $og_defaults[ 'body_font_transform' ] );
+	$css->add_property( 'font-size', absint( $generate_settings[ 'body_font_size' ] ), $og_defaults[ 'body_font_size' ], 'px' );
 	
 	// Line hieght
 	$css->set_selector( 'body' );
-	$css->add_property( 'line-height', $generate_settings['body_line_height'] );
+	$css->add_property( 'line-height', $generate_settings['body_line_height'], $og_defaults['body_line_height'] );
 	
 	// Paragraph margin
 	$css->set_selector( 'p' );
-	$css->add_property( 'margin-bottom', $generate_settings['paragraph_margin'], 'em' );
+	$css->add_property( 'margin-bottom', $generate_settings['paragraph_margin'], $og_defaults['paragraph_margin'], 'em' );
 	
 	// Site title
 	$title = get_bloginfo( 'title' );
 	if ( '1' !== generate_get_setting( 'hide_title' ) && '' !== $title ) {
 		$css->set_selector( '.main-title' );
-		$css->add_property( 'font-family', $site_title_family );
-		$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'site_title_font_weight' ] ) );
-		$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'site_title_font_transform' ] ) );
-		$css->add_property( 'font-size', absint( $generate_settings[ 'site_title_font_size' ] ), 'px' );
+		$css->add_property( 'font-family', $og_defaults[ 'font_site_title' ] !== $generate_settings[ 'font_site_title' ] ? $site_title_family : null );
+		$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'site_title_font_weight' ] ), $og_defaults[ 'site_title_font_weight' ] );
+		$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'site_title_font_transform' ] ), $og_defaults[ 'site_title_font_transform' ] );
+		$css->add_property( 'font-size', absint( $generate_settings[ 'site_title_font_size' ] ), $og_defaults[ 'site_title_font_size' ], 'px' );
 	}
 	
 	// Site description
 	$tagline = get_bloginfo( 'description' );
 	if ( '1' !== generate_get_setting( 'hide_tagline' ) && '' !== $tagline ) {
 		$css->set_selector( '.site-description' );
-		$css->add_property( 'font-family', $site_tagline_family );
-		$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'site_tagline_font_weight' ] ) );
-		$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'site_tagline_font_transform' ] ) );
-		$css->add_property( 'font-size', absint( $generate_settings[ 'site_tagline_font_size' ] ), 'px' );
+		$css->add_property( 'font-family', $og_defaults[ 'font_site_tagline' ] !== $generate_settings[ 'font_site_tagline' ] ? $site_tagline_family : null );
+		$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'site_tagline_font_weight' ] ), $og_defaults[ 'site_tagline_font_weight' ] );
+		$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'site_tagline_font_transform' ] ), $og_defaults[ 'site_tagline_font_transform' ] );
+		$css->add_property( 'font-size', absint( $generate_settings[ 'site_tagline_font_size' ] ), $og_defaults[ 'site_tagline_font_size' ], 'px' );
 	}
 	
 	// Navigation
 	if ( '' !== generate_get_navigation_location() || is_customize_preview() ) {
 		$css->set_selector( '.main-navigation a, .menu-toggle' );
-		$css->add_property( 'font-family', $navigation_family );
-		$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'navigation_font_weight' ] ) );
-		$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'navigation_font_transform' ] ) );
-		$css->add_property( 'font-size', absint( $generate_settings[ 'navigation_font_size' ] ), 'px' );
+		$css->add_property( 'font-family', $og_defaults[ 'font_navigation' ] !== $generate_settings[ 'font_navigation' ] ? $navigation_family : null );
+		$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'navigation_font_weight' ] ), $og_defaults[ 'navigation_font_weight' ] );
+		$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'navigation_font_transform' ] ), $og_defaults[ 'navigation_font_transform' ] );
+		$css->add_property( 'font-size', absint( $generate_settings[ 'navigation_font_size' ] ), $og_defaults[ 'navigation_font_size' ], 'px' );
 		
 		// Sub-navigation font size
 		$css->set_selector( '.main-navigation .main-nav ul ul li a' );
-		$css->add_property( 'font-size', absint( $subnav_font_size ), 'px' );
+		$css->add_property( 'font-size', absint( $subnav_font_size ), false, 'px' );
 	}
 	
 	// Widget title
 	$css->set_selector( '.widget-title' );
-	$css->add_property( 'font-family', $widget_family );
-	$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'widget_title_font_weight' ] ) );
-	$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'widget_title_font_transform' ] ) );
-	$css->add_property( 'font-size', absint( $generate_settings[ 'widget_title_font_size' ] ), 'px' );
+	$css->add_property( 'font-family', $og_defaults[ 'font_widget_title' ] !== $generate_settings[ 'font_widget_title' ] ? $widget_family : null );
+	$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'widget_title_font_weight' ] ), $og_defaults[ 'widget_title_font_weight' ] );
+	$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'widget_title_font_transform' ] ), $og_defaults[ 'widget_title_font_transform' ] );
+	$css->add_property( 'font-size', absint( $generate_settings[ 'widget_title_font_size' ] ), $og_defaults[ 'widget_title_font_size' ], 'px' );
 	
 	// Widget font size
 	$css->set_selector( '.sidebar .widget, .footer-widgets .widget' );
-	$css->add_property( 'font-size', absint( $generate_settings['widget_content_font_size'] ), 'px' );
+	$css->add_property( 'font-size', absint( $generate_settings['widget_content_font_size'] ), $og_defaults['widget_content_font_size'], 'px' );
 	
 	// H1
 	$css->set_selector( 'h1' );
-	$css->add_property( 'font-family', $h1_family );
-	$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'heading_1_weight' ] ) );
-	$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'heading_1_transform' ] ) );
-	$css->add_property( 'font-size', absint( $generate_settings[ 'heading_1_font_size' ] ), 'px' );
+	$css->add_property( 'font-family', $og_defaults[ 'font_heading_1' ] !== $generate_settings[ 'font_heading_1' ] ? $h1_family : null );
+	$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'heading_1_weight' ] ), $og_defaults[ 'heading_1_weight' ] );
+	$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'heading_1_transform' ] ), $og_defaults[ 'heading_1_transform' ] );
+	$css->add_property( 'font-size', absint( $generate_settings[ 'heading_1_font_size' ] ), $og_defaults[ 'heading_1_font_size' ], 'px' );
 	
 	// H2
 	$css->set_selector( 'h2' );
-	$css->add_property( 'font-family', $h2_family );
-	$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'heading_2_weight' ] ) );
-	$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'heading_2_transform' ] ) );
-	$css->add_property( 'font-size', absint( $generate_settings[ 'heading_2_font_size' ] ), 'px' );
+	$css->add_property( 'font-family', $og_defaults[ 'font_heading_2' ] !== $generate_settings[ 'font_heading_2' ] ? $h2_family : null );
+	$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'heading_2_weight' ] ), $og_defaults[ 'heading_2_weight' ] );
+	$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'heading_2_transform' ] ), $og_defaults[ 'heading_2_transform' ] );
+	$css->add_property( 'font-size', absint( $generate_settings[ 'heading_2_font_size' ] ), $og_defaults[ 'heading_2_font_size' ], 'px' );
 	
 	// H3
 	$css->set_selector( 'h3' );
-	$css->add_property( 'font-family', $h3_family );
-	$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'heading_3_weight' ] ) );
-	$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'heading_3_transform' ] ) );
-	$css->add_property( 'font-size', absint( $generate_settings[ 'heading_3_font_size' ] ), 'px' );
+	$css->add_property( 'font-family', $og_defaults[ 'font_heading_3' ] !== $generate_settings[ 'font_heading_3' ] ? $h3_family : null );
+	$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'heading_3_weight' ] ), $og_defaults[ 'heading_3_weight' ] );
+	$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'heading_3_transform' ] ), $og_defaults[ 'heading_3_transform' ] );
+	$css->add_property( 'font-size', absint( $generate_settings[ 'heading_3_font_size' ] ), $og_defaults[ 'heading_3_font_size' ], 'px' );
 	
 	// Footer
 	$css->set_selector( '.site-info' );
-	$css->add_property( 'font-size', absint( $generate_settings['footer_font_size'] ), 'px' );
+	$css->add_property( 'font-size', absint( $generate_settings['footer_font_size'] ), $og_defaults['footer_font_size'], 'px' );
 	
 	// Mobile CSS
 	$output = '';
@@ -220,7 +225,8 @@ if ( ! function_exists( 'generate_typography_scripts' ) ) :
  */
 add_action( 'wp_enqueue_scripts', 'generate_typography_scripts', 50 );
 function generate_typography_scripts() {
-	wp_add_inline_style( 'generate-style', generate_font_css() );
+	$name = ( wp_style_is( 'generate-defaults', 'enqueued' ) ) ? 'generate-defaults' : 'generate-style';
+	wp_add_inline_style( $name, generate_font_css() );
 }
 endif;
 

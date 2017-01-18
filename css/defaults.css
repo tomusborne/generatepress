@@ -1,0 +1,169 @@
+/* Spacing */
+.inside-header {
+    padding: 40px;
+}
+.separate-containers .inside-article,
+.separate-containers .comments-area,
+.separate-containers .page-header,
+.separate-containers .paging-navigation,
+.one-container .site-content {
+    padding: 40px;
+}
+.one-container.right-sidebar .site-main,
+.one-container.both-right .site-main {
+    margin-right: 40px;
+}
+.one-container.left-sidebar .site-main,
+.one-container.both-left .site-main {
+    margin-left: 40px;
+}
+.one-container.both-sidebars .site-main {
+    margin: 0px 40px;
+}
+.main-navigation .main-nav ul li a,
+.menu-toggle,
+.main-navigation .mobile-bar-items a {
+    padding-left: 20px;
+    padding-right: 20px;
+    line-height: 60px;
+}
+.main-navigation .main-nav ul ul li a {
+    padding: 10px 20px;
+}
+.main-navigation ul ul {
+    top: 60px;
+}
+.navigation-search {
+    height: 60px;
+    line-height: 0px;
+}
+.navigation-search input {
+    height: 60px;
+    line-height: 0px;
+}
+.widget-area .widget {
+    padding: 40px;
+}
+.footer-widgets {
+    padding: 40px 0px;
+}
+.site-info {
+    padding: 20px;
+}
+.right-sidebar.separate-containers .site-main {
+    margin: 20px 20px 20px 0px;
+}
+.left-sidebar.separate-containers .site-main {
+    margin: 20px 0px 20px 20px;
+}
+.both-sidebars.separate-containers .site-main {
+    margin: 20px;
+}
+.both-right.separate-containers .site-main {
+    margin: 20px 20px 20px 0px;
+}
+.separate-containers .site-main {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.separate-containers .page-header-image,
+.separate-containers .page-header-content,
+.separate-containers .page-header-image-single,
+.separate-containers .page-header-content-single {
+    margin-top: 20px;
+}
+.both-left.separate-containers .site-main {
+    margin: 20px 0px 20px 20px;
+}
+.separate-containers .inside-right-sidebar,
+.inside-left-sidebar {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.separate-containers .widget,
+.separate-containers .site-main > *,
+.separate-containers .page-header,
+.widget-area .main-navigation {
+    margin-bottom: 20px;
+}
+.both-left.separate-containers .inside-left-sidebar {
+    margin-right: 10px;
+}
+.both-left.separate-containers .inside-right-sidebar {
+    margin-left: 10px;
+}
+.both-right.separate-containers .inside-left-sidebar {
+    margin-right: 10px;
+}
+.both-right.separate-containers .inside-right-sidebar {
+    margin-left: 10px;
+}
+.menu-item-has-children ul .dropdown-menu-toggle {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: -10px;
+}
+.menu-item-has-children .dropdown-menu-toggle {
+    padding-right: 20px;
+}
+.one-container .sidebar .widget {
+    padding: 0px;
+}
+
+/* Typography */
+body,
+button,
+input,
+select,
+textarea {
+    font-family: "Open Sans", sans-serif;
+    font-size: 17px;
+}
+body {
+    line-height: 1.5;
+}
+p {
+    margin-bottom: 1.5em;
+}
+.main-title {
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 45px;
+}
+.site-description {
+    font-family: inherit;
+    font-size: 15px;
+}
+.main-navigation a,
+.menu-toggle {
+    font-family: inherit;
+    font-size: 15px;
+}
+.main-navigation .main-nav ul ul li a {
+    font-size: 14px;
+}
+.widget-title {
+    font-family: inherit;
+    font-size: 20px;
+}
+.sidebar .widget,
+.footer-widgets .widget {
+    font-size: 17px;
+}
+h1 {
+    font-family: inherit;
+    font-weight: 300;
+    font-size: 40px;
+}
+h2 {
+    font-family: inherit;
+    font-weight: 300;
+    font-size: 30px;
+}
+h3 {
+    font-family: inherit;
+    font-size: 20px;
+}
+.site-info {
+    font-size: 15px;
+}

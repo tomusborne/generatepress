@@ -287,6 +287,11 @@ function generate_scripts()
 	wp_enqueue_style( 'generate-style', get_template_directory_uri() . '/style.css', array( 'generate-style-grid' ), GENERATE_VERSION, 'all' );
 	wp_enqueue_style( 'generate-mobile-style', get_template_directory_uri() . "/css/mobile{$suffix}.css", array( 'generate-style' ), GENERATE_VERSION, 'all' );
 	
+	// Enqueue our default CSS styles in a static file
+	if ( generate_include_default_styles() ) {
+		wp_enqueue_style( 'generate-defaults', get_template_directory_uri() . "/css/defaults{$suffix}.css", array( 'generate-style' ), GENERATE_VERSION, 'all' );
+	}
+	
 	// Add the child theme CSS if child theme is active.
 	if ( is_child_theme() )
 		wp_enqueue_style( 'generate-child', get_stylesheet_uri(), true, filemtime( get_stylesheet_directory() . '/style.css' ), 'all' );
