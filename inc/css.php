@@ -20,15 +20,10 @@ class GeneratePress_CSS {
 		return $this;
 	}
 
-	public function add_property( $property, $value, $og_default = false, $unit = false )
+	public function add_property( $property, $value, $unit = false )
 	{
-		// Make sure our defaults.css file exists
-		if ( ! wp_style_is( 'generate-defaults', 'enqueued' ) ) {
-			$og_default = false;
-		}
-		
 		// If we don't have a value or our value is the same as our og default, bail
-		if ( empty( $value ) || $og_default == $value )
+		if ( empty( $value ) )
 			return false;
 		
 		$this->_css .= $property . ':' . $value . $unit . ';';
