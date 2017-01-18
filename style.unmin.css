@@ -477,6 +477,9 @@ input[type="file"] {
 .dropdown-click .secondary-navigation ul li.sfHover > ul.toggled-on {
 	display: block;
 }
+.dropdown-click nav ul ul ul {
+	background-color: transparent;
+}
 .nav-float-right .inside-header .main-navigation {
 	float:right;
 	clear: right;
@@ -1772,7 +1775,8 @@ nav .main-nav .mega-menu.mega-menu-col-5>ul>li {
 
 nav .main-nav .mega-menu > ul > li > a:hover,
 nav .main-nav .mega-menu > ul > li > a:focus,
-nav .main-nav .mega-menu > ul > li[class*="current-"] > a {
+nav .main-nav .mega-menu > ul > li[class*="current-"] > a,
+nav .main-nav .mega-menu ul ul {
 	background-color: transparent !important;
 }
 
