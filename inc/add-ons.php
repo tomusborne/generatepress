@@ -36,7 +36,7 @@ function generate_get_premium_url( $url = 'https://generatepress.com/premium' )
 	$url = trailingslashit( $url );
 	
 	// Set up args
-	$args = apply_filters( 'generatepress_premium_url_args', array(
+	$args = apply_filters( 'generate_premium_url_args', array(
 		'ref' => null,
 		'campaign' => null
 	) );
