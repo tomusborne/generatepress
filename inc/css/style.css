@@ -1,22 +1,3 @@
-.generate-metabox label {
-	display: block;
-	font-weight: bold;
-	margin-bottom: 5px;
-}
-
-.addon-metabox a {
-	display: inline-block;
-	padding: 2px;
-}
-
-.generate-metabox textarea {
-	width: 100%;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-	min-height: 200px;
-}
-
 .js .generate-metabox.postbox .hndle {
 	cursor: inherit;
 }
@@ -31,73 +12,6 @@
   content: "";
   display: table;
   clear: both;
-}
-
-.inactive {
-	background: #444;
-    color: #FFFFFF;
-	font-size:12px;
-	display: inline-block;
-	margin-right:5px;
-	margin-bottom: 5px;
-}
-
-.inactive a,
-.inactive a:visited,
-.inactive a:hover,
-.active a,
-.active a:visited,
-.active a:hover {
-	color:#FFF;
-	text-decoration: none;
-	padding: 6px 8px;
-	display: inline-block;
-}
-
-.inactive.need-license {
-	background: orange;
-}
-
-.active {
-	background: green;
-    color: #FFFFFF;
-	font-size:12px;
-	display: inline-block;
-	margin-right:5px;
-	margin-bottom: 5px;
-}
-
-.addon-container {
-	margin-bottom:5px;
-}
-
-.addon-title {
-	display: block;
-	font-weight: bold;
-	font-size:16px;
-	margin-bottom:10px;
-}
-
-.wp-list-table.addons tr:nth-child(2n) {
-	background: #FFF;
-}
-.wp-list-table.addons td,
-.wp-list-table.email td {
-	vertical-align: middle;
-}
-
-.appearance_page_generate-options .updated,
-.appearance_page_generate-options .error {
-	max-width: 1120px;
-	margin-left: 2px;
-	margin-top: 25px;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
-.addon-metabox {
-	text-align: center;
 }
 
 .customize-button a.button,
@@ -117,8 +31,180 @@
 	margin-bottom: 20px;
 }
 
+.addon-container:before,
+.addon-container:after {
+	content: ".";
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	font-size: 0;
+	line-height: 0;
+	width: 0;
+	height: 0;
+}
+.addon-container:after {
+	clear: both;
+}
+.premium-addons .gp-clear {
+	margin: 0 !important;
+	border: 0;
+	padding: 0 !important;
+}
+.premium-addons .add-on.gp-clear {
+	padding: 15px !important;
+	margin: 0 !important;
+	-moz-box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1) inset;
+	-webkit-box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1) inset;
+	box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1) inset;
+}
+.premium-addons .add-on:last-child {
+	border: 0 !important;
+}
+.addon-action {
+	float: right;
+	clear: right;
+}
+.addon-name {
+	float: left;
+}
+
+.addon-name a {
+	text-decoration: none;
+	font-weight: bold;
+}
+
+/* New admin */
+.clearfix:after,
+.clearfix:before {
+  content: ".";
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  font-size: 0;
+  line-height: 0;
+  width: 0;
+  height: 0;
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+.gp-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 20px;
+	box-sizing: border-box;
+}
+
+.gp-container a {
+	text-decoration: none;
+}
+
+.appearance_page_generate-options #wpcontent,
+.appearance_page_generate-options #wpbody-content .metabox-holder {
+	padding: 0;
+}
+
+.appearance_page_generate-options .wrap {
+	margin-top: 0;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.gp-masthead {
+    background-color: #fff;
+    text-align: center;
+    box-shadow: 0 1px 0 rgba(200,215,225,0.5), 0 1px 2px #DDD;
+	margin-bottom: 20px;
+	padding: 20px;
+}
+
+.gp-container .postbox {
+	box-shadow: 0 0 0 1px rgba(200, 215, 225, 0.5), 0 1px 2px #DDD;
+	border: 0;
+	min-width: initial;
+}
+
+.gp-masthead .gp-title {
+	float: left;
+}
+
+.gp-masthead .gp-title a {
+	font-size: 20px;
+	color: #000;
+	font-weight: 500;
+}
+
+.gp-masthead .gp-masthead-links {
+	float: right; 
+}
+
+.gp-masthead-links a {
+	display: inline-block;
+	margin: 0 10px;
+}
+
+.gp-masthead .gp-version {
+	display: inline-block;
+	background: #EFEFEF;
+	padding: 1px 3px;
+	border-radius: 2px;
+	font-size: 11px;
+	vertical-align: top;
+	margin-left: 5px;
+}
+
+.gp-options-footer {
+	text-align: center;
+}
+
+.appearance_page_generate-options .notice {
+    max-width: 100%;
+    margin: 0;
+}
+
+.popular-articles ul {
+    list-style-type: disc;
+    margin-left: 20px;
+	margin-bottom: 0;
+}
+
+.popular-articles .hndle a {
+	float:right;
+	font-size:13px;
+}
+
+@media (min-width: 768px) {
+	.hide-on-desktop {
+		display: none;
+	}
+	
+	.grid-70 {
+		float: left;
+		width: 70%;
+		box-sizing: border-box;
+		padding-right: 10px;
+	}
+
+	.grid-30 {
+		float: left;
+		width: 30%;
+		box-sizing: border-box;
+		padding-left: 10px;
+	}
+}
+
 @media (max-width: 767px) {
 	.hide-on-mobile {
 		display: none;
+	}
+	.gp-masthead .gp-masthead-links,
+	.gp-masthead .gp-title {
+		float: none;
+		text-align: center;
+	}
+	.gp-masthead .gp-title {
+		margin-bottom: 20px;
 	}
 }
