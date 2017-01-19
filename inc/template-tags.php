@@ -806,7 +806,7 @@ if ( ! function_exists( 'generate_construct_footer_widgets' ) ) :
  * Build our footer widgets
  * @since 1.3.42
  */
-add_action( 'generate_before_footer_content','generate_construct_footer_widgets' );
+add_action( 'generate_footer','generate_construct_footer_widgets', 5 );
 function generate_construct_footer_widgets() {
 	// Get how many widgets to show
 	$widgets = generate_get_footer_widgets();
