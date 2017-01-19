@@ -508,8 +508,24 @@ function generate_get_link_url() {
 endif;
 
 if ( ! function_exists( 'generate_header_items' ) ) :
+if ( ! function_exists( 'generate_construct_header' ) ) :
 /**
  * Build the header
+ * @since 1.3.42
+ */
+add_action( 'generate_header','generate_construct_header' );
+function generate_construct_header() {
+	?>
+	<header itemtype="http://schema.org/WPHeader" itemscope="itemscope" id="masthead" <?php generate_header_class(); ?>>
+		<div <?php generate_inside_header_class(); ?>>
+			<?php do_action( 'generate_before_header_content' ); ?>
+			<?php generate_header_items(); ?>
+			<?php do_action( 'generate_after_header_content' ); ?>
+		</div><!-- .inside-header -->
+	</header><!-- #masthead -->
+	<?php
+}
+endif;
  *
  * Wrapping this into a function allows us to customize the order
  *
