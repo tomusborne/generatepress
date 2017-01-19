@@ -507,7 +507,6 @@ function generate_get_link_url() {
 }
 endif;
 
-if ( ! function_exists( 'generate_header_items' ) ) :
 if ( ! function_exists( 'generate_construct_header' ) ) :
 /**
  * Build the header
@@ -526,6 +525,10 @@ function generate_construct_header() {
 	<?php
 }
 endif;
+
+if ( ! function_exists( 'generate_header_items' ) ) :
+/**
+ * Build the header contents
  *
  * Wrapping this into a function allows us to customize the order
  *
