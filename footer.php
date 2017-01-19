@@ -19,14 +19,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	do_action('generate_before_footer_content');
 	
 	?>
-	<footer class="site-info" itemtype="http://schema.org/WPFooter" itemscope="itemscope">
-		<div class="inside-site-info <?php if ( 'full-width' !== generate_get_setting( 'footer_inner_width' ) ) : ?>grid-container grid-parent<?php endif; ?>">
-			<?php do_action( 'generate_before_copyright' ); ?>
-			<div class="copyright-bar">
-				<?php do_action( 'generate_credits' ); ?>
-			</div>
-		</div>
-	</footer><!-- .site-info -->
 	<?php do_action( 'generate_after_footer_content' ); ?>
 </div><!-- .site-footer -->
 

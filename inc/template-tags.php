@@ -899,6 +899,27 @@ function generate_construct_footer_widgets() {
 	do_action( 'generate_after_footer_widgets' );
 }
 endif;
+
+if ( ! function_exists( 'generate_construct_footer' ) ) :
+/**
+ * Build our footer
+ * @since 1.3.42
+ */
+add_action( 'generate_footer','generate_construct_footer' );
+function generate_construct_footer() {
+	?>
+	<footer class="site-info" itemtype="http://schema.org/WPFooter" itemscope="itemscope">
+		<div class="inside-site-info <?php if ( 'full-width' !== generate_get_setting( 'footer_inner_width' ) ) : ?>grid-container grid-parent<?php endif; ?>">
+			<?php do_action( 'generate_before_copyright' ); ?>
+			<div class="copyright-bar">
+				<?php do_action( 'generate_credits' ); ?>
+			</div>
+		</div>
+	</footer><!-- .site-info -->
+	<?php
+}
+endif;
+
 if ( ! function_exists( 'generate_footer_bar' ) ) :
 add_action( 'generate_before_copyright','generate_footer_bar', 15 );
 function generate_footer_bar() {
