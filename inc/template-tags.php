@@ -921,11 +921,14 @@ function generate_construct_footer() {
 endif;
 
 if ( ! function_exists( 'generate_footer_bar' ) ) :
+/**
+ * Build our footer bar
+ * @since 1.3.42
+ */
 add_action( 'generate_before_copyright','generate_footer_bar', 15 );
 function generate_footer_bar() {
 	if ( ! is_active_sidebar( 'footer-bar' ) )
 		return;
-	
 	?>
 	<div class="footer-bar">
 		<?php dynamic_sidebar( 'footer-bar' ); ?>
