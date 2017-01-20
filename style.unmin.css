@@ -1350,6 +1350,7 @@ h4, h5, h6 {
 
 .footer-bar .widget_nav_menu > div > ul {
 	display: inline-block;
+	vertical-align: top;
 }
 
 /* Footer bar aligned right */
