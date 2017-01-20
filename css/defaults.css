@@ -110,6 +110,14 @@
     padding: 0px;
 }
 
+.site-footer .footer-widgets-container .inner-padding {
+	padding:0px 0px 0px 40px;
+}
+
+.site-footer .footer-widgets-container .inside-footer-widgets {
+	margin-left:-40px;
+}
+
 /* Typography */
 body,
 button,

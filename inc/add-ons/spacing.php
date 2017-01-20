@@ -225,10 +225,10 @@ function generate_spacing_css()
 	
 		// Footer widget separator
 		$css->set_selector( '.site-footer .footer-widgets-container .inner-padding' );
-		$css->add_property( 'padding', generate_padding_css( '0', '0', '0', $spacing_settings[ 'footer_widget_separator' ] ) );
+		$css->add_property( 'padding', generate_padding_css( '0', '0', '0', $spacing_settings[ 'footer_widget_separator' ] ), generate_padding_css( '0', '0', '0', $og_defaults[ 'footer_widget_separator' ] ) );
 	
 		$css->set_selector( '.site-footer .footer-widgets-container .inside-footer-widgets' );
-		$css->add_property( 'margin-left', '-' . $spacing_settings[ 'footer_widget_separator' ], false, 'px' );
+		$css->add_property( 'margin-left', '-' . absint( $spacing_settings[ 'footer_widget_separator' ] ), '-' . absint( $og_defaults[ 'footer_widget_separator' ] ), 'px' );
 	}
 	
 	// Footer padding
