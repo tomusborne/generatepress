@@ -46,6 +46,7 @@ function generate_spacing_get_defaults( $filter = true )
 		'footer_widget_container_right' => '40',
 		'footer_widget_container_bottom' => '40',
 		'footer_widget_container_left' => '40',
+		'footer_widget_separator' => '40',
 		'footer_top' => '20',
 		'footer_right' => '20',
 		'footer_bottom' => '20',
@@ -221,6 +222,13 @@ function generate_spacing_css()
 		// Footer widget padding
 		$css->set_selector( '.footer-widgets' );
 		$css->add_property( 'padding', generate_padding_css( $spacing_settings[ 'footer_widget_container_top' ], $spacing_settings[ 'footer_widget_container_right' ], $spacing_settings[ 'footer_widget_container_bottom' ], $spacing_settings[ 'footer_widget_container_left' ] ), generate_padding_css( $og_defaults[ 'footer_widget_container_top' ], $og_defaults[ 'footer_widget_container_right' ], $og_defaults[ 'footer_widget_container_bottom' ], $og_defaults[ 'footer_widget_container_left' ] ) );
+	
+		// Footer widget separator
+		$css->set_selector( '.site-footer .footer-widgets-container .inner-padding' );
+		$css->add_property( 'padding', generate_padding_css( '0', '0', '0', $spacing_settings[ 'footer_widget_separator' ] ) );
+	
+		$css->set_selector( '.site-footer .footer-widgets-container .inside-footer-widgets' );
+		$css->add_property( 'margin-left', '-' . $spacing_settings[ 'footer_widget_separator' ], false, 'px' );
 	}
 	
 	// Footer padding

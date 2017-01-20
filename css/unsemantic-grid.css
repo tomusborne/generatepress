@@ -1466,14 +1466,6 @@
   }
   
   /* GP specific grid */
-  .site-footer:not(.grid-container) .inside-footer-widgets.grid-container .inner-padding{
-	padding: 0 0 0 40px;
-  }
-  
-  .site-footer:not(.grid-container) .inside-footer-widgets.grid-container .footer-widget-1{
-	margin-left:-40px;
-  }
-  
   .inside-footer-widgets > div {
     margin-bottom: 0;
   }
