@@ -698,7 +698,7 @@ if ( ! function_exists( 'generate_update_logo_setting' ) ) :
  *
  * @since 1.3.29
  */
-add_action( 'after_setup_theme', 'generate_update_logo_setting' );
+add_action( 'admin_init', 'generate_update_logo_setting' );
 function generate_update_logo_setting() 
 {
 	// If we're not running WordPress 4.5, bail.
