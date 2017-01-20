@@ -429,7 +429,7 @@ if ( ! function_exists( 'generate_inside_footer_classes' ) ) :
 add_filter( 'generate_inside_footer_class', 'generate_inside_footer_classes');
 function generate_inside_footer_classes( $classes )
 {
-	$classes[] = 'inside-footer-widgets';
+	$classes[] = 'footer-widgets-container';
 	$inside_footer_width = generate_get_setting( 'footer_inner_width' );
 	
 	if ( $inside_footer_width !== 'full-width' ) :

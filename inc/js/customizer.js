@@ -314,11 +314,19 @@ function generatepress_classes_live_update( id, classes, selector, prefix ) {
 	wp.customize( 'generate_settings[footer_inner_width]', function( value ) {
 		value.bind( function( newval ) {
 			if ( 'full-width' == newval ) {
-				$( '.inside-footer-widgets' ).removeClass( 'grid-container' ).removeClass( 'grid-parent' );
+				if ( $( '.footer-widgets-container' ).length ) {
+					$( '.footer-widgets-container' ).removeClass( 'grid-container' ).removeClass( 'grid-parent' );
+				} else {
+					$( '.inside-footer-widgets' ).removeClass( 'grid-container' ).removeClass( 'grid-parent' );
+				}
 				$( '.inside-site-info' ).removeClass( 'grid-container' ).removeClass( 'grid-parent' );
 			}
 			if ( 'contained' == newval ) {
-				$( '.inside-footer-widgets' ).addClass( 'grid-container' ).addClass( 'grid-parent' );
+				if ( $( '.footer-widgets-container' ).length ) {
+					$( '.footer-widgets-container' ).addClass( 'grid-container' ).addClass( 'grid-parent' );
+				} else {
+					$( '.inside-footer-widgets' ).addClass( 'grid-container' ).addClass( 'grid-parent' );
+				}
 				$( '.inside-site-info' ).addClass( 'grid-container' ).addClass( 'grid-parent' );
 			}
 		} );
