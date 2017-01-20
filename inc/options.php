@@ -31,10 +31,7 @@ endif;
 if ( ! function_exists( 'generate_options_styles' ) ) :
 function generate_options_styles() 
 {
-     wp_enqueue_style( 
-        'generate-options', 
-        get_template_directory_uri() . '/inc/css/style.css'
-    );
+	wp_enqueue_style( 'generate-options', get_template_directory_uri() . '/inc/css/style.css', array(), GENERATE_VERSION );
 }
 endif;
 
