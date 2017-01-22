@@ -31,7 +31,7 @@
     padding: 10px 20px;
 }
 .main-navigation ul ul {
-    top: 60px;
+    top: auto;
 }
 .navigation-search {
     height: 60px;
