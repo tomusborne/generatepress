@@ -1,0 +1,59 @@
+.ui-slider-horizontal.slider.ui-corner-all,
+.ui-slider-horizontal.slider .ui-corner-all {
+  border-radius: 0;
+}
+
+.ui-slider-horizontal.slider.ui-slider {
+  border: 0;
+  background: #dddddd;
+  border-radius: 7px;
+  margin-top: 12px;
+}
+
+.ui-slider-horizontal.slider.ui-slider-horizontal {
+  height: 6px;
+}
+
+.ui-slider-horizontal.slider.ui-slider-vertical {
+  height: 15em;
+  width: 6px;
+}
+
+.ui-slider-horizontal.slider .ui-slider-handle {
+  width: 16px;
+  height: 16px;
+  background: #0085ba;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+.ui-slider-horizontal.slider.ui-slider-horizontal .ui-slider-handle {
+  top: 50%;
+  margin-top: -8px;
+}
+
+.ui-slider-horizontal.slider.ui-slider-vertical .ui-slider-handle {
+  left: 50%;
+  margin-left: -8px;
+}
+
+.ui-slider-horizontal.slider .ui-slider-handle:hover {
+  opacity: .8;
+}
+
+.ui-slider-horizontal.slider .ui-slider-range {
+  border: 0;
+  border-radius: 7;
+  background: #f99;
+}
+
+.ui-slider-horizontal.slider.ui-slider-horizontal .ui-slider-range {
+  top: 0;
+  height: 6px;
+}
+
+.ui-slider-horizontal.slider.ui-slider-vertical .ui-slider-range {
+  left: 0;
+  width: 6px;
+}

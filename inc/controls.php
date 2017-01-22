@@ -36,7 +36,7 @@ class Generate_Customize_Width_Slider_Control extends WP_Customize_Control
 				</span>
 			</p>
 		</label>
-		<div class="slider <# if ( '' !== data.default_value ) { #>show-reset<# } #>"></div>
+		<div class="slider gp-flat-slider <# if ( '' !== data.default_value ) { #>show-reset<# } #>"></div>
 		<# if ( '' !== data.default_value ) { #><span style="cursor:pointer;" title="{{ data.reset_title }}" class="gp-slider-default-value" data-default-value="{{ data.default_value }}"><span class="gp-customizer-icon-undo" aria-hidden="true"></span><span class="screen-reader-text">{{ data.reset_title }}</span></span><# } #>
 		<?php
 	}
@@ -47,8 +47,8 @@ class Generate_Customize_Width_Slider_Control extends WP_Customize_Control
 		wp_enqueue_script( 'jquery-ui-core' );
 		wp_enqueue_script( 'jquery-ui-slider' );
 		wp_enqueue_script( 'generate-slider-js', get_template_directory_uri() . '/inc/js/customcontrol.slider.js', array('jquery-ui-slider','customize-controls'), GENERATE_VERSION );
-		wp_enqueue_style('jquery-ui-slider', get_template_directory_uri() . '/inc/css/jquery-ui.structure.css');
-		wp_enqueue_style('jquery-ui-slider-theme', get_template_directory_uri() . '/inc/css/jquery-ui.theme.css');
+		wp_enqueue_style( 'generate-ui-slider', get_template_directory_uri() . '/inc/css/jquery-ui.structure.css', array(), GENERATE_VERSION );
+		wp_enqueue_style( 'generate-flat-slider', get_template_directory_uri() . '/inc/css/range-slider.css', array(), GENERATE_VERSION );
 		
 	}
 }
