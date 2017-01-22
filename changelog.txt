@@ -1,5 +1,42 @@
 === changelog ===
 
+= () - 1.3.42 =
+* New: Added a new filter to allow affiliate IDs and campaigns in the Dashboard: generate_premium_url_args
+* New: Added a new filter for the meta viewport: generate_meta_viewport
+* New: Add preconnect and crossorigin to Google Fonts call
+* New: Add mobile content padding defaults
+* New: Improve copyright area and add new filter: generate_copyright
+* New: Footer bar widget area in Copyright bar
+* New: Footer bar alignment options in the Customizer
+* New: defaults.css file with default Customizer styles
+* New: generate_header hook
+* New: generate_footer hook
+* Tweak: Revert search widget styling
+* Tweak: Improve how we add the navigation dropdown arrow - arrows now require WP version > 4.3
+* Tweak: Only add pingback URL if needed
+* Tweak: Clean up navigation-search.js
+* Tweak: Tell screen readers not to read icons
+* Tweak: Set default color palettes
+* Tweak: Increase default copyright font size to 15px
+* Tweak: Change Navigation Position label to Navigation Location
+* Tweak: Let the sub-menu figure out the top position automatically
+* Tweak: Simplify mobile menu CSS
+* Tweak: Sanitize nonce values in our meta boxes
+* Tweak: Fix singular title for comments
+* Tweak: Update documenation URL in the Dashboard
+* Tweak: Completely re-build Appearance > GeneratePress
+* Tweak: Remove Disable Elements CSS
+* Tweak: Add new dynamic CSS class for writing CSS from options
+* Tweak: Only write dynamic CSS if the option is different from the defaults.css value
+* Tweak: Remove ignore-x and ignore-xy spacing classes
+* Tweak: Shorthand dynamic spacing CSS if possible
+* Tweak: Add left and right padding defaults to the copyright bar
+* Tweak: Improve spacing between footer widgets
+* Tweak: Reduce number of selectors needed for mobile and tablet class in the grid
+* Tweak: Move footer widgets into a function
+* Tweak: Move header into a function
+* Tweak: Move footer into a function
+
 = (11/30/2016) - 1.3.41 =
 * Fix: Align navigation search to the top. Fixes a bug when mobile menu is open.
 * Fix: Remove parameter in generate_display_google_fonts() to avoid error in child theme configurators
