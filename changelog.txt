@@ -36,6 +36,7 @@
 * Tweak: Move footer widgets into a function
 * Tweak: Move header into a function
 * Tweak: Move footer into a function
+* Tweak: Change range slider style to fit core WP style
 
 = (11/30/2016) - 1.3.41 =
 * Fix: Align navigation search to the top. Fixes a bug when mobile menu is open.
