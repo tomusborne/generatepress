@@ -123,16 +123,26 @@ if ( ! function_exists( 'generate_include_default_styles' ) ) :
  */
 function generate_include_default_styles() 
 {
-	// Check if Spacing and Typography add-ons are active
-	if ( defined( 'GENERATE_SPACING_VERSION' ) && defined( 'GENERATE_FONT_VERSION' ) ) {
-		// If neither of these functions exist, don't add our defaults.css
-		if ( function_exists( 'generate_include_spacing_defaults' ) && function_exists( 'generate_include_typography_defaults' ) ) {
-			return apply_filters( 'generate_include_default_styles', true );
-		} else {
-			return false;
+	// We want to include defaults.css
+	$include = true;
+	
+	// If Spacing is activated
+	if ( defined( 'GENERATE_SPACING_VERSION' ) ) {
+		// If we don't have this function, we can't include defaults.css
+		if ( ! function_exists( 'generate_include_spacing_defaults' ) ) {
+			$include = false;
 		}
 	}
 	
-	return apply_filters( 'generate_include_default_styles', true );
+	// If Typography is activated
+	if ( defined( 'GENERATE_FONT_VERSION' ) ) {
+		// If we don't have this function, we can't include defaults.css
+		if ( ! function_exists( 'generate_include_typography_defaults' ) ) {
+			$include = false;
+		}
+	}
+	
+	// Return our result through a filter
+	return apply_filters( 'generate_include_default_styles', $include );
 }
 endif;
