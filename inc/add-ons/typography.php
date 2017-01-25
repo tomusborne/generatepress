@@ -136,24 +136,18 @@ function generate_font_css()
 	$css->add_property( 'margin-bottom', $generate_settings['paragraph_margin'], $og_defaults['paragraph_margin'], 'em' );
 	
 	// Site title
-	$title = get_bloginfo( 'title' );
-	if ( '1' !== generate_get_setting( 'hide_title' ) && '' !== $title ) {
-		$css->set_selector( '.main-title' );
-		$css->add_property( 'font-family', $og_defaults[ 'font_site_title' ] !== $generate_settings[ 'font_site_title' ] ? $site_title_family : null );
-		$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'site_title_font_weight' ] ), $og_defaults[ 'site_title_font_weight' ] );
-		$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'site_title_font_transform' ] ), $og_defaults[ 'site_title_font_transform' ] );
-		$css->add_property( 'font-size', absint( $generate_settings[ 'site_title_font_size' ] ), $og_defaults[ 'site_title_font_size' ], 'px' );
-	}
+	$css->set_selector( '.main-title' );
+	$css->add_property( 'font-family', $og_defaults[ 'font_site_title' ] !== $generate_settings[ 'font_site_title' ] ? $site_title_family : null );
+	$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'site_title_font_weight' ] ), $og_defaults[ 'site_title_font_weight' ] );
+	$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'site_title_font_transform' ] ), $og_defaults[ 'site_title_font_transform' ] );
+	$css->add_property( 'font-size', absint( $generate_settings[ 'site_title_font_size' ] ), $og_defaults[ 'site_title_font_size' ], 'px' );
 	
 	// Site description
-	$tagline = get_bloginfo( 'description' );
-	if ( '1' !== generate_get_setting( 'hide_tagline' ) && '' !== $tagline ) {
-		$css->set_selector( '.site-description' );
-		$css->add_property( 'font-family', $og_defaults[ 'font_site_tagline' ] !== $generate_settings[ 'font_site_tagline' ] ? $site_tagline_family : null );
-		$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'site_tagline_font_weight' ] ), $og_defaults[ 'site_tagline_font_weight' ] );
-		$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'site_tagline_font_transform' ] ), $og_defaults[ 'site_tagline_font_transform' ] );
-		$css->add_property( 'font-size', absint( $generate_settings[ 'site_tagline_font_size' ] ), $og_defaults[ 'site_tagline_font_size' ], 'px' );
-	}
+	$css->set_selector( '.site-description' );
+	$css->add_property( 'font-family', $og_defaults[ 'font_site_tagline' ] !== $generate_settings[ 'font_site_tagline' ] ? $site_tagline_family : null );
+	$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'site_tagline_font_weight' ] ), $og_defaults[ 'site_tagline_font_weight' ] );
+	$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'site_tagline_font_transform' ] ), $og_defaults[ 'site_tagline_font_transform' ] );
+	$css->add_property( 'font-size', absint( $generate_settings[ 'site_tagline_font_size' ] ), $og_defaults[ 'site_tagline_font_size' ], 'px' );
 	
 	// Navigation
 	if ( '' !== generate_get_navigation_location() || is_customize_preview() ) {
