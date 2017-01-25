@@ -1,5 +1,11 @@
 === changelog ===
 
+= (1/25/2017) - 1.3.43 =
+* Fix: Make sure defaults.css loads only if it won't cause conflicts
+* Fix: Widget padding issue when set to one container
+* Tweak: Add .main-title and .site-description colors all the time as they might be added in GP Hooks
+* Tweak: Add .main-title and .site-description typography CSS all the time as they might be added in GP Hooks
+
 = (1/24/2017) - 1.3.42 =
 * New: Added a new filter to allow affiliate IDs and campaigns in the Dashboard: generate_premium_url_args
 * New: Added a new filter for the meta viewport: generate_meta_viewport
