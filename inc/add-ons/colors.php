@@ -117,20 +117,12 @@ function generate_advanced_css()
 	$css->add_property( 'color', esc_attr( $generate_settings[ 'header_link_hover_color' ] ) );
 	
 	// Site title
-	$title = get_bloginfo( 'title' );
-	if ( '1' !== generate_get_setting( 'hide_title' ) && '' !== $title ) {
-		// Site title color
-		$css->set_selector( '.main-title a,.main-title a:hover,.main-title a:visited' );
-		$css->add_property( 'color', esc_attr( $generate_settings[ 'site_title_color' ] ) );
-	}
+	$css->set_selector( '.main-title a,.main-title a:hover,.main-title a:visited' );
+	$css->add_property( 'color', esc_attr( $generate_settings[ 'site_title_color' ] ) );
 	
 	// Site description
-	$tagline = get_bloginfo( 'description' );
-	if ( '1' !== generate_get_setting( 'hide_tagline' ) && '' !== $tagline ) {
-		// Site description color
-		$css->set_selector( '.site-description' );
-		$css->add_property( 'color', esc_attr( $generate_settings[ 'site_tagline_color' ] ) );
-	}
+	$css->set_selector( '.site-description' );
+	$css->add_property( 'color', esc_attr( $generate_settings[ 'site_tagline_color' ] ) );
 	
 	// Navigation styling
 	if ( '' !== generate_get_navigation_location() || is_customize_preview() ) {
