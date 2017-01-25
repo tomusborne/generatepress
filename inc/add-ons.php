@@ -123,14 +123,11 @@ if ( ! function_exists( 'generate_include_default_styles' ) ) :
  */
 function generate_include_default_styles() 
 {
-	// We want to include defaults.css
-	$include = true;
-	
 	// If Spacing is activated
 	if ( defined( 'GENERATE_SPACING_VERSION' ) ) {
 		// If we don't have this function, we can't include defaults.css
 		if ( ! function_exists( 'generate_include_spacing_defaults' ) ) {
-			$include = false;
+			return false;
 		}
 	}
 	
@@ -138,11 +135,11 @@ function generate_include_default_styles()
 	if ( defined( 'GENERATE_FONT_VERSION' ) ) {
 		// If we don't have this function, we can't include defaults.css
 		if ( ! function_exists( 'generate_include_typography_defaults' ) ) {
-			$include = false;
+			return false;
 		}
 	}
 	
-	// Return our result through a filter
-	return apply_filters( 'generate_include_default_styles', $include );
+	// We made it this far, return true through a filter
+	return apply_filters( 'generate_include_default_styles', true );
 }
 endif;
