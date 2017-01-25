@@ -259,7 +259,7 @@ function generate_spacing_css()
 		// This way, the user can still adjust the padding and it will work (unless they want 40px padding)
 		// We'll also remove the padding if there's no color difference between the widgets and content background color
 		if ( ( '40' == $spacing_settings[ 'widget_top' ] && '40' == $spacing_settings[ 'widget_right' ] && '40' == $spacing_settings[ 'widget_bottom' ] && '40' == $spacing_settings[ 'widget_left' ] ) && $colors_match ) {
-			$output .= '.sidebar .widget{padding:0px;}';
+			$output .= '.one-container .sidebar .widget{padding:0px;}';
 		}
 	}
 	
