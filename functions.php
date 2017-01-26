@@ -517,7 +517,7 @@ function generate_base_css()
 	// Allow us to hook CSS into our output
 	do_action( 'generate_base_css', $css );
 	
-	return $css->css_output();
+	return apply_filters( 'generate_base_css_output', $css->css_output() );
 }
 endif;
 

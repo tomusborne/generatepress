@@ -209,7 +209,7 @@ function generate_font_css()
 	// Allow us to hook CSS into our output
 	do_action( 'generate_typography_css', $css );
 	
-	return $css->css_output() . $output;
+	return apply_filters( 'generate_typography_css_output', $css->css_output() . $output );
 }
 endif;
 

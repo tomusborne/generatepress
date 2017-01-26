@@ -271,7 +271,7 @@ function generate_spacing_css()
 	// Allow us to hook CSS into our output
 	do_action( 'generate_spacing_css', $css );
 	
-	return $css->css_output() . $output;
+	return apply_filters( 'generate_spacing_css_output', $css->css_output() . $output );
 }
 endif;
 

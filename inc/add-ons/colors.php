@@ -323,7 +323,7 @@ function generate_advanced_css()
 	do_action( 'generate_colors_css', $css );
 	
 	// Return our dynamic CSS
-	return $css->css_output();
+	return apply_filters( 'generate_colors_css_output', $css->css_output() );
 }
 endif;
 
