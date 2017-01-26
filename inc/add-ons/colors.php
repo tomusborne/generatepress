@@ -191,7 +191,7 @@ function generate_advanced_css()
 	}
 	
 	// Content
-	$css->set_selector( '.inside-article, .comments-area, .page-header,.one-container .container,.paging-navigation,.inside-page-header' );
+	$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .one-container .container, .separate-containers .paging-navigation, .inside-page-header' );
 	$css->add_property( 'color', esc_attr( $generate_settings[ 'content_text_color' ] ) );
 	$css->add_property( 'background-color', esc_attr( $generate_settings[ 'content_background_color' ] ) );
 	
