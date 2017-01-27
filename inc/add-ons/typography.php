@@ -312,7 +312,7 @@ function generate_enqueue_google_fonts() {
 }
 endif;
 
-if ( ! function_exists( 'generate_fonts_customize_register' ) ) :
+if ( ! function_exists( 'generate_fonts_customize_register' ) && ! function_exists( 'generate_default_fonts_customize_register' ) ) :
 add_action( 'customize_register', 'generate_default_fonts_customize_register' );
 function generate_default_fonts_customize_register( $wp_customize ) {
 
