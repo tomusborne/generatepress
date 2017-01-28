@@ -20,6 +20,10 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 if ( ! function_exists( 'generate_spacing_get_defaults' ) ) :
+/**
+ * Set the default options
+ * @since 0.1
+ */
 function generate_spacing_get_defaults( $filter = true )
 {
 	$generate_spacing_defaults = array(
@@ -61,6 +65,10 @@ function generate_spacing_get_defaults( $filter = true )
 endif;
 
 if ( ! function_exists( 'generate_spacing_css' ) ) :
+/**
+ * Write our dynamic CSS
+ * @since 0.1
+ */
 function generate_spacing_css()
 {
 	$spacing_settings = wp_parse_args( 
@@ -331,6 +339,9 @@ function generate_mobile_search_spacing_fallback_css()
 endif;
 
 if ( ! function_exists( 'generate_padding_css' ) ) :
+/**
+ * Shorten our padding/margin values into shorthand form
+ */
 function generate_padding_css( $top, $right, $bottom, $left )
 {
 	$padding_top = ( isset( $top ) && '' !== $top ) ? absint( $top ) . 'px ' : '0px ';

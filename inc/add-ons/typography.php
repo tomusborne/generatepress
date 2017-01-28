@@ -313,6 +313,11 @@ function generate_enqueue_google_fonts() {
 endif;
 
 if ( ! function_exists( 'generate_fonts_customize_register' ) && ! function_exists( 'generate_default_fonts_customize_register' ) ) :
+/** 
+ * Build our Typography options
+ * Don't run if generate_fonts_customize_register (GP Premium) exists
+ * @since 0.1
+ */
 add_action( 'customize_register', 'generate_default_fonts_customize_register' );
 function generate_default_fonts_customize_register( $wp_customize ) {
 
@@ -578,6 +583,10 @@ function generate_default_fonts_customize_register( $wp_customize ) {
 endif;
 
 if ( ! function_exists( 'generate_typography_customize_preview_css' ) ) :
+/**
+ * Hide the hidden input control
+ * @since 1.3.40
+ */
 add_action('customize_controls_print_styles', 'generate_typography_customize_preview_css');
 function generate_typography_customize_preview_css() {
 	?>
@@ -847,6 +856,10 @@ function generate_get_font_family_css( $font, $settings, $default )
 endif;
 
 if ( ! function_exists( 'generate_typography_default_fonts' ) ) :
+/**
+ * Set the default system fonts
+ * @since 1.3.40
+ */
 function generate_typography_default_fonts() {
 	$fonts = array(
 		'inherit',
