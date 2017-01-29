@@ -200,7 +200,8 @@ function generate_font_css()
 	
 	// Mobile CSS
 	$output = '';
-	$mobile = apply_filters( 'generate_mobile_breakpoint', '(max-width:768px)' );
+	$mobile = apply_filters( 'generate_mobile_breakpoint', '768px' ); // to maintain compatibility
+	$mobile = apply_filters( 'generate_mobile_breakpoint_media', "(max-width: ${mobile})" );
 	$mobile_site_title = ( isset( $generate_settings[ 'mobile_site_title_font_size' ] ) ) ? $generate_settings[ 'mobile_site_title_font_size' ] : '30';
 	$mobile_h1 = ( isset( $generate_settings[ 'mobile_heading_1_font_size' ] ) ) ? $generate_settings[ 'mobile_heading_1_font_size' ] : '30';
 	$mobile_h2 = ( isset( $generate_settings[ 'mobile_heading_2_font_size' ] ) ) ? $generate_settings[ 'mobile_heading_2_font_size' ] : '25';
