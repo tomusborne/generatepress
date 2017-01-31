@@ -200,11 +200,11 @@ function generate_font_css()
 	
 	// Mobile CSS
 	$output = '';
-	$mobile = apply_filters( 'generate_mobile_breakpoint', '768px' );
+	$mobile = apply_filters( 'generate_mobile_media_query', '(max-width:768px)' );
 	$mobile_site_title = ( isset( $generate_settings[ 'mobile_site_title_font_size' ] ) ) ? $generate_settings[ 'mobile_site_title_font_size' ] : '30';
 	$mobile_h1 = ( isset( $generate_settings[ 'mobile_heading_1_font_size' ] ) ) ? $generate_settings[ 'mobile_heading_1_font_size' ] : '30';
 	$mobile_h2 = ( isset( $generate_settings[ 'mobile_heading_2_font_size' ] ) ) ? $generate_settings[ 'mobile_heading_2_font_size' ] : '25';
-	$output .= '@media (max-width:' . esc_attr( $mobile ) . ') {.main-title{font-size:' . absint( $mobile_site_title ) . 'px;}h1{font-size:' . absint( $mobile_h1 ) . 'px;}h2{font-size:' . absint( $mobile_h2 ) . 'px;}}';
+	$output .= '@media ' . esc_attr( $mobile ) . ' {.main-title{font-size:' . absint( $mobile_site_title ) . 'px;}h1{font-size:' . absint( $mobile_h1 ) . 'px;}h2{font-size:' . absint( $mobile_h2 ) . 'px;}}';
 	
 	// Allow us to hook CSS into our output
 	do_action( 'generate_typography_css', $css );

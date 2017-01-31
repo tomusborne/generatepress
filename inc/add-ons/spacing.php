@@ -272,9 +272,9 @@ function generate_spacing_css()
 	}
 	
 	// Add mobile padding to the content
-	$mobile = apply_filters( 'generate_mobile_breakpoint', '768px' );
+	$mobile = apply_filters( 'generate_mobile_media_query', '(max-width:768px)' );
 	$mobile_content_padding = ( isset( $spacing_settings[ 'mobile_content_padding' ] ) ) ? absint( $spacing_settings[ 'mobile_content_padding' ] ) : '30';
-	$output .= '@media (max-width:' . esc_attr( $mobile ) . ') {.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content {padding: ' . $mobile_content_padding . 'px;}}';
+	$output .= '@media ' . esc_attr( $mobile ) . ' {.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content {padding: ' . $mobile_content_padding . 'px;}}';
 	
 	// Allow us to hook CSS into our output
 	do_action( 'generate_spacing_css', $css );
