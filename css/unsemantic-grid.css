@@ -1464,21 +1464,4 @@
     clear: both;
     width: 100%;
   }
-  
-  /* GP specific grid */
-  .inside-footer-widgets > div {
-    margin-bottom: 0;
-  }
-	
-  .inside-footer-widgets > div:nth-child(odd) {
-    clear: none;
-  }
-	
-  .active-footer-widgets-3 .footer-widget-3 {
-	width: 33.33333%;
-  }
-  
-  .active-footer-widgets-5 .footer-widget-5 {
-    width: 20%;
-  }
 }
