@@ -119,7 +119,7 @@ button.menu-toggle:focus {
 	
 	.main-navigation .sf-menu > li.menu-item-float-right {
 		float: none !important;
-		display: inline-block;
+		display: inline-block !important;
 	}
 	
 	[class*="nav-float-"] .site-header .inside-header > * {
