@@ -27,11 +27,16 @@ class GeneratePress_CSS {
 			$og_default = false;
 		}
 		
+		// Add our unit to our value if it exists
+		if ( $unit && '' !== $unit ) {
+			$value = $value . $unit;
+		}
+		
 		// If we don't have a value or our value is the same as our og default, bail
 		if ( empty( $value ) || $og_default == $value )
 			return false;
 		
-		$this->_css .= $property . ':' . $value . $unit . ';';
+		$this->_css .= $property . ':' . $value . ';';
 		return $this;
 	}
 
