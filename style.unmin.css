@@ -378,10 +378,9 @@ input[type="file"] {
 
 .main-navigation {
 	z-index: 100;
-}
-
-.main-navigation {
 	padding: 0;
+	clear: both;
+	display: block;
 }
 .main-navigation ul li a {
 	display: block;
@@ -409,10 +408,6 @@ input[type="file"] {
 .main-navigation .main-nav ul ul li a {
 	line-height: normal;
 	padding: 10px 20px;
-}
-.main-navigation {
-	clear: both;
-	display: block;
 }
 .inside-navigation {
 	position: relative;
@@ -525,7 +520,6 @@ input[type="file"] {
 .nav-float-right .main-navigation .main-nav ul ul li a {
 	line-height: normal;
 }
-
 
 .nav-float-right .main-navigation ul ul ul{
 	top: 0
