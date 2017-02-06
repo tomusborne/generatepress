@@ -1616,40 +1616,6 @@ footer.entry-meta .byline {
 	padding: 0;
 }
 
-
-/* bbPress */
-#bbpress-forums ul.bbp-lead-topic, 
-#bbpress-forums ul.bbp-topics, 
-#bbpress-forums ul.bbp-forums, 
-#bbpress-forums ul.bbp-replies, 
-#bbpress-forums ul.bbp-search-results,
-#bbpress-forums,
-div.bbp-breadcrumb, 
-div.bbp-topic-tags {
-	font-size: inherit;
-}
-
-.single-forum #subscription-toggle {
-	display: block;
-	margin: 1em 0;
-	clear: left;
-}
-
-#bbpress-forums .bbp-search-form {
-	margin-bottom: 10px;
-}
-
-.bbp-login-form fieldset {
-	border: 0;
-	padding: 0;
-}
-
-/* BuddyPress */
-#buddypress form#whats-new-form #whats-new-options[style] {
-	min-height: 6rem;
-	overflow: visible;
-}
-
 /* SiteOrigin Page Builder */
 .so-panel.widget {
 	padding: 0;
