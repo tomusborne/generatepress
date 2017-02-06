@@ -215,21 +215,4 @@ button.menu-toggle:focus {
 		margin-bottom: 1.5em;
 		width: 100% !important;
 	}
-
-	.woocommerce .woocommerce-ordering, 
-	.woocommerce-page .woocommerce-ordering {
-		float: none;
-	}
-	
-	.woocommerce .woocommerce-ordering select {
-		max-width: 100%;
-	}
-	
-	.woocommerce ul.products li.product, 
-	.woocommerce-page ul.products li.product, 
-	.woocommerce-page[class*=columns-] ul.products li.product,
-	.woocommerce[class*=columns-] ul.products li.product {
-		width: 100%;
-		float: none;
-	}
 }

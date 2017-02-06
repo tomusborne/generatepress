@@ -1616,25 +1616,6 @@ footer.entry-meta .byline {
 	padding: 0;
 }
 
-/* WooCommerce */
-.woocommerce .page-header-image-single {
-	display: none;
-}
-
-.woocommerce .entry-content,
-.woocommerce .product .entry-summary {
-	margin-top: 0;
-}
-
-.related.products {
-    clear: both;
-}
-
-.checkout-subscribe-prompt.clear {
-	visibility: visible;
-	height: initial;
-	width: initial;
-}
 
 /* bbPress */
 #bbpress-forums ul.bbp-lead-topic, 
