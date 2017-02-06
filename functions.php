@@ -233,7 +233,9 @@ require get_template_directory() . '/inc/add-ons.php';
 require get_template_directory() . '/inc/css.php';
 
 /**
+ * Load plugin compatibility
  */
+require get_template_directory() . '/inc/plugin-compat.php';
 
 if ( ! function_exists( 'generate_get_min_suffix' ) ) :
 /** 
