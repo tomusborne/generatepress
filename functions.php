@@ -162,40 +162,22 @@ function generate_widgets_init()
 {
 	// Set up our array of widgets	
 	$widgets = array(
-		'sidebar-1' => array(
-			'name' => __( 'Right Sidebar', 'generatepress' )
-		),
-		'sidebar-2' => array(
-			'name' => __( 'Left Sidebar', 'generatepress' )
-		),
-		'header' => array(
-			'name' => __( 'Header', 'generatepress' )
-		),
-		'footer-1' => array(
-			'name' => __( 'Footer Widget 1', 'generatepress' )
-		),
-		'footer-2' => array(
-			'name' => __( 'Footer Widget 2', 'generatepress' )
-		),
-		'footer-3' => array(
-			'name' => __( 'Footer Widget 3', 'generatepress' )
-		),
-		'footer-4' => array(
-			'name' => __( 'Footer Widget 4', 'generatepress' )
-		),
-		'footer-5' => array(
-			'name' => __( 'Footer Widget 5', 'generatepress' )
-		),
-		'footer-bar' => array(
-			'name' => __( 'Footer Bar','generatepress' )
-		)
+		'sidebar-1' => __( 'Right Sidebar', 'generatepress' ),
+		'sidebar-2' => __( 'Left Sidebar', 'generatepress' ),
+		'header' => __( 'Header', 'generatepress' ),
+		'footer-1' => __( 'Footer Widget 1', 'generatepress' ),
+		'footer-2' => __( 'Footer Widget 2', 'generatepress' ),
+		'footer-3' => __( 'Footer Widget 3', 'generatepress' ),
+		'footer-4' => __( 'Footer Widget 4', 'generatepress' ),
+		'footer-5' => __( 'Footer Widget 5', 'generatepress' ),
+		'footer-bar' => __( 'Footer Bar','generatepress' )
 	);
 	
 	// Loop through them to create our widget areas
-	foreach ( $widgets as $widget => $id ) {
+	foreach ( $widgets as $id => $name ) {
 		register_sidebar( array(
-			'name'          => $id[ 'name' ],
-			'id'            => $widget,
+			'name'          => $name,
+			'id'            => $id,
 			'before_widget' => '<aside id="%1$s" class="widget inner-padding %2$s">',
 			'after_widget'  => '</aside>',
 			'before_title'  => apply_filters( 'generate_start_widget_title', '<h4 class="widget-title">' ),
