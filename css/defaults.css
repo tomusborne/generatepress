@@ -6,7 +6,8 @@
 .separate-containers .comments-area,
 .separate-containers .page-header,
 .separate-containers .paging-navigation,
-.one-container .site-content {
+.one-container .site-content,
+.inside-page-header {
     padding: 40px;
 }
 .one-container.right-sidebar .site-main,

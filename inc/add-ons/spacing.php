@@ -85,7 +85,7 @@ function generate_spacing_css()
 	$css->add_property( 'padding', generate_padding_css( $spacing_settings[ 'header_top' ], $spacing_settings[ 'header_right' ], $spacing_settings[ 'header_bottom' ], $spacing_settings[ 'header_left' ] ), generate_padding_css( $og_defaults[ 'header_top' ], $og_defaults[ 'header_right' ], $og_defaults[ 'header_bottom' ], $og_defaults[ 'header_left' ] ) );
 	
 	// Content padding
-	$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content' );
+	$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header' );
 	$css->add_property( 'padding', generate_padding_css( $spacing_settings[ 'content_top' ], $spacing_settings[ 'content_right' ], $spacing_settings[ 'content_bottom' ], $spacing_settings[ 'content_left' ] ), generate_padding_css( $og_defaults[ 'content_top' ], $og_defaults[ 'content_right' ], $og_defaults[ 'content_bottom' ], $og_defaults[ 'content_left' ] ) );
 	
 	// One container
@@ -274,7 +274,7 @@ function generate_spacing_css()
 	// Add mobile padding to the content
 	$mobile = apply_filters( 'generate_mobile_media_query', '(max-width:768px)' );
 	$mobile_content_padding = ( isset( $spacing_settings[ 'mobile_content_padding' ] ) ) ? absint( $spacing_settings[ 'mobile_content_padding' ] ) : '30';
-	$output .= '@media ' . esc_attr( $mobile ) . ' {.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content {padding: ' . $mobile_content_padding . 'px;}}';
+	$output .= '@media ' . esc_attr( $mobile ) . ' {.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header {padding: ' . $mobile_content_padding . 'px;}}';
 	
 	// Allow us to hook CSS into our output
 	do_action( 'generate_spacing_css', $css );
