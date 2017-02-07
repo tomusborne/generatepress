@@ -1565,10 +1565,6 @@ footer.entry-meta .byline {
 	margin-top: 30px;
 }
 
-.inside-page-header {
-	padding: 40px;
-}
-
 .separate-containers .inside-article > [class*="page-header-"],
 .one-container .inside-article > [class*="page-header-"] {
 	margin-bottom: 2em;
