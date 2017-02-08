@@ -190,18 +190,23 @@ function generate_posted_on()
 	
 	// If our date is enabled, show it
 	if ( $date ) :
-		printf( '<span class="posted-on">%1$s</span>',
+		// Build our post date output
+		$date_output = sprintf( '<span class="posted-on">%1$s</span>',
 			sprintf( '<a href="%1$s" title="%2$s" rel="bookmark">%3$s</a>',
 				esc_url( get_permalink() ),
 				esc_attr( get_the_time() ),
 				$time_string
 			)
 		);
+		
+		// Run our output through a filter
+		echo apply_filters( 'generate_post_date_output', $date_output );
 	endif;
 	
 	// If our author is enabled, show it
 	if ( $author ) :
-		printf( ' <span class="byline">%1$s</span>',
+		// Build our post author output
+		$author_output = sprintf( ' <span class="byline">%1$s</span>',
 			sprintf( '<span class="author vcard" itemtype="http://schema.org/Person" itemscope="itemscope" itemprop="author">%1$s <a class="url fn n" href="%2$s" title="%3$s" rel="author" itemprop="url"><span class="author-name" itemprop="name">%4$s</span></a></span>',
 				__( 'by','generatepress'),
 				esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
@@ -209,8 +214,10 @@ function generate_posted_on()
 				esc_html( get_the_author() )
 			)
 		);
+		
+		// Run our output through a filter
+		echo apply_filters( 'generate_post_author_output', $author_output );
 	endif;
-	
 }
 endif;
 
@@ -228,18 +235,22 @@ function generate_entry_meta()
 
 	$categories_list = get_the_category_list( _x( ', ', 'Used between list items, there is a space after the comma.', 'generatepress' ) );
 	if ( $categories_list && $categories ) {
-		printf( '<span class="cat-links"><span class="screen-reader-text">%1$s </span>%2$s</span>',
+		$category_list_output = sprintf( '<span class="cat-links"><span class="screen-reader-text">%1$s </span>%2$s</span>',
 			_x( 'Categories', 'Used before category names.', 'generatepress' ),
 			$categories_list
 		);
+		
+		echo apply_filters( 'generate_category_list_output', $category_list_output );
 	}
 
 	$tags_list = get_the_tag_list( '', _x( ', ', 'Used between list items, there is a space after the comma.', 'generatepress' ) );
 	if ( $tags_list && $tags ) {
-		printf( '<span class="tags-links"><span class="screen-reader-text">%1$s </span>%2$s</span>',
+		$tag_list_output = sprintf( '<span class="tags-links"><span class="screen-reader-text">%1$s </span>%2$s</span>',
 			_x( 'Tags', 'Used before tag names.', 'generatepress' ),
 			$tags_list
 		);
+		
+		echo apply_filters( 'generate_tag_list_output', $tag_list_output );
 	}
 
 	if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) && $comments ) {
