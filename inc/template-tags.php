@@ -199,7 +199,7 @@ function generate_posted_on()
 			)
 		);
 		
-		// Run our output through a filter
+		// Run our post date through a filter
 		echo apply_filters( 'generate_post_date_output', $date_output );
 	endif;
 	
@@ -215,7 +215,7 @@ function generate_posted_on()
 			)
 		);
 		
-		// Run our output through a filter
+		// Run our author output through a filter
 		echo apply_filters( 'generate_post_author_output', $author_output );
 	endif;
 }
@@ -235,21 +235,25 @@ function generate_entry_meta()
 
 	$categories_list = get_the_category_list( _x( ', ', 'Used between list items, there is a space after the comma.', 'generatepress' ) );
 	if ( $categories_list && $categories ) {
+		// Build our category list output
 		$category_list_output = sprintf( '<span class="cat-links"><span class="screen-reader-text">%1$s </span>%2$s</span>',
 			_x( 'Categories', 'Used before category names.', 'generatepress' ),
 			$categories_list
 		);
 		
+		// Run our category list through a filter
 		echo apply_filters( 'generate_category_list_output', $category_list_output );
 	}
 
 	$tags_list = get_the_tag_list( '', _x( ', ', 'Used between list items, there is a space after the comma.', 'generatepress' ) );
 	if ( $tags_list && $tags ) {
+		// Build our tag list output
 		$tag_list_output = sprintf( '<span class="tags-links"><span class="screen-reader-text">%1$s </span>%2$s</span>',
 			_x( 'Tags', 'Used before tag names.', 'generatepress' ),
 			$tags_list
 		);
 		
+		// Run our tag list through a filter
 		echo apply_filters( 'generate_tag_list_output', $tag_list_output );
 	}
 
