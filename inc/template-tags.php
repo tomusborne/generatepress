@@ -255,7 +255,11 @@ if ( ! function_exists( 'generate_excerpt_more' ) ) :
  */
 add_filter( 'excerpt_more', 'generate_excerpt_more' );
 function generate_excerpt_more( $more ) {
-	return ' ... <a title="' . esc_attr( get_the_title() ) . '" class="read-more" href="'. esc_url( get_permalink( get_the_ID() ) ) . '">' . __('Read more', 'generatepress') . '</a>';
+	return apply_filters( 'generate_excerpt_more', sprintf( ' ... <a title="%1$s" class="read-more" href="%2$s">%3$s</a>',
+		esc_attr( get_the_title() ),
+		esc_url( get_permalink( get_the_ID() ) ),
+		__( 'Read more', 'generatepress' )
+	) );
 }
 endif;
 
@@ -265,8 +269,11 @@ if ( ! function_exists( 'generate_content_more' ) ) :
  */
 add_filter( 'the_content_more_link', 'generate_content_more' );
 function generate_content_more( $more ) {
-	$more_jump = apply_filters( 'generate_more_jump','#more-' . get_the_ID() );
-	return '<p class="read-more-container"><a title="' . esc_attr( get_the_title() ) . '" class="read-more content-read-more" href="'. esc_url( get_permalink( get_the_ID() ) . $more_jump ) . '">' . __('Read more', 'generatepress') . '</a></p>';
+	return apply_filters( 'generate_content_more_link', sprintf( '<p class="read-more-container"><a title="%1$s" class="read-more content-read-more" href="%2$s">%3$s</a></p>',
+		esc_attr( get_the_title( get_the_ID() ) ),
+		esc_url( get_permalink( get_the_ID() ) . apply_filters( 'generate_more_jump','#more-' . get_the_ID() ) ),
+		__( 'Read more', 'generatepress' )
+	) );
 }
 endif;
 
