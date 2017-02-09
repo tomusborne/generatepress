@@ -256,7 +256,7 @@ if ( ! function_exists( 'generate_excerpt_more' ) ) :
 add_filter( 'excerpt_more', 'generate_excerpt_more' );
 function generate_excerpt_more( $more ) {
 	return apply_filters( 'generate_excerpt_more', sprintf( ' ... <a title="%1$s" class="read-more" href="%2$s">%3$s</a>',
-		esc_attr( get_the_title() ),
+		the_title_attribute( array( 'before' => '', 'after' => '', 'echo' => false ) ),
 		esc_url( get_permalink( get_the_ID() ) ),
 		__( 'Read more', 'generatepress' )
 	) );
@@ -270,7 +270,7 @@ if ( ! function_exists( 'generate_content_more' ) ) :
 add_filter( 'the_content_more_link', 'generate_content_more' );
 function generate_content_more( $more ) {
 	return apply_filters( 'generate_content_more_link', sprintf( '<p class="read-more-container"><a title="%1$s" class="read-more content-read-more" href="%2$s">%3$s</a></p>',
-		esc_attr( get_the_title( get_the_ID() ) ),
+		the_title_attribute( array( 'before' => '', 'after' => '', 'echo' => false ) ),
 		esc_url( get_permalink( get_the_ID() ) . apply_filters( 'generate_more_jump','#more-' . get_the_ID() ) ),
 		__( 'Read more', 'generatepress' )
 	) );
@@ -354,7 +354,7 @@ function generate_post_image()
 	if ( ! is_singular() && ! is_404() ) {
 	?>
 		<div class="post-image">
-			<a href="<?php the_permalink();?>" title="<?php esc_attr( the_title() ); ?>"><?php the_post_thumbnail( apply_filters( 'generate_page_header_default_size', 'full' ), array('itemprop' => 'image') ); ?></a>
+			<a href="<?php the_permalink();?>" title="<?php the_title_attribute(); ?>"><?php the_post_thumbnail( apply_filters( 'generate_page_header_default_size', 'full' ), array('itemprop' => 'image') ); ?></a>
 		</div>
 	<?php
 	}
