@@ -757,6 +757,7 @@ nav:not(.toggled):not(.slideout-navigation) ul ul .menu-item-has-children .dropd
 
 /* =Content
 ----------------------------------------------- */
+.sticky{}
 .post {
 	margin: 0 0 2em;
 }
@@ -908,6 +909,8 @@ object {
 .comment-content a {
 	word-wrap: break-word;
 }
+
+.bypostauthor {}
 
 .comment,
 .comment-list {
