@@ -1376,6 +1376,10 @@ h4, h5, h6 {
 	margin-bottom: 10px;
 }
 
+.footer-bar .widget-title {
+	display: none;
+}
+
 /* Footer bar menu */
 .footer-bar .widget_nav_menu li {
 	margin: 0 10px;
