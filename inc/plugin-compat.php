@@ -157,3 +157,39 @@ function generate_buddypress_css()
 	wp_add_inline_style( 'bp-legacy-css', $css );
 }
 endif;
+
+if ( ! function_exists( 'generate_beaver_builder_css' ) ) :
+/** 
+ * Add Beaver Builder CSS
+ * This function exists simply for back compat reasons
+ * Before, Beaver Builder pages set to no sidebar would automatically be full width
+ * We can't remove this CSS as people who are using this CSS will lose their layout on update
+ * So instead, let's only apply this CSS to posts older than the date of this update
+ * That way, future pages won't use this CSS and people can use the Page Builder Integration meta box
+ * @since 1.3.45
+ */
+add_action( 'wp_enqueue_scripts','generate_beaver_builder_css', 100 );
+function generate_beaver_builder_css()
+{
+	// Check is Beaver Builder is active
+	if ( in_array('fl-builder', get_body_class() ) ) {
+		global $post;
+		if ( ! isset( $post ) )
+			return;
+		
+		$compare_date = strtotime( "2017-02-8" );
+		$post_date    = strtotime( $post->post_date );
+		//if ( $post_date < $compare_date ) {
+			$css = '.fl-builder.no-sidebar .container.grid-container {
+				max-width: 100%;
+			}
+
+			.fl-builder.one-container.no-sidebar .site-content {
+				padding:0;
+			}';
+			$css = str_replace(array("\r", "\n", "\t"), '', $css);
+			wp_add_inline_style( 'generate-style', $css );
+		//}
+	}
+}
+endif;

@@ -1596,14 +1596,12 @@ footer.entry-meta .byline {
 	padding: 0;
 }
 
-/* SiteOrigin Page Builder */
-.so-panel.widget {
+/* Remove content padding */
+.no-content-padding.separate-containers .inside-article,
+.no-content-padding.one-container .site-content {
 	padding: 0;
 }
 
-/* Beaver Builder */
-.fl-builder.no-sidebar .container.grid-container {
-	max-width: 100%;
 /* Top bar */
 .top-bar .inside-top-bar .widget {
 	padding: 0;
@@ -1666,8 +1664,6 @@ footer.entry-meta .byline {
 	padding: 0;
 }
 
-.fl-builder.one-container.no-sidebar .site-content {
-	padding:0;
 .top-bar .widget_nav_menu li:first-child {
 	margin-left: 0;
 }
@@ -1684,6 +1680,10 @@ footer.entry-meta .byline {
 	display: inline-block;
 	vertical-align: top;
 }
+
+/* SiteOrigin Page Builder */
+.so-panel.widget {
+	padding: 0;
 }
 
 /* MailChimp CSS */
