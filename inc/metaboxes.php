@@ -45,13 +45,12 @@ function generate_show_layout_meta_box( $post ) {
     wp_nonce_field( basename( __FILE__ ), 'generate_layout_nonce' );
     $stored_meta = get_post_meta( $post->ID );
 	$stored_meta['_generate-sidebar-layout-meta'][0] = ( isset( $stored_meta['_generate-sidebar-layout-meta'][0] ) ) ? $stored_meta['_generate-sidebar-layout-meta'][0] : '';
-	$checked = ( isset($stored_meta['_generate-sidebar-layout-meta'][0]) && '' == $stored_meta['_generate-sidebar-layout-meta'][0] ) ? 'checked="checked"' : '';
     ?>
  
     <p>
 		<div class="generate_layouts">
 			<label for="meta-generate-layout-global" style="display:block;margin-bottom:10px;">
-				<input type="radio" name="_generate-sidebar-layout-meta" id="meta-generate-layout-global" value="" <?php echo $checked; ?>>
+				<input type="radio" name="_generate-sidebar-layout-meta" id="meta-generate-layout-global" value="" <?php checked( $stored_meta['_generate-sidebar-layout-meta'][0], '' ); ?>>
 				<?php _e('Global Layout Settings','generatepress');?>
 			</label>
 			<label for="meta-generate-layout-one" style="display:block;margin-bottom:3px;" title="<?php _e('Right Sidebar','generatepress');?>">
@@ -151,13 +150,12 @@ function generate_show_footer_widget_meta_box( $post ) {
     wp_nonce_field( basename( __FILE__ ), 'generate_footer_widget_nonce' );
     $stored_meta = get_post_meta( $post->ID );
 	$stored_meta['_generate-footer-widget-meta'][0] = ( isset( $stored_meta['_generate-footer-widget-meta'][0] ) ) ? $stored_meta['_generate-footer-widget-meta'][0] : '';
-	$checked = ( '' == $stored_meta['_generate-footer-widget-meta'][0] ) ? 'checked="checked"' : '';
     ?>
  
     <p>
 		<div class="generate_footer_widget">
 			<label for="meta-generate-footer-widget-global" style="display:block;margin-bottom:10px;">
-				<input type="radio" name="_generate-footer-widget-meta" id="meta-generate-footer-widget-global" value="" <?php echo $checked; ?>>
+				<input type="radio" name="_generate-footer-widget-meta" id="meta-generate-footer-widget-global" value="" <?php checked( $stored_meta['_generate-footer-widget-meta'][0], '' ); ?>>
 				<?php _e('Global Footer Widget Settings','generatepress');?>
 			</label>
 			<label for="meta-generate-footer-widget-zero" style="display:block;margin-bottom:3px;" title="<?php _e('0 Widgets','generatepress');?>">
