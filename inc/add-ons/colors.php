@@ -26,6 +26,10 @@ if ( !function_exists('generate_get_color_defaults') ) :
 function generate_get_color_defaults()
 {
 	$generate_color_defaults = array(
+		'top_bar_background_color' => '#636363',
+		'top_bar_text_color' => '#ffffff',
+		'top_bar_link_color' => '#ffffff',
+		'top_bar_link_color_hover' => '#303030',
 		'header_background_color' => '#ffffff',
 		'header_text_color' => '#3a3a3a',
 		'header_link_color' => '#3a3a3a',
@@ -102,6 +106,21 @@ function generate_advanced_css()
 	
 	// Initiate our CSS class
 	$css = new GeneratePress_CSS;
+	
+	if ( is_active_sidebar( 'top-bar' ) ) {
+		// Top bar
+		$css->set_selector( '.top-bar' );
+		$css->add_property( 'background-color', esc_attr( $generate_settings[ 'top_bar_background_color' ] ) );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'top_bar_text_color' ] ) );
+		
+		// Top bar link
+		$css->set_selector( '.top-bar a,.top-bar a:visited' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'top_bar_link_color' ] ) );
+		
+		// Top bar link hover
+		$css->set_selector( '.top-bar a:hover' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'top_bar_link_color_hover' ] ) );
+	}
 	
 	// Header
 	$css->set_selector( '.site-header' );

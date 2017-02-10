@@ -1,4 +1,7 @@
 /* Spacing */
+.inside-top-bar {
+	padding: 10px;
+}
 .inside-header {
     padding: 40px;
 }
@@ -130,6 +133,9 @@ body {
 }
 p {
     margin-bottom: 1.5em;
+}
+.top-bar {
+	font-size: 13px;
 }
 .main-title {
     font-family: inherit;

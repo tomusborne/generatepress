@@ -107,6 +107,9 @@ function generate_get_defaults()
 		'hide_title' => '',
 		'hide_tagline' => '',
 		'logo' => '',
+		'top_bar_width' => 'full',
+		'top_bar_inner_width' => 'contained',
+		'top_bar_alignment' => 'right',
 		'container_width' => '1100',
 		'header_layout_setting' => 'fluid-header',
 		'header_inner_width' => 'contained',
@@ -164,6 +167,7 @@ function generate_widgets_init()
 	$widgets = array(
 		'sidebar-1' => __( 'Right Sidebar', 'generatepress' ),
 		'sidebar-2' => __( 'Left Sidebar', 'generatepress' ),
+		'top-bar' => __( 'Top Bar','generatepress' ),
 		'header' => __( 'Header', 'generatepress' ),
 		'footer-1' => __( 'Footer Widget 1', 'generatepress' ),
 		'footer-2' => __( 'Footer Widget 2', 'generatepress' ),

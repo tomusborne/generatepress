@@ -421,3 +421,28 @@ function generate_inside_footer_class( $class = '' ) {
 	echo 'class="' . join( ' ', $return ) . '"';
 }
 endif;
+
+if ( ! function_exists( 'generate_top_bar_class' ) ) :
+/**
+ * Display the classes for the top bar.
+ *
+ * @since 1.3.45
+ * @param string|array $class One or more classes to add to the class list.
+ */
+function generate_top_bar_class( $class = '' ) {
+	$classes = array();
+
+	if ( !empty($class) ) {
+		if ( !is_array( $class ) )
+			$class = preg_split('#\s+#', $class);
+		$classes = array_merge($classes, $class);
+	}
+
+	$classes = array_map('esc_attr', $classes);
+	
+	$return = apply_filters( 'generate_top_bar_class', $classes, $class );
+	
+	// Separates classes with a single space, collates classes for post DIV
+	echo 'class="' . join( ' ', $return ) . '"';
+}
+endif;

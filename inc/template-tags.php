@@ -928,6 +928,25 @@ function generate_construct_footer() {
 }
 endif;
 
+if ( ! function_exists( 'generate_top_bar' ) ) :
+/**
+ * Build our top bar
+ * @since 1.3.45
+ */
+add_action( 'generate_before_header','generate_top_bar', 5 );
+function generate_top_bar() {
+	if ( ! is_active_sidebar( 'top-bar' ) )
+		return;
+	?>
+	<div <?php generate_top_bar_class(); ?>>
+		<div class="inside-top-bar<?php if ( 'contained' == generate_get_setting( 'top_bar_inner_width' ) ) echo ' grid-container grid-parent'; ?>">
+			<?php dynamic_sidebar( 'top-bar' ); ?>
+		</div>
+	</div>
+	<?php
+}
+endif;
+
 if ( ! function_exists( 'generate_footer_bar' ) ) :
 /**
  * Build our footer bar

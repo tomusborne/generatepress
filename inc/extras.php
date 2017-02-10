@@ -101,6 +101,29 @@ function generate_body_classes( $classes )
 }
 endif;
 
+if ( ! function_exists( 'generate_top_bar_classes' ) ) :
+/**
+ * Adds custom classes to the header
+ * @since 0.1
+ */
+add_filter( 'generate_top_bar_class', 'generate_top_bar_classes');
+function generate_top_bar_classes( $classes )
+{
+	
+	$classes[] = 'top-bar';
+
+	if ( 'contained' == generate_get_setting( 'top_bar_width' ) ) :
+		$classes[] = 'grid-container';
+		$classes[] = 'grid-parent';
+	endif;
+	
+	$classes[] = 'top-bar-align-' . generate_get_setting( 'top_bar_alignment' );
+
+	return $classes;
+	
+}
+endif;
+
 if ( ! function_exists( 'generate_right_sidebar_classes' ) ) :
 /**
  * Adds custom classes to the right sidebar

@@ -27,6 +27,7 @@ if ( ! function_exists( 'generate_spacing_get_defaults' ) ) :
 function generate_spacing_get_defaults( $filter = true )
 {
 	$generate_spacing_defaults = array(
+		'top_bar' => '10',
 		'header_top' => '40',
 		'header_right' => '40',
 		'header_bottom' => '40',
@@ -79,6 +80,12 @@ function generate_spacing_css()
 	$og_defaults = generate_spacing_get_defaults( false );
 	
 	$css = new GeneratePress_CSS;
+	
+	if ( is_active_sidebar( 'top-bar' ) ) {
+		// Top bar
+		$css->set_selector( '.inside-top-bar' );
+		$css->add_property( 'padding', absint( $spacing_settings[ 'top_bar' ] ), absint( $og_defaults[ 'top_bar' ] ), 'px' );
+	}
 	
 	// Header padding
 	$css->set_selector( '.inside-header' );

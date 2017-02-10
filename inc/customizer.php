@@ -289,7 +289,103 @@ function generate_customize_register( $wp_customize ) {
 		)
 	);
 	
-	// Add Layout section
+	// Add Top Bar section
+	$wp_customize->add_section(
+		'generate_top_bar',
+		array(
+			'title' => __( 'Top Bar', 'generatepress' ),
+			'capability' => 'edit_theme_options',
+			'priority' => 15,
+			'panel' => 'generate_layout_panel'
+		)
+	);
+	
+	// Add Top Bar width
+	$wp_customize->add_setting(
+		'generate_settings[top_bar_width]',
+		array(
+			'default' => $defaults['top_bar_width'],
+			'type' => 'option',
+			'sanitize_callback' => 'generate_sanitize_choices',
+			'transport' => 'postMessage'
+		)
+	);
+	
+	// Add Top Bar width control
+	$wp_customize->add_control(
+		'generate_settings[top_bar_width]',
+		array(
+			'type' => 'select',
+			'label' => __( 'Top Bar Width', 'generatepress' ),
+			'section' => 'generate_top_bar',
+			'choices' => array(
+				'full' => __( 'Full', 'generatepress' ),
+				'contained' => __( 'Contained', 'generatepress' )
+			),
+			'settings' => 'generate_settings[top_bar_width]',
+			'priority' => 5,
+			'active_callback' => 'generate_is_top_bar_active'
+		)
+	);
+	
+	// Add Top Bar inner width
+	$wp_customize->add_setting(
+		'generate_settings[top_bar_inner_width]',
+		array(
+			'default' => $defaults['top_bar_inner_width'],
+			'type' => 'option',
+			'sanitize_callback' => 'generate_sanitize_choices',
+			'transport' => 'postMessage'
+		)
+	);
+	
+	// Add Top Bar width control
+	$wp_customize->add_control(
+		'generate_settings[top_bar_inner_width]',
+		array(
+			'type' => 'select',
+			'label' => __( 'Top Bar Inner Width', 'generatepress' ),
+			'section' => 'generate_top_bar',
+			'choices' => array(
+				'full' => __( 'Full', 'generatepress' ),
+				'contained' => __( 'Contained', 'generatepress' )
+			),
+			'settings' => 'generate_settings[top_bar_inner_width]',
+			'priority' => 10,
+			'active_callback' => 'generate_is_top_bar_active'
+		)
+	);
+	
+	// Add top bar alignment
+	$wp_customize->add_setting(
+		'generate_settings[top_bar_alignment]',
+		array(
+			'default' => $defaults['top_bar_alignment'],
+			'type' => 'option',
+			'sanitize_callback' => 'generate_sanitize_choices',
+			'transport' => 'postMessage'
+		)
+	);
+	
+	// Add navigation control
+	$wp_customize->add_control(
+		'generate_settings[top_bar_alignment]',
+		array(
+			'type' => 'select',
+			'label' => __( 'Top Bar Alignment', 'generatepress' ),
+			'section' => 'generate_top_bar',
+			'choices' => array(
+				'left' => __( 'Left', 'generatepress' ),
+				'center' => __( 'Center', 'generatepress' ),
+				'right' => __( 'Right', 'generatepress' )
+			),
+			'settings' => 'generate_settings[top_bar_alignment]',
+			'priority' => 15,
+			'active_callback' => 'generate_is_top_bar_active'
+		)
+	);
+	
+	// Add Header section
 	$wp_customize->add_section(
 		'generate_layout_header',
 		array(
@@ -947,6 +1043,19 @@ if ( ! function_exists( 'generate_is_footer_bar_active' ) ) :
 function generate_is_footer_bar_active() 
 {
 	return ( is_active_sidebar( 'footer-bar' ) ) ? true : false;
+}
+endif;
+
+if ( ! function_exists( 'generate_is_top_bar_active' ) ) :
+/**
+ * Check to see if the top bar is active
+ *
+ * @since 1.3.45
+ */
+function generate_is_top_bar_active()
+{
+	$top_bar = is_active_sidebar( 'top-bar' ) ? true : false;
+	return apply_filters( 'generate_is_top_bar_active', $top_bar );
 }
 endif;
 

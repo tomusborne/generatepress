@@ -171,6 +171,43 @@ function generatepress_classes_live_update( id, classes, selector, prefix ) {
 	generatepress_classes_live_update( 'content_layout_setting', [ 'one-container', 'separate-containers' ], 'body' );
 	
 	/** 
+	 * Top bar width
+	 */
+	wp.customize( 'generate_settings[top_bar_width]', function( value ) {
+		value.bind( function( newval ) {
+			if ( 'full' == newval ) {
+				$( '.top-bar' ).removeClass( 'grid-container' ).removeClass( 'grid-parent' );
+				if ( 'contained' == wp.customize.value('generate_settings[top_bar_inner_width]')() ) {
+					$( '.inside-top-bar' ).addClass( 'grid-container' ).addClass( 'grid-parent' );
+				}
+			}
+			if ( 'contained' == newval ) {
+				$( '.top-bar' ).addClass( 'grid-container' ).addClass( 'grid-parent' );
+				$( '.inside-top-bar' ).removeClass( 'grid-container' ).removeClass( 'grid-parent' );
+			}
+		} );
+	} );
+	
+	/** 
+	 * Inner top bar width
+	 */
+	wp.customize( 'generate_settings[top_bar_inner_width]', function( value ) {
+		value.bind( function( newval ) {
+			if ( 'full' == newval ) {
+				$( '.inside-top-bar' ).removeClass( 'grid-container' ).removeClass( 'grid-parent' );
+			}
+			if ( 'contained' == newval ) {
+				$( '.inside-top-bar' ).addClass( 'grid-container' ).addClass( 'grid-parent' );
+			}
+		} );
+	} );
+	
+	/** 
+	 * Top bar alignment
+	 */
+	generatepress_classes_live_update( 'top_bar_alignment', [ 'left', 'center', 'right' ], '.top-bar', 'top-bar-align-' );
+	
+	/** 
 	 * Header layout
 	 */
 	wp.customize( 'generate_settings[header_layout_setting]', function( value ) {

@@ -1600,10 +1600,86 @@ footer.entry-meta .byline {
 /* Beaver Builder */
 .fl-builder.no-sidebar .container.grid-container {
 	max-width: 100%;
+/* Top bar */
+.top-bar .inside-top-bar .widget {
+	padding: 0;
+	display: inline-block;
+	margin: 0;
+}
+
+.top-bar-align-center {
+	text-align: center;
+}
+
+.top-bar-align-right {
+	text-align: right;
+}
+
+.top-bar-align-right .inside-top-bar >.widget:nth-child(even) {
+	float: left;
+	margin-right: 10px;
+}
+
+.top-bar-align-right .inside-top-bar >.widget:nth-child(odd) {
+	margin-left: 10px;
+}
+
+.top-bar-align-left .inside-top-bar >.widget:nth-child(even) {
+	margin-left: 10px;
+	float: right;
+}
+
+.top-bar-align-left .inside-top-bar > .widget:nth-child(odd) {
+	float: left;
+	margin-right: 10px;
+}
+
+.top-bar-align-center .inside-top-bar .widget:not(:first-child) {
+	margin-left: 10px;
+}
+
+.inside-top-bar:not(.grid-container):after,
+.inside-top-bar:not(.grid-container):before {
+	content: ".";
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    font-size: 0;
+    line-height: 0;
+    width: 0;
+    height: 0;
+	clear: both;
+}
+
+.top-bar .widget-title {
+	display: none;
+}
+
+/* Top bar menu */
+.top-bar .widget_nav_menu li {
+	margin: 0 10px;
+	float: left;
+	padding: 0;
 }
 
 .fl-builder.one-container.no-sidebar .site-content {
 	padding:0;
+.top-bar .widget_nav_menu li:first-child {
+	margin-left: 0;
+}
+
+.top-bar .widget_nav_menu li:last-child {
+	margin-right: 0;
+}
+
+.top-bar .widget_nav_menu li ul {
+	display: none;
+}
+
+.top-bar .widget_nav_menu > div > ul {
+	display: inline-block;
+	vertical-align: top;
+}
 }
 
 /* MailChimp CSS */

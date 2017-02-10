@@ -34,6 +34,12 @@ function generate_get_default_fonts( $filter = true )
 		'body_font_size' => '17',
 		'body_line_height' => '1.5', // no unit
 		'paragraph_margin' => '1.5', // em
+		'font_top_bar' => 'inherit',
+		'font_top_bar_category' => '',
+		'font_top_bar_variants' => '',
+		'top_bar_font_weight' => 'normal',
+		'top_bar_font_transform' => 'none',
+		'top_bar_font_size' => '13',
 		'font_site_title' => 'inherit',
 		'font_site_title_category' => '',
 		'font_site_title_variants' => '',
@@ -112,6 +118,7 @@ function generate_font_css()
 	
 	// Create all of our font family entries
 	$body_family = generate_get_font_family_css( 'font_body', 'generate_settings', generate_get_default_fonts() );
+	$top_bar_family = generate_get_font_family_css( 'font_top_bar', 'generate_settings', generate_get_default_fonts() );
 	$site_title_family = generate_get_font_family_css( 'font_site_title', 'generate_settings', generate_get_default_fonts() );
 	$site_tagline_family = generate_get_font_family_css( 'font_site_tagline', 'generate_settings', generate_get_default_fonts() );
 	$navigation_family = generate_get_font_family_css( 'font_navigation', 'generate_settings', generate_get_default_fonts() );
@@ -134,6 +141,15 @@ function generate_font_css()
 	// Paragraph margin
 	$css->set_selector( 'p' );
 	$css->add_property( 'margin-bottom', $generate_settings['paragraph_margin'], $og_defaults['paragraph_margin'], 'em' );
+	
+	// Top bar
+	if ( is_active_sidebar( 'top-bar' ) ) {
+		$css->set_selector( '.top-bar' );
+		$css->add_property( 'font-family', $og_defaults[ 'font_top_bar' ] !== $generate_settings[ 'font_top_bar' ] ? $top_bar_family : null );
+		$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'top_bar_font_weight' ] ), $og_defaults[ 'top_bar_font_weight' ] );
+		$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'top_bar_font_transform' ] ), $og_defaults[ 'top_bar_font_transform' ] );
+		$css->add_property( 'font-size', absint( $generate_settings[ 'top_bar_font_size' ] ), absint( $og_defaults[ 'top_bar_font_size' ] ), 'px' );
+	}
 	
 	// Site title
 	$css->set_selector( '.main-title' );
@@ -247,6 +263,7 @@ function generate_enqueue_google_fonts() {
 	// Grab our font family settings
 	$font_settings = array(
 		'font_body',
+		'font_top_bar',
 		'font_site_title',
 		'font_site_tagline',
 		'font_navigation',
