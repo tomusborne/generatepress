@@ -256,14 +256,26 @@ function generate_show_page_builder_meta_box( $post ) {
 
     wp_nonce_field( basename( __FILE__ ), 'generate_page_builder_nonce' );
     $stored_meta = get_post_meta( $post->ID );
+	
+	// Set up our full width content option
 	$stored_meta['_generate-full-width-content'][0] = ( isset( $stored_meta['_generate-full-width-content'][0] ) ) ? $stored_meta['_generate-full-width-content'][0] : '';
-    ?>
+	
+	// Set up our remove content padding option
+	$stored_meta['_generate-remove-content-padding'][0] = ( isset( $stored_meta['_generate-remove-content-padding'][0] ) ) ? $stored_meta['_generate-remove-content-padding'][0] : '';
+    
+	// We don't need the content padding option if full width content is set to true
+	$hide_padding_option = '' !== $stored_meta['_generate-full-width-content'][0] ? true : false;
+	?>
  
     <p>
 		<div class="generate_full_width_template">
-			<label for="_generate-full-width-content" style="display:block;margin-bottom:10px;">
+			<label id="full-width-content" for="_generate-full-width-content" style="display:block;margin-bottom:10px;" onclick="if ( jQuery( this ).children().is( ':checked' ) ) {jQuery( '#generate-remove-padding' ).hide();} else {jQuery( '#generate-remove-padding' ).show();}">
 				<input type="checkbox" name="_generate-full-width-content" id="_generate-full-width-content" value="true" <?php checked( $stored_meta['_generate-full-width-content'][0], 'true' ); ?>>
 				<?php _e('Full Width Content','generatepress');?>
+			</label>
+			<label id="generate-remove-padding" for="_generate-remove-content-padding" style="display:block;margin-bottom:10px;<?php if ( $hide_padding_option ) echo 'display:none;'; ?>">
+				<input type="checkbox" name="_generate-remove-content-padding" id="_generate-remove-content-padding" value="true" <?php checked( $stored_meta['_generate-remove-content-padding'][0], 'true' ); ?>>
+				<?php _e('Remove Content Padding','generatepress');?>
 			</label>
 		</div>
 	</p>
@@ -294,5 +306,13 @@ function generate_save_page_builder_meta($post_id) {
 		update_post_meta( $post_id, $key, $value );
 	else
 		delete_post_meta( $post_id, $key );
+	
+	$content_padding_key   = '_generate-remove-content-padding';
+	$content_padding_value = filter_input( INPUT_POST, $content_padding_key, FILTER_SANITIZE_STRING );
+
+	if ( $content_padding_value )
+		update_post_meta( $post_id, $content_padding_key, $content_padding_value );
+	else
+		delete_post_meta( $post_id, $content_padding_key );
 }
 endif;

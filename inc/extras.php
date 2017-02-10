@@ -51,6 +51,10 @@ function generate_body_classes( $classes )
 	$full_width = get_post_meta( get_the_ID(), '_generate-full-width-content', true );
 	$classes[] = ( '' !== $full_width && false !== $full_width && is_singular() ) ? 'full-width-content' : '';
 	
+	// Remove content padding
+	$remove_content_padding = get_post_meta( get_the_ID(), '_generate-remove-content-padding', true );
+	$classes[] = ( '' !== $remove_content_padding && false !== $remove_content_padding && is_singular() ) ? 'no-content-padding' : '';
+	
 	// Let us know if a featured image is being used
 	if ( has_post_thumbnail() ) :
 		$classes[] = 'featured-image-active';
