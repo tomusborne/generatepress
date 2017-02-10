@@ -97,6 +97,11 @@ function generate_save_layout_meta($post_id) {
     if ( $is_autosave || $is_revision || ! $is_valid_nonce ) {
         return;
     }
+	
+	// Check that the logged in user has permission to edit this post
+	if ( ! current_user_can( 'edit_post' ) ) {
+		return $post_id;
+	}
  
 	$key   = '_generate-sidebar-layout-meta';
 	$value = filter_input( INPUT_POST, $key, FILTER_SANITIZE_STRING );
@@ -204,6 +209,11 @@ function generate_save_footer_widget_meta($post_id) {
         return;
     }
 	
+	// Check that the logged in user has permission to edit this post
+	if ( ! current_user_can( 'edit_post' ) ) {
+		return $post_id;
+	}
+	
 	$key   = '_generate-footer-widget-meta';
 	$value = filter_input( INPUT_POST, $key, FILTER_SANITIZE_STRING );
 
@@ -296,6 +306,11 @@ function generate_save_page_builder_meta($post_id) {
     if ( $is_autosave || $is_revision || ! $is_valid_nonce ) {
         return;
     }
+	
+	// Check that the logged in user has permission to edit this post
+	if ( ! current_user_can( 'edit_post' ) ) {
+		return $post_id;
+	}
 	
 	$key   = '_generate-full-width-content';
 	$value = filter_input( INPUT_POST, $key, FILTER_SANITIZE_STRING );
