@@ -998,14 +998,24 @@ endif;
 
 if ( ! function_exists( 'generate_customizer_live_preview' ) ) :
 /**
- * Add our live preview JS
+ * Add our live preview scripts
  *
  * @since 0.1
  */
-add_action( 'customize_preview_init', 'generate_customizer_live_preview' );
+add_action( 'customize_preview_init', 'generate_customizer_live_preview', 100 );
 function generate_customizer_live_preview()
 {
-	wp_enqueue_script( 'generate-themecustomizer', get_template_directory_uri().'/inc/js/customizer.js', array( 'customize-preview' ), GENERATE_VERSION, true );
+	wp_enqueue_script( 'generate-themecustomizer', trailingslashit( get_template_directory_uri() ) . 'inc/js/customizer.js', array( 'customize-preview' ), GENERATE_VERSION, true );
+	
+	// This makes sure only colors have transition which makes our slider option transition much smoother
+	$css = 'html body,body button,body input,body select,body textarea,body a {
+			-webkit-transition:color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+			-moz-transition:color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+			-o-transition:color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+			transition:color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+	}';
+		
+	wp_add_inline_style( 'customize-preview', $css );
 }
 endif;
 
