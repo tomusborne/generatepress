@@ -309,7 +309,11 @@ function generatepress_classes_live_update( id, classes, selector, prefix ) {
 				$( '#site-navigation:first' ).insertAfter( '.site-header' ).show();
 			}
 			if ( 'nav-above-header' == newval ) {
-				$( '#site-navigation:first' ).prependTo( 'body' ).show();
+				if ( $( '.top-bar:not(.secondary-navigation .top-bar)' ).length ) {
+					$( '#site-navigation:first' ).insertAfter( '.top-bar' ).show();
+				} else {
+					$( '#site-navigation:first' ).prependTo( 'body' ).show();
+				}
 			}
 			if ( 'nav-float-right' == newval ) {
 				$( '#site-navigation:first' ).appendTo( '.inside-header' ).show();
