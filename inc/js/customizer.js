@@ -285,6 +285,7 @@ function generatepress_classes_live_update( id, classes, selector, prefix ) {
 	 */
 	wp.customize( 'generate_settings[nav_position_setting]', function( value ) {
 		value.bind( function( newval ) {
+			jQuery('body').trigger('generate_navigation_location_updated');
 			if ( $( '.gen-sidebar-nav' ).length ) {
 				wp.customize.preview.send( 'refresh' );
 				return false;
