@@ -8,7 +8,6 @@ jQuery(window).load(function(){
 		e.preventDefault();
 		var default_value = jQuery( this ).data( 'default-value' );
 		jQuery( this ).prevAll( 'label' ).find( 'input' ).attr( 'value', default_value ).trigger( 'change' );
-		return false;
 	});
 	
 	function generate_range_slider( name, min, max, step ) {

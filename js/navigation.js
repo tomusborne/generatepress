@@ -23,7 +23,6 @@
 			$( this ).toggleClass( 'toggled' );
 			$( this ).children( 'i' ).toggleClass( 'fa-bars' ).toggleClass( 'fa-close' );
 			$( this ).attr( 'aria-expanded', $( this ).attr( 'aria-expanded' ) === 'false' ? 'true' : 'false' );
-			return false;
 		});
 	};
 }( jQuery ));

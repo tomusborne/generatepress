@@ -18,7 +18,6 @@
 				form.children( 'input' ).focus();
 				$( this ).children( 'i' ).replaceWith( '<i class="fa fa-fw fa-times"></i>' );
 			}
-			return false;
 		});
 		
 		return this;
