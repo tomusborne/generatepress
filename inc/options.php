@@ -140,10 +140,10 @@ function generate_settings_page()
 										<?php foreach( $modules as $module => $info ) { ?>
 										<div class="add-on activated gp-clear addon-container grid-parent">
 											<div class="addon-name column-addon-name" style="">
-												<a href="<?php echo $info[ 'url' ]; ?>" target="_blank"><?php echo $module; ?></a>
+												<a href="<?php echo esc_url( $info[ 'url' ] ); ?>" target="_blank"><?php echo $module; ?></a>
 											</div>
 											<div class="addon-action addon-addon-action" style="text-align:right;">
-												<a href="<?php echo $info[ 'url' ]; ?>" target="_blank"><?php _e( 'Learn more','generatepress' ); ?></a>
+												<a href="<?php echo esc_url( $info[ 'url' ] ); ?>" target="_blank"><?php _e( 'Learn more','generatepress' ); ?></a>
 											</div>
 										</div>
 										<div class="gp-clear"></div>

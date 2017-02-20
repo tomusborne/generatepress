@@ -585,9 +585,9 @@ function generate_construct_logo()
 				<img class="header-image" src="%3$s" alt="%2$s" title="%2$s" />
 			</a>
 		</div>',
-		apply_filters( 'generate_logo_href' , esc_url( home_url( '/' ) ) ),
-		apply_filters( 'generate_logo_title', esc_attr( get_bloginfo( 'name', 'display' ) ) ),
-		apply_filters( 'generate_logo', esc_url( $logo ) )
+		esc_url( apply_filters( 'generate_logo_href' , home_url( '/' ) ) ),
+		esc_attr( apply_filters( 'generate_logo_title', get_bloginfo( 'name', 'display' ) ) ),
+		esc_url( apply_filters( 'generate_logo', $logo ) )
 	);
 	
 	do_action( 'generate_after_logo' );
@@ -622,9 +622,9 @@ function generate_construct_site_title()
 		<div class="site-branding">
 			<?php if ( false == $disable_title ) : ?>
 				<?php if ( is_front_page() && is_home() ) : ?>
-					<h1 class="main-title" itemprop="headline"><a href="<?php echo apply_filters( 'generate_site_title_href', esc_url( home_url( '/' ) ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+					<h1 class="main-title" itemprop="headline"><a href="<?php echo esc_url( apply_filters( 'generate_site_title_href', home_url( '/' ) ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 				<?php else : ?>
-					<p class="main-title" itemprop="headline"><a href="<?php echo apply_filters( 'generate_site_title_href', esc_url( home_url( '/' ) ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+					<p class="main-title" itemprop="headline"><a href="<?php echo esc_url( apply_filters( 'generate_site_title_href', home_url( '/' ) ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
 				<?php endif; ?>
 			<?php endif;
 				

@@ -393,6 +393,7 @@ function generate_enqueue_color_palettes()
 	$palettes = json_encode( generate_get_default_color_palettes() );
 	
 	// Add our custom palettes
-	wp_add_inline_script( 'wp-color-picker', 'jQuery.wp.wpColorPicker.prototype.options.palettes = ' . sanitize_text_field( $palettes ) . ';' );
+	// json_encode takes care of escaping
+	wp_add_inline_script( 'wp-color-picker', 'jQuery.wp.wpColorPicker.prototype.options.palettes = ' . $palettes . ';' );
 }
 endif;

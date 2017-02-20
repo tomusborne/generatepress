@@ -43,12 +43,12 @@ function generate_get_premium_url( $url = 'https://generatepress.com/premium' )
 	
 	// Set up our URL if we have an ID
 	if ( isset( $args[ 'ref' ] ) ) {
-		$url = esc_url( add_query_arg( 'ref', absint( $args[ 'ref' ] ), $url ) );
+		$url = add_query_arg( 'ref', absint( $args[ 'ref' ] ), $url );
 	}
 	
 	// Set up our URL if we have a campaign
 	if ( isset( $args[ 'campaign' ] ) ) {
-		$url = esc_url( add_query_arg( 'campaign', sanitize_text_field( $args[ 'campaign' ] ), $url ) );
+		$url = add_query_arg( 'campaign', sanitize_text_field( $args[ 'campaign' ] ), $url );
 	}
 	
 	// Return our URL with the optional referral ID
