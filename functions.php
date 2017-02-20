@@ -318,10 +318,10 @@ function generate_scripts()
 	}
 	
 	// IE 8
-	if ( function_exists( 'wp_script_add_data' ) ) :
+	if ( function_exists( 'wp_script_add_data' ) ) {
 		wp_enqueue_script( 'generate-html5', get_template_directory_uri() . "/js/html5shiv{$suffix}.js", array( 'jquery' ), GENERATE_VERSION, true );
 		wp_script_add_data( 'generate-html5', 'conditional', 'lt IE 9' );
-	endif;
+	}
 	
 	// Add the threaded comments script
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -353,27 +353,27 @@ function generate_get_layout()
 	
 	// Set up BuddyPress variable
 	$buddypress = false;
-	if ( function_exists( 'is_buddypress' ) ) :
+	if ( function_exists( 'is_buddypress' ) ) {
 		$buddypress = ( is_buddypress() ) ? true : false;
-	endif;
+	}
 
 	// If we're on the single post page
 	// And if we're not on a BuddyPress page - fixes a bug where BP thinks is_single() is true
-	if ( is_single() && ! $buddypress ) :
+	if ( is_single() && ! $buddypress ) {
 		$layout = null;
 		$layout = $generate_settings['single_layout_setting'];
-	endif;
+	}
 
 	// If the metabox is set, use it instead of the global settings
-	if ( '' !== $layout_meta && false !== $layout_meta ) :
+	if ( '' !== $layout_meta && false !== $layout_meta ) {
 		$layout = $layout_meta;
-	endif;
+	}
 	
 	// If we're on the blog, archive, attachment etc..
-	if ( is_home() || is_archive() || is_search() || is_tax() ) :
+	if ( is_home() || is_archive() || is_search() || is_tax() ) {
 		$layout = null;
 		$layout = $generate_settings['blog_layout_setting'];
-	endif;
+	}
 	
 	// Finally, return the layout
 	return apply_filters( 'generate_sidebar_layout', $layout );
@@ -402,14 +402,14 @@ function generate_get_footer_widgets()
 	$widgets_meta = ( isset( $post ) ) ? get_post_meta( $post->ID, '_generate-footer-widget-meta', true ) : '';
 	
 	// If we're not on a single page or post, the metabox hasn't been set
-	if ( ! is_singular() ) :
+	if ( ! is_singular() ) {
 		$widgets_meta = '';
-	endif;
+	}
 	
 	// If we have a metabox option set, use it
-	if ( '' !== $widgets_meta && false !== $widgets_meta ) :
+	if ( '' !== $widgets_meta && false !== $widgets_meta ) {
 		$widgets = $widgets_meta;
-	endif;
+	}
 	
 	// Finally, return the layout
 	return apply_filters( 'generate_footer_widgets', $widgets );
@@ -434,14 +434,14 @@ function generate_construct_sidebars()
 	$ls = array('left-sidebar','both-sidebars','both-right','both-left');
 	
 	// If left sidebar, show it
-	if ( in_array( $layout, $ls ) ) :
+	if ( in_array( $layout, $ls ) ) {
 		get_sidebar('left'); 
-	endif;
+	}
 	
 	// If right sidebar, show it
-	if ( in_array( $layout, $rs ) ) :
+	if ( in_array( $layout, $rs ) ) {
 		get_sidebar(); 
-	endif;
+	}
 }
 endif;
 
@@ -715,14 +715,15 @@ function generate_update_logo_setting()
 	$logo = attachment_url_to_postid( $old_value );
 	
 	// Now let's update the new logo setting with our ID.
-	if ( is_int( $logo ) )
+	if ( is_int( $logo ) ) {
 		set_theme_mod( 'custom_logo', $logo );
+	}
 	
 	// Got our custom logo? Time to delete the old value
-	if ( get_theme_mod( 'custom_logo' ) ) :
+	if ( get_theme_mod( 'custom_logo' ) ) {
 		$new_settings[ 'logo' ] = '';
 		$update_settings = wp_parse_args( $new_settings, $generate_settings );
 		update_option( 'generate_settings', $update_settings );
-	endif;
+	}
 }
 endif;
