@@ -214,18 +214,28 @@ function generate_font_css()
 	$css->set_selector( '.site-info' );
 	$css->add_property( 'font-size', absint( $generate_settings['footer_font_size'] ), $og_defaults['footer_font_size'], 'px' );
 	
-	// Mobile CSS
-	$output = '';
-	$mobile = apply_filters( 'generate_mobile_media_query', '(max-width:768px)' );
-	$mobile_site_title = ( isset( $generate_settings[ 'mobile_site_title_font_size' ] ) ) ? $generate_settings[ 'mobile_site_title_font_size' ] : '30';
-	$mobile_h1 = ( isset( $generate_settings[ 'mobile_heading_1_font_size' ] ) ) ? $generate_settings[ 'mobile_heading_1_font_size' ] : '30';
-	$mobile_h2 = ( isset( $generate_settings[ 'mobile_heading_2_font_size' ] ) ) ? $generate_settings[ 'mobile_heading_2_font_size' ] : '25';
-	$output .= '@media ' . esc_attr( $mobile ) . ' {.main-title{font-size:' . absint( $mobile_site_title ) . 'px;}h1{font-size:' . absint( $mobile_h1 ) . 'px;}h2{font-size:' . absint( $mobile_h2 ) . 'px;}}';
+	// Mobile
+	$css->start_media_query( apply_filters( 'generate_mobile_media_query', '(max-width:768px)' ) );
+		// Site title
+		$mobile_site_title = ( isset( $generate_settings[ 'mobile_site_title_font_size' ] ) ) ? $generate_settings[ 'mobile_site_title_font_size' ] : '30';
+		$css->set_selector( '.main-title' );
+		$css->add_property( 'font-size', absint( $mobile_site_title ), false, 'px' );
+		
+		// H1
+		$mobile_h1 = ( isset( $generate_settings[ 'mobile_heading_1_font_size' ] ) ) ? $generate_settings[ 'mobile_heading_1_font_size' ] : '30';
+		$css->set_selector( 'h1' );
+		$css->add_property( 'font-size', absint( $mobile_h1 ), false, 'px' );
+		
+		// H2
+		$mobile_h2 = ( isset( $generate_settings[ 'mobile_heading_2_font_size' ] ) ) ? $generate_settings[ 'mobile_heading_2_font_size' ] : '25';
+		$css->set_selector( 'h2' );
+		$css->add_property( 'font-size', absint( $mobile_h2 ), false, 'px' );
+	$css->stop_media_query();
 	
 	// Allow us to hook CSS into our output
 	do_action( 'generate_typography_css', $css );
 	
-	return apply_filters( 'generate_typography_css_output', $css->css_output() . $output );
+	return apply_filters( 'generate_typography_css_output', $css->css_output() );
 }
 endif;
 
