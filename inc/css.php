@@ -3,15 +3,56 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 if ( ! class_exists( 'GeneratePress_CSS' ) ) :
+/**
+ * Creates minified css via PHP.
+ *
+ * @author  Carlos Rios
+ * Modified by Tom Usborne for GeneratePress
+ */
 class GeneratePress_CSS {
-
+	
+	/**
+	 * The css selector that you're currently adding rules to
+	 *
+	 * @access protected
+	 * @var string
+	 */
 	protected $_selector = '';
+	
+	/**
+	 * Stores the final css output with all of its rules for the current selector.
+	 *
+	 * @access protected
+	 * @var string
+	 */
 	protected $_selector_output = '';
+	
+	/**
+	 * Stores all of the rules that will be added to the selector
+	 *
+	 * @access protected
+	 * @var string
+	 */
 	protected $_css = '';
+	
+	/**
+	 * The string that holds all of the css to output
+	 *
+	 * @access protected
+	 * @var string
+	 */
 	protected $_output = '';
 
-	public function set_selector( $selector = '' )
-	{
+	/**
+	 * Sets a selector to the object and changes the current selector to a new one
+	 *
+	 * @access public
+	 * @since  1.0
+	 * 
+	 * @param  string $selector - the css identifier of the html that you wish to target
+	 * @return $this
+	 */
+	public function set_selector( $selector = '' ) {
 		// Render the css in the output string everytime the selector changes
 		if( $this->_selector !== '' ){
 			$this->add_selector_rules_to_output();
@@ -20,8 +61,19 @@ class GeneratePress_CSS {
 		return $this;
 	}
 
-	public function add_property( $property, $value, $og_default = false, $unit = false )
-	{
+	/**
+	 * Adds a css property with value to the css output
+	 *
+	 * @access public
+	 * @since  1.0
+	 * 
+	 * @param  string $property - the css property
+	 * @param  string $value - the value to be placed with the property
+	 * @param  string $og_default - check to see if the value matches the default
+	 * @param  string $unit - the unit for the value (px)
+	 * @return $this
+	 */
+	public function add_property( $property, $value, $og_default = false, $unit = false ) {
 		// Make sure our defaults.css file exists
 		if ( ! wp_style_is( 'generate-defaults', 'enqueued' ) ) {
 			$og_default = false;
@@ -58,6 +110,14 @@ class GeneratePress_CSS {
 		return $this;
 	}
 
+	/**
+	 * Returns the minified css in the $_output variable
+	 *
+	 * @access public
+	 * @since  1.0
+	 * 
+	 * @return string
+	 */
 	public function css_output()
 	{
 		// Add current selector's rules to output
