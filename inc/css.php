@@ -42,6 +42,21 @@ class GeneratePress_CSS {
 	 * @var string
 	 */
 	protected $_output = '';
+	
+	/**
+	 * Stores media queries
+	 * 
+	 * @var null
+	 */
+	protected $_media_query = null;
+	
+	/**
+	 * The string that holds all of the css to output inside of the media query
+	 *
+	 * @access protected
+	 * @var string
+	 */
+	protected $_media_query_output = '';
 
 	/**
 	 * Sets a selector to the object and changes the current selector to a new one
@@ -91,15 +106,74 @@ class GeneratePress_CSS {
 		$this->_css .= $property . ':' . $value . ';';
 		return $this;
 	}
-
-	private function add_selector_rules_to_output()
-	{
+	
+	/**
+	 * Sets a media query in the class
+	 *
+	 * @since  1.1
+	 * @param  string $value
+	 * @return $this
+	 */
+	public function start_media_query( $value ) {
+		// Add the current rules to the output
+		$this->add_selector_rules_to_output();
+		
+		// Add any previous media queries to the output
+		if ( ! empty( $this->_media_query ) ) {
+			$this->add_media_query_rules_to_output();
+		}
+		
+		// Set the new media query
+		$this->_media_query = $value;
+		return $this;
+	}
+	
+	/**
+	 * Stops using a media query.
+	 *
+	 * @see    start_media_query()
+	 *
+	 * @since  1.1
+	 * @return $this
+	 */
+	public function stop_media_query() {
+		return $this->start_media_query( null );
+	}
+	
+	/**
+	 * Adds the current media query's rules to the class' output variable
+	 *
+	 * @since  1.1
+	 * @return $this
+	 */
+	private function add_media_query_rules_to_output() {
+		if( !empty( $this->_media_query_output ) ) {
+			$this->_output .= sprintf( '@media %1$s{%2$s}', $this->_media_query, $this->_media_query_output );
+			
+			// Reset the media query output string
+			$this->_media_query_output = '';
+		}
+		return $this;
+	}
+	
+	/**
+	 * Adds the current selector rules to the output variable
+	 *
+	 * @access private
+	 * @since  1.0
+	 *
+	 * @return $this
+	 */
+	private function add_selector_rules_to_output() {
 		if( !empty( $this->_css ) ) {
 			$this->_selector_output = $this->_selector;
 			$selector_output = sprintf( '%1$s{%2$s}', $this->_selector_output, $this->_css );
 			
-			// Add our CSS to the output if it doesn't already exist
-			if (strpos($this->_output, $selector_output) === FALSE) {
+			// Add our CSS to the output
+			if ( ! empty( $this->_media_query ) ) {
+				$this->_media_query_output .= $selector_output;
+				$this->_css = '';
+			} elseif ( strpos( $this->_output, $selector_output ) === FALSE ) {
 				$this->_output .= $selector_output;
 			}
 
