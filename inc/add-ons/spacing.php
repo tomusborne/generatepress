@@ -42,7 +42,10 @@ function generate_spacing_get_defaults( $filter = true )
 		'content_right' => '40',
 		'content_bottom' => '40',
 		'content_left' => '40',
-		'mobile_content_padding' => '30',
+		'mobile_content_top' => '30',
+		'mobile_content_right' => '30',
+		'mobile_content_bottom' => '30',
+		'mobile_content_left' => '30',
 		'separator' => '20',
 		'left_sidebar_width' => '25',
 		'right_sidebar_width' => '25',
@@ -97,6 +100,12 @@ function generate_spacing_css()
 	// Content padding
 	$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header' );
 	$css->add_property( 'padding', generate_padding_css( $spacing_settings[ 'content_top' ], $spacing_settings[ 'content_right' ], $spacing_settings[ 'content_bottom' ], $spacing_settings[ 'content_left' ] ), generate_padding_css( $og_defaults[ 'content_top' ], $og_defaults[ 'content_right' ], $og_defaults[ 'content_bottom' ], $og_defaults[ 'content_left' ] ) );
+	
+	// Mobile Content padding
+	$css->start_media_query( apply_filters( 'generate_mobile_media_query', '(max-width:768px)' ) );
+		$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header' );
+		$css->add_property( 'padding', generate_padding_css( $spacing_settings[ 'mobile_content_top' ], $spacing_settings[ 'mobile_content_right' ], $spacing_settings[ 'mobile_content_bottom' ], $spacing_settings[ 'mobile_content_left' ] ) );
+	$css->stop_media_query();
 	
 	// One container
 	if ( 'one-container' == generate_get_setting( 'content_layout_setting' ) || is_customize_preview() ) {
@@ -280,11 +289,6 @@ function generate_spacing_css()
 			$output .= '.one-container .sidebar .widget{padding:0px;}';
 		}
 	}
-	
-	// Add mobile padding to the content
-	$mobile = apply_filters( 'generate_mobile_media_query', '(max-width:768px)' );
-	$mobile_content_padding = ( isset( $spacing_settings[ 'mobile_content_padding' ] ) ) ? absint( $spacing_settings[ 'mobile_content_padding' ] ) : '30';
-	$output .= '@media ' . esc_attr( $mobile ) . ' {.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header {padding: ' . $mobile_content_padding . 'px;}}';
 	
 	// Allow us to hook CSS into our output
 	do_action( 'generate_spacing_css', $css );
