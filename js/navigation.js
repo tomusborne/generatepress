@@ -44,7 +44,6 @@ jQuery( document ).ready( function( $ ) {
 			_this.parent().next( '.children, .sub-menu' ).toggleClass( 'toggled-on' );
 			_this.attr( 'aria-expanded', $( this ).attr( 'aria-expanded' ) === 'false' ? 'true' : 'false' );
 		}
-		return false;
 	});
 	
 	// Display the dropdown on click if the item URL doesn't go anywhere
@@ -59,7 +58,6 @@ jQuery( document ).ready( function( $ ) {
 				_this.closest( 'li' ).toggleClass( 'sfHover' );
 				_this.next( '.children, .sub-menu' ).toggleClass( 'toggled-on' );
 				_this.attr( 'aria-expanded', $( this ).attr( 'aria-expanded' ) === 'false' ? 'true' : 'false' );
-				return false;
 			}
 		}
 	});
