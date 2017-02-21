@@ -646,7 +646,7 @@ function generate_show_excerpt()
 	);
 	
 	// Check to see if the more tag is being used
-	$more_tag = apply_filters( 'generate_more_tag', @strpos( $post->post_content, '<!--more-->' ) );
+	$more_tag = apply_filters( 'generate_more_tag', strpos( $post->post_content, '<!--more-->' ) );
 
 	// Check the post format
 	$format = ( false !== get_post_format() ) ? get_post_format() : 'standard';
