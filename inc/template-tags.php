@@ -114,7 +114,6 @@ if ( ! function_exists( 'generate_comment' ) ) :
  * Used as a callback by wp_list_comments() for displaying the comments.
  */
 function generate_comment( $comment, $args, $depth ) {
-	$GLOBALS['comment'] = $comment;
 	$args['avatar_size'] = apply_filters( 'generate_comment_avatar_size', 50 );
 
 	if ( 'pingback' == $comment->comment_type || 'trackback' == $comment->comment_type ) : ?>
