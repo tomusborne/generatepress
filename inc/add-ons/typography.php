@@ -288,6 +288,11 @@ function generate_enqueue_google_fonts() {
 	if ( ! empty( $font_settings ) ) :
 	
 		foreach ( $font_settings as $key ) {
+			
+			// If the key isn't set, move on
+			if ( ! isset( $generate_settings[$key] ) ) {
+				continue;
+			}
 		
 			// If our value is still using the old format, fix it
 			if ( strpos( $generate_settings[$key], ':' ) !== false )
