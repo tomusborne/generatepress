@@ -97,6 +97,9 @@ class GeneratePress_CSS {
 		// Add our unit to our value if it exists
 		if ( $unit && '' !== $unit ) {
 			$value = $value . $unit;
+			if ( '' !== $og_default ) {
+				$og_default = $og_default . $unit;
+			}
 		}
 		
 		// If we don't have a value or our value is the same as our og default, bail
