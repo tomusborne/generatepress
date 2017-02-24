@@ -18,11 +18,12 @@
 		// Open the mobile menu
 		$( this ).on( 'click', function( e ) {
 			e.preventDefault();
-			$( this ).closest( settings.menu ).toggleClass( 'toggled' );
-			$( this ).closest( settings.menu ).attr( 'aria-expanded', $( this ).closest( settings.menu ).attr( 'aria-expanded' ) === 'true' ? 'false' : 'true' );
-			$( this ).toggleClass( 'toggled' );
-			$( this ).children( 'i' ).toggleClass( 'fa-bars' ).toggleClass( 'fa-close' );
-			$( this ).attr( 'aria-expanded', $( this ).attr( 'aria-expanded' ) === 'false' ? 'true' : 'false' );
+			_this = $( this );
+			_this.closest( settings.menu ).toggleClass( 'toggled' );
+			_this.closest( settings.menu ).attr( 'aria-expanded', _this.closest( settings.menu ).attr( 'aria-expanded' ) === 'true' ? 'false' : 'true' );
+			_this.toggleClass( 'toggled' );
+			_this.children( 'i' ).toggleClass( 'fa-bars' ).toggleClass( 'fa-close' );
+			_this.attr( 'aria-expanded', _this.attr( 'aria-expanded' ) === 'false' ? 'true' : 'false' );
 		});
 	};
 }( jQuery ));
