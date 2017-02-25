@@ -115,31 +115,3 @@ function generate_no_addons()
 		endif;
 }
 endif;
-
-if ( ! function_exists( 'generate_include_default_styles' ) ) :
-/** 
- * Check whether we should include our defaults.css file
- * @since 1.3.42
- */
-function generate_include_default_styles() 
-{
-	// If Spacing is activated
-	if ( defined( 'GENERATE_SPACING_VERSION' ) ) {
-		// If we don't have this function, we can't include defaults.css
-		if ( ! function_exists( 'generate_include_spacing_defaults' ) ) {
-			return false;
-		}
-	}
-	
-	// If Typography is activated
-	if ( defined( 'GENERATE_FONT_VERSION' ) ) {
-		// If we don't have this function, we can't include defaults.css
-		if ( ! function_exists( 'generate_include_typography_defaults' ) ) {
-			return false;
-		}
-	}
-	
-	// We made it this far, return true through a filter
-	return apply_filters( 'generate_include_default_styles', true );
-}
-endif;

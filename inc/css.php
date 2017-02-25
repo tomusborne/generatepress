@@ -89,11 +89,6 @@ class GeneratePress_CSS {
 	 * @return $this
 	 */
 	public function add_property( $property, $value, $og_default = false, $unit = false ) {
-		// Make sure our defaults.css file exists
-		if ( ! wp_style_is( 'generate-defaults', 'enqueued' ) ) {
-			$og_default = false;
-		}
-		
 		// Add our unit to our value if it exists
 		if ( $unit && '' !== $unit ) {
 			$value = $value . $unit;
