@@ -630,22 +630,37 @@ function generate_construct_site_title()
 	// If the disable tagline checkbox is checked, or the tagline field is empty, return true
 	$disable_tagline = ( '1' == $generate_settings[ 'hide_tagline' ] || '' == $tagline ) ? true : false;
 	
+	// Build our site title
+	$site_title = apply_filters( 'generate_site_title_output', sprintf(
+		'<%1$s class="main-title" itemprop="headline">
+			<a href="%2$s" rel="home">
+				%3$s
+			</a>
+		</%1$s>',
+		( is_front_page() && is_home() ) ? 'h1' : 'p',
+		esc_url( apply_filters( 'generate_site_title_href', home_url( '/' ) ) ),
+		get_bloginfo( 'name' )
+	));
+	
+	// Build our tagline
+	$site_tagline = apply_filters( 'generate_site_description_output', sprintf(
+		'<p class="site-description">
+			%1$s
+		</p>',
+		html_entity_decode( get_bloginfo( 'description', 'display' ) )
+	));
+	
 	// Site title and tagline
-	if ( false == $disable_title || false == $disable_tagline ) : ?>
-		<div class="site-branding">
-			<?php if ( false == $disable_title ) : ?>
-				<?php if ( is_front_page() && is_home() ) : ?>
-					<h1 class="main-title" itemprop="headline"><a href="<?php echo esc_url( apply_filters( 'generate_site_title_href', home_url( '/' ) ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php else : ?>
-					<p class="main-title" itemprop="headline"><a href="<?php echo esc_url( apply_filters( 'generate_site_title_href', home_url( '/' ) ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php endif; ?>
-			<?php endif;
-				
-			if ( false == $disable_tagline ) : ?>
-				<p class="site-description"><?php echo html_entity_decode( get_bloginfo( 'description', 'display' ) ); ?></p>
-			<?php endif; ?>
-		</div>
-	<?php endif;
+	if ( false == $disable_title || false == $disable_tagline ) {
+		echo apply_filters( 'generate_site_branding_output', sprintf(
+			'<div class="site-branding">
+				%1$s
+				%2$s
+			</div>',
+			( ! $disable_title ) ? $site_title : '',
+			( ! $disable_tagline ) ? $site_tagline : ''
+		) );
+	}
 }
 endif;
 
