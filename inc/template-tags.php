@@ -284,12 +284,14 @@ if ( ! function_exists( 'generate_featured_page_header_area' ) ) :
 function generate_featured_page_header_area($class)
 {
 	// Don't run the function unless we're on a page it applies to
-	if ( ! is_singular() )
+	if ( ! is_singular() ) {
 		return;
+	}
 		
 	// Don't run the function unless we have a post thumbnail
-	if ( ! has_post_thumbnail() )
+	if ( ! has_post_thumbnail() ) {
 		return;
+	}
 		
 	?>
 	<div class="<?php echo esc_attr( $class ); ?> grid-container grid-parent">
@@ -307,14 +309,13 @@ if ( ! function_exists( 'generate_featured_page_header' ) ) :
 add_action('generate_after_header','generate_featured_page_header', 10);
 function generate_featured_page_header()
 {
-	if ( function_exists('generate_page_header') )
+	if ( function_exists( 'generate_page_header' ) ) {
 		return;
+	}
 
-	if ( is_page() ) :
-		
+	if ( is_page() ) {
 		generate_featured_page_header_area('page-header-image');
-	
-	endif;
+	}
 }
 endif;
 
@@ -327,14 +328,13 @@ if ( ! function_exists( 'generate_featured_page_header_inside_single' ) ) :
 add_action('generate_before_content','generate_featured_page_header_inside_single', 10);
 function generate_featured_page_header_inside_single()
 {
-	if ( function_exists('generate_page_header') )
+	if ( function_exists( 'generate_page_header' ) ) {
 		return;
+	}
 
-	if ( is_single() ) :
-	
+	if ( is_single() ) {
 		generate_featured_page_header_area('page-header-image-single');
-	
-	endif;
+	}
 }
 endif;
 
@@ -346,8 +346,9 @@ add_action( 'generate_after_entry_header', 'generate_post_image' );
 function generate_post_image()
 {
 	// If there's no featured image, return
-	if ( ! has_post_thumbnail() )
+	if ( ! has_post_thumbnail() ) {
 		return;
+	}
 		
 	// If we're not on any single post/page or the 404 template, we must be showing excerpts
 	if ( ! is_singular() && ! is_404() ) {
@@ -373,7 +374,7 @@ function generate_navigation_search()
 		generate_get_defaults() 
 	);
 		
-	if ( 'enable' !== $generate_settings['nav_search'] )
+	if ( 'enable' !== $generate_settings['nav_search'] ) {
 		return;
 			
 	?>
@@ -399,12 +400,14 @@ function generate_menu_search_icon( $nav, $args )
 	);
 	
 	// If the search icon isn't enabled, return the regular nav
-	if ( 'enable' !== $generate_settings['nav_search'] )
+	if ( 'enable' !== $generate_settings['nav_search'] ) {
 		return $nav;
+	}
 	
 	// If our primary menu is set, add the search icon
-    if( $args->theme_location == 'primary' )
+    if( $args->theme_location == 'primary' ) {
         return $nav . '<li class="search-item" title="' . esc_attr_x( 'Search', 'submit button', 'generatepress' ) . '"><a href="#"><i class="fa fa-fw fa-search" aria-hidden="true"></i><span class="screen-reader-text">' . _x( 'Search', 'submit button', 'generatepress' ) . '</span></a></li>';
+	}
 	
 	// Our primary menu isn't set, return the regular nav
 	// In this case, the search icon is added to the generate_menu_fallback() function in navigation.php
@@ -427,8 +430,9 @@ function generate_mobile_menu_search_icon()
 	);
 	
 	// If the search icon isn't enabled, return the regular nav
-	if ( 'enable' !== $generate_settings['nav_search'] )
+	if ( 'enable' !== $generate_settings['nav_search'] ) {
 		return;
+	}
 	
 	?>
 	<div class="mobile-bar-items">
@@ -572,8 +576,9 @@ function generate_construct_logo()
 	$logo = ( $logo_url ) ? $logo_url[0] : $generate_settings['logo'];
 	
 	// If we don't have a logo, bail
-	if ( empty( $logo ) )
+	if ( empty( $logo ) ) {
 		return;
+	}
 	
 	do_action( 'generate_before_logo' );
 	
@@ -665,8 +670,9 @@ function generate_back_to_top()
 		generate_get_defaults() 
 	);
 	
-	if ( 'enable' !== $generate_settings[ 'back_to_top' ] )
+	if ( 'enable' !== $generate_settings[ 'back_to_top' ] ) {
 		return;
+	}
 	
 	$icon = apply_filters( 'generate_back_to_top_icon','fa-angle-up' );
 	$scroll_speed = apply_filters( 'generate_back_to_top_scroll_speed', 400 );
@@ -934,8 +940,11 @@ if ( ! function_exists( 'generate_top_bar' ) ) :
  */
 add_action( 'generate_before_header','generate_top_bar', 5 );
 function generate_top_bar() {
-	if ( ! is_active_sidebar( 'top-bar' ) )
+	
+	if ( ! is_active_sidebar( 'top-bar' ) ) {
 		return;
+	}
+	
 	?>
 	<div <?php generate_top_bar_class(); ?>>
 		<div class="inside-top-bar<?php if ( 'contained' == generate_get_setting( 'top_bar_inner_width' ) ) echo ' grid-container grid-parent'; ?>">
@@ -943,6 +952,7 @@ function generate_top_bar() {
 		</div>
 	</div>
 	<?php
+	
 }
 endif;
 
@@ -953,12 +963,16 @@ if ( ! function_exists( 'generate_footer_bar' ) ) :
  */
 add_action( 'generate_before_copyright','generate_footer_bar', 15 );
 function generate_footer_bar() {
-	if ( ! is_active_sidebar( 'footer-bar' ) )
+	
+	if ( ! is_active_sidebar( 'footer-bar' ) ) {
 		return;
+	}
+	
 	?>
 	<div class="footer-bar">
 		<?php dynamic_sidebar( 'footer-bar' ); ?>
 	</div>
 	<?php
+	
 }
 endif;
