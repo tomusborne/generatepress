@@ -698,12 +698,17 @@ function generate_back_to_top()
 		return;
 	}
 	
-	$icon = apply_filters( 'generate_back_to_top_icon','fa-angle-up' );
-	$scroll_speed = apply_filters( 'generate_back_to_top_scroll_speed', 400 );
-	$start_scroll = apply_filters( 'generate_back_to_top_start_scroll', 300 );
-	?>
-	<a title="<?php esc_attr_e( 'Scroll back to top','generatepress' ); ?>" rel="nofollow" href="#" class="generate-back-to-top" style="opacity:0;visibility:hidden;" data-scroll-speed="<?php echo absint( $scroll_speed ); ?>" data-start-scroll="<?php echo absint( $start_scroll ); ?>"><i class="fa <?php echo esc_attr( $icon );?>" aria-hidden="true"></i><span class="screen-reader-text"><?php _e( 'Scroll back to top','generatepress' ); ?></span></a>
-	<?php
+	echo apply_filters( 'generate_back_to_top_output', sprintf(
+		'<a title="%1$s" rel="nofollow" href="#" class="generate-back-to-top" style="opacity:0;visibility:hidden;" data-scroll-speed="%2$s" data-start-scroll="%3$s">
+			<i class="fa %4$s" aria-hidden="true"></i>
+			<span class="screen-reader-text">%5$s</span>
+		</a>',
+		esc_attr( 'Scroll back to top','generatepress' ),
+		absint( apply_filters( 'generate_back_to_top_scroll_speed', 400 ) ),
+		absint( apply_filters( 'generate_back_to_top_start_scroll', 300 ) ),
+		esc_attr( apply_filters( 'generate_back_to_top_icon','fa-angle-up' ) ),
+		__( 'Scroll back to top','generatepress' )
+	));
 }
 endif;
 
