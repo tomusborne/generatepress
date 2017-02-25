@@ -381,12 +381,16 @@ function generate_navigation_search()
 		
 	if ( 'enable' !== $generate_settings['nav_search'] ) {
 		return;
-			
-	?>
-	<form method="get" class="search-form navigation-search" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-		<input type="search" class="search-field" value="<?php echo esc_attr( get_search_query() ); ?>" name="s" title="<?php esc_attr( _ex( 'Search', 'label', 'generatepress' ) ); ?>">
-	</form>
-	<?php
+	}
+	
+	echo apply_filters( 'generate_navigation_search_output', sprintf( 
+		'<form method="get" class="search-form navigation-search" action="%1$s">
+			<input type="search" class="search-field" value="%2$s" name="s" title="%3$s" />
+		</form>',
+		esc_url( home_url( '/' ) ),
+		esc_attr( get_search_query() ),
+		esc_attr_x( 'Search', 'label', 'generatepress' )
+	));
 }
 endif;
 
