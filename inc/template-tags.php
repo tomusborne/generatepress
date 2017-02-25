@@ -592,7 +592,7 @@ function generate_construct_logo()
 	do_action( 'generate_before_logo' );
 	
 	// Print our HTML
-	printf( 
+	echo apply_filters( 'generate_logo_output', sprintf( 
 		'<div class="site-logo">
 			<a href="%1$s" title="%2$s" rel="home">
 				<img class="header-image" src="%3$s" alt="%2$s" title="%2$s" />
@@ -601,7 +601,7 @@ function generate_construct_logo()
 		esc_url( apply_filters( 'generate_logo_href' , home_url( '/' ) ) ),
 		esc_attr( apply_filters( 'generate_logo_title', get_bloginfo( 'name', 'display' ) ) ),
 		esc_url( apply_filters( 'generate_logo', $logo ) )
-	);
+	) );
 	
 	do_action( 'generate_after_logo' );
 }
