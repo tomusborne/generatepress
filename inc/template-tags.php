@@ -352,11 +352,16 @@ function generate_post_image()
 		
 	// If we're not on any single post/page or the 404 template, we must be showing excerpts
 	if ( ! is_singular() && ! is_404() ) {
-	?>
-		<div class="post-image">
-			<a href="<?php the_permalink();?>" title="<?php the_title_attribute(); ?>"><?php the_post_thumbnail( apply_filters( 'generate_page_header_default_size', 'full' ), array('itemprop' => 'image') ); ?></a>
-		</div>
-	<?php
+		echo apply_filters( 'generate_post_image_output', sprintf(
+			'<div class="post-image">
+				<a href="%1$s" title="%2$s">
+					%3$s
+				</a>
+			</div>',
+			esc_url( get_permalink() ),
+			the_title_attribute( 'echo=0' ),
+			get_the_post_thumbnail( get_the_ID(), apply_filters( 'generate_page_header_default_size', 'full' ), array('itemprop' => 'image') )
+		));
 	}
 }
 endif;
