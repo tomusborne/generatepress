@@ -177,8 +177,9 @@ function generate_posted_on()
 	$author = apply_filters( 'generate_post_author', true );
 		
 	$time_string = '<time class="entry-date published" datetime="%1$s" itemprop="datePublished">%2$s</time>';
-	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) )
+	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 		$time_string .= '<time class="updated" datetime="%3$s" itemprop="dateModified">%4$s</time>';
+	}
 
 	$time_string = sprintf( $time_string,
 		esc_attr( get_the_date( 'c' ) ),
@@ -188,7 +189,7 @@ function generate_posted_on()
 	);
 	
 	// If our date is enabled, show it
-	if ( $date ) :
+	if ( $date ) {
 		echo apply_filters( 'generate_post_date_output', sprintf( '<span class="posted-on">%1$s</span>',
 			sprintf( '<a href="%1$s" title="%2$s" rel="bookmark">%3$s</a>',
 				esc_url( get_permalink() ),
@@ -196,10 +197,10 @@ function generate_posted_on()
 				$time_string
 			)
 		) );
-	endif;
+	}
 	
 	// If our author is enabled, show it
-	if ( $author ) :
+	if ( $author ) {
 		echo apply_filters( 'generate_post_author_output', sprintf( ' <span class="byline">%1$s</span>',
 			sprintf( '<span class="author vcard" itemtype="http://schema.org/Person" itemscope="itemscope" itemprop="author">%1$s <a class="url fn n" href="%2$s" title="%3$s" rel="author" itemprop="url"><span class="author-name" itemprop="name">%4$s</span></a></span>',
 				__( 'by','generatepress'),
@@ -208,7 +209,7 @@ function generate_posted_on()
 				esc_html( get_the_author() )
 			)
 		) );
-	endif;
+	}
 }
 endif;
 
