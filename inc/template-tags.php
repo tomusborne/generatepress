@@ -352,7 +352,7 @@ function generate_post_image()
 		
 	// If we're not on any single post/page or the 404 template, we must be showing excerpts
 	if ( ! is_singular() && ! is_404() ) {
-		echo apply_filters( 'generate_post_image_output', sprintf(
+		echo apply_filters( 'generate_featured_image_output', sprintf(
 			'<div class="post-image">
 				<a href="%1$s" title="%2$s">
 					%3$s
