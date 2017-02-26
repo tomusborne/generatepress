@@ -48,12 +48,13 @@ function generate_body_classes( $classes )
 	$widgets = generate_get_footer_widgets();
 	
 	// Full width content
+	// Used for page builders, sets the content to full width and removes the padding
 	$full_width = get_post_meta( get_the_ID(), '_generate-full-width-content', true );
-	$classes[] = ( '' !== $full_width && false !== $full_width && is_singular() ) ? 'full-width-content' : '';
+	$classes[] = ( '' !== $full_width && false !== $full_width && is_singular() && 'true' == $full_width ) ? 'full-width-content' : '';
 	
-	// Remove content padding
-	$remove_content_padding = get_post_meta( get_the_ID(), '_generate-remove-content-padding', true );
-	$classes[] = ( '' !== $remove_content_padding && false !== $remove_content_padding && is_singular() ) ? 'no-content-padding' : '';
+	// Contained content
+	// Used for page builders, basically just removes the content padding
+	$classes[] = ( '' !== $full_width && false !== $full_width && is_singular() && 'contained' == $full_width ) ? 'contained-content' : '';
 	
 	// Let us know if a featured image is being used
 	if ( has_post_thumbnail() ) :

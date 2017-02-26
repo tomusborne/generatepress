@@ -1585,8 +1585,8 @@ footer.entry-meta .byline {
 }
 
 /* Remove content padding */
-.no-content-padding.separate-containers .inside-article,
-.no-content-padding.one-container .site-content {
+.contained-content.separate-containers .inside-article,
+.contained-content.one-container .site-content {
 	padding: 0;
 }
 

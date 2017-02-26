@@ -244,12 +244,12 @@ function generate_add_page_builder_meta_box() {
 	foreach ($post_types as $type) {
 		if ( 'attachment' !== $type ) {
 			add_meta_box(  
-				'generate_page_builder_meta_box', // $id  
-				__('Page Builder Integration','generatepress'), // $title   
-				'generate_show_page_builder_meta_box', // $callback  
-				$type, // $page  
-				'side', // $context  
-				'default' // $priority  
+				'generate_page_builder_meta_box', 
+				__( 'Page Builder Container','generatepress' ),  
+				'generate_show_page_builder_meta_box',
+				$type,
+				'side',
+				'default'
 			); 
 		}
 	}
@@ -270,24 +270,24 @@ function generate_show_page_builder_meta_box( $post ) {
 	
 	// Set up our remove content padding option
 	$stored_meta['_generate-remove-content-padding'][0] = ( isset( $stored_meta['_generate-remove-content-padding'][0] ) ) ? $stored_meta['_generate-remove-content-padding'][0] : '';
-    
-	// We don't need the content padding option if full width content is set to true
-	$hide_padding_option = '' !== $stored_meta['_generate-full-width-content'][0] ? true : false;
 	?>
- 
-    <p>
-		<div class="generate_full_width_template">
-			<label id="full-width-content" for="_generate-full-width-content" style="display:block;margin-bottom:10px;" onclick="if ( jQuery( this ).children().is( ':checked' ) ) {jQuery( '#generate-remove-padding' ).hide();} else {jQuery( '#generate-remove-padding' ).show();}">
-				<input type="checkbox" name="_generate-full-width-content" id="_generate-full-width-content" value="true" <?php checked( $stored_meta['_generate-full-width-content'][0], 'true' ); ?>>
-				<?php _e('Full Width Content','generatepress');?>
-			</label>
-			<label id="generate-remove-padding" for="_generate-remove-content-padding" style="display:block;margin-bottom:10px;<?php if ( $hide_padding_option ) echo 'display:none;'; ?>">
-				<input type="checkbox" name="_generate-remove-content-padding" id="_generate-remove-content-padding" value="true" <?php checked( $stored_meta['_generate-remove-content-padding'][0], 'true' ); ?>>
-				<?php _e('Remove Content Padding','generatepress');?>
-			</label>
-		</div>
+	<p class="page-builder-content" style="color:#666;font-size:13px;">
+		<?php _e( 'Choose your page builder content container type. Both options remove the content padding for you.', 'generatepress' ) ;?>
 	</p>
- 
+	<p class="generate_full_width_template">
+		<label for="default-content" style="display:block;margin-bottom:10px;">
+			<input type="radio" name="_generate-full-width-content" id="default-content" value="" <?php checked( $stored_meta['_generate-full-width-content'][0], '' ); ?>>
+			<?php _e( 'Default','generatepress' );?>
+		</label>
+		<label id="full-width-content" for="_generate-full-width-content" style="display:block;margin-bottom:10px;">
+			<input type="radio" name="_generate-full-width-content" id="_generate-full-width-content" value="true" <?php checked( $stored_meta['_generate-full-width-content'][0], 'true' ); ?>>
+			<?php _e( 'Full Width','generatepress' );?>
+		</label>
+		<label id="generate-remove-padding" for="_generate-remove-content-padding" style="display:block;margin-bottom:10px;">
+			<input type="radio" name="_generate-full-width-content" id="_generate-remove-content-padding" value="contained" <?php checked( $stored_meta['_generate-full-width-content'][0], 'contained' ); ?>>
+			<?php _e( 'Contained','generatepress' );?>
+		</label>
+	</p>
     <?php
 }
 endif;
@@ -319,13 +319,5 @@ function generate_save_page_builder_meta($post_id) {
 		update_post_meta( $post_id, $key, $value );
 	else
 		delete_post_meta( $post_id, $key );
-	
-	$content_padding_key   = '_generate-remove-content-padding';
-	$content_padding_value = filter_input( INPUT_POST, $content_padding_key, FILTER_SANITIZE_STRING );
-
-	if ( $content_padding_value )
-		update_post_meta( $post_id, $content_padding_key, $content_padding_value );
-	else
-		delete_post_meta( $post_id, $content_padding_key );
 }
 endif;
