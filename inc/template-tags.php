@@ -722,59 +722,14 @@ if ( ! function_exists( 'generate_archive_title' ) ) :
 add_action( 'generate_archive_title','generate_archive_title' );
 function generate_archive_title()
 {
+	if ( ! function_exists( 'the_archive_title' ) ) {
+		return;
+	}
 	?>
 	<header class="page-header<?php if ( is_author() ) echo ' clearfix';?>">
 		<?php do_action( 'generate_before_archive_title' ); ?>
 		<h1 class="page-title">
-			<?php
-				if ( is_category() ) :
-					single_cat_title();
-
-				elseif ( is_tag() ) :
-					single_tag_title();
-
-				elseif ( is_author() ) :
-					/* Queue the first post, that way we know
-					 * what author we're dealing with (if that is the case).
-					*/
-					the_post();
-					echo get_avatar( get_the_author_meta( 'ID' ), 75 );
-					printf( '<span class="vcard">' . get_the_author() . '</span>' );
-					/* Since we called the_post() above, we need to
-					 * rewind the loop back to the beginning that way
-					 * we can run the loop properly, in full.
-					 */
-					rewind_posts();
-
-				elseif ( is_day() ) :
-					printf( __( 'Day: %s', 'generatepress' ), '<span>' . get_the_date() . '</span>' );
-
-				elseif ( is_month() ) :
-					printf( __( 'Month: %s', 'generatepress' ), '<span>' . get_the_date( 'F Y' ) . '</span>' );
-
-				elseif ( is_year() ) :
-					printf( __( 'Year: %s', 'generatepress' ), '<span>' . get_the_date( 'Y' ) . '</span>' );
-
-				elseif ( is_tax( 'post_format', 'post-format-aside' ) ) :
-					_e( 'Asides', 'generatepress' );
-
-				elseif ( is_tax( 'post_format', 'post-format-image' ) ) :
-					_e( 'Images', 'generatepress');
-
-				elseif ( is_tax( 'post_format', 'post-format-video' ) ) :
-					_e( 'Videos', 'generatepress' );
-
-				elseif ( is_tax( 'post_format', 'post-format-quote' ) ) :
-					_e( 'Quotes', 'generatepress' );
-
-				elseif ( is_tax( 'post_format', 'post-format-link' ) ) :
-					_e( 'Links', 'generatepress' );
-
-				else :
-					_e( 'Archives', 'generatepress' );
-
-				endif;
-			?>
+			<?php the_archive_title(); ?>
 		</h1>
 		<?php do_action( 'generate_after_archive_title' ); ?>
 		<?php
@@ -791,6 +746,40 @@ function generate_archive_title()
 		<?php do_action( 'generate_after_archive_description' ); ?>
 	</header><!-- .page-header -->
 	<?php
+}
+endif;
+
+if ( ! function_exists( 'generate_filter_the_archive_title' ) ) :
+/**
+ * Alter the_archive_title() function to match our original archive title function
+ *
+ * @since 1.3.45
+ */
+add_filter( 'get_the_archive_title','generate_filter_the_archive_title' );
+function generate_filter_the_archive_title( $title ) {
+	
+	if ( is_category() ) {
+		$title = single_cat_title();
+	} elseif ( is_tag() ) {
+		$title = single_tag_title();
+	} elseif ( is_author() ) {
+		/* Queue the first post, that way we know
+		 * what author we're dealing with (if that is the case).
+		 */
+		the_post();
+		$title = sprintf( '%1$s<span class="vcard">%2$s</span>',
+			get_avatar( get_the_author_meta( 'ID' ), 75 ),
+			get_the_author()
+		);
+		/* Since we called the_post() above, we need to
+		 * rewind the loop back to the beginning that way
+		 * we can run the loop properly, in full.
+		 */
+		rewind_posts();
+	}
+	
+	return $title;
+	
 }
 endif;
 
