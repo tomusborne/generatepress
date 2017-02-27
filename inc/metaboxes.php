@@ -51,7 +51,7 @@ function generate_show_layout_meta_box( $post ) {
 		<div class="generate_layouts">
 			<label for="meta-generate-layout-global" style="display:block;margin-bottom:10px;">
 				<input type="radio" name="_generate-sidebar-layout-meta" id="meta-generate-layout-global" value="" <?php checked( $stored_meta['_generate-sidebar-layout-meta'][0], '' ); ?>>
-				<?php _e('Global Layout Settings','generatepress');?>
+				<?php _e('Default','generatepress');?>
 			</label>
 			<label for="meta-generate-layout-one" style="display:block;margin-bottom:3px;" title="<?php _e('Right Sidebar','generatepress');?>">
 				<input type="radio" name="_generate-sidebar-layout-meta" id="meta-generate-layout-one" value="right-sidebar" <?php checked( $stored_meta['_generate-sidebar-layout-meta'][0], 'right-sidebar' ); ?>>
@@ -161,7 +161,7 @@ function generate_show_footer_widget_meta_box( $post ) {
 		<div class="generate_footer_widget">
 			<label for="meta-generate-footer-widget-global" style="display:block;margin-bottom:10px;">
 				<input type="radio" name="_generate-footer-widget-meta" id="meta-generate-footer-widget-global" value="" <?php checked( $stored_meta['_generate-footer-widget-meta'][0], '' ); ?>>
-				<?php _e('Global Footer Widget Settings','generatepress');?>
+				<?php _e('Default','generatepress');?>
 			</label>
 			<label for="meta-generate-footer-widget-zero" style="display:block;margin-bottom:3px;" title="<?php _e('0 Widgets','generatepress');?>">
 				<input type="radio" name="_generate-footer-widget-meta" id="meta-generate-footer-widget-zero" value="0" <?php checked( $stored_meta['_generate-footer-widget-meta'][0], '0' ); ?>>
