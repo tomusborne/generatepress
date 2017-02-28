@@ -8,52 +8,6 @@
 // No direct access, please
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! function_exists( 'generate_paging_nav' ) ) :
-/**
- * Build the pagination links
- * @since 1.3.35
- */
-function generate_paging_nav() {
-	// Don't print empty markup if there's only one page.
-	if ( $GLOBALS['wp_query']->max_num_pages < 2 ) {
-		return;
-	}
-
-	$paged        = get_query_var( 'paged' ) ? intval( get_query_var( 'paged' ) ) : 1;
-	$pagenum_link = html_entity_decode( get_pagenum_link() );
-	$query_args   = array();
-	$url_parts    = explode( '?', $pagenum_link );
-
-	if ( isset( $url_parts[1] ) ) {
-		wp_parse_str( $url_parts[1], $query_args );
-	}
-
-	$pagenum_link = remove_query_arg( array_keys( $query_args ), $pagenum_link );
-	$pagenum_link = trailingslashit( $pagenum_link ) . '%_%';
-
-	$format  = $GLOBALS['wp_rewrite']->using_index_permalinks() && ! strpos( $pagenum_link, 'index.php' ) ? 'index.php/' : '';
-	$format .= $GLOBALS['wp_rewrite']->using_permalinks() ? user_trailingslashit( 'page/%#%', 'paged' ) : '?paged=%#%';
-
-	// Set up paginated links.
-	$links = paginate_links( array(
-		'base'     => $pagenum_link,
-		'format'   => $format,
-		'total'    => $GLOBALS['wp_query']->max_num_pages,
-		'current'  => $paged,
-		'mid_size' => apply_filters( 'generate_pagination_mid_size', 1 ),
-		'add_args' => array_map( 'urlencode', $query_args ),
-		'prev_text' => __( '&larr; Previous', 'generatepress' ),
-		'next_text' => __( 'Next &rarr;', 'generatepress' ),
-	) );
-
-	if ( $links ) :
-
-		echo $links; 
-
-	endif;
-}
-endif;
-
 if ( ! function_exists( 'generate_content_nav' ) ) :
 /**
  * Display navigation to next/previous pages when applicable
@@ -67,45 +21,70 @@ function generate_content_nav( $nav_id ) {
 		$previous = ( is_attachment() ) ? get_post( $post->post_parent ) : get_adjacent_post( false, '', true );
 		$next = get_adjacent_post( false, '', false );
 
-		if ( ! $next && ! $previous )
+		if ( ! $next && ! $previous ) {
 			return;
+		}
 	}
 
 	// Don't print empty markup in archives if there's only one page.
-	if ( $wp_query->max_num_pages < 2 && ( is_home() || is_archive() || is_search() ) )
+	if ( $wp_query->max_num_pages < 2 && ( is_home() || is_archive() || is_search() ) ) {
 		return;
+	}
 
 	$nav_class = ( is_single() ) ? 'post-navigation' : 'paging-navigation';
 	$category_specific = apply_filters( 'generate_category_post_navigation', false );
-
 	?>
 	<nav id="<?php echo esc_attr( $nav_id ); ?>" class="<?php echo $nav_class; ?>">
 		<h6 class="screen-reader-text"><?php _e( 'Post navigation', 'generatepress' ); ?></h6>
 
-	<?php if ( is_single() ) : // navigation links for single posts ?>
+		<?php if ( is_single() ) : // navigation links for single posts 
 
-		<?php previous_post_link( '<div class="nav-previous"><span class="prev" title="' . __('Previous','generatepress') . '">%link</span></div>', '%title', $category_specific ); ?>
-		<?php next_post_link( '<div class="nav-next"><span class="next" title="' . __('Next','generatepress') . '">%link</span></div>', '%title', $category_specific ); ?>
+			previous_post_link( '<div class="nav-previous"><span class="prev" title="' . __('Previous','generatepress') . '">%link</span></div>', '%title', $category_specific );
+			next_post_link( '<div class="nav-next"><span class="next" title="' . __('Next','generatepress') . '">%link</span></div>', '%title', $category_specific );
 
-	<?php elseif ( $wp_query->max_num_pages > 1 && ( is_home() || is_archive() || is_search() ) ) : // navigation links for home, archive, and search pages ?>
+		elseif ( is_home() || is_archive() || is_search() ) : // navigation links for home, archive, and search pages
 
-		<?php if ( get_next_posts_link() ) : ?>
-		<div class="nav-previous"><span class="prev" title="<?php _e('Previous','generatepress');?>"><?php next_posts_link( __( 'Older posts', 'generatepress' ) ); ?></span></div>
-		<?php endif; ?>
+			if ( get_next_posts_link() ) : ?>
+				<div class="nav-previous"><span class="prev" title="<?php _e('Previous','generatepress');?>"><?php next_posts_link( __( 'Older posts', 'generatepress' ) ); ?></span></div>
+			<?php endif;
 
-		<?php if ( get_previous_posts_link() ) : ?>
-		<div class="nav-next"><span class="next" title="<?php _e('Next','generatepress');?>"><?php previous_posts_link( __( 'Newer posts', 'generatepress' ) ); ?></span></div>
-		<?php endif; ?>
-		
-		<?php generate_paging_nav(); ?>
-		<?php do_action('generate_paging_navigation'); ?>
+			if ( get_previous_posts_link() ) : ?>
+				<div class="nav-next"><span class="next" title="<?php _e('Next','generatepress');?>"><?php previous_posts_link( __( 'Newer posts', 'generatepress' ) ); ?></span></div>
+			<?php endif;
+			
+			if ( function_exists( 'the_posts_pagination' ) ) {
+				the_posts_pagination( array(
+					'mid_size' => apply_filters( 'generate_pagination_mid_size', 1 ),
+					'prev_text' => __( '&larr; Previous', 'generatepress' ),
+					'next_text' => __( 'Next &rarr;', 'generatepress' ),
+				) );
+			}
+			
+			do_action('generate_paging_navigation');
 
-	<?php endif; ?>
-
+		endif; ?>
 	</nav><!-- #<?php echo esc_html( $nav_id ); ?> -->
 	<?php
 }
-endif; // generate_content_nav
+endif;
+
+if ( ! function_exists( 'generate_modify_posts_pagination_template' ) ) :
+/**
+ * Remove the container and screen reader text from the_posts_pagination()
+ * We add this in ourselves in generate_content_nav()
+ *
+ * @since 1.3.45
+ */
+add_filter( 'navigation_markup_template', 'generate_modify_posts_pagination_template', 10, 2 );
+function generate_modify_posts_pagination_template( $template, $class ) {
+
+    if ( ! empty( $class ) && false !== strpos( $class, 'pagination' ) ) {
+        $template = '<div class="nav-links">%3$s</div>'; 
+    }
+
+    return $template;
+}
+endif;
 
 if ( ! function_exists( 'generate_comment' ) ) :
 /**
@@ -165,7 +144,7 @@ function generate_comment( $comment, $args, $depth ) {
 	<?php
 	endif;
 }
-endif; // ends check for generate_comment()
+endif;
 
 if ( ! function_exists( 'generate_posted_on' ) ) :
 /**

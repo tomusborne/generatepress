@@ -1493,6 +1493,11 @@ footer.entry-meta .byline {
 	display: none;
 }
 
+/* Only for WordPress < 4.4 */
+.site-main .paging-navigation .navigation {
+	margin: 0;
+}
+
 .comment-respond {
 	margin-top: 0;
 }

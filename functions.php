@@ -241,6 +241,11 @@ require get_template_directory() . '/inc/css.php';
  */
 require get_template_directory() . '/inc/plugin-compat.php';
 
+/**
+ * Load our deprecated functions
+ */
+require get_template_directory() . '/inc/deprecated.php';
+
 if ( ! function_exists( 'generate_get_min_suffix' ) ) :
 /** 
  * Figure out if we should use minified scripts or not
