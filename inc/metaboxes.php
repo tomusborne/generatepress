@@ -55,11 +55,11 @@ function generate_show_layout_meta_box( $post ) {
 			</label>
 			<label for="meta-generate-layout-one" style="display:block;margin-bottom:3px;" title="<?php _e('Right Sidebar','generatepress');?>">
 				<input type="radio" name="_generate-sidebar-layout-meta" id="meta-generate-layout-one" value="right-sidebar" <?php checked( $stored_meta['_generate-sidebar-layout-meta'][0], 'right-sidebar' ); ?>>
-				<?php _e('Content','generatepress');?> / <strong><?php _e('Sidebar','generatepress');?></strong>
+				<?php _e('Content','generatepress');?> / <strong><?php _ex( 'Sidebar','Short name for meta box','generatepress' );?></strong>
 			</label>
 			<label for="meta-generate-layout-two" style="display:block;margin-bottom:3px;" title="<?php _e('Left Sidebar','generatepress');?>">
 				<input type="radio" name="_generate-sidebar-layout-meta" id="meta-generate-layout-two" value="left-sidebar" <?php checked( $stored_meta['_generate-sidebar-layout-meta'][0], 'left-sidebar' ); ?>>
-				<strong><?php _e('Sidebar','generatepress');?></strong> / <?php _e('Content','generatepress');?>
+				<strong><?php _ex( 'Sidebar','Short name for meta box','generatepress' );?></strong> / <?php _e('Content','generatepress');?>
 			</label>
 			<label for="meta-generate-layout-three" style="display:block;margin-bottom:3px;" title="<?php _e('No Sidebars','generatepress');?>">
 				<input type="radio" name="_generate-sidebar-layout-meta" id="meta-generate-layout-three" value="no-sidebar" <?php checked( $stored_meta['_generate-sidebar-layout-meta'][0], 'no-sidebar' ); ?>>
@@ -67,15 +67,15 @@ function generate_show_layout_meta_box( $post ) {
 			</label>
 			<label for="meta-generate-layout-four" style="display:block;margin-bottom:3px;" title="<?php _e('Both Sidebars','generatepress');?>">
 				<input type="radio" name="_generate-sidebar-layout-meta" id="meta-generate-layout-four" value="both-sidebars" <?php checked( $stored_meta['_generate-sidebar-layout-meta'][0], 'both-sidebars' ); ?>>
-				<strong><?php _e('Sidebar','generatepress');?></strong> / <?php _e('Content','generatepress');?> / <strong><?php _e('Sidebar','generatepress');?></strong>
+				<strong><?php _ex( 'Sidebar','Short name for meta box','generatepress' );?></strong> / <?php _e('Content','generatepress');?> / <strong><?php _ex( 'Sidebar','Short name for meta box','generatepress' );?></strong>
 			</label>
 			<label for="meta-generate-layout-five" style="display:block;margin-bottom:3px;" title="<?php _e('Both Sidebars on Left','generatepress');?>">
 				<input type="radio" name="_generate-sidebar-layout-meta" id="meta-generate-layout-five" value="both-left" <?php checked( $stored_meta['_generate-sidebar-layout-meta'][0], 'both-left' ); ?>>
-				<strong><?php _e('Sidebar','generatepress');?></strong> / <strong><?php _e('Sidebar','generatepress');?></strong> / <?php _e('Content','generatepress');?>
+				<strong><?php _ex( 'Sidebar','Short name for meta box','generatepress' );?></strong> / <strong><?php _ex( 'Sidebar','Short name for meta box','generatepress' );?></strong> / <?php _e('Content','generatepress');?>
 			</label>
 			<label for="meta-generate-layout-six" style="display:block;margin-bottom:3px;" title="<?php _e('Both Sidebars on Right','generatepress');?>">
 				<input type="radio" name="_generate-sidebar-layout-meta" id="meta-generate-layout-six" value="both-right" <?php checked( $stored_meta['_generate-sidebar-layout-meta'][0], 'both-right' ); ?>>
-				<?php _e('Content','generatepress');?> / <strong><?php _e('Sidebar','generatepress');?></strong> / <strong><?php _e('Sidebar','generatepress');?></strong>
+				<?php _e('Content','generatepress');?> / <strong><?php _ex( 'Sidebar','Short name for meta box','generatepress' );?></strong> / <strong><?php _ex( 'Sidebar','Short name for meta box','generatepress' );?></strong>
 			</label>
 		</div>
 	</p>
