@@ -931,13 +931,14 @@ function generate_add_to_font_customizer_list( $fonts )
 	
 	$font_settings = array(
 		'font_body',
+		'font_top_bar',
 		'font_site_title',
 		'font_site_tagline',
 		'font_navigation',
 		'font_widget_title',
 		'font_heading_1',
 		'font_heading_2',
-		'font_heading_3'
+		'font_heading_3',
 	);
 	
 	foreach ( $font_settings as $setting ) {
