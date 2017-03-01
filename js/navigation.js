@@ -10,13 +10,16 @@
 			menu: '.main-navigation'
 		}, options );
 		
+		// Get the clicked item
+		var _this = $( this );
+		
 		// Bail if our menu doesn't exist
 		if ( ! $( settings.menu ).length ) {
 			return;
 		}
 		
-		// Open the mobile menu
-		$( this ).on( 'click', function( e ) {
+		// Toggle the mobile menu
+		_this.on( 'click', function( e ) {
 			e.preventDefault();
 			_this = $( this );
 			_this.closest( settings.menu ).toggleClass( 'toggled' );
@@ -24,6 +27,39 @@
 			_this.toggleClass( 'toggled' );
 			_this.children( 'i' ).toggleClass( 'fa-bars' ).toggleClass( 'fa-close' );
 			_this.attr( 'aria-expanded', _this.attr( 'aria-expanded' ) === 'false' ? 'true' : 'false' );
+		});
+		
+		// Set up our clicked variable
+		// We use this to check if we've clicked on the dropdown arrow or not
+		var clicked = false;
+		
+		// Check to see if we're clicking on the dropdown arrow
+		$( 'nav' ).on( 'click', '.dropdown-menu-toggle', function( e ) {
+			e.preventDefault();
+			// If we've clicked on the dropdown arrow, set our clicked variable to true
+			clicked = true;
+		});
+		
+		// Close the menu on click
+		// This is essential if you're using anchors for a one page site
+		$( 'nav' ).on( 'click', '.main-nav a', function( e ) {
+			// Only do something if the menu toggle is visible
+			if ( $( '.menu-toggle' ).is( ':visible' ) ) {
+				var _this = $( this ), url = _this.attr( 'href' );
+				
+				// Make sure this doesn't fire if we're clicking the dropdown arrow
+				// This will only fire if we're not clicking a dropdown arrow, and the URL isn't # or empty
+				if ( ! clicked && ( '#' !== url && '' !== url ) ) {
+					_this.closest( settings.menu ).removeClass( 'toggled' );
+					_this.closest( settings.menu ).attr( 'aria-expanded', 'false' );
+					_this.removeClass( 'toggled' );
+					_this.children( 'i' ).addClass( 'fa-bars' ).removeClass( 'fa-close' );
+					_this.attr( 'aria-expanded', 'false' );
+				}
+			}
+			
+			// Reset our clicked variable
+			clicked = false;
 		});
 	};
 }( jQuery ));
