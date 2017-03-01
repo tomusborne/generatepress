@@ -167,14 +167,14 @@ function generate_widgets_init()
 	$widgets = array(
 		'sidebar-1' => __( 'Right Sidebar', 'generatepress' ),
 		'sidebar-2' => __( 'Left Sidebar', 'generatepress' ),
-		'top-bar' => __( 'Top Bar','generatepress' ),
 		'header' => __( 'Header', 'generatepress' ),
 		'footer-1' => __( 'Footer Widget 1', 'generatepress' ),
 		'footer-2' => __( 'Footer Widget 2', 'generatepress' ),
 		'footer-3' => __( 'Footer Widget 3', 'generatepress' ),
 		'footer-4' => __( 'Footer Widget 4', 'generatepress' ),
 		'footer-5' => __( 'Footer Widget 5', 'generatepress' ),
-		'footer-bar' => __( 'Footer Bar','generatepress' )
+		'footer-bar' => __( 'Footer Bar','generatepress' ),
+		'top-bar' => __( 'Top Bar','generatepress' ),
 	);
 	
 	// Loop through them to create our widget areas
