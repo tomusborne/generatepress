@@ -96,11 +96,12 @@ button.menu-toggle:focus {
 	.main-navigation .main-nav ul ul {
 		position: relative;
 		top: 0;
-		left: 0;
+		left: auto;
+		right: auto;
 		width: 100%;
 	}
 	
-	.main-navigation .main-nav .sf-menu > li {
+	.main-navigation .main-nav li {
 		float: none;
 		clear: both;
 		display: block !important;
