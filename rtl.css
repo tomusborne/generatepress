@@ -14,12 +14,9 @@ th {
     left: auto;
     right: 100%;
 }
-.menu-item-has-children ul .dropdown-menu-toggle {
-	transform: rotate(180deg);
-}
 
 .menu-item-has-children .dropdown-menu-toggle {
-	float: left;
+	float: left !important;
 }
 .alignleft {
     float: right;
@@ -146,14 +143,21 @@ footer.entry-meta .posted-on:before {
 
 .main-navigation .mobile-bar-items {
 	float: left;
+	left: 0;
+	right: auto;
 }
 
-.main-navigation li {
-	text-align: right !important;
+@media (max-width: 768px) {
+	.main-navigation .main-nav li {
+		text-align: right !important;
+	}
 }
 
 @media (min-width: 768px) {
 	.inside-footer-widgets > div {
 		float: right;
+	}
+	.menu-item-has-children ul .dropdown-menu-toggle {
+		transform: rotate(180deg);
 	}
 }
