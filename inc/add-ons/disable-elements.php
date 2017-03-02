@@ -10,6 +10,14 @@ if ( !function_exists('generate_add_de_meta_box') ) :
 add_action( 'add_meta_boxes', 'generate_add_de_meta_box' );
 function generate_add_de_meta_box() 
 {
+	// Set user role - make filterable
+	$allowed = apply_filters( 'generate_metabox_capability', 'edit_theme_options' );
+	
+	// If not an administrator, don't show the metabox
+	if ( ! current_user_can( $allowed ) ) {
+		return;
+	}
+	
 	$args = array( 'public' => true );
 	$post_types = get_post_types( $args );
 	foreach ($post_types as $type) {
