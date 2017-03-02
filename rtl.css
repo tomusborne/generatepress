@@ -91,7 +91,8 @@ li>ul {
     margin-right: 1.5em;
 }
 .menu-toggle .mobile-menu {
-    margin-right: 10px;
+    margin-right: 5px;
+	margin-left: 0;
 }
 .widget_categories .children {
     margin-right: 1.5em;
