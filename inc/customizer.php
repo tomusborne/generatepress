@@ -645,8 +645,8 @@ function generate_customize_register( $wp_customize ) {
 			'label' => __( 'Navigation Search', 'generatepress' ),
 			'section' => 'generate_layout_navigation',
 			'choices' => array(
-				'enable' => __( 'Enabled', 'generatepress' ),
-				'disable' => __( 'Disabled', 'generatepress' )
+				'enable' => __( 'Enable', 'generatepress' ),
+				'disable' => __( 'Disable', 'generatepress' )
 			),
 			'settings' => 'generate_settings[nav_search]',
 			'priority' => 23
@@ -921,8 +921,8 @@ function generate_customize_register( $wp_customize ) {
 			'label' => __( 'Back to Top Button', 'generatepress' ),
 			'section' => 'generate_layout_footer',
 			'choices' => array(
-				'enable' => __( 'Enabled', 'generatepress' ),
-				'' => __( 'Disabled', 'generatepress' )
+				'enable' => __( 'Enable', 'generatepress' ),
+				'disable' => __( 'Disable', 'generatepress' )
 			),
 			'settings' => 'generate_settings[back_to_top]',
 			'priority' => 50
