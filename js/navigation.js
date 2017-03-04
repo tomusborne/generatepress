@@ -29,15 +29,12 @@
 			_this.attr( 'aria-expanded', _this.attr( 'aria-expanded' ) === 'false' ? 'true' : 'false' );
 		});
 		
-		// Set up our clicked variable
-		// We use this to check if we've clicked on the dropdown arrow or not
-		var clicked = false;
-		
 		// Check to see if we're clicking on the dropdown arrow
 		$( 'nav' ).on( 'click', '.dropdown-menu-toggle', function( e ) {
 			e.preventDefault();
-			// If we've clicked on the dropdown arrow, set our clicked variable to true
-			clicked = true;
+
+			// This prevents the <a> element from thinking it's been clicked
+			e.stopPropagation();
 		});
 		
 		// Close the menu on click
@@ -49,7 +46,7 @@
 				
 				// Make sure this doesn't fire if we're clicking the dropdown arrow
 				// This will only fire if we're not clicking a dropdown arrow, and the URL isn't # or empty
-				if ( ! clicked && ( '#' !== url && '' !== url ) ) {
+				if ( '#' !== url && '' !== url ) {
 					_this.closest( settings.menu ).removeClass( 'toggled' );
 					_this.closest( settings.menu ).attr( 'aria-expanded', 'false' );
 					_this.removeClass( 'toggled' );
@@ -57,9 +54,6 @@
 					_this.attr( 'aria-expanded', 'false' );
 				}
 			}
-			
-			// Reset our clicked variable
-			clicked = false;
 		});
 	};
 }( jQuery ));
@@ -67,10 +61,6 @@
 jQuery( document ).ready( function( $ ) {
 	// Initiate our mobile menu
 	$( '#site-navigation .menu-toggle' ).GenerateMobileMenu();
-	
-	// Set up clicked variable
-	// This is important as the second click function was firing even if we were clicking the .dropdown-menu-toggle
-	var clicked = false;
 	
 	// Build the mobile button that displays the dropdown menu
 	$( 'nav' ).on( 'click', '.dropdown-menu-toggle', function( e ) {
@@ -82,8 +72,10 @@ jQuery( document ).ready( function( $ ) {
 			_this.closest( 'li' ).toggleClass( 'sfHover' );
 			_this.parent().next( '.children, .sub-menu' ).toggleClass( 'toggled-on' );
 			_this.attr( 'aria-expanded', $( this ).attr( 'aria-expanded' ) === 'false' ? 'true' : 'false' );
-			clicked = true;
 		}
+		
+		// This prevents the <a> element from thinking it's been clicked
+		e.stopPropagation();
 	});
 	
 	// Display the dropdown on click if the item URL doesn't go anywhere
@@ -92,7 +84,7 @@ jQuery( document ).ready( function( $ ) {
 		var mobile = $( '.menu-toggle' );
 		var slideout = $( '.slideout-navigation' );
 		var url = _this.attr( 'href' );
-		if ( ( '#' == url || '' == url ) && ! clicked ) {
+		if ( '#' == url || '' == url ) {
 			if ( mobile.is( ':visible' ) || 'visible' == slideout.css( 'visibility' ) ) {
 				e.preventDefault();
 				_this.closest( 'li' ).toggleClass( 'sfHover' );
@@ -100,6 +92,5 @@ jQuery( document ).ready( function( $ ) {
 				_this.attr( 'aria-expanded', $( this ).attr( 'aria-expanded' ) === 'false' ? 'true' : 'false' );
 			}
 		}
-		clicked = false;
 	});
 });
