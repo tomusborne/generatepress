@@ -1,5 +1,47 @@
 === changelog ===
 
+= () - 1.3.45 =
+* New: generate_post_date_output filter
+* New: generate_post_author_output filter
+* New: generate_category_list_output filter
+* New: generate_tag_list_output filter
+* New: generate_excerpt_more_output filter
+* New: generate_content_more_link_output filter
+* New: generate_featured_image_output filter
+* New: generate_navigation_search_output filter
+* New: generate_logo_output filter
+* New: generate_site_title_output filter
+* New: generate_site_description_output filter
+* New: generate_site_branding_output filter
+* New: generate_back_to_top_output filter
+* New: Top bar widget area
+* New: Contained option to Page Builder Container meta box
+* Fix: Force menu-item-float-right to display inline on mobile
+* Fix: Remove horizontal footer widget separator on mobile
+* Fix: Single spacing options can now save as 0px
+* Fix: Prevent slight mobile menu icon jump when toggling between closed and open
+* Fix: Fix issues in mobile menu using RTL languages
+* Tweak: Remove unecessary footer widget grid CSS
+* Tweak: Include WooCommerce CSS only if plugin is active
+* Tweak: Include bbPress CSS only if plugin is active
+* Tweak: Only load old Beaver Builder CSS in old pages
+* Tweak: Clean up CSS
+* Tweak: Use the_title_attribute() function where necessary
+* Tweak: Hide footer bar widget titles
+* Tweak: Improve performance of slider options in the Customizer
+* Tweak: Rename Page Builder Integration meta box to Page Builder Container
+* Tweak: Apply CSS transitions to colors and backgrounds only
+* Tweak: Add media query capability to CSS class
+* Tweak: Optimize JS throughout theme
+* Tweak: Move defaults into style.css and remove defaults.css
+* Tweak: Global labels in Sidebar Layout and Footer Widgets meta box changed to: Default
+* Tweak: Replace custom archive title function with core the_archive_title() function
+* Tweak: Deprecate generate_paging_nav()
+* Tweak: Use the_posts_pagination() function
+* Tweak: Update list of available Google Fonts
+* Tweak: General code cleanup and WordPress coding standards improvements
+* Tweak: Close mobile menu on item click
+
 = (1/31/2017) - 1.3.44 =
 * New: Add filter to base CSS output: generate_base_css_output
 * New: Add filter to colors CSS output: generate_colors_css_output
