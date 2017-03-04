@@ -193,7 +193,7 @@ function generate_settings_page()
 											<?php 
 											$warning = 'return confirm("' . __( 'Warning: This will delete your settings.','generatepress' ) . '")';
 											wp_nonce_field( 'generate_reset_customizer_nonce', 'generate_reset_customizer_nonce' );
-											submit_button( __( 'Delete Default Customizer Settings', 'generatepress' ), 'button', 'submit', false, array( 'onclick' => $warning ) ); 
+											submit_button( __( 'Delete Default Settings', 'generatepress' ), 'button', 'submit', false, array( 'onclick' => esc_js( $warning ) ) ); 
 											?>
 										</p>
 											
