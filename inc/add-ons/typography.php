@@ -381,7 +381,7 @@ function generate_default_fonts_customize_register( $wp_customize ) {
 		array(
 			'default' => $defaults['font_body'],
 			'type' => 'option',
-			'sanitize_callback' => 'generate_sanitize_typography'
+			'sanitize_callback' => 'sanitize_text_field'
 		)
 	);
 		

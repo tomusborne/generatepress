@@ -41,6 +41,7 @@ if ( ! function_exists( 'generate_sanitize_typography' ) ) :
 /**
  * Sanitize typography dropdown
  * @since 1.1.10
+ * @deprecated 1.3.45
  */
 function generate_sanitize_typography( $input ) 
 {
