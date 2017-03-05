@@ -171,7 +171,7 @@ class GeneratePress_CSS {
 			if ( ! empty( $this->_media_query ) ) {
 				$this->_media_query_output .= $selector_output;
 				$this->_css = '';
-			} elseif ( strpos( $this->_output, $selector_output ) === FALSE ) {
+			} else {
 				$this->_output .= $selector_output;
 			}
 
