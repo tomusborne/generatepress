@@ -297,7 +297,6 @@ function generate_customize_register( $wp_customize ) {
 			'capability' => 'edit_theme_options',
 			'priority' => 15,
 			'panel' => 'generate_layout_panel',
-			'active_callback' => 'generate_is_top_bar_active'
 		)
 	);
 	
@@ -324,7 +323,8 @@ function generate_customize_register( $wp_customize ) {
 				'contained' => __( 'Contained', 'generatepress' )
 			),
 			'settings' => 'generate_settings[top_bar_width]',
-			'priority' => 5
+			'priority' => 5,
+			'active_callback' => 'generate_is_top_bar_active',
 		)
 	);
 	
@@ -351,7 +351,8 @@ function generate_customize_register( $wp_customize ) {
 				'contained' => __( 'Contained', 'generatepress' )
 			),
 			'settings' => 'generate_settings[top_bar_inner_width]',
-			'priority' => 10
+			'priority' => 10,
+			'active_callback' => 'generate_is_top_bar_active',
 		)
 	);
 	
@@ -379,7 +380,8 @@ function generate_customize_register( $wp_customize ) {
 				'right' => __( 'Right', 'generatepress' )
 			),
 			'settings' => 'generate_settings[top_bar_alignment]',
-			'priority' => 15
+			'priority' => 15,
+			'active_callback' => 'generate_is_top_bar_active',
 		)
 	);
 	
