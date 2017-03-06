@@ -161,11 +161,16 @@ endif;
 if ( ! function_exists( 'generate_beaver_builder_css' ) ) :
 /** 
  * Add Beaver Builder CSS
- * This function exists simply for back compat reasons
- * Before, Beaver Builder pages set to no sidebar would automatically be full width
- * We can't remove this CSS as people who are using this CSS will lose their layout on update
- * So instead, let's only apply this CSS to posts older than the date of this update
- * That way, future pages won't use this CSS and people can use the Page Builder Integration meta box
+ *
+ * Beaver Builder pages set to no sidebar used to automatically be full width, however
+ * now that we have the Page Builder Container meta box, we want to give the user
+ * the option to set the page to full width or contained.
+ *
+ * We can't remove this CSS as people who are depending on it will lose their full
+ * width layout when they update.
+ *
+ * So instead, we only apply this CSS to posts older than the date of this update.
+ *
  * @since 1.3.45
  */
 add_action( 'wp_enqueue_scripts','generate_beaver_builder_css', 100 );
