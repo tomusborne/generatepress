@@ -177,10 +177,13 @@ add_action( 'wp_enqueue_scripts','generate_beaver_builder_css', 100 );
 function generate_beaver_builder_css()
 {
 	// Check is Beaver Builder is active
-	if ( in_array('fl-builder', get_body_class() ) ) {
+	// If we have the full-width-content class, we don't need to do anything else
+	if ( in_array( 'fl-builder', get_body_class() ) && ! in_array( 'full-width-content', get_body_class() ) ) {
 		global $post;
-		if ( ! isset( $post ) )
+		
+		if ( ! isset( $post ) ) {
 			return;
+		}
 		
 		$compare_date = strtotime( "2017-02-8" );
 		$post_date    = strtotime( $post->post_date );
