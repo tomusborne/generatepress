@@ -178,7 +178,7 @@ function generate_beaver_builder_css()
 {
 	// Check is Beaver Builder is active
 	// If we have the full-width-content class, we don't need to do anything else
-	if ( in_array( 'fl-builder', get_body_class() ) && ! in_array( 'full-width-content', get_body_class() ) ) {
+	if ( in_array( 'fl-builder', get_body_class() ) && ! in_array( 'full-width-content', get_body_class() ) && ! in_array( 'contained-content', get_body_class() ) ) {
 		global $post;
 		
 		if ( ! isset( $post ) ) {
