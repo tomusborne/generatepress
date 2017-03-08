@@ -108,6 +108,10 @@ button.menu-toggle:focus {
 		text-align: left !important;
 	}
 	
+	.main-navigation .main-nav li.hide-on-mobile {
+		display: none !important;
+	}
+	
 	.main-navigation .sub-menu.toggled-on,
 	.main-navigation .children.toggled-on {
 		display: block !important;
