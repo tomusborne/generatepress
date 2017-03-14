@@ -8,7 +8,7 @@
 // No direct access, please
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'GENERATE_VERSION', '1.3.44' );
+define( 'GENERATE_VERSION', '1.3.45' );
 define( 'GENERATE_URI', get_template_directory_uri() );
 define( 'GENERATE_DIR', get_template_directory() );
 
