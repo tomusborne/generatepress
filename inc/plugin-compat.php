@@ -185,9 +185,9 @@ function generate_beaver_builder_css()
 			return;
 		}
 		
-		$compare_date = strtotime( "2017-02-8" );
+		$compare_date = strtotime( "2017-03-14" );
 		$post_date    = strtotime( $post->post_date );
-		//if ( $post_date < $compare_date ) {
+		if ( $post_date < $compare_date ) {
 			$css = '.fl-builder.no-sidebar .container.grid-container {
 				max-width: 100%;
 			}
@@ -197,7 +197,7 @@ function generate_beaver_builder_css()
 			}';
 			$css = str_replace(array("\r", "\n", "\t"), '', $css);
 			wp_add_inline_style( 'generate-style', $css );
-		//}
+		}
 	}
 }
 endif;
