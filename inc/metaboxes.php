@@ -99,7 +99,7 @@ function generate_save_layout_meta($post_id) {
     }
 	
 	// Check that the logged in user has permission to edit this post
-	if ( ! current_user_can( 'edit_post' ) ) {
+	if ( ! current_user_can( 'edit_post', $post_id ) ) {
 		return $post_id;
 	}
  
@@ -210,7 +210,7 @@ function generate_save_footer_widget_meta($post_id) {
     }
 	
 	// Check that the logged in user has permission to edit this post
-	if ( ! current_user_can( 'edit_post' ) ) {
+	if ( ! current_user_can( 'edit_post', $post_id ) ) {
 		return $post_id;
 	}
 	
@@ -308,7 +308,7 @@ function generate_save_page_builder_meta($post_id) {
     }
 	
 	// Check that the logged in user has permission to edit this post
-	if ( ! current_user_can( 'edit_post' ) ) {
+	if ( ! current_user_can( 'edit_post', $post_id ) ) {
 		return $post_id;
 	}
 	
