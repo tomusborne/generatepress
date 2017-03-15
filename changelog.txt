@@ -1,5 +1,8 @@
 === changelog ===
 
+= (3/14/2017) - 1.3.46 =
+* Fix: PHP notice when publishing pages
+
 = (3/14/2017) - 1.3.45 =
 * New: generate_post_date_output filter
 * New: generate_post_author_output filter
