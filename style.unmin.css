@@ -1636,6 +1636,10 @@ footer.entry-meta .byline {
 	margin-left: 10px;
 }
 
+.top-bar-align-center .inside-top-bar .widget:first-child:last-child {
+    display: block
+}
+
 .inside-top-bar:not(.grid-container):after,
 .inside-top-bar:not(.grid-container):before {
 	content: ".";
