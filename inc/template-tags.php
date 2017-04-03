@@ -738,9 +738,9 @@ add_filter( 'get_the_archive_title','generate_filter_the_archive_title' );
 function generate_filter_the_archive_title( $title ) {
 	
 	if ( is_category() ) {
-		$title = single_cat_title();
+		$title = single_cat_title( '', false );
 	} elseif ( is_tag() ) {
-		$title = single_tag_title();
+		$title = single_tag_title( '', false );
 	} elseif ( is_author() ) {
 		/* Queue the first post, that way we know
 		 * what author we're dealing with (if that is the case).
