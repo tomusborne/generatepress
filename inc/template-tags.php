@@ -581,7 +581,7 @@ function generate_construct_logo()
 		esc_url( apply_filters( 'generate_logo_href' , home_url( '/' ) ) ),
 		esc_attr( apply_filters( 'generate_logo_title', get_bloginfo( 'name', 'display' ) ) ),
 		esc_url( apply_filters( 'generate_logo', $logo ) )
-	) );
+	), $logo );
 	
 	do_action( 'generate_after_logo' );
 }
