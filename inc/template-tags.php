@@ -175,7 +175,7 @@ function generate_posted_on()
 				esc_attr( get_the_time() ),
 				$time_string
 			)
-		) );
+		), $time_string );
 	}
 	
 	// If our author is enabled, show it
