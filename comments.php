@@ -18,11 +18,13 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * the visitor has not yet entered the password we will
  * return early without loading the comments.
  */
-if ( post_password_required() )
+if ( post_password_required() ) {
 	return;
-?>
+}
 
-	<div id="comments">
+do_action( 'generate_before_comments' ); 
+?>
+<div id="comments">
 
 	<?php do_action( 'generate_inside_comments' ); ?>
 
