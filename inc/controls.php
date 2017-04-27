@@ -234,14 +234,6 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'GenerateLabelCon
  * @depreceted 1.3.41
  **/
 class GenerateLabelControl extends WP_Customize_Control {
-	public $type = 'label';
-	public function __construct( $manager, $id, $args = array() ) {
-		$this->statuses = array( '' => __( 'Default', 'generatepress' ) );
-		parent::__construct( $manager, $id, $args );
-	}
-
-	public function render_content() {
-		echo '<span class="generate_customize_label">' . esc_html( $this->label ) . '</span>';
-	}
+	public function render_content() {}
 }
 endif;
