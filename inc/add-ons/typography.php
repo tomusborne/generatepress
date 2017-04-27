@@ -359,7 +359,7 @@ function generate_default_fonts_customize_register( $wp_customize ) {
 	if ( method_exists( $wp_customize,'register_control_type' ) ) {
 		$wp_customize->register_control_type( 'Generate_Google_Font_Dropdown_Custom_Control' );
 		$wp_customize->register_control_type( 'Generate_Select_Control' );
-		$wp_customize->register_control_type( 'Generate_Customize_Slider_Control' );
+		$wp_customize->register_control_type( 'Generate_Range_Slider_Control' );
 		$wp_customize->register_control_type( 'Generate_Hidden_Input_Control' );
 	}
 
@@ -516,19 +516,28 @@ function generate_default_fonts_customize_register( $wp_customize ) {
 			'transport' => 'postMessage'
 		)
 	);
-		
-	$wp_customize->add_control( 
-		new Generate_Customize_Slider_Control( 
-			$wp_customize, 
+	
+	$wp_customize->add_control(
+		new Generate_Range_Slider_Control(
+			$wp_customize,
 			'generate_settings[body_font_size]', 
 			array(
-				'label' => __('Font size','generatepress'),
+				'type' => 'generatepress-range-slider',
+				'description' => __( 'Font size', 'generatepress' ), 
 				'section' => 'font_section',
-				'settings' => 'generate_settings[body_font_size]',
+				'settings' => array( 
+					'desktop' => 'generate_settings[body_font_size]',
+				),
+				'choices' => array(
+					'desktop' => array(
+						'min' => 6,
+						'max' => 25,
+						'step' => 1,
+						'edit' => true,
+						'unit' => 'px',
+					),
+				),
 				'priority' => 40,
-				'type' => 'gp-typography-slider',
-				'default_value' => $defaults['body_font_size'],
-				'unit' => 'px'
 			)
 		)
 	);
@@ -542,19 +551,28 @@ function generate_default_fonts_customize_register( $wp_customize ) {
 			'transport' => 'postMessage'
 		)
 	);
-		
-	$wp_customize->add_control( 
-		new Generate_Customize_Slider_Control( 
-			$wp_customize, 
+	
+	$wp_customize->add_control(
+		new Generate_Range_Slider_Control(
+			$wp_customize,
 			'generate_settings[body_line_height]', 
 			array(
-				'label' => __('Line height','generatepress'),
+				'type' => 'generatepress-range-slider',
+				'description' => __( 'Line height', 'generatepress' ), 
 				'section' => 'font_section',
-				'settings' => 'generate_settings[body_line_height]',
+				'settings' => array( 
+					'desktop' => 'generate_settings[body_line_height]',
+				),
+				'choices' => array(
+					'desktop' => array(
+						'min' => 1,
+						'max' => 3,
+						'step' => .1,
+						'edit' => false,
+						'unit' => '',
+					),
+				),
 				'priority' => 45,
-				'type' => 'gp-typography-slider',
-				'default_value' => $defaults['body_line_height'],
-				'unit' => ''
 			)
 		)
 	);
@@ -568,19 +586,28 @@ function generate_default_fonts_customize_register( $wp_customize ) {
 			'transport' => 'postMessage'
 		)
 	);
-		
-	$wp_customize->add_control( 
-		new Generate_Customize_Slider_Control( 
-			$wp_customize, 
+	
+	$wp_customize->add_control(
+		new Generate_Range_Slider_Control(
+			$wp_customize,
 			'generate_settings[paragraph_margin]', 
 			array(
-				'label' => __('Paragraph margin','generatepress'),
+				'type' => 'generatepress-range-slider',
+				'description' => __( 'Paragraph margin', 'generatepress' ), 
 				'section' => 'font_section',
-				'settings' => 'generate_settings[paragraph_margin]',
+				'settings' => array( 
+					'desktop' => 'generate_settings[paragraph_margin]',
+				),
+				'choices' => array(
+					'desktop' => array(
+						'min' => 0,
+						'max' => 5,
+						'step' => .1,
+						'edit' => false,
+						'unit' => '',
+					),
+				),
 				'priority' => 47,
-				'type' => 'gp-typography-slider',
-				'default_value' => $defaults['paragraph_margin'],
-				'unit' => ''
 			)
 		)
 	);

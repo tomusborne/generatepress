@@ -36,7 +36,7 @@ function generate_customize_register( $wp_customize ) {
 	// Add control types so controls can be built using JS
 	if ( method_exists( $wp_customize, 'register_control_type' ) ) {
 		$wp_customize->register_control_type( 'Generate_Customize_Misc_Control' );
-		$wp_customize->register_control_type( 'Generate_Customize_Width_Slider_Control' );
+		$wp_customize->register_control_type( 'Generate_Range_Slider_Control' );
 	}
 	
 	// Add upsell section type
@@ -272,19 +272,28 @@ function generate_customize_register( $wp_customize ) {
 			'transport' => 'postMessage'
 		)
 	);
-		
-	$wp_customize->add_control( 
-		new Generate_Customize_Width_Slider_Control( 
-			$wp_customize, 
+	
+	$wp_customize->add_control(
+		new Generate_Range_Slider_Control(
+			$wp_customize,
 			'generate_settings[container_width]', 
 			array(
-				'label' => __('Container Width','generatepress'),
+				'type' => 'generatepress-range-slider',
+				'label' => __( 'Container Width', 'generatepress' ), 
 				'section' => 'generate_layout_container',
-				'settings' => 'generate_settings[container_width]',
+				'settings' => array( 
+					'desktop' => 'generate_settings[container_width]',
+				),
+				'choices' => array(
+					'desktop' => array(
+						'min' => 700,
+						'max' => 2000,
+						'step' => 5,
+						'edit' => true,
+						'unit' => 'px',
+					),
+				),
 				'priority' => 0,
-				'type' => 'gp-width-slider',
-				'default_value' => $defaults['container_width'],
-				'unit' => 'px'
 			)
 		)
 	);

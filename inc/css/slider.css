@@ -1,0 +1,136 @@
+.customize-control-generatepress-range-slider .generatepress-slider {
+	display: inline-block;
+	position: relative;
+	width: calc(100% - 60px);
+	height: 6px;
+	margin-top: 12px;
+	background-color: rgba(0,0,0,.10); 
+	cursor: pointer; 
+	-webkit-transition: background .5s; 
+	-moz-transition: background .5s; 
+	transition: background .5s;
+}
+
+.customize-control-generatepress-range-slider .has-unit .generatepress-slider {
+	width: calc(100% - 90px);
+}
+
+.customize-control-generatepress-range-slider .gp_range_value.hide-value {
+	display: none;
+}
+
+.customize-control-generatepress-range-slider .gp_range_value.hide-value + .generatepress-slider {
+	width: 100%;
+}
+
+.customize-control-generatepress-range-slider .generatepress-slider .ui-slider-handle { 
+	height: 16px;
+	width: 16px;
+	background-color: #3498D9;
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	-webkit-transform: translateY(-50%) translateX(-4px);
+	transform: translateY(-50%) translateX(-4px);
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.customize-control-generatepress-range-slider .gp_range_value .unit {
+	width: 30px;
+	display:inline-block;
+}
+
+.customize-control-generatepress-range-slider .gp_range_value {
+	display: inline-block;
+	font-size: 14px;
+	padding: 0;
+	font-weight: 400;
+	float: right;
+	width: 50px;
+}
+
+.customize-control-generatepress-range-slider .has-unit .gp_range_value {
+	width: 80px;
+}
+ 
+.customize-control-generatepress-range-slider .gp_range_value span.value {
+    font-size: 12px;
+    width: calc(100% - 2px);
+    text-align: center;
+    height: 22px;
+    background: #FFF;
+    line-height: 22px;
+    border: 1px solid #DDD;
+}
+
+.customize-control-generatepress-range-slider .has-unit .gp_range_value span.value {
+	width: calc(100% - 32px);
+	float: left;
+	display: block;
+}
+
+.customize-control-generatepress-range-slider .gp_range_value .unit {
+    width: 29px;
+    display: block;
+    float: left;
+    background: #FFF;
+    height: 22px;
+    border-top: 1px solid #DDD;
+    border-bottom: 1px solid #DDD;
+    border-right: 1px solid #DDD;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 10px;
+    line-height: 22px;
+}
+
+.customize-control-generatepress-range-slider .generatepress-range-slider-reset span {
+    font-size: 16px;
+    line-height: 22px;
+}
+	
+.customize-control-generatepress-range-slider .gp_range_value input {
+    font-size: 12px;
+    padding: 0px;
+    text-align: center;
+    height: 24px;
+}
+
+.customize-control-generatepress-range-slider .has-unit .gp_range_value input {
+    width: calc(100% - 30px);
+    float: left;
+}
+
+.customize-control-generatepress-range-slider .gp-range-title-info {
+    display: inline-block;
+}
+
+.customize-control-generatepress-range-slider .gp-range-title-area .dashicons {
+	cursor: pointer;
+	font-size: 11px;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	color: #222;
+	text-align: center;
+	position: relative;
+	top: 2px;
+}
+
+.customize-control-generatepress-range-slider .gp-range-title-area .dashicons:hover {
+	background: #fafafa;
+}
+
+.customize-control-generatepress-range-slider .gp-range-title-area .dashicons.selected {
+	background: #fff;
+	color: #222;
+}
+
+.customize-control-generatepress-range-slider .gp-range-slider-controls {
+	float:right;
+}
+
+.customize-control-generatepress-range-slider .gp-device-controls > span:first-child:last-child {
+	display: none;
+}
