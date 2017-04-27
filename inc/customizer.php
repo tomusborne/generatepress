@@ -1028,6 +1028,7 @@ add_action( 'customize_controls_enqueue_scripts', 'generate_customizer_controls_
 function generate_customizer_controls_css()
 {
 	wp_enqueue_style( 'generate-customizer-controls-css', get_template_directory_uri().'/inc/css/customizer.css', array(), GENERATE_VERSION );
+	wp_enqueue_script( 'generatepress-upsell', trailingslashit( get_template_directory_uri() ) . 'inc/js/upsell-control.js', array( 'customize-controls' ), false, true );
 }
 endif;
 
