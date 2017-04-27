@@ -212,7 +212,7 @@ function generate_spacing_css()
 		// Navigation search
 		if ( 'enable' == generate_get_setting( 'nav_search' ) ) {
 			$css->set_selector( '.navigation-search, .navigation-search input' );
-			$css->add_property( 'height', absint( $spacing_settings['menu_item_height'] ), absint( $og_defaults['menu_item_height'] ), 'px' );
+			$css->add_property( 'height', '100%' ); // Added to give browser caches a chance to clear
 		}
 		
 		// Dropdown arrow spacing

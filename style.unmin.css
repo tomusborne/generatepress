@@ -1824,7 +1824,7 @@ footer.entry-meta .byline {
 }
 .navigation-search,
 .navigation-search input {
-    height: 60px;
+    height: 100%;
 }
 .menu-item-has-children .dropdown-menu-toggle {
     padding-right: 20px;
