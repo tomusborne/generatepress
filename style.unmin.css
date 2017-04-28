@@ -89,9 +89,8 @@ button,
 input,
 select,
 textarea {
-	font-family: sans-serif;
+	font-family: inherit;
 	font-size: 16px;
-	font-size: 1.6rem;
 	line-height: 1.5;
 }
 
@@ -143,7 +142,6 @@ pre {
 	background: #eee;
 	font-family: "Courier 10 Pitch", Courier, monospace;
 	font-size: 15px;
-	font-size: 1.5rem;
 	line-height: 1.6;
 	margin-bottom: 1.6em;
 	padding: 1.6em;
@@ -620,7 +618,7 @@ input[type="file"] {
 .nav-aligned-right .main-navigation ul,
 .nav-aligned-center .main-navigation ul {
 	letter-spacing: -0.31em;
-	font-size: 1em;
+	font-size: 100%;
 }
 
 .nav-aligned-right .main-navigation ul li,
@@ -1098,7 +1096,7 @@ pre {
 blockquote {
 	border-left: 5px solid rgba(0, 0, 0, 0.05);
 	padding: 20px;
-	font-size: 1.2em;
+	font-size: 120%;
 	font-style:italic;
 	margin: 0 0 1.5em;
 	position: relative;
