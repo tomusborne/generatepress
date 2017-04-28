@@ -19,3 +19,19 @@ function generate_paging_nav() {
 	}
 }
 endif;
+
+if ( ! function_exists( 'generate_additional_spacing' ) ) :
+/**
+ * Add fallback CSS for our mobile search icon color
+ * @deprecated 1.4
+ */
+function generate_additional_spacing() {}
+endif;
+
+if ( ! function_exists( 'generate_mobile_search_spacing_fallback_css' ) ) :
+/**
+ * Enqueue our mobile search icon color fallback CSS
+ * @deprecated 1.4
+ */
+function generate_mobile_search_spacing_fallback_css() {}
+endif;

@@ -307,50 +307,6 @@ function generate_spacing_scripts() {
 }
 endif;
 
-if ( ! function_exists( 'generate_additional_spacing' ) ) :
-/**
- * Add fallback CSS for our mobile search icon color
- */
-function generate_additional_spacing()
-{
-	$spacing_settings = wp_parse_args( 
-		get_option( 'generate_spacing_settings', array() ), 
-		generate_spacing_get_defaults() 
-	);
-	
-	$og_defaults = generate_spacing_get_defaults( false );
-
-	$css = new GeneratePress_CSS;
-	
-	$css->set_selector( '.menu-item-has-children .dropdown-menu-toggle' );
-	if ( is_rtl() ) {
-		$css->add_property( 'padding-left', $spacing_settings[ 'menu_item' ], false, 'px' );
-	} else {
-		$css->add_property( 'padding-right', $spacing_settings[ 'menu_item' ], $og_defaults[ 'menu_item' ], 'px' );
-	}
-	
-	// Add spacing back where dropdown arrow should be
-	// Old versions of WP don't get nice things
-	if ( version_compare( $GLOBALS['wp_version'], '4.4', '<' ) ) {
-		$css->set_selector( '.main-navigation .main-nav ul li.menu-item-has-children>a, .secondary-navigation .main-nav ul li.menu-item-has-children>a' );
-		$css->add_property( 'padding-right', $spacing_settings[ 'menu_item' ], $og_defaults[ 'menu_item' ], 'px' );
-	}
-	
-	return $css->css_output();
-}
-endif;
-
-if ( ! function_exists( 'generate_mobile_search_spacing_fallback_css' ) ) :
-/**
- * Enqueue our mobile search icon color fallback CSS
- */
-add_action( 'wp_enqueue_scripts', 'generate_mobile_search_spacing_fallback_css', 50 );
-function generate_mobile_search_spacing_fallback_css() 
-{
-	wp_add_inline_style( 'generate-style', generate_additional_spacing() );
-}
-endif;
-
 if ( ! function_exists( 'generate_padding_css' ) ) :
 /**
  * Shorten our padding/margin values into shorthand form
