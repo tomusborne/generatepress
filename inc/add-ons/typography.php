@@ -136,11 +136,11 @@ function generate_font_css()
 	
 	// Line hieght
 	$css->set_selector( 'body' );
-	$css->add_property( 'line-height', $generate_settings['body_line_height'], $og_defaults['body_line_height'] );
+	$css->add_property( 'line-height', floatval( $generate_settings['body_line_height'] ), $og_defaults['body_line_height'] );
 	
 	// Paragraph margin
 	$css->set_selector( 'p' );
-	$css->add_property( 'margin-bottom', $generate_settings['paragraph_margin'], $og_defaults['paragraph_margin'], 'em' );
+	$css->add_property( 'margin-bottom', floatval( $generate_settings['paragraph_margin'] ), $og_defaults['paragraph_margin'], 'em' );
 	
 	// Top bar
 	if ( is_active_sidebar( 'top-bar' ) ) {
