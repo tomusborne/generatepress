@@ -58,7 +58,7 @@ function generate_customize_register( $wp_customize ) {
 	}
 	
 	// Add our upsell section
-	if ( generate_addons_available() ) {
+	if ( ! defined( 'GP_PREMIUM_VERSION' ) ) {
 		$wp_customize->add_section( 
 			new GeneratePress_Upsell_Section( $wp_customize, 'generatepress_upsell_section',
 				array(

@@ -51,7 +51,7 @@ function generate_show_de_meta_box( $post )
 			<input type="checkbox" name="_generate-disable-headline" id="meta-generate-disable-headline" value="true" <?php checked( $stored_meta['_generate-disable-headline'][0], 'true' ); ?>>
 			<?php _e( 'Content Title','generatepress' );?>
 		</label>
-		<?php if ( generate_addons_available() ) : ?>
+		<?php if ( ! defined( 'GP_PREMIUM_VERSION' ) ) : ?>
 			<span style="display:block;padding-top:1em;border-top:1px solid #EFEFEF;">
 				<a href="<?php echo generate_get_premium_url( 'https://generatepress.com/downloads/generate-disable-elements' );?>" target="_blank"><?php _e( 'Add-on available', 'generatepress' ); ?></a>
 			</span>

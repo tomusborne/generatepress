@@ -35,3 +35,65 @@ if ( ! function_exists( 'generate_mobile_search_spacing_fallback_css' ) ) :
  */
 function generate_mobile_search_spacing_fallback_css() {}
 endif;
+
+if ( ! function_exists( 'generate_addons_available' ) ) :
+/** 
+ * Check to see if there's any addons not already activated
+ * @since 1.0.9
+ * @deprecated 1.4
+ */
+function generate_addons_available()
+{
+	if ( defined( 'GP_PREMIUM_VERSION' ) )
+		return false;
+		
+	if ( !function_exists('generate_fonts_setup') ||
+		!function_exists('generate_colors_setup') ||
+		!function_exists('generate_backgrounds_setup') ||
+		!function_exists('generate_page_header') ||
+		!function_exists('generate_menu_plus_setup') ||
+		!function_exists('generate_insert_import_export') ||
+		!function_exists('generate_copyright_option') ||
+		!function_exists('generate_disable_elements') ||
+		!function_exists('generate_blog_get_defaults') ||
+		!function_exists('generate_hooks_setup') ||
+		!function_exists('generate_secondary_nav_setup') ||
+		!function_exists('generate_sections_styles') ||
+		!function_exists('generate_spacing_setup')) :
+			return true;
+		else :
+			return false;
+		endif;
+}
+endif;
+
+if ( ! function_exists( 'generate_no_addons' ) ) :
+/** 
+ * Check to see if no addons are activated
+ * @since 1.0.9
+ * @deprecated 1.4
+ */
+function generate_no_addons()
+{
+	if ( defined( 'GP_PREMIUM_VERSION' ) )
+		return false;
+		
+	if ( !function_exists('generate_fonts_setup') &&
+		!function_exists('generate_colors_setup') &&
+		!function_exists('generate_backgrounds_setup') &&
+		!function_exists('generate_page_header') &&
+		!function_exists('generate_menu_plus_setup') &&
+		!function_exists('generate_insert_import_export') &&
+		!function_exists('generate_copyright_option') &&
+		!function_exists('generate_disable_elements') &&
+		!function_exists('generate_blog_get_defaults') &&
+		!function_exists('generate_hooks_setup') &&
+		!function_exists('generate_secondary_nav_setup') &&
+		!function_exists('generate_sections_styles') &&
+		!function_exists('generate_spacing_setup')) :
+			return true;
+		else :
+			return false;
+		endif;
+}
+endif;

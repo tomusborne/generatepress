@@ -47,7 +47,7 @@ function generate_settings_page()
 						<a href="<?php echo generate_get_premium_url( 'https://generatepress.com' );?>" target="_blank">GeneratePress</a> <span class="gp-version"><?php echo GENERATE_VERSION; ?></span>
 					</div>
 					<div class="gp-masthead-links">
-						<?php if ( generate_addons_available() ) : ?>
+						<?php if ( ! defined( 'GP_PREMIUM_VERSION' ) ) : ?>
 							<a style="font-weight: bold;" href="<?php echo generate_get_premium_url( 'https://generatepress.com/premium/' );?>" target="_blank"><?php _e('Premium','generatepress');?></a> 
 						<?php endif; ?>
 						<a href="<?php echo esc_url( 'https://generatepress.com/support' ); ?>" target="_blank"><?php _e( 'Support','generatepress' ); ?></a>
@@ -75,18 +75,6 @@ function generate_settings_page()
 								</div>
 
 								<?php do_action('generate_inside_options_form'); ?>
-								<?php 
-								// @todo
-								// This block is marked for removal in 6 months
-								// December 3, 2016
-								if ( ! generate_no_addons() ) : ?>
-									<div class="postbox generate-metabox" id="gen-license-keys">
-										<div class="inside">
-											<?php do_action('generate_license_key_items'); ?>
-										</div>
-									</div>
-								<?php endif; ?>
-								
 							</form>
 							
 							<?php
@@ -132,7 +120,7 @@ function generate_settings_page()
 								)
 							);
 							
-							if ( generate_addons_available() ) : ?>
+							if ( ! defined( 'GP_PREMIUM_VERSION' ) ) : ?>
 							<div class="postbox generate-metabox">
 								<h3 class="hndle"><?php _e( 'Add-ons','generatepress' ); ?></h3>
 								<div class="inside" style="margin:0;padding:0;">
@@ -168,7 +156,7 @@ function generate_settings_page()
 								?>
 							</div>
 							<?php do_action( 'generate_admin_right_panel' ); ?>
-							<?php if ( generate_addons_available() ) : ?>
+							<?php if ( ! defined( 'GP_PREMIUM_VERSION' ) ) : ?>
 								<div class="postbox generate-metabox popular-articles">
 									<h3 class="hndle"><a href="https://docs.generatepress.com" target="_blank"><?php _e( 'View all','generatepress' ); ?></a><?php _e( 'Documentation','generatepress' ); ?></h3>
 									<div class="inside">
