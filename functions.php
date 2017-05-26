@@ -138,6 +138,8 @@ function generate_get_defaults()
 	);
 	
 	return apply_filters( 'generate_option_defaults', $generate_defaults );
+	// Remove image caption padding
+	add_filter( 'img_caption_shortcode_width', '__return_zero' );
 }
 endif;
 
