@@ -1,8 +1,8 @@
 <?php
 defined( 'WPINC' ) or die;
 
-if ( ! class_exists( 'GeneratePress_Typography_Customize_Control' ) ) :
-class GeneratePress_Typography_Customize_Control extends WP_Customize_Control
+if ( ! class_exists( 'Generate_Typography_Customize_Control' ) ) :
+class Generate_Typography_Customize_Control extends WP_Customize_Control
 {
     public $type = 'gp-customizer-typography';
 	

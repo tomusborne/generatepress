@@ -133,7 +133,7 @@ function generate_default_fonts_customize_register( $wp_customize ) {
 	$defaults = generate_get_default_fonts();
 	
 	if ( method_exists( $wp_customize,'register_control_type' ) ) {
-		$wp_customize->register_control_type( 'GeneratePress_Typography_Customize_Control' );
+		$wp_customize->register_control_type( 'Generate_Typography_Customize_Control' );
 		$wp_customize->register_control_type( 'Generate_Range_Slider_Control' );
 	}
 
@@ -194,7 +194,7 @@ function generate_default_fonts_customize_register( $wp_customize ) {
 	);
 	
 	$wp_customize->add_control(
-		new GeneratePress_Typography_Customize_Control(
+		new Generate_Typography_Customize_Control(
 			$wp_customize,
 			'body_typography', 
 			array(
