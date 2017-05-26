@@ -533,6 +533,19 @@ function generate_add_viewport()
 }
 endif;
 
+if ( ! function_exists( 'generate_remove_caption_padding' ) ) :
+/**
+ * Remove WordPress's default padding on images with captions
+ *
+ * @param int $width Default WP .wp-caption width (image width + 10px)
+ * @return int Updated width to remove 10px padding
+ */
+add_filter( 'img_caption_shortcode_width', 'generate_remove_caption_padding' );
+function generate_remove_caption_padding( $width ) {
+	return $width - 10;
+}
+endif;
+
 if ( ! function_exists( 'generate_smart_content_width' ) ) :
 /**
  * Set the $content_width depending on layout of current page
