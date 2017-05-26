@@ -19,9 +19,8 @@ function generate_customize_register( $wp_customize ) {
 	// Get our default values
 	$defaults = generate_get_defaults();
 
-	// Load custom controls
-	require_once get_template_directory() . '/inc/controls.php';
-	require_once get_template_directory() . '/inc/sanitize.php';
+	// Load helpers
+	require trailingslashit( get_template_directory() ) . 'inc/customizer/customizer-helpers.php';
 	
 	if ( $wp_customize->get_control( 'blogdescription' ) ) {
 		$wp_customize->get_control('blogdescription')->priority = 3;
@@ -1014,21 +1013,7 @@ if ( ! function_exists( 'generate_customizer_live_preview' ) ) :
 add_action( 'customize_preview_init', 'generate_customizer_live_preview', 100 );
 function generate_customizer_live_preview()
 {
-	wp_enqueue_script( 'generate-themecustomizer', trailingslashit( get_template_directory_uri() ) . 'inc/js/customizer.js', array( 'customize-preview' ), GENERATE_VERSION, true );
-}
-endif;
-
-if ( ! function_exists( 'generate_customizer_controls_css' ) ) :
-/**
- * Add CSS for our controls
- *
- * @since 1.3.41
- */
-add_action( 'customize_controls_enqueue_scripts', 'generate_customizer_controls_css' );
-function generate_customizer_controls_css()
-{
-	wp_enqueue_style( 'generate-customizer-controls-css', get_template_directory_uri().'/inc/css/customizer.css', array(), GENERATE_VERSION );
-	wp_enqueue_script( 'generatepress-upsell', trailingslashit( get_template_directory_uri() ) . 'inc/js/upsell-control.js', array( 'customize-controls' ), false, true );
+	wp_enqueue_script( 'generate-themecustomizer', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/js/customizer-live-preview.js', array( 'customize-preview' ), GENERATE_VERSION, true );
 }
 endif;
 
@@ -1108,5 +1093,47 @@ if ( ! function_exists( 'generate_customize_partial_blogdescription' ) ) :
  */
 function generate_customize_partial_blogdescription() {
 	bloginfo( 'description' );
+}
+endif;
+
+if ( ! function_exists( 'generate_get_default_color_palettes' ) ) :
+/**
+ * Set up our colors for the color picker palettes and filter them so you can change them
+ * @since 1.3.42
+ */
+function generate_get_default_color_palettes() {
+	$palettes = array(
+		'#000000',
+		'#FFFFFF',
+		'#F1C40F',
+		'#E74C3C',
+		'#1ABC9C',
+		'#1e72bd',
+		'#8E44AD',
+		'#00CC77',
+	);
+	
+	return apply_filters( 'generate_default_color_palettes', $palettes );
+}
+endif;
+
+if ( ! function_exists( 'generate_enqueue_color_palettes' ) ):
+/**
+ * Add our custom color palettes to the color pickers in the Customizer
+ * @since 1.3.42
+ */
+add_action( 'customize_controls_enqueue_scripts','generate_enqueue_color_palettes' );
+function generate_enqueue_color_palettes() 
+{
+	// Old versions of WP don't get nice things
+	if ( ! function_exists( 'wp_add_inline_script' ) )
+		return;
+	
+	// Grab our palette array and turn it into JS
+	$palettes = json_encode( generate_get_default_color_palettes() );
+	
+	// Add our custom palettes
+	// json_encode takes care of escaping
+	wp_add_inline_script( 'wp-color-picker', 'jQuery.wp.wpColorPicker.prototype.options.palettes = ' . $palettes . ';' );
 }
 endif;

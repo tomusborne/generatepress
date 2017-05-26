@@ -974,3 +974,50 @@ function generate_footer_bar() {
 	
 }
 endif;
+
+if ( ! function_exists( 'generate_disable_title' ) ) :
+/**
+ * Remove our title if set
+ * @since 1.3.18
+ */
+add_filter( 'generate_show_title', 'generate_disable_title' );
+function generate_disable_title()
+{
+	// Get our option
+	$disable_headline = get_post_meta( get_the_ID(), '_generate-disable-headline', true );
+	
+	// If our option is set, disable the title
+	if ( ! empty( $disable_headline ) && false !== $disable_headline ) {
+		return false;
+	}
+	
+	// If we've reached this point, our option is not set, so we should continue to show our title
+	return true;
+}
+endif;
+
+if ( ! function_exists( 'generate_add_footer_info' ) ) :
+add_action('generate_credits','generate_add_footer_info');
+function generate_add_footer_info()
+{
+	$copyright = sprintf( '<span class="copyright">&copy; %1$s</span> &bull; <a href="%2$s" target="_blank" itemprop="url">%3$s</a>',
+		date( 'Y' ),
+		esc_url( 'https://generatepress.com' ),
+		__( 'GeneratePress','generatepress' )
+	);
+	
+	echo apply_filters( 'generate_copyright', $copyright );
+}
+endif;
+
+if ( ! function_exists( 'generate_add_viewport' ) ) :
+/** 
+ * Add viewport to wp_head
+ * @since 1.1.0
+ */
+add_action('wp_head','generate_add_viewport');
+function generate_add_viewport()
+{
+	echo apply_filters( 'generate_meta_viewport', '<meta name="viewport" content="width=device-width, initial-scale=1">' );
+}
+endif;
