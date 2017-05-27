@@ -109,4 +109,13 @@ if ( ! function_exists( 'generate_remove_caption_padding' ) ) :
 function generate_remove_caption_padding( $width ) {
 	return $width - 10;
 }
+if ( ! function_exists( 'generate_get_min_suffix' ) ) :
+/** 
+ * Figure out if we should use minified scripts or not
+ * @since 1.3.29
+ * @deprecated 1.4
+ */
+function generate_get_min_suffix() {
+	return defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+}
 endif;

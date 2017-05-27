@@ -169,18 +169,6 @@ require get_template_directory() . '/inc/migrate.php';
 // Deprecated functions
 require get_template_directory() . '/inc/deprecated.php';
 
-if ( ! function_exists( 'generate_get_min_suffix' ) ) :
-/** 
- * Figure out if we should use minified scripts or not
- * @since 1.3.29
- */
-function generate_get_min_suffix() 
-{
-	return defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-}
-endif;
-
-if ( ! function_exists( 'generate_scripts' ) ) :
 /**
  * Enqueue scripts and styles
  */
@@ -194,7 +182,7 @@ function generate_scripts()
 	);
 	
 	// Get the minified suffix.
-	$suffix = generate_get_min_suffix();
+	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 	
 	// Enqueue our CSS.
 	wp_enqueue_style( 'generate-style-grid', trailingslashit( get_template_directory_uri() ) . "css/unsemantic-grid{$suffix}.css", false, GENERATE_VERSION, 'all' );
