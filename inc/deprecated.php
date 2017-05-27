@@ -109,6 +109,18 @@ if ( ! function_exists( 'generate_remove_caption_padding' ) ) :
 function generate_remove_caption_padding( $width ) {
 	return $width - 10;
 }
+endif;
+
+if ( ! function_exists( 'generate_scripts' ) ) :
+/**
+ * Enqueue scripts and styles
+ * @deprecated 1.4
+ */
+function generate_scripts() {
+	// Replaced by generate_enqueue_scripts()
+}
+endif;
+
 if ( ! function_exists( 'generate_get_min_suffix' ) ) :
 /** 
  * Figure out if we should use minified scripts or not

@@ -172,9 +172,8 @@ require get_template_directory() . '/inc/deprecated.php';
 /**
  * Enqueue scripts and styles
  */
-add_action( 'wp_enqueue_scripts', 'generate_scripts' );
-function generate_scripts() 
-{
+add_action( 'wp_enqueue_scripts', 'generate_enqueue_scripts' );
+function generate_enqueue_scripts() {
 	// Get our options.
 	$generate_settings = wp_parse_args( 
 		get_option( 'generate_settings', array() ), 
@@ -239,7 +238,6 @@ function generate_scripts()
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-endif;
 
 if ( ! function_exists( 'generate_get_layout' ) ) :
 /**
