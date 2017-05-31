@@ -7,7 +7,7 @@ if ( ! function_exists( 'generate_get_defaults' ) ) :
  */
 function generate_get_defaults()
 {	
-	$generate_defaults = array(
+	$defaults = array(
 		'hide_title' => '',
 		'hide_tagline' => '',
 		'logo' => '',
@@ -41,17 +41,18 @@ function generate_get_defaults()
 		'link_color_visited' => '',
 	);
 	
-	return apply_filters( 'generate_option_defaults', $generate_defaults );
+	return apply_filters( 'generate_option_defaults', $defaults );
 }
 endif;
 
-if ( !function_exists('generate_get_color_defaults') ) :
+if ( ! function_exists( 'generate_get_color_defaults' ) ) :
 /**
  * Set default options
+ * function_exists() required as this was defined in GP Premium
  */
 function generate_get_color_defaults()
 {
-	$generate_color_defaults = array(
+	$defaults = array(
 		'top_bar_background_color' => '#636363',
 		'top_bar_text_color' => '#ffffff',
 		'top_bar_link_color' => '#ffffff',
@@ -113,17 +114,18 @@ function generate_get_color_defaults()
 		'form_button_text_color_hover' => '#ffffff'
 	);
 	
-	return apply_filters( 'generate_color_option_defaults', $generate_color_defaults );
+	return apply_filters( 'generate_color_option_defaults', $defaults );
 }
 endif;
 
 if ( !function_exists('generate_get_default_fonts') ) :
 /**
  * Set default options
+ * function_exists() required as this was defined in GP Premium
  */
 function generate_get_default_fonts( $filter = true )
 {
-	$generate_font_defaults = array(
+	$defaults = array(
 		'font_body' => 'Open Sans',
 		'font_body_category' => 'sans-serif',
 		'font_body_variants' => '300,300italic,regular,italic,600,600italic,700,700italic,800,800italic',
@@ -188,10 +190,10 @@ function generate_get_default_fonts( $filter = true )
 	);
 	
 	if ( $filter ) {
-		return apply_filters( 'generate_font_option_defaults', $generate_font_defaults );
+		return apply_filters( 'generate_font_option_defaults', $defaults );
 	}
 	
-	return $generate_font_defaults;
+	return $defaults;
 }
 endif;
 
@@ -199,10 +201,11 @@ if ( ! function_exists( 'generate_spacing_get_defaults' ) ) :
 /**
  * Set the default options
  * @since 0.1
+ * function_exists() required as this was defined in GP Premium
  */
 function generate_spacing_get_defaults( $filter = true )
 {
-	$generate_spacing_defaults = array(
+	$defaults = array(
 		'top_bar_top' => '10',
 		'top_bar_right' => '10',
 		'top_bar_bottom' => '10',
@@ -241,9 +244,9 @@ function generate_spacing_get_defaults( $filter = true )
 	);
 	
 	if ( $filter ) {
-		return apply_filters( 'generate_spacing_option_defaults', $generate_spacing_defaults );
+		return apply_filters( 'generate_spacing_option_defaults', $defaults );
 	}
 	
-	return $generate_spacing_defaults;
+	return $defaults;
 }
 endif;
