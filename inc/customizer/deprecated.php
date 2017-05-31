@@ -100,3 +100,16 @@ function generate_typography_customize_preview_css() {
 	<?php
 }
 endif;
+
+if ( ! function_exists( 'generate_is_posts_page' ) ) :
+/**
+ * Check to see if we're on a posts page
+ *
+ * @since 1.3.39
+ * @deprecated 1.4
+ */
+function generate_is_posts_page()
+{
+	return ( is_home() || is_archive() || is_tax() ) ? true : false;
+}
+endif;
