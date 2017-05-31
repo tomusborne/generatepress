@@ -1606,6 +1606,10 @@ footer.entry-meta .byline {
 	margin: 0;
 }
 
+.top-bar .inside-top-bar .textwidget p:last-child {
+	margin: 0;
+}
+
 .top-bar-align-center {
 	text-align: center;
 }
