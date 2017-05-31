@@ -557,7 +557,7 @@ function generate_customize_register( $wp_customize ) {
 			'default' => $defaults['nav_position_setting'],
 			'type' => 'option',
 			'sanitize_callback' => 'generate_sanitize_choices',
-			'transport' => ( '' !== generate_get_setting( 'nav_position_setting' ) ) ? 'postMessage' : 'refresh'
+			'transport' => ( '' !== generate_get_option( 'nav_position_setting' ) ) ? 'postMessage' : 'refresh'
 		)
 	);
 	
