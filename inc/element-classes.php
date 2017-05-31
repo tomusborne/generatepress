@@ -12,13 +12,8 @@ add_filter( 'body_class', 'generate_set_body_classes' );
  * @return array All of the body classes.
  */
 function generate_set_body_classes( $classes ) {
-	// Get the layout
 	$layout = generate_get_sidebar_layout();
-	
-	// Get the navigation location
 	$navigation_location = generate_get_navigation_location();
-	
-	// Get the footer widgets
 	$widgets = generate_get_footer_widget_count();
 	
 	// Full width content
@@ -123,7 +118,6 @@ function generate_set_right_sidebar_classes( $classes ) {
 	$classes[] = 'grid-parent';
 	$classes[] = 'sidebar';
 
-	// Get the layout
 	$layout = generate_get_sidebar_layout();
 	
 	if ( '' !== $layout ) {
@@ -166,7 +160,6 @@ function generate_set_left_sidebar_classes( $classes ) {
 	$classes[] = 'grid-parent';
 	$classes[] = 'sidebar';
 
-	// Get the layout
 	$layout = generate_get_sidebar_layout();
 	
 	if ( '' !== $layout ) {
@@ -209,7 +202,6 @@ function generate_set_content_classes( $classes ) {
 	$classes[] = 'grid-parent';
 	$classes[] = 'mobile-grid-100';
 
-	// Get the layout
 	$layout = generate_get_sidebar_layout();
 	
 	if ( '' !== $layout ) {
@@ -369,8 +361,7 @@ function generate_set_footer_classes( $classes )
 		$classes[] = 'grid-container';
 		$classes[] = 'grid-parent';
 	}
-	
-	// Footer bar
+
 	$classes[] = ( is_active_sidebar( 'footer-bar' ) ) ? 'footer-bar-active' : '';
 	$classes[] = ( is_active_sidebar( 'footer-bar' ) ) ? 'footer-bar-align-' . generate_get_option( 'footer_bar_alignment' ) : '';
 

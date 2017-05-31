@@ -27,10 +27,8 @@ function generate_get_option( $option ) {
  * @return string The sidebar layout location.
  */
 function generate_get_sidebar_layout() {
-	// Get current post
 	global $post;
 	
-	// Set up the layout variable for pages
 	$layout = generate_get_option( 'layout_setting' );
 	
 	// Get the individual page/post sidebar metabox value
@@ -55,7 +53,6 @@ function generate_get_sidebar_layout() {
 		$layout = generate_get_option( 'blog_layout_setting' );
 	}
 	
-	// Finally, return the layout
 	return apply_filters( 'generate_sidebar_layout', $layout );
 }
 
@@ -67,10 +64,8 @@ function generate_get_sidebar_layout() {
  * @return int The number of footer widgets.
  */
 function generate_get_footer_widget_count() {
-	// Get current post
 	global $post;
 	
-	// Set up the footer widget variable
 	$widgets = generate_get_option( 'footer_widget_setting' );
 	
 	// Get the individual footer widget metabox value
@@ -86,7 +81,6 @@ function generate_get_footer_widget_count() {
 		$widgets = $widgets_meta;
 	}
 	
-	// Finally, return the layout
 	return apply_filters( 'generate_footer_widgets', $widgets );
 }
 
@@ -98,7 +92,6 @@ function generate_get_footer_widget_count() {
  * @return bool Whether we show the excerpt or not.
  */
 function generate_show_post_excerpt() {
-	// Get current post
 	global $post;
 	
 	// Check to see if the more tag is being used
@@ -119,7 +112,6 @@ function generate_show_post_excerpt() {
 	// If we're on a search results page, show the excerpt
 	$show_excerpt = ( is_search() ) ? true : $show_excerpt;
 	
-	// Return our value
 	return apply_filters( 'generate_show_excerpt', $show_excerpt );
 }
 
@@ -144,10 +136,8 @@ function generate_show_content_title() {
  * @return string The URL to generatepress.com
  */
 function generate_get_premium_url( $url = 'https://generatepress.com/premium' ) {
-	// Get our URL
 	$url = trailingslashit( $url );
 	
-	// Set up args
 	$args = apply_filters( 'generate_premium_url_args', array(
 		'ref' => null,
 		'campaign' => null
@@ -163,7 +153,6 @@ function generate_get_premium_url( $url = 'https://generatepress.com/premium' ) 
 		$url = add_query_arg( 'campaign', sanitize_text_field( $args[ 'campaign' ] ), $url );
 	}
 	
-	// Return our URL with the optional referral ID
 	return esc_url( $url );
 }
 
@@ -228,7 +217,7 @@ function generate_get_first_content_url() {
 }
 
 /**
- * Get the location of the navigation and filter it/
+ * Get the location of the navigation and filter it.
  *
  * @since 1.3.41
  *

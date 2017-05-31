@@ -66,9 +66,7 @@ add_action( 'widgets_init', 'generate_register_widget_areas' );
 /**
  * Register widgetized area and update sidebar with default widgets
  */
-function generate_register_widget_areas() 
-{
-	// Set up our array of widgets	
+function generate_register_widget_areas() {
 	$widgets = array(
 		'sidebar-1' => __( 'Right Sidebar', 'generatepress' ),
 		'sidebar-2' => __( 'Left Sidebar', 'generatepress' ),
@@ -82,7 +80,6 @@ function generate_register_widget_areas()
 		'top-bar' => __( 'Top Bar','generatepress' ),
 	);
 	
-	// Loop through them to create our widget areas
 	foreach ( $widgets as $id => $name ) {
 		register_sidebar( array(
 			'name'          => $name,
@@ -106,25 +103,17 @@ add_action( 'wp', 'generate_set_content_width' );
 function generate_set_content_width() {
 	global $content_width;
 	
-	// Get sidebar widths
 	$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '25' );
 	$left_sidebar_width = apply_filters( 'generate_left_sidebar_width', '25' );
-	
-	// Get the layout
 	$layout = generate_get_sidebar_layout();
 	
-	// Find the real content width
 	if ( 'left-sidebar' == $layout ) {
-		// If left sidebar is present
 		$content_width = generate_get_option( 'container_width' ) * ( ( 100 - $left_sidebar_width ) / 100 );
 	} elseif ( 'right-sidebar' == $layout ) {
-		// If right sidebar is present
 		$content_width = generate_get_option( 'container_width' ) * ( ( 100 - $right_sidebar_width ) / 100 );
 	} elseif ( 'no-sidebar' == $layout ) {
-		// If no sidebars are present
 		$content_width = generate_get_option( 'container_width' );
 	} else {
-		// If both sidebars are present
 		$content_width = generate_get_option( 'container_width' ) * ( ( 100 - ( $left_sidebar_width + $right_sidebar_width ) ) / 100 );	
 	}
 }
@@ -132,7 +121,11 @@ function generate_set_content_width() {
 add_filter( 'wp_page_menu_args', 'generate_set_home_link_fallback' );
 /**
  * Get our wp_nav_menu() fallback, wp_page_menu(), to show a home link.
+ *
  * @since 1.4
+ *
+ * @param array $args The existing menu args.
+ * @return array Menu args.
  */
 function generate_set_home_link_fallback( $args ) {
 	$args['show_home'] = true;
@@ -145,18 +138,15 @@ add_filter( 'generate_show_title', 'generate_remove_content_title' );
  *
  * @since 1.4
  *
- * @return boolean Whether to display the content title.
+ * @return bool Whether to display the content title.
  */
 function generate_remove_content_title() {
-	// Get our option
 	$disable_headline = get_post_meta( get_the_ID(), '_generate-disable-headline', true );
 	
-	// If our option is set, disable the title
 	if ( ! empty( $disable_headline ) && false !== $disable_headline ) {
 		return false;
 	}
 	
-	// If we've reached this point, our option is not set, so we should continue to show our title
 	return true;
 }
 

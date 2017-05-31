@@ -27,7 +27,6 @@ add_action( 'add_meta_boxes', 'generate_register_layout_meta_box' );
  * @since 1.4
  */
 function generate_register_layout_meta_box() { 
-	// If not an administrator, don't show the metabox
 	if ( ! current_user_can( apply_filters( 'generate_metabox_capability', 'edit_theme_options' ) ) ) {
 		return;
 	}
