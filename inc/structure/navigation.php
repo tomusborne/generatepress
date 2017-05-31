@@ -213,12 +213,7 @@ if ( ! function_exists( 'generate_navigation_search' ) ) :
  */
 add_action( 'generate_inside_navigation','generate_navigation_search');
 function generate_navigation_search() {
-	$generate_settings = wp_parse_args( 
-		get_option( 'generate_settings', array() ), 
-		generate_get_defaults() 
-	);
-		
-	if ( 'enable' !== $generate_settings['nav_search'] ) {
+	if ( 'enable' !== generate_get_option( 'nav_search' ) ) {
 		return;
 	}
 	
@@ -241,13 +236,8 @@ if ( ! function_exists( 'generate_menu_search_icon' ) ) :
  */
 add_filter( 'wp_nav_menu_items','generate_menu_search_icon', 10, 2 );
 function generate_menu_search_icon( $nav, $args ) {
-	$generate_settings = wp_parse_args( 
-		get_option( 'generate_settings', array() ), 
-		generate_get_defaults() 
-	);
-	
 	// If the search icon isn't enabled, return the regular nav
-	if ( 'enable' !== $generate_settings['nav_search'] ) {
+	if ( 'enable' !== generate_get_option( 'nav_search' ) ) {
 		return $nav;
 	}
 	
@@ -270,13 +260,8 @@ if ( ! function_exists( 'generate_mobile_menu_search_icon' ) ) :
  */
 add_action( 'generate_inside_navigation','generate_mobile_menu_search_icon' );
 function generate_mobile_menu_search_icon() {
-	$generate_settings = wp_parse_args( 
-		get_option( 'generate_settings', array() ), 
-		generate_get_defaults() 
-	);
-	
 	// If the search icon isn't enabled, return the regular nav
-	if ( 'enable' !== $generate_settings['nav_search'] ) {
+	if ( 'enable' !== generate_get_option( 'nav_search' ) ) {
 		return;
 	}
 	

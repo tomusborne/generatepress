@@ -95,20 +95,15 @@ if ( ! function_exists( 'generate_construct_site_title' ) ) :
  * @since 1.3.28
  */
 function generate_construct_site_title() {
-	$generate_settings = wp_parse_args( 
-		get_option( 'generate_settings', array() ), 
-		generate_get_defaults() 
-	);
-	
 	// Get the title and tagline
 	$title = get_bloginfo( 'title' );
 	$tagline = get_bloginfo( 'description' );
 	
 	// If the disable title checkbox is checked, or the title field is empty, return true
-	$disable_title = ( '1' == $generate_settings[ 'hide_title' ] || '' == $title ) ? true : false; 
+	$disable_title = ( '1' == generate_get_option( 'hide_title' ) || '' == $title ) ? true : false; 
 	
 	// If the disable tagline checkbox is checked, or the tagline field is empty, return true
-	$disable_tagline = ( '1' == $generate_settings[ 'hide_tagline' ] || '' == $tagline ) ? true : false;
+	$disable_tagline = ( '1' == generate_get_option( 'hide_tagline' ) || '' == $tagline ) ? true : false;
 	
 	// Build our site title
 	$site_title = apply_filters( 'generate_site_title_output', sprintf(

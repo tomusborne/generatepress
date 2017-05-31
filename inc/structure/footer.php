@@ -148,12 +148,7 @@ if ( ! function_exists( 'generate_back_to_top' ) ) :
  */
 add_action( 'wp_footer','generate_back_to_top' );
 function generate_back_to_top() {
-	$generate_settings = wp_parse_args( 
-		get_option( 'generate_settings', array() ), 
-		generate_get_defaults() 
-	);
-	
-	if ( 'enable' !== $generate_settings[ 'back_to_top' ] ) {
+	if ( 'enable' !== generate_get_option( 'back_to_top' ) ) {
 		return;
 	}
 	
