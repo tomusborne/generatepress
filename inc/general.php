@@ -97,9 +97,9 @@ function generate_register_widget_areas()
 
 add_action( 'wp', 'generate_set_content_width' );
 /**
- * Set the $content_width depending on layout of current page
- * Hook into "wp" so we have the correct layout setting from generate_get_sidebar_layout()
- * Hooking into "after_setup_theme" doesn't get the correct layout setting
+ * Set the $content_width depending on layout of current page.
+ * Hook into "wp" so we have the correct layout setting from generate_get_sidebar_layout().
+ * Hooking into "after_setup_theme" doesn't get the correct layout setting.
  *
  * @since 1.4
  */
@@ -141,8 +141,11 @@ function generate_set_home_link_fallback( $args ) {
 
 add_filter( 'generate_show_title', 'generate_remove_content_title' );
 /**
- * Remove our title if set
+ * Remove our title if set.
+ *
  * @since 1.4
+ *
+ * @return boolean Whether to display the content title.
  */
 function generate_remove_content_title() {
 	// Get our option
@@ -159,8 +162,13 @@ function generate_remove_content_title() {
 
 add_filter( 'wp_resource_hints', 'generate_google_font_resource_hints', 10, 2 );
 /**
- * Add resource hints to our Google fonts call
+ * Add resource hints to our Google fonts call.
+ *
  * @since 1.4
+ *
+ * @param array  $urls           URLs to print for resource hints.
+ * @param string $relation_type  The relation type the URLs are printed.
+ * @return array $urls           URLs to print for resource hints.
  */
 function generate_google_font_resource_hints( $urls, $relation_type ) {
 	if ( wp_style_is( 'generate-fonts', 'queue' ) && 'preconnect' === $relation_type ) {

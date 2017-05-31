@@ -2,9 +2,13 @@
 defined( 'WPINC' ) or die;
 
 /**
- * A wrapper function to get our options
+ * A wrapper function to get our options.
+ *
  * @since 1.4
- * @todo Ability to specify different option name and defaults
+ *
+ * @param string $option The option name to look up.
+ * @return string The option value.
+ * @todo Ability to specify different option name and defaults.
  */
 function generate_get_option( $option ) {
 	$options = wp_parse_args( 
@@ -16,8 +20,11 @@ function generate_get_option( $option ) {
 }
 
 /**
- * Get the layout for the current page
+ * Get the layout for the current page.
+ *
  * @since 1.4
+ *
+ * @return string The sidebar layout location.
  */
 function generate_get_sidebar_layout() {
 	// Get current post
@@ -53,8 +60,11 @@ function generate_get_sidebar_layout() {
 }
 
 /**
- * Get the number of footer widgets for the current page
+ * Get the number of footer widgets for the current page.
+ *
  * @since 1.4
+ *
+ * @return int The number of footer widgets.
  */
 function generate_get_footer_widget_count() {
 	// Get current post
@@ -81,11 +91,13 @@ function generate_get_footer_widget_count() {
 }
 
 /** 
- * Figure out if we should show the post excerpts or full posts
+ * Figure out if we should show the post excerpts or full posts.
+ *
  * @since 1.4
+ *
+ * @return bool Whether we show the excerpt or not.
  */
-function generate_show_post_excerpt()
-{
+function generate_show_post_excerpt() {
 	// Get current post
 	global $post;
 	
@@ -113,16 +125,23 @@ function generate_show_post_excerpt()
 
 /** 
  * Check to see if we should show our page/post title or not
+ *
  * @since 1.4
+ *
+ * @return bool Whether to show the content title.
  */
 function generate_show_content_title() {
 	return apply_filters( 'generate_show_title', true );
 }
 
 /**
- * Generate a URL to our premium add-ons
- * Allows the use of a referral ID and campaign
+ * Generate a URL to our premium add-ons.
+ * Allows the use of a referral ID and campaign.
+ *
  * @since 1.3.42
+ *
+ * @param string $url URL to premium page.
+ * @return string The URL to generatepress.com
  */
 function generate_get_premium_url( $url = 'https://generatepress.com/premium' ) {
 	// Get our URL
@@ -149,10 +168,16 @@ function generate_get_premium_url( $url = 'https://generatepress.com/premium' ) 
 }
 
 /**
- * Shorten our padding/margin values into shorthand form
- * Used inside our dynamic spacing CSS
+ * Shorten our padding/margin values into shorthand form.
+ * Used inside our dynamic spacing CSS.
  *
  * @since 1.4
+ *
+ * @param int $top Top spacing.
+ * @param int $right Right spacing.
+ * @param int $bottom Bottom spacing.
+ * @param int $left Left spacing.
+ * @return string Element spacing values.
  */
 function generate_get_shorthand_spacing( $top, $right, $bottom, $left ) {
 	$padding_top = ( isset( $top ) && '' !== $top ) ? absint( $top ) . 'px ' : '0px ';
@@ -169,8 +194,7 @@ function generate_get_shorthand_spacing( $top, $right, $bottom, $left ) {
 }
 
 /**
- * Get our element classes added via filter
- * Display them separated by spaces
+ * Get our element classes added via filter separated by spaces.
  *
  * Before generate_do_attr(), classes were added via individual
  * filters per element, which is what makes this function necessary.
@@ -178,6 +202,9 @@ function generate_get_shorthand_spacing( $top, $right, $bottom, $left ) {
  * From now on, classes can be filtered into the generate_attr_{context} filter.
  *
  * @since 1.4
+ *
+ * @param string $filter The name of the filter containing classes.
+ * @return string The classes for specified filter.
  */
 function generate_get_element_classes( $filter ) {
 	$classes = array();
@@ -190,6 +217,7 @@ function generate_get_element_classes( $filter ) {
  * Falls back to the post permalink if no URL is found in the post.
  *
  * @since 1.4
+ *
  * @see get_url_in_content()
  * @return string The Link format URL.
  */
@@ -200,8 +228,11 @@ function generate_get_first_content_url() {
 }
 
 /**
- * Get the location of the navigation and filter it
+ * Get the location of the navigation and filter it/
+ *
  * @since 1.3.41
+ *
+ * @return string The navigation location.
  */
 function generate_get_navigation_location() {
 	$location = generate_get_option( 'nav_position_setting' );

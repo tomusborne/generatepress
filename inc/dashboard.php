@@ -5,6 +5,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 add_action( 'admin_menu', 'generate_do_dashboard_menu' );
 /**
  * Adds our "GeneratePress" dashboard menu item
+ *
+ * @since 1.4
  */
 function generate_do_dashboard_menu() {
 	$generate_page = add_theme_page( 'GeneratePress', 'GeneratePress', apply_filters( 'generate_dashboard_page_capability', 'edit_theme_options' ), 'generate-options', 'generate_do_dashboard_page' );
@@ -13,6 +15,8 @@ function generate_do_dashboard_menu() {
 
 /**
  * Adds any necessary scripts to the GP dashboard page
+ *
+ * @since 1.4
  */
 function generate_enqueue_dashboard_scripts() {
 	wp_enqueue_style( 'generate-options', trailingslashit( get_template_directory_uri() ) . 'css/admin/style.css', array(), GENERATE_VERSION );
@@ -20,6 +24,8 @@ function generate_enqueue_dashboard_scripts() {
 
 /**
  * Builds the content of our GP dashboard page
+ *
+ * @since 1.4
  */
 function generate_do_dashboard_page() {
 ?>
@@ -188,6 +194,8 @@ function generate_do_dashboard_page() {
 add_action( 'admin_init', 'generate_do_customizer_reset' );
 /**
  * Reset customizer settings
+ *
+ * @since 1.4
  */
 function generate_do_customizer_reset() {
 	if ( empty( $_POST['generate_reset_customizer'] ) || 'generate_reset_customizer_settings' !== $_POST['generate_reset_customizer'] ) {
@@ -211,6 +219,8 @@ function generate_do_customizer_reset() {
 add_action( 'admin_notices', 'generate_do_admin_errors' );
 /**
  * Add our admin notices
+ *
+ * @since 1.4
  */
 function generate_do_admin_errors() {
 	$screen = get_current_screen();

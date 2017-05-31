@@ -5,7 +5,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 add_filter( 'body_class', 'generate_set_body_classes' );
 /**
  * Adds custom classes to the array of body classes.
+ *
  * @since 1.4
+ *
+ * @param  array $classes Existing classes.
+ * @return array All of the body classes.
  */
 function generate_set_body_classes( $classes ) {
 	// Get the layout
@@ -77,8 +81,12 @@ function generate_set_body_classes( $classes ) {
 
 add_filter( 'generate_top_bar_class', 'generate_set_top_bar_classes' );
 /**
- * Adds custom classes to the header
+ * Adds custom classes to the header.
+ *
  * @since 1.4
+ *
+ * @param  array $classes Existing classes.
+ * @return array Top bar classes.
  */
 function generate_set_top_bar_classes( $classes ) {
 	$classes[] = 'top-bar';
@@ -95,8 +103,12 @@ function generate_set_top_bar_classes( $classes ) {
 
 add_filter( 'generate_right_sidebar_class', 'generate_set_right_sidebar_classes' );
 /**
- * Adds custom classes to the right sidebar
+ * Adds custom classes to the right sidebar.
+ *
  * @since 1.4
+ *
+ * @param  array $classes Existing classes.
+ * @return array Right sidebar classes.
  */
 function generate_set_right_sidebar_classes( $classes ) {
 	$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '25' );
@@ -131,8 +143,12 @@ function generate_set_right_sidebar_classes( $classes ) {
 
 add_filter( 'generate_left_sidebar_class', 'generate_set_left_sidebar_classes' );
 /**
- * Adds custom classes to the left sidebar
+ * Adds custom classes to the left sidebar.
+ *
  * @since 1.4
+ *
+ * @param  array $classes Existing classes.
+ * @return array Left sidebar classes.
  */
 function generate_set_left_sidebar_classes( $classes ) {
 	$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '25' );
@@ -173,8 +189,12 @@ function generate_set_left_sidebar_classes( $classes ) {
 
 add_filter( 'generate_content_class', 'generate_set_content_classes' );
 /**
- * Adds custom classes to the content container
+ * Adds custom classes to the content container.
+ *
  * @since 0.1
+ *
+ * @param  array $classes Existing classes.
+ * @return array Primary content classes.
  */
 function generate_set_content_classes( $classes ) {
 	$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '25' );
@@ -238,8 +258,12 @@ function generate_set_content_classes( $classes ) {
 
 add_filter( 'generate_header_class', 'generate_set_header_classes' );
 /**
- * Adds custom classes to the header
+ * Adds custom classes to the header.
+ *
  * @since 1.4
+ *
+ * @param  array $classes Existing classes.
+ * @return array Header classes.
  */
 function generate_set_header_classes( $classes ) {
 	$classes[] = 'site-header';
@@ -254,8 +278,12 @@ function generate_set_header_classes( $classes ) {
 
 add_filter( 'generate_inside_header_class', 'generate_set_inside_header_classes' );
 /**
- * Adds custom classes to inside the header
+ * Adds custom classes to inside the header.
+ *
  * @since 1.4
+ *
+ * @param  array $classes Existing classes.
+ * @return array Inside header classes.
  */
 function generate_set_inside_header_classes( $classes ) {
 	$classes[] = 'inside-header';
@@ -270,8 +298,12 @@ function generate_set_inside_header_classes( $classes ) {
 
 add_filter( 'generate_navigation_class', 'generate_set_navigation_classes' );
 /**
- * Adds custom classes to the navigation
+ * Adds custom classes to the navigation.
+ *
  * @since 1.4
+ *
+ * @param  array $classes Existing classes.
+ * @return array Primary navigation classes.
  */
 function generate_set_navigation_classes( $classes ) {
 	$classes[] = 'main-navigation';
@@ -286,8 +318,12 @@ function generate_set_navigation_classes( $classes ) {
 
 add_filter( 'generate_inside_navigation_class', 'generate_set_inside_navigation_classes' );
 /**
- * Adds custom classes to the inner navigation
+ * Adds custom classes to the inner navigation.
+ *
  * @since 1.3.41
+ *
+ * @param  array $classes Existing classes.
+ * @return array Inside navigation classes.
  */
 function generate_set_inside_navigation_classes( $classes ) {
 	$classes[] = 'inside-navigation';
@@ -302,8 +338,12 @@ function generate_set_inside_navigation_classes( $classes ) {
 
 add_filter( 'generate_menu_class', 'generate_set_menu_classes' );
 /**
- * Adds custom classes to the menu
+ * Adds custom classes to the menu.
+ *
  * @since 1.4
+ *
+ * @param  array $classes Existing classes.
+ * @return array Menu ul classes.
  */
 function generate_set_menu_classes( $classes ) {
 	$classes[] = 'menu';
@@ -315,7 +355,11 @@ function generate_set_menu_classes( $classes ) {
 add_filter( 'generate_footer_class', 'generate_set_footer_classes' );
 /**
  * Adds custom classes to the footer
+ *
  * @since 1.4
+ *
+ * @param  array $classes Existing classes.
+ * @return array Footer classes.
  */
 function generate_set_footer_classes( $classes )
 {
@@ -335,8 +379,12 @@ function generate_set_footer_classes( $classes )
 
 add_filter( 'generate_inside_footer_class', 'generate_set_inside_footer_classes' );
 /**
- * Adds custom classes to the footer
+ * Adds custom classes to the footer.
+ *
  * @since 1.4
+ *
+ * @param  array $classes Existing classes.
+ * @return array Inside footer classes.
  */
 function generate_set_inside_footer_classes( $classes ) {
 	$classes[] = 'footer-widgets-container';
@@ -351,8 +399,12 @@ function generate_set_inside_footer_classes( $classes ) {
 
 add_filter( 'generate_main_class', 'generate_set_main_classes' );
 /**
- * Adds custom classes to the <main> element
+ * Adds custom classes to the main element.
+ *
  * @since 1.4
+ *
+ * @param  array $classes Existing classes.
+ * @return array Main content element classes.
  */
 function generate_set_main_classes( $classes ) {
 	$classes[] = 'site-main';
@@ -362,9 +414,13 @@ function generate_set_main_classes( $classes ) {
 
 add_filter( 'post_class', 'generate_set_post_classes' );
 /**
- * Adds custom classes to the <article> element
+ * Adds custom classes to the article element
  * Remove .hentry class from pages to comply with structural data guidelines
+ *
  * @since 1.4
+ *
+ * @param  array $classes Existing classes.
+ * @return array Post classes.
  */
 function generate_set_post_classes( $classes ) {
 	if ( 'page' == get_post_type() ) {

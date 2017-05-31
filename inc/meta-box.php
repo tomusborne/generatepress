@@ -5,6 +5,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 add_action( 'admin_enqueue_scripts','generate_enqueue_meta_box_scripts' );
 /**
  * Add our metabox scripts
+ *
+ * @since 1.4
  */
 function generate_enqueue_meta_box_scripts( $hook ) {
 	if ( in_array( $hook, array( 'post.php', 'post-new.php' ) ) ){
@@ -21,6 +23,7 @@ function generate_enqueue_meta_box_scripts( $hook ) {
 add_action( 'add_meta_boxes', 'generate_register_layout_meta_box' );
 /**
  * Generate the layout metabox
+ *
  * @since 1.4
  */
 function generate_register_layout_meta_box() { 
@@ -44,6 +47,13 @@ function generate_register_layout_meta_box() {
 	}
 }
 
+/**
+ * Build our meta box.
+ *
+ * @since 1.4
+ *
+ * @param object $post All post information.
+ */
 function generate_do_layout_meta_box( $post ) {  
     wp_nonce_field( basename( __FILE__ ), 'generate_layout_nonce' );
     $stored_meta = get_post_meta( $post->ID );
@@ -187,8 +197,11 @@ function generate_do_layout_meta_box( $post ) {
 
 add_action( 'save_post', 'generate_save_layout_meta_data' );
 /**
- * Saves the sidebar layout meta data
- * @deprecated 1.4
+ * Saves the sidebar layout meta data.
+ *
+ * @since 1.4
+ *
+ * @param int Post ID.
  */
 function generate_save_layout_meta_data( $post_id ) {  
     $is_autosave = wp_is_post_autosave( $post_id );
