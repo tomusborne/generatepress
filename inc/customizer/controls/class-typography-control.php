@@ -1,9 +1,7 @@
 <?php
 defined( 'WPINC' ) or die;
 
-if ( ! class_exists( 'Generate_Typography_Customize_Control' ) ) :
-class Generate_Typography_Customize_Control extends WP_Customize_Control
-{
+class Generate_Typography_Customize_Control extends WP_Customize_Control {
     public $type = 'gp-customizer-typography';
 	
 	public function enqueue() {
@@ -160,4 +158,3 @@ class Generate_Typography_Customize_Control extends WP_Customize_Control
 		);
 	}
 }
-endif;

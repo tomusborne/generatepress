@@ -2,7 +2,6 @@
 // No direct access, please
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! class_exists( 'GeneratePress_CSS' ) ) :
 /**
  * Creates minified css via PHP.
  *
@@ -200,4 +199,3 @@ class GeneratePress_CSS {
 	}
 
 }
-endif;

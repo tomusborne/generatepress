@@ -976,7 +976,7 @@ function generate_customize_register( $wp_customize ) {
 		)
 	);
 	
-	if ( !function_exists( 'generate_blog_customize_register' ) && ! defined( 'GP_PREMIUM_VERSION' ) ) {
+	if ( ! function_exists( 'generate_blog_customize_register' ) && ! defined( 'GP_PREMIUM_VERSION' ) ) {
 
 		$wp_customize->add_control(
 			new Generate_Customize_Misc_Control(
@@ -1011,8 +1011,7 @@ if ( ! function_exists( 'generate_customizer_live_preview' ) ) :
  * @since 0.1
  */
 add_action( 'customize_preview_init', 'generate_customizer_live_preview', 100 );
-function generate_customizer_live_preview()
-{
+function generate_customizer_live_preview() {
 	wp_enqueue_script( 'generate-themecustomizer', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/js/customizer-live-preview.js', array( 'customize-preview' ), GENERATE_VERSION, true );
 }
 endif;

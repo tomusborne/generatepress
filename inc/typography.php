@@ -1,21 +1,4 @@
 <?php
-/*
- WARNING: This is a core Generate file. DO NOT edit
- this file under any circumstances. Please do all modifications
- in the form of a child theme.
- */
-
-/**
- * If Generate Typography isn't activated, set the defaults
- *
- * This file is a core Generate file and should not be edited.
- *
- * @package  GeneratePress
- * @author   Thomas Usborne
- * @license  http://www.opensource.org/licenses/gpl-license.php GPL v2.0 (or later)
- * @link     http://www.generatepress.com
- */
- 
 // No direct access, please
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -26,9 +9,6 @@ if ( ! function_exists( 'generate_enqueue_google_fonts' ) ) :
  */
 add_action( 'wp_enqueue_scripts','generate_enqueue_google_fonts', 0 );
 function generate_enqueue_google_fonts() {
-	
-	if ( is_admin() )
-		return;
 	
 	// Grab our options
 	$generate_settings = wp_parse_args( 
@@ -54,7 +34,7 @@ function generate_enqueue_google_fonts() {
 	
 	// Create our Google Fonts array
 	$google_fonts = array();
-	if ( ! empty( $font_settings ) ) :
+	if ( ! empty( $font_settings ) ) {
 	
 		foreach ( $font_settings as $key ) {
 			
@@ -83,7 +63,7 @@ function generate_enqueue_google_fonts() {
 			
 		}
 		
-	endif;
+	}
 
 	// Ignore any non-Google fonts
 	$google_fonts = array_diff($google_fonts, $not_google);
@@ -100,8 +80,10 @@ function generate_enqueue_google_fonts() {
 	// Set up our arguments
 	$font_args = array();
 	$font_args[ 'family' ] = $google_fonts;
-	if ( '' !== $subset )
+	
+	if ( '' !== $subset ) {
 		$font_args[ 'subset' ] = urlencode( $subset );
+	}
 	
 	// Create our URL using the arguments
 	$fonts_url = add_query_arg( $font_args, '//fonts.googleapis.com/css' );
@@ -388,8 +370,9 @@ function generate_get_all_google_fonts( $amount = 'all' )
 		$fonts[ $id ] = $atts;
 	}
 	
-	if ( 'all' !== $amount )
+	if ( 'all' !== $amount ) {
 		$fonts = array_slice( $fonts, 0, $amount );
+	}
 	
 	// Alphabetize our fonts
 	$alphabetize = apply_filters( 'generate_alphabetize_google_fonts', true );
@@ -409,15 +392,17 @@ add_action( 'wp_ajax_generate_get_all_google_fonts_ajax', 'generate_get_all_goog
 function generate_get_all_google_fonts_ajax()
 {
 	// Bail if the nonce doesn't check out
-	if ( ! isset( $_POST[ 'gp_customize_nonce' ] ) || ! wp_verify_nonce( sanitize_key( $_POST[ 'gp_customize_nonce' ] ), 'gp_customize_nonce' ) )
+	if ( ! isset( $_POST[ 'gp_customize_nonce' ] ) || ! wp_verify_nonce( sanitize_key( $_POST[ 'gp_customize_nonce' ] ), 'gp_customize_nonce' ) ) {
 		wp_die();
+	}
 	
 	// Do another nonce check
 	check_ajax_referer( 'gp_customize_nonce', 'gp_customize_nonce' );
 	
 	// Bail if user can't edit theme options
-	if ( ! current_user_can( 'edit_theme_options' ) )
+	if ( ! current_user_can( 'edit_theme_options' ) ) {
 		wp_die();
+	}
 	
 	// Get all of our fonts
 	$fonts = generate_get_all_google_fonts();
@@ -439,17 +424,22 @@ if ( ! function_exists( 'generate_get_google_font_variants' ) ) :
 function generate_get_google_font_variants( $font, $key = '' )
 {
 	// Don't need variants if we're using a system font
-	if ( in_array( $font, generate_typography_default_fonts() ) )
+	if ( in_array( $font, generate_typography_default_fonts() ) ) {
 		return;
+	}
 	
 	// Return if we have our variants saved
-	if ( '' !== $key && get_theme_mod( $key . '_variants' ) ) return get_theme_mod( $key . '_variants' );
+	if ( '' !== $key && get_theme_mod( $key . '_variants' ) ) {
+		return get_theme_mod( $key . '_variants' );
+	}
 	
 	// Get our defaults
 	$defaults = generate_get_default_fonts();
 	
 	// If our default font is selected and the category isn't saved, we already know the category
-	if ( $defaults[ $key ] == $font ) return $defaults[ $key . '_variants' ];
+	if ( $defaults[ $key ] == $font ) {
+		return $defaults[ $key . '_variants' ];
+	}
 
 	// Grab all of our fonts
 	// It's a big list, so hopefully we're not even still reading
@@ -459,21 +449,21 @@ function generate_get_google_font_variants( $font, $key = '' )
 	$id = strtolower( str_replace( ' ', '_', $font ) );
 	
 	// If the ID doesn't exist within our fonts, we can bail
-	if ( ! array_key_exists( $id, $fonts ) )
+	if ( ! array_key_exists( $id, $fonts ) ) {
 		return;
+	}
 	
 	// Grab all of the variants associated with our font
 	$variants = $fonts[$id]['variants'];
 	
 	// Loop through them and put them into an array, then turn them into a comma separated list
 	$output = array();
-	if ( $variants ) :
+	if ( $variants ) {
 		foreach ( $variants as $variant ) {
 			$output[] = $variant;
 		}
 		return implode(',', apply_filters( 'generate_typography_variants', $output ) );
-	endif;
-	
+	}
 }
 endif;
 
@@ -486,17 +476,22 @@ if ( ! function_exists( 'generate_get_google_font_category' ) ) :
 function generate_get_google_font_category( $font, $key = '' )
 {
 	// Don't need a category if we're using a system font
-	if ( in_array( $font, generate_typography_default_fonts() ) )
+	if ( in_array( $font, generate_typography_default_fonts() ) ) {
 		return;
+	}
 	
 	// Return if we have our variants saved
-	if ( '' !== $key && get_theme_mod( $key . '_category' ) ) return ', ' . get_theme_mod( $key . '_category' );
+	if ( '' !== $key && get_theme_mod( $key . '_category' ) ) {
+		return ', ' . get_theme_mod( $key . '_category' );
+	}
 	
 	// Get our defaults
 	$defaults = generate_get_default_fonts();
 	
 	// If our default font is selected and the category isn't saved, we already know the category
-	if ( $defaults[ $key ] == $font ) return ', ' . $defaults[ $key . '_category' ];
+	if ( $defaults[ $key ] == $font ) {
+		return ', ' . $defaults[ $key . '_category' ];
+	}
 	
 	// Grab all of our fonts
 	// It's a big list, so hopefully we're not even still reading
@@ -506,8 +501,9 @@ function generate_get_google_font_category( $font, $key = '' )
 	$id = strtolower( str_replace( ' ', '_', $font ) );
 	
 	// If the ID doesn't exist within our fonts, we can bail
-	if ( ! array_key_exists( $id, $fonts ) )
+	if ( ! array_key_exists( $id, $fonts ) ) {
 		return;
+	}
 	
 	// Let's grab our category to go with our font
 	$category = ! empty( $fonts[$id]['category'] ) ? ', ' . $fonts[$id]['category'] : '';
@@ -547,17 +543,18 @@ function generate_get_font_family_css( $font, $settings, $default )
 	$font_family = $generate_settings[ $font ];
 	
 	// If our value is still using the old format, fix it
-	if ( strpos( $font_family, ':' ) !== false )
+	if ( strpos( $font_family, ':' ) !== false ) {
 		$font_family = current( explode( ':', $font_family ) );
+	}
 
 	// Set up our wrapper
-	if ( in_array( $font_family, $no_quotes ) ) :
+	if ( in_array( $font_family, $no_quotes ) ) {
 		$wrapper_start = null;
 		$wrapper_end = null;
-	else :
+	} else {
 		$wrapper_start = '"';
 		$wrapper_end = '"' . generate_get_google_font_category( $font_family, $font );
-	endif;
+	}
 	
 	// Output the CSS
 	$output = ( 'inherit' == $font_family ) ? '' : $wrapper_start . $font_family . $wrapper_end;
@@ -626,7 +623,7 @@ function generate_add_to_font_customizer_list( $fonts )
 		}
 	}
 	
-	if ( function_exists( 'generate_secondary_nav_get_defaults' ) ) :
+	if ( function_exists( 'generate_secondary_nav_get_defaults' ) ) {
 		$generate_secondary_nav_settings = wp_parse_args( 
 			get_option( 'generate_secondary_nav_settings', array() ), 
 			generate_secondary_nav_get_defaults() 
@@ -634,7 +631,7 @@ function generate_add_to_font_customizer_list( $fonts )
 		if ( ! in_array( $generate_secondary_nav_settings[ 'font_secondary_navigation' ], generate_typography_default_fonts() ) ) {
 			$fonts[ strtolower( str_replace( ' ', '_', $generate_secondary_nav_settings[ 'font_secondary_navigation' ] ) ) ] = array( 'name' => $generate_secondary_nav_settings[ 'font_secondary_navigation' ] );
 		}
-	endif;
+	}
 	
 	return $fonts;
 }
@@ -682,16 +679,19 @@ function generate_typography_set_font_data()
 	);
 	
 	// We don't need to do this if we're using the default font, as these values have defaults already
-	if ( $defaults[ 'font_body' ] == $generate_settings[ 'font_body' ] )
+	if ( $defaults[ 'font_body' ] == $generate_settings[ 'font_body' ] ) {
 		return;
+	}
 	
 	// Don't need to continue if we're using a system font or our default font
-	if ( in_array( $generate_settings[ 'font_body' ], generate_typography_default_fonts() ) )
+	if ( in_array( $generate_settings[ 'font_body' ], generate_typography_default_fonts() ) ) {
 		return;
+	}
 	
 	// Don't continue if our category and variants are already set
-	if ( get_theme_mod( 'font_body_category' ) && get_theme_mod( 'font_body_variants' ) )
+	if ( get_theme_mod( 'font_body_category' ) && get_theme_mod( 'font_body_variants' ) ) {
 		return;
+	}
 	
 	// Get all of our fonts
 	$fonts = generate_get_all_google_fonts();
@@ -700,8 +700,9 @@ function generate_typography_set_font_data()
 	$id = strtolower( str_replace( ' ', '_', $generate_settings[ 'font_body' ] ) );
 	
 	// If the ID doesn't exist within our fonts, we can bail
-	if ( ! array_key_exists( $id, $fonts ) )
+	if ( ! array_key_exists( $id, $fonts ) ) {
 		return;
+	}
 	
 	// Let's grab our category to go with our font
 	$category = ! empty( $fonts[$id]['category'] ) ? $fonts[$id]['category'] : '';
@@ -711,12 +712,12 @@ function generate_typography_set_font_data()
 	
 	// Loop through our variants and put them into an array, then turn them into a comma separated list
 	$output = array();
-	if ( $variants ) :
+	if ( $variants ) {
 		foreach ( $variants as $variant ) {
 			$output[] = $variant;
 		}
 		$variants = implode(',', $output);
-	endif;
+	}
 	
 	// Set our theme mods with our new settings
 	if ( '' !== $category ) set_theme_mod( 'font_body_category', $category );
