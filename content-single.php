@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		
 		<header class="entry-header">
 			<?php do_action( 'generate_before_entry_title'); ?>
-			<?php if ( generate_show_title() ) : ?>
+			<?php if ( generate_show_content_title() ) : ?>
 				<?php the_title( '<h1 class="entry-title" itemprop="headline">', '</h1>' ); ?>
 			<?php endif; ?>
 			<?php do_action( 'generate_after_entry_title'); ?>

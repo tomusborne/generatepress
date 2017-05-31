@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		</header><!-- .entry-header -->
 		<?php do_action( 'generate_after_entry_header' ); ?>
 		
-		<?php if ( true == generate_show_excerpt() ) : ?>
+		<?php if ( generate_show_post_excerpt() ) : ?>
 			<div class="entry-summary" itemprop="text">
 				<?php the_excerpt(); ?>
 			</div><!-- .entry-summary -->
