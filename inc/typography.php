@@ -325,21 +325,6 @@ function generate_default_fonts_customize_register( $wp_customize ) {
 }
 endif;
 
-if ( ! function_exists( 'generate_typography_customize_preview_css' ) ) :
-/**
- * Hide the hidden input control
- * @since 1.3.40
- */
-add_action('customize_controls_print_styles', 'generate_typography_customize_preview_css');
-function generate_typography_customize_preview_css() {
-	?>
-	<style>
-		.customize-control-gp-hidden-input {display:none !important;}
-	</style>
-	<?php
-}
-endif;
-
 if ( ! function_exists( 'generate_get_all_google_fonts' ) ) :
 /**
  * Return an array of all of our Google Fonts
