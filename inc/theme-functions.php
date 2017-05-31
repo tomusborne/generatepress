@@ -124,8 +124,7 @@ function generate_show_content_title() {
  * Allows the use of a referral ID and campaign
  * @since 1.3.42
  */
-function generate_get_premium_url( $url = 'https://generatepress.com/premium' ) 
-{
+function generate_get_premium_url( $url = 'https://generatepress.com/premium' ) {
 	// Get our URL
 	$url = trailingslashit( $url );
 	
