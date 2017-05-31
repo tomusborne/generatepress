@@ -54,16 +54,11 @@ if ( ! function_exists( 'generate_construct_logo' ) ) :
  * @since 1.3.28
  */
 function generate_construct_logo() {
-	$generate_settings = wp_parse_args( 
-		get_option( 'generate_settings', array() ), 
-		generate_get_defaults() 
-	);
-	
 	// Get our logo URL if we're using the custom logo
 	$logo_url = ( function_exists( 'the_custom_logo' ) && get_theme_mod( 'custom_logo' ) ) ? wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ), 'full' ) : false;
 	
 	// Get our logo from the custom logo or our GP setting
-	$logo = ( $logo_url ) ? $logo_url[0] : $generate_settings['logo'];
+	$logo = ( $logo_url ) ? $logo_url[0] : generate_get_option( 'logo' );
 	
 	// If we don't have a logo, bail
 	if ( empty( $logo ) ) {
