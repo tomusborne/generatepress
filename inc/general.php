@@ -95,16 +95,15 @@ function generate_register_widget_areas()
 	}
 }
 
-if ( ! function_exists( 'generate_smart_content_width' ) ) :
+add_action( 'wp', 'generate_set_content_width' );
 /**
  * Set the $content_width depending on layout of current page
  * Hook into "wp" so we have the correct layout setting from generate_get_sidebar_layout()
  * Hooking into "after_setup_theme" doesn't get the correct layout setting
+ *
+ * @since 1.4
  */
-add_action( 'wp', 'generate_smart_content_width' );
-function generate_smart_content_width()
-{
-
+function generate_set_content_width() {
 	global $content_width;
 	
 	// Get sidebar widths
@@ -129,43 +128,23 @@ function generate_smart_content_width()
 		$content_width = generate_get_option( 'container_width' ) * ( ( 100 - ( $left_sidebar_width + $right_sidebar_width ) ) / 100 );	
 	}
 }
-endif;
 
-if ( ! function_exists( 'generate_enhanced_image_navigation' ) ) :
-/**
- * Filter in a link to a content ID attribute for the next/previous image links on image attachment pages
- */
-add_filter( 'attachment_link', 'generate_enhanced_image_navigation', 10, 2 );
-function generate_enhanced_image_navigation( $url, $id ) {
-	if ( ! is_attachment() && ! wp_attachment_is_image( $id ) )
-		return $url;
-
-	$image = get_post( $id );
-	if ( ! empty( $image->post_parent ) && $image->post_parent != $id )
-		$url .= '#main';
-
-	return $url;
-}
-endif;
-
-if ( ! function_exists( 'generate_page_menu_args' ) ) :
+add_filter( 'wp_page_menu_args', 'generate_set_home_link_fallback' );
 /**
  * Get our wp_nav_menu() fallback, wp_page_menu(), to show a home link.
+ * @since 1.4
  */
-add_filter( 'wp_page_menu_args', 'generate_page_menu_args' );
-function generate_page_menu_args( $args ) {
+function generate_set_home_link_fallback( $args ) {
 	$args['show_home'] = true;
 	return $args;
 }
-endif;
 
-if ( ! function_exists( 'generate_disable_title' ) ) :
+add_filter( 'generate_show_title', 'generate_remove_content_title' );
 /**
  * Remove our title if set
- * @since 1.3.18
+ * @since 1.4
  */
-add_filter( 'generate_show_title', 'generate_disable_title' );
-function generate_disable_title() {
+function generate_remove_content_title() {
 	// Get our option
 	$disable_headline = get_post_meta( get_the_ID(), '_generate-disable-headline', true );
 	
@@ -177,4 +156,22 @@ function generate_disable_title() {
 	// If we've reached this point, our option is not set, so we should continue to show our title
 	return true;
 }
-endif;
+
+add_filter( 'wp_resource_hints', 'generate_google_font_resource_hints', 10, 2 );
+/**
+ * Add resource hints to our Google fonts call
+ * @since 1.4
+ */
+function generate_google_font_resource_hints( $urls, $relation_type ) {
+	if ( wp_style_is( 'generate-fonts', 'queue' ) && 'preconnect' === $relation_type ) {
+		if ( version_compare( $GLOBALS['wp_version'], '4.7-alpha', '>=' ) ) {
+			$urls[] = array(
+				'href' => 'https://fonts.gstatic.com',
+				'crossorigin',
+			);
+		} else {
+			$urls[] = 'https://fonts.gstatic.com';
+		}
+	}
+	return $urls;
+}

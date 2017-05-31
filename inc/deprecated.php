@@ -20,26 +20,6 @@ function generate_paging_nav() {
 }
 endif;
 
-if ( ! function_exists( 'generate_additional_spacing' ) ) :
-/**
- * Add fallback CSS for our mobile search icon color
- * @deprecated 1.4
- */
-function generate_additional_spacing() {
-	// No longer needed
-}
-endif;
-
-if ( ! function_exists( 'generate_mobile_search_spacing_fallback_css' ) ) :
-/**
- * Enqueue our mobile search icon color fallback CSS
- * @deprecated 1.4
- */
-function generate_mobile_search_spacing_fallback_css() {
-	// No longer needed
-}
-endif;
-
 if ( ! function_exists( 'generate_addons_available' ) ) :
 /** 
  * Check to see if there's any addons not already activated
@@ -706,9 +686,11 @@ function generate_get_link_url() {
 endif;
 
 /**
- * Hooked functions that have had a name change
+ * Hooked & filtered functions that have had a name change or become unnecessary.
  *
- * These likely don't need to be deprecated, but I'm a careful guy
+ * These likely don't need to be deprecated, but to be careful we'll keep them
+ * in here for a couple months to give people who have used remove_action() etc..
+ * time to update their code.
  *
  */
  
@@ -939,7 +921,7 @@ if ( ! function_exists( 'generate_add_layout_meta_box' ) ) :
  * @deprecated 1.4
  */
 function generate_add_layout_meta_box() { 
-	// Replaced by generate_register_sidebar_layout_meta_box()
+	// Replaced by generate_register_layout_meta_box()
 }  
 endif;
 
@@ -949,7 +931,7 @@ if ( ! function_exists( 'generate_show_layout_meta_box' ) ) :
  * @deprecated 1.4
  */
 function generate_show_layout_meta_box() {  
-	// Replaced by generate_do_sidebar_layout_meta_box()
+	// Replaced by generate_do_layout_meta_box()
 }
 endif;
 
@@ -959,7 +941,7 @@ if ( ! function_exists( 'generate_save_layout_meta' ) ) :
  * @deprecated 1.4
  */
 function generate_save_layout_meta() {  
-	// Replaced by generate_save_sidebar_layout_meta()
+	// Replaced by generate_save_layout_meta_data()
 }  
 endif;
 
@@ -970,6 +952,165 @@ if ( ! function_exists( 'generate_add_footer_widget_meta_box' ) ) :
  * @deprecated 1.4
  */
 function generate_add_footer_widget_meta_box() {  
-	// Replaced by generate_register_footer_widget_meta_box()
+	// Replaced by generate_register_layout_meta_box()
 }  
+endif;
+
+if ( ! function_exists( 'generate_show_footer_widget_meta_box' ) ) :
+/**
+ * Outputs the content of the metabox
+ * @deprecated 1.4
+ */
+function generate_show_footer_widget_meta_box() {  
+    // Replaced by generate_do_layout_meta_box()
+}
+endif;
+
+if ( ! function_exists( 'generate_save_footer_widget_meta' ) ) :
+/**
+ * Saves the footer widget meta data
+ * @deprecated 1.4
+ */
+function generate_save_footer_widget_meta() {  
+	// Replaced by generate_save_layout_meta_data()
+}  
+endif;
+
+if ( ! function_exists( 'generate_add_page_builder_meta_box' ) ) :
+/**
+ * Generate the page builder integration metabox
+ * @since 1.3.32
+ * @deprecated 1.4
+ */
+function generate_add_page_builder_meta_box() {  
+	// Replaced by generate_register_layout_meta_box()
+}
+endif;
+
+if ( ! function_exists( 'generate_show_page_builder_meta_box' ) ) :
+/**
+ * Outputs the content of the metabox
+ * @deprecated 1.4
+ */
+function generate_show_page_builder_meta_box() {  
+	// Replaced by generate_do_layout_meta_box()
+}
+endif;
+
+if ( ! function_exists( 'generate_save_page_builder_meta' ) ) :
+/**
+ * Saves the footer widget meta data
+ * @deprecated 1.4
+ */
+function generate_save_page_builder_meta($post_id) {  
+	// Replaced by generate_save_layout_meta_data()
+}
+endif;
+
+if ( !function_exists('generate_add_de_meta_box') ) :
+/**
+ * Create the metabox
+ * @since 1.3.18
+ * @deprecated 1.4
+ */
+function generate_add_de_meta_box() {
+	// Replaced by generate_register_layout_meta_box()
+}  
+endif;
+
+if ( !function_exists( 'generate_show_de_meta_box' ) ) :
+/**
+ * Build our metabox
+ * @since 1.3.18
+ * @deprecated 1.4
+ */
+function generate_show_de_meta_box() {
+	// Replaced by generate_do_layout_meta_box()
+}
+endif;
+
+if ( !function_exists( 'generate_save_de_meta' ) ) :
+/**
+ * Save our metabox data
+ * @since 1.3.18
+ * @deprecated 1.4
+ */
+function generate_save_de_meta() {  
+	// Replaced by generate_save_layout_meta_data()
+}  
+endif;
+
+if ( ! function_exists( 'generate_additional_spacing' ) ) :
+/**
+ * Add fallback CSS for our mobile search icon color
+ * @deprecated 1.4
+ */
+function generate_additional_spacing() {
+	// No longer needed
+}
+endif;
+
+if ( ! function_exists( 'generate_mobile_search_spacing_fallback_css' ) ) :
+/**
+ * Enqueue our mobile search icon color fallback CSS
+ * @deprecated 1.4
+ */
+function generate_mobile_search_spacing_fallback_css() {
+	// No longer needed
+}
+endif;
+
+if ( ! function_exists( 'generate_smart_content_width' ) ) :
+/**
+ * Set the $content_width depending on layout of current page
+ * Hook into "wp" so we have the correct layout setting from generate_get_sidebar_layout()
+ * Hooking into "after_setup_theme" doesn't get the correct layout setting
+ * @deprecated 1.4
+ */
+add_action( 'wp', 'generate_smart_content_width' );
+function generate_smart_content_width() {
+	// Replaced by generate_set_content_width()
+}
+endif;
+
+if ( ! function_exists( 'generate_enhanced_image_navigation' ) ) :
+/**
+ * Filter in a link to a content ID attribute for the next/previous image links on image attachment pages
+ * @deprecated 1.4
+ */
+function generate_enhanced_image_navigation() {
+	// No longer needed
+}
+endif;
+
+if ( ! function_exists( 'generate_page_menu_args' ) ) :
+/**
+ * Get our wp_nav_menu() fallback, wp_page_menu(), to show a home link.
+ * @deprecated 1.4
+ */
+function generate_page_menu_args() {
+	// Replaced by generate_set_home_link_fallback()
+}
+endif;
+
+if ( ! function_exists( 'generate_disable_title' ) ) :
+/**
+ * Remove our title if set
+ * @since 1.3.18
+ * @deprecated 1.4
+ */
+function generate_disable_title() {
+	// Replaced by generate_remove_content_title()
+}
+endif;
+
+if ( ! function_exists( 'generate_resource_hints' ) ) :
+/**
+ * Add resource hints to our Google fonts call
+ * @since 1.3.42
+ * @deprecated 1.4
+ */
+function generate_resource_hints() {
+	// Replaced by generate_google_font_resource_hints()
+}
 endif;
