@@ -74,7 +74,7 @@ if ( ! function_exists( 'generate_do_footer_widget' ) ) :
  */
 function generate_do_footer_widget( $widget_width, $widget ) {
 ?>
-	<div class="footer-widget-<?php echo $widget; ?> grid-parent grid-<?php echo absint( apply_filters( 'generate_footer_widget_1_width', $widget_width ) ); ?> tablet-grid-<?php echo absint( apply_filters( 'generate_footer_widget_1_tablet_width', '50' ) ); ?> mobile-grid-100">
+	<div class="footer-widget-<?php echo $widget; ?> grid-parent grid-<?php echo absint( apply_filters( "generate_footer_widget_{$widget}_width", $widget_width ) ); ?> tablet-grid-<?php echo absint( apply_filters( "generate_footer_widget_{$widget}_tablet_width", '50' ) ); ?> mobile-grid-100">
 		<?php if ( ! dynamic_sidebar( 'footer-' . $widget ) ): ?>
 			<aside class="widget inner-padding widget_text">
 				<h4 class="widget-title"><?php _e('Footer Widget','generatepress');?></h4>			
