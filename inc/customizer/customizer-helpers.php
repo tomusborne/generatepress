@@ -8,8 +8,8 @@ require trailingslashit( dirname( __FILE__ ) ) . 'controls/class-upsell-section.
 require trailingslashit( dirname( __FILE__ ) ) . 'controls/class-upsell-control.php';
 require trailingslashit( dirname( __FILE__ ) ) . 'controls/class-deprecated.php';
 
-// Sanitize
-require trailingslashit( dirname( __FILE__ ) ) . 'sanitize.php';
+// Helper functions
+require trailingslashit( dirname( __FILE__ ) ) . 'helpers.php';
 
 // Deprecated
 require trailingslashit( dirname( __FILE__ ) ) . 'deprecated.php';
