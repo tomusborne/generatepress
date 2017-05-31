@@ -10,8 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 get_header(); ?>
 
-	<section id="primary" <?php generate_content_class(); ?>>
-		<main id="main" <?php generate_main_class(); ?>>
+	<section <?php generate_do_attr( 'primary' ); ?>>
+		<main <?php generate_do_attr( 'main' ); ?>>
 		<?php do_action('generate_before_main_content'); ?>
 		<?php if ( have_posts() ) : ?>
 

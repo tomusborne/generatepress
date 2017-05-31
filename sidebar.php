@@ -21,7 +21,7 @@ if ( function_exists( 'generate_secondary_nav_get_defaults' ) ) :
 		$navigation_active = true;
 endif;
 ?>
-<div id="right-sidebar" itemtype="http://schema.org/WPSideBar" itemscope="itemscope" role="complementary" <?php generate_right_sidebar_class(); ?>>
+<div <?php generate_do_attr( 'right-sidebar' ); ?>>
 	<div class="inside-right-sidebar">
 		<?php do_action( 'generate_before_right_sidebar_content' ); ?>
 		<?php if ( ! dynamic_sidebar( 'sidebar-1' ) ) : ?>

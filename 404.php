@@ -11,8 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 get_header(); ?>
 
 
-	<div id="primary" <?php generate_content_class(); ?>>
-		<main id="main" <?php generate_main_class(); ?>>
+	<div <?php generate_do_attr( 'primary' ); ?>>
+		<main <?php generate_do_attr( 'main' ); ?>>
 			<?php do_action('generate_before_main_content'); ?>
 			<div class="inside-article">
 				<?php do_action( 'generate_before_content'); ?>

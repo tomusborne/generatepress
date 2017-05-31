@@ -7,7 +7,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php generate_article_schema( 'CreativeWork' ); ?>>
+<article <?php generate_do_attr( 'post' ); ?>>
 	<div class="inside-article">
 		<?php do_action( 'generate_before_content'); ?>
 		

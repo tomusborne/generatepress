@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	</div><!-- #content -->
 </div><!-- #page -->
 <?php do_action('generate_before_footer'); ?>
-<div <?php generate_footer_class(); ?>>
+<div <?php generate_do_attr( 'footer' ); ?>>
 	<?php 
 	do_action( 'generate_before_footer_content' );
 	do_action( 'generate_footer' );
