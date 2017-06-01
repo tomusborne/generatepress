@@ -225,5 +225,6 @@ function generate_get_first_content_url() {
  */
 function generate_get_navigation_location() {
 	$location = generate_get_option( 'nav_position_setting' );
+	
 	return apply_filters( 'generate_navigation_location', $location );
 }

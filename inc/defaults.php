@@ -9,8 +9,7 @@ if ( ! function_exists( 'generate_get_defaults' ) ) :
  *
  * @return array Option defaults.
  */
-function generate_get_defaults()
-{	
+function generate_get_defaults() {	
 	$defaults = array(
 		'hide_title' => '',
 		'hide_tagline' => '',
@@ -58,8 +57,7 @@ if ( ! function_exists( 'generate_get_color_defaults' ) ) :
  *
  * @return array Option defaults.
  */
-function generate_get_color_defaults()
-{
+function generate_get_color_defaults() {
 	$defaults = array(
 		'top_bar_background_color' => '#636363',
 		'top_bar_text_color' => '#ffffff',
@@ -126,7 +124,7 @@ function generate_get_color_defaults()
 }
 endif;
 
-if ( !function_exists('generate_get_default_fonts') ) :
+if ( ! function_exists( 'generate_get_default_fonts' ) ) :
 /**
  * Set default options
  * function_exists() required as this was defined in GP Premium
@@ -136,8 +134,7 @@ if ( !function_exists('generate_get_default_fonts') ) :
  * @param bool $filter Whether to return the filtered values or original values.
  * @return array Option defaults.
  */
-function generate_get_default_fonts( $filter = true )
-{
+function generate_get_default_fonts( $filter = true ) {
 	$defaults = array(
 		'font_body' => 'Open Sans',
 		'font_body_category' => 'sans-serif',
@@ -213,7 +210,6 @@ endif;
 if ( ! function_exists( 'generate_spacing_get_defaults' ) ) :
 /**
  * Set the default options
- * @since 0.1
  * function_exists() required as this was defined in GP Premium
  *
  * @since 0.1
@@ -221,8 +217,7 @@ if ( ! function_exists( 'generate_spacing_get_defaults' ) ) :
  * @param bool $filter Whether to return the filtered values or original values.
  * @return array Option defaults.
  */
-function generate_spacing_get_defaults( $filter = true )
-{
+function generate_spacing_get_defaults( $filter = true ) {
 	$defaults = array(
 		'top_bar_top' => '10',
 		'top_bar_right' => '10',
