@@ -14,14 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @return array Merged and filtered attributes.
  */
 function generate_parse_attr( $context, $attributes = array() ) {
-    $defaults = array(
-        'class' => esc_attr( $context ),
-    );
+	$defaults = array(
+		'class' => esc_attr( $context ),
+	);
 
-    $attributes = wp_parse_args( $attributes, $defaults );
+	$attributes = wp_parse_args( $attributes, $defaults );
 
-    // Contextual filter.
-    return apply_filters( "generate_attr_{$context}", $attributes, $context );
+	// Contextual filter.
+	return apply_filters( "generate_attr_{$context}", $attributes, $context );
 }
 
 /**
@@ -41,7 +41,7 @@ function generate_get_attr( $context, $attributes = array() ) {
 	$output = '';
 
 	// Cycle through attributes, build tag attribute string.
-    foreach ( $attributes as $key => $value ) {
+	foreach ( $attributes as $key => $value ) {
 
 		if ( ! $value ) {
 			continue;
@@ -53,11 +53,11 @@ function generate_get_attr( $context, $attributes = array() ) {
 			$output .= sprintf( '%s="%s" ', esc_html( $key ), esc_attr( $value ) );
 		}
 
-    }
+	}
 
-    $output = apply_filters( "generate_attr_{$context}_output", $output, $attributes, $context );
+	$output = apply_filters( "generate_attr_{$context}_output", $output, $attributes, $context );
 
-    return trim( $output );
+	return trim( $output );
 }
 
 /**
