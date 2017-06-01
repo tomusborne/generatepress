@@ -5,6 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 add_action( 'after_setup_theme','generate_setup_woocommerce' );
 /** 
  * Set up WooCommerce
+ *
  * @since 1.4
  */
 function generate_setup_woocommerce() {
@@ -23,6 +24,7 @@ function generate_setup_woocommerce() {
 if ( ! function_exists( 'generate_woocommerce_start' ) ) :
 /** 
  * Add WooCommerce starting wrappers
+ *
  * @since 1.3.22
  */
 add_action('woocommerce_before_main_content', 'generate_woocommerce_start', 10);
@@ -41,6 +43,7 @@ endif;
 if ( ! function_exists( 'generate_woocommerce_end' ) ) :
 /** 
  * Add WooCommerce ending wrappers
+ *
  * @since 1.3.22
  */
 add_action('woocommerce_after_main_content', 'generate_woocommerce_end', 10);
@@ -61,6 +64,7 @@ endif;
 if ( ! function_exists( 'generate_woocommerce_css' ) ) :
 /** 
  * Add WooCommerce CSS
+ *
  * @since 1.3.45
  */
 add_action( 'wp_enqueue_scripts','generate_woocommerce_css', 100 );
@@ -113,6 +117,7 @@ endif;
 if ( ! function_exists( 'generate_bbpress_css' ) ) :
 /** 
  * Add bbPress CSS
+ *
  * @since 1.3.45
  */
 add_action( 'wp_enqueue_scripts','generate_bbpress_css', 100 );
@@ -152,6 +157,7 @@ endif;
 if ( ! function_exists( 'generate_buddypress_css' ) ) :
 /** 
  * Add BuddyPress CSS
+ *
  * @since 1.3.45
  */
 add_action( 'wp_enqueue_scripts','generate_buddypress_css', 100 );
