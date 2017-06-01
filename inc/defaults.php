@@ -4,6 +4,10 @@ defined( 'WPINC' ) or die;
 if ( ! function_exists( 'generate_get_defaults' ) ) :
 /**
  * Set default options
+ * 
+ * @since 0.1
+ *
+ * @return array Option defaults.
  */
 function generate_get_defaults()
 {	
@@ -49,6 +53,10 @@ if ( ! function_exists( 'generate_get_color_defaults' ) ) :
 /**
  * Set default options
  * function_exists() required as this was defined in GP Premium
+ *
+ * @since 0.1
+ *
+ * @return array Option defaults.
  */
 function generate_get_color_defaults()
 {
@@ -122,6 +130,11 @@ if ( !function_exists('generate_get_default_fonts') ) :
 /**
  * Set default options
  * function_exists() required as this was defined in GP Premium
+ *
+ * @since 0.1
+ *
+ * @param bool $filter Whether to return the filtered values or original values.
+ * @return array Option defaults.
  */
 function generate_get_default_fonts( $filter = true )
 {
@@ -202,6 +215,11 @@ if ( ! function_exists( 'generate_spacing_get_defaults' ) ) :
  * Set the default options
  * @since 0.1
  * function_exists() required as this was defined in GP Premium
+ *
+ * @since 0.1
+ *
+ * @param bool $filter Whether to return the filtered values or original values.
+ * @return array Option defaults.
  */
 function generate_spacing_get_defaults( $filter = true )
 {
