@@ -77,7 +77,7 @@ function generate_do_layout_meta_box( $post ) {
 		<ul class="generate-meta-box-menu">
 			<li class="current" data-content="sidebars"><a href="#"><?php _e( 'Sidebars', 'generatepress' ); ?></a></li>
 			<li data-content="footer-widgets"><a href="#"><?php _e( 'Footer Widgets', 'generatepress' ); ?></a></li>
-			<?php if ( ! function_exists( 'generate_show_de_meta_box' ) ) : ?>
+			<?php if ( ! defined( 'GENERATE_DE_VERSION' ) || defined( 'GENERATE_DE_LAYOUT_META_BOX' ) ) : ?>
 				<li data-content="disable-elements"><a href="#"><?php _e( 'Disable Elements', 'generatepress' ); ?></a></li>
 			<?php endif; ?>
 			<li data-content="page-builder-container"><a href="#"><?php _e( 'Page Builder Container', 'generatepress' ); ?></a></li>
@@ -173,7 +173,7 @@ function generate_do_layout_meta_box( $post ) {
 			<div id="generate-disable-elements" style="display: none;">
 				<?php if ( ! defined( 'GENERATE_DE_VERSION' ) ) : ?>
 					<div class="generate_disable_elements">
-						<label for="meta-generate-disable-headline" style="display:block;margin: 1em 0;" title="<?php _e( 'Content Title','generatepress' );?>">
+						<label for="meta-generate-disable-headline" style="display:block;margin: 0 0 1em;" title="<?php _e( 'Content Title','generatepress' );?>">
 							<input type="checkbox" name="_generate-disable-headline" id="meta-generate-disable-headline" value="true" <?php checked( $stored_meta['_generate-disable-headline'][0], 'true' ); ?>>
 							<?php _e( 'Content Title','generatepress' );?>
 						</label>
