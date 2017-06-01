@@ -2,13 +2,12 @@
 // No direct access, please
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! function_exists( 'generate_woocommerce_setup' ) ) :
+add_action( 'after_setup_theme','generate_setup_woocommerce' );
 /** 
  * Set up WooCommerce
- * @since 1.3.47
+ * @since 1.4
  */
-add_action( 'after_setup_theme','generate_woocommerce_setup' );
-function generate_woocommerce_setup() {
+function generate_setup_woocommerce() {
 	// Add support for WC features
 	add_theme_support( 'wc-product-gallery-zoom' );
 	add_theme_support( 'wc-product-gallery-lightbox' );
@@ -20,7 +19,6 @@ function generate_woocommerce_setup() {
 	remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 	add_action('woocommerce_sidebar','generate_construct_sidebars');
 }
-endif;
 
 if ( ! function_exists( 'generate_woocommerce_start' ) ) :
 /** 
