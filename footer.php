@@ -6,14 +6,13 @@
  *
  * @package GeneratePress
  */
- 
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
+
+defined( 'WPINC' ) or die;
 ?>
 
 	</div><!-- #content -->
 </div><!-- #page -->
-<?php do_action('generate_before_footer'); ?>
+<?php do_action( 'generate_before_footer' ); ?>
 <div <?php generate_do_attr( 'footer' ); ?>>
 	<?php 
 	do_action( 'generate_before_footer_content' );

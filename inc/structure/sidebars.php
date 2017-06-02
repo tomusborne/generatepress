@@ -11,6 +11,7 @@ defined( 'WPINC' ) or die;
 if ( ! function_exists( 'generate_construct_sidebars' ) ) :
 /**
  * Construct the sidebars
+ *
  * @since 0.1
  */
 add_action('generate_sidebars','generate_construct_sidebars');

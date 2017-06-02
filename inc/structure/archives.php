@@ -48,6 +48,9 @@ if ( ! function_exists( 'generate_filter_the_archive_title' ) ) :
  * Alter the_archive_title() function to match our original archive title function
  *
  * @since 1.3.45
+ *
+ * @param string $title The archive title
+ * @return string The altered archive title
  */
 add_filter( 'get_the_archive_title','generate_filter_the_archive_title' );
 function generate_filter_the_archive_title( $title ) {

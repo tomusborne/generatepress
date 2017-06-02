@@ -4,14 +4,13 @@
  *
  * @package GeneratePress
  */
- 
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
+
+defined( 'WPINC' ) or die;
 ?>
 
 <article <?php generate_do_attr( 'post' ); ?>>
 	<div class="inside-article">
-		<?php do_action( 'generate_before_content'); ?>
+		<?php do_action( 'generate_before_content' ); ?>
 		
 		<?php if ( generate_show_content_title() ) : ?>
 			<header class="entry-header">
@@ -19,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			</header><!-- .entry-header -->
 		<?php endif; ?>
 		
-		<?php do_action( 'generate_after_entry_header'); ?>
+		<?php do_action( 'generate_after_entry_header' ); ?>
 		<div class="entry-content" itemprop="text">
 			<?php the_content(); ?>
 			<?php
@@ -29,6 +28,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			) );
 			?>
 		</div><!-- .entry-content -->
-		<?php do_action( 'generate_after_content'); ?>
+		<?php do_action( 'generate_after_content' ); ?>
 	</div><!-- .inside-article -->
 </article><!-- #post-## -->

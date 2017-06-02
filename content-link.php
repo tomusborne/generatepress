@@ -2,9 +2,8 @@
 /**
  * @package GeneratePress
  */
- 
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
+
+defined( 'WPINC' ) or die;
 ?>
 
 <article <?php generate_do_attr( 'post' ); ?>>

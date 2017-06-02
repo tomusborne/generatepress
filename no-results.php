@@ -6,18 +6,17 @@
  *
  * @package GeneratePress
  */
- 
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
+
+defined( 'WPINC' ) or die;
 ?>
 
 <section class="no-results not-found">
 	<div class="inside-article">
-		<?php do_action( 'generate_before_content'); ?>
+		<?php do_action( 'generate_before_content' ); ?>
 		<header class="entry-header">
 			<h1 class="entry-title"><?php _e( 'Nothing Found', 'generatepress' ); ?></h1>
 		</header><!-- .entry-header -->
-		<?php do_action( 'generate_after_entry_header'); ?>
+		<?php do_action( 'generate_after_entry_header' ); ?>
 		<div class="entry-content">
 			
 				<?php if ( is_home() && current_user_can( 'publish_posts' ) ) : ?>
@@ -37,6 +36,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				<?php endif; ?>
 			
 		</div><!-- .entry-content -->
-		<?php do_action( 'generate_after_content'); ?>
+		<?php do_action( 'generate_after_content' ); ?>
 	</div><!-- .inside-article -->
 </section><!-- .no-results -->

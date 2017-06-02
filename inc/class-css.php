@@ -6,7 +6,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Creates minified css via PHP.
  *
  * @author  Carlos Rios
- * Modified by Tom Usborne for GeneratePress
+ * @link    https://github.com/CarlosRios/php-css
+ * Modified for GeneratePress
+ *
+ * @since 1.4
  */
 class GeneratePress_CSS {
 	

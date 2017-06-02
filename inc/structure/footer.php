@@ -11,6 +11,7 @@ defined( 'WPINC' ) or die;
 if ( ! function_exists( 'generate_construct_footer' ) ) :
 /**
  * Build our footer
+ *
  * @since 1.3.42
  */
 add_action( 'generate_footer','generate_construct_footer' );
@@ -31,6 +32,7 @@ endif;
 if ( ! function_exists( 'generate_footer_bar' ) ) :
 /**
  * Build our footer bar
+ *
  * @since 1.3.42
  */
 add_action( 'generate_before_copyright','generate_footer_bar', 15 );
@@ -52,6 +54,7 @@ endif;
 if ( ! function_exists( 'generate_add_footer_info' ) ) :
 /** 
  * Add the copyright to the footer
+ *
  * @since 0.1
  */
 add_action('generate_credits','generate_add_footer_info');
@@ -70,6 +73,7 @@ if ( ! function_exists( 'generate_do_footer_widget' ) ) :
 /**
  * Build our individual footer widgets.
  * Displays a sample widget if no widget is found in the area.
+ *
  * @since 1.4
  */
 function generate_do_footer_widget( $widget_width, $widget ) {
@@ -92,6 +96,7 @@ endif;
 if ( ! function_exists( 'generate_construct_footer_widgets' ) ) :
 /**
  * Build our footer widgets
+ *
  * @since 1.3.42
  */
 add_action( 'generate_footer','generate_construct_footer_widgets', 5 );

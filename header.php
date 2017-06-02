@@ -6,9 +6,8 @@
  *
  * @package GeneratePress
  */
- 
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
+
+defined( 'WPINC' ) or die;
 
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>

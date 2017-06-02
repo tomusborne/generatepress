@@ -11,6 +11,7 @@ defined( 'WPINC' ) or die;
 if ( ! function_exists( 'generate_navigation_position' ) ) :
 /**
  * Build the navigation
+ *
  * @since 0.1
  */
 function generate_navigation_position() {
@@ -47,6 +48,7 @@ if ( ! function_exists( 'generate_menu_fallback' ) ) :
  *
  * @param  array $args
  * @return string
+ *
  * @since 1.1.4
  */
 function generate_menu_fallback( $args ) {

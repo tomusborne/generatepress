@@ -11,6 +11,7 @@ defined( 'WPINC' ) or die;
 if ( ! function_exists( 'generate_construct_header' ) ) :
 /**
  * Build the header
+ *
  * @since 1.3.42
  */
 add_action( 'generate_header','generate_construct_header' );
@@ -152,6 +153,7 @@ endif;
 if ( ! function_exists( 'generate_top_bar' ) ) :
 /**
  * Build our top bar
+ *
  * @since 1.3.45
  */
 add_action( 'generate_before_header','generate_top_bar', 5 );

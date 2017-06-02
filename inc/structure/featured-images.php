@@ -38,9 +38,12 @@ endif;
 if ( ! function_exists( 'generate_featured_page_header_area' ) ) :
 /**
  * Build the page header
+ *
  * @since 1.0.7
+ *
+ * @param string The featured image container class
  */
-function generate_featured_page_header_area($class) {
+function generate_featured_page_header_area( $class ) {
 	// Don't run the function unless we're on a page it applies to
 	if ( ! is_singular() ) {
 		return;
@@ -62,6 +65,7 @@ endif;
 if ( ! function_exists( 'generate_featured_page_header' ) ) :
 /**
  * Add page header above content
+ *
  * @since 1.0.2
  */
 add_action('generate_after_header','generate_featured_page_header', 10);
@@ -80,6 +84,7 @@ if ( ! function_exists( 'generate_featured_page_header_inside_single' ) ) :
 /**
  * Add post header inside content
  * Only add to single post
+ *
  * @since 1.0.7
  */
 add_action('generate_before_content','generate_featured_page_header_inside_single', 10);

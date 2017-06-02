@@ -6,15 +6,14 @@
  *
  * @package GeneratePress
  */
- 
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
+
+defined( 'WPINC' ) or die;
 
 get_header(); ?>
 
 	<section <?php generate_do_attr( 'primary' ); ?>>
 		<main <?php generate_do_attr( 'main' ); ?>>
-		<?php do_action('generate_before_main_content'); ?>
+		<?php do_action( 'generate_before_main_content' ); ?>
 		<?php if ( have_posts() ) : ?>
 
 			<?php do_action( 'generate_archive_title' ); ?>
@@ -39,10 +38,10 @@ get_header(); ?>
 			<?php get_template_part( 'no-results', 'archive' ); ?>
 
 		<?php endif; ?>
-		<?php do_action('generate_after_main_content'); ?>
+		<?php do_action( 'generate_after_main_content' ); ?>
 		</main><!-- #main -->
 	</section><!-- #primary -->
 
 <?php 
-do_action('generate_sidebars');
+do_action( 'generate_sidebars' );
 get_footer();
