@@ -685,13 +685,61 @@ function generate_get_link_url() {
 }
 endif;
 
+if ( ! function_exists( 'generate_categorized_blog' ) ) :
+/**
+ * Determine whether blog/site has more than one category.
+ *
+ * @since 1.2.5
+ * @deprecated 1.4
+ *
+ * @return bool True of there is more than one category, false otherwise.
+ */
+function generate_categorized_blog() {
+	if ( false === ( $all_the_cool_cats = get_transient( 'generate_categories' ) ) ) {
+		// Create an array of all the categories that are attached to posts.
+		$all_the_cool_cats = get_categories( array(
+			'fields'     => 'ids',
+			'hide_empty' => 1,
+
+			// We only need to know if there is more than one category.
+			'number'     => 2,
+		) );
+
+		// Count the number of categories that are attached to the posts.
+		$all_the_cool_cats = count( $all_the_cool_cats );
+
+		set_transient( 'generate_categories', $all_the_cool_cats );
+	}
+
+	if ( $all_the_cool_cats > 1 ) {
+		// This blog has more than 1 category so twentyfifteen_categorized_blog should return true.
+		return true;
+	} else {
+		// This blog has only 1 category so twentyfifteen_categorized_blog should return false.
+		return false;
+	}
+}
+endif;
+
+if ( ! function_exists( 'generate_category_transient_flusher' ) ) :
+/**
+ * Flush out the transients used in {@see generate_categorized_blog()}.
+ *
+ * @since 1.2.5
+ * @deprecated 1.4
+ */
+function generate_category_transient_flusher() {
+	// Like, beat it. Dig?
+	delete_transient( 'generate_categories' );
+}
+endif;
+
 /**
  * Hooked & filtered functions that have had a name change or become unnecessary.
  *
  * These likely don't need to be deprecated, but to be careful we'll keep them
  * in here for a couple months to give people who have used remove_action() etc..
  * time to update their code.
- *
  */
  
 if ( ! function_exists( 'generate_setup' ) ) :
