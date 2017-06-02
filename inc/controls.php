@@ -2,7 +2,7 @@
 // No direct access, please
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( class_exists( 'WP_Customize_Control' ) && ! function_exists( 'Generate_Range_Slider_Control' ) ) :
+if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_Slider_Control' ) ) :
 /**
  * Create a range slider control
  * This control allows you to add responsive settings
