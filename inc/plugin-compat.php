@@ -2,7 +2,6 @@
 // No direct access, please
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! function_exists( 'generate_woocommerce_setup' ) ) :
 /** 
  * Set up WooCommerce
  * @since 1.3.47
@@ -20,7 +19,6 @@ function generate_woocommerce_setup() {
 	remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 	add_action('woocommerce_sidebar','generate_construct_sidebars');
 }
-endif;
 
 if ( ! function_exists( 'generate_woocommerce_start' ) ) :
 /** 
