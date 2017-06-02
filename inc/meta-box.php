@@ -63,28 +63,28 @@ function generate_do_layout_meta_box( $post ) {
 	?>
 	<script>
 		jQuery(document).ready(function($) {
-			$( '.generate-meta-box-menu li' ).on( 'click', function( event ) {
+			$( '.generate-meta-box-menu li a' ).on( 'click', function( event ) {
 				event.preventDefault();
-				$( this ).addClass( 'current' );
-				$( this ).siblings().removeClass( 'current' );
-				var tab = $( this ).data( 'content' );
-				$( '.generate-meta-box-content' ).children( 'div' ).not( '#generate-' + tab ).css( 'display', 'none' );
-				$( '#generate-' + tab ).fadeIn( 100 );
+				$( this ).parent().addClass( 'current' );
+				$( this ).parent().siblings().removeClass( 'current' );
+				var tab = $( this ).attr( 'href' );
+				$( '.generate-meta-box-content' ).children( 'div' ).not( tab ).css( 'display', 'none' );
+				$( tab ).fadeIn( 100 );
 			});
 		});
 	</script>
 	<div id="generate-meta-box-container">
 		<ul class="generate-meta-box-menu">
-			<li class="current" data-content="sidebars"><a href="#"><?php _e( 'Sidebars', 'generatepress' ); ?></a></li>
-			<li data-content="footer-widgets"><a href="#"><?php _e( 'Footer Widgets', 'generatepress' ); ?></a></li>
+			<li class="current"><a href="#generate-layout-sidebars"><?php _e( 'Sidebars', 'generatepress' ); ?></a></li>
+			<li><a href="#generate-layout-footer-widgets"><?php _e( 'Footer Widgets', 'generatepress' ); ?></a></li>
 			<?php if ( ! defined( 'GENERATE_DE_VERSION' ) || defined( 'GENERATE_DE_LAYOUT_META_BOX' ) ) : ?>
-				<li data-content="disable-elements"><a href="#"><?php _e( 'Disable Elements', 'generatepress' ); ?></a></li>
+				<li><a href="#generate-layout-disable-elements"><?php _e( 'Disable Elements', 'generatepress' ); ?></a></li>
 			<?php endif; ?>
-			<li data-content="page-builder-container"><a href="#"><?php _e( 'Page Builder Container', 'generatepress' ); ?></a></li>
+			<li><a href="#generate-layout-page-builder-container"><?php _e( 'Page Builder Container', 'generatepress' ); ?></a></li>
 			<?php do_action( 'generate_layout_meta_box_menu_item' ); ?>
 		</ul>
 		<div class="generate-meta-box-content">
-			<div id="generate-sidebars">
+			<div id="generate-layout-sidebars">
 				<div class="generate_layouts">
 					<label for="meta-generate-layout-global" style="display:block;margin-bottom:10px;">
 						<input type="radio" name="_generate-sidebar-layout-meta" id="meta-generate-layout-global" value="" <?php checked( $stored_meta['_generate-sidebar-layout-meta'][0], '' ); ?>>
@@ -117,7 +117,7 @@ function generate_do_layout_meta_box( $post ) {
 				</div>
 			</div>
 			
-			<div id="generate-footer-widgets" style="display: none;">
+			<div id="generate-layout-footer-widgets" style="display: none;">
 				<div class="generate_footer_widget">
 					<label for="meta-generate-footer-widget-global" style="display:block;margin-bottom:10px;">
 						<input type="radio" name="_generate-footer-widget-meta" id="meta-generate-footer-widget-global" value="" <?php checked( $stored_meta['_generate-footer-widget-meta'][0], '' ); ?>>
@@ -150,7 +150,7 @@ function generate_do_layout_meta_box( $post ) {
 				</div>
 			</div>
 			
-			<div id="generate-page-builder-container" style="display: none;">
+			<div id="generate-layout-page-builder-container" style="display: none;">
 				<p class="page-builder-content" style="color:#666;font-size:13px;margin-top:0;">
 					<?php _e( 'Choose your page builder content container type. Both options remove the content padding for you.', 'generatepress' ) ;?>
 				</p>
@@ -170,7 +170,7 @@ function generate_do_layout_meta_box( $post ) {
 				</p>
 			</div>
 			
-			<div id="generate-disable-elements" style="display: none;">
+			<div id="generate-layout-disable-elements" style="display: none;">
 				<?php if ( ! defined( 'GENERATE_DE_VERSION' ) ) : ?>
 					<div class="generate_disable_elements">
 						<label for="meta-generate-disable-headline" style="display:block;margin: 0 0 1em;" title="<?php _e( 'Content Title','generatepress' );?>">
