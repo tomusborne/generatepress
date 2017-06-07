@@ -23,24 +23,28 @@ endif;
 if ( ! function_exists( 'generate_additional_spacing' ) ) :
 /**
  * Add fallback CSS for our mobile search icon color
- * @deprecated 1.4
+ * @deprecated 1.3.47
  */
-function generate_additional_spacing() {}
+function generate_additional_spacing() {
+	// No longer needed
+}
 endif;
 
 if ( ! function_exists( 'generate_mobile_search_spacing_fallback_css' ) ) :
 /**
  * Enqueue our mobile search icon color fallback CSS
- * @deprecated 1.4
+ * @deprecated 1.3.47
  */
-function generate_mobile_search_spacing_fallback_css() {}
+function generate_mobile_search_spacing_fallback_css() {
+	// No longer needed
+}
 endif;
 
 if ( ! function_exists( 'generate_addons_available' ) ) :
 /** 
  * Check to see if there's any addons not already activated
  * @since 1.0.9
- * @deprecated 1.4
+ * @deprecated 1.3.47
  */
 function generate_addons_available()
 {
@@ -71,7 +75,7 @@ if ( ! function_exists( 'generate_no_addons' ) ) :
 /** 
  * Check to see if no addons are activated
  * @since 1.0.9
- * @deprecated 1.4
+ * @deprecated 1.3.47
  */
 function generate_no_addons()
 {
