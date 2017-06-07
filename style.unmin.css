@@ -543,6 +543,7 @@ input[type="file"] {
 .rtl.nav-aligned-center .main-navigation li.search-item.current-menu-item {
 	position: absolute;
 	left: 0;
+	right: auto;
 }
 
 .main-navigation li.search-item i {
