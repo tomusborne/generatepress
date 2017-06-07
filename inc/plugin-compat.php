@@ -2,13 +2,13 @@
 // No direct access, please
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-add_action( 'after_setup_theme','generate_woocommerce_setup' );
+add_action( 'after_setup_theme','generate_setup_woocommerce' );
 /** 
  * Set up WooCommerce
  *
  * @since 1.3.47
  */
-function generate_woocommerce_setup() {
+function generate_setup_woocommerce() {
 	
 	if ( ! class_exists( 'WooCommerce' ) ) {
 		return;
