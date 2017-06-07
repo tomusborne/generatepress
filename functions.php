@@ -94,6 +94,9 @@ function generate_setup()
 	 * This theme styles the visual editor to resemble the theme style
 	 */
 	add_editor_style( 'inc/css/editor-style.css' );
+	
+	// Remove image caption padding
+	add_filter( 'img_caption_shortcode_width', '__return_zero' );
 }
 endif; // generate_setup
 
@@ -528,19 +531,6 @@ add_action('wp_head','generate_add_viewport');
 function generate_add_viewport()
 {
 	echo apply_filters( 'generate_meta_viewport', '<meta name="viewport" content="width=device-width, initial-scale=1">' );
-}
-endif;
-
-if ( ! function_exists( 'generate_remove_caption_padding' ) ) :
-/**
- * Remove WordPress's default padding on images with captions
- *
- * @param int $width Default WP .wp-caption width (image width + 10px)
- * @return int Updated width to remove 10px padding
- */
-add_filter( 'img_caption_shortcode_width', 'generate_remove_caption_padding' );
-function generate_remove_caption_padding( $width ) {
-	return $width - 10;
 }
 endif;
 
