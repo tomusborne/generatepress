@@ -220,3 +220,13 @@ class Generate_Text_Transform_Custom_Control extends WP_Customize_Control
     }
 }
 endif;
+
+if ( ! class_exists( 'Generate_Customize_Slider_Control' ) ) :
+/**
+ * Create our container width slider control
+ * @deprecated 1.3.47
+ */
+class Generate_Customize_Slider_Control extends WP_Customize_Control {
+	public function render_content() {}
+}
+endif;
