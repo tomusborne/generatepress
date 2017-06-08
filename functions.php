@@ -295,9 +295,6 @@ function generate_scripts()
 	wp_enqueue_style( 'generate-ie', get_template_directory_uri() . "/css/ie{$suffix}.css", array( 'generate-style-grid' ), GENERATE_VERSION, 'all' );
 	wp_style_add_data( 'generate-ie', 'conditional', 'lt IE 9' );
 	
-	// Add jQuery
-	wp_enqueue_script( 'jquery' );
-	
 	// Add our mobile navigation
 	wp_enqueue_script( 'generate-navigation', get_template_directory_uri() . "/js/navigation{$suffix}.js", array( 'jquery' ), GENERATE_VERSION, true );
 	
