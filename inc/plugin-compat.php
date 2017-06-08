@@ -6,9 +6,14 @@ add_action( 'after_setup_theme','generate_setup_woocommerce' );
 /** 
  * Set up WooCommerce
  *
- * @since 1.4
+ * @since 1.3.47
  */
 function generate_setup_woocommerce() {
+	
+	if ( ! class_exists( 'WooCommerce' ) ) {
+		return;
+	}
+	
 	// Add support for WC features
 	add_theme_support( 'wc-product-gallery-zoom' );
 	add_theme_support( 'wc-product-gallery-lightbox' );
@@ -27,12 +32,12 @@ if ( ! function_exists( 'generate_woocommerce_start' ) ) :
  *
  * @since 1.3.22
  */
-add_action('woocommerce_before_main_content', 'generate_woocommerce_start', 10);
+add_action( 'woocommerce_before_main_content', 'generate_woocommerce_start', 10 );
 function generate_woocommerce_start() 
 { ?>
 	<div id="primary" <?php generate_content_class();?>>
 		<main id="main" <?php generate_main_class(); ?>>
-			<?php do_action('generate_before_main_content'); ?>
+			<?php do_action( 'generate_before_main_content' ); ?>
 			<article <?php generate_do_attr( 'post' ); ?>>
 				<div class="inside-article">
 					<?php do_action( 'generate_before_content'); ?>
@@ -46,7 +51,7 @@ if ( ! function_exists( 'generate_woocommerce_end' ) ) :
  *
  * @since 1.3.22
  */
-add_action('woocommerce_after_main_content', 'generate_woocommerce_end', 10);
+add_action( 'woocommerce_after_main_content', 'generate_woocommerce_end', 10 );
 function generate_woocommerce_end() 
 {
 ?>
@@ -54,7 +59,7 @@ function generate_woocommerce_end()
 					<?php do_action( 'generate_after_content'); ?>
 				</div><!-- .inside-article -->
 			</article><!-- #post-## -->
-			<?php do_action('generate_after_main_content'); ?>
+			<?php do_action( 'generate_after_main_content' ); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 <?php
@@ -68,8 +73,11 @@ if ( ! function_exists( 'generate_woocommerce_css' ) ) :
  * @since 1.3.45
  */
 add_action( 'wp_enqueue_scripts','generate_woocommerce_css', 100 );
-function generate_woocommerce_css() 
-{
+function generate_woocommerce_css() {
+	if ( ! class_exists( 'WooCommerce' ) ) {
+		return;
+	}
+	
 	$mobile = apply_filters( 'generate_mobile_media_query', '(max-width:768px)' );
 	$css = '.woocommerce .page-header-image-single {
 		display: none;
