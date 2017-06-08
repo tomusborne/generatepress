@@ -43,10 +43,10 @@ class Generate_Range_Slider_Control extends WP_Customize_Control {
 			);
 		}
 		
-		$this->json['desktop_label'] = __( 'Desktop','generate-spacing' );
-		$this->json['tablet_label'] = __( 'Tablet','generate-spacing' );
-		$this->json['mobile_label'] = __( 'Mobile','generate-spacing' );
-		$this->json['reset_label'] = __( 'Reset','generate-spacing' );
+		$this->json['desktop_label'] = __( 'Desktop','generatepress' );
+		$this->json['tablet_label'] = __( 'Tablet','generatepress' );
+		$this->json['mobile_label'] = __( 'Mobile','generatepress' );
+		$this->json['reset_label'] = __( 'Reset','generatepress' );
 		
 		$this->json['description'] = $this->description;
 	}
