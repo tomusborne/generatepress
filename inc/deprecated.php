@@ -721,6 +721,20 @@ function generate_category_transient_flusher() {
 }
 endif;
 
+if ( ! function_exists( 'generate_remove_caption_padding' ) ) :
+/**
+ * Remove WordPress's default padding on images with captions
+ *
+ * @param int $width Default WP .wp-caption width (image width + 10px)
+ * @return int Updated width to remove 10px padding
+ *
+ * @deprecated 1.4
+ */
+function generate_remove_caption_padding( $width ) {
+	return $width - 10;
+}
+endif;
+
 /**
  * Hooked & filtered functions that have had a name change or become unnecessary.
  *
@@ -1102,7 +1116,6 @@ if ( ! function_exists( 'generate_smart_content_width' ) ) :
  * Hooking into "after_setup_theme" doesn't get the correct layout setting
  * @deprecated 1.4
  */
-add_action( 'wp', 'generate_smart_content_width' );
 function generate_smart_content_width() {
 	// Replaced by generate_set_content_width()
 }
