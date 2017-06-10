@@ -48,19 +48,6 @@ function generate_no_addons()
 }
 endif;
 
-if ( ! function_exists( 'generate_remove_caption_padding' ) ) :
-/**
- * Remove WordPress's default padding on images with captions
- *
- * @param int $width Default WP .wp-caption width (image width + 10px)
- * @return int Updated width to remove 10px padding
- * @deprecated 1.4
- */
-function generate_remove_caption_padding( $width ) {
-	return $width - 10;
-}
-endif;
-
 if ( ! function_exists( 'generate_get_min_suffix' ) ) :
 /** 
  * Figure out if we should use minified scripts or not

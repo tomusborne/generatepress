@@ -38,9 +38,6 @@ function generate_setup_theme() {
 		
 	// This theme styles the visual editor to resemble the theme style
 	add_editor_style( 'css/admin/editor-style.css' );
-	
-	// Remove image caption padding
-	add_filter( 'img_caption_shortcode_width', '__return_zero' );
 }
 
 /**

@@ -173,3 +173,16 @@ function generate_google_font_resource_hints( $urls, $relation_type ) {
 	}
 	return $urls;
 }
+
+add_filter( 'img_caption_shortcode_width', 'generate_adjust_caption_width' );
+/**
+ * Remove WordPress's default padding on images with captions
+ *
+ * @since 1.4
+ *
+ * @param int $width Default WP .wp-caption width (image width + 10px)
+ * @return int Updated width to remove 10px padding
+ */
+function generate_adjust_caption_width( $width ) {
+	return $width - 10;
+}
