@@ -151,6 +151,10 @@ footer.entry-meta .posted-on:before {
 	.main-navigation .main-nav li {
 		text-align: right !important;
 	}
+	.rtl .mobile-bar-items {
+        float: left !important;
+        position: relative;
+    }
 }
 
 @media (min-width: 768px) {
