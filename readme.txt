@@ -1,79 +1,126 @@
--------------------------------------------------------
-Welcome to GeneratePress!
--------------------------------------------------------
-Website: https://generatepress.com
-Support: https://generatepress.com/support
-Knowledgebase: https://generatepress.com/knowledgebase
-Add-ons: https://generatepress.com/add-ons
-Email: support@generatepress.com
+=== GeneratePress ===
+Contributors: edge22
+Donate link: https://generatepress.com/ongoing-development/
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options
+Requires at least: 4.5
+Tested up to: 4.8
+Stable tag: 1.3.48
 
--------------------------------------------------------
-Features:
--------------------------------------------------------
+GeneratePress is a fast, lightweight (less than 1MB zipped), mobile responsive WordPress theme built with speed, SEO and usability in mind.
 
-== Appearance > GeneratePress ==
-Activate add-on updates and reset your settings.
+== Description ==
 
-== Appearance > Widgets ==
-GeneratePress has up to 8 widget area. 1 in your header, 1 for each sidebar and up to 5 in your footer.
+GeneratePress is a fast, lightweight (less than 1MB zipped), mobile responsive WordPress theme built with speed, SEO and usability in mind. 
 
-== Appearance > Customize ==
-	- Site Identity: Hide your site title or tagline, and upload your own header.
-	- Layout: Change things like your container width, header layout, navigation layout, sidebar layout and much more.
-	- Typography: Choose your default body font.
-	- Base Colors: Easily change your background color, text color and link color.
-	- Blog: Show the full post or excerpt.
-	- Add-ons are available for further customization.
+GP can serve as a solid base for any website, and works great with any of your favorite page builders. 
 
-== Page Headers ==
-When adding a page or post, set your "Featured Image" to activate the page header: 
-https://generatepress.com/knowledgebase/featured-images/
+With an emphasis on WordPress coding standards, we ensure GeneratePress is compatible with all well-coded plugins, including major ones like WooCommerce, WPML, BuddyPress and bbPress. 
 
-== Social Icons ==
-To add the social icons, use this free plugin: https://wordpress.org/plugins/lightweight-social-icons/
-Once activated, add the widget to the "Header" widget area in "Appearance > Widgets".
+GeneratePress is device friendly (mobile and tablet), uses 100% valid HTML, is fully schema microdata integrated, is translated into over 20 languages by our amazing community and is cross browser compatible (including IE8). 
 
-== Content Columns == 
-To add content columns, use this free plugin: https://wordpress.org/plugins/lightweight-grid-columns
+Some of our features include 9 widget areas, 5 navigation positions, 5 sidebar layouts, dropdown menus (click or hover) and a back to top button. 
 
-== Replicating the Screenshot ==
-If you want to replicate the screenshot you see on WordPress.org, please refer to this article: 
-https://generatepress.com/knowledgebase/replicating-the-screenshot/
+All our options use the native WordPress Customizer, meaning you can see every change you make instantly before pressing the publish button. 
 
--------------------------------------------------------
-GeneratePress License
--------------------------------------------------------
+Learn more and check out our [powerful premium version](https://generatepress.com).
+
+== Installation ==
+
+= From within WordPress =
+1. Visit "Appearance > Themes > Add New"
+1. Search for "GeneratePress"
+1. Install and activate
+
+== Frequently Asked Questions ==
+
+= Is GeneratePress Free? =
+Yes! GeneratePress is a free theme, and always will be.
+
+= Does GeneratePress have a pro version? =
+It does! GeneratePress has a premium plugin which extends the available options in the theme.
+
+You can learn more about GP Premium [here](https://generatepress.com/premium).
+
+= Where can I find documentation? =
+GeneratePress has extensive documentation you can find [here](https://docs.generatepress.com).
+
+= Do you offer support? =
+Definitely. We offer support for the free theme in the [WordPress.org forums](https://wordpress.org/support/theme/generatepress).
+
+Premium customers have access to our very own [support forum](https://generatepress.com/support).
+
+We try to answer all questions - free or premium - within 24 hours.
+
+= Where can I find the theme options? =
+All of our options can be found in the Customizer in 'Appearance > Customize'.
+
+= Does GeneratePress have any widget areas? =
+GeneratePress has up to 9 widget areas which you can add widgets to in Appearance > Widgets.
+
+= How can I make my site look like your screenshot? =
+If you want to replicate the screenshot you see on WordPress.org, please refer to [this article](https://docs.generatepress.com/article/replicating-the-screenshot/).
+
+== License ==
 
 GeneratePress is licensed under the GNU General Public License v2 or later
 
-More details here: http://www.gnu.org/licenses/gpl-2.0.html
+More details [here](http://www.gnu.org/licenses/gpl-2.0.html).
 
--------------------------------------------------------
-Screenshot Licenses
--------------------------------------------------------
+= Screenshot Licenses =
 
 Screenshot images are all licensed under CC0 1.0 Universal - http://creativecommons.org/publicdomain/zero/1.0/deed.en
 http://pixabay.com/en/home-office-workstation-office-336378/
 http://pixabay.com/en/utah-mountain-biking-bike-biking-95032/
 http://pixabay.com/en/desk-computer-modern-keyboard-1140699/
 
--------------------------------------------------------
-Unsemantic Framework
--------------------------------------------------------
+= Unsemantic Framework =
 
 http://opensource.org/licenses/mit-license.php
 http://www.gnu.org/licenses/gpl.html
 
--------------------------------------------------------
-HTML5 Shiv
--------------------------------------------------------
+= HTML5 Shiv =
 
 https://code.google.com/p/html5shiv/
 Dual licensed under the MIT or GPL Version 2 licenses
 
--------------------------------------------------------
-FontAwesome
--------------------------------------------------------
+= FontAwesome =
 
 Font License: SIL OFL 1.1 - http://scripts.sil.org/OFL
 Code License: MIT License - http://opensource.org/licenses/mit-license.html
+
+== Changelog ==
+
+= 1.3.48 =
+
+Release date: June 9, 2017
+
+* Fix: Revert image caption width/padding change
+
+= 1.3.47 =
+
+Release date: June 9, 2017
+
+* Fix: Issue where category title was displaying above header in rare cases
+* New: generate_previous_link_text filter
+* New: generate_next_link_text filter
+* New: generate_before_comments hook
+* Tweak: Make single top bar widget full width if all alone
+* Tweak: Add support for WooCommerce 3.0
+* Tweak: Make logo URL accessible in generate_logo_output filter
+* Tweak: Make date accessible in generate_post_date_output filter
+* Tweak: Re-build range slider customizer control
+* Tweak: Set navigation search form to 100% height (instead of specifying line-height)
+* Tweak: Deprecate generate_additional_spacing() and generate_mobile_search_spacing_fallback_css()
+* Tweak: Deprecate generate_remove_caption_padding()
+* Tweak: Make upsell notices check for GP Premium instead of all individual add-ons
+* Tweak: Improve/adjust screen-reader-text class
+* Tweak: Add 1px transparent border to buttons to match inputs
+* Tweak: Set image caption padding to 0
+* Tweak: Remove bottom margin from single paragraph in top bar text widget
+* Tweak: Remove bottom margin from single paragraph in footer bar text widget
+
+= Earlier versions =
+
+For the changelog of earlier versions, please refer to our [development log](https://generatepress.com/category/development/).
