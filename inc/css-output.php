@@ -16,8 +16,7 @@ if ( ! function_exists( 'generate_base_css' ) ) :
  * Generate the CSS in the <head> section using the Theme Customizer
  * @since 0.1
  */
-function generate_base_css()
-{
+function generate_base_css() {
 	// Get our settings
 	$generate_settings = wp_parse_args( 
 		get_option( 'generate_settings', array() ), 
@@ -71,8 +70,7 @@ if ( ! function_exists( 'generate_advanced_css' ) ) :
  * Generate the CSS in the <head> section using the Theme Customizer
  * @since 0.1
  */
-function generate_advanced_css()
-{
+function generate_advanced_css() {
 	// Get our settings
 	$generate_settings = wp_parse_args( 
 		get_option( 'generate_settings', array() ), 
@@ -326,9 +324,7 @@ if ( ! function_exists( 'generate_font_css' ) ) :
  * Generate the CSS in the <head> section using the Theme Customizer
  * @since 0.1
  */
-function generate_font_css()
-{
-
+function generate_font_css() {
 	$generate_settings = wp_parse_args( 
 		get_option( 'generate_settings', array() ), 
 		generate_get_default_fonts() 
@@ -469,8 +465,7 @@ if ( ! function_exists( 'generate_spacing_css' ) ) :
  * Write our dynamic CSS
  * @since 0.1
  */
-function generate_spacing_css()
-{
+function generate_spacing_css() {
 	$spacing_settings = wp_parse_args( 
 		get_option( 'generate_spacing_settings', array() ), 
 		generate_spacing_get_defaults() 
