@@ -22,7 +22,7 @@ function generate_enqueue_scripts() {
 	// Font Awesome
 	$icon_essentials = apply_filters( 'generate_fontawesome_essentials', false );
 	$icon_essentials = ( $icon_essentials ) ? '-essentials' : false;
-	wp_enqueue_style( "fontawesome{$icon_essentials}", trailingslashit( get_template_directory_uri() ) . "css/font-awesome{$icon_essentials}{$suffix}.css", false, '4.7', 'all' );
+	wp_enqueue_style( "font-awesome{$icon_essentials}", trailingslashit( get_template_directory_uri() ) . "css/font-awesome{$icon_essentials}{$suffix}.css", false, '4.7', 'all' );
 	
 	// IE 8
 	wp_enqueue_style( 'generate-ie', trailingslashit( get_template_directory_uri() ) . "css/ie{$suffix}.css", array( 'generate-style-grid' ), GENERATE_VERSION, 'all' );
