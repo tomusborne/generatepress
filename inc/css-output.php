@@ -290,13 +290,13 @@ function generate_advanced_css() {
 	$css->add_property( 'color', esc_attr( $generate_settings[ 'footer_link_hover_color' ] ) );
 	
 	// Form input
-	$css->set_selector( 'input[type="text"],input[type="email"],input[type="url"],input[type="password"],input[type="search"],textarea' );
+	$css->set_selector( 'input[type="text"],input[type="email"],input[type="url"],input[type="password"],input[type="search"],input[type="number"],textarea' );
 	$css->add_property( 'color', esc_attr( $generate_settings[ 'form_text_color' ] ) );
 	$css->add_property( 'background-color', esc_attr( $generate_settings[ 'form_background_color' ] ) );
 	$css->add_property( 'border-color', esc_attr( $generate_settings[ 'form_border_color' ] ) );
 	
 	// Form input on focus
-	$css->set_selector( 'input[type="text"]:focus,input[type="email"]:focus,input[type="url"]:focus,input[type="password"]:focus,input[type="search"]:focus,textarea:focus' );
+	$css->set_selector( 'input[type="text"]:focus,input[type="email"]:focus,input[type="url"]:focus,input[type="password"]:focus,input[type="search"]:focus,input[type="number"]:focus,textarea:focus' );
 	$css->add_property( 'color', esc_attr( $generate_settings[ 'form_text_color_focus' ] ) );
 	$css->add_property( 'background-color', esc_attr( $generate_settings[ 'form_background_color_focus' ] ) );
 	$css->add_property( 'border-color', esc_attr( $generate_settings[ 'form_border_color_focus' ] ) );
