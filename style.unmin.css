@@ -264,6 +264,7 @@ input[type="url"],
 input[type="password"],
 input[type="search"],
 input[type="tel"],
+input[type="number"],
 textarea {
 	background: #FAFAFA;
 	color: #666;
@@ -281,6 +282,7 @@ input[type="url"]:focus,
 input[type="password"]:focus,
 input[type="tel"]:focus,
 input[type="search"]:focus,
+input[type="number"]:focus,
 textarea:focus {
 	color: #111;
 	background: #FFF;
