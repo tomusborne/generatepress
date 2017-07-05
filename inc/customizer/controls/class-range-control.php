@@ -5,7 +5,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 /**
  * Create a range slider control
  * This control allows you to add responsive settings
- * @since 1.4
+ * @since 1.3.47
  */
 class Generate_Range_Slider_Control extends WP_Customize_Control {
 	/**

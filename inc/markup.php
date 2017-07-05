@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  *
  * The contextual filter is of the form `generate_attr_{context}`.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @param string $context    The context, to build filter name.
  * @param array  $attributes Optional. Extra attributes to merge with defaults.
@@ -29,7 +29,7 @@ function generate_parse_attr( $context, $attributes = array() ) {
  *
  * The contextual filter is of the form `generate_attr_{context}_output`.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @param string $context    The context, to build filter name.
  * @param array  $attributes Optional. Extra attributes to merge with defaults.
@@ -63,7 +63,7 @@ function generate_get_attr( $context, $attributes = array() ) {
 /**
  * Print our generate_get_attr() function.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @param string $context    The element name.
  * @param array  $attributes Optional. Extra attributes to merge with defaults.
@@ -76,7 +76,7 @@ add_filter( 'generate_attr_body', 'generate_set_body_attributes' );
 /**
  * Build our body attributes.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @param array $attributes Any existing attributes.
  * @return array New attributes for the body element.
@@ -101,7 +101,7 @@ add_filter( 'generate_attr_page', 'generate_set_page_attributes' );
 /**
  * Build our page attributes.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @param array $attributes Any existing attributes.
  * @return array New attributes for the page element.
@@ -117,7 +117,7 @@ add_filter( 'generate_attr_primary', 'generate_set_primary_attributes' );
 /**
  * Build our primary content area attributes.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @param array $attributes Any existing attributes.
  * @return array New attributes for the primary element.
@@ -133,7 +133,7 @@ add_filter( 'generate_attr_right-sidebar', 'generate_set_right_sidebar_attribute
 /**
  * Build our right sidebar attributes.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @param array $attributes Any existing attributes.
  * @return array New attributes for the right sidebar element.
@@ -152,7 +152,7 @@ add_filter( 'generate_attr_left-sidebar', 'generate_set_left_sidebar_attributes'
 /**
  * Build our left sidebar attributes.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @param array $attributes Any existing attributes.
  * @return array New attributes for the left sidebar element.
@@ -171,7 +171,7 @@ add_filter( 'generate_attr_header', 'generate_set_header_attributes' );
 /**
  * Build our header attributes.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @param array $attributes Any existing attributes.
  * @return array New attributes for the header element.
@@ -189,7 +189,7 @@ add_filter( 'generate_attr_inside-header', 'generate_set_inside_header_attribute
 /**
  * Build our inner header attributes.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @param array $attributes Any existing attributes.
  * @return array New attributes for the inner header element.
@@ -204,7 +204,7 @@ add_filter( 'generate_attr_navigation', 'generate_set_navigation_attributes' );
 /**
  * Build our primary navigation attributes.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @param array $attributes Any existing attributes.
  * @return array New attributes for the primary navigation element.
@@ -222,7 +222,7 @@ add_filter( 'generate_attr_inside-navigation', 'generate_set_inside_navigation_a
 /**
  * Build our inner primary navigation attributes.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @param array $attributes Any existing attributes.
  * @return array New attributes for the inner primary navigation element.
@@ -237,7 +237,7 @@ add_filter( 'generate_attr_main', 'generate_set_main_attributes' );
 /**
  * Build our main content area attributes.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @param array $attributes Any existing attributes.
  * @return array New attributes for the main content element.
@@ -253,7 +253,7 @@ add_filter( 'generate_attr_footer', 'generate_set_footer_attributes' );
 /**
  * Build our footer attributes.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @param array $attributes Any existing attributes.
  * @return array New attributes for the footer element.
@@ -268,7 +268,7 @@ add_filter( 'generate_attr_inside-footer', 'generate_set_inside_footer_attribute
 /**
  * Build our inner footer attributes.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @param array $attributes Any existing attributes.
  * @return array New attributes for the inner footer element.
@@ -283,7 +283,7 @@ add_filter( 'generate_attr_footer-bar', 'generate_set_footer_bar_attributes' );
 /**
  * Build our footer bar/copyright area attributes.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @param array $attributes Any existing attributes.
  * @return array New attributes for the footer bar (copyright) element.
@@ -300,7 +300,7 @@ add_filter( 'generate_attr_top-bar', 'generate_set_top_bar_attributes' );
 /**
  * Build our top bar attributes.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @param array $attributes Any existing attributes.
  * @return array New attributes for the top bar element.
@@ -315,7 +315,7 @@ add_filter( 'generate_attr_post', 'generate_set_post_attributes' );
 /**
  * Build our post/article attributes.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @param array $attributes Any existing attributes.
  * @return array New attributes for the post element.

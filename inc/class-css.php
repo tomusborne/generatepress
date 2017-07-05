@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @link    https://github.com/CarlosRios/php-css
  * Modified for GeneratePress
  *
- * @since 1.4
+ * @since 2.0
  */
 class GeneratePress_CSS {
 	

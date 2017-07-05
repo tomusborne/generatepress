@@ -4,7 +4,7 @@ defined( 'WPINC' ) or die;
 if ( class_exists( 'WP_Customize_Control' ) && ! class_exists('Generate_Customize_Width_Slider_Control') ) :
 /**
  * Create our container width slider control
- * @deprecated 1.4
+ * @deprecated 2.0
  */
 class Generate_Customize_Width_Slider_Control extends WP_Customize_Control
 {

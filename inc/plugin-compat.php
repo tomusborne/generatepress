@@ -33,8 +33,8 @@ if ( ! function_exists( 'generate_woocommerce_start' ) ) :
  * @since 1.3.22
  */
 add_action( 'woocommerce_before_main_content', 'generate_woocommerce_start', 10 );
-function generate_woocommerce_start() 
-{ ?>
+function generate_woocommerce_start() { 
+?>
 	<div id="primary" <?php generate_content_class();?>>
 		<main id="main" <?php generate_main_class(); ?>>
 			<?php do_action( 'generate_before_main_content' ); ?>
@@ -52,8 +52,7 @@ if ( ! function_exists( 'generate_woocommerce_end' ) ) :
  * @since 1.3.22
  */
 add_action( 'woocommerce_after_main_content', 'generate_woocommerce_end', 10 );
-function generate_woocommerce_end() 
-{
+function generate_woocommerce_end() {
 ?>
 					</div><!-- .entry-content -->
 					<?php do_action( 'generate_after_content'); ?>

@@ -74,7 +74,7 @@ if ( ! function_exists( 'generate_do_footer_widget' ) ) :
  * Build our individual footer widgets.
  * Displays a sample widget if no widget is found in the area.
  *
- * @since 1.4
+ * @since 2.0
  */
 function generate_do_footer_widget( $widget_width, $widget ) {
 ?>

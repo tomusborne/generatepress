@@ -90,7 +90,7 @@ if ( ! function_exists( 'generate_typography_customize_preview_css' ) ) :
 /**
  * Hide the hidden input control
  * @since 1.3.40
- * @deprecated 1.4
+ * @deprecated 2.0
  */
 function generate_typography_customize_preview_css() {
 	?>
@@ -106,7 +106,7 @@ if ( ! function_exists( 'generate_is_posts_page' ) ) :
  * Check to see if we're on a posts page
  *
  * @since 1.3.39
- * @deprecated 1.4
+ * @deprecated 2.0
  */
 function generate_is_posts_page()
 {

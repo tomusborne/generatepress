@@ -4,7 +4,7 @@ defined( 'WPINC' ) or die;
 /**
  * A wrapper function to get our options.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @param string $option The option name to look up.
  * @return string The option value.
@@ -22,7 +22,7 @@ function generate_get_option( $option ) {
 /**
  * Get the layout for the current page.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @return string The sidebar layout location.
  */
@@ -59,7 +59,7 @@ function generate_get_sidebar_layout() {
 /**
  * Get the number of footer widgets for the current page.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @return int The number of footer widgets.
  */
@@ -87,7 +87,7 @@ function generate_get_footer_widget_count() {
 /** 
  * Figure out if we should show the post excerpts or full posts.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @return bool Whether we show the excerpt or not.
  */
@@ -118,7 +118,7 @@ function generate_show_post_excerpt() {
 /** 
  * Check to see if we should show our page/post title or not
  *
- * @since 1.4
+ * @since 2.0
  *
  * @return bool Whether to show the content title.
  */
@@ -160,7 +160,7 @@ function generate_get_premium_url( $url = 'https://generatepress.com/premium' ) 
  * Shorten our padding/margin values into shorthand form.
  * Used inside our dynamic spacing CSS.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @param int $top Top spacing.
  * @param int $right Right spacing.
@@ -190,7 +190,7 @@ function generate_get_shorthand_spacing( $top, $right, $bottom, $left ) {
  *
  * From now on, classes can be filtered into the generate_attr_{context} filter.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @param string $filter The name of the filter containing classes.
  * @return string The classes for specified filter.
@@ -205,7 +205,7 @@ function generate_get_element_classes( $filter ) {
  * Return the post URL.
  * Falls back to the post permalink if no URL is found in the post.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @see get_url_in_content()
  * @return string The Link format URL.

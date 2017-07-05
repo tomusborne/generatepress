@@ -2,7 +2,7 @@
 defined( 'WPINC' ) or die;
 
 // Set some definitions
-define( 'GENERATE_VERSION', '1.4-alpha' );
+define( 'GENERATE_VERSION', '2.0-alpha' );
 define( 'GENERATE_URI', get_template_directory_uri() );
 define( 'GENERATE_DIR', get_template_directory() );
 

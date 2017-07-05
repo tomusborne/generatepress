@@ -98,7 +98,7 @@ add_action( 'wp', 'generate_set_content_width' );
  * Hook into "wp" so we have the correct layout setting from generate_get_sidebar_layout().
  * Hooking into "after_setup_theme" doesn't get the correct layout setting.
  *
- * @since 1.4
+ * @since 2.0
  */
 function generate_set_content_width() {
 	global $content_width;
@@ -122,7 +122,7 @@ add_filter( 'wp_page_menu_args', 'generate_set_home_link_fallback' );
 /**
  * Get our wp_nav_menu() fallback, wp_page_menu(), to show a home link.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @param array $args The existing menu args.
  * @return array Menu args.
@@ -136,7 +136,7 @@ add_filter( 'generate_show_title', 'generate_remove_content_title' );
 /**
  * Remove our title if set.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @return bool Whether to display the content title.
  */
@@ -154,7 +154,7 @@ add_filter( 'wp_resource_hints', 'generate_google_font_resource_hints', 10, 2 );
 /**
  * Add resource hints to our Google fonts call.
  *
- * @since 1.4
+ * @since 2.0
  *
  * @param array  $urls           URLs to print for resource hints.
  * @param string $relation_type  The relation type the URLs are printed.
@@ -178,7 +178,7 @@ add_filter( 'img_caption_shortcode_width', 'generate_adjust_caption_width' );
 /**
  * Remove WordPress's default padding on images with captions
  *
- * @since 1.4
+ * @since 2.0
  *
  * @param int $width Default WP .wp-caption width (image width + 10px)
  * @return int Updated width to remove 10px padding

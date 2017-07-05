@@ -30,7 +30,7 @@ if ( function_exists( 'is_customize_preview' ) ) :
  * Adds a hidden navigation if no navigation is set
  * This allows us to use postMessage to position the navigation when it doesn't exist
  *
- * @since 1.4
+ * @since 2.0
  */
 add_action( 'wp_footer','generate_do_hidden_navigation' );
 function generate_do_hidden_navigation() {
