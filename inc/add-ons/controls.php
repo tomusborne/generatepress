@@ -1,27 +1,10 @@
 <?php
-defined( 'WPINC' ) or die;
 
-if ( class_exists( 'WP_Customize_Control' ) && ! class_exists('Generate_Customize_Width_Slider_Control') ) :
-/**
- * Create our container width slider control
- * @deprecated 1.3.47
- */
-class Generate_Customize_Width_Slider_Control extends WP_Customize_Control
-{
-	public function render_content() {}
-}
-endif;
+// No direct access, please
+if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'GenerateLabelControl' ) ) :
-/**
- * Heading area
- * @since 0.1
- * @depreceted 1.3.41
- **/
-class GenerateLabelControl extends WP_Customize_Control {
-	public function render_content() {}
-}
-endif;
+if ( ! class_exists( 'WP_Customize_Control' ) )
+    return NULL;
 
 /**
  * A class to create a dropdown for all google fonts
@@ -221,12 +204,13 @@ class Generate_Text_Transform_Custom_Control extends WP_Customize_Control
 }
 endif;
 
-if ( ! class_exists( 'Generate_Customize_Slider_Control' ) ) :
+if ( !class_exists('Generate_Customize_Slider_Control') ) :
 /**
  * Create our container width slider control
  * @deprecated 1.3.47
  */
-class Generate_Customize_Slider_Control extends WP_Customize_Control {
+class Generate_Customize_Slider_Control extends WP_Customize_Control
+{
 	public function render_content() {}
 }
 endif;

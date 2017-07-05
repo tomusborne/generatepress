@@ -1,11 +1,12 @@
 <?php
-defined( 'WPINC' ) or die;
+// No direct access, please
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_Slider_Control' ) ) :
 /**
  * Create a range slider control
  * This control allows you to add responsive settings
- * @since 1.4
+ * @since 1.3.47
  */
 class Generate_Range_Slider_Control extends WP_Customize_Control {
 	/**
@@ -55,8 +56,8 @@ class Generate_Range_Slider_Control extends WP_Customize_Control {
 	 * @access public
 	 */
 	public function enqueue() {
-		wp_enqueue_script( 'generatepress-range-slider', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/js/slider-control.js', array( 'jquery', 'customize-base', 'jquery-ui-slider' ), false, true );
-		wp_enqueue_style( 'generatepress-range-slider-css', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/css/slider-customizer.css', null );
+		wp_enqueue_script( 'generatepress-range-slider', trailingslashit( get_template_directory_uri() ) . 'inc/js/slider-control.js', array( 'jquery', 'customize-base', 'jquery-ui-slider' ), false, true );
+		wp_enqueue_style( 'generatepress-range-slider-css', trailingslashit( get_template_directory_uri() ) . 'inc/css/slider.css', null );
 	}
 	/**
 	 * An Underscore (JS) template for this control's content (but not its container).
@@ -108,7 +109,7 @@ class Generate_Range_Slider_Control extends WP_Customize_Control {
 					<label class="range-option-area" data-option="desktop" style="display: none;">
 						<div class="wrapper <# if ( '' !== data.choices['desktop']['unit'] ) { #>has-unit<# } #>">
 							<div class="gp_range_value <# if ( '' == data.choices['desktop']['unit'] && ! data.choices['desktop']['edit'] ) { #>hide-value<# } #>">
-								<input <# if ( data.choices['desktop']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> type="number" step="{{ data.choices['desktop']['step'] }}" class="desktop-range value" value="{{ data.desktop.value }}" min="{{ data.choices['desktop']['min'] }}" max="{{ data.choices['desktop']['max'] }}" {{{ data.desktop.link }}} data-reset_value="{{ data.desktop.default }}" />
+								<input <# if ( data.choices['desktop']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> type="number" class="desktop-range value" value="{{ data.desktop.value }}" min="{{ data.choices['desktop']['min'] }}" max="{{ data.choices['desktop']['max'] }}" {{{ data.desktop.link }}} data-reset_value="{{ data.desktop.default }}" />
 								<span <# if ( ! data.choices['desktop']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> class="value">{{ data.desktop.value }}</span>
 								
 								<# if ( data.choices['desktop']['unit'] ) { #>
@@ -123,8 +124,8 @@ class Generate_Range_Slider_Control extends WP_Customize_Control {
 				<# if ( 'undefined' !== typeof ( data.tablet ) ) { #>
 					<label class="range-option-area" data-option="tablet" style="display:none">
 						<div class="wrapper <# if ( '' !== data.choices['tablet']['unit'] ) { #>has-unit<# } #>">
-							<div class="gp_range_value <# if ( '' == data.choices['tablet']['unit'] && ! data.choices['desktop']['edit'] ) { #>hide-value<# } #>">
-								<input <# if ( data.choices['tablet']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> type="number" step="{{ data.choices['tablet']['step'] }}" class="tablet-range value" value="{{ data.tablet.value }}" min="{{ data.choices['tablet']['min'] }}" max="{{ data.choices['tablet']['max'] }}" {{{ data.tablet.link }}} data-reset_value="{{ data.tablet.default }}" />
+							<div class="gp_range_value">
+								<input <# if ( data.choices['tablet']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> type="number" class="tablet-range value" value="{{ data.tablet.value }}" min="{{ data.choices['tablet']['min'] }}" max="{{ data.choices['tablet']['max'] }}" {{{ data.tablet.link }}} data-reset_value="{{ data.tablet.default }}" />
 								<span <# if ( ! data.choices['tablet']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> class="value">{{ data.tablet.value }}</span>
 								
 								<# if ( data.choices['tablet']['unit'] ) { #>
@@ -139,8 +140,8 @@ class Generate_Range_Slider_Control extends WP_Customize_Control {
 				<# if ( 'undefined' !== typeof ( data.mobile ) ) { #>
 					<label class="range-option-area" data-option="mobile" style="display:none;">
 						<div class="wrapper <# if ( '' !== data.choices['mobile']['unit'] ) { #>has-unit<# } #>">
-							<div class="gp_range_value <# if ( '' == data.choices['mobile']['unit'] && ! data.choices['desktop']['edit'] ) { #>hide-value<# } #>">
-								<input <# if ( data.choices['mobile']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> type="number" step="{{ data.choices['mobile']['step'] }}" class="mobile-range value" value="{{ data.mobile.value }}" min="{{ data.choices['mobile']['min'] }}" max="{{ data.choices['mobile']['max'] }}" {{{ data.mobile.link }}} data-reset_value="{{ data.mobile.default }}" />
+							<div class="gp_range_value">
+								<input <# if ( data.choices['mobile']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> type="number" class="mobile-range value" value="{{ data.mobile.value }}" min="{{ data.choices['mobile']['min'] }}" max="{{ data.choices['mobile']['max'] }}" {{{ data.mobile.link }}} data-reset_value="{{ data.mobile.default }}" />
 								<span <# if ( ! data.choices['mobile']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> class="value">{{ data.mobile.value }}</span>
 								
 								<# if ( data.choices['mobile']['unit'] ) { #>
@@ -155,5 +156,84 @@ class Generate_Range_Slider_Control extends WP_Customize_Control {
 		</div>
 		<?php
 	}
+}
+endif;
+
+if ( class_exists( 'WP_Customize_Section' ) && ! class_exists( 'GeneratePress_Upsell_Section' ) ) :
+/**
+ * Create our upsell section
+ * Escape your URL in the Customizer using esc_url()!
+ */
+class GeneratePress_Upsell_Section extends WP_Customize_Section {
+
+	public $type = 'gp-upsell-section';
+	public $pro_url = '';
+	public $pro_text = '';
+	public $id = '';
+	
+	public function json() {
+		$json = parent::json();
+		$json['pro_text'] = $this->pro_text;
+		$json['pro_url']  = esc_url( $this->pro_url );
+		$json['id'] = $this->id;
+		return $json;
+	}
+	
+	protected function render_template() {
+		?>
+		<li id="accordion-section-{{ data.id }}" class="generate-upsell-accordion-section control-section-{{ data.type }} cannot-expand accordion-section">
+			<h3><a href="{{{ data.pro_url }}}" target="_blank">{{ data.pro_text }}</a></h3>
+		</li>
+		<?php
+	}
+}
+endif;
+
+if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Customize_Misc_Control' ) ) :
+/**
+ * Create our in-section upsell controls
+ * Escape your URL in the Customizer using esc_url()!
+ */
+class Generate_Customize_Misc_Control extends WP_Customize_Control {
+	public $description = '';
+	public $url = '';
+	public $type = 'addon';
+
+	public function to_json() {
+		parent::to_json();
+		$this->json[ 'url' ] = esc_url( $this->url );
+		$this->json[ 'message' ] = __( 'Add-on available','generatepress' );
+	}
+	
+	public function content_template() {
+		?>
+		<span class="get-addon">
+			<a href="{{{ data.url }}}" target="_blank">{{ data.message }}</a>
+		</span>
+		<p class="description" style="margin-top: 5px;">{{{ data.description }}}</p>
+		<?php
+	}
+}
+endif;
+
+if ( class_exists( 'WP_Customize_Control' ) && ! class_exists('Generate_Customize_Width_Slider_Control') ) :
+/**
+ * Create our container width slider control
+ * @deprecated 1.3.47
+ */
+class Generate_Customize_Width_Slider_Control extends WP_Customize_Control
+{
+	public function render_content() {}
+}
+endif;
+
+if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'GenerateLabelControl' ) ) :
+/**
+ * Heading area
+ * @since 0.1
+ * @depreceted 1.3.41
+ **/
+class GenerateLabelControl extends WP_Customize_Control {
+	public function render_content() {}
 }
 endif;

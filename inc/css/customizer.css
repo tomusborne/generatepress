@@ -1,3 +1,15 @@
+.customize-control-line {
+	display: none !important;
+}
+#accordion-section-secondary_bg_images_section li.customize-section-description-container {
+	float: none;
+	width: 100%;
+}
+#customize-control-blogname,
+#customize-control-blogdescription {
+	margin-bottom: 0;
+}
+
 .customize-control-title.addon {
 	display:inline;
 }
@@ -15,6 +27,55 @@
 	margin-top: 10px;
 }
 
+.slider-input {
+	width: 60px !important;
+	font-size: 12px;
+	padding: 2px;
+	text-align: center;
+	height: 24px !important;
+}
+
+span.value {
+	display: inline-block;
+	float: right;
+	width: 40%;
+	text-align: right;
+}
+
+span.typography-size-label {
+	display: inline-block;
+	width: 60%;
+}
+
+div.slider {
+	margin-top: 8px;
+}
+
+.gp-slider-default-value {
+	cursor: pointer;
+	padding-top: 8px;
+	float: right;
+	line-height: 1;
+}
+
+.customize-control-gp-typography-slider .slider.show-reset,
+.customize-control-gp-width-slider .slider.show-reset {
+	width: 90%;
+	float: left;
+}
+
+span.px {
+	background: #FAFAFA;
+	line-height: 18px;
+	display: inline-block;
+	padding: 2px 5px;
+	font-style: normal;
+	font-weight: bold;
+	border-right: 1px solid #DDD;
+	border-top: 1px solid #DDD;
+	border-bottom: 1px solid #DDD;
+	font-size: 12px;
+}
 li#accordion-section-generatepress_upsell_section {
 	border-top: 1px solid #D54E21;
 	border-bottom: 1px solid #D54E21;
