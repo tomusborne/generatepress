@@ -1,0 +1,9 @@
+.generatepress-font-weight,
+.generatepress-font-transform {
+    float: left;
+    width: 50%
+}
+
+.generatepress-font-weight select {
+    border-right: 0;
+}

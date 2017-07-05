@@ -9,7 +9,6 @@ add_action( 'after_setup_theme','generate_setup_woocommerce' );
  * @since 1.3.47
  */
 function generate_setup_woocommerce() {
-	
 	if ( ! class_exists( 'WooCommerce' ) ) {
 		return;
 	}
@@ -32,7 +31,8 @@ if ( ! function_exists( 'generate_woocommerce_start' ) ) :
  * @since 1.3.22
  */
 add_action('woocommerce_before_main_content', 'generate_woocommerce_start', 10);
-function generate_woocommerce_start() { ?>
+function generate_woocommerce_start() { 
+?>
 	<div id="primary" <?php generate_content_class();?>>
 		<main id="main" <?php generate_main_class(); ?>>
 			<?php do_action('generate_before_main_content'); ?>
@@ -40,7 +40,8 @@ function generate_woocommerce_start() { ?>
 				<div class="inside-article">
 					<?php do_action( 'generate_before_content'); ?>
 					<div class="entry-content" itemprop="text">
-<?php }
+<?php
+}
 endif;
 
 if ( ! function_exists( 'generate_woocommerce_end' ) ) :
@@ -123,8 +124,7 @@ if ( ! function_exists( 'generate_bbpress_css' ) ) :
  * @since 1.3.45
  */
 add_action( 'wp_enqueue_scripts','generate_bbpress_css', 100 );
-function generate_bbpress_css() 
-{
+function generate_bbpress_css() {
 	$css = '#bbpress-forums ul.bbp-lead-topic, 
 	#bbpress-forums ul.bbp-topics, 
 	#bbpress-forums ul.bbp-forums, 
@@ -162,8 +162,7 @@ if ( ! function_exists( 'generate_buddypress_css' ) ) :
  * @since 1.3.45
  */
 add_action( 'wp_enqueue_scripts','generate_buddypress_css', 100 );
-function generate_buddypress_css() 
-{
+function generate_buddypress_css() {
 	$css = '#buddypress form#whats-new-form #whats-new-options[style] {
 		min-height: 6rem;
 		overflow: visible;
@@ -190,8 +189,7 @@ if ( ! function_exists( 'generate_beaver_builder_css' ) ) :
  * @since 1.3.45
  */
 add_action( 'wp_enqueue_scripts','generate_beaver_builder_css', 100 );
-function generate_beaver_builder_css()
-{
+function generate_beaver_builder_css() {
 	// Check is Beaver Builder is active
 	// If we have the full-width-content class, we don't need to do anything else
 	if ( in_array( 'fl-builder', get_body_class() ) && ! in_array( 'full-width-content', get_body_class() ) && ! in_array( 'contained-content', get_body_class() ) ) {
