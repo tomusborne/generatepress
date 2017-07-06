@@ -652,7 +652,7 @@ if ( ! function_exists( 'generate_body_classes' ) ) :
  * @deprecated 2.0
  */
 function generate_body_classes() {
-	_deprecated_function( __FUNCTION__, '2.0', "generate_set_body_classes()" );
+	_deprecated_function( __FUNCTION__, '2.0', "generate_set_body_attributes()" );
 }
 endif;
 
@@ -661,7 +661,7 @@ if ( ! function_exists( 'generate_top_bar_classes' ) ) :
  * @deprecated 2.0
  */
 function generate_top_bar_classes() {
-	_deprecated_function( __FUNCTION__, '2.0', "generate_set_top_bar_classes()" );
+	_deprecated_function( __FUNCTION__, '2.0', "generate_set_top_bar_attributes()" );
 }
 endif;
 
@@ -670,7 +670,7 @@ if ( ! function_exists( 'generate_right_sidebar_classes' ) ) :
  * @deprecated 2.0
  */
 function generate_right_sidebar_classes() {
-	_deprecated_function( __FUNCTION__, '2.0', "generate_set_right_sidebar_classes()" );
+	_deprecated_function( __FUNCTION__, '2.0', "generate_set_right_sidebar_attributes()" );
 }
 endif;
 
@@ -679,7 +679,7 @@ if ( ! function_exists( 'generate_left_sidebar_classes' ) ) :
  * @deprecated 2.0
  */
 function generate_left_sidebar_classes() {
-	_deprecated_function( __FUNCTION__, '2.0', "generate_set_left_sidebar_classes()" );
+	_deprecated_function( __FUNCTION__, '2.0', "generate_set_left_sidebar_attributes()" );
 }
 endif;
 
@@ -688,7 +688,7 @@ if ( ! function_exists( 'generate_content_classes' ) ) :
  * @deprecated 2.0
  */
 function generate_content_classes() {
-	_deprecated_function( __FUNCTION__, '2.0', "generate_set_content_classes()" );
+	_deprecated_function( __FUNCTION__, '2.0', "generate_set_primary_attributes()" );
 }
 endif;
 
@@ -697,7 +697,7 @@ if ( ! function_exists( 'generate_header_classes' ) ) :
  * @deprecated 2.0
  */
 function generate_header_classes() {
-	_deprecated_function( __FUNCTION__, '2.0', "generate_set_header_classes()" );
+	_deprecated_function( __FUNCTION__, '2.0', "generate_set_header_attributes()" );
 }
 endif;
 
@@ -706,7 +706,7 @@ if ( ! function_exists( 'generate_inside_header_classes' ) ) :
  * @deprecated 2.0
  */
 function generate_inside_header_classes() {
-	_deprecated_function( __FUNCTION__, '2.0', "generate_set_inside_header_classes()" );
+	_deprecated_function( __FUNCTION__, '2.0', "generate_set_inside_header_attributes()" );
 }
 endif;
 
@@ -715,7 +715,7 @@ if ( ! function_exists( 'generate_navigation_classes' ) ) :
  * @deprecated 2.0
  */
 function generate_navigation_classes() {
-	_deprecated_function( __FUNCTION__, '2.0', "generate_set_navigation_classes()" );
+	_deprecated_function( __FUNCTION__, '2.0', "generate_set_navigation_attributes()" );
 }
 endif;
 
@@ -724,7 +724,7 @@ if ( ! function_exists( 'generate_inside_navigation_classes' ) ) :
  * @deprecated 2.0
  */
 function generate_inside_navigation_classes() {
-	_deprecated_function( __FUNCTION__, '2.0', "generate_set_inside_navigation_classes()" );
+	_deprecated_function( __FUNCTION__, '2.0', "generate_set_inside_navigation_attributes()" );
 }
 endif;
 
@@ -733,7 +733,7 @@ if ( ! function_exists( 'generate_menu_classes' ) ) :
  * @deprecated 2.0
  */
 function generate_menu_classes() {
-	_deprecated_function( __FUNCTION__, '2.0', "generate_set_menu_classes()" );
+	_deprecated_function( __FUNCTION__, '2.0', "generate_set_menu_attributes()" );
 }
 endif;
 
@@ -742,7 +742,7 @@ if ( ! function_exists( 'generate_footer_classes' ) ) :
  * @deprecated 2.0
  */
 function generate_footer_classes() {
-	_deprecated_function( __FUNCTION__, '2.0', "generate_set_footer_classes()" );
+	_deprecated_function( __FUNCTION__, '2.0', "generate_set_footer_attributes()" );
 }
 endif;
 
@@ -751,7 +751,7 @@ if ( ! function_exists( 'generate_inside_footer_classes' ) ) :
  * @deprecated 2.0
  */
 function generate_inside_footer_classes() {
-	_deprecated_function( __FUNCTION__, '2.0', "generate_set_inside_footer_classes()" );
+	_deprecated_function( __FUNCTION__, '2.0', "generate_set_inside_footer_attributes()" );
 }
 endif;
 
@@ -760,7 +760,7 @@ if ( ! function_exists( 'generate_main_classes' ) ) :
  * @deprecated 2.0
  */
 function generate_main_classes() {
-	_deprecated_function( __FUNCTION__, '2.0', "generate_set_main_classes()" );
+	_deprecated_function( __FUNCTION__, '2.0', "generate_set_main_attributes()" );
 }
 endif;
 
@@ -769,7 +769,7 @@ if ( ! function_exists( 'generate_post_classes' ) ) :
  * @deprecated 2.0
  */
 function generate_post_classes() {
-	_deprecated_function( __FUNCTION__, '2.0', "generate_set_post_classes()" );
+	_deprecated_function( __FUNCTION__, '2.0', "generate_set_post_attributes()" );
 }
 endif;
 
