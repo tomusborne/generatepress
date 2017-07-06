@@ -37,7 +37,7 @@ function generate_register_layout_meta_box() {
 	foreach ($post_types as $type) {
 		if ( 'attachment' !== $type ) {
 			add_meta_box (  
-				'generate_layout_meta_box', 
+				'generate_layout_options_meta_box', 
 				__( 'Layout','generatepress' ),
 				'generate_do_layout_meta_box',
 				$type,
