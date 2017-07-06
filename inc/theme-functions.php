@@ -193,11 +193,10 @@ function generate_get_shorthand_spacing( $top, $right, $bottom, $left ) {
  * @since 2.0
  *
  * @param string $filter The name of the filter containing classes.
+ * @param array $classes Array of classes to pass to the function.
  * @return string The classes for specified filter.
  */
-function generate_get_element_classes( $filter ) {
-	$classes = array();
-	
+function generate_get_element_classes( $filter, $classes = array() ) {
 	return implode( ' ', apply_filters( $filter, $classes ) );
 }
 
