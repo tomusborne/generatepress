@@ -855,7 +855,7 @@ if ( ! function_exists( 'generate_save_page_builder_meta' ) ) :
 /**
  * @deprecated 2.0
  */
-function generate_save_page_builder_meta($post_id) {
+function generate_save_page_builder_meta() {
 	_deprecated_function( __FUNCTION__, '2.0', "generate_save_layout_meta_data()" );
 }
 endif;
