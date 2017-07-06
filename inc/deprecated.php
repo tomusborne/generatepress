@@ -592,6 +592,8 @@ endif;
 /**
  * Hooked & filtered functions that have had a name change or become unnecessary.
  *
+ * These functions were either poorly named or no longer needed.
+ *
  * These likely don't need to be deprecated, but to be careful we'll keep them
  * in here for a couple months to give people who have used remove_action() etc..
  * time to update their code.
