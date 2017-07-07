@@ -1,6 +1,6 @@
 <?php
 /**
- * @package GeneratePress
+ * The template used for displaying content in single.php.
  */
 
 defined( 'WPINC' ) or die;

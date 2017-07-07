@@ -2,9 +2,7 @@
 /**
  * The template for displaying the footer.
  *
- * Contains the closing of the id=main div and all content after
- *
- * @package GeneratePress
+ * Contains the closing of the id=page div and all content after
  */
 
 defined( 'WPINC' ) or die;

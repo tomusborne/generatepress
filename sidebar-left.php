@@ -1,8 +1,6 @@
 <?php
 /**
  * The Sidebar containing the main widget areas.
- *
- * @package GeneratePress
  */
 
 defined( 'WPINC' ) or die;

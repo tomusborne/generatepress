@@ -1,8 +1,6 @@
 <?php
 /**
- * The template for displaying search forms in Generate
- *
- * @package GeneratePress
+ * The template for displaying search forms.
  */
 
 defined( 'WPINC' ) or die;

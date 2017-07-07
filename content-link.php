@@ -1,6 +1,6 @@
 <?php
 /**
- * @package GeneratePress
+ * The template used for displaying content in the Link post format.
  */
 
 defined( 'WPINC' ) or die;

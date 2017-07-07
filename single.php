@@ -1,8 +1,6 @@
 <?php
 /**
  * The Template for displaying all single posts.
- *
- * @package GeneratePress
  */
 
 defined( 'WPINC' ) or die;

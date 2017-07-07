@@ -3,8 +3,6 @@
  * The Header for our theme.
  *
  * Displays all of the <head> section and everything up till <main id="main">
- *
- * @package GeneratePress
  */
 
 defined( 'WPINC' ) or die;

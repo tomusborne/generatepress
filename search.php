@@ -1,8 +1,6 @@
 <?php
 /**
  * The template for displaying Search Results pages.
- *
- * @package GeneratePress
  */
 
 defined( 'WPINC' ) or die;
