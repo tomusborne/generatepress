@@ -533,8 +533,8 @@ if ( ! function_exists( 'generate_get_link_url' ) ) :
  * @deprecated 2.0
  */
 function generate_get_link_url() {
-	_deprecated_function( __FUNCTION__, '2.0', "generate_get_first_content_url()" );
-	return generate_get_first_content_url();
+	_deprecated_function( __FUNCTION__, '2.0', "generate_get_url_in_content()" );
+	return generate_get_url_in_content();
 }
 endif;
 
@@ -945,6 +945,6 @@ if ( ! function_exists( 'generate_resource_hints' ) ) :
  * @deprecated 2.0
  */
 function generate_resource_hints() {
-	_deprecated_function( __FUNCTION__, '2.0', "generate_google_font_resource_hints()" );
+	_deprecated_function( __FUNCTION__, '2.0', "generate_set_google_font_resource_hints()" );
 }
 endif;

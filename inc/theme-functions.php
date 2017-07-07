@@ -209,7 +209,7 @@ function generate_get_element_classes( $filter, $classes = array() ) {
  * @see get_url_in_content()
  * @return string The Link format URL.
  */
-function generate_get_first_content_url() {
+function generate_get_url_in_content() {
 	$has_url = get_url_in_content( get_the_content() );
 
 	return $has_url ? $has_url : apply_filters( 'the_permalink', get_permalink() );

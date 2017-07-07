@@ -11,7 +11,7 @@ defined( 'WPINC' ) or die;
 		<?php do_action( 'generate_before_content' ); ?>
 		<header class="entry-header">
 			<?php do_action( 'generate_before_entry_title' ); ?>
-			<?php the_title( sprintf( '<h2 class="entry-title" itemprop="headline"><a href="%s" rel="bookmark">', esc_url( generate_get_first_content_url() ) ), '</a></h2>' ); ?>
+			<?php the_title( sprintf( '<h2 class="entry-title" itemprop="headline"><a href="%s" rel="bookmark">', esc_url( generate_get_url_in_content() ) ), '</a></h2>' ); ?>
 			<?php do_action( 'generate_after_entry_title' ); ?>
 		</header><!-- .entry-header -->
 		<?php do_action( 'generate_after_entry_header' ); ?>

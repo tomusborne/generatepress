@@ -150,7 +150,7 @@ function generate_remove_content_title() {
 	return true;
 }
 
-add_filter( 'wp_resource_hints', 'generate_google_font_resource_hints', 10, 2 );
+add_filter( 'wp_resource_hints', 'generate_set_google_font_resource_hints', 10, 2 );
 /**
  * Add resource hints to our Google fonts call.
  *
@@ -160,7 +160,7 @@ add_filter( 'wp_resource_hints', 'generate_google_font_resource_hints', 10, 2 );
  * @param string $relation_type  The relation type the URLs are printed.
  * @return array $urls           URLs to print for resource hints.
  */
-function generate_google_font_resource_hints( $urls, $relation_type ) {
+function generate_set_google_font_resource_hints( $urls, $relation_type ) {
 	if ( wp_style_is( 'generate-fonts', 'queue' ) && 'preconnect' === $relation_type ) {
 		if ( version_compare( $GLOBALS['wp_version'], '4.7-alpha', '>=' ) ) {
 			$urls[] = array(
@@ -174,7 +174,7 @@ function generate_google_font_resource_hints( $urls, $relation_type ) {
 	return $urls;
 }
 
-add_filter( 'img_caption_shortcode_width', 'generate_adjust_caption_width' );
+add_filter( 'img_caption_shortcode_width', 'generate_set_caption_width' );
 /**
  * Remove WordPress's default padding on images with captions
  *
@@ -183,6 +183,6 @@ add_filter( 'img_caption_shortcode_width', 'generate_adjust_caption_width' );
  * @param int $width Default WP .wp-caption width (image width + 10px)
  * @return int Updated width to remove 10px padding
  */
-function generate_adjust_caption_width( $width ) {
+function generate_set_caption_width( $width ) {
 	return $width - 10;
 }
