@@ -29,7 +29,7 @@ function generate_register_layout_meta_box() {
 	if ( ! current_user_can( apply_filters( 'generate_metabox_capability', 'edit_theme_options' ) ) ) {
 		return;
 	}
-	
+
 	define( 'GENERATE_LAYOUT_META_BOX', true );
 
 	$post_types = get_post_types( array( 'public' => true ) );
@@ -117,7 +117,6 @@ function generate_do_layout_meta_box( $post ) {
 					</label>
 				</div>
 			</div>
-			
 			<div id="generate-layout-footer-widgets" style="display: none;">
 				<div class="generate_footer_widget">
 					<label for="meta-generate-footer-widget-global" style="display:block;margin-bottom:10px;">
@@ -150,7 +149,6 @@ function generate_do_layout_meta_box( $post ) {
 					</label>
 				</div>
 			</div>
-			
 			<div id="generate-layout-page-builder-container" style="display: none;">
 				<p class="page-builder-content" style="color:#666;font-size:13px;margin-top:0;">
 					<?php _e( 'Choose your page builder content container type. Both options remove the content padding for you.', 'generatepress' ) ;?>
@@ -170,7 +168,6 @@ function generate_do_layout_meta_box( $post ) {
 					</label>
 				</p>
 			</div>
-			
 			<div id="generate-layout-disable-elements" style="display: none;">
 				<?php if ( ! defined( 'GENERATE_DE_VERSION' ) ) : ?>
 					<div class="generate_disable_elements">
@@ -188,7 +185,6 @@ function generate_do_layout_meta_box( $post ) {
 				
 				<?php do_action( 'generate_layout_disable_elements_section', $stored_meta ); ?>
 			</div>
-			
 			<?php do_action( 'generate_layout_meta_box_content', $stored_meta ); ?>
 		</div>
 	</div>
@@ -207,15 +203,15 @@ function generate_save_layout_meta_data( $post_id ) {
 	$is_autosave = wp_is_post_autosave( $post_id );
 	$is_revision = wp_is_post_revision( $post_id );
 	$is_valid_nonce = ( isset( $_POST[ 'generate_layout_nonce' ] ) && wp_verify_nonce( sanitize_key( $_POST[ 'generate_layout_nonce' ] ), basename( __FILE__ ) ) ) ? true : false;
- 
+
 	if ( $is_autosave || $is_revision || ! $is_valid_nonce ) {
 		return;
 	}
-	
+
 	if ( ! current_user_can( 'edit_post', $post_id ) ) {
 		return $post_id;
 	}
- 
+
 	$sidebar_layout_key   = '_generate-sidebar-layout-meta';
 	$sidebar_layout_value = filter_input( INPUT_POST, $sidebar_layout_key, FILTER_SANITIZE_STRING );
 
@@ -224,7 +220,7 @@ function generate_save_layout_meta_data( $post_id ) {
 	} else {
 		delete_post_meta( $post_id, $sidebar_layout_key );
 	}
-	
+
 	$footer_widget_key   = '_generate-footer-widget-meta';
 	$footer_widget_value = filter_input( INPUT_POST, $footer_widget_key, FILTER_SANITIZE_STRING );
 
@@ -233,7 +229,7 @@ function generate_save_layout_meta_data( $post_id ) {
 	} else {
 		delete_post_meta( $post_id, $footer_widget_key );
 	}
-	
+
 	$page_builder_container_key   = '_generate-full-width-content';
 	$page_builder_container_value = filter_input( INPUT_POST, $page_builder_container_key, FILTER_SANITIZE_STRING );
 
@@ -242,7 +238,7 @@ function generate_save_layout_meta_data( $post_id ) {
 	} else {
 		delete_post_meta( $post_id, $page_builder_container_key );
 	}
-	
+
 	// We only need this if the Disable Elements module doesn't exist
 	if ( ! defined( 'GENERATE_DE_VERSION' ) ) {
 		$disable_content_title_key   = '_generate-disable-headline';
@@ -254,6 +250,6 @@ function generate_save_layout_meta_data( $post_id ) {
 			delete_post_meta( $post_id, $disable_content_title_key );
 		}
 	}
-	
+
 	do_action( 'generate_layout_meta_box_save', $post_id );
 }

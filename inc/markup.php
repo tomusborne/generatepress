@@ -85,21 +85,21 @@ function generate_set_body_attributes( $attributes ) {
 	$layout = generate_get_sidebar_layout();
 	$navigation_location = generate_get_navigation_location();
 	$widgets = generate_get_footer_widget_count();
-	
+
 	// Full width content
 	// Used for page builders, sets the content to full width and removes the padding
 	$full_width = get_post_meta( get_the_ID(), '_generate-full-width-content', true );
 	$classes[] = ( '' !== $full_width && false !== $full_width && is_singular() && 'true' == $full_width ) ? 'full-width-content' : '';
-	
+
 	// Contained content
 	// Used for page builders, basically just removes the content padding
 	$classes[] = ( '' !== $full_width && false !== $full_width && is_singular() && 'contained' == $full_width ) ? 'contained-content' : '';
-	
+
 	// Let us know if a featured image is being used
 	if ( has_post_thumbnail() ) {
 		$classes[] = 'featured-image-active';
 	} 
-	
+
 	// Layout classes
 	$classes[] = ( $layout ) ? $layout : 'right-sidebar';
 	$classes[] = ( $navigation_location ) ? $navigation_location : 'nav-below-header';
@@ -107,7 +107,7 @@ function generate_set_body_attributes( $attributes ) {
 	$classes[] = ( generate_get_option( 'content_layout_setting' ) ) ? generate_get_option( 'content_layout_setting' ) : 'separate-containers';
 	$classes[] = ( '' !== $widgets ) ? 'active-footer-widgets-' . $widgets : 'active-footer-widgets-3';
 	$classes[] = ( 'enable' == generate_get_option( 'nav_search' ) ) ? 'nav-search-enabled' : '';
-	
+
 	// Navigation alignment class
 	if ( generate_get_option( 'nav_alignment_setting' ) == 'left' ) {
 		$classes[] = 'nav-aligned-left';
@@ -118,7 +118,7 @@ function generate_set_body_attributes( $attributes ) {
 	} else {
 		$classes[] = 'nav-aligned-left';
 	}
-	
+
 	// Header alignment class
 	if ( generate_get_option( 'header_alignment_setting' ) == 'left' ) {
 		$classes[] = 'header-aligned-left';
@@ -129,7 +129,7 @@ function generate_set_body_attributes( $attributes ) {
 	} else {
 		$classes[] = 'header-aligned-left';
 	}
-	
+
 	// Navigation dropdown type
 	if ( 'click' == generate_get_option( 'nav_dropdown_type' ) ) {
 		$classes[] = 'dropdown-click';
@@ -140,19 +140,19 @@ function generate_set_body_attributes( $attributes ) {
 	} else {
 		$classes[] = 'dropdown-hover';
 	}
-	
+
 	$attributes['class'] = join( ' ', $classes );
 	$itemtype = 'WebPage';
-	
+
 	// Change our itemtype if we're on the blog
 	$itemtype = ( is_home() || is_archive() || is_attachment() || is_tax() || is_single() ) ? 'Blog' : $itemtype;
-	
+
 	// Change our itemtype if we're in search results
 	$itemtype = ( is_search() ) ? 'SearchResultsPage' : $itemtype;
-	
+
 	$attributes['itemtype']  = 'http://schema.org/' . apply_filters( 'generate_body_itemtype', $itemtype );
 	$attributes['itemscope'] = true;
-	
+
 	return $attributes;
 }
 
@@ -168,7 +168,7 @@ add_filter( 'generate_attr_page', 'generate_set_page_attributes' );
 function generate_set_page_attributes( $attributes ) {
 	$attributes['id'] = 'page';
 	$attributes['class'] = 'hfeed site grid-container container grid-parent';
-	
+
 	return $attributes;
 }
 
@@ -183,54 +183,54 @@ add_filter( 'generate_attr_primary', 'generate_set_primary_attributes' );
  */
 function generate_set_primary_attributes( $attributes ) {
 	$attributes['id'] = 'primary';
-	
+
 	$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '25' );
 	$left_sidebar_width = apply_filters( 'generate_left_sidebar_width', '25' );
 	$total_sidebar_width = $left_sidebar_width + $right_sidebar_width;
-	
+
 	$right_sidebar_tablet_width = apply_filters( 'generate_right_sidebar_tablet_width', $right_sidebar_width );
 	$left_sidebar_tablet_width = apply_filters( 'generate_left_sidebar_tablet_width', $left_sidebar_width );
 	$total_sidebar_tablet_width = $left_sidebar_tablet_width + $right_sidebar_tablet_width;
-	
+
 	$classes = array();
 	$classes[] = 'content-area';
 	$classes[] = 'grid-parent';
 	$classes[] = 'mobile-grid-100';
 
 	$layout = generate_get_sidebar_layout();
-	
+
 	if ( '' !== $layout ) {
 		switch ( $layout ) {
-			
+
 			case 'right-sidebar' :
 				$classes[] = 'grid-' . ( 100 - $right_sidebar_width );
 				$classes[] = 'tablet-grid-' . ( 100 - $right_sidebar_tablet_width );
 			break;
-			
+
 			case 'left-sidebar' :
 				$classes[] = 'push-' . $left_sidebar_width;
 				$classes[] = 'grid-' . ( 100 - $left_sidebar_width );
 				$classes[] = 'tablet-push-' . $left_sidebar_tablet_width;
 				$classes[] = 'tablet-grid-' . ( 100 - $left_sidebar_tablet_width );
 			break;
-			
+
 			case 'no-sidebar' :
 				$classes[] = 'grid-100';
 				$classes[] = 'tablet-grid-100';
 			break;
-			
+
 			case 'both-sidebars' :
 				$classes[] = 'push-' . $left_sidebar_width;
 				$classes[] = 'grid-' . ( 100 - $total_sidebar_width );
 				$classes[] = 'tablet-push-' . $left_sidebar_tablet_width;
 				$classes[] = 'tablet-grid-' . ( 100 - $total_sidebar_tablet_width );
 			break;
-			
+
 			case 'both-right' :
 				$classes[] = 'grid-' . ( 100 - $total_sidebar_width );
 				$classes[] = 'tablet-grid-' . ( 100 - $total_sidebar_tablet_width );
 			break;
-			
+
 			case 'both-left' :
 				$classes[] = 'push-' . $total_sidebar_width;
 				$classes[] = 'grid-' . ( 100 - $total_sidebar_width );
@@ -239,9 +239,9 @@ function generate_set_primary_attributes( $attributes ) {
 			break;
 		}
 	}
-	
+
 	$attributes['class'] = generate_get_element_classes( 'generate_content_class', $classes );
-	
+
 	return $attributes;
 }
 
@@ -256,10 +256,10 @@ add_filter( 'generate_attr_right-sidebar', 'generate_set_right_sidebar_attribute
  */
 function generate_set_right_sidebar_attributes( $attributes ) {
 	$attributes['id'] = 'right-sidebar';
-	
+
 	$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '25' );
 	$left_sidebar_width = apply_filters( 'generate_left_sidebar_width', '25' );
-	
+
 	$right_sidebar_tablet_width = apply_filters( 'generate_right_sidebar_tablet_width', $right_sidebar_width );
 	$left_sidebar_tablet_width = apply_filters( 'generate_left_sidebar_tablet_width', $left_sidebar_width );
 
@@ -271,7 +271,7 @@ function generate_set_right_sidebar_attributes( $attributes ) {
 	$classes[] = 'sidebar';
 
 	$layout = generate_get_sidebar_layout();
-	
+
 	if ( '' !== $layout ) {
 		switch ( $layout ) {
 			case 'both-left' :
@@ -283,12 +283,12 @@ function generate_set_right_sidebar_attributes( $attributes ) {
 			break;
 		}
 	}
-	
+
 	$attributes['class'] = generate_get_element_classes( 'generate_right_sidebar_class', $classes );
 	$attributes['itemtype'] = 'http://schema.org/WPSideBar';
 	$attributes['itemscope'] = true;
 	$attributes['role'] = 'complementary';
-	
+
 	return $attributes;
 }
 
@@ -303,15 +303,15 @@ add_filter( 'generate_attr_left-sidebar', 'generate_set_left_sidebar_attributes'
  */
 function generate_set_left_sidebar_attributes( $attributes ) {
 	$attributes['id'] = 'left-sidebar';
-	
+
 	$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '25' );
 	$left_sidebar_width = apply_filters( 'generate_left_sidebar_width', '25' );
 	$total_sidebar_width = $left_sidebar_width + $right_sidebar_width;
-	
+
 	$right_sidebar_tablet_width = apply_filters( 'generate_right_sidebar_tablet_width', $right_sidebar_width );
 	$left_sidebar_tablet_width = apply_filters( 'generate_left_sidebar_tablet_width', $left_sidebar_width );
 	$total_sidebar_tablet_width = $left_sidebar_tablet_width + $right_sidebar_tablet_width;
-	
+
 	$classes = array();
 	$classes[] = 'widget-area';
 	$classes[] = 'grid-' . absint( $left_sidebar_width );
@@ -321,7 +321,7 @@ function generate_set_left_sidebar_attributes( $attributes ) {
 	$classes[] = 'sidebar';
 
 	$layout = generate_get_sidebar_layout();
-	
+
 	if ( '' !== $layout ) {
 		switch ( $layout ) {
 			case 'left-sidebar' :
@@ -336,12 +336,12 @@ function generate_set_left_sidebar_attributes( $attributes ) {
 			break;
 		}
 	}
-	
+
 	$attributes['class'] = generate_get_element_classes( 'generate_left_sidebar_class', $classes );
 	$attributes['itemtype'] = 'http://schema.org/WPSideBar';
 	$attributes['itemscope'] = true;
 	$attributes['role'] = 'complementary';
-	
+
 	return $attributes;
 }
 
@@ -356,18 +356,18 @@ add_filter( 'generate_attr_header', 'generate_set_header_attributes' );
  */
 function generate_set_header_attributes( $attributes ) {
 	$attributes['id'] = 'masthead';
-	
+
 	$classes = array();
 	$classes[] = 'site-header';
 	if ( 'contained-header' == generate_get_option( 'header_layout_setting' ) ) {
 		$classes[] = 'grid-container';
 		$classes[] = 'grid-parent';
 	}
-	
+
 	$attributes['class'] = generate_get_element_classes( 'generate_header_class', $classes );
 	$attributes['itemtype'] = 'http://schema.org/WPHeader';
 	$attributes['itemscope'] = true;
-	
+
 	return $attributes;
 }
 
@@ -383,13 +383,13 @@ add_filter( 'generate_attr_inside-header', 'generate_set_inside_header_attribute
 function generate_set_inside_header_attributes( $attributes ) {
 	$classes = array();
 	$classes[] = 'inside-header';
-	
+
 	if ( 'full-width' !== generate_get_option( 'header_inner_width' ) ) {
 		$classes[] = 'grid-container';
 		$classes[] = 'grid-parent';
 	}
 	$attributes['class'] = generate_get_element_classes( 'generate_inside_header_class', $classes );
-	
+
 	return $attributes;
 }
 
@@ -404,7 +404,7 @@ add_filter( 'generate_attr_navigation', 'generate_set_navigation_attributes' );
  */
 function generate_set_navigation_attributes( $attributes ) {
 	$attributes['id'] = 'site-navigation';
-	
+
 	$classes = array();
 	$classes[] = 'main-navigation';
 
@@ -415,7 +415,7 @@ function generate_set_navigation_attributes( $attributes ) {
 	$attributes['class'] = generate_get_element_classes( 'generate_navigation_class', $classes );
 	$attributes['itemtype'] = 'http://schema.org/SiteNavigationElement';
 	$attributes['itemscope'] = true;
-	
+
 	return $attributes;
 }
 
@@ -436,9 +436,9 @@ function generate_set_inside_navigation_attributes( $attributes ) {
 		$classes[] = 'grid-container';
 		$classes[] = 'grid-parent';
 	}
-	
+
 	$attributes['class'] = generate_get_element_classes( 'generate_inside_navigation_class', $classes );
-	
+
 	return $attributes;
 }
 
@@ -454,9 +454,9 @@ add_filter( 'generate_attr_menu', 'generate_set_menu_attributes' );
 function generate_set_menu_attributes( $attributes ) {
 	$classes[] = 'menu';
 	$classes[] = 'sf-menu';
-	
+
 	$attributes['class'] = generate_get_element_classes( 'generate_menu_class', $classes );
-	
+
 	return $attributes;
 }
 
@@ -471,11 +471,11 @@ add_filter( 'generate_attr_main', 'generate_set_main_attributes' );
  */
 function generate_set_main_attributes( $attributes ) {
 	$attributes['id'] = 'main';
-	
+
 	$classes = array();
 	$classes[] = 'site-main';
 	$attributes['class'] = generate_get_element_classes( 'generate_main_class', $classes );
-	
+
 	return $attributes;
 }
 
@@ -499,9 +499,9 @@ function generate_set_footer_attributes( $attributes ) {
 
 	$classes[] = ( is_active_sidebar( 'footer-bar' ) ) ? 'footer-bar-active' : '';
 	$classes[] = ( is_active_sidebar( 'footer-bar' ) ) ? 'footer-bar-align-' . generate_get_option( 'footer_bar_alignment' ) : '';
-	
+
 	$attributes['class'] = generate_get_element_classes( 'generate_footer_class', $classes );
-	
+
 	return $attributes;
 }
 
@@ -522,9 +522,9 @@ function generate_set_inside_footer_attributes( $attributes ) {
 		$classes[] = 'grid-container';
 		$classes[] = 'grid-parent';
 	}
-	
+
 	$attributes['class'] = generate_get_element_classes( 'generate_inside_footer_class', $classes );
-	
+
 	return $attributes;
 }
 
@@ -541,7 +541,7 @@ function generate_set_footer_bar_attributes( $attributes ) {
 	$attributes['class'] = 'site-info';
 	$attributes['itemtype'] = 'http://schema.org/WPFooter';
 	$attributes['itemscope'] = true;
-	
+
 	return $attributes;
 }
 
@@ -562,11 +562,11 @@ function generate_set_top_bar_attributes( $attributes ) {
 		$classes[] = 'grid-container';
 		$classes[] = 'grid-parent';
 	}
-	
+
 	$classes[] = 'top-bar-align-' . generate_get_option( 'top_bar_alignment' );
-	
+
 	$attributes['class'] = generate_get_element_classes( 'generate_top_bar_class', $classes );
-	
+
 	return $attributes;
 }
 
@@ -581,15 +581,15 @@ add_filter( 'generate_attr_post', 'generate_set_post_attributes' );
  */
 function generate_set_post_attributes( $attributes ) {
 	$attributes['id'] = 'post-' . get_the_ID();
-	
+
 	$classes = get_post_class();
 	if ( 'page' == get_post_type() ) {
 		$classes = array_diff( $classes, array( 'hentry' ) );
 	}
-	
+
 	$attributes['class'] = join( ' ', $classes );
 	$attributes['itemtype'] = 'http://schema.org/CreativeWork';
 	$attributes['itemscope'] = true;
-	
+
 	return $attributes;
 }

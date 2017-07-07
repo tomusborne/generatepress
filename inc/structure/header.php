@@ -38,10 +38,10 @@ if ( ! function_exists( 'generate_header_items' ) ) {
 	function generate_header_items() {
 		// Header widget
 		generate_construct_header_widget();
-		
+
 		// Site title and tagline
 		generate_construct_site_title();
-		
+
 		// Site logo
 		generate_construct_logo();
 	}
@@ -56,17 +56,17 @@ if ( ! function_exists( 'generate_construct_logo' ) ) {
 	function generate_construct_logo() {
 		// Get our logo URL if we're using the custom logo
 		$logo_url = ( function_exists( 'the_custom_logo' ) && get_theme_mod( 'custom_logo' ) ) ? wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ), 'full' ) : false;
-		
+
 		// Get our logo from the custom logo or our GP setting
 		$logo = ( $logo_url ) ? $logo_url[0] : generate_get_option( 'logo' );
-		
+
 		// If we don't have a logo, bail
 		if ( empty( $logo ) ) {
 			return;
 		}
-		
+
 		do_action( 'generate_before_logo' );
-		
+
 		// Print our HTML
 		echo apply_filters( 'generate_logo_output', sprintf( 
 			'<div class="site-logo">
@@ -78,7 +78,7 @@ if ( ! function_exists( 'generate_construct_logo' ) ) {
 			esc_attr( apply_filters( 'generate_logo_title', get_bloginfo( 'name', 'display' ) ) ),
 			esc_url( apply_filters( 'generate_logo', $logo ) )
 		), $logo );
-		
+
 		do_action( 'generate_after_logo' );
 	}
 }
@@ -93,13 +93,13 @@ if ( ! function_exists( 'generate_construct_site_title' ) ) {
 		// Get the title and tagline
 		$title = get_bloginfo( 'title' );
 		$tagline = get_bloginfo( 'description' );
-		
+
 		// If the disable title checkbox is checked, or the title field is empty, return true
 		$disable_title = ( '1' == generate_get_option( 'hide_title' ) || '' == $title ) ? true : false; 
-		
+
 		// If the disable tagline checkbox is checked, or the tagline field is empty, return true
 		$disable_tagline = ( '1' == generate_get_option( 'hide_tagline' ) || '' == $tagline ) ? true : false;
-		
+
 		// Build our site title
 		$site_title = apply_filters( 'generate_site_title_output', sprintf(
 			'<%1$s class="main-title" itemprop="headline">
@@ -111,7 +111,7 @@ if ( ! function_exists( 'generate_construct_site_title' ) ) {
 			esc_url( apply_filters( 'generate_site_title_href', home_url( '/' ) ) ),
 			get_bloginfo( 'name' )
 		));
-		
+
 		// Build our tagline
 		$site_tagline = apply_filters( 'generate_site_description_output', sprintf(
 			'<p class="site-description">
@@ -119,7 +119,7 @@ if ( ! function_exists( 'generate_construct_site_title' ) ) {
 			</p>',
 			html_entity_decode( get_bloginfo( 'description', 'display' ) )
 		));
-		
+
 		// Site title and tagline
 		if ( false == $disable_title || false == $disable_tagline ) {
 			echo apply_filters( 'generate_site_branding_output', sprintf(
@@ -160,7 +160,7 @@ if ( ! function_exists( 'generate_top_bar' ) ) {
 		if ( ! is_active_sidebar( 'top-bar' ) ) {
 			return;
 		}
-		
+
 		?>
 		<div <?php generate_do_attr( 'top-bar' ); ?>>
 			<div class="inside-top-bar<?php if ( 'contained' == generate_get_option( 'top_bar_inner_width' ) ) echo ' grid-container grid-parent'; ?>">

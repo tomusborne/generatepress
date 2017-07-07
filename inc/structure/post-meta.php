@@ -17,7 +17,6 @@ if ( ! function_exists( 'generate_content_nav' ) ) {
 	 * @param string $nav_id The id of our navigation.
 	 */
 	function generate_content_nav( $nav_id ) {
-
 		global $wp_query, $post;
 
 		// Don't print empty markup on single pages if there's nowhere to navigate.
@@ -55,7 +54,7 @@ if ( ! function_exists( 'generate_content_nav' ) ) {
 				if ( get_previous_posts_link() ) : ?>
 					<div class="nav-next"><span class="next" title="<?php _e('Next','generatepress');?>"><?php previous_posts_link( __( 'Newer posts', 'generatepress' ) ); ?></span></div>
 				<?php endif;
-				
+
 				if ( function_exists( 'the_posts_pagination' ) ) {
 					the_posts_pagination( array(
 						'mid_size' => apply_filters( 'generate_pagination_mid_size', 1 ),
@@ -63,7 +62,7 @@ if ( ! function_exists( 'generate_content_nav' ) ) {
 						'next_text' => apply_filters( 'generate_next_link_text', __( 'Next &rarr;', 'generatepress' ) ),
 					) );
 				}
-				
+
 				do_action('generate_paging_navigation');
 
 			endif; ?>
@@ -112,7 +111,7 @@ if ( ! function_exists( 'generate_posted_on' ) ) {
 			esc_attr( get_the_modified_date( 'c' ) ),
 			esc_html( get_the_modified_date() )
 		);
-		
+
 		// If our date is enabled, show it
 		if ( $date ) {
 			echo apply_filters( 'generate_post_date_output', sprintf( '<span class="posted-on">%1$s</span>',
@@ -123,7 +122,7 @@ if ( ! function_exists( 'generate_posted_on' ) ) {
 				)
 			), $time_string );
 		}
-		
+
 		// If our author is enabled, show it
 		if ( $author ) {
 			echo apply_filters( 'generate_post_author_output', sprintf( ' <span class="byline">%1$s</span>',

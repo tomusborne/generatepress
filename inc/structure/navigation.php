@@ -141,7 +141,7 @@ if ( ! class_exists( 'Generate_Page_Walker' ) && class_exists( 'Walker_Page' ) )
 		function start_el( &$output, $page, $depth = 0, $args = array(), $current_page = 0 ) {
 			$css_class = array( 'page_item', 'page-item-' . $page->ID );
 			$button = '';
-			
+
 			if ( isset( $args['pages_with_children'][ $page->ID ] ) ) {
 				$css_class[] = 'menu-item-has-children';
 				$button = '<span role="button" class="dropdown-menu-toggle" aria-expanded="false"></span>';
@@ -199,7 +199,7 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 			'secondary',
 			'slideout'
 		);
-		
+
 		// Loop through our menu items and add our dropdown icons
 		if ( in_array( $args->theme_location, apply_filters( 'generate_menu_arrow_theme_locations', $theme_locations ) ) ) {
 			foreach ( $item->classes as $value ) {
@@ -225,7 +225,7 @@ if ( ! function_exists( 'generate_navigation_search' ) ) {
 		if ( 'enable' !== generate_get_option( 'nav_search' ) ) {
 			return;
 		}
-		
+
 		echo apply_filters( 'generate_navigation_search_output', sprintf( 
 			'<form method="get" class="search-form navigation-search" action="%1$s">
 				<input type="search" class="search-field" value="%2$s" name="s" title="%3$s" />
@@ -253,12 +253,12 @@ if ( ! function_exists( 'generate_menu_search_icon' ) ) {
 		if ( 'enable' !== generate_get_option( 'nav_search' ) ) {
 			return $nav;
 		}
-		
+
 		// If our primary menu is set, add the search icon
 		if ( $args->theme_location == 'primary' ) {
 			return $nav . '<li class="search-item" title="' . esc_attr_x( 'Search', 'submit button', 'generatepress' ) . '"><a href="#"><i class="fa fa-fw fa-search" aria-hidden="true"></i><span class="screen-reader-text">' . _x( 'Search', 'submit button', 'generatepress' ) . '</span></a></li>';
 		}
-		
+
 		// Our primary menu isn't set, return the regular nav
 		// In this case, the search icon is added to the generate_menu_fallback() function in navigation.php
 		return $nav;
@@ -277,7 +277,7 @@ if ( ! function_exists( 'generate_mobile_menu_search_icon' ) ) {
 		if ( 'enable' !== generate_get_option( 'nav_search' ) ) {
 			return;
 		}
-		
+
 		?>
 		<div class="mobile-bar-items">
 			<?php do_action( 'generate_inside_mobile_menu_bar' ); ?>

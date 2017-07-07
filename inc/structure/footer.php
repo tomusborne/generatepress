@@ -41,7 +41,7 @@ if ( ! function_exists( 'generate_footer_bar' ) ) {
 		if ( ! is_active_sidebar( 'footer-bar' ) ) {
 			return;
 		}
-		
+
 		?>
 		<div class="footer-bar">
 			<?php dynamic_sidebar( 'footer-bar' ); ?>
@@ -64,7 +64,7 @@ if ( ! function_exists( 'generate_add_footer_info' ) ) {
 			esc_url( 'https://generatepress.com' ),
 			__( 'GeneratePress','generatepress' )
 		);
-		
+
 		echo apply_filters( 'generate_copyright', $copyright );
 	}
 }
@@ -105,7 +105,7 @@ if ( ! function_exists( 'generate_construct_footer_widgets' ) ) {
 	 */
 	function generate_construct_footer_widgets() {
 		$widgets = generate_get_footer_widget_count();
-		
+
 		if ( ! empty( $widgets ) && 0 !== $widgets ) {
 			$widget_width = '';
 			if ( $widgets == 1 ) $widget_width = '100';
@@ -121,19 +121,19 @@ if ( ! function_exists( 'generate_construct_footer_widgets' ) ) {
 						if ( $widgets >= 1 ) {
 							generate_do_footer_widget( $widget_width, 1 );
 						}
-						
+
 						if ( $widgets >= 2 ) {
 							generate_do_footer_widget( $widget_width, 2 );
 						}
-						
+
 						if ( $widgets >= 3 ) {
 							generate_do_footer_widget( $widget_width, 3 );
 						}
-						
+
 						if ( $widgets >= 4 ) {
 							generate_do_footer_widget( $widget_width, 4 );
 						}
-						
+
 						if ( $widgets >= 5 ) {
 							generate_do_footer_widget( $widget_width, 5 );
 						}
@@ -143,7 +143,7 @@ if ( ! function_exists( 'generate_construct_footer_widgets' ) ) {
 			</div>
 		<?php
 		}
-		
+
 		do_action( 'generate_after_footer_widgets' );
 	}
 }
@@ -159,7 +159,7 @@ if ( ! function_exists( 'generate_back_to_top' ) ) {
 		if ( 'enable' !== generate_get_option( 'back_to_top' ) ) {
 			return;
 		}
-		
+
 		echo apply_filters( 'generate_back_to_top_output', sprintf(
 			'<a title="%1$s" rel="nofollow" href="#" class="generate-back-to-top" style="opacity:0;visibility:hidden;" data-scroll-speed="%2$s" data-start-scroll="%3$s">
 				<i class="fa %4$s" aria-hidden="true"></i>

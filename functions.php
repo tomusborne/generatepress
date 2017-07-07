@@ -23,19 +23,19 @@ function generate_setup_theme() {
 	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ) );
 	add_theme_support( 'custom-logo', array( 'height' => 70, 'width' => 350, 'flex-height' => true, 'flex-width' => true ) );
 	add_theme_support( 'customize-selective-refresh-widgets' );
-	
+
 	// Register primary menu
 	register_nav_menus( array(
 		'primary' => __( 'Primary Menu', 'generatepress' ),
 	) );
-	
+
 	// Set the content width to something large
 	// We set a more accurate width in generate_smart_content_width()
 	global $content_width;
 	if ( ! isset( $content_width ) ) {
 		$content_width = 1200;
 	}
-		
+
 	// This theme styles the visual editor to resemble the theme style
 	add_editor_style( 'css/admin/editor-style.css' );
 }

@@ -47,7 +47,6 @@ function generate_do_dashboard_page() {
 			<div class="gp-container">
 				<div class="postbox-container clearfix" style="float: none;">
 					<div class="grid-container grid-parent">
-							
 						<div class="form-metabox grid-70" style="padding-left: 0;">
 							<form method="post" action="options.php">
 								<?php settings_fields( 'generate-settings-group' ); ?>
@@ -65,7 +64,7 @@ function generate_do_dashboard_page() {
 
 								<?php do_action('generate_inside_options_form'); ?>
 							</form>
-							
+
 							<?php
 							$modules = array(
 								'Backgrounds' => array(
@@ -108,7 +107,7 @@ function generate_do_dashboard_page() {
 										'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-typography/' ),
 								)
 							);
-							
+
 							if ( ! defined( 'GP_PREMIUM_VERSION' ) ) : ?>
 							<div class="postbox generate-metabox">
 								<h3 class="hndle"><?php _e( 'Add-ons','generatepress' ); ?></h3>
@@ -132,7 +131,6 @@ function generate_do_dashboard_page() {
 							
 							<?php do_action('generate_options_items'); ?>
 						</div>
-							
 						<div class="generate-right-sidebar grid-30" style="padding-right: 0;">
 							<div class="customize-button hide-on-mobile">
 								<?php
@@ -210,7 +208,7 @@ function generate_do_customizer_reset() {
 	}
 
 	delete_option( 'generate_settings' );
-	
+
 	wp_safe_redirect( admin_url( 'themes.php?page=generate-options&status=reset' ) ); 
 	exit;
 }
@@ -226,15 +224,15 @@ function generate_do_admin_errors() {
 	if ( 'appearance_page_generate-options' !== $screen->base ) {
 		return;
 	}
-		
+
 	if ( isset( $_GET['settings-updated'] ) && 'true' == $_GET['settings-updated'] ) {
 		 add_settings_error( 'generate-notices', 'true', __( 'Settings saved.', 'generatepress' ), 'updated' );
 	}
-	
+
 	if ( isset( $_GET['status'] ) && 'imported' == $_GET['status'] ) {
 		 add_settings_error( 'generate-notices', 'imported', __( 'Import successful.', 'generatepress' ), 'updated' );
 	}
-	
+
 	if ( isset( $_GET['status'] ) && 'reset' == $_GET['status'] ) {
 		 add_settings_error( 'generate-notices', 'reset', __( 'Settings removed.', 'generatepress' ), 'updated' );
 	}

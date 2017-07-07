@@ -54,7 +54,6 @@ if ( ! function_exists( 'generate_filter_the_archive_title' ) ) {
 	 * @return string The altered archive title
 	 */
 	function generate_filter_the_archive_title( $title ) {
-		
 		if ( is_category() ) {
 			$title = single_cat_title( '', false );
 		} elseif ( is_tag() ) {
@@ -74,7 +73,7 @@ if ( ! function_exists( 'generate_filter_the_archive_title' ) ) {
 			 */
 			rewind_posts();
 		}
-		
+
 		return $title;
 		
 	}

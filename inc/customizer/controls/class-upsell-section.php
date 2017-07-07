@@ -9,12 +9,11 @@ if ( class_exists( 'WP_Customize_Section' ) && ! class_exists( 'GeneratePress_Up
 	 * @since unknown
 	 */
 	class GeneratePress_Upsell_Section extends WP_Customize_Section {
-
 		public $type = 'gp-upsell-section';
 		public $pro_url = '';
 		public $pro_text = '';
 		public $id = '';
-		
+
 		public function json() {
 			$json = parent::json();
 			$json['pro_text'] = $this->pro_text;
@@ -22,7 +21,7 @@ if ( class_exists( 'WP_Customize_Section' ) && ! class_exists( 'GeneratePress_Up
 			$json['id'] = $this->id;
 			return $json;
 		}
-		
+
 		protected function render_template() {
 			?>
 			<li id="accordion-section-{{ data.id }}" class="generate-upsell-accordion-section control-section-{{ data.type }} cannot-expand accordion-section">

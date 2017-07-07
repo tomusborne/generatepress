@@ -12,7 +12,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Customi
 		public $description = '';
 		public $url = '';
 		public $type = 'addon';
-		
+
 		public function enqueue() {
 			wp_enqueue_style( 'generate-customizer-controls-css', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/css/upsell-customizer.css', array(), GENERATE_VERSION );
 		}
@@ -22,7 +22,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Customi
 			$this->json[ 'url' ] = esc_url( $this->url );
 			$this->json[ 'message' ] = __( 'Add-on available','generatepress' );
 		}
-		
+
 		public function content_template() {
 			?>
 			<span class="get-addon">

@@ -9,17 +9,16 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 	 */
 	class Generate_Typography_Customize_Control extends WP_Customize_Control {
 		public $type = 'gp-customizer-typography';
-		
+
 		public function enqueue() {
 			wp_enqueue_script( 'generatepress-typography-customizer', trailingslashit( get_template_directory_uri() )  . 'inc/customizer/controls/js/typography-customizer.js', array( 'customize-controls' ), GENERATE_VERSION, true );
 			wp_localize_script( 'generatepress-typography-customizer', 'gp_customize', array( 'nonce' => wp_create_nonce( 'gp_customize_nonce' ) ) );
-		
 			wp_enqueue_style( 'generatepress-typography-customizer', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/css/typography-customizer.css', array(), GENERATE_VERSION );
 		}
-		
+
 		public function to_json() {
 			parent::to_json();
-			
+
 			$number_of_fonts = apply_filters( 'generate_number_of_fonts', 200 );
 			$this->json[ 'default_fonts_title'] = __( 'Default fonts', 'generatepress' );
 			$this->json[ 'google_fonts_title'] = __( 'Google fonts', 'generatepress' );
@@ -30,7 +29,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 			$this->json[ 'transform_title' ] = esc_html__( 'Text transform','generatepress' );
 			$this->json[ 'category_title' ] = '';
 			$this->json[ 'variant_title' ] = '';
-			
+
 			foreach ( $this->settings as $setting_key => $setting_id ) {
 				$this->json[ $setting_key ] = array(
 					'link'  => $this->get_link( $setting_key ),
@@ -38,17 +37,17 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 					'default' => isset( $setting_id->default ) ? $setting_id->default : '',
 					'id' => isset( $setting_id->id ) ? $setting_id->id : ''
 				);
-				
+
 				if ( 'weight' === $setting_key ) {
 					$this->json[ $setting_key ]['choices'] = $this->get_font_weight_choices();
 				}
-				
+
 				if ( 'transform' === $setting_key ) {
 					$this->json[ $setting_key ]['choices'] = $this->get_font_transform_choices();
 				}
 			}
 		}
-		
+
 		public function content_template() {
 			?>
 			<# if ( '' !== data.label ) { #>
@@ -76,7 +75,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 					</label>
 				</div>
 			<# } #>
-			
+
 			<# if ( 'undefined' !== typeof ( data.variant ) ) { #>
 				<div class="generatepress-font-variant">
 					<label>
@@ -87,7 +86,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 					</label>
 				</div>
 			<# } #>
-			
+
 			<# if ( 'undefined' !== typeof ( data.category ) ) { #>
 				<div class="generatepress-font-category">
 					<label>
@@ -98,18 +97,14 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 					</label>
 				</div>
 			<# } #>
-			
+
 			<# if ( 'undefined' !== typeof ( data.weight ) ) { #>
 				<div class="generatepress-font-weight">
 					<label>
 						<select {{{ data.weight.link }}}>
-
 							<# _.each( data.weight.choices, function( label, choice ) { #>
-
 								<option value="{{ choice }}" <# if ( choice === data.weight.value ) { #> selected="selected" <# } #>>{{ label }}</option>
-
 							<# } ) #>
-
 						</select>
 						<# if ( '' !== data.weight_title ) { #>
 							<p class="description">{{ data.weight_title }}</p>
@@ -117,18 +112,14 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 					</label>
 				</div>
 			<# } #>
-			
+
 			<# if ( 'undefined' !== typeof ( data.transform ) ) { #>
 				<div class="generatepress-font-transform">
 					<label>
 						<select {{{ data.transform.link }}}>
-
 							<# _.each( data.transform.choices, function( label, choice ) { #>
-
 								<option value="{{ choice }}" <# if ( choice === data.transform.value ) { #> selected="selected" <# } #>>{{ label }}</option>
-
 							<# } ) #>
-
 						</select>
 						<# if ( '' !== data.transform_title ) { #>
 							<p class="description">{{ data.transform_title }}</p>
@@ -138,7 +129,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 			<# } #>
 			<?php
 		}
-		
+
 		public function get_font_weight_choices() {
 			return array(
 				'normal' => esc_html( 'normal' ),
@@ -154,7 +145,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 				'900' => esc_html( '900' ),
 			);
 		}
-		
+
 		public function get_font_transform_choices() {
 			return array(
 				'none' => esc_html( 'none' ),

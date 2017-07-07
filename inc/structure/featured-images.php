@@ -18,7 +18,7 @@ if ( ! function_exists( 'generate_post_image' ) ) {
 		if ( ! has_post_thumbnail() ) {
 			return;
 		}
-			
+
 		// If we're not on any single post/page or the 404 template, we must be showing excerpts
 		if ( ! is_singular() && ! is_404() ) {
 			echo apply_filters( 'generate_featured_image_output', sprintf(
@@ -48,12 +48,12 @@ if ( ! function_exists( 'generate_featured_page_header_area' ) ) {
 		if ( ! is_singular() ) {
 			return;
 		}
-			
+
 		// Don't run the function unless we have a post thumbnail
 		if ( ! has_post_thumbnail() ) {
 			return;
 		}
-			
+
 		?>
 		<div class="<?php echo esc_attr( $class ); ?> grid-container grid-parent">
 			<?php the_post_thumbnail( apply_filters( 'generate_page_header_default_size', 'full' ), array( 'itemprop' => 'image' ) ); ?>

@@ -8,16 +8,15 @@ add_action( 'after_setup_theme','generate_setup_woocommerce' );
  * @since 1.3.47
  */
 function generate_setup_woocommerce() {
-	
 	if ( ! class_exists( 'WooCommerce' ) ) {
 		return;
 	}
-	
+
 	// Add support for WC features
 	add_theme_support( 'wc-product-gallery-zoom' );
 	add_theme_support( 'wc-product-gallery-lightbox' );
 	add_theme_support( 'wc-product-gallery-slider' );
-	
+
 	//Remove default WooCommerce wrappers
 	remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
 	remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
@@ -76,7 +75,7 @@ if ( ! function_exists( 'generate_woocommerce_css' ) ) {
 		if ( ! class_exists( 'WooCommerce' ) ) {
 			return;
 		}
-		
+
 		$mobile = apply_filters( 'generate_mobile_media_query', '(max-width:768px)' );
 		$css = '.woocommerce .page-header-image-single {
 			display: none;
@@ -96,17 +95,17 @@ if ( ! function_exists( 'generate_woocommerce_css' ) ) {
 			height: initial;
 			width: initial;
 		}
-		
+
 		@media ' . esc_attr( $mobile ) . ' {
 			.woocommerce .woocommerce-ordering, 
 			.woocommerce-page .woocommerce-ordering {
 				float: none;
 			}
-		
+
 			.woocommerce .woocommerce-ordering select {
 				max-width: 100%;
 			}
-		
+
 			.woocommerce ul.products li.product, 
 			.woocommerce-page ul.products li.product, 
 			.woocommerce-page[class*=columns-] ul.products li.product,
@@ -115,7 +114,7 @@ if ( ! function_exists( 'generate_woocommerce_css' ) ) {
 				float: none;
 			}
 		}';
-		
+
 		$css = str_replace(array("\r", "\n", "\t"), '', $css);
 		wp_add_inline_style( 'woocommerce-general', $css );
 	}
@@ -154,7 +153,7 @@ if ( ! function_exists( 'generate_bbpress_css' ) ) {
 			border: 0;
 			padding: 0;
 		}';
-		
+
 		$css = str_replace(array("\r", "\n", "\t"), '', $css);
 		wp_add_inline_style( 'bbp-default', $css );
 	}
@@ -172,7 +171,7 @@ if ( ! function_exists( 'generate_buddypress_css' ) ) {
 			min-height: 6rem;
 			overflow: visible;
 		}';
-		
+
 		$css = str_replace(array("\r", "\n", "\t"), '', $css);
 		wp_add_inline_style( 'bp-legacy-css', $css );
 	}
@@ -199,11 +198,11 @@ if ( ! function_exists( 'generate_beaver_builder_css' ) ) {
 		// If we have the full-width-content class, we don't need to do anything else
 		if ( in_array( 'fl-builder', get_body_class() ) && ! in_array( 'full-width-content', get_body_class() ) && ! in_array( 'contained-content', get_body_class() ) ) {
 			global $post;
-			
+
 			if ( ! isset( $post ) ) {
 				return;
 			}
-			
+
 			$compare_date = strtotime( "2017-03-14" );
 			$post_date    = strtotime( $post->post_date );
 			if ( $post_date < $compare_date ) {

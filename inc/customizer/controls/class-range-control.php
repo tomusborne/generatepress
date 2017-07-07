@@ -16,7 +16,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 		 * @var string
 		 */
 		public $type = 'generatepress-range-slider';
-		
+
 		public $description = '';
 		/**
 		 * Refresh the parameters passed to the JavaScript via JSON.
@@ -25,7 +25,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 		 */
 		public function to_json() {
 			parent::to_json();
-			
+
 			$devices = array( 'desktop','tablet','mobile' );
 			foreach ( $devices as $device ) {
 				$this->json['choices'][$device]['min']  = ( isset( $this->choices[$device]['min'] ) ) ? $this->choices[$device]['min'] : '0';
@@ -34,7 +34,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 				$this->json['choices'][$device]['edit'] = ( isset( $this->choices[$device]['edit'] ) ) ? $this->choices[$device]['edit'] : false;
 				$this->json['choices'][$device]['unit'] = ( isset( $this->choices[$device]['unit'] ) ) ? $this->choices[$device]['unit'] : false;
 			}
-			
+
 			foreach ( $this->settings as $setting_key => $setting_id ) {
 				$this->json[ $setting_key ] = array(
 					'link'  => $this->get_link( $setting_key ),
@@ -42,14 +42,15 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 					'default' => isset( $setting_id->default ) ? $setting_id->default : '',
 				);
 			}
-			
+
 			$this->json['desktop_label'] = __( 'Desktop','generatepress' );
 			$this->json['tablet_label'] = __( 'Tablet','generatepress' );
 			$this->json['mobile_label'] = __( 'Mobile','generatepress' );
 			$this->json['reset_label'] = __( 'Reset','generatepress' );
-			
+
 			$this->json['description'] = $this->description;
 		}
+
 		/**
 		 * Enqueue control related scripts/styles.
 		 *
@@ -59,6 +60,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 			wp_enqueue_script( 'generatepress-range-slider', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/js/slider-control.js', array( 'jquery', 'customize-base', 'jquery-ui-slider' ), false, true );
 			wp_enqueue_style( 'generatepress-range-slider-css', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/css/slider-customizer.css', null );
 		}
+
 		/**
 		 * An Underscore (JS) template for this control's content (but not its container).
 		 *
@@ -84,7 +86,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 							<# } #>
 						</div>
 					<# } #>
-					
+
 					<div class="gp-range-slider-controls">
 						<span class="gp-device-controls">
 							<# if ( 'undefined' !== typeof ( data.desktop ) ) { #>
@@ -103,7 +105,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 						<span title="{{ data.reset_label }}" class="generatepress-reset dashicons dashicons-image-rotate"></span>
 					</div>
 				</div>
-				
+
 				<div class="gp-range-slider-areas">
 					<# if ( 'undefined' !== typeof ( data.desktop ) ) { #>
 						<label class="range-option-area" data-option="desktop" style="display: none;">
@@ -120,7 +122,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 							</div>
 						</label>
 					<# } #>
-					
+
 					<# if ( 'undefined' !== typeof ( data.tablet ) ) { #>
 						<label class="range-option-area" data-option="tablet" style="display:none">
 							<div class="wrapper <# if ( '' !== data.choices['tablet']['unit'] ) { #>has-unit<# } #>">
@@ -136,7 +138,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 							</div>
 						</label>
 					<# } #>
-					
+
 					<# if ( 'undefined' !== typeof ( data.mobile ) ) { #>
 						<label class="range-option-area" data-option="mobile" style="display:none;">
 							<div class="wrapper <# if ( '' !== data.choices['mobile']['unit'] ) { #>has-unit<# } #>">
