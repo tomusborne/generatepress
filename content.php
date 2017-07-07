@@ -1,6 +1,6 @@
 <?php
 /**
- * @package GeneratePress
+ * Template used to display post content.
  */
 
 defined( 'WPINC' ) or die;

@@ -1,6 +1,5 @@
 <?php
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
+defined( 'WPINC' ) or die;
 
 /**
  * Creates minified css via PHP.

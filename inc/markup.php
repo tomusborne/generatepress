@@ -1,6 +1,5 @@
 <?php
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
+defined( 'WPINC' ) or die;
 
 /**
  * Merge array of attributes with defaults, and apply contextual filter on array.

@@ -1,16 +1,9 @@
 <?php
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
-
-/**
- * GeneratePress Customizer
- *
- * @package GeneratePress
- */
+defined( 'WPINC' ) or die;
 
 if ( ! function_exists( 'generate_customize_register' ) ) :
 /**
- * Add postMessage support for site title and description for the Theme Customizer.
+ * Add our base options to the Customizer.
  *
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */

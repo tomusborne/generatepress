@@ -1,6 +1,5 @@
 <?php
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
+defined( 'WPINC' ) or die;
 
 add_action( 'admin_enqueue_scripts','generate_enqueue_meta_box_scripts' );
 /**

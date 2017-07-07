@@ -1,6 +1,5 @@
 <?php
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
+defined( 'WPINC' ) or die;
 
 add_action( 'admin_menu', 'generate_do_dashboard_menu' );
 /**

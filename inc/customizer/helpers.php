@@ -1,6 +1,5 @@
 <?php
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
+defined( 'WPINC' ) or die;
 
 if ( ! function_exists( 'generate_is_footer_bar_active' ) ) :
 /**
