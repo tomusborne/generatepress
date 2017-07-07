@@ -46,7 +46,7 @@ function generate_enqueue_scripts() {
 	}
 
 	// Move the navigation from below the content on mobile to below the header if it's in a sidebar
-	if ( 'nav-left-sidebar' == generate_get_navigation_location() || 'nav-right-sidebar' == generate_get_navigation_location() ) {
+	if ( 'nav-left-sidebar' == generate_get_primary_menu_location() || 'nav-right-sidebar' == generate_get_primary_menu_location() ) {
 		wp_enqueue_script( 'generate-move-navigation', trailingslashit( get_template_directory_uri() ) . "js/move-navigation{$suffix}.js", array( 'jquery' ), GENERATE_VERSION, true );
 	}
 

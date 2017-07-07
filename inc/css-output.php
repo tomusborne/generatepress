@@ -119,7 +119,7 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->add_property( 'color', esc_attr( $generate_settings[ 'site_tagline_color' ] ) );
 		
 		// Navigation styling
-		if ( '' !== generate_get_navigation_location() || is_customize_preview() ) {
+		if ( '' !== generate_get_primary_menu_location() || is_customize_preview() ) {
 			// Navigation background
 			$css->set_selector( '.main-navigation,.main-navigation ul ul' );
 			$css->add_property( 'background-color', esc_attr( $generate_settings[ 'navigation_background_color' ] ) );
@@ -390,7 +390,7 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->add_property( 'font-size', absint( $generate_settings[ 'site_tagline_font_size' ] ), $og_defaults[ 'site_tagline_font_size' ], 'px' );
 		
 		// Navigation
-		if ( '' !== generate_get_navigation_location() || is_customize_preview() ) {
+		if ( '' !== generate_get_primary_menu_location() || is_customize_preview() ) {
 			$css->set_selector( '.main-navigation a, .menu-toggle' );
 			$css->add_property( 'font-family', $og_defaults[ 'font_navigation' ] !== $generate_settings[ 'font_navigation' ] ? $navigation_family : null );
 			$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'navigation_font_weight' ] ), $og_defaults[ 'navigation_font_weight' ] );
@@ -586,7 +586,7 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		}
 		
 		// Navigation spacing
-		if ( '' !== generate_get_navigation_location() || is_customize_preview() ) {
+		if ( '' !== generate_get_primary_menu_location() || is_customize_preview() ) {
 			// Menu item size
 			$css->set_selector( '.main-navigation .main-nav ul li a,.menu-toggle,.main-navigation .mobile-bar-items a' );
 			$css->add_property( 'padding-left', absint( $spacing_settings['menu_item'] ), absint( $og_defaults['menu_item'] ), 'px' );

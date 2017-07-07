@@ -33,11 +33,11 @@ function generate_do_dashboard_page() {
 			<div class="gp-masthead clearfix">
 				<div class="gp-container">
 					<div class="gp-title">
-						<a href="<?php echo generate_get_premium_url( 'https://generatepress.com' );?>" target="_blank">GeneratePress</a> <span class="gp-version"><?php echo GENERATE_VERSION; ?></span>
+						<a href="<?php generate_do_upsell_url( 'https://generatepress.com' );?>" target="_blank">GeneratePress</a> <span class="gp-version"><?php echo GENERATE_VERSION; ?></span>
 					</div>
 					<div class="gp-masthead-links">
 						<?php if ( ! defined( 'GP_PREMIUM_VERSION' ) ) : ?>
-							<a style="font-weight: bold;" href="<?php echo generate_get_premium_url( 'https://generatepress.com/premium/' );?>" target="_blank"><?php _e('Premium','generatepress');?></a> 
+							<a style="font-weight: bold;" href="<?php echo generate_do_upsell_url( 'https://generatepress.com/premium/' );?>" target="_blank"><?php _e('Premium','generatepress');?></a> 
 						<?php endif; ?>
 						<a href="<?php echo esc_url( 'https://generatepress.com/support' ); ?>" target="_blank"><?php _e( 'Support','generatepress' ); ?></a>
 						<a href="<?php echo esc_url( 'https://docs.generatepress.com' ); ?>" target="_blank"><?php _e('Documentation','generatepress');?></a>  
@@ -68,43 +68,43 @@ function generate_do_dashboard_page() {
 							<?php
 							$modules = array(
 								'Backgrounds' => array(
-										'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-backgrounds/' ),
+										'url' => generate_do_upsell_url( 'https://generatepress.com/downloads/generate-backgrounds/', false ),
 								),
 								'Blog' => array(
-										'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-blog/' ),
+										'url' => generate_do_upsell_url( 'https://generatepress.com/downloads/generate-blog/', false ),
 								),
 								'Colors' => array(
-										'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-colors/' ),
+										'url' => generate_do_upsell_url( 'https://generatepress.com/downloads/generate-colors/', false ),
 								),
 								'Copyright' => array(
-										'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-copyright/' ),
+										'url' => generate_do_upsell_url( 'https://generatepress.com/downloads/generate-copyright/', false ),
 								),
 								'Disable Elements' => array(
-										'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-disable-elements/' ),
+										'url' => generate_do_upsell_url( 'https://generatepress.com/downloads/generate-disable-elements/', false ),
 								),
 								'Hooks' => array(
-										'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-hooks/' ),
+										'url' => generate_do_upsell_url( 'https://generatepress.com/downloads/generate-hooks/', false ),
 								),
 								'Import / Export' => array(
-										'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-import-export/' ),
+										'url' => generate_do_upsell_url( 'https://generatepress.com/downloads/generate-import-export/', false ),
 								),
 								'Menu Plus' => array(
-										'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-menu-plus/' ),
+										'url' => generate_do_upsell_url( 'https://generatepress.com/downloads/generate-menu-plus/', false ),
 								),
 								'Page Header' => array(
-										'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-page-header/' ),
+										'url' => generate_do_upsell_url( 'https://generatepress.com/downloads/generate-page-header/', false ),
 								),
 								'Secondary Nav' => array(
-										'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-secondary-nav/' ),
+										'url' => generate_do_upsell_url( 'https://generatepress.com/downloads/generate-secondary-nav/', false ),
 								),
 								'Sections' => array(
-										'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-sections/' ),
+										'url' => generate_do_upsell_url( 'https://generatepress.com/downloads/generate-sections/', false ),
 								),
 								'Spacing' => array(
-										'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-spacing/' ),
+										'url' => generate_do_upsell_url( 'https://generatepress.com/downloads/generate-spacing/', false ),
 								),
 								'Typography' => array(
-										'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-typography/' ),
+										'url' => generate_do_upsell_url( 'https://generatepress.com/downloads/generate-typography/', false ),
 								)
 							);
 

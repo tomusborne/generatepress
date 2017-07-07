@@ -543,29 +543,8 @@ if ( ! function_exists( 'generate_categorized_blog' ) ) :
  * @deprecated 2.0
  */
 function generate_categorized_blog() {
-	if ( false === ( $all_the_cool_cats = get_transient( 'generate_categories' ) ) ) {
-		// Create an array of all the categories that are attached to posts.
-		$all_the_cool_cats = get_categories( array(
-			'fields'     => 'ids',
-			'hide_empty' => 1,
-
-			// We only need to know if there is more than one category.
-			'number'     => 2,
-		) );
-
-		// Count the number of categories that are attached to the posts.
-		$all_the_cool_cats = count( $all_the_cool_cats );
-
-		set_transient( 'generate_categories', $all_the_cool_cats );
-	}
-
-	if ( $all_the_cool_cats > 1 ) {
-		// This blog has more than 1 category so twentyfifteen_categorized_blog should return true.
-		return true;
-	} else {
-		// This blog has only 1 category so twentyfifteen_categorized_blog should return false.
-		return false;
-	}
+	// No longer needed
+	return false;
 }
 endif;
 
@@ -574,8 +553,7 @@ if ( ! function_exists( 'generate_category_transient_flusher' ) ) :
  * @deprecated 2.0
  */
 function generate_category_transient_flusher() {
-	// Like, beat it. Dig?
-	delete_transient( 'generate_categories' );
+	// No longer needed
 }
 endif;
 
@@ -587,6 +565,26 @@ function generate_remove_caption_padding( $width ) {
 	return $width - 10;
 }
 endif;
+
+if ( ! function_exists( 'generate_get_navigation_location' ) ) {
+	/**
+	 * @deprecated 2.0
+	 */
+	function generate_get_navigation_location() {
+		//_deprecated_function( __FUNCTION__, '2.0', "generate_get_primary_menu_location()" );
+		return generate_get_primary_menu_location();
+	}
+}
+
+if ( ! function_exists( 'generate_get_premium_url' ) ) {
+	/**
+	* @deprecated 2.0
+	 */
+	function generate_get_premium_url( $url = 'https://generatepress.com/premium' ) {
+		_deprecated_function( __FUNCTION__, '2.0', "generate_do_upsell_url()" );
+		return generate_do_upsell_url( $url, false );
+	}
+}
 
 /**
  * Hooked & filtered functions that have had a name change or become unnecessary.

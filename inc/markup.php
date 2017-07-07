@@ -83,7 +83,7 @@ add_filter( 'generate_attr_body', 'generate_set_body_attributes' );
 function generate_set_body_attributes( $attributes ) {
 	$classes = get_body_class();
 	$layout = generate_get_sidebar_layout();
-	$navigation_location = generate_get_navigation_location();
+	$navigation_location = generate_get_primary_menu_location();
 	$widgets = generate_get_footer_widget_count();
 
 	// Full width content

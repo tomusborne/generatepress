@@ -6,7 +6,7 @@
 defined( 'WPINC' ) or die;
 
 // If the navigation is set in the sidebar, set variable to true
-$navigation_active = ( 'nav-right-sidebar' == generate_get_navigation_location() ) ? true : false;
+$navigation_active = ( 'nav-right-sidebar' == generate_get_primary_menu_location() ) ? true : false;
 
 // If the secondary navigation is set in the sidebar, set variable to true
 if ( function_exists( 'generate_secondary_nav_get_defaults' ) ) {

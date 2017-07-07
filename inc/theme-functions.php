@@ -130,12 +130,13 @@ function generate_show_content_title() {
  * Generate a URL to our premium add-ons.
  * Allows the use of a referral ID and campaign.
  *
- * @since 1.3.42
+ * @since 2.0
  *
  * @param string $url URL to premium page.
- * @return string The URL to generatepress.com
+ * @param bool Echo or return the URL.
+ * @return string The URL to generatepress.com.
  */
-function generate_get_premium_url( $url = 'https://generatepress.com/premium' ) {
+function generate_do_upsell_url( $url = 'https://generatepress.com/premium', $echo = true ) {
 	$url = trailingslashit( $url );
 
 	$args = apply_filters( 'generate_premium_url_args', array(
@@ -152,8 +153,12 @@ function generate_get_premium_url( $url = 'https://generatepress.com/premium' ) 
 	if ( isset( $args[ 'campaign' ] ) ) {
 		$url = add_query_arg( 'campaign', sanitize_text_field( $args[ 'campaign' ] ), $url );
 	}
-
-	return esc_url( $url );
+	
+	if ( $echo ) {
+		echo esc_url( $url );
+	} else {
+		return esc_url( $url );
+	}
 }
 
 /**
@@ -216,14 +221,12 @@ function generate_get_url_in_content() {
 }
 
 /**
- * Get the location of the navigation and filter it.
+ * Get the location of the primary menu and filter it.
  *
- * @since 1.3.41
+ * @since 2.0
  *
- * @return string The navigation location.
+ * @return string The primary menu location.
  */
-function generate_get_navigation_location() {
-	$location = generate_get_option( 'nav_position_setting' );
-
-	return apply_filters( 'generate_navigation_location', $location );
+function generate_get_primary_menu_location() {
+	return apply_filters( 'generate_navigation_location', generate_get_option( 'nav_position_setting' ) );
 }

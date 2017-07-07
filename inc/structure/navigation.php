@@ -84,7 +84,7 @@ if ( ! function_exists( 'generate_menu_fallback' ) ) {
 if ( ! function_exists( 'generate_add_navigation_after_header' ) ) {
 	add_action( 'generate_after_header', 'generate_add_navigation_after_header', 5 );
 	function generate_add_navigation_after_header() {
-		if ( 'nav-below-header' == generate_get_navigation_location() ) {
+		if ( 'nav-below-header' == generate_get_primary_menu_location() ) {
 			generate_navigation_position();
 		}
 	}
@@ -93,7 +93,7 @@ if ( ! function_exists( 'generate_add_navigation_after_header' ) ) {
 if ( ! function_exists( 'generate_add_navigation_before_header' ) ) {
 	add_action( 'generate_before_header', 'generate_add_navigation_before_header', 5 );
 	function generate_add_navigation_before_header() {	
-		if ( 'nav-above-header' == generate_get_navigation_location() ) {
+		if ( 'nav-above-header' == generate_get_primary_menu_location() ) {
 			generate_navigation_position();
 		}
 	}
@@ -102,7 +102,7 @@ if ( ! function_exists( 'generate_add_navigation_before_header' ) ) {
 if ( ! function_exists( 'generate_add_navigation_float_right' ) ) {
 	add_action( 'generate_after_header_content', 'generate_add_navigation_float_right', 5 );
 	function generate_add_navigation_float_right() {
-		if ( 'nav-float-right' == generate_get_navigation_location() || 'nav-float-left' == generate_get_navigation_location() ) {
+		if ( 'nav-float-right' == generate_get_primary_menu_location() || 'nav-float-left' == generate_get_primary_menu_location() ) {
 			generate_navigation_position();
 		}
 	}
@@ -111,7 +111,7 @@ if ( ! function_exists( 'generate_add_navigation_float_right' ) ) {
 if ( ! function_exists( 'generate_add_navigation_before_right_sidebar' ) ) {
 	add_action( 'generate_before_right_sidebar_content', 'generate_add_navigation_before_right_sidebar', 5 );
 	function generate_add_navigation_before_right_sidebar() {
-		if ( 'nav-right-sidebar' == generate_get_navigation_location() ) {
+		if ( 'nav-right-sidebar' == generate_get_primary_menu_location() ) {
 			echo '<div class="gen-sidebar-nav">';
 				generate_navigation_position();
 			echo '</div>';
@@ -122,7 +122,7 @@ if ( ! function_exists( 'generate_add_navigation_before_right_sidebar' ) ) {
 if ( ! function_exists( 'generate_add_navigation_before_left_sidebar' ) ) {
 	add_action( 'generate_before_left_sidebar_content', 'generate_add_navigation_before_left_sidebar', 5 );
 	function generate_add_navigation_before_left_sidebar() {
-		if ( 'nav-left-sidebar' == generate_get_navigation_location() ) {
+		if ( 'nav-left-sidebar' == generate_get_primary_menu_location() ) {
 			echo '<div class="gen-sidebar-nav">';
 				generate_navigation_position();
 			echo '</div>';
