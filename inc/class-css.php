@@ -60,8 +60,6 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 		 * Sets a selector to the object and changes the current selector to a new one
 		 *
 		 * @access public
-		 * @since  1.0
-		 * 
 		 * @param  string $selector - the css identifier of the html that you wish to target
 		 * @return $this
 		 */
@@ -79,7 +77,6 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 		 * Adds a css property with value to the css output
 		 *
 		 * @access public
-		 * @since  1.0
 		 * 
 		 * @param  string $property - the css property
 		 * @param  string $value - the value to be placed with the property
@@ -108,7 +105,6 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 		/**
 		 * Sets a media query in the class
 		 *
-		 * @since  1.1
 		 * @param  string $value
 		 * @return $this
 		 */
@@ -129,9 +125,7 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 		/**
 		 * Stops using a media query.
 		 *
-		 * @see    start_media_query()
-		 *
-		 * @since  1.1
+		 * @see start_media_query()
 		 * @return $this
 		 */
 		public function stop_media_query() {
@@ -141,7 +135,6 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 		/**
 		 * Adds the current media query's rules to the class' output variable
 		 *
-		 * @since  1.1
 		 * @return $this
 		 */
 		private function add_media_query_rules_to_output() {
@@ -158,8 +151,6 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 		 * Adds the current selector rules to the output variable
 		 *
 		 * @access private
-		 * @since  1.0
-		 *
 		 * @return $this
 		 */
 		private function add_selector_rules_to_output() {
@@ -186,8 +177,6 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 		 * Returns the minified css in the $_output variable
 		 *
 		 * @access public
-		 * @since  1.0
-		 * 
 		 * @return string
 		 */
 		public function css_output() {

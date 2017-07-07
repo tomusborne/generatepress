@@ -6,41 +6,31 @@ add_action( 'wp_enqueue_scripts', 'generate_enqueue_scripts' );
  * Enqueue scripts and styles
  */
 function generate_enqueue_scripts() {
-	// Get the minified suffix.
 	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-	// Enqueue our CSS.
 	wp_enqueue_style( 'generate-style-grid', trailingslashit( get_template_directory_uri() ) . "css/unsemantic-grid{$suffix}.css", false, GENERATE_VERSION, 'all' );
 	wp_enqueue_style( 'generate-style', trailingslashit( get_template_directory_uri() ) . 'style.css', array( 'generate-style-grid' ), GENERATE_VERSION, 'all' );
 	wp_enqueue_style( 'generate-mobile-style', trailingslashit( get_template_directory_uri() ) . "css/mobile{$suffix}.css", array( 'generate-style' ), GENERATE_VERSION, 'all' );
 
-	// Add the child theme CSS if child theme is active.
 	if ( is_child_theme() ) {
 		wp_enqueue_style( 'generate-child', get_stylesheet_uri(), array( 'generate-style' ), filemtime( get_stylesheet_directory() . '/style.css' ), 'all' );
 	}
 
-	// Font Awesome
-	$icon_essentials = apply_filters( 'generate_fontawesome_essentials', false );
-	$icon_essentials = ( $icon_essentials ) ? '-essentials' : false;
+	$icon_essentials = ( apply_filters( 'generate_fontawesome_essentials', false ) ) ? '-essentials' : false;
 	wp_enqueue_style( "font-awesome{$icon_essentials}", trailingslashit( get_template_directory_uri() ) . "css/font-awesome{$icon_essentials}{$suffix}.css", false, '4.7', 'all' );
 
-	// IE 8
 	wp_enqueue_style( 'generate-ie', trailingslashit( get_template_directory_uri() ) . "css/ie{$suffix}.css", array( 'generate-style-grid' ), GENERATE_VERSION, 'all' );
 	wp_style_add_data( 'generate-ie', 'conditional', 'lt IE 9' );
 
-	// Add our mobile navigation
 	wp_enqueue_script( 'generate-navigation', trailingslashit( get_template_directory_uri() ) . "js/navigation{$suffix}.js", array( 'jquery' ), GENERATE_VERSION, true );
 
-	// Add our hover or click dropdown menu scripts
 	$click = ( 'click' == generate_get_option( 'nav_dropdown_type' ) || 'click-arrow' == generate_get_option( 'nav_dropdown_type' ) ) ? '-click' : '';
 	wp_enqueue_script( 'generate-dropdown', trailingslashit( get_template_directory_uri() ) . "js/dropdown{$click}{$suffix}.js", array( 'jquery' ), GENERATE_VERSION, true );
 
-	// Add our navigation search if it's enabled
 	if ( 'enable' == generate_get_option( 'nav_search' ) ) {
 		wp_enqueue_script( 'generate-navigation-search', trailingslashit( get_template_directory_uri() ) . "js/navigation-search{$suffix}.js", array( 'jquery' ), GENERATE_VERSION, true );
 	}
 
-	// Add the back to top script if it's enabled
 	if ( 'enable' == generate_get_option( 'back_to_top' ) ) {
 		wp_enqueue_script( 'generate-back-to-top', trailingslashit( get_template_directory_uri() ) . "js/back-to-top{$suffix}.js", array( 'jquery' ), GENERATE_VERSION, true );
 	}
@@ -50,13 +40,11 @@ function generate_enqueue_scripts() {
 		wp_enqueue_script( 'generate-move-navigation', trailingslashit( get_template_directory_uri() ) . "js/move-navigation{$suffix}.js", array( 'jquery' ), GENERATE_VERSION, true );
 	}
 
-	// IE 8
 	if ( function_exists( 'wp_script_add_data' ) ) {
 		wp_enqueue_script( 'generate-html5', trailingslashit( get_template_directory_uri() ) . "js/html5shiv{$suffix}.js", array( 'jquery' ), GENERATE_VERSION, true );
 		wp_script_add_data( 'generate-html5', 'conditional', 'lt IE 9' );
 	}
 
-	// Add the threaded comments script
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}

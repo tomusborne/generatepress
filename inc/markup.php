@@ -1,76 +1,6 @@
 <?php
 defined( 'WPINC' ) or die;
 
-/**
- * Merge array of attributes with defaults, and apply contextual filter on array.
- *
- * The contextual filter is of the form `generate_attr_{context}`.
- *
- * @since 2.0
- *
- * @param string $context    The context, to build filter name.
- * @param array  $attributes Optional. Extra attributes to merge with defaults.
- * @return array Merged and filtered attributes.
- */
-function generate_parse_attr( $context, $attributes = array() ) {
-	$defaults = array(
-		'class' => esc_attr( $context ),
-	);
-
-	$attributes = wp_parse_args( $attributes, $defaults );
-
-	// Contextual filter.
-	return apply_filters( "generate_attr_{$context}", $attributes, $context );
-}
-
-/**
- * Build list of attributes into a string and apply contextual filter on string.
- *
- * The contextual filter is of the form `generate_attr_{context}_output`.
- *
- * @since 2.0
- *
- * @param string $context    The context, to build filter name.
- * @param array  $attributes Optional. Extra attributes to merge with defaults.
- * @return string String of HTML attributes and values.
- */
-function generate_get_attr( $context, $attributes = array() ) {
-	$attributes = generate_parse_attr( $context, $attributes );
-
-	$output = '';
-
-	// Cycle through attributes, build tag attribute string.
-	foreach ( $attributes as $key => $value ) {
-
-		if ( ! $value ) {
-			continue;
-		}
-
-		if ( true === $value ) {
-			$output .= esc_html( $key ) . ' ';
-		} else {
-			$output .= sprintf( '%s="%s" ', esc_html( $key ), esc_attr( $value ) );
-		}
-
-	}
-
-	$output = apply_filters( "generate_attr_{$context}_output", $output, $attributes, $context );
-
-	return trim( $output );
-}
-
-/**
- * Print our generate_get_attr() function.
- *
- * @since 2.0
- *
- * @param string $context    The element name.
- * @param array  $attributes Optional. Extra attributes to merge with defaults.
- */
-function generate_do_attr( $context, $attributes = array() ) {
-	echo generate_get_attr( $context, $attributes );
-}
-
 add_filter( 'generate_attr_body', 'generate_set_body_attributes' );
 /**
  * Build our body attributes.
@@ -82,49 +12,41 @@ add_filter( 'generate_attr_body', 'generate_set_body_attributes' );
  */
 function generate_set_body_attributes( $attributes ) {
 	$classes = get_body_class();
-	$layout = generate_get_sidebar_layout();
-	$navigation_location = generate_get_primary_menu_location();
 	$widgets = generate_get_footer_widget_count();
 
-	// Full width content
-	// Used for page builders, sets the content to full width and removes the padding
+	// Used for page builders, sets the content to full width or contained and removes the padding
 	$full_width = get_post_meta( get_the_ID(), '_generate-full-width-content', true );
 	$classes[] = ( '' !== $full_width && false !== $full_width && is_singular() && 'true' == $full_width ) ? 'full-width-content' : '';
-
-	// Contained content
-	// Used for page builders, basically just removes the content padding
 	$classes[] = ( '' !== $full_width && false !== $full_width && is_singular() && 'contained' == $full_width ) ? 'contained-content' : '';
 
 	// Let us know if a featured image is being used
-	if ( has_post_thumbnail() ) {
-		$classes[] = 'featured-image-active';
-	} 
+	$classes[] = ( has_post_thumbnail() ) ? 'featured-image-active' : '';
 
-	// Layout classes
-	$classes[] = ( $layout ) ? $layout : 'right-sidebar';
-	$classes[] = ( $navigation_location ) ? $navigation_location : 'nav-below-header';
+	// Do classes
+	$classes[] = ( generate_get_sidebar_layout() ) ? generate_get_sidebar_layout() : 'right-sidebar';
+	$classes[] = ( generate_get_primary_menu_location() ) ? generate_get_primary_menu_location() : 'nav-below-header';
 	$classes[] = ( generate_get_option( 'header_layout_setting' ) ) ? generate_get_option( 'header_layout_setting' ) : 'fluid-header';
 	$classes[] = ( generate_get_option( 'content_layout_setting' ) ) ? generate_get_option( 'content_layout_setting' ) : 'separate-containers';
 	$classes[] = ( '' !== $widgets ) ? 'active-footer-widgets-' . $widgets : 'active-footer-widgets-3';
 	$classes[] = ( 'enable' == generate_get_option( 'nav_search' ) ) ? 'nav-search-enabled' : '';
 
 	// Navigation alignment class
-	if ( generate_get_option( 'nav_alignment_setting' ) == 'left' ) {
+	if ( 'left' == generate_get_option( 'nav_alignment_setting' ) ) {
 		$classes[] = 'nav-aligned-left';
-	} elseif ( generate_get_option( 'nav_alignment_setting' ) == 'center' ) {
+	} elseif ( 'center' == generate_get_option( 'nav_alignment_setting' ) ) {
 		$classes[] = 'nav-aligned-center';
-	} elseif ( generate_get_option( 'nav_alignment_setting' ) == 'right' ) {
+	} elseif ( 'right' == generate_get_option( 'nav_alignment_setting' ) ) {
 		$classes[] = 'nav-aligned-right';
 	} else {
 		$classes[] = 'nav-aligned-left';
 	}
 
 	// Header alignment class
-	if ( generate_get_option( 'header_alignment_setting' ) == 'left' ) {
+	if ( 'left' == generate_get_option( 'header_alignment_setting' ) ) {
 		$classes[] = 'header-aligned-left';
-	} elseif ( generate_get_option( 'header_alignment_setting' ) == 'center' ) {
+	} elseif ( 'center' == generate_get_option( 'header_alignment_setting' ) ) {
 		$classes[] = 'header-aligned-center';
-	} elseif ( generate_get_option( 'header_alignment_setting' ) == 'right' ) {
+	} elseif ( 'right' == generate_get_option( 'header_alignment_setting' ) ) {
 		$classes[] = 'header-aligned-right';
 	} else {
 		$classes[] = 'header-aligned-left';
@@ -142,14 +64,11 @@ function generate_set_body_attributes( $attributes ) {
 	}
 
 	$attributes['class'] = join( ' ', $classes );
+	
+	// Do microdata
 	$itemtype = 'WebPage';
-
-	// Change our itemtype if we're on the blog
 	$itemtype = ( is_home() || is_archive() || is_attachment() || is_tax() || is_single() ) ? 'Blog' : $itemtype;
-
-	// Change our itemtype if we're in search results
 	$itemtype = ( is_search() ) ? 'SearchResultsPage' : $itemtype;
-
 	$attributes['itemtype']  = 'http://schema.org/' . apply_filters( 'generate_body_itemtype', $itemtype );
 	$attributes['itemscope'] = true;
 

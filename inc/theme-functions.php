@@ -20,6 +20,76 @@ function generate_get_option( $option ) {
 }
 
 /**
+ * Merge array of attributes with defaults, and apply contextual filter on array.
+ *
+ * The contextual filter is of the form `generate_attr_{context}`.
+ *
+ * @since 2.0
+ *
+ * @param string $context    The context, to build filter name.
+ * @param array  $attributes Optional. Extra attributes to merge with defaults.
+ * @return array Merged and filtered attributes.
+ */
+function generate_parse_attr( $context, $attributes = array() ) {
+	$defaults = array(
+		'class' => esc_attr( $context ),
+	);
+
+	$attributes = wp_parse_args( $attributes, $defaults );
+
+	// Contextual filter.
+	return apply_filters( "generate_attr_{$context}", $attributes, $context );
+}
+
+/**
+ * Build list of attributes into a string and apply contextual filter on string.
+ *
+ * The contextual filter is of the form `generate_attr_{context}_output`.
+ *
+ * @since 2.0
+ *
+ * @param string $context    The context, to build filter name.
+ * @param array  $attributes Optional. Extra attributes to merge with defaults.
+ * @return string String of HTML attributes and values.
+ */
+function generate_get_attr( $context, $attributes = array() ) {
+	$attributes = generate_parse_attr( $context, $attributes );
+
+	$output = '';
+
+	// Cycle through attributes, build tag attribute string.
+	foreach ( $attributes as $key => $value ) {
+
+		if ( ! $value ) {
+			continue;
+		}
+
+		if ( true === $value ) {
+			$output .= esc_html( $key ) . ' ';
+		} else {
+			$output .= sprintf( '%s="%s" ', esc_html( $key ), esc_attr( $value ) );
+		}
+
+	}
+
+	$output = apply_filters( "generate_attr_{$context}_output", $output, $attributes, $context );
+
+	return trim( $output );
+}
+
+/**
+ * Print our generate_get_attr() function.
+ *
+ * @since 2.0
+ *
+ * @param string $context    The element name.
+ * @param array  $attributes Optional. Extra attributes to merge with defaults.
+ */
+function generate_do_attr( $context, $attributes = array() ) {
+	echo generate_get_attr( $context, $attributes );
+}
+
+/**
  * Get the layout for the current page.
  *
  * @since 2.0

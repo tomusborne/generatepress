@@ -30,7 +30,7 @@ function generate_setup_theme() {
 	) );
 
 	// Set the content width to something large
-	// We set a more accurate width in generate_smart_content_width()
+	// We set a more accurate width in generate_set_content_width()
 	global $content_width;
 	if ( ! isset( $content_width ) ) {
 		$content_width = 1200;
