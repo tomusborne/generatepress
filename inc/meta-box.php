@@ -3,9 +3,11 @@ defined( 'WPINC' ) or die;
 
 add_action( 'admin_enqueue_scripts','generate_enqueue_meta_box_scripts' );
 /**
- * Add our metabox scripts
+ * Adds any scripts for this meta box.
  *
  * @since 2.0
+ *
+ * @param string $hook The current admin page.
  */
 function generate_enqueue_meta_box_scripts( $hook ) {
 	if ( in_array( $hook, array( 'post.php', 'post-new.php' ) ) ){

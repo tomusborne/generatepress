@@ -39,8 +39,8 @@ function generate_do_dashboard_page() {
 						<?php if ( ! defined( 'GP_PREMIUM_VERSION' ) ) : ?>
 							<a style="font-weight: bold;" href="<?php echo generate_get_upsell_url( 'https://generatepress.com/premium/' );?>" target="_blank"><?php _e( 'Premium', 'generatepress' );?></a> 
 						<?php endif; ?>
-						<a href="<?php echo esc_url( 'https://generatepress.com/support' ); ?>" target="_blank"><?php _e( 'Support','generatepress' ); ?></a>
-						<a href="<?php echo esc_url( 'https://docs.generatepress.com' ); ?>" target="_blank"><?php _e('Documentation','generatepress');?></a>  
+						<a href="<?php echo esc_url( 'https://generatepress.com/support' ); ?>" target="_blank"><?php _e( 'Support', 'generatepress' ); ?></a>
+						<a href="<?php echo esc_url( 'https://docs.generatepress.com' ); ?>" target="_blank"><?php _e( 'Documentation', 'generatepress' );?></a>  
 					</div>
 				</div>
 			</div>
@@ -62,7 +62,7 @@ function generate_do_dashboard_page() {
 									?>
 								</div>
 
-								<?php do_action('generate_inside_options_form'); ?>
+								<?php do_action( 'generate_inside_options_form' ); ?>
 							</form>
 
 							<?php
@@ -110,7 +110,7 @@ function generate_do_dashboard_page() {
 
 							if ( ! defined( 'GP_PREMIUM_VERSION' ) ) : ?>
 							<div class="postbox generate-metabox">
-								<h3 class="hndle"><?php _e( 'Add-ons','generatepress' ); ?></h3>
+								<h3 class="hndle"><?php _e( 'Add-ons', 'generatepress' ); ?></h3>
 								<div class="inside" style="margin:0;padding:0;">
 									<div class="premium-addons">
 										<?php foreach( $modules as $module => $info ) { ?>
@@ -119,7 +119,7 @@ function generate_do_dashboard_page() {
 												<a href="<?php echo esc_url( $info[ 'url' ] ); ?>" target="_blank"><?php echo $module; ?></a>
 											</div>
 											<div class="addon-action addon-addon-action" style="text-align:right;">
-												<a href="<?php echo esc_url( $info[ 'url' ] ); ?>" target="_blank"><?php _e( 'Learn more','generatepress' ); ?></a>
+												<a href="<?php echo esc_url( $info[ 'url' ] ); ?>" target="_blank"><?php _e( 'Learn more', 'generatepress' ); ?></a>
 											</div>
 										</div>
 										<div class="gp-clear"></div>
@@ -129,7 +129,7 @@ function generate_do_dashboard_page() {
 							</div>
 							<?php endif; ?>
 							
-							<?php do_action('generate_options_items'); ?>
+							<?php do_action( 'generate_options_items' ); ?>
 						</div>
 						<div class="generate-right-sidebar grid-30" style="padding-right: 0;">
 							<div class="customize-button hide-on-mobile">
@@ -145,35 +145,35 @@ function generate_do_dashboard_page() {
 							<?php do_action( 'generate_admin_right_panel' ); ?>
 							<?php if ( ! defined( 'GP_PREMIUM_VERSION' ) ) : ?>
 								<div class="postbox generate-metabox popular-articles">
-									<h3 class="hndle"><a href="https://docs.generatepress.com" target="_blank"><?php _e( 'View all','generatepress' ); ?></a><?php _e( 'Documentation','generatepress' ); ?></h3>
+									<h3 class="hndle"><a href="https://docs.generatepress.com" target="_blank"><?php _e( 'View all', 'generatepress' ); ?></a><?php _e( 'Documentation', 'generatepress' ); ?></h3>
 									<div class="inside">
 										<ul>
-											<li><a href="https://docs.generatepress.com/article/adding-header-logo/" target="_blank"><?php _e( 'Adding a Logo','generatepress' ); ?></a></li>
-											<li><a href="https://docs.generatepress.com/article/sidebar-layout/" target="_blank"><?php _e( 'Sidebar Layout','generatepress' ); ?></a></li>
-											<li><a href="https://docs.generatepress.com/article/container-width/" target="_blank"><?php _e( 'Container Width','generatepress' ); ?></a></li>
-											<li><a href="https://docs.generatepress.com/article/navigation-location/" target="_blank"><?php _e( 'Navigation Location','generatepress' ); ?></a></li>
-											<li><a href="https://docs.generatepress.com/article/footer-widgets/" target="_blank"><?php _e( 'Footer Widgets','generatepress' ); ?></a></li>
+											<li><a href="https://docs.generatepress.com/article/adding-header-logo/" target="_blank"><?php _e( 'Adding a Logo', 'generatepress' ); ?></a></li>
+											<li><a href="https://docs.generatepress.com/article/sidebar-layout/" target="_blank"><?php _e( 'Sidebar Layout', 'generatepress' ); ?></a></li>
+											<li><a href="https://docs.generatepress.com/article/container-width/" target="_blank"><?php _e( 'Container Width', 'generatepress' ); ?></a></li>
+											<li><a href="https://docs.generatepress.com/article/navigation-location/" target="_blank"><?php _e( 'Navigation Location', 'generatepress' ); ?></a></li>
+											<li><a href="https://docs.generatepress.com/article/footer-widgets/" target="_blank"><?php _e( 'Footer Widgets', 'generatepress' ); ?></a></li>
 										</ul>
 									</div>
 								</div>
 							<?php endif; ?>
 							<div class="postbox generate-metabox" id="gen-delete">
-								<h3 class="hndle"><?php _e('Delete Customizer Settings','generatepress');?></h3>
+								<h3 class="hndle"><?php _e( 'Delete Customizer Settings', 'generatepress' );?></h3>
 								<div class="inside">
-									<p><?php printf( __( '<strong>Warning:</strong> Deleting your <a href="%1$s">Customizer</a> settings can not be undone.','generatepress' ), admin_url('customize.php') ); ?></p>
-									<p><?php _e( 'Consider using our Import/Export add-on to export your settings before deleting them.','generatepress');?></p>
+									<p><?php printf( __( '<strong>Warning:</strong> Deleting your <a href="%1$s">Customizer</a> settings can not be undone.', 'generatepress' ), admin_url('customize.php') ); ?></p>
+									<p><?php _e( 'Consider using our Import/Export add-on to export your settings before deleting them.', 'generatepress' );?></p>
 									<form method="post">
 										<p><input type="hidden" name="generate_reset_customizer" value="generate_reset_customizer_settings" /></p>
 										<p>
 											<?php 
-											$warning = 'return confirm("' . __( 'Warning: This will delete your settings.','generatepress' ) . '")';
+											$warning = 'return confirm("' . __( 'Warning: This will delete your settings.', 'generatepress' ) . '")';
 											wp_nonce_field( 'generate_reset_customizer_nonce', 'generate_reset_customizer_nonce' );
 											submit_button( __( 'Delete Default Settings', 'generatepress' ), 'button', 'submit', false, array( 'onclick' => esc_js( $warning ) ) ); 
 											?>
 										</p>
 											
 									</form>
-									<?php do_action('generate_delete_settings_form');?>
+									<?php do_action( 'generate_delete_settings_form' );?>
 								</div>
 							</div>
 						</div>
