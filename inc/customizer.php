@@ -55,7 +55,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				new GeneratePress_Upsell_Section( $wp_customize, 'generatepress_upsell_section',
 					array(
 						'pro_text' => __( 'Add-ons Available! Take a look', 'generatepress' ),
-						'pro_url' => generate_do_upsell_url( 'https://generatepress.com/premium', false ),
+						'pro_url' => generate_get_upsell_url( 'https://generatepress.com/premium' ),
 						'capability' => 'edit_theme_options',
 						'priority' => 0,
 						'type' => 'gp-upsell-section'
@@ -215,12 +215,12 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 						'section'     => 'body_section',
 						'type'        => 'addon',
 						'label'			=> __( 'More Settings','generatepress' ),
-						'url' => generate_do_upsell_url( 'https://generatepress.com/downloads/generate-colors/', false ),
+						'url' => generate_get_upsell_url( 'https://generatepress.com/downloads/generate-colors/' ),
 						'description' => sprintf(
 							__( 'Looking to add more color settings?<br /> %s.', 'generatepress' ),
 							sprintf(
 								'<a href="%1$s" target="_blank">%2$s</a>',
-								generate_do_upsell_url( 'https://generatepress.com/downloads/generate-colors/', false ),
+								generate_get_upsell_url( 'https://generatepress.com/downloads/generate-colors/' ),
 								__( 'Check out Generate Colors', 'generatepress' )
 							)
 						),
@@ -979,12 +979,12 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 						'section'     => 'blog_section',
 						'type'        => 'addon',
 						'label'			=> __( 'More Settings','generatepress' ),
-						'url' => generate_do_upsell_url( 'https://generatepress.com/downloads/generate-blog/', false ),
+						'url' => generate_get_upsell_url( 'https://generatepress.com/downloads/generate-blog/' ),
 						'description' => sprintf(
 							__( 'Looking to add more blog settings?<br /> %s.', 'generatepress' ),
 							sprintf(
 								'<a href="%1$s" target="_blank">%2$s</a>',
-								generate_do_upsell_url( 'https://generatepress.com/downloads/generate-blog/', false ),
+								generate_get_upsell_url( 'https://generatepress.com/downloads/generate-blog/' ),
 								__( 'Check out Generate Blog', 'generatepress' )
 							)
 						),

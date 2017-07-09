@@ -203,10 +203,9 @@ function generate_show_content_title() {
  * @since 2.0
  *
  * @param string $url URL to premium page.
- * @param bool Echo or return the URL.
  * @return string The URL to generatepress.com.
  */
-function generate_do_upsell_url( $url = 'https://generatepress.com/premium', $echo = true ) {
+function generate_get_upsell_url( $url = 'https://generatepress.com/premium' ) {
 	$url = trailingslashit( $url );
 
 	$args = apply_filters( 'generate_premium_url_args', array(
@@ -223,12 +222,8 @@ function generate_do_upsell_url( $url = 'https://generatepress.com/premium', $ec
 	if ( isset( $args[ 'campaign' ] ) ) {
 		$url = add_query_arg( 'campaign', sanitize_text_field( $args[ 'campaign' ] ), $url );
 	}
-	
-	if ( $echo ) {
-		echo esc_url( $url );
-	} else {
-		return esc_url( $url );
-	}
+
+	return esc_url( $url );
 }
 
 /**

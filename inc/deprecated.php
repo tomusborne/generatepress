@@ -405,8 +405,8 @@ if ( ! function_exists( 'generate_get_navigation_location' ) ) {
 
 if ( ! function_exists( 'generate_get_premium_url' ) ) {
 	function generate_get_premium_url( $url = 'https://generatepress.com/premium' ) {
-		_deprecated_function( __FUNCTION__, '2.0', "generate_do_upsell_url()" );
-		return generate_do_upsell_url( $url, false );
+		_deprecated_function( __FUNCTION__, '2.0', "generate_get_upsell_url()" );
+		return generate_get_upsell_url( $url );
 	}
 }
 
