@@ -65,6 +65,7 @@ function generate_get_default_fonts( $filter = true )
 		'widget_title_font_weight' => 'normal',
 		'widget_title_font_transform' => 'none',
 		'widget_title_font_size' => '20',
+		'widget_title_separator' => '30',
 		'widget_content_font_size' => '17',
 		'font_heading_1' => 'inherit',
 		'font_heading_1_category' => '',
@@ -184,6 +185,7 @@ function generate_font_css()
 	$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'widget_title_font_weight' ] ), $og_defaults[ 'widget_title_font_weight' ] );
 	$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'widget_title_font_transform' ] ), $og_defaults[ 'widget_title_font_transform' ] );
 	$css->add_property( 'font-size', absint( $generate_settings[ 'widget_title_font_size' ] ), $og_defaults[ 'widget_title_font_size' ], 'px' );
+	$css->add_property( 'margin-bottom', absint( $generate_settings['widget_title_separator'] ), absint( $og_defaults['widget_title_separator'] ), 'px' );
 	
 	// Widget font size
 	$css->set_selector( '.sidebar .widget, .footer-widgets .widget' );
