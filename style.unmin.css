@@ -1720,8 +1720,6 @@ footer.entry-meta .byline {
 .generate-back-to-top,
 .generate-back-to-top:visited {
 	font-size: 20px;
-	background: rgba( 0,0,0,0.4 );
-	color: #FFF;
 	border-radius: 3px;
 	position: fixed;
 	bottom: 30px;
@@ -1731,12 +1729,6 @@ footer.entry-meta .byline {
 	text-align: center;
 	z-index: 10;
 	transition: opacity 300ms ease-in-out;
-}
-
-.generate-back-to-top:hover,
-.generate-back-to-top:focus {
-	background: rgba( 0,0,0,0.6 );
-	color: #FFF;
 }
 
 .generate-back-to-top .screen-reader-text {

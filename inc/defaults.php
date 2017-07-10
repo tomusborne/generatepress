@@ -117,7 +117,11 @@ if ( ! function_exists( 'generate_get_color_defaults' ) ) {
 			'form_button_background_color' => '#666666',
 			'form_button_background_color_hover' => '#3f3f3f',
 			'form_button_text_color' => '#ffffff',
-			'form_button_text_color_hover' => '#ffffff'
+			'form_button_text_color_hover' => '#ffffff',
+			'back_to_top_background_color' => 'rgba( 0,0,0,0.4 )',
+			'back_to_top_background_color_hover' => 'rgba( 0,0,0,0.6 )',
+			'back_to_top_text_color' => '#ffffff',
+			'back_to_top_text_color_hover' => '#ffffff',
 		);
 		
 		return apply_filters( 'generate_color_option_defaults', $defaults );
