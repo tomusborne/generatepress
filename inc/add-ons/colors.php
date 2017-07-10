@@ -84,7 +84,11 @@ function generate_get_color_defaults()
 		'form_button_background_color' => '#666666',
 		'form_button_background_color_hover' => '#3f3f3f',
 		'form_button_text_color' => '#ffffff',
-		'form_button_text_color_hover' => '#ffffff'
+		'form_button_text_color_hover' => '#ffffff',
+		'back_to_top_background_color' => 'rgba( 0,0,0,0.4 )',
+		'back_to_top_background_color_hover' => 'rgba( 0,0,0,0.6 )',
+		'back_to_top_text_color' => '#ffffff',
+		'back_to_top_text_color_hover' => '#ffffff',
 	);
 	
 	return apply_filters( 'generate_color_option_defaults', $generate_color_defaults );
@@ -337,6 +341,17 @@ function generate_advanced_css()
 	$css->set_selector( 'button:hover,html input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover,.button:hover,button:focus,html input[type="button"]:focus,input[type="reset"]:focus,input[type="submit"]:focus,.button:focus' );
 	$css->add_property( 'color', esc_attr( $generate_settings[ 'form_button_text_color_hover' ] ) );
 	$css->add_property( 'background-color', esc_attr( $generate_settings[ 'form_button_background_color_hover' ] ) );
+	
+	if ( '' !== generate_get_setting( 'back_to_top' ) ) {
+		// Back to top button
+		$css->set_selector( '.generate-back-to-top,.generate-back-to-top:visited' );
+		$css->add_property( 'background-color', esc_attr( $generate_settings['back_to_top_background_color'] ) );
+		$css->add_property( 'color', esc_attr( $generate_settings['back_to_top_text_color'] ) );
+		
+		$css->set_selector( '.generate-back-to-top:hover,.generate-back-to-top:focus' );
+		$css->add_property( 'background-color', esc_attr( $generate_settings['back_to_top_background_color_hover'] ) );
+		$css->add_property( 'color', esc_attr( $generate_settings['back_to_top_text_color_hover'] ) );
+	}
 	
 	// Allow us to hook CSS into our output
 	do_action( 'generate_colors_css', $css );
