@@ -73,6 +73,7 @@ function generate_get_default_fonts( $filter = true )
 		'heading_1_weight' => '300',
 		'heading_1_transform' => 'none',
 		'heading_1_font_size' => '40',
+		'heading_1_line_height' => '1.2', // em
 		'mobile_heading_1_font_size' => '30',
 		'font_heading_2' => 'inherit',
 		'font_heading_2_category' => '',
@@ -80,6 +81,7 @@ function generate_get_default_fonts( $filter = true )
 		'heading_2_weight' => '300',
 		'heading_2_transform' => 'none',
 		'heading_2_font_size' => '30',
+		'heading_2_line_height' => '1.2', // em
 		'mobile_heading_2_font_size' => '25',
 		'font_heading_3' => 'inherit',
 		'font_heading_3_category' => '',
@@ -87,6 +89,7 @@ function generate_get_default_fonts( $filter = true )
 		'heading_3_weight' => 'normal',
 		'heading_3_transform' => 'none',
 		'heading_3_font_size' => '20',
+		'heading_3_line_height' => '1.2', // em
 		'footer_font_size' => '15'
 	);
 	
@@ -197,6 +200,7 @@ function generate_font_css()
 	$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'heading_1_weight' ] ), $og_defaults[ 'heading_1_weight' ] );
 	$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'heading_1_transform' ] ), $og_defaults[ 'heading_1_transform' ] );
 	$css->add_property( 'font-size', absint( $generate_settings[ 'heading_1_font_size' ] ), $og_defaults[ 'heading_1_font_size' ], 'px' );
+	$css->add_property( 'line-height', floatval( $generate_settings['heading_1_line_height'] ), $og_defaults['heading_1_line_height'], 'em' );
 	
 	// H2
 	$css->set_selector( 'h2' );
@@ -204,6 +208,7 @@ function generate_font_css()
 	$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'heading_2_weight' ] ), $og_defaults[ 'heading_2_weight' ] );
 	$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'heading_2_transform' ] ), $og_defaults[ 'heading_2_transform' ] );
 	$css->add_property( 'font-size', absint( $generate_settings[ 'heading_2_font_size' ] ), $og_defaults[ 'heading_2_font_size' ], 'px' );
+	$css->add_property( 'line-height', floatval( $generate_settings['heading_2_line_height'] ), $og_defaults['heading_2_line_height'], 'em' );
 	
 	// H3
 	$css->set_selector( 'h3' );
@@ -211,6 +216,7 @@ function generate_font_css()
 	$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'heading_3_weight' ] ), $og_defaults[ 'heading_3_weight' ] );
 	$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'heading_3_transform' ] ), $og_defaults[ 'heading_3_transform' ] );
 	$css->add_property( 'font-size', absint( $generate_settings[ 'heading_3_font_size' ] ), $og_defaults[ 'heading_3_font_size' ], 'px' );
+	$css->add_property( 'line-height', floatval( $generate_settings['heading_3_line_height'] ), $og_defaults['heading_3_line_height'], 'em' );
 	
 	// Footer
 	$css->set_selector( '.site-info' );
