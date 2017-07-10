@@ -361,6 +361,8 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$h1_family = generate_get_font_family_css( 'font_heading_1', 'generate_settings', generate_get_default_fonts() );
 		$h2_family = generate_get_font_family_css( 'font_heading_2', 'generate_settings', generate_get_default_fonts() );
 		$h3_family = generate_get_font_family_css( 'font_heading_3', 'generate_settings', generate_get_default_fonts() );
+		$h4_family = generate_get_font_family_css( 'font_heading_4', 'generate_settings', generate_get_default_fonts() );
+		$h5_family = generate_get_font_family_css( 'font_heading_5', 'generate_settings', generate_get_default_fonts() );
 		
 		// Body
 		$css->set_selector( 'body, button, input, select, textarea' );
@@ -449,6 +451,34 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->add_property( 'font-size', absint( $generate_settings[ 'heading_3_font_size' ] ), $og_defaults[ 'heading_3_font_size' ], 'px' );
 		$css->add_property( 'line-height', floatval( $generate_settings['heading_3_line_height'] ), $og_defaults['heading_3_line_height'], 'em' );
 		
+		// H4
+		$css->set_selector( 'h4' );
+		$css->add_property( 'font-family', $og_defaults[ 'font_heading_4' ] !== $generate_settings[ 'font_heading_4' ] ? $h4_family : null );
+		$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'heading_4_weight' ] ), $og_defaults[ 'heading_4_weight' ] );
+		$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'heading_4_transform' ] ), $og_defaults[ 'heading_4_transform' ] );
+
+		if ( '' !== $generate_settings[ 'heading_4_font_size' ] ) {
+			$css->add_property( 'font-size', absint( $generate_settings[ 'heading_4_font_size' ] ), $og_defaults[ 'heading_4_font_size' ], 'px' );
+		}
+
+		if ( '' !== $generate_settings[ 'heading_4_line_height' ] ) {
+			$css->add_property( 'line-height', floatval( $generate_settings['heading_4_line_height'] ), $og_defaults['heading_4_line_height'], 'em' );
+		}
+
+		// H5
+		$css->set_selector( 'h5' );
+		$css->add_property( 'font-family', $og_defaults[ 'font_heading_5' ] !== $generate_settings[ 'font_heading_5' ] ? $h5_family : null );
+		$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'heading_5_weight' ] ), $og_defaults[ 'heading_5_weight' ] );
+		$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'heading_5_transform' ] ), $og_defaults[ 'heading_5_transform' ] );
+
+		if ( '' !== $generate_settings[ 'heading_5_font_size' ] ) {
+			$css->add_property( 'font-size', absint( $generate_settings[ 'heading_5_font_size' ] ), $og_defaults[ 'heading_5_font_size' ], 'px' );
+		}
+
+		if ( '' !== $generate_settings['heading_5_line_height'] ) {
+			$css->add_property( 'line-height', floatval( $generate_settings['heading_5_line_height'] ), $og_defaults['heading_5_line_height'], 'em' );
+		}
+
 		// Footer
 		$css->set_selector( '.site-info' );
 		$css->add_property( 'font-size', absint( $generate_settings['footer_font_size'] ), $og_defaults['footer_font_size'], 'px' );

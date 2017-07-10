@@ -204,6 +204,20 @@ if ( ! function_exists( 'generate_get_default_fonts' ) ) {
 			'heading_3_transform' => 'none',
 			'heading_3_font_size' => '20',
 			'heading_3_line_height' => '1.2', // em
+			'font_heading_4' => 'inherit',
+			'font_heading_4_category' => '',
+			'font_heading_4_variants' => '',
+			'heading_4_weight' => 'normal',
+			'heading_4_transform' => 'none',
+			'heading_4_font_size' => '',
+			'heading_4_line_height' => '', // em
+			'font_heading_5' => 'inherit',
+			'font_heading_5_category' => '',
+			'font_heading_5_variants' => '',
+			'heading_5_weight' => 'normal',
+			'heading_5_transform' => 'none',
+			'heading_5_font_size' => '',
+			'heading_5_line_height' => '', // em
 			'footer_font_size' => '15'
 		);
 		
