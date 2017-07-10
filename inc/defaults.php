@@ -179,6 +179,7 @@ if ( ! function_exists( 'generate_get_default_fonts' ) ) {
 			'widget_title_font_weight' => 'normal',
 			'widget_title_font_transform' => 'none',
 			'widget_title_font_size' => '20',
+			'widget_title_separator' => '30',
 			'widget_content_font_size' => '17',
 			'font_heading_1' => 'inherit',
 			'font_heading_1_category' => '',

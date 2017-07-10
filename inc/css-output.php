@@ -419,6 +419,7 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'widget_title_font_weight' ] ), $og_defaults[ 'widget_title_font_weight' ] );
 		$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'widget_title_font_transform' ] ), $og_defaults[ 'widget_title_font_transform' ] );
 		$css->add_property( 'font-size', absint( $generate_settings[ 'widget_title_font_size' ] ), $og_defaults[ 'widget_title_font_size' ], 'px' );
+		$css->add_property( 'margin-bottom', absint( $generate_settings['widget_title_separator'] ), absint( $og_defaults['widget_title_separator'] ), 'px' );
 		
 		// Widget font size
 		$css->set_selector( '.sidebar .widget, .footer-widgets .widget' );
