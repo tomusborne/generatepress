@@ -313,7 +313,7 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->add_property( 'color', esc_attr( $generate_settings[ 'form_button_text_color_hover' ] ) );
 		$css->add_property( 'background-color', esc_attr( $generate_settings[ 'form_button_background_color_hover' ] ) );
 		
-		if ( '' !== generate_get_setting( 'back_to_top' ) ) {
+		if ( '' !== generate_get_option( 'back_to_top' ) ) {
 			// Back to top button
 			$css->set_selector( '.generate-back-to-top,.generate-back-to-top:visited' );
 			$css->add_property( 'background-color', esc_attr( $generate_settings['back_to_top_background_color'] ) );
