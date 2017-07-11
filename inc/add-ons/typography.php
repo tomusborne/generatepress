@@ -104,7 +104,13 @@ function generate_get_default_fonts( $filter = true )
 		'heading_5_transform' => 'none',
 		'heading_5_font_size' => '',
 		'heading_5_line_height' => '', // em
-		'footer_font_size' => '15'
+		'font_footer' => 'inherit',
+		'font_footer_category' => '',
+		'font_footer_variants' => '',
+		'footer_weight' => 'normal',
+		'footer_transform' => 'none',
+		'footer_font_size' => '15',
+		'footer_line_height' => '', // em
 	);
 	
 	if ( $filter )
@@ -146,6 +152,7 @@ function generate_font_css()
 	$h3_family = generate_get_font_family_css( 'font_heading_3', 'generate_settings', generate_get_default_fonts() );
 	$h4_family = generate_get_font_family_css( 'font_heading_4', 'generate_settings', generate_get_default_fonts() );
 	$h5_family = generate_get_font_family_css( 'font_heading_5', 'generate_settings', generate_get_default_fonts() );
+	$footer_family = generate_get_font_family_css( 'font_footer', 'generate_settings', generate_get_default_fonts() );
 	
 	// Body
 	$css->set_selector( 'body, button, input, select, textarea' );
@@ -264,7 +271,14 @@ function generate_font_css()
 	
 	// Footer
 	$css->set_selector( '.site-info' );
+	$css->add_property( 'font-family', $og_defaults[ 'font_footer' ] !== $generate_settings[ 'font_footer' ] ? $footer_family : null );
+	$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'footer_weight' ] ), $og_defaults[ 'footer_weight' ] );
+	$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'footer_transform' ] ), $og_defaults[ 'footer_transform' ] );
 	$css->add_property( 'font-size', absint( $generate_settings['footer_font_size'] ), $og_defaults['footer_font_size'], 'px' );
+	
+	if ( '' !== $generate_settings['footer_line_height'] ) {
+		$css->add_property( 'line-height', floatval( $generate_settings['footer_line_height'] ), $og_defaults['footer_line_height'], 'em' );
+	}
 	
 	// Mobile
 	$css->start_media_query( apply_filters( 'generate_mobile_media_query', '(max-width:768px)' ) );
@@ -334,6 +348,7 @@ function generate_enqueue_google_fonts() {
 		'font_heading_3',
 		'font_heading_4',
 		'font_heading_5',
+		'font_footer',
 	);
 	
 	// Create our Google Fonts array
