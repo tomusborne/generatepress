@@ -218,7 +218,13 @@ if ( ! function_exists( 'generate_get_default_fonts' ) ) {
 			'heading_5_transform' => 'none',
 			'heading_5_font_size' => '',
 			'heading_5_line_height' => '', // em
-			'footer_font_size' => '15'
+			'font_footer' => 'inherit',
+			'font_footer_category' => '',
+			'font_footer_variants' => '',
+			'footer_weight' => 'normal',
+			'footer_transform' => 'none',
+			'footer_font_size' => '15',
+			'footer_line_height' => '', // em
 		);
 		
 		if ( $filter ) {
