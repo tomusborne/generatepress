@@ -229,9 +229,17 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->set_selector( 'h2' );
 		$css->add_property( 'color', esc_attr( $generate_settings[ 'h2_color' ] ) );
 		
-		// H1 color
+		// H3 color
 		$css->set_selector( 'h3' );
 		$css->add_property( 'color', esc_attr( $generate_settings[ 'h3_color' ] ) );
+		
+		// H4 color
+		$css->set_selector( 'h4' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'h4_color' ] ) );
+		
+		// H5 color
+		$css->set_selector( 'h5' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'h5_color' ] ) );
 		
 		// Sidebar widgets
 		if ( 'no-sidebar' !== generate_get_sidebar_layout() ) {
