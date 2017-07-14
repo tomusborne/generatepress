@@ -67,6 +67,12 @@ function generate_get_default_fonts( $filter = true )
 		'widget_title_font_size' => '20',
 		'widget_title_separator' => '30',
 		'widget_content_font_size' => '17',
+		'font_buttons' => 'inherit',
+		'font_buttons_category' => '',
+		'font_buttons_variants' => '',
+		'buttons_font_weight' => 'normal',
+		'buttons_font_transform' => 'none',
+		'buttons_font_size' => '',
 		'font_heading_1' => 'inherit',
 		'font_heading_1_category' => '',
 		'font_heading_1_variants' => '',
@@ -153,6 +159,7 @@ function generate_font_css()
 	$h4_family = generate_get_font_family_css( 'font_heading_4', 'generate_settings', generate_get_default_fonts() );
 	$h5_family = generate_get_font_family_css( 'font_heading_5', 'generate_settings', generate_get_default_fonts() );
 	$footer_family = generate_get_font_family_css( 'font_footer', 'generate_settings', generate_get_default_fonts() );
+	$buttons_family = generate_get_font_family_css( 'font_buttons', 'generate_settings', generate_get_default_fonts() );
 	
 	// Body
 	$css->set_selector( 'body, button, input, select, textarea' );
@@ -217,6 +224,16 @@ function generate_font_css()
 	$css->set_selector( '.sidebar .widget, .footer-widgets .widget' );
 	$css->add_property( 'font-size', absint( $generate_settings['widget_content_font_size'] ), $og_defaults['widget_content_font_size'], 'px' );
 	
+	// Form button
+	$css->set_selector( 'button,html input[type="button"],input[type="reset"],input[type="submit"],.button,.button:visited' );
+	$css->add_property( 'font-family', $og_defaults[ 'font_buttons' ] !== $generate_settings[ 'font_buttons' ] ? $buttons_family : null );
+	$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'buttons_font_weight' ] ), $og_defaults[ 'buttons_font_weight' ] );
+	$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'buttons_font_transform' ] ), $og_defaults[ 'buttons_font_transform' ] );
+	
+	if ( '' !== $generate_settings[ 'buttons_font_size' ] ) {
+		$css->add_property( 'font-size', absint( $generate_settings[ 'buttons_font_size' ] ), $og_defaults[ 'buttons_font_size' ], 'px' );
+	}
+
 	// H1
 	$css->set_selector( 'h1' );
 	$css->add_property( 'font-family', $og_defaults[ 'font_heading_1' ] !== $generate_settings[ 'font_heading_1' ] ? $h1_family : null );
@@ -343,6 +360,7 @@ function generate_enqueue_google_fonts() {
 		'font_site_tagline',
 		'font_navigation',
 		'font_widget_title',
+		'font_buttons',
 		'font_heading_1',
 		'font_heading_2',
 		'font_heading_3',
