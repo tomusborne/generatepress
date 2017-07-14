@@ -224,7 +224,7 @@ function generate_font_css()
 	$css->add_property( 'font-size', absint( $generate_settings['widget_content_font_size'] ), $og_defaults['widget_content_font_size'], 'px' );
 	
 	// Form button
-	$css->set_selector( 'button,html input[type="button"],input[type="reset"],input[type="submit"],.button,.button:visited' );
+	$css->set_selector( 'button:not(.menu-toggle),html input[type="button"],input[type="reset"],input[type="submit"],.button,.button:visited' );
 	$css->add_property( 'font-family', $og_defaults[ 'font_buttons' ] !== $generate_settings[ 'font_buttons' ] ? $buttons_family : null );
 	$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'buttons_font_weight' ] ), $og_defaults[ 'buttons_font_weight' ] );
 	$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'buttons_font_transform' ] ), $og_defaults[ 'buttons_font_transform' ] );
