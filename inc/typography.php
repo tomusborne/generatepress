@@ -28,6 +28,7 @@ if ( ! function_exists( 'generate_enqueue_google_fonts' ) ) {
 			'font_site_tagline',
 			'font_navigation',
 			'font_widget_title',
+			'font_buttons',
 			'font_heading_1',
 			'font_heading_2',
 			'font_heading_3',
