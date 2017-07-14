@@ -92,6 +92,23 @@ Code License: MIT License - http://opensource.org/licenses/mit-license.html
 
 == Changelog ==
 
+= 1.3.49 =
+
+Release date: none
+
+* Fix: Mobile bar items on RTL
+* New: Add support for back to top color options
+* New: Add support for widget title bottom margin option
+* New: Add support for line-height to headings
+* New: Add support for H4 and H5 typography options
+* New: Add support for footer typography options
+* New: Add support for H4 and H5 color options
+* New: Add support for button typography options
+* Tweak: Remove content margin if no title, date or author
+* Tweak: Update Font Awesome name in enqueue function
+* Tweak: Style number inputs like others
+* Tweak: Improve sidebar navigation mobile menu
+
 = 1.3.48 =
 
 Release date: June 9, 2017
