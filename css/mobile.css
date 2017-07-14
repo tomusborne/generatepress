@@ -147,6 +147,14 @@ button.menu-toggle:focus {
 		float: none;
 		clear: both;
 	}
+	
+	.gen-sidebar-nav {
+		display: none;
+	}
+	
+	.sidebar-nav-mobile:not(#sticky-placeholder) {
+		display: block;
+	}
 	/* End mobile navigation */
 	
 	.both-right.separate-containers .inside-left-sidebar,
