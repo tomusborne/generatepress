@@ -1742,6 +1742,10 @@ footer.entry-meta .byline {
 	cursor: pointer;
 }
 
+.sidebar-nav-mobile {
+	display: none;
+}
+
 /* Spacing */
 .inside-top-bar {
     padding: 10px;

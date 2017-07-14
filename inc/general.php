@@ -24,6 +24,23 @@ function generate_enqueue_scripts() {
 
 	wp_enqueue_script( 'generate-navigation', trailingslashit( get_template_directory_uri() ) . "js/navigation{$suffix}.js", array( 'jquery' ), GENERATE_VERSION, true );
 
+	// Clone our navigation below the header on mobile if it's in a sidebar
+	if ( function_exists( 'wp_add_inline_script' ) && ( 'nav-left-sidebar' == generate_get_navigation_location() || 'nav-right-sidebar' == generate_get_navigation_location() ) ) {
+		wp_add_inline_script( 'generate-navigation', "var target, nav, clone;
+			nav = document.getElementById( 'site-navigation' );
+			if ( nav ) {
+				clone = nav.cloneNode( true );
+				clone.className += ' sidebar-nav-mobile';
+				target = document.getElementById( 'masthead' );
+				if ( target ) {
+					target.insertAdjacentHTML( 'afterend', clone.outerHTML );
+				} else {
+					document.body.insertAdjacentHTML( 'afterbegin', clone.outerHTML )
+				}
+			}"
+		);
+	}
+
 	$click = ( 'click' == generate_get_option( 'nav_dropdown_type' ) || 'click-arrow' == generate_get_option( 'nav_dropdown_type' ) ) ? '-click' : '';
 	wp_enqueue_script( 'generate-dropdown', trailingslashit( get_template_directory_uri() ) . "js/dropdown{$click}{$suffix}.js", array( 'jquery' ), GENERATE_VERSION, true );
 
@@ -33,11 +50,6 @@ function generate_enqueue_scripts() {
 
 	if ( 'enable' == generate_get_option( 'back_to_top' ) ) {
 		wp_enqueue_script( 'generate-back-to-top', trailingslashit( get_template_directory_uri() ) . "js/back-to-top{$suffix}.js", array( 'jquery' ), GENERATE_VERSION, true );
-	}
-
-	// Move the navigation from below the content on mobile to below the header if it's in a sidebar
-	if ( 'nav-left-sidebar' == generate_get_primary_menu_location() || 'nav-right-sidebar' == generate_get_primary_menu_location() ) {
-		wp_enqueue_script( 'generate-move-navigation', trailingslashit( get_template_directory_uri() ) . "js/move-navigation{$suffix}.js", array( 'jquery' ), GENERATE_VERSION, true );
 	}
 
 	if ( function_exists( 'wp_script_add_data' ) ) {
