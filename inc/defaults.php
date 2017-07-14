@@ -232,7 +232,6 @@ if ( ! function_exists( 'generate_get_default_fonts' ) ) {
 			'footer_weight' => 'normal',
 			'footer_transform' => 'none',
 			'footer_font_size' => '15',
-			'footer_line_height' => '', // em
 		);
 		
 		if ( $filter ) {
