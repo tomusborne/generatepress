@@ -94,3 +94,30 @@ jQuery( document ).ready( function( $ ) {
 		}
 	});
 });
+
+function generateMenuDebounce(func, wait, immediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};
+
+var generateDisableMobileMenu = generateMenuDebounce(function() {
+	jQuery( '.menu-toggle' ).each( function( e ) {
+		var _this = jQuery( this );
+		if ( ! _this.is( ':visible' ) ) {
+			_this.closest( 'nav' ).removeClass( 'toggled' );
+		}
+	} );
+}, 100);
+
+window.addEventListener('resize', generateDisableMobileMenu);
+window.addEventListener('orientationchange', generateDisableMobileMenu);

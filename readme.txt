@@ -92,7 +92,7 @@ Code License: MIT License - http://opensource.org/licenses/mit-license.html
 
 == Changelog ==
 
-= 1.3.49 =
+= 1.4 =
 
 Release date: none
 
@@ -104,6 +104,9 @@ Release date: none
 * New: Add support for footer typography options
 * New: Add support for H4 and H5 color options
 * New: Add support for button typography options
+* New: Add generate_primary_menu_breakpoint filter
+* New: Add generate_primary_menu_media_query filter
+* Tweak: Alter mobile menu so the breakpoint can be easily adjusted
 * Tweak: Remove content margin if no title, date or author
 * Tweak: Update Font Awesome name in enqueue function
 * Tweak: Style number inputs like others

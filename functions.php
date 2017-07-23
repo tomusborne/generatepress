@@ -8,7 +8,7 @@
 // No direct access, please
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'GENERATE_VERSION', '1.3.49-beta.1' );
+define( 'GENERATE_VERSION', '1.4-beta.1' );
 define( 'GENERATE_URI', get_template_directory_uri() );
 define( 'GENERATE_DIR', get_template_directory() );
 
@@ -277,6 +277,14 @@ function generate_scripts()
 	wp_enqueue_style( 'generate-style-grid', get_template_directory_uri() . "/css/unsemantic-grid{$suffix}.css", false, GENERATE_VERSION, 'all' );
 	wp_enqueue_style( 'generate-style', get_template_directory_uri() . '/style.css', array( 'generate-style-grid' ), GENERATE_VERSION, 'all' );
 	wp_enqueue_style( 'generate-mobile-style', get_template_directory_uri() . "/css/mobile{$suffix}.css", array( 'generate-style' ), GENERATE_VERSION, 'all' );
+	
+	$mobile_menu_breakpoint = apply_filters( 'generate_primary_menu_breakpoint', '768' );
+	if ( ! empty( $mobile_menu_breakpoint ) ) {
+		$mobile_menu_media_query = apply_filters( 'generate_primary_menu_media_query', "(max-width: {$mobile_menu_breakpoint}px)" );
+		wp_add_inline_style( 'generate-mobile-style', 
+			"@media {$mobile_menu_media_query}{.main-navigation .menu-toggle,.sidebar-nav-mobile:not(#sticky-placeholder),.main-navigation .mobile-bar-items{display:block}.gen-sidebar-nav,.main-navigation ul{display:none}[class*=nav-float-] .site-header .inside-header>*{float:none;clear:both}}"
+		);
+	}
 	
 	// Add the child theme CSS if child theme is active.
 	if ( is_child_theme() ) {
