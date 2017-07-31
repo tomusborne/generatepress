@@ -27,6 +27,8 @@
 			if ( mobile.is( ':visible' ) )
 				return;
 			
+			console.log($this);
+			
 			if ( $this.parent().closest( '.menu-item-has-children' ).hasClass( 'mega-menu' ) )
 				return;
 

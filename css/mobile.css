@@ -89,6 +89,11 @@ button.menu-toggle:focus {
 		display: none;
 	}
 	
+	.main-navigation ul li:hover > ul,
+	.main-navigation ul li.sfHover > ul {
+		display: none;
+	}
+	
 	.main-navigation.toggled .main-nav > ul {
 		display: block;
 	}
@@ -114,8 +119,10 @@ button.menu-toggle:focus {
 	
 	.main-navigation .sub-menu.toggled-on,
 	.main-navigation .children.toggled-on {
-		display: block !important;
-		opacity: 1 !important;
+		left: auto;
+		height: auto;
+		opacity: 1;
+		display: block;
 	}
 	
 	.main-navigation .dropdown-menu-toggle:before {

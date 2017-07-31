@@ -212,7 +212,7 @@ function generate_dropdown_icon_to_menu_link( $title, $item, $args, $depth ) {
 	if ( in_array( $args->theme_location, apply_filters( 'generate_menu_arrow_theme_locations', $theme_locations ) ) ) {
 		foreach ( $item->classes as $value ) {
 			if ( 'menu-item-has-children' === $value  ) {
-				$title = $title . '<span role="button" class="dropdown-menu-toggle" aria-expanded="false"></span>';
+				$title = $title . '<span role="button" class="dropdown-menu-toggle" aria-expanded="false" tabindex="0"></span>';
 			}
 		}
 	}
