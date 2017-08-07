@@ -35,7 +35,7 @@ function generate_content_nav( $nav_id ) {
 	$category_specific = apply_filters( 'generate_category_post_navigation', false );
 	?>
 	<nav id="<?php echo esc_attr( $nav_id ); ?>" class="<?php echo $nav_class; ?>">
-		<h6 class="screen-reader-text"><?php _e( 'Post navigation', 'generatepress' ); ?></h6>
+		<span class="screen-reader-text"><?php _e( 'Post navigation', 'generatepress' ); ?></span>
 
 		<?php if ( is_single() ) : // navigation links for single posts 
 
