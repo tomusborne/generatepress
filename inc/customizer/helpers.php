@@ -217,3 +217,29 @@ if ( ! function_exists( 'generate_sanitize_choices' ) ) {
 		return ( array_key_exists( $input, $choices ) ? $input : $setting->default );
 	}
 }
+
+function generate_sanitize_variants( $input ) {
+	if ( is_array( $input ) ) {
+		$input = implode( ',', $input );
+	}
+
+	return sanitize_text_field( $input );
+}
+
+add_action( 'customize_controls_enqueue_scripts', 'generate_do_control_inline_scripts', 100 );
+/**
+ * Add misc inline scripts to our controls.
+ *
+ * We don't want to add these to the controls themselves, as they will be repeated
+ * each time the control is initialized.
+ *
+ * @since 2.0
+ */
+function generate_do_control_inline_scripts() {
+	if ( function_exists( 'generate_premium_control_inline_scripts' ) ) {
+		return;
+	}
+
+	wp_localize_script( 'generatepress-typography-customizer', 'gp_customize', array( 'nonce' => wp_create_nonce( 'gp_customize_nonce' ) ) );
+	wp_localize_script( 'generatepress-typography-customizer', 'typography_defaults', generate_typography_default_fonts() );
+}

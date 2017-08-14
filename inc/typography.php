@@ -155,7 +155,7 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 			'font_body_variants', 
 			array(
 				'default' => '',
-				'sanitize_callback' => 'sanitize_text_field'
+				'sanitize_callback' => 'generate_sanitize_variants'
 			)
 		);
 
@@ -369,8 +369,9 @@ if ( ! function_exists( 'generate_get_all_google_fonts' ) ) {
 		}
 
 		// Alphabetize our fonts
-		$alphabetize = apply_filters( 'generate_alphabetize_google_fonts', true );
-		if ( $alphabetize ) asort( $fonts );
+		if ( apply_filters( 'generate_alphabetize_google_fonts', true ) ) {
+			asort( $fonts );
+		}
 
 		// Filter to allow us to modify the fonts array
 		return apply_filters( 'generate_google_fonts_array', $fonts );
@@ -401,7 +402,7 @@ if ( ! function_exists( 'generate_get_all_google_fonts_ajax' ) ) {
 		}
 
 		// Get all of our fonts
-		$fonts = generate_get_all_google_fonts();
+		$fonts = apply_filters( 'generate_typography_customize_list', generate_get_all_google_fonts() );
 
 		// Send all of our fonts in JSON format
 		echo wp_json_encode( $fonts );
@@ -578,7 +579,7 @@ if ( ! function_exists( 'generate_get_font_family_css' ) ) {
 }
 
 if ( ! function_exists( 'generate_add_to_font_customizer_list' ) ) {
-	add_filter( 'generate_typography_customize_list','generate_add_to_font_customizer_list' );
+	add_filter( 'generate_typography_customize_list', 'generate_add_to_font_customizer_list' );
 	/**
 	 * This function makes sure your selected typography option exists in the Customizer list
 	 * Why wouldn't it? Originally, all 800+ fonts were in each list. This has been reduced to 200.
@@ -587,6 +588,11 @@ if ( ! function_exists( 'generate_add_to_font_customizer_list' ) ) {
 	 * @since 1.3.40
 	 */
 	function generate_add_to_font_customizer_list( $fonts ) {
+		// Bail if we don't have our defaults
+		if ( ! function_exists( 'generate_get_default_fonts' ) ) {
+			return;
+		}
+
 		$generate_settings = wp_parse_args( 
 			get_option( 'generate_settings', array() ), 
 			generate_get_default_fonts()
@@ -604,19 +610,42 @@ if ( ! function_exists( 'generate_add_to_font_customizer_list' ) ) {
 			'font_heading_3',
 		);
 
+		$all_fonts = generate_get_all_google_fonts();
+		$select_fonts = generate_get_all_google_fonts( apply_filters( 'generate_number_of_fonts', 200 ) );
+
 		foreach ( $font_settings as $setting ) {
-			if ( ! in_array( $generate_settings[ $setting ], generate_typography_default_fonts() ) ) {
-				$fonts[ strtolower( str_replace( ' ', '_', $generate_settings[ $setting ] ) ) ] = array( 'name' => $generate_settings[ $setting ] );
+			// If we don't have a setting, keep going
+			if ( ! isset( $generate_settings[ $setting ] ) ) {
+				continue;
 			}
+
+			$id = strtolower( str_replace( ' ', '_', $generate_settings[ $setting ] ) );
+
+			if ( array_key_exists( $id, $select_fonts ) || in_array( $id, generate_typography_default_fonts() ) ) {
+				continue;
+			}
+
+			$fonts[ strtolower( str_replace( ' ', '_', $generate_settings[ $setting ] ) ) ] = array( 
+				'name' => $generate_settings[ $setting ],
+				'variants' => array_key_exists( $id, $all_fonts ) ? $all_fonts[$id]['variants'] : array(),
+				'category' => array_key_exists( $id, $all_fonts ) ? $all_fonts[$id]['category'] : 'sans-serif'
+			);
 		}
 
 		if ( function_exists( 'generate_secondary_nav_get_defaults' ) ) {
-			$generate_secondary_nav_settings = wp_parse_args( 
+			$secondary_nav_settings = wp_parse_args( 
 				get_option( 'generate_secondary_nav_settings', array() ), 
 				generate_secondary_nav_get_defaults() 
 			);
-			if ( ! in_array( $generate_secondary_nav_settings[ 'font_secondary_navigation' ], generate_typography_default_fonts() ) ) {
-				$fonts[ strtolower( str_replace( ' ', '_', $generate_secondary_nav_settings[ 'font_secondary_navigation' ] ) ) ] = array( 'name' => $generate_secondary_nav_settings[ 'font_secondary_navigation' ] );
+
+			$secondary_nav_id = strtolower( str_replace( ' ', '_', $secondary_nav_settings[ 'font_secondary_navigation' ] ) );
+
+			if ( ! array_key_exists( $secondary_nav_id, $select_fonts ) && ! in_array( $secondary_nav_settings[ 'font_secondary_navigation' ], generate_typography_default_fonts() ) ) {
+				$fonts[ strtolower( str_replace( ' ', '_', $secondary_nav_settings[ 'font_secondary_navigation' ] ) ) ] = array( 
+					'name' => $secondary_nav_settings[ 'font_secondary_navigation' ],
+					'variants' => array_key_exists( $secondary_nav_id, $all_fonts ) ? $all_fonts[$secondary_nav_id]['variants'] : array(),
+					'category' => array_key_exists( $secondary_nav_id, $all_fonts ) ? $all_fonts[$secondary_nav_id]['category'] : 'sans-serif'
+				);
 			}
 		}
 

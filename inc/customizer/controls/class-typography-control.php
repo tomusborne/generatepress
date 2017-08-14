@@ -11,29 +11,32 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 		public $type = 'gp-customizer-typography';
 
 		public function enqueue() {
-			wp_enqueue_script( 'generatepress-typography-customizer', trailingslashit( get_template_directory_uri() )  . 'inc/customizer/controls/js/typography-customizer.js', array( 'customize-controls' ), GENERATE_VERSION, true );
-			wp_localize_script( 'generatepress-typography-customizer', 'gp_customize', array( 'nonce' => wp_create_nonce( 'gp_customize_nonce' ) ) );
-			wp_enqueue_style( 'generatepress-typography-customizer', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/css/typography-customizer.css', array(), GENERATE_VERSION );
+			wp_enqueue_script( 'generatepress-typography-select2', trailingslashit( get_template_directory_uri() )  . 'inc/customizer/controls/js/select2.min.js', array( 'customize-controls', 'jquery' ), GENERATE_VERSION, true );
+			wp_enqueue_style( 'generatepress-typography-select2', trailingslashit( get_template_directory_uri() )  . 'inc/customizer/controls/css/select2.min.css', array(), GENERATE_VERSION );
+
+			wp_enqueue_script( 'generatepress-typography-customizer', trailingslashit( get_template_directory_uri() )  . 'inc/customizer/controls/js/typography-customizer.js', array( 'customize-controls', 'generatepress-typography-select2' ), GENERATE_VERSION, true );
+			wp_enqueue_style( 'generatepress-typography-customizer', trailingslashit( get_template_directory_uri() )  . 'inc/customizer/controls/css/typography-customizer.css', array(), GENERATE_VERSION );
 		}
 
 		public function to_json() {
 			parent::to_json();
 
 			$number_of_fonts = apply_filters( 'generate_number_of_fonts', 200 );
-			$this->json[ 'default_fonts_title'] = __( 'Default fonts', 'generatepress' );
+			$this->json[ 'default_fonts_title'] = __( 'System fonts', 'generatepress' );
 			$this->json[ 'google_fonts_title'] = __( 'Google fonts', 'generatepress' );
 			$this->json[ 'google_fonts' ] = apply_filters( 'generate_typography_customize_list', generate_get_all_google_fonts( $number_of_fonts ) );
 			$this->json[ 'default_fonts' ] = generate_typography_default_fonts();
-			$this->json[ 'family_title' ] = esc_html__( 'Font family','generatepress' );
-			$this->json[ 'weight_title' ] = esc_html__( 'Font weight','generatepress' );
-			$this->json[ 'transform_title' ] = esc_html__( 'Text transform','generatepress' );
+			$this->json[ 'family_title' ] = esc_html__( 'Font family', 'generatepress' );
+			$this->json[ 'weight_title' ] = esc_html__( 'Font weight', 'generatepress' );
+			$this->json[ 'transform_title' ] = esc_html__( 'Text transform', 'generatepress' );
 			$this->json[ 'category_title' ] = '';
-			$this->json[ 'variant_title' ] = '';
+			$this->json[ 'variant_title' ] = esc_html__( 'Variants', 'generatepress' );
 
 			foreach ( $this->settings as $setting_key => $setting_id ) {
 				$this->json[ $setting_key ] = array(
 					'link'  => $this->get_link( $setting_key ),
 					'value' => $this->value( $setting_key ),
+					'value_array' => $this->value( $setting_key ) ? explode( ',', $this->value( $setting_key ) ) : null,
 					'default' => isset( $setting_id->default ) ? $setting_id->default : '',
 					'id' => isset( $setting_id->id ) ? $setting_id->id : ''
 				);
@@ -56,7 +59,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 			<# if ( 'undefined' !== typeof ( data.family ) ) { #>
 				<div class="generatepress-font-family">
 					<label>
-						<select {{{ data.family.link }}} data-category="{{{ data.category.id }}}" data-variants="{{{ data.variant.id }}}"> 
+						<select {{{ data.family.link }}} data-category="{{{ data.category.id }}}" data-variants="{{{ data.variant.id }}}" style="width:100%;"> 
 							<optgroup label="{{ data.default_fonts_title }}">
 								<# for ( var key in data.default_fonts ) { #>
 									<# var name = data.default_fonts[ key ].split(',')[0]; #>
@@ -77,9 +80,22 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 			<# } #>
 
 			<# if ( 'undefined' !== typeof ( data.variant ) ) { #>
-				<div class="generatepress-font-variant">
+				<# 
+				var id = data.family.value.split(' ').join('_').toLowerCase();
+				var font_data = data.google_fonts[id];
+				var variants = '';
+				if ( typeof font_data !== 'undefined' ) {
+					variants = font_data.variants;
+				}
+				#>
+				<div id={{{ data.variant.id }}}" class="generatepress-font-variant">
 					<label>
-							<input name="{{{ data.variant.id }}}" type="hidden" {{{ data.variant.link }}} value="{{{ data.variant.value }}}" class="gp-hidden-input" />
+						<select name="{{{ data.variant.id }}}" multiple class="typography-multi-select" style="width:100%;" {{{ data.variant.link }}}>
+							<# _.each( variants, function( label, choice ) { #>
+								<option value="{{ label }}" <# if ( jQuery.inArray( label, data.variant.value_array ) !== -1 ) { #> selected="selected" <# } #>>{{ label }}</option>
+							<# } ) #>
+						</select>
+
 						<# if ( '' !== data.variant_title ) { #>
 							<p class="description">{{ data.variant_title }}</p>
 						<# } #>
@@ -102,9 +118,13 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 				<div class="generatepress-font-weight">
 					<label>
 						<select {{{ data.weight.link }}}>
+
 							<# _.each( data.weight.choices, function( label, choice ) { #>
+
 								<option value="{{ choice }}" <# if ( choice === data.weight.value ) { #> selected="selected" <# } #>>{{ label }}</option>
+
 							<# } ) #>
+
 						</select>
 						<# if ( '' !== data.weight_title ) { #>
 							<p class="description">{{ data.weight_title }}</p>
@@ -117,9 +137,13 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 				<div class="generatepress-font-transform">
 					<label>
 						<select {{{ data.transform.link }}}>
+
 							<# _.each( data.transform.choices, function( label, choice ) { #>
+
 								<option value="{{ choice }}" <# if ( choice === data.transform.value ) { #> selected="selected" <# } #>>{{ label }}</option>
+
 							<# } ) #>
+
 						</select>
 						<# if ( '' !== data.transform_title ) { #>
 							<p class="description">{{ data.transform_title }}</p>

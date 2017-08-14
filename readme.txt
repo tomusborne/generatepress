@@ -90,6 +90,10 @@ Dual licensed under the MIT or GPL Version 2 licenses
 Font License: SIL OFL 1.1 - http://scripts.sil.org/OFL
 Code License: MIT License - http://opensource.org/licenses/mit-license.html
 
+= Select2 =
+
+Select2 is licensed under MIT
+
 == Changelog ==
 
 = 1.4 =
