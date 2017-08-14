@@ -218,6 +218,8 @@ function generate_reset_customizer_settings() {
 		return;
 
 	delete_option('generate_settings');
+	remove_theme_mod( 'font_body_variants' );
+	remove_theme_mod( 'font_body_category' );
 	
 	wp_safe_redirect( admin_url( 'themes.php?page=generate-options&status=reset' ) ); exit;
 
