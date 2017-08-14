@@ -92,7 +92,7 @@ Code License: MIT License - http://opensource.org/licenses/mit-license.html
 
 == Changelog ==
 
-= 1.3.49 =
+= 1.4 =
 
 Release date: none
 
