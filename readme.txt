@@ -94,7 +94,7 @@ Code License: MIT License - http://opensource.org/licenses/mit-license.html
 
 = 1.4 =
 
-Release date: none
+Release date: August 14, 2017
 
 * Fix: Mobile bar items on RTL
 * New: Add support for back to top color options
@@ -107,6 +107,7 @@ Release date: none
 * Tweak: Remove content margin if no title, date or author
 * Tweak: Update Font Awesome name in enqueue function
 * Tweak: Style number inputs like others
+* Tweak: Style tel inputs like others
 * Tweak: Improve sidebar navigation mobile menu
 
 = 1.3.48 =
