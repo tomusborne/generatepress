@@ -6,7 +6,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options
 Requires at least: 4.5
 Tested up to: 4.8
-Stable tag: 1.3.48
+Stable tag: 1.4
 
 GeneratePress is a fast, lightweight (less than 1MB zipped), mobile responsive WordPress theme built with speed, SEO and usability in mind.
 
@@ -98,7 +98,7 @@ Select2 is licensed under MIT
 
 = 1.4 =
 
-Release date: none
+Release date: August 14, 2017
 
 * Fix: Mobile bar items on RTL
 * New: Add support for back to top color options
@@ -111,6 +111,7 @@ Release date: none
 * Tweak: Remove content margin if no title, date or author
 * Tweak: Update Font Awesome name in enqueue function
 * Tweak: Style number inputs like others
+* Tweak: Style tel inputs like others
 * Tweak: Improve sidebar navigation mobile menu
 
 = 1.3.48 =
