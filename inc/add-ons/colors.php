@@ -343,12 +343,12 @@ function generate_advanced_css()
 	$css->add_property( 'border-color', esc_attr( $generate_settings[ 'form_border_color_focus' ] ) );
 	
 	// Form button
-	$css->set_selector( 'button,html input[type="button"],input[type="reset"],input[type="submit"],.button,.button:visited' );
+	$css->set_selector( 'button,html input[type="button"],input[type="reset"],input[type="submit"],a.button,a.button:visited' );
 	$css->add_property( 'color', esc_attr( $generate_settings[ 'form_button_text_color' ] ) );
 	$css->add_property( 'background-color', esc_attr( $generate_settings[ 'form_button_background_color' ] ) );
 	
 	// Form button on hover
-	$css->set_selector( 'button:hover,html input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover,.button:hover,button:focus,html input[type="button"]:focus,input[type="reset"]:focus,input[type="submit"]:focus,.button:focus' );
+	$css->set_selector( 'button:hover,html input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover,a.button:hover,button:focus,html input[type="button"]:focus,input[type="reset"]:focus,input[type="submit"]:focus,a.button:focus' );
 	$css->add_property( 'color', esc_attr( $generate_settings[ 'form_button_text_color_hover' ] ) );
 	$css->add_property( 'background-color', esc_attr( $generate_settings[ 'form_button_background_color_hover' ] ) );
 	
