@@ -104,6 +104,9 @@ Release date: August 14, 2017
 * New: Add support for footer typography options
 * New: Add support for H4 and H5 color options
 * New: Add support for button typography options
+* New: Add generate_primary_menu_breakpoint filter
+* New: Add generate_primary_menu_media_query filter
+* Tweak: Alter mobile menu so the breakpoint can be easily adjusted
 * Tweak: Remove content margin if no title, date or author
 * Tweak: Update Font Awesome name in enqueue function
 * Tweak: Style number inputs like others

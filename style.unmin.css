@@ -1927,6 +1927,90 @@ h3 {
     font-size: 15px;
 }
 
+/* Mobile menu */
+button.menu-toggle {
+	background-color: transparent;
+	width: 100%;
+	border: 0;
+	outline: 0;
+	text-align: center;
+}
+
+button.menu-toggle:hover,
+button.menu-toggle:active,
+button.menu-toggle:focus {
+	background-color: transparent;
+	border: 0;
+	outline: 0;
+}
+
+.nav-search-enabled .main-navigation .menu-toggle {
+	text-align: left;
+}
+
+.mobile-bar-items {
+	display: none;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 21;
+	list-style-type: none;
+}
+
+.mobile-bar-items a {
+	display: inline-block;
+}
+
+.main-navigation.toggled .main-nav > ul {
+	display: block;
+}
+
+.main-navigation.toggled .main-nav ul ul {
+	position: relative;
+	top: 0;
+	left: auto;
+	right: auto;
+	width: 100%;
+}
+
+.main-navigation.toggled .main-nav li {
+	float: none;
+	clear: both;
+	display: block !important;
+	text-align: left !important;
+}
+
+.main-navigation.toggled .main-nav li.hide-on-mobile {
+	display: none !important;
+}
+
+.main-navigation.toggled .sub-menu.toggled-on,
+.main-navigation.toggled .children.toggled-on {
+	display: block !important;
+	opacity: 1 !important;
+}
+
+.main-navigation.toggled .dropdown-menu-toggle:before {
+	content: "\f107" !important;
+}
+
+.main-navigation.toggled .sfHover > a .dropdown-menu-toggle:before {
+	content: "\f106" !important;
+}
+
+.main-navigation.toggled .menu-item-has-children .dropdown-menu-toggle {
+	float: right;
+}
+
+.main-navigation.toggled .menu li.search-item {
+	display: none !important;
+}
+
+.main-navigation.toggled .sf-menu > li.menu-item-float-right {
+	float: none !important;
+	display: inline-block !important;
+}
+
 /* 
  * Backwards compatibility until Slideout is updated
  * GP Premium 1.2.93
