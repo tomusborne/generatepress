@@ -1361,6 +1361,7 @@ h4, h5, h6 {
 
 .footer-bar-align-left .footer-bar {
 	float: left;
+	text-align: left;
 }
 
 /* Footer bar aligned center */
