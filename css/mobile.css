@@ -76,7 +76,7 @@ button.menu-toggle:focus {
 		transition: all 0s ease-in-out;
 	}
 	
-	.inside-header > *:not(:last-child) {
+	.inside-header > *:not(:last-child):not(.main-navigation) {
 		margin-bottom: 20px;
 	}
 	
