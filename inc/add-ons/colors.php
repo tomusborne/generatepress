@@ -331,24 +331,24 @@ function generate_advanced_css()
 	$css->add_property( 'color', esc_attr( $generate_settings[ 'footer_link_hover_color' ] ) );
 	
 	// Form input
-	$css->set_selector( 'input[type="text"],input[type="email"],input[type="url"],input[type="password"],input[type="search"],input[type="number"],textarea' );
+	$css->set_selector( 'input[type="text"],input[type="email"],input[type="url"],input[type="password"],input[type="search"],input[type="tel"],input[type="number"],textarea,select' );
 	$css->add_property( 'color', esc_attr( $generate_settings[ 'form_text_color' ] ) );
 	$css->add_property( 'background-color', esc_attr( $generate_settings[ 'form_background_color' ] ) );
 	$css->add_property( 'border-color', esc_attr( $generate_settings[ 'form_border_color' ] ) );
 	
 	// Form input on focus
-	$css->set_selector( 'input[type="text"]:focus,input[type="email"]:focus,input[type="url"]:focus,input[type="password"]:focus,input[type="search"]:focus,input[type="number"]:focus,textarea:focus' );
+	$css->set_selector( 'input[type="text"]:focus,input[type="email"]:focus,input[type="url"]:focus,input[type="password"]:focus,input[type="search"]:focus,input[type="tel"]:focus,input[type="number"]:focus,textarea:focus,select:focus' );
 	$css->add_property( 'color', esc_attr( $generate_settings[ 'form_text_color_focus' ] ) );
 	$css->add_property( 'background-color', esc_attr( $generate_settings[ 'form_background_color_focus' ] ) );
 	$css->add_property( 'border-color', esc_attr( $generate_settings[ 'form_border_color_focus' ] ) );
 	
 	// Form button
-	$css->set_selector( 'button,html input[type="button"],input[type="reset"],input[type="submit"],.button,.button:visited' );
+	$css->set_selector( 'button,html input[type="button"],input[type="reset"],input[type="submit"],a.button,a.button:visited' );
 	$css->add_property( 'color', esc_attr( $generate_settings[ 'form_button_text_color' ] ) );
 	$css->add_property( 'background-color', esc_attr( $generate_settings[ 'form_button_background_color' ] ) );
 	
 	// Form button on hover
-	$css->set_selector( 'button:hover,html input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover,.button:hover,button:focus,html input[type="button"]:focus,input[type="reset"]:focus,input[type="submit"]:focus,.button:focus' );
+	$css->set_selector( 'button:hover,html input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover,a.button:hover,button:focus,html input[type="button"]:focus,input[type="reset"]:focus,input[type="submit"]:focus,a.button:focus' );
 	$css->add_property( 'color', esc_attr( $generate_settings[ 'form_button_text_color_hover' ] ) );
 	$css->add_property( 'background-color', esc_attr( $generate_settings[ 'form_button_background_color_hover' ] ) );
 	

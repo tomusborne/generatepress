@@ -265,7 +265,8 @@ input[type="password"],
 input[type="search"],
 input[type="tel"],
 input[type="number"],
-textarea {
+textarea,
+select {
 	background: #FAFAFA;
 	color: #666;
 	border: 1px solid #ccc;
@@ -283,7 +284,8 @@ input[type="password"]:focus,
 input[type="tel"]:focus,
 input[type="search"]:focus,
 input[type="number"]:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
 	color: #111;
 	background: #FFF;
 }
@@ -1367,6 +1369,7 @@ h4, h5, h6 {
 
 .footer-bar-align-left .footer-bar {
 	float: left;
+	text-align: left;
 }
 
 /* Footer bar aligned center */
