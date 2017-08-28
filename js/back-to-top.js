@@ -1,27 +1,44 @@
-jQuery( document ).ready( function($) {
-	var _amountScrolled = $( '.generate-back-to-top' ).data( 'start-scroll' ),
-		_scrollSpeed = $( '.generate-back-to-top' ).data( 'scroll-speed' ),
-		_button = $( 'a.generate-back-to-top' ),
-		_window = $( window );
+( function() {
+  'use strict';
 
-	_window.scroll(function() {
-		if ( _window.scrollTop() > _amountScrolled ) {
-			$( _button ).css({
-				'opacity': '1',
-				'visibility': 'visible'
-			});
-		} else {
-			$( _button ).css({
-				'opacity': '0',
-				'visibility' : 'hidden'
-			});
+	function scrollTo(element, to, duration) {
+		if ( duration <= 0 ) {
+			return;
 		}
-	});
 
-	$( _button ).on( 'click', function( e ) {
+		var difference = to - element.scrollTop;
+		var perTick = difference / duration * 10;
+
+		setTimeout(function() {
+			element.scrollTop = element.scrollTop + perTick;
+			if ( element.scrollTop === to ) {
+				return;
+			}
+			scrollTo(element, to, duration - 10);
+		}, 10);
+	}
+
+	function trackScroll() {
+		var scrolled = window.pageYOffset;
+		var coords = goTopBtn.getAttribute( 'data-start-scroll' ) ;
+
+		if ( scrolled > coords ) {
+			goTopBtn.style.opacity = '1';
+			goTopBtn.style.visibility = 'visible';
+		}
+
+		if (scrolled < coords) {
+			goTopBtn.style.opacity = '0';
+			goTopBtn.style.visibility = 'hidden';
+		}
+	}
+
+	var goTopBtn = document.querySelector( '.generate-back-to-top' );
+
+	window.addEventListener( 'scroll', trackScroll );
+
+	goTopBtn.addEventListener( 'click', function( e ) {
 		e.preventDefault();
-		$('html, body').animate({
-			scrollTop: 0
-		}, _scrollSpeed);
-	});
-});
+		scrollTo( document.body, 0, goTopBtn.getAttribute( 'data-scroll-speed' ) );
+	} );
+} )();

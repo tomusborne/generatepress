@@ -324,7 +324,7 @@ function generate_scripts()
 	
 	// Add the back to top script if it's enabled
 	if ( 'enable' == $generate_settings['back_to_top'] ) {
-		wp_enqueue_script( 'generate-back-to-top', get_template_directory_uri() . "/js/back-to-top{$suffix}.js", array( 'jquery' ), GENERATE_VERSION, true );
+		wp_enqueue_script( 'generate-back-to-top', get_template_directory_uri() . "/js/back-to-top{$suffix}.js", array(), GENERATE_VERSION, true );
 	}
 	
 	// IE 8
