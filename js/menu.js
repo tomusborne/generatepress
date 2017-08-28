@@ -110,6 +110,58 @@ for ( var i = 0; i < parentElements.length; i++ ) {
 }
 
 /**
+ * Make hover dropdown touch-friendly.
+ */
+if ( document.body.classList.contains( 'dropdown-hover' ) ) {
+	if ('ontouchstart' in document.documentElement) {
+		for ( var i = 0; i < parentElements.length; i++ ) {
+			var $this = parentElements[i];
+			var mobile = getClosest( this, '.main-nav' ).previousElementSibling;
+			var closestParent = getClosest( $this.parentNode, '.menu-item-has-children' );
+
+			if ( ! isVisible( mobile ) && ! closestParent.classList.contains( 'mega-menu' ) ) {
+				this.addEventListener( 'touchstart', function( e ) {
+					if ( e.touches.length === 1 ) {
+						// Prevent touch events within dropdown bubbling down to document
+						e.stopPropagation();
+
+						// Toggle hover
+						if ( ! $this.classList.contains( 'sfHover' ) ) {
+							// Prevent link on first touch
+							if ( e.target === this || e.target.parentNode === this ) {
+								e.preventDefault();
+							}
+							
+							var closestLi = getClosest( $this, 'li' );
+							var siblings = getSiblings( closestLi );
+							for ( var o = 0; o < siblings.length; o++ ) {
+
+								if ( siblings[o].querySelector( '.toggled-on' ) ) {
+									siblings[o].querySelector( '.toggled-on' ).classList.remove( 'toggled-on' );
+								}
+
+								siblings[o].classList.remove( 'sfHover' );
+
+							}
+							
+							$this.classList.add( 'sfHover' );
+
+							// Hide dropdown on touch outside
+							document.addEventListener('touchstart', closeDropdown = function(e) {
+								e.stopPropagation();
+
+								$this.classList.remove( 'sfHover' );
+								document.removeEventListener('touchstart', closeDropdown);
+							});
+						}
+					}
+				}, false);
+			}
+		}
+	}
+}
+
+/**
  * Make menu items accessible
  */
 var toggleFocus = function() {
