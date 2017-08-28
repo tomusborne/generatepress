@@ -386,9 +386,13 @@ if ( document.body.classList.contains( 'dropdown-click' ) ) {
 }
 
 // Navigation search
-toggleSearch = function( e ) {
-  e.preventDefault();
-	var item = this.parentNode;
+toggleSearch = function( e, item ) {
+	e.preventDefault();
+	
+	if ( ! item ) {
+		var item = this.parentNode;
+	}
+
 	var nav = getClosest( item, 'nav' );
 
 	if ( item.getAttribute( 'data-nav' ) ) {
@@ -403,11 +407,13 @@ toggleSearch = function( e ) {
 		item.style.opacity = '1';
 		item.style.float = '';
 		form.style.display = 'none';
+		form.classList.remove( 'nav-search-active' );
 		item.classList.remove( 'active' );
 	} else {
 		item.style.opacity = '0';
 		form.style.display = 'block';
 		form.querySelector( 'input' ).focus();
+		form.classList.add( 'nav-search-active' );
 
 		setTimeout( function() {
 			item.querySelector( 'i' ).classList.remove( 'fa-search' );
@@ -428,4 +434,14 @@ if ( document.body.classList.contains( 'nav-search-enabled' ) ) {
 	for ( var i = 0; i < searchIcons.length; i++ ) {
 		searchIcons[i].addEventListener( 'click', toggleSearch, false );
 	};
+
+	document.addEventListener( 'keydown', function( e ) {
+		if ( document.querySelector( '.navigation-search' ).classList.contains( 'nav-search-active' ) ) {
+			var key = e.which || e.keyCode;
+
+			if ( key === 27 ) { // 27 is esc
+				toggleSearch( e, document.querySelector( '.search-item.active a' ) );
+			}
+		}
+	}, false );
 }
