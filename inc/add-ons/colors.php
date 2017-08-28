@@ -160,7 +160,7 @@ function generate_advanced_css()
 		$css->add_property( 'color', esc_attr( $generate_settings[ 'navigation_text_color' ] ) );
 		
 		// Navigation background/text on hover
-		$css->set_selector( '.main-navigation .main-nav ul li > a:hover,.main-navigation .main-nav ul li > a:focus, .main-navigation .main-nav ul li.sfHover > a' );
+		$css->set_selector( '.main-navigation .main-nav ul li:hover > a,.main-navigation .main-nav ul li:focus > a, .main-navigation .main-nav ul li.sfHover > a' );
 		$css->add_property( 'color', esc_attr( $generate_settings[ 'navigation_text_hover_color' ] ) );
 		$css->add_property( 'background-color', esc_attr( $generate_settings[ 'navigation_background_hover_color' ] ) );
 		
@@ -200,7 +200,7 @@ function generate_advanced_css()
 		$css->add_property( 'color', esc_attr( $generate_settings[ 'subnavigation_text_color' ] ) );
 		
 		// Sub-Navigation background/text on hover
-		$css->set_selector( '.main-navigation .main-nav ul ul li > a:hover,.main-navigation .main-nav ul ul li > a:focus,.main-navigation .main-nav ul ul li.sfHover > a' );
+		$css->set_selector( '.main-navigation .main-nav ul ul li:hover > a,.main-navigation .main-nav ul ul li:focus > a,.main-navigation .main-nav ul ul li.sfHover > a' );
 		$css->add_property( 'color', esc_attr( $generate_settings[ 'subnavigation_text_hover_color' ] ) );
 		$css->add_property( 'background-color', esc_attr( $generate_settings[ 'subnavigation_background_hover_color' ] ) );
 		

@@ -41,7 +41,7 @@ isVisible = function (el) {
 	if ( el.offsetParent === null ) {
 		return false;
 	}
-	
+
 	return true;
 }
 
@@ -82,6 +82,7 @@ getSiblings = function (elem) {
 var parentElements = document.querySelectorAll( '.sf-menu .menu-item-has-children' ),
 	nav,
 	allNavToggles = document.querySelectorAll( '.menu-toggle' ),
+	searchIcons = document.querySelectorAll( '.search-item a' ),
 	navToggle = document.querySelector( '.menu-toggle' ),
 	dropdownToggle = document.querySelectorAll( 'nav .dropdown-menu-toggle' ),
 	navLinks = document.querySelectorAll( 'nav a' ),
@@ -92,11 +93,12 @@ var parentElements = document.querySelectorAll( '.sf-menu .menu-item-has-childre
  */
 var toggleSubMenu = function( e ) {
 	var mobile = getClosest( this, '.main-nav' ).previousElementSibling;
-	
+
 	if ( isVisible( mobile ) ) {
+		this.querySelector( 'ul' ).style.left = '-9999px';
 		return;
 	}
-	
+
 	this.classList.toggle( 'sfHover' );
 }
 
@@ -112,21 +114,19 @@ for ( var i = 0; i < parentElements.length; i++ ) {
  */
 var toggleFocus = function() {
 	var mobile = getClosest( this, '.main-nav' ).previousElementSibling;
-	
+
 	if ( isVisible( mobile ) ) {
 		return;
 	}
-	
+
 	if ( document.body.classList.contains( 'dropdown-click' ) ) {
-		return; 
+		return;
 	}
-	
+
 	var self = this;
 
-	// Move up through the ancestors of the current link until we hit .nav-menu.
 	while ( -1 === self.className.indexOf( 'main-nav' ) ) {
 
-		// On li elements toggle the class .focus.
 		if ( 'li' === self.tagName.toLowerCase() ) {
 			if ( -1 !== self.className.indexOf( 'sfHover' ) ) {
 				self.className = self.className.replace( ' sfHover', '' );
@@ -153,9 +153,9 @@ toggleNav = function() {
 	} else {
 		parent = getClosest( this, 'nav' );
 	}
-	
+
 	nav = parent.getElementsByTagName( 'ul' )[0];
-	
+
 	if ( parent.classList.contains( 'toggled' ) ) {
 		removeClass( parent, "toggled" );
 		removeClass( htmlEl, 'mobile-menu-open' );
@@ -164,34 +164,6 @@ toggleNav = function() {
 		addClass( parent, "toggled" );
 		addClass( htmlEl, 'mobile-menu-open' );
 		nav.setAttribute( 'aria-hidden', 'false' );
-	}
-}
-
-toggleMobileMenu = function( e ) {
-	if ( isVisible( navToggle ) ) {
-		e.preventDefault();
-		var closestLi = getClosest( this, 'li' );
-		closestLi.classList.toggle( 'sfHover' );
-		closestLi.querySelector( '.sub-menu' ).classList.toggle( 'toggled-on' );
-	}
-	
-	e.stopPropagation();
-}
-
-checkMobile = function() {
-	for ( var i = 0; i < allNavToggles.length; i++ ) {
-		if ( ! isVisible( allNavToggles[i] ) ) {
-			var closestParent = getClosest( allNavToggles[i], 'nav.toggled' );
-			var closestNav = closestParent.getElementsByTagName( 'ul' )[0];
-			if ( closestParent ) {
-				removeClass( closestParent, 'toggled' );
-				removeClass( htmlEl, 'mobile-menu-open' );
-				
-				if ( closestNav ) {
-					closestNav.setAttribute( 'aria-hidden', 'true' );
-				}
-			}
-		}
 	}
 }
 
@@ -205,66 +177,114 @@ for ( var i = 0; i < allNavToggles.length; i++ ) {
 	}, false );
 }
 
-for ( var i = 0; i < dropdownToggle.length; i++ ) {
-	dropdownToggle[i].addEventListener( 'click', toggleMobileMenu, false );
+// Open sub-menus
+toggleSubNav = function( e ) {
+	if ( isVisible( navToggle ) ) {
+		e.preventDefault();
+		var closestLi = getClosest( this, 'li' );
+		closestLi.classList.toggle( 'sfHover' );
+		closestLi.querySelector( '.sub-menu' ).classList.toggle( 'toggled-on' );
+	}
+
+	e.stopPropagation();
 }
 
+for ( var i = 0; i < dropdownToggle.length; i++ ) {
+	dropdownToggle[i].addEventListener( 'click', toggleSubNav, false );
+}
+
+// Disable the mobile menu if the toggle isn't visible
+checkMobile = function() {
+	for ( var i = 0; i < allNavToggles.length; i++ ) {
+		if ( ! isVisible( allNavToggles[i] ) ) {
+			var closestParent = getClosest( allNavToggles[i], 'nav' );
+			var closestNav = closestParent.getElementsByTagName( 'ul' )[0];
+			var closestNavItems = closestNav.getElementsByTagName( 'li' );
+			var closestSubMenus = closestNav.getElementsByTagName( 'ul' );
+			if ( closestParent ) {
+				removeClass( closestParent, 'toggled' );
+				removeClass( htmlEl, 'mobile-menu-open' );
+
+				for ( var li = 0; li < closestNavItems.length; li++ ) {
+					removeClass( closestNavItems[li], 'sfHover' );
+				}
+
+				for ( var sm = 0; sm < closestSubMenus.length; sm++ ) {
+					removeClass( closestSubMenus[sm], 'toggled-on' );
+				}
+
+				if ( closestNav ) {
+					closestNav.setAttribute( 'aria-hidden', 'true' );
+				}
+			}
+		}
+	}
+}
+window.addEventListener( 'resize', checkMobile, false );
+window.addEventListener( 'orientationchange', checkMobile, false );
+
+// Do things when nav links are clicked
 for ( var i = 0; i < navLinks.length; i++ ) {
 	navLinks[i].addEventListener( 'click', function( e ) {
 		if ( isVisible( navToggle ) ) {
 			var url = this.getAttribute( 'href' );
+
+			// Open the sub-menu if the link has no destination
 			if ( '#' == url || '' == url ) {
 				e.preventDefault();
 				var closestLi = getClosest( this, 'li' );
 				closestLi.classList.toggle( 'sfHover' );
-				closestLi.querySelector( '.sub-menu' ).classList.toggle( 'toggled-on' );
+				var subMenu = closestLi.querySelector( '.sub-menu' );
+
+				if ( subMenu ) {
+					subMenu.classList.toggle( 'toggled-on' );
+				}
 			}
-			
+
+			// Close the mobile menu if our link does something
 			if ( '#' !== url && '' !== url ) {
 				removeClass( parent, "toggled" );
 				removeClass( htmlEl, 'mobile-menu-open' );
 				nav.setAttribute( 'aria-hidden', 'true' );
 			}
-			
+
 		}
 	}, false );
 }
 
-window.addEventListener( 'resize', checkMobile, false );
-window.addEventListener( 'orientationchange', checkMobile, false );
-
 /**
  * Dropdown click
  */
-dropdownClick = function( e, _this = this ) {
+dropdownClick = function( e ) {
 	e.preventDefault();
-	console.log(_this);
+	var _this = this;
 	var closestLi = getClosest( _this, 'li' );
 	var siblings = getSiblings( closestLi );
 	var parent = getClosest( _this, 'nav' );
-	
+
+	// Close the secondary menu if we're clicking inside the main menu
 	if ( parent.classList.contains( '.main-navigation' ) ) {
 		if ( isVisible( '.secondary-navigation ul.toggled-on' ) ) {
 			var navLink = document.querySelector( '.secondary-navigation .main-nav .menu-item-has-children > a' );
 			removeClass( navLink.parentNode, 'sfHover' );
 		}
 	}
-	
+
+	// Close other sub-menus
 	for ( var o = 0; o < siblings.length; o++ ) {
-		
-		// Close other sub-menus
+
 		if ( siblings[o].querySelector( '.toggled-on' ) ) {
 			siblings[o].querySelector( '.toggled-on' ).classList.remove( 'toggled-on' );
 		}
-		
-		// Remove sfHover class from other menu items
+
 		siblings[o].classList.remove( 'sfHover' );
-		
+
 	}
-	
+
 	// Add sfHover class to parent li
 	closestLi.classList.toggle( 'sfHover' );
 
+	// Open the sub-menu
 	if ( document.body.classList.contains( 'dropdown-click-menu-item' ) ) {
 		_this.parentNode.querySelector( '.sub-menu' ).classList.toggle( 'toggled-on' );
 	} else if ( document.body.classList.contains( 'dropdown-click-arrow' ) ) {
@@ -272,37 +292,88 @@ dropdownClick = function( e, _this = this ) {
 	}
 }
 
+// Do stuff if click dropdown if enabled
 if ( document.body.classList.contains( 'dropdown-click' ) ) {
+
 	var parentElementLinks = document.querySelectorAll( '.sf-menu .menu-item-has-children > a' ),
 		dropdownToggleLinks = document.querySelectorAll( '.sf-menu .menu-item-has-children > a .dropdown-menu-toggle' );
-	
-	
+
+	// Open the sub-menu by clicking on the entire link element
 	if ( document.body.classList.contains( 'dropdown-click-menu-item' ) ) {
 		for ( var i = 0; i < parentElementLinks.length; i++ ) {
-			parentElementLinks[i].addEventListener( 'click', dropdownClick, false );
+			parentElementLinks[i].addEventListener( 'click', dropdownClick, true );
 		}
 	}
-	
+
+	// Open the sub-menu by clicking on a dropdown arrow
 	if ( document.body.classList.contains( 'dropdown-click-arrow' ) ) {
+
+		// Add a class to sub-menu items that are set to #
 		for ( var i = 0; i < document.querySelectorAll( '.sf-menu .menu-item-has-children > a' ).length; i++ ) {
 			if ( '#' == document.querySelectorAll( '.sf-menu .menu-item-has-children > a' )[i].getAttribute( 'href' ) ) {
 				document.querySelectorAll( '.sf-menu .menu-item-has-children > a' )[i].classList.add( 'menu-item-dropdown-click' );
 			}
 		}
-		
+
 		for ( var i = 0; i < dropdownToggleLinks.length; i++ ) {
 			dropdownToggleLinks[i].addEventListener( 'click', dropdownClick, false );
-			
+
 			dropdownToggleLinks[i].addEventListener( 'keydown', function( e ) {
 				var key = e.which || e.keyCode;
 				if ( key === 13 ) { // 13 is enter
-					dropdownClick( e, this );
+					dropdownClick( e );
 				}
 			}, false );
 		}
-		
+
 		for ( var i = 0; i < document.querySelectorAll( '.sf-menu .menu-item-has-children > a.menu-item-dropdown-click' ).length; i++ ) {
 			document.querySelectorAll( '.sf-menu .menu-item-has-children > a.menu-item-dropdown-click' )[i].addEventListener( 'click', dropdownClick, false );
 		}
 	}
+
+}
+
+// Navigation search
+toggleSearch = function( e ) {
+  e.preventDefault();
+	var item = this.parentNode;
+	var nav = getClosest( item, 'nav' );
+
+	if ( item.getAttribute( 'data-nav' ) ) {
+		nav = document.querySelector( this.getAttribute( 'data-nav' ) );
+	}
+
+	var form = nav.querySelector( '.navigation-search' );
+
+	if ( isVisible( form ) ) {
+		item.querySelector( 'i' ).classList.remove( 'fa-close' );
+		item.querySelector( 'i' ).classList.add( 'fa-search' );
+		item.style.opacity = '1';
+		item.style.float = '';
+		form.style.display = 'none';
+		item.classList.remove( 'active' );
+	} else {
+		item.style.opacity = '0';
+		form.style.display = 'block';
+		form.querySelector( 'input' ).focus();
+
+		setTimeout( function() {
+			item.querySelector( 'i' ).classList.remove( 'fa-search' );
+			item.querySelector( 'i' ).classList.add( 'fa-close' );
+			item.classList.add( 'active' );
+			
+			if ( document.body.classList.contains( 'rtl' ) ) {
+				item.style.float = 'left';
+			} else {
+				item.style.float = 'right';
+			}
+
+			item.style.opacity = '1';
+		}, 250 );
+	}
+}
+if ( document.body.classList.contains( 'nav-search-enabled' ) ) {
+	for ( var i = 0; i < searchIcons.length; i++ ) {
+		searchIcons[i].addEventListener( 'click', toggleSearch, false );
+	};
 }

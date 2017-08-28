@@ -275,7 +275,7 @@ function generate_scripts()
 	
 	// Enqueue our CSS.
 	wp_enqueue_style( 'generate-style-grid', get_template_directory_uri() . "/css/unsemantic-grid{$suffix}.css", false, GENERATE_VERSION, 'all' );
-	wp_enqueue_style( 'generate-style', get_template_directory_uri() . '/style.unmin.css', array( 'generate-style-grid' ), GENERATE_VERSION, 'all' );
+	wp_enqueue_style( 'generate-style', get_template_directory_uri() . '/style.css', array( 'generate-style-grid' ), GENERATE_VERSION, 'all' );
 	wp_enqueue_style( 'generate-mobile-style', get_template_directory_uri() . "/css/mobile{$suffix}.css", array( 'generate-style' ), GENERATE_VERSION, 'all' );
 	
 	// Add the child theme CSS if child theme is active.
@@ -293,7 +293,7 @@ function generate_scripts()
 	wp_style_add_data( 'generate-ie', 'conditional', 'lt IE 9' );
 	
 	// Add our mobile navigation
-	//wp_enqueue_script( 'generate-navigation', get_template_directory_uri() . "/js/navigation{$suffix}.js", array( 'jquery' ), GENERATE_VERSION, true );
+	wp_enqueue_script( 'generate-menu', get_template_directory_uri() . "/js/menu{$suffix}.js", array(), GENERATE_VERSION, true );
 	
 	// Clone our navigation below the header on mobile if it's in a sidebar
 	if ( function_exists( 'wp_add_inline_script' ) && ( 'nav-left-sidebar' == generate_get_navigation_location() || 'nav-right-sidebar' == generate_get_navigation_location() ) ) {
@@ -310,16 +310,6 @@ function generate_scripts()
 				}
 			}"
 		);
-	}
-	
-	// Add our hover or click dropdown menu scripts
-	$click = ( 'click' == $generate_settings[ 'nav_dropdown_type' ] || 'click-arrow' == $generate_settings[ 'nav_dropdown_type' ] ) ? '-click' : '';
-	//wp_enqueue_script( 'generate-dropdown', get_template_directory_uri() . "/js/dropdown{$click}{$suffix}.js", array( 'jquery' ), GENERATE_VERSION, true );
-	wp_enqueue_script( 'generate-menu', get_template_directory_uri() . "/js/menu.js", array(), GENERATE_VERSION, true );
-	
-	// Add our navigation search if it's enabled
-	if ( 'enable' == $generate_settings['nav_search'] ) {
-		wp_enqueue_script( 'generate-navigation-search', get_template_directory_uri() . "/js/navigation-search{$suffix}.js", array( 'jquery' ), GENERATE_VERSION, true );
 	}
 	
 	// Add the back to top script if it's enabled
