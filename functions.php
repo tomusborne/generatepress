@@ -329,7 +329,7 @@ function generate_scripts()
 	
 	// IE 8
 	if ( function_exists( 'wp_script_add_data' ) ) {
-		wp_enqueue_script( 'generate-html5', get_template_directory_uri() . "/js/html5shiv{$suffix}.js", array( 'jquery' ), GENERATE_VERSION, true );
+		wp_enqueue_script( 'generate-html5', get_template_directory_uri() . "/js/html5shiv{$suffix}.js", array(), GENERATE_VERSION, true );
 		wp_script_add_data( 'generate-html5', 'conditional', 'lt IE 9' );
 	}
 	
