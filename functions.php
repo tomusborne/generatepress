@@ -297,7 +297,7 @@ function generate_scripts()
 	
 	// Clone our navigation below the header on mobile if it's in a sidebar
 	if ( function_exists( 'wp_add_inline_script' ) && ( 'nav-left-sidebar' == generate_get_navigation_location() || 'nav-right-sidebar' == generate_get_navigation_location() ) ) {
-		wp_add_inline_script( 'generate-navigation', "var target, nav, clone;
+		wp_add_inline_script( 'generate-menu', "var target, nav, clone;
 			nav = document.getElementById( 'site-navigation' );
 			if ( nav ) {
 				clone = nav.cloneNode( true );

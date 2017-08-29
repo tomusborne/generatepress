@@ -100,6 +100,13 @@ button.menu-toggle:focus {
 		right: auto;
 		width: 100%;
 	}
+
+	.dropdown-hover nav.main-navigation ul li:hover > ul:not(.toggled-on),
+	.dropdown-hover nav.secondary-navigation ul li:hover > ul:not(.toggled-on),
+	.dropdown-hover .secondary-navigation .main-nav ul ul:not(.toggled-on)	{
+		left: -99999px;
+		position: absolute;
+	}
 	
 	.main-navigation .main-nav li {
 		float: none;
