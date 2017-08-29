@@ -542,6 +542,34 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'priority' => 16
 			)
 		);
+
+		// Add navigation setting
+		$wp_customize->add_setting(
+			'generate_settings[nav_alignment_setting]',
+			array(
+				'default' => $defaults['nav_alignment_setting'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_choices',
+				'transport' => 'postMessage'
+			)
+		);
+		
+		// Add navigation control
+		$wp_customize->add_control(
+			'generate_settings[nav_alignment_setting]',
+			array(
+				'type' => 'select',
+				'label' => __( 'Navigation Alignment', 'generatepress' ),
+				'section' => 'generate_layout_navigation',
+				'choices' => array(
+					'left' => __( 'Left', 'generatepress' ),
+					'center' => __( 'Center', 'generatepress' ),
+					'right' => __( 'Right', 'generatepress' )
+				),
+				'settings' => 'generate_settings[nav_alignment_setting]',
+				'priority' => 20
+			)
+		);
 		
 		// Add navigation setting
 		$wp_customize->add_setting(
@@ -571,34 +599,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					'' => __( 'No Navigation', 'generatepress' )
 				),
 				'settings' => 'generate_settings[nav_position_setting]',
-				'priority' => 20
-			)
-		);
-		
-		// Add navigation setting
-		$wp_customize->add_setting(
-			'generate_settings[nav_alignment_setting]',
-			array(
-				'default' => $defaults['nav_alignment_setting'],
-				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_choices',
-				'transport' => 'postMessage'
-			)
-		);
-		
-		// Add navigation control
-		$wp_customize->add_control(
-			'generate_settings[nav_alignment_setting]',
-			array(
-				'type' => 'select',
-				'label' => __( 'Navigation Alignment', 'generatepress' ),
-				'section' => 'generate_layout_navigation',
-				'choices' => array(
-					'left' => __( 'Left', 'generatepress' ),
-					'center' => __( 'Center', 'generatepress' ),
-					'right' => __( 'Right', 'generatepress' )
-				),
-				'settings' => 'generate_settings[nav_alignment_setting]',
 				'priority' => 22
 			)
 		);

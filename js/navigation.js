@@ -46,12 +46,14 @@
 				
 				// Make sure this doesn't fire if we're clicking the dropdown arrow
 				// This will only fire if we're not clicking a dropdown arrow, and the URL isn't # or empty
-				if ( '#' !== url && '' !== url ) {
-					_this.closest( settings.menu ).removeClass( 'toggled' );
-					_this.closest( settings.menu ).attr( 'aria-expanded', 'false' );
-					_this.removeClass( 'toggled' );
-					_this.children( 'i' ).addClass( 'fa-bars' ).removeClass( 'fa-close' );
-					_this.attr( 'aria-expanded', 'false' );
+				if ( '#' !== url && '' !== url && ! navigator.userAgent.match( /iemobile/i ) ) {
+					setTimeout( function() {
+						_this.closest( settings.menu ).removeClass( 'toggled' );
+						_this.closest( settings.menu ).attr( 'aria-expanded', 'false' );
+						_this.removeClass( 'toggled' );
+						_this.children( 'i' ).addClass( 'fa-bars' ).removeClass( 'fa-close' );
+						_this.attr( 'aria-expanded', 'false' );
+					}, 250 );
 				}
 			}
 		});
