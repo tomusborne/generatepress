@@ -306,12 +306,12 @@ for ( var i = 0; i < navLinks.length; i++ ) {
 			}
 
 			// Close the mobile menu if our link does something
-			if ( '#' !== url && '' !== url ) {
+			if ( '#' !== url && '' !== url && ! navigator.userAgent.match( /iemobile/i ) ) {
 				setTimeout( function() {
 					parent.removeClass( 'toggled' );
 					htmlEl.removeClass( 'mobile-menu-open' );
 					nav.setAttribute( 'aria-hidden', 'true' );
-				}, 50 );
+				}, 200 );
 			}
 		}
 	}, false );
