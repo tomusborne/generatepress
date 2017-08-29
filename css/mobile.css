@@ -31,6 +31,11 @@ button.menu-toggle:focus {
 	display: inline-block;
 }
 
+.main-navigation.toggled ul ul,
+.secondary-navigation.toggled ul ul {
+	transition: 0s;
+}
+
 @media (max-width: 768px) {
 	.top-bar.top-bar-align-left,
 	.top-bar.top-bar-align-right {
@@ -101,9 +106,9 @@ button.menu-toggle:focus {
 		width: 100%;
 	}
 
-	.dropdown-hover nav.main-navigation ul li:hover > ul:not(.toggled-on),
-	.dropdown-hover nav.secondary-navigation ul li:hover > ul:not(.toggled-on),
-	.dropdown-hover .secondary-navigation .main-nav ul ul:not(.toggled-on)	{
+	nav.main-navigation ul li:hover > ul:not(.toggled-on),
+	nav.secondary-navigation ul li:hover > ul:not(.toggled-on),
+	.secondary-navigation .main-nav ul ul:not(.toggled-on)	{
 		left: -99999px;
 		position: absolute;
 	}

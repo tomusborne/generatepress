@@ -353,13 +353,14 @@ dropdownClick = function( e ) {
 	} else if ( document.body.hasClass( 'dropdown-click-arrow' ) ) {
 		closestLi.querySelector( '.sub-menu' ).toggleClass( 'toggled-on' );
 	}
+
+	return false;
 }
 
 // Do stuff if click dropdown if enabled
 if ( document.body.hasClass( 'dropdown-click' ) ) {
 
-	var parentElementLinks = document.querySelectorAll( '.sf-menu .menu-item-has-children > a' ),
-		dropdownToggleLinks = document.querySelectorAll( '.sf-menu .menu-item-has-children > a .dropdown-menu-toggle' );
+	var parentElementLinks = document.querySelectorAll( '.sf-menu .menu-item-has-children > a' );
 
 	// Open the sub-menu by clicking on the entire link element
 	if ( document.body.hasClass( 'dropdown-click-menu-item' ) ) {
@@ -378,6 +379,7 @@ if ( document.body.hasClass( 'dropdown-click' ) ) {
 			}
 		}
 
+		var dropdownToggleLinks = document.querySelectorAll( '.sf-menu .menu-item-has-children > a .dropdown-menu-toggle' );
 		for ( var i = 0; i < dropdownToggleLinks.length; i++ ) {
 			dropdownToggleLinks[i].addEventListener( touchEvent, dropdownClick, false );
 
