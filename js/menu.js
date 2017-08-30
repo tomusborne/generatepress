@@ -89,11 +89,10 @@ Element.prototype.toggleClass = function (className) {
 var parentElements = document.querySelectorAll( '.sf-menu .menu-item-has-children' ),
 	nav,
 	allNavToggles = document.querySelectorAll( '.menu-toggle' ),
-	searchIcons = document.querySelectorAll( '.search-item a' ),
 	navToggle = document.querySelector( '.menu-toggle' ),
 	dropdownToggle = document.querySelectorAll( 'nav .dropdown-menu-toggle' ),
-	navLinks = document.querySelectorAll( 'nav a' ),
-	touchEvent = 'ontouchstart' in document.documentElement ? 'touchstart' : 'click',
+	navLinks = document.querySelectorAll( 'nav ul a' ),
+	touchEvent = 'ontouchend' in document.documentElement ? 'touchend' : 'click',
 	htmlEl = document.documentElement;
 
 /**
@@ -403,7 +402,7 @@ toggleSearch = function( e, item ) {
 	e.preventDefault();
 	
 	if ( ! item ) {
-		var item = this.parentNode;
+		var item = this;
 	}
 
 	var nav = item.closest( 'nav' );
@@ -444,16 +443,35 @@ toggleSearch = function( e, item ) {
 	}
 }
 if ( document.body.hasClass( 'nav-search-enabled' ) ) {
-	for ( var i = 0; i < searchIcons.length; i++ ) {
-		searchIcons[i].addEventListener( touchEvent, toggleSearch, false );
-	};
+	var searchItem = document.querySelector( 'li.search-item' ),
+		mobileSearchItem = document.querySelector( '.mobile-bar-items .search-item' ),
+		activeForm = document.querySelector( '.navigation-search' );
+
+	searchItem.addEventListener( touchEvent, toggleSearch, false );
+	mobileSearchItem.addEventListener( touchEvent, toggleSearch, false );
+
+	document.addEventListener( 'click', function ( event ) {
+		if ( document.querySelector( '.navigation-search' ).hasClass( 'nav-search-active' ) ) {
+			if ( ! event.target.closest( '.navigation-search' ) && ! event.target.closest( '.search-item' ) ) {
+				if ( ! isVisible( document.querySelector( '.mobile-bar-items' ) ) ) {
+					toggleSearch( event, document.querySelector( 'li.search-item' ) );
+				} else {
+					toggleSearch( event, document.querySelector( '.search-item' ) );
+				}
+			}
+		}
+	}, false);
 
 	document.addEventListener( 'keydown', function( e ) {
 		if ( document.querySelector( '.navigation-search' ).hasClass( 'nav-search-active' ) ) {
 			var key = e.which || e.keyCode;
 
 			if ( key === 27 ) { // 27 is esc
-				toggleSearch( e, document.querySelector( '.search-item.active a' ) );
+				if ( ! isVisible( document.querySelector( '.mobile-bar-items' ) ) ) {
+					toggleSearch( e, document.querySelector( 'li.search-item' ) );
+				} else {
+					toggleSearch( e, document.querySelector( '.search-item' ) );
+				}
 			}
 		}
 	}, false );

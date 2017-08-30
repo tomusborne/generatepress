@@ -31,9 +31,17 @@ button.menu-toggle:focus {
 	display: inline-block;
 }
 
+.mobile-bar-items .search-item.active {
+	transition: opacity 300ms ease-in-out;
+}
+
 .main-navigation.toggled ul ul,
 .secondary-navigation.toggled ul ul {
 	transition: 0s;
+}
+
+nav.toggled ul ul.sub-menu {
+	width: 100%;
 }
 
 @media (max-width: 768px) {
