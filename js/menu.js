@@ -359,7 +359,7 @@ dropdownClick = function( e ) {
 // Do stuff if click dropdown if enabled
 if ( document.body.hasClass( 'dropdown-click' ) ) {
 
-	var parentElementLinks = document.querySelectorAll( 'nav .menu-item-has-children > a' );
+	var parentElementLinks = document.querySelectorAll( '.main-nav .menu-item-has-children > a' );
 
 	// Open the sub-menu by clicking on the entire link element
 	if ( document.body.hasClass( 'dropdown-click-menu-item' ) ) {
@@ -372,13 +372,13 @@ if ( document.body.hasClass( 'dropdown-click' ) ) {
 	if ( document.body.hasClass( 'dropdown-click-arrow' ) ) {
 
 		// Add a class to sub-menu items that are set to #
-		for ( var i = 0; i < document.querySelectorAll( '.sf-menu .menu-item-has-children > a' ).length; i++ ) {
-			if ( '#' == document.querySelectorAll( '.sf-menu .menu-item-has-children > a' )[i].getAttribute( 'href' ) ) {
-				document.querySelectorAll( '.sf-menu .menu-item-has-children > a' )[i].addClass( 'menu-item-dropdown-click' );
+		for ( var i = 0; i < document.querySelectorAll( '.main-nav .menu-item-has-children > a' ).length; i++ ) {
+			if ( '#' == document.querySelectorAll( '.main-nav .menu-item-has-children > a' )[i].getAttribute( 'href' ) ) {
+				document.querySelectorAll( '.main-nav .menu-item-has-children > a' )[i].addClass( 'menu-item-dropdown-click' );
 			}
 		}
 
-		var dropdownToggleLinks = document.querySelectorAll( '.sf-menu .menu-item-has-children > a .dropdown-menu-toggle' );
+		var dropdownToggleLinks = document.querySelectorAll( '.main-nav .menu-item-has-children > a .dropdown-menu-toggle' );
 		for ( var i = 0; i < dropdownToggleLinks.length; i++ ) {
 			dropdownToggleLinks[i].addEventListener( touchEvent, dropdownClick, false );
 
@@ -390,8 +390,8 @@ if ( document.body.hasClass( 'dropdown-click' ) ) {
 			}, false );
 		}
 
-		for ( var i = 0; i < document.querySelectorAll( '.sf-menu .menu-item-has-children > a.menu-item-dropdown-click' ).length; i++ ) {
-			document.querySelectorAll( '.sf-menu .menu-item-has-children > a.menu-item-dropdown-click' )[i].addEventListener( touchEvent, dropdownClick, false );
+		for ( var i = 0; i < document.querySelectorAll( '.main-nav .menu-item-has-children > a.menu-item-dropdown-click' ).length; i++ ) {
+			document.querySelectorAll( '.main-nav .menu-item-has-children > a.menu-item-dropdown-click' )[i].addEventListener( touchEvent, dropdownClick, false );
 		}
 	}
 
