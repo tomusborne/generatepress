@@ -86,6 +86,18 @@ Element.prototype.toggleClass = function (className) {
 	}
 };
 
+if ( ! Event.prototype.preventDefault ) {
+	Event.prototype.preventDefault = function() {
+		this.returnValue = false;
+	};
+}
+
+if ( ! Event.prototype.stopPropagation ) {
+	Event.prototype.stopPropagation = function() {
+		this.cancelBubble = true;
+	};
+}
+
 var parentElements = document.querySelectorAll( '.sf-menu .menu-item-has-children' ),
 	nav,
 	allNavToggles = document.querySelectorAll( '.menu-toggle' ),
@@ -353,8 +365,6 @@ dropdownClick = function( e ) {
 	} else if ( document.body.hasClass( 'dropdown-click-arrow' ) ) {
 		closestLi.querySelector( '.sub-menu' ).toggleClass( 'toggled-on' );
 	}
-
-	return false;
 }
 
 // Do stuff if click dropdown if enabled
@@ -451,6 +461,7 @@ if ( document.body.hasClass( 'nav-search-enabled' ) ) {
 	searchItem.addEventListener( touchEvent, toggleSearch, false );
 	mobileSearchItem.addEventListener( touchEvent, toggleSearch, false );
 
+	// Close navigation search on click elsewhere
 	document.addEventListener( 'click', function ( event ) {
 		if ( document.querySelector( '.navigation-search' ).hasClass( 'nav-search-active' ) ) {
 			if ( ! event.target.closest( '.navigation-search' ) && ! event.target.closest( '.search-item' ) ) {
@@ -463,6 +474,7 @@ if ( document.body.hasClass( 'nav-search-enabled' ) ) {
 		}
 	}, false);
 
+	// Close navigation search on escape key
 	document.addEventListener( 'keydown', function( e ) {
 		if ( document.querySelector( '.navigation-search' ).hasClass( 'nav-search-active' ) ) {
 			var key = e.which || e.keyCode;
