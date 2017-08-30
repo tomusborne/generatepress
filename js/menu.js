@@ -321,6 +321,7 @@ for ( var i = 0; i < navLinks.length; i++ ) {
  */
 dropdownClick = function( e ) {
 	e.preventDefault();
+	e.stopPropagation();
 	var _this = this;
 	var closestLi = _this.closest( 'li' );
 	var siblings = getSiblings( closestLi );
