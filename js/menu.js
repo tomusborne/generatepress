@@ -239,7 +239,7 @@ for ( var i = 0; i < allNavToggles.length; i++ ) {
 
 // Open sub-menus
 toggleSubNav = function( e ) {
-	if ( isVisible( navToggle ) && ! document.body.hasClass( 'dropdown-click' ) ) {
+	if ( ( isVisible( navToggle ) || htmlEl.hasClass( 'slide-opened' ) ) && ! document.body.hasClass( 'dropdown-click' ) ) {
 		e.preventDefault();
 		var closestLi = this.closest( 'li' );
 		var subMenu = closestLi.querySelector( '.sub-menu' );
@@ -288,7 +288,7 @@ window.addEventListener( 'orientationchange', checkMobile, false );
 // Do things when nav links are clicked
 for ( var i = 0; i < navLinks.length; i++ ) {
 	navLinks[i].addEventListener( touchEvent, function( e ) {
-		if ( isVisible( navToggle ) && ! document.body.hasClass( 'dropdown-click' ) ) {
+		if ( ( isVisible( navToggle ) || htmlEl.hasClass( 'slide-opened' ) ) && ! document.body.hasClass( 'dropdown-click' ) ) {
 			var parent = this.closest( 'nav' );
 			var url = this.getAttribute( 'href' );
 
@@ -359,7 +359,7 @@ dropdownClick = function( e ) {
 // Do stuff if click dropdown if enabled
 if ( document.body.hasClass( 'dropdown-click' ) ) {
 
-	var parentElementLinks = document.querySelectorAll( '.sf-menu .menu-item-has-children > a' );
+	var parentElementLinks = document.querySelectorAll( 'nav .menu-item-has-children > a' );
 
 	// Open the sub-menu by clicking on the entire link element
 	if ( document.body.hasClass( 'dropdown-click-menu-item' ) ) {
