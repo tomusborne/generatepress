@@ -299,8 +299,6 @@
 			var parentContainer = document.getElementById( _this.closest( 'nav' ).getAttribute( 'id' ) );
 		}
 
-		console.log(parentContainer);
-
 		nav = parentContainer.getElementsByTagName( 'ul' )[0];
 
 		if ( parentContainer.hasClass( 'toggled' ) ) {
@@ -330,12 +328,6 @@
 
 	for ( var i = 0; i < allNavToggles.length; i++ ) {
 		allNavToggles[i].addEventListener( touchEvent, toggleNav, false );
-		allNavToggles[i].addEventListener( 'keypress', function( e ) {
-			var key = e.which || e.keyCode;
-			if (key === 13) { // 13 is enter
-				toggleNav( e, this );
-			}
-		}, false );
 	}
 
 	/**
