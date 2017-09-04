@@ -208,10 +208,6 @@ function generate_dropdown_icon_to_menu_link( $title, $item, $args, $depth ) {
 		'slideout'
 	);
 	
-	if ( 'click-arrow' !== generate_get_setting( 'nav_dropdown_type' ) ) {
-		
-	}
-	
 	$tabindex = 'click-arrow' !== generate_get_setting( 'nav_dropdown_type' ) ? ' tabindex="-1"' : 'tabindex="0"';
 	
 	// Loop through our menu items and add our dropdown icons
