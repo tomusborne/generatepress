@@ -1411,9 +1411,6 @@ h4, h5, h6 {
 .page-header {
 	margin-bottom: 30px;
 }
-.page-header h1 {
-	font-size: 25px;
-}
 .page-header .avatar {
 	float: left;
 	margin-right: 1.5em;
