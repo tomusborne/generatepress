@@ -6,14 +6,6 @@ button.menu-toggle {
 	text-align: center;
 }
 
-button.menu-toggle:hover,
-button.menu-toggle:active,
-button.menu-toggle:focus {
-	background-color: transparent;
-	border: 0;
-	outline: 0;
-}
-
 .nav-search-enabled .main-navigation .menu-toggle {
 	text-align: left;
 }

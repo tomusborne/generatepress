@@ -208,11 +208,17 @@ function generate_dropdown_icon_to_menu_link( $title, $item, $args, $depth ) {
 		'slideout'
 	);
 	
+	if ( 'click-arrow' !== generate_get_setting( 'nav_dropdown_type' ) ) {
+		
+	}
+	
+	$tabindex = 'click-arrow' !== generate_get_setting( 'nav_dropdown_type' ) ? ' tabindex="-1"' : 'tabindex="0"';
+	
 	// Loop through our menu items and add our dropdown icons
 	if ( in_array( $args->theme_location, apply_filters( 'generate_menu_arrow_theme_locations', $theme_locations ) ) ) {
 		foreach ( $item->classes as $value ) {
 			if ( 'menu-item-has-children' === $value  ) {
-				$title = $title . '<span role="button" class="dropdown-menu-toggle" aria-expanded="false"></span>';
+				$title = $title . '<span role="button" class="dropdown-menu-toggle" aria-expanded="false"' . $tabindex . '></span>';
 			}
 		}
 	}

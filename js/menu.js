@@ -5,7 +5,7 @@
 	 */
 	if ( ! Element.prototype.addEventListener ) {
 		var eventListeners = [];
-		
+
 		var addEventListener = function( type, listener /*, useCapture (will be ignored) */ ) {
 			var self = this;
 			var wrapper = function(e) {
@@ -51,11 +51,23 @@
 		}
 	}
 
+	if ( ! Event.prototype.preventDefault ) {
+		Event.prototype.preventDefault = function() {
+			this.returnValue = false;
+		};
+	}
+
+	if ( ! Event.prototype.stopPropagation ) {
+		Event.prototype.stopPropagation = function() {
+			this.cancelBubble = true;
+		};
+	}
+
 	/**
 	 * .closest() pollyfil
 	 */
 	if ( window.Element && ! Element.prototype.closest ) {
-		Element.prototype.closest = 
+		Element.prototype.closest =
 		function(s) {
 			var matches = (this.document || this.ownerDocument).querySelectorAll(s),
 				i,
@@ -63,7 +75,7 @@
 			do {
 				i = matches.length;
 				while (--i >= 0 && matches.item(i) !== el) {};
-			} while ((i < 0) && (el = el.parentElement)); 
+			} while ((i < 0) && (el = el.parentElement));
 			return el;
 		};
 	}
@@ -139,16 +151,16 @@
 		}
 	};
 
-	if ( ! Event.prototype.preventDefault ) {
-		Event.prototype.preventDefault = function() {
-			this.returnValue = false;
-		};
-	}
-
-	if ( ! Event.prototype.stopPropagation ) {
-		Event.prototype.stopPropagation = function() {
-			this.cancelBubble = true;
-		};
+	var previousElementSibling = function( el ) {
+	    if ( el.previousElementSibling ) {
+	        return el.previousElementSibling;
+	    } else {
+	        while( el = el.previousSibling ) {
+	            if ( el.nodeType === 1 ) {
+					return el;
+				}
+	        }
+	    }
 	}
 
 	var parentElements = document.querySelectorAll( '.sf-menu .menu-item-has-children' ),
@@ -161,7 +173,8 @@
 		htmlEl = document.documentElement;
 
 	/**
-	 * Add sfHover class to menu items on hover
+	 * Add sfHover class to menu items on hover.
+	 * Not overly necessary, but provides back compat for Secondary nav until GPP updated.
 	 */
 	var toggleSubMenu = function( e ) {
 		var mobile = this.closest( '.main-nav' ).previousElementSibling;
@@ -189,7 +202,7 @@
 				var $this = parentElements[i];
 				var mobile = $this.closest( '.main-nav' ).previousElementSibling;
 				var closestParent = $this.parentNode.closest( '.menu-item-has-children' );
-				
+
 				if ( isVisible( mobile ) ) {
 					// do nothing
 				} else {
@@ -204,7 +217,7 @@
 								if ( e.target === this || e.target.parentNode === this ) {
 									e.preventDefault();
 								}
-								
+
 								var closestLi = this.closest( 'li' );
 								var siblings = getSiblings( closestLi );
 								for ( var o = 0; o < siblings.length; o++ ) {
@@ -216,7 +229,7 @@
 									siblings[o].removeClass( 'sfHover' );
 
 								}
-								
+
 								this.addClass( 'sfHover' );
 
 								// Hide dropdown on touch outside
@@ -240,7 +253,7 @@
 	var toggleFocus = function() {
 		var mobile = this.closest( '.main-nav' ).previousElementSibling;
 
-		if ( isVisible( mobile ) ) {
+		if ( mobile && isVisible( mobile ) ) {
 			return;
 		}
 
@@ -270,14 +283,23 @@
 	}
 
 	/**
-	 * Start mobile menu toggle
+	 * Start mobile menu toggle.
+	 *
+	 * @param e The event.
+	 * @param _this The clicked item.
 	 */
-	toggleNav = function() {
-		if ( this.getAttribute( 'data-nav' ) ) {
-			parentContainer = document.getElementById( this.getAttribute( 'data-nav' ) );
-		} else {
-			parentContainer = document.getElementById( this.closest( 'nav' ).getAttribute( 'id' ) );
+	toggleNav = function( e, _this ) {
+		if ( ! _this ) {
+			var _this = this;
 		}
+
+		if ( _this.getAttribute( 'data-nav' ) ) {
+			var parentContainer = document.getElementById( _this.getAttribute( 'data-nav' ) );
+		} else {
+			var parentContainer = document.getElementById( _this.closest( 'nav' ).getAttribute( 'id' ) );
+		}
+
+		console.log(parentContainer);
 
 		nav = parentContainer.getElementsByTagName( 'ul' )[0];
 
@@ -285,29 +307,55 @@
 			parentContainer.removeClass( 'toggled' );
 			htmlEl.removeClass( 'mobile-menu-open' );
 			nav.setAttribute( 'aria-hidden', 'true' );
+
+			if ( document.body.hasClass( 'dropdown-hover' ) ) {
+				var dropdownItems = nav.querySelectorAll( 'li.menu-item-has-children' );
+				for ( var i = 0; i < dropdownItems.length; i++ ) {
+					dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'tabindex', '' );
+				}
+			}
 		} else {
 			parentContainer.addClass( 'toggled' );
 			htmlEl.addClass( 'mobile-menu-open' );
 			nav.setAttribute( 'aria-hidden', 'false' );
+
+			if ( document.body.hasClass( 'dropdown-hover' ) ) {
+				var dropdownItems = nav.querySelectorAll( 'li.menu-item-has-children' );
+				for ( var i = 0; i < dropdownItems.length; i++ ) {
+					dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'tabindex', '0' );
+				}
+			}
 		}
 	}
 
 	for ( var i = 0; i < allNavToggles.length; i++ ) {
 		allNavToggles[i].addEventListener( touchEvent, toggleNav, false );
-		allNavToggles[i].addEventListener( 'keypress', function() {
+		allNavToggles[i].addEventListener( 'keypress', function( e ) {
 			var key = e.which || e.keyCode;
 			if (key === 13) { // 13 is enter
-				toggleNav();
+				toggleNav( e, this );
 			}
 		}, false );
 	}
 
-	// Open sub-menus
-	toggleSubNav = function( e ) {
+	/**
+	 * Open sub-menus
+	 *
+	 * @param e The event.
+	 * @param _this The clicked item.
+	 */
+	toggleSubNav = function( e, _this ) {
+
+		if ( ! _this ) {
+			var _this = this;
+		}
+
 		if ( ( isVisible( navToggle ) || htmlEl.hasClass( 'slide-opened' ) ) && ! document.body.hasClass( 'dropdown-click' ) ) {
 			e.preventDefault();
-			var closestLi = this.closest( 'li' );
+			var closestLi = _this.closest( 'li' );
+
 			var subMenu = closestLi.querySelector( '.sub-menu' );
+			console.log(closestLi);
 
 			closestLi.toggleClass( 'sfHover' );
 			subMenu.toggleClass( 'toggled-on' );
@@ -318,9 +366,18 @@
 
 	for ( var i = 0; i < dropdownToggle.length; i++ ) {
 		dropdownToggle[i].addEventListener( touchEvent, toggleSubNav, false );
+		dropdownToggle[i].addEventListener( 'keypress', function( e ) {
+			var key = e.which || e.keyCode;
+			if (key === 13) { // 13 is enter
+				toggleSubNav( e, this );
+			}
+		}, false );
 	}
 
-	// Disable the mobile menu if the toggle isn't visible
+	/**
+	 * Disable the mobile menu if our toggle isn't visible.
+	 * Makes it possible to style mobile item with .toggled class.
+	 */
 	checkMobile = function() {
 		for ( var i = 0; i < allNavToggles.length; i++ ) {
 			if ( ! isVisible( allNavToggles[i] ) ) {
@@ -350,7 +407,9 @@
 	window.addEventListener( 'resize', checkMobile, false );
 	window.addEventListener( 'orientationchange', checkMobile, false );
 
-	// Do things when nav links are clicked
+	/**
+	 * Do some essential things when menu items are clicked.
+	 */
 	for ( var i = 0; i < navLinks.length; i++ ) {
 		navLinks[i].addEventListener( touchEvent, function( e ) {
 			if ( ( isVisible( navToggle ) || htmlEl.hasClass( 'slide-opened' ) ) && ! document.body.hasClass( 'dropdown-click' ) ) {
@@ -369,7 +428,7 @@
 					}
 				}
 
-				// Close the mobile menu if our link does something
+				// Close the mobile menu if our link does something - good for one page sites.
 				if ( '#' !== url && '' !== url && ! navigator.userAgent.match( /iemobile/i ) ) {
 					setTimeout( function() {
 						parent.removeClass( 'toggled' );
@@ -383,18 +442,25 @@
 
 	/**
 	 * Dropdown click
+	 *
+	 * @param e The event.
+	 * @param _this The clicked item.
 	 */
-	dropdownClick = function( e ) {
+	dropdownClick = function( e, _this ) {
 		e.preventDefault();
 		e.stopPropagation();
-		var _this = this;
+
+		if ( ! _this ) {
+			var _this = this;
+		}
+
 		var closestLi = _this.closest( 'li' );
 		var siblings = getSiblings( closestLi );
 		var parent = _this.closest( 'nav' );
 
 		// Close the secondary menu if we're clicking inside the main menu
 		if ( parent.hasClass( '.main-navigation' ) ) {
-			if ( isVisible( '.secondary-navigation ul.toggled-on' ) ) {
+			if ( isVisible( document.querySelector( '.secondary-navigation ul.toggled-on' ) ) ) {
 				var navLink = document.querySelector( '.secondary-navigation .main-nav .menu-item-has-children > a' );
 				navLink.parentNode.removeClass( 'sfHover' );
 			}
@@ -447,9 +513,10 @@
 				dropdownToggleLinks[i].addEventListener( touchEvent, dropdownClick, false );
 
 				dropdownToggleLinks[i].addEventListener( 'keydown', function( e ) {
+					var _this = this;
 					var key = e.which || e.keyCode;
 					if ( key === 13 ) { // 13 is enter
-						dropdownClick( e );
+						dropdownClick( e, _this );
 					}
 				}, false );
 			}
@@ -459,12 +526,45 @@
 			}
 		}
 
+		// Close sub-menus when clicking elsewhere
+		document.addEventListener( 'click', function ( event ) {
+			if ( document.querySelector( 'nav ul .toggled-on' ) ) {
+				if ( ! event.target.closest( '.sfHover' ) ) {
+					var activeSubMenus = document.querySelectorAll( 'nav ul .toggled-on' );
+					for ( var i = 0; i < activeSubMenus.length; i++ ) {
+						activeSubMenus[i].removeClass( 'toggled-on' );
+						activeSubMenus[i].closest( '.sfHover' ).removeClass( 'sfHover' );
+					}
+				}
+			}
+		}, false);
+
+		// Close sub-menus on escape key
+		document.addEventListener( 'keydown', function( e ) {
+			if ( document.querySelector( 'nav ul .toggled-on' ) ) {
+				var key = e.which || e.keyCode;
+
+				if ( key === 27 ) { // 27 is esc
+					var activeSubMenus = document.querySelectorAll( 'nav ul .toggled-on' );
+					for ( var i = 0; i < activeSubMenus.length; i++ ) {
+						activeSubMenus[i].removeClass( 'toggled-on' );
+						activeSubMenus[i].closest( '.sfHover' ).removeClass( 'sfHover' );
+					}
+				}
+			}
+		}, false );
+
 	}
 
-	// Navigation search
+	/**
+	 * Navigation search.
+	 *
+	 * @param e The event.
+	 * @param _this The clicked item.
+	 */
 	toggleSearch = function( e, item ) {
 		e.preventDefault();
-		
+
 		if ( ! item ) {
 			var item = this;
 		}
@@ -495,7 +595,7 @@
 				item.querySelector( 'i' ).removeClass( 'fa-search' );
 				item.querySelector( 'i' ).addClass( 'fa-close' );
 				item.addClass( 'active' );
-				
+
 				if ( document.body.hasClass( 'rtl' ) ) {
 					item.style.float = 'left';
 				} else {
@@ -507,21 +607,19 @@
 		}
 	}
 	if ( document.body.hasClass( 'nav-search-enabled' ) ) {
-		var searchItem = document.querySelector( 'li.search-item' ),
-			mobileSearchItem = document.querySelector( '.mobile-bar-items .search-item' ),
-			activeForm = document.querySelector( '.navigation-search' );
+		var searchItems = document.querySelectorAll( '.search-item' );
 
-		searchItem.addEventListener( touchEvent, toggleSearch, false );
-		mobileSearchItem.addEventListener( touchEvent, toggleSearch, false );
+		for ( var i = 0; i < searchItems.length; i++ ) {
+			searchItems[i].addEventListener( touchEvent, toggleSearch, false );
+		}
 
 		// Close navigation search on click elsewhere
 		document.addEventListener( 'click', function ( event ) {
-			if ( document.querySelector( '.navigation-search' ).hasClass( 'nav-search-active' ) ) {
+			if ( document.querySelector( '.navigation-search.nav-search-active' ) ) {
 				if ( ! event.target.closest( '.navigation-search' ) && ! event.target.closest( '.search-item' ) ) {
-					if ( ! isVisible( document.querySelector( '.mobile-bar-items' ) ) ) {
-						toggleSearch( event, document.querySelector( 'li.search-item' ) );
-					} else {
-						toggleSearch( event, document.querySelector( '.search-item' ) );
+					var activeSearchItems = document.querySelectorAll( '.search-item.active' );
+					for ( var i = 0; i < activeSearchItems.length; i++ ) {
+						toggleSearch( event, activeSearchItems[i] );
 					}
 				}
 			}
@@ -529,14 +627,13 @@
 
 		// Close navigation search on escape key
 		document.addEventListener( 'keydown', function( e ) {
-			if ( document.querySelector( '.navigation-search' ).hasClass( 'nav-search-active' ) ) {
+			if ( document.querySelector( '.navigation-search.nav-search-active' ) ) {
 				var key = e.which || e.keyCode;
 
 				if ( key === 27 ) { // 27 is esc
-					if ( ! isVisible( document.querySelector( '.mobile-bar-items' ) ) ) {
-						toggleSearch( e, document.querySelector( 'li.search-item' ) );
-					} else {
-						toggleSearch( e, document.querySelector( '.search-item' ) );
+					var activeSearchItems = document.querySelectorAll( '.search-item.active' );
+					for ( var i = 0; i < activeSearchItems.length; i++ ) {
+						toggleSearch( event, activeSearchItems[i] );
 					}
 				}
 			}
