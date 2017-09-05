@@ -532,7 +532,7 @@
     width: 100%;
   }
 }
-@media (min-width: 768px) and (max-width: 1025px) {
+@media (min-width: 768px) and (max-width: 1024px) {
   [class*="tablet-push-"],
   [class*="tablet-pull-"] {
     position: relative;
