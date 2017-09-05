@@ -311,6 +311,7 @@ if ( ! function_exists( 'generate_typography_default_fonts' ) ) {
 	function generate_typography_default_fonts() {
 		$fonts = array(
 			'inherit',
+			'System Stack',
 			'Arial, Helvetica, sans-serif',
 			'Century Gothic',
 			'Comic Sans MS',

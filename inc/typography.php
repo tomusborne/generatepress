@@ -552,11 +552,16 @@ if ( ! function_exists( 'generate_get_font_family_css' ) ) {
 			'Segoe UI, Helvetica Neue, Helvetica, sans-serif',
 			'Tahoma, Geneva, sans-serif',
 			'Trebuchet MS, Helvetica, sans-serif',
-			'Verdana, Geneva, sans-serif'
+			'Verdana, Geneva, sans-serif',
+			apply_filters( 'generate_typography_system_stack', '-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"' )
 		);
 
 		// Get our font
 		$font_family = $generate_settings[ $font ];
+		
+		if ( 'System Stack' == $font_family ) {
+			$font_family = apply_filters( 'generate_typography_system_stack', '-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"' );
+		}
 
 		// If our value is still using the old format, fix it
 		if ( strpos( $font_family, ':' ) !== false ) {
