@@ -2,10 +2,10 @@
 /**
  * All of our footer elements.
  * These functions are wrapped in function_exists() so you can overwrite them.
- * 
+ *
  * @package GeneratePress
- */ 
- 
+ */
+
 defined( 'WPINC' ) or die;
 
 if ( ! function_exists( 'generate_construct_footer' ) ) {
@@ -51,7 +51,7 @@ if ( ! function_exists( 'generate_footer_bar' ) ) {
 
 if ( ! function_exists( 'generate_add_footer_info' ) ) {
 	add_action( 'generate_credits', 'generate_add_footer_info' );
-	/** 
+	/**
 	 * Add the copyright to the footer
 	 *
 	 * @since 0.1
@@ -84,7 +84,7 @@ function generate_do_footer_widget( $widget_width, $widget ) {
 	<div <?php generate_do_attr( 'footer-widget', array( 'class' => "footer-widget-{$widget} grid-parent grid-{$widget_width} tablet-grid-{$tablet_widget_width} mobile-grid-100" ) ); ?>>
 		<?php if ( ! dynamic_sidebar( 'footer-' . $widget ) ): ?>
 			<aside class="widget inner-padding widget_text">
-				<h4 class="widget-title"><?php _e('Footer Widget','generatepress');?></h4>			
+				<h4 class="widget-title"><?php _e('Footer Widget','generatepress');?></h4>
 				<div class="textwidget">
 					<p><?php printf( __( 'Replace this widget content by going to <a href="%1$s"><strong>Appearance / Widgets</strong></a> and dragging widgets into this widget area.','generatepress' ), esc_url( admin_url( 'widgets.php' ) ) ); ?></p>
 					<p><?php printf( __( 'To remove or choose the number of footer widgets, go to <a href="%1$s"><strong>Appearance / Customize / Layout / Footer Widgets</strong></a>.','generatepress' ), esc_url( admin_url( 'customize.php' ) ) ); ?></p>
@@ -116,7 +116,7 @@ if ( ! function_exists( 'generate_construct_footer_widgets' ) ) {
 			<div <?php generate_do_attr( 'footer-widgets', array( 'id' => 'footer-widgets', 'class' => 'site footer-widgets' ) );?>>
 				<div <?php generate_do_attr( 'inside-footer' ); ?>>
 					<div class="inside-footer-widgets">
-						<?php 
+						<?php
 						if ( $widgets >= 1 ) {
 							generate_do_footer_widget( $widget_width, 1 );
 						}

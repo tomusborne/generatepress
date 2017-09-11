@@ -64,7 +64,7 @@ function generate_set_body_attributes( $attributes ) {
 	}
 
 	$attributes['class'] = join( ' ', $classes );
-	
+
 	// Do microdata
 	$itemtype = 'WebPage';
 	$itemtype = ( is_home() || is_archive() || is_attachment() || is_tax() || is_single() ) ? 'Blog' : $itemtype;
@@ -196,7 +196,7 @@ function generate_set_right_sidebar_attributes( $attributes ) {
 			case 'both-left' :
 				$total_sidebar_width = $left_sidebar_width + $right_sidebar_width;
 				$classes[] = 'pull-' . ( 100 - $total_sidebar_width );
-				
+
 				$total_sidebar_tablet_width = $left_sidebar_tablet_width + $right_sidebar_tablet_width;
 				$classes[] = 'tablet-pull-' . ( 100 - $total_sidebar_tablet_width );
 			break;
@@ -247,7 +247,7 @@ function generate_set_left_sidebar_attributes( $attributes ) {
 				$classes[] = 'pull-' . ( 100 - $left_sidebar_width );
 				$classes[] = 'tablet-pull-' . ( 100 - $left_sidebar_tablet_width );
 			break;
-			
+
 			case 'both-sidebars' :
 			case 'both-left' :
 				$classes[] = 'pull-' . ( 100 - $total_sidebar_width );

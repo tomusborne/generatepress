@@ -2,10 +2,10 @@
 /**
  * All of our navigation elements.
  * These functions are wrapped in function_exists() so you can overwrite them.
- * 
+ *
  * @package GeneratePress
- */ 
- 
+ */
+
 defined( 'WPINC' ) or die;
 
 if ( ! function_exists( 'generate_navigation_position' ) ) {
@@ -23,9 +23,9 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 					<?php do_action( 'generate_inside_mobile_menu' ); ?>
 					<span class="mobile-menu"><?php echo apply_filters('generate_mobile_menu_label', __( 'Menu', 'generatepress' ) ); ?></span>
 				</button>
-				<?php 
-				wp_nav_menu( 
-					array( 
+				<?php
+				wp_nav_menu(
+					array(
 						'theme_location' => 'primary',
 						'container' => 'div',
 						'container_class' => 'main-nav',
@@ -33,7 +33,7 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 						'menu_class' => '',
 						'fallback_cb' => 'generate_menu_fallback',
 						'items_wrap' => '<ul ' . generate_get_attr( 'menu', array( 'id' => '%1$s', 'class' => '%2$s ' . generate_get_element_classes( 'generate_menu_class' ) ) ) . '>%3$s</ul>'
-					) 
+					)
 				);
 				?>
 			</div><!-- .inside-navigation -->
@@ -44,7 +44,7 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 
 if ( ! function_exists( 'generate_menu_fallback' ) ) {
 	/**
-	 * Menu fallback. 
+	 * Menu fallback.
 	 *
 	 * @since 1.1.4
 	 *
@@ -55,7 +55,7 @@ if ( ! function_exists( 'generate_menu_fallback' ) ) {
 		?>
 		<div id="primary-menu" class="main-nav">
 			<ul <?php generate_do_attr( 'menu', array( 'class' => generate_get_element_classes( 'generate_menu_class' ) ) ); ?>>
-				<?php 
+				<?php
 				$args = array(
 					'sort_column' => 'menu_order',
 					'title_li' => '',
@@ -68,7 +68,7 @@ if ( ! function_exists( 'generate_menu_fallback' ) ) {
 				?>
 			</ul>
 		</div><!-- .main-nav -->
-		<?php 
+		<?php
 	}
 }
 
@@ -92,7 +92,7 @@ if ( ! function_exists( 'generate_add_navigation_after_header' ) ) {
 
 if ( ! function_exists( 'generate_add_navigation_before_header' ) ) {
 	add_action( 'generate_before_header', 'generate_add_navigation_before_header', 5 );
-	function generate_add_navigation_before_header() {	
+	function generate_add_navigation_before_header() {
 		if ( 'nav-above-header' == generate_get_primary_menu_location() ) {
 			generate_navigation_position();
 		}
@@ -226,7 +226,7 @@ if ( ! function_exists( 'generate_navigation_search' ) ) {
 			return;
 		}
 
-		echo apply_filters( 'generate_navigation_search_output', sprintf( 
+		echo apply_filters( 'generate_navigation_search_output', sprintf(
 			'<form method="get" class="search-form navigation-search" action="%1$s">
 				<input type="search" class="search-field" value="%2$s" name="s" title="%3$s" />
 			</form>',

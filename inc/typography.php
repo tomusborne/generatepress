@@ -3,7 +3,7 @@ defined( 'WPINC' ) or die;
 
 if ( ! function_exists( 'generate_enqueue_google_fonts' ) ) {
 	add_action( 'wp_enqueue_scripts','generate_enqueue_google_fonts', 0 );
-	/** 
+	/**
 	 * Add Google Fonts to wp_head if needed.
 	 *
 	 * Defined earlier in GP Premium, so function_exists() is required.
@@ -12,9 +12,9 @@ if ( ! function_exists( 'generate_enqueue_google_fonts' ) ) {
 	 */
 	function generate_enqueue_google_fonts() {
 		// Grab our options
-		$generate_settings = wp_parse_args( 
-			get_option( 'generate_settings', array() ), 
-			generate_get_default_fonts() 
+		$generate_settings = wp_parse_args(
+			get_option( 'generate_settings', array() ),
+			generate_get_default_fonts()
 		);
 
 		// List our non-Google fonts
@@ -55,10 +55,10 @@ if ( ! function_exists( 'generate_enqueue_google_fonts' ) ) {
 
 				// Replace the spaces in the names with a plus
 				$value = str_replace( ' ', '+', $generate_settings[$key] );
-	
+
 				// Grab the variants using the plain name
 				$variants = generate_get_google_font_variants( $generate_settings[$key], $key );
-	
+
 				// If we have variants, add them to our value
 				$value = ! empty( $variants ) ? $value . ':' . $variants : $value;
 
@@ -95,7 +95,7 @@ if ( ! function_exists( 'generate_enqueue_google_fonts' ) ) {
 		$fonts_url = add_query_arg( $font_args, '//fonts.googleapis.com/css' );
 
 		// Enqueue our fonts
-		if ( $google_fonts ) { 
+		if ( $google_fonts ) {
 			wp_enqueue_style('generate-fonts', $fonts_url, array(), null, 'all' );
 		}
 	}
@@ -103,7 +103,7 @@ if ( ! function_exists( 'generate_enqueue_google_fonts' ) ) {
 
 if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 	add_action( 'customize_register', 'generate_default_fonts_customize_register' );
-	/** 
+	/**
 	 * Build our Typography options.
 	 *
 	 * @since 0.1
@@ -134,8 +134,8 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 			)
 		);
 
-		$wp_customize->add_setting( 
-			'generate_settings[font_body]', 
+		$wp_customize->add_setting(
+			'generate_settings[font_body]',
 			array(
 				'default' => $defaults['font_body'],
 				'type' => 'option',
@@ -143,24 +143,24 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 			)
 		);
 
-		$wp_customize->add_setting( 
-			'font_body_category', 
+		$wp_customize->add_setting(
+			'font_body_category',
 			array(
 				'default' => '',
 				'sanitize_callback' => 'sanitize_text_field'
 			)
 		);
 
-		$wp_customize->add_setting( 
-			'font_body_variants', 
+		$wp_customize->add_setting(
+			'font_body_variants',
 			array(
 				'default' => '',
 				'sanitize_callback' => 'generate_sanitize_variants'
 			)
 		);
 
-		$wp_customize->add_setting( 
-			'generate_settings[body_font_weight]', 
+		$wp_customize->add_setting(
+			'generate_settings[body_font_weight]',
 			array(
 				'default' => $defaults['body_font_weight'],
 				'type' => 'option',
@@ -169,25 +169,25 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 			)
 		);
 
-		$wp_customize->add_setting( 
-			'generate_settings[body_font_transform]', 
+		$wp_customize->add_setting(
+			'generate_settings[body_font_transform]',
 			array(
 				'default' => $defaults['body_font_transform'],
 				'type' => 'option',
 				'sanitize_callback' => 'sanitize_key',
 				'transport' => 'postMessage'
-				
+
 			)
 		);
 
 		$wp_customize->add_control(
 			new Generate_Typography_Customize_Control(
 				$wp_customize,
-				'body_typography', 
+				'body_typography',
 				array(
 					'section' => 'font_section',
 					'priority' => 1,
-					'settings' => array( 
+					'settings' => array(
 						'family' => 'generate_settings[font_body]',
 						'variant' => 'font_body_variants',
 						'category' => 'font_body_category',
@@ -198,8 +198,8 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 			)
 		);
 
-		$wp_customize->add_setting( 
-			'generate_settings[body_font_size]', 
+		$wp_customize->add_setting(
+			'generate_settings[body_font_size]',
 			array(
 				'default' => $defaults['body_font_size'],
 				'type' => 'option',
@@ -211,12 +211,12 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 		$wp_customize->add_control(
 			new Generate_Range_Slider_Control(
 				$wp_customize,
-				'generate_settings[body_font_size]', 
+				'generate_settings[body_font_size]',
 				array(
 					'type' => 'generatepress-range-slider',
-					'description' => __( 'Font size', 'generatepress' ), 
+					'description' => __( 'Font size', 'generatepress' ),
 					'section' => 'font_section',
-					'settings' => array( 
+					'settings' => array(
 						'desktop' => 'generate_settings[body_font_size]',
 					),
 					'choices' => array(
@@ -233,8 +233,8 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 			)
 		);
 
-		$wp_customize->add_setting( 
-			'generate_settings[body_line_height]', 
+		$wp_customize->add_setting(
+			'generate_settings[body_line_height]',
 			array(
 				'default' => $defaults['body_line_height'],
 				'type' => 'option',
@@ -246,12 +246,12 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 		$wp_customize->add_control(
 			new Generate_Range_Slider_Control(
 				$wp_customize,
-				'generate_settings[body_line_height]', 
+				'generate_settings[body_line_height]',
 				array(
 					'type' => 'generatepress-range-slider',
-					'description' => __( 'Line height', 'generatepress' ), 
+					'description' => __( 'Line height', 'generatepress' ),
 					'section' => 'font_section',
-					'settings' => array( 
+					'settings' => array(
 						'desktop' => 'generate_settings[body_line_height]',
 					),
 					'choices' => array(
@@ -268,8 +268,8 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 			)
 		);
 
-		$wp_customize->add_setting( 
-			'generate_settings[paragraph_margin]', 
+		$wp_customize->add_setting(
+			'generate_settings[paragraph_margin]',
 			array(
 				'default' => $defaults['paragraph_margin'],
 				'type' => 'option',
@@ -281,12 +281,12 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 		$wp_customize->add_control(
 			new Generate_Range_Slider_Control(
 				$wp_customize,
-				'generate_settings[paragraph_margin]', 
+				'generate_settings[paragraph_margin]',
 				array(
 					'type' => 'generatepress-range-slider',
-					'description' => __( 'Paragraph margin', 'generatepress' ), 
+					'description' => __( 'Paragraph margin', 'generatepress' ),
 					'section' => 'font_section',
-					'settings' => array( 
+					'settings' => array(
 						'desktop' => 'generate_settings[paragraph_margin]',
 					),
 					'choices' => array(
@@ -351,7 +351,7 @@ if ( ! function_exists( 'generate_get_all_google_fonts' ) ) {
 		foreach ( $content as $item ) {
 
 			// Grab what we need from our big list
-			$atts = array( 
+			$atts = array(
 				'name'     => $item->family,
 				'category' => $item->category,
 				'variants' => $item->variants
@@ -519,7 +519,7 @@ if ( ! function_exists( 'generate_get_google_font_category' ) ) {
 
 		// Return it to be used by our function
 		return $category;
-		
+
 	}
 }
 
@@ -537,9 +537,9 @@ if ( ! function_exists( 'generate_get_font_family_css' ) ) {
 	 * @return string The CSS value for our font family.
 	 */
 	function generate_get_font_family_css( $font, $settings, $default ) {
-		$generate_settings = wp_parse_args( 
-			get_option( $settings, array() ), 
-			$default 
+		$generate_settings = wp_parse_args(
+			get_option( $settings, array() ),
+			$default
 		);
 
 		// We don't want to wrap quotes around these values
@@ -558,7 +558,7 @@ if ( ! function_exists( 'generate_get_font_family_css' ) ) {
 
 		// Get our font
 		$font_family = $generate_settings[ $font ];
-		
+
 		if ( 'System Stack' == $font_family ) {
 			$font_family = apply_filters( 'generate_typography_system_stack', '-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"' );
 		}
@@ -598,8 +598,8 @@ if ( ! function_exists( 'generate_add_to_font_customizer_list' ) ) {
 			return;
 		}
 
-		$generate_settings = wp_parse_args( 
-			get_option( 'generate_settings', array() ), 
+		$generate_settings = wp_parse_args(
+			get_option( 'generate_settings', array() ),
 			generate_get_default_fonts()
 		);
 
@@ -630,7 +630,7 @@ if ( ! function_exists( 'generate_add_to_font_customizer_list' ) ) {
 				continue;
 			}
 
-			$fonts[ strtolower( str_replace( ' ', '_', $generate_settings[ $setting ] ) ) ] = array( 
+			$fonts[ strtolower( str_replace( ' ', '_', $generate_settings[ $setting ] ) ) ] = array(
 				'name' => $generate_settings[ $setting ],
 				'variants' => array_key_exists( $id, $all_fonts ) ? $all_fonts[$id]['variants'] : array(),
 				'category' => array_key_exists( $id, $all_fonts ) ? $all_fonts[$id]['category'] : 'sans-serif'
@@ -638,15 +638,15 @@ if ( ! function_exists( 'generate_add_to_font_customizer_list' ) ) {
 		}
 
 		if ( function_exists( 'generate_secondary_nav_get_defaults' ) ) {
-			$secondary_nav_settings = wp_parse_args( 
-				get_option( 'generate_secondary_nav_settings', array() ), 
-				generate_secondary_nav_get_defaults() 
+			$secondary_nav_settings = wp_parse_args(
+				get_option( 'generate_secondary_nav_settings', array() ),
+				generate_secondary_nav_get_defaults()
 			);
 
 			$secondary_nav_id = strtolower( str_replace( ' ', '_', $secondary_nav_settings[ 'font_secondary_navigation' ] ) );
 
 			if ( ! array_key_exists( $secondary_nav_id, $select_fonts ) && ! in_array( $secondary_nav_settings[ 'font_secondary_navigation' ], generate_typography_default_fonts() ) ) {
-				$fonts[ strtolower( str_replace( ' ', '_', $secondary_nav_settings[ 'font_secondary_navigation' ] ) ) ] = array( 
+				$fonts[ strtolower( str_replace( ' ', '_', $secondary_nav_settings[ 'font_secondary_navigation' ] ) ) ] = array(
 					'name' => $secondary_nav_settings[ 'font_secondary_navigation' ],
 					'variants' => array_key_exists( $secondary_nav_id, $all_fonts ) ? $all_fonts[$secondary_nav_id]['variants'] : array(),
 					'category' => array_key_exists( $secondary_nav_id, $all_fonts ) ? $all_fonts[$secondary_nav_id]['category'] : 'sans-serif'

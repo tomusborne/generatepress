@@ -80,7 +80,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 							<# if ( data.label ) { #>
 								<span class="customize-control-title">{{{ data.label }}}</span>
 							<# } #>
-							
+
 							<# if ( data.description ) { #>
 								<p class="description">{{{ data.description }}}</p>
 							<# } #>
@@ -92,16 +92,16 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 							<# if ( 'undefined' !== typeof ( data.desktop ) ) { #>
 								<span class="generatepress-device-desktop dashicons dashicons-desktop" data-option="desktop" title="{{ data.desktop_label }}"></span>
 							<# } #>
-							
+
 							<# if ( 'undefined' !== typeof (data.tablet) ) { #>
 								<span class="generatepress-device-tablet dashicons dashicons-tablet" data-option="tablet" title="{{ data.tablet_label }}"></span>
 							<# } #>
-							
+
 							<# if ( 'undefined' !== typeof (data.mobile) ) { #>
 								<span class="generatepress-device-mobile dashicons dashicons-smartphone" data-option="mobile" title="{{ data.mobile_label }}"></span>
 							<# } #>
 						</span>
-						
+
 						<span title="{{ data.reset_label }}" class="generatepress-reset dashicons dashicons-image-rotate"></span>
 					</div>
 				</div>
@@ -113,7 +113,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 								<div class="gp_range_value <# if ( '' == data.choices['desktop']['unit'] && ! data.choices['desktop']['edit'] ) { #>hide-value<# } #>">
 									<input <# if ( data.choices['desktop']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> type="number" step="{{ data.choices['desktop']['step'] }}" class="desktop-range value" value="{{ data.desktop.value }}" min="{{ data.choices['desktop']['min'] }}" max="{{ data.choices['desktop']['max'] }}" {{{ data.desktop.link }}} data-reset_value="{{ data.desktop.default }}" />
 									<span <# if ( ! data.choices['desktop']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> class="value">{{ data.desktop.value }}</span>
-									
+
 									<# if ( data.choices['desktop']['unit'] ) { #>
 										<span class="unit">{{ data.choices['desktop']['unit'] }}</span>
 									<# } #>
@@ -129,7 +129,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 								<div class="gp_range_value <# if ( '' == data.choices['tablet']['unit'] && ! data.choices['desktop']['edit'] ) { #>hide-value<# } #>">
 									<input <# if ( data.choices['tablet']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> type="number" step="{{ data.choices['tablet']['step'] }}" class="tablet-range value" value="{{ data.tablet.value }}" min="{{ data.choices['tablet']['min'] }}" max="{{ data.choices['tablet']['max'] }}" {{{ data.tablet.link }}} data-reset_value="{{ data.tablet.default }}" />
 									<span <# if ( ! data.choices['tablet']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> class="value">{{ data.tablet.value }}</span>
-									
+
 									<# if ( data.choices['tablet']['unit'] ) { #>
 										<span class="unit">{{ data.choices['tablet']['unit'] }}</span>
 									<# } #>
@@ -145,7 +145,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 								<div class="gp_range_value <# if ( '' == data.choices['mobile']['unit'] && ! data.choices['desktop']['edit'] ) { #>hide-value<# } #>">
 									<input <# if ( data.choices['mobile']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> type="number" step="{{ data.choices['mobile']['step'] }}" class="mobile-range value" value="{{ data.mobile.value }}" min="{{ data.choices['mobile']['min'] }}" max="{{ data.choices['mobile']['max'] }}" {{{ data.mobile.link }}} data-reset_value="{{ data.mobile.default }}" />
 									<span <# if ( ! data.choices['mobile']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> class="value">{{ data.mobile.value }}</span>
-									
+
 									<# if ( data.choices['mobile']['unit'] ) { #>
 										<span class="unit">{{ data.choices['mobile']['unit'] }}</span>
 									<# } #>

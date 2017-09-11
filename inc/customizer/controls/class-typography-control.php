@@ -59,7 +59,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 			<# if ( 'undefined' !== typeof ( data.family ) ) { #>
 				<div class="generatepress-font-family">
 					<label>
-						<select {{{ data.family.link }}} data-category="{{{ data.category.id }}}" data-variants="{{{ data.variant.id }}}" style="width:100%;"> 
+						<select {{{ data.family.link }}} data-category="{{{ data.category.id }}}" data-variants="{{{ data.variant.id }}}" style="width:100%;">
 							<optgroup label="{{ data.default_fonts_title }}">
 								<# for ( var key in data.default_fonts ) { #>
 									<# var name = data.default_fonts[ key ].split(',')[0]; #>
@@ -80,7 +80,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 			<# } #>
 
 			<# if ( 'undefined' !== typeof ( data.variant ) ) { #>
-				<# 
+				<#
 				var id = data.family.value.split(' ').join('_').toLowerCase();
 				var font_data = data.google_fonts[id];
 				var variants = '';

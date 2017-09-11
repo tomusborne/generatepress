@@ -114,7 +114,7 @@ function generate_set_content_width() {
 	} elseif ( 'no-sidebar' == $layout ) {
 		$content_width = generate_get_option( 'container_width' );
 	} else {
-		$content_width = generate_get_option( 'container_width' ) * ( ( 100 - ( $left_sidebar_width + $right_sidebar_width ) ) / 100 );	
+		$content_width = generate_get_option( 'container_width' ) * ( ( 100 - ( $left_sidebar_width + $right_sidebar_width ) ) / 100 );
 	}
 }
 

@@ -16,7 +16,7 @@ function generate_enqueue_meta_box_scripts( $hook ) {
 		$post_type = $screen->id;
 
 		if ( in_array( $post_type, ( array ) $post_types ) ){
-			wp_enqueue_style( 'generate-layout-metabox', get_template_directory_uri() . '/css/admin/meta-box.css', array(), GENERATE_VERSION ); 
+			wp_enqueue_style( 'generate-layout-metabox', get_template_directory_uri() . '/css/admin/meta-box.css', array(), GENERATE_VERSION );
 		}
 	}
 }
@@ -27,7 +27,7 @@ add_action( 'add_meta_boxes', 'generate_register_layout_meta_box' );
  *
  * @since 2.0
  */
-function generate_register_layout_meta_box() { 
+function generate_register_layout_meta_box() {
 	if ( ! current_user_can( apply_filters( 'generate_metabox_capability', 'edit_theme_options' ) ) ) {
 		return;
 	}
@@ -37,14 +37,14 @@ function generate_register_layout_meta_box() {
 	$post_types = get_post_types( array( 'public' => true ) );
 	foreach ($post_types as $type) {
 		if ( 'attachment' !== $type ) {
-			add_meta_box (  
-				'generate_layout_options_meta_box', 
+			add_meta_box (
+				'generate_layout_options_meta_box',
 				__( 'Layout','generatepress' ),
 				'generate_do_layout_meta_box',
 				$type,
 				'normal',
 				'high'
-			); 
+			);
 		}
 	}
 }
@@ -56,7 +56,7 @@ function generate_register_layout_meta_box() {
  *
  * @param object $post All post information.
  */
-function generate_do_layout_meta_box( $post ) {  
+function generate_do_layout_meta_box( $post ) {
 	wp_nonce_field( basename( __FILE__ ), 'generate_layout_nonce' );
 	$stored_meta = get_post_meta( $post->ID );
 	$stored_meta['_generate-sidebar-layout-meta'][0] = ( isset( $stored_meta['_generate-sidebar-layout-meta'][0] ) ) ? $stored_meta['_generate-sidebar-layout-meta'][0] : '';
@@ -184,7 +184,7 @@ function generate_do_layout_meta_box( $post ) {
 						<?php endif; ?>
 					</div>
 				<?php endif; ?>
-				
+
 				<?php do_action( 'generate_layout_disable_elements_section', $stored_meta ); ?>
 			</div>
 			<?php do_action( 'generate_layout_meta_box_content', $stored_meta ); ?>
@@ -201,7 +201,7 @@ add_action( 'save_post', 'generate_save_layout_meta_data' );
  *
  * @param int Post ID.
  */
-function generate_save_layout_meta_data( $post_id ) {  
+function generate_save_layout_meta_data( $post_id ) {
 	$is_autosave = wp_is_post_autosave( $post_id );
 	$is_revision = wp_is_post_revision( $post_id );
 	$is_valid_nonce = ( isset( $_POST[ 'generate_layout_nonce' ] ) && wp_verify_nonce( sanitize_key( $_POST[ 'generate_layout_nonce' ] ), basename( __FILE__ ) ) ) ? true : false;

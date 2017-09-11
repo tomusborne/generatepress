@@ -4,12 +4,12 @@ defined( 'WPINC' ) or die;
 if ( ! function_exists( 'generate_get_defaults' ) ) {
 	/**
 	 * Set default options
-	 * 
+	 *
 	 * @since 0.1
 	 *
 	 * @return array Option defaults.
 	 */
-	function generate_get_defaults() {	
+	function generate_get_defaults() {
 		$defaults = array(
 			'hide_title' => '',
 			'hide_tagline' => '',
@@ -43,7 +43,7 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 			'link_color_hover' => '#000000',
 			'link_color_visited' => '',
 		);
-		
+
 		return apply_filters( 'generate_option_defaults', $defaults );
 	}
 }
@@ -125,7 +125,7 @@ if ( ! function_exists( 'generate_get_color_defaults' ) ) {
 			'back_to_top_text_color' => '#ffffff',
 			'back_to_top_text_color_hover' => '#ffffff',
 		);
-		
+
 		return apply_filters( 'generate_color_option_defaults', $defaults );
 	}
 }
@@ -233,11 +233,11 @@ if ( ! function_exists( 'generate_get_default_fonts' ) ) {
 			'footer_transform' => 'none',
 			'footer_font_size' => '15',
 		);
-		
+
 		if ( $filter ) {
 			return apply_filters( 'generate_font_option_defaults', $defaults );
 		}
-		
+
 		return $defaults;
 	}
 }
@@ -290,11 +290,11 @@ if ( ! function_exists( 'generate_spacing_get_defaults' ) ) {
 			'footer_bottom' => '20',
 			'footer_left' => '20',
 		);
-		
+
 		if ( $filter ) {
 			return apply_filters( 'generate_spacing_option_defaults', $defaults );
 		}
-		
+
 		return $defaults;
 	}
 }
@@ -327,7 +327,7 @@ if ( ! function_exists( 'generate_typography_default_fonts' ) ) {
 			'Trebuchet MS, Helvetica, sans-serif',
 			'Verdana, Geneva, sans-serif'
 		);
-		
+
 		return apply_filters( 'generate_typography_default_fonts', $fonts );
 	}
 }

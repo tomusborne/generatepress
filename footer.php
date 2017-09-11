@@ -12,10 +12,10 @@ defined( 'WPINC' ) or die;
 </div><!-- #page -->
 <?php do_action( 'generate_before_footer' ); ?>
 <div <?php generate_do_attr( 'footer' ); ?>>
-	<?php 
+	<?php
 	do_action( 'generate_before_footer_content' );
 	do_action( 'generate_footer' );
-	do_action( 'generate_after_footer_content' ); 
+	do_action( 'generate_after_footer_content' );
 	?>
 </div><!-- .site-footer -->
 

@@ -2,10 +2,10 @@
 /**
  * Featured image elements.
  * These functions are wrapped in function_exists() so you can overwrite them.
- * 
+ *
  * @package GeneratePress
- */ 
- 
+ */
+
 defined( 'WPINC' ) or die;
 
 if ( ! function_exists( 'generate_post_image' ) ) {
@@ -29,13 +29,13 @@ if ( ! function_exists( 'generate_post_image' ) ) {
 				</div>',
 				esc_url( get_permalink() ),
 				the_title_attribute( 'echo=0' ),
-				get_the_post_thumbnail( 
+				get_the_post_thumbnail(
 					get_the_ID(),
 					apply_filters( 'generate_page_header_default_size', 'full' ),
-					array( 
+					array(
 						'itemprop' => 'image',
 						'alt' => the_title_attribute( 'echo=0' )
-					) 
+					)
 				)
 			));
 		}
@@ -63,12 +63,12 @@ if ( ! function_exists( 'generate_featured_page_header_area' ) ) {
 
 		?>
 		<div class="<?php echo esc_attr( $class ); ?> grid-container grid-parent">
-			<?php the_post_thumbnail( 
+			<?php the_post_thumbnail(
 				apply_filters( 'generate_page_header_default_size', 'full' ),
-				array( 
+				array(
 					'itemprop' => 'image',
 					'alt' => the_title_attribute( 'echo=0' )
-				) 
+				)
 			); ?>
 		</div>
 		<?php

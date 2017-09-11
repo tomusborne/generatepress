@@ -11,9 +11,9 @@ defined( 'WPINC' ) or die;
  * @todo Ability to specify different option name and defaults.
  */
 function generate_get_option( $option ) {
-	$options = wp_parse_args( 
-		get_option( 'generate_settings', array() ), 
-		generate_get_defaults() 
+	$options = wp_parse_args(
+		get_option( 'generate_settings', array() ),
+		generate_get_defaults()
 	);
 
 	return $options[ $option ];
@@ -154,7 +154,7 @@ function generate_get_footer_widget_count() {
 	return apply_filters( 'generate_footer_widgets', $widgets );
 }
 
-/** 
+/**
  * Figure out if we should show the post excerpts or full posts.
  *
  * @since 2.0
@@ -185,7 +185,7 @@ function generate_show_post_excerpt() {
 	return apply_filters( 'generate_show_excerpt', $show_excerpt );
 }
 
-/** 
+/**
  * Check to see if we should show our page/post title or not
  *
  * @since 2.0

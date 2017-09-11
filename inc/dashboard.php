@@ -37,10 +37,10 @@ function generate_do_dashboard_page() {
 					</div>
 					<div class="gp-masthead-links">
 						<?php if ( ! defined( 'GP_PREMIUM_VERSION' ) ) : ?>
-							<a style="font-weight: bold;" href="<?php echo generate_get_upsell_url( 'https://generatepress.com/premium/' );?>" target="_blank"><?php _e( 'Premium', 'generatepress' );?></a> 
+							<a style="font-weight: bold;" href="<?php echo generate_get_upsell_url( 'https://generatepress.com/premium/' );?>" target="_blank"><?php _e( 'Premium', 'generatepress' );?></a>
 						<?php endif; ?>
 						<a href="<?php echo esc_url( 'https://generatepress.com/support' ); ?>" target="_blank"><?php _e( 'Support', 'generatepress' ); ?></a>
-						<a href="<?php echo esc_url( 'https://docs.generatepress.com' ); ?>" target="_blank"><?php _e( 'Documentation', 'generatepress' );?></a>  
+						<a href="<?php echo esc_url( 'https://docs.generatepress.com' ); ?>" target="_blank"><?php _e( 'Documentation', 'generatepress' );?></a>
 					</div>
 				</div>
 			</div>
@@ -123,12 +123,12 @@ function generate_do_dashboard_page() {
 											</div>
 										</div>
 										<div class="gp-clear"></div>
-										<?php } ?>		
+										<?php } ?>
 									</div>
 								</div>
 							</div>
 							<?php endif; ?>
-							
+
 							<?php do_action( 'generate_options_items' ); ?>
 						</div>
 						<div class="generate-right-sidebar grid-30" style="padding-right: 0;">
@@ -165,13 +165,13 @@ function generate_do_dashboard_page() {
 									<form method="post">
 										<p><input type="hidden" name="generate_reset_customizer" value="generate_reset_customizer_settings" /></p>
 										<p>
-											<?php 
+											<?php
 											$warning = 'return confirm("' . __( 'Warning: This will delete your settings.', 'generatepress' ) . '")';
 											wp_nonce_field( 'generate_reset_customizer_nonce', 'generate_reset_customizer_nonce' );
-											submit_button( __( 'Delete Default Settings', 'generatepress' ), 'button', 'submit', false, array( 'onclick' => esc_js( $warning ) ) ); 
+											submit_button( __( 'Delete Default Settings', 'generatepress' ), 'button', 'submit', false, array( 'onclick' => esc_js( $warning ) ) );
 											?>
 										</p>
-											
+
 									</form>
 									<?php do_action( 'generate_delete_settings_form' );?>
 								</div>
@@ -185,7 +185,7 @@ function generate_do_dashboard_page() {
 			</div>
 		</div>
 	</div>
-<?php	
+<?php
 }
 
 add_action( 'admin_init', 'generate_do_customizer_reset' );
@@ -211,7 +211,7 @@ function generate_do_customizer_reset() {
 	remove_theme_mod( 'font_body_variants' );
 	remove_theme_mod( 'font_body_category' );
 
-	wp_safe_redirect( admin_url( 'themes.php?page=generate-options&status=reset' ) ); 
+	wp_safe_redirect( admin_url( 'themes.php?page=generate-options&status=reset' ) );
 	exit;
 }
 

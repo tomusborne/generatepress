@@ -27,6 +27,6 @@ get_header(); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
-<?php 
+<?php
 do_action( 'generate_sidebars' );
 get_footer();

@@ -2,10 +2,10 @@
 /**
  * Archive elements.
  * These functions are wrapped in function_exists() so you can overwrite them.
- * 
+ *
  * @package GeneratePress
- */ 
- 
+ */
+
 defined( 'WPINC' ) or die;
 
 if ( ! function_exists( 'generate_archive_title' ) ) {
@@ -32,7 +32,7 @@ if ( ! function_exists( 'generate_archive_title' ) ) {
 				if ( ! empty( $term_description ) ) :
 					printf( '<div class="taxonomy-description">%s</div>', $term_description );
 				endif;
-				
+
 				if ( get_the_author_meta('description') && is_author() ) : // If a user has filled out their decscription show a bio on their entries
 					echo '<div class="author-info">' . get_the_author_meta('description') . '</div>';
 				endif;
@@ -75,6 +75,6 @@ if ( ! function_exists( 'generate_filter_the_archive_title' ) ) {
 		}
 
 		return $title;
-		
+
 	}
 }

@@ -2,10 +2,10 @@
 /**
  * All of our post meta elements.
  * These functions are wrapped in function_exists() so you can overwrite them.
- * 
+ *
  * @package GeneratePress
- */ 
- 
+ */
+
 defined( 'WPINC' ) or die;
 
 if ( ! function_exists( 'generate_content_nav' ) ) {
@@ -40,7 +40,7 @@ if ( ! function_exists( 'generate_content_nav' ) ) {
 		<nav id="<?php echo esc_attr( $nav_id ); ?>" class="<?php echo $nav_class; ?>">
 			<span class="screen-reader-text"><?php _e( 'Post navigation', 'generatepress' ); ?></span>
 
-			<?php if ( is_single() ) : // navigation links for single posts 
+			<?php if ( is_single() ) : // navigation links for single posts
 
 				previous_post_link( '<div class="nav-previous"><span class="prev" title="' . __('Previous','generatepress') . '">%link</span></div>', '%title', $category_specific );
 				next_post_link( '<div class="nav-next"><span class="next" title="' . __('Next','generatepress') . '">%link</span></div>', '%title', $category_specific );
@@ -85,7 +85,7 @@ if ( ! function_exists( 'generate_modify_posts_pagination_template' ) ) {
 	 */
 	function generate_modify_posts_pagination_template( $template, $class ) {
 		if ( ! empty( $class ) && false !== strpos( $class, 'pagination' ) ) {
-			$template = '<div class="nav-links">%3$s</div>'; 
+			$template = '<div class="nav-links">%3$s</div>';
 		}
 
 		return $template;
@@ -96,10 +96,10 @@ if ( ! function_exists( 'generate_posted_on' ) ) {
 	/**
 	 * Prints HTML with meta information for the current post-date/time and author.
 	 */
-	function generate_posted_on() {	
+	function generate_posted_on() {
 		$date = apply_filters( 'generate_post_date', true );
 		$author = apply_filters( 'generate_post_author', true );
-			
+
 		$time_string = '<time class="entry-date published" datetime="%1$s" itemprop="datePublished">%2$s</time>';
 		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 			$time_string .= '<time class="updated" datetime="%3$s" itemprop="dateModified">%4$s</time>';

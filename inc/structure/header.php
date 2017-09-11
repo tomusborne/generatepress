@@ -2,10 +2,10 @@
 /**
  * All of our header elements.
  * These functions are wrapped in function_exists() so you can overwrite them.
- * 
+ *
  * @package GeneratePress
- */ 
- 
+ */
+
 defined( 'WPINC' ) or die;
 
 if ( ! function_exists( 'generate_construct_header' ) ) {
@@ -68,7 +68,7 @@ if ( ! function_exists( 'generate_construct_logo' ) ) {
 		do_action( 'generate_before_logo' );
 
 		// Print our HTML
-		echo apply_filters( 'generate_logo_output', sprintf( 
+		echo apply_filters( 'generate_logo_output', sprintf(
 			'<div class="site-logo">
 				<a href="%1$s" title="%2$s" rel="home">
 					<img class="header-image" src="%3$s" alt="%2$s" title="%2$s" />
@@ -95,7 +95,7 @@ if ( ! function_exists( 'generate_construct_site_title' ) ) {
 		$tagline = get_bloginfo( 'description' );
 
 		// If the disable title checkbox is checked, or the title field is empty, return true
-		$disable_title = ( '1' == generate_get_option( 'hide_title' ) || '' == $title ) ? true : false; 
+		$disable_title = ( '1' == generate_get_option( 'hide_title' ) || '' == $title ) ? true : false;
 
 		// If the disable tagline checkbox is checked, or the tagline field is empty, return true
 		$disable_tagline = ( '1' == generate_get_option( 'hide_tagline' ) || '' == $tagline ) ? true : false;
@@ -187,7 +187,7 @@ if ( ! function_exists( 'generate_pingback_header' ) ) {
 
 if ( ! function_exists( 'generate_add_viewport' ) ) {
 	add_action('wp_head','generate_add_viewport');
-	/** 
+	/**
 	 * Add viewport to wp_head
 	 *
 	 * @since 1.1.0

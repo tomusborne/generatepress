@@ -16,7 +16,7 @@ defined( 'WPINC' ) or die;
 		</header><!-- .entry-header -->
 		<?php do_action( 'generate_after_entry_header' ); ?>
 		<div class="entry-content">
-			
+
 				<?php if ( is_home() && current_user_can( 'publish_posts' ) ) : ?>
 
 					<p><?php printf( __( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'generatepress' ), esc_url( admin_url( 'post-new.php' ) ) ); ?></p>
@@ -32,7 +32,7 @@ defined( 'WPINC' ) or die;
 					<?php get_search_form(); ?>
 
 				<?php endif; ?>
-			
+
 		</div><!-- .entry-content -->
 		<?php do_action( 'generate_after_content' ); ?>
 	</div><!-- .inside-article -->

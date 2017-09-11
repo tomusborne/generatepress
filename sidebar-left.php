@@ -10,11 +10,11 @@ $navigation_active = ( 'nav-left-sidebar' == generate_get_primary_menu_location(
 
 // If the secondary navigation is set in the sidebar, set variable to true
 if ( function_exists( 'generate_secondary_nav_get_defaults' ) ) {
-	$secondary_nav = wp_parse_args( 
-		get_option( 'generate_secondary_nav_settings', array() ), 
-		generate_secondary_nav_get_defaults() 
+	$secondary_nav = wp_parse_args(
+		get_option( 'generate_secondary_nav_settings', array() ),
+		generate_secondary_nav_get_defaults()
 	);
-	
+
 	if ( 'secondary-nav-left-sidebar' == $secondary_nav['secondary_nav_position_setting'] ) {
 		$navigation_active = true;
 	}

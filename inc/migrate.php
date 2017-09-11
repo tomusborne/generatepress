@@ -20,9 +20,9 @@ if ( ! function_exists( 'generate_update_logo_setting' ) ) {
 		}
 
 		// Get our settings.
-		$generate_settings = wp_parse_args( 
-			get_option( 'generate_settings', array() ), 
-			generate_get_defaults() 
+		$generate_settings = wp_parse_args(
+			get_option( 'generate_settings', array() ),
+			generate_get_defaults()
 		);
 
 		// Get the old logo value.
@@ -72,9 +72,9 @@ if ( ! function_exists( 'generate_typography_convert_values' ) ) {
 		}
 
 		// Get all settings
-		$generate_settings = wp_parse_args( 
-			get_option( 'generate_settings', array() ), 
-			generate_get_default_fonts() 
+		$generate_settings = wp_parse_args(
+			get_option( 'generate_settings', array() ),
+			generate_get_default_fonts()
 		);
 
 		// Get our body font family setting
@@ -115,13 +115,13 @@ if ( ! function_exists( 'generate_typography_set_font_data' ) ) {
 	 *
 	 * @since 1.3.40
 	 */
-	function generate_typography_set_font_data() {	
+	function generate_typography_set_font_data() {
 		// Get our defaults
 		$defaults = generate_get_default_fonts();
 
 		// Get our settings
-		$generate_settings = wp_parse_args( 
-			get_option( 'generate_settings', array() ), 
+		$generate_settings = wp_parse_args(
+			get_option( 'generate_settings', array() ),
 			$defaults
 		);
 

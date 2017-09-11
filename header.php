@@ -21,7 +21,7 @@ defined( 'WPINC' ) or die;
 	<?php do_action( 'generate_before_header' ); ?>
 	<?php do_action( 'generate_header' ); ?>
 	<?php do_action( 'generate_after_header' ); ?>
-	
+
 	<div <?php generate_do_attr( 'page' ); ?>>
 		<div id="content" class="site-content">
 			<?php do_action( 'generate_inside_container' ); ?>

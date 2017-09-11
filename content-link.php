@@ -15,7 +15,7 @@ defined( 'WPINC' ) or die;
 			<?php do_action( 'generate_after_entry_title' ); ?>
 		</header><!-- .entry-header -->
 		<?php do_action( 'generate_after_entry_header' ); ?>
-		
+
 		<?php if ( generate_show_post_excerpt() ) : ?>
 			<div class="entry-summary" itemprop="text">
 				<?php the_excerpt(); ?>
@@ -31,7 +31,7 @@ defined( 'WPINC' ) or die;
 				?>
 			</div><!-- .entry-content -->
 		<?php endif; ?>
-		
+
 		<?php do_action( 'generate_after_entry_content' ); ?>
 		<?php do_action( 'generate_after_content' ); ?>
 	</div><!-- .inside-article -->

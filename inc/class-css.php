@@ -43,7 +43,7 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 
 		/**
 		 * Stores media queries
-		 * 
+		 *
 		 * @var null
 		 */
 		protected $_media_query = null;
@@ -68,7 +68,7 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 			if( $this->_selector !== '' ){
 				$this->add_selector_rules_to_output();
 			}
-			
+
 			$this->_selector = $selector;
 			return $this;
 		}
@@ -77,7 +77,7 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 		 * Adds a css property with value to the css output
 		 *
 		 * @access public
-		 * 
+		 *
 		 * @param  string $property - the css property
 		 * @param  string $value - the value to be placed with the property
 		 * @param  string $og_default - check to see if the value matches the default
@@ -140,7 +140,7 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 		private function add_media_query_rules_to_output() {
 			if ( ! empty( $this->_media_query_output ) ) {
 				$this->_output .= sprintf( '@media %1$s{%2$s}', $this->_media_query, $this->_media_query_output );
-				
+
 				// Reset the media query output string
 				$this->_media_query_output = '';
 			}

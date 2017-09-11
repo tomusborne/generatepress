@@ -2,10 +2,10 @@
 /**
  * Our sidebar elements.
  * These functions are wrapped in function_exists() so you can overwrite them.
- * 
+ *
  * @package GeneratePress
- */ 
- 
+ */
+
 defined( 'WPINC' ) or die;
 
 if ( ! function_exists( 'generate_construct_sidebars' ) ) {
@@ -27,12 +27,12 @@ if ( ! function_exists( 'generate_construct_sidebars' ) ) {
 
 		// If left sidebar, show it
 		if ( in_array( $layout, $ls ) ) {
-			get_sidebar( 'left' ); 
+			get_sidebar( 'left' );
 		}
 
 		// If right sidebar, show it
 		if ( in_array( $layout, $rs ) ) {
-			get_sidebar(); 
+			get_sidebar();
 		}
 	}
 }

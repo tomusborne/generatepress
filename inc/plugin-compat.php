@@ -2,7 +2,7 @@
 defined( 'WPINC' ) or die;
 
 add_action( 'after_setup_theme','generate_setup_woocommerce' );
-/** 
+/**
  * Set up WooCommerce
  *
  * @since 1.3.47
@@ -26,12 +26,12 @@ function generate_setup_woocommerce() {
 
 if ( ! function_exists( 'generate_woocommerce_start' ) ) {
 	add_action( 'woocommerce_before_main_content', 'generate_woocommerce_start' );
-	/** 
+	/**
 	 * Add WooCommerce starting wrappers
 	 *
 	 * @since 1.3.22
 	 */
-	function generate_woocommerce_start() { 
+	function generate_woocommerce_start() {
 	?>
 		<div id="primary" <?php generate_content_class();?>>
 			<main id="main" <?php generate_main_class(); ?>>
@@ -40,13 +40,13 @@ if ( ! function_exists( 'generate_woocommerce_start' ) ) {
 					<div class="inside-article">
 						<?php do_action( 'generate_before_content'); ?>
 						<div class="entry-content" itemprop="text">
-	<?php 
+	<?php
 	}
 }
 
 if ( ! function_exists( 'generate_woocommerce_end' ) ) {
 	add_action( 'woocommerce_after_main_content', 'generate_woocommerce_end' );
-	/** 
+	/**
 	 * Add WooCommerce ending wrappers
 	 *
 	 * @since 1.3.22
@@ -66,7 +66,7 @@ if ( ! function_exists( 'generate_woocommerce_end' ) ) {
 
 if ( ! function_exists( 'generate_woocommerce_css' ) ) {
 	add_action( 'wp_enqueue_scripts', 'generate_woocommerce_css', 100 );
-	/** 
+	/**
 	 * Add WooCommerce CSS
 	 *
 	 * @since 1.3.45
@@ -97,7 +97,7 @@ if ( ! function_exists( 'generate_woocommerce_css' ) ) {
 		}
 
 		@media ' . esc_attr( $mobile ) . ' {
-			.woocommerce .woocommerce-ordering, 
+			.woocommerce .woocommerce-ordering,
 			.woocommerce-page .woocommerce-ordering {
 				float: none;
 			}
@@ -106,8 +106,8 @@ if ( ! function_exists( 'generate_woocommerce_css' ) ) {
 				max-width: 100%;
 			}
 
-			.woocommerce ul.products li.product, 
-			.woocommerce-page ul.products li.product, 
+			.woocommerce ul.products li.product,
+			.woocommerce-page ul.products li.product,
 			.woocommerce-page[class*=columns-] ul.products li.product,
 			.woocommerce[class*=columns-] ul.products li.product {
 				width: 100%;
@@ -122,19 +122,19 @@ if ( ! function_exists( 'generate_woocommerce_css' ) ) {
 
 if ( ! function_exists( 'generate_bbpress_css' ) ) {
 	add_action( 'wp_enqueue_scripts', 'generate_bbpress_css', 100 );
-	/** 
+	/**
 	 * Add bbPress CSS
 	 *
 	 * @since 1.3.45
 	 */
 	function generate_bbpress_css() {
-		$css = '#bbpress-forums ul.bbp-lead-topic, 
-		#bbpress-forums ul.bbp-topics, 
-		#bbpress-forums ul.bbp-forums, 
-		#bbpress-forums ul.bbp-replies, 
+		$css = '#bbpress-forums ul.bbp-lead-topic,
+		#bbpress-forums ul.bbp-topics,
+		#bbpress-forums ul.bbp-forums,
+		#bbpress-forums ul.bbp-replies,
 		#bbpress-forums ul.bbp-search-results,
 		#bbpress-forums,
-		div.bbp-breadcrumb, 
+		div.bbp-breadcrumb,
 		div.bbp-topic-tags {
 			font-size: inherit;
 		}
@@ -161,7 +161,7 @@ if ( ! function_exists( 'generate_bbpress_css' ) ) {
 
 if ( ! function_exists( 'generate_buddypress_css' ) ) {
 	add_action( 'wp_enqueue_scripts', 'generate_buddypress_css', 100 );
-	/** 
+	/**
 	 * Add BuddyPress CSS
 	 *
 	 * @since 1.3.45
@@ -179,7 +179,7 @@ if ( ! function_exists( 'generate_buddypress_css' ) ) {
 
 if ( ! function_exists( 'generate_beaver_builder_css' ) ) {
 	add_action( 'wp_enqueue_scripts', 'generate_beaver_builder_css', 100 );
-	/** 
+	/**
 	 * Add Beaver Builder CSS
 	 *
 	 * Beaver Builder pages set to no sidebar used to automatically be full width, however
