@@ -314,7 +314,7 @@ input[type="file"] {
 	margin: 0 auto;
 }
 
-.size-auto, 
+.size-auto,
 .size-full,
 .size-large,
 .size-medium,
@@ -430,7 +430,7 @@ input[type="file"] {
 	display: block;
 	text-decoration: none;
 }
-.main-navigation ul ul.sub-menu,
+.main-navigation ul ul,
 .secondary-navigation ul ul.sub-menu {
 	display: block;
 	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
@@ -521,7 +521,7 @@ input[type="file"] {
 	vertical-align: middle;
 }
 
-.main-navigation .main-nav ul ul li a, 
+.main-navigation .main-nav ul ul li a,
 .nav-float-right .main-navigation .main-nav ul ul li a {
 	line-height: normal;
 }
@@ -778,7 +778,7 @@ nav:not(.toggled):not(.slideout-navigation) ul ul .menu-item-has-children .dropd
 	margin: 0 0 1.5em;
 }
 
-.blog .format-status .entry-title, 
+.blog .format-status .entry-title,
 .archive .format-status .entry-title,
 .blog .format-aside .entry-header,
 .archive .format-aside .entry-header,
@@ -1918,7 +1918,7 @@ h3 {
     font-size: 15px;
 }
 
-/* 
+/*
  * Backwards compatibility until Slideout is updated
  * GP Premium 1.2.93
  */
