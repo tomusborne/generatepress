@@ -1,44 +1,59 @@
-( function() {
-  'use strict';
+(function() {
+     'use strict';
 
-	function scrollTo(element, to, duration) {
-		if ( duration <= 0 ) {
-			return;
-		}
+    // Feature Test
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
 
-		var difference = to - element.scrollTop;
-		var perTick = difference / duration * 10;
+		function trackScroll() {
+			var scrolled = window.pageYOffset;
+			var coords = goTopBtn.getAttribute( 'data-start-scroll' ) ;
 
-		setTimeout(function() {
-			element.scrollTop = element.scrollTop + perTick;
-			if ( element.scrollTop === to ) {
-				return;
+			if ( scrolled > coords ) {
+				goTopBtn.style.opacity = '1';
+				goTopBtn.style.visibility = 'visible';
 			}
-			scrollTo(element, to, duration - 10);
-		}, 10);
-	}
 
-	function trackScroll() {
-		var scrolled = window.pageYOffset;
-		var coords = goTopBtn.getAttribute( 'data-start-scroll' ) ;
-
-		if ( scrolled > coords ) {
-			goTopBtn.style.opacity = '1';
-			goTopBtn.style.visibility = 'visible';
+			if (scrolled < coords) {
+				goTopBtn.style.opacity = '0';
+				goTopBtn.style.visibility = 'hidden';
+			}
 		}
+		window.addEventListener( 'scroll', trackScroll );
 
-		if (scrolled < coords) {
-			goTopBtn.style.opacity = '0';
-			goTopBtn.style.visibility = 'hidden';
-		}
-	}
+        // Function to animate the scroll
+        var smoothScroll = function (anchor, duration) {
 
-	var goTopBtn = document.querySelector( '.generate-back-to-top' );
+            // Calculate how far and how fast to scroll
+            var startLocation = window.pageYOffset;
+            var endLocation = document.body.offsetTop;
+            var distance = endLocation - startLocation;
+            var increments = distance/(duration/16);
+            var stopAnimation;
 
-	window.addEventListener( 'scroll', trackScroll );
+            // Scroll the page by an increment, and check if it's time to stop
+            var animateScroll = function () {
+                window.scrollBy(0, increments);
+                stopAnimation();
+            };
 
-	goTopBtn.addEventListener( 'click', function( e ) {
-		e.preventDefault();
-		scrollTo( document.body, 0, goTopBtn.getAttribute( 'data-scroll-speed' ) );
-	} );
-} )();
+            // Stop animation when you reach the anchor OR the top of the page
+            stopAnimation = function () {
+                var travelled = window.pageYOffset;
+                if ( travelled <= (endLocation || 0) ) {
+                    clearInterval(runAnimation);
+                }
+            };
+
+            // Loop the animation function
+            var runAnimation = setInterval(animateScroll, 16);
+
+        };
+
+		var goTopBtn = document.querySelector( '.generate-back-to-top' );
+		goTopBtn.addEventListener( 'click', function( e ) {
+			e.preventDefault();
+			smoothScroll( document.body, goTopBtn.getAttribute( 'data-scroll-speed' ) || 400 );
+		}, false );
+
+    }
+ })();
