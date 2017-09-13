@@ -1,4 +1,6 @@
 ( function() {
+	'use strict';
+
     if ( 'querySelector' in document && 'addEventListener' in window ) {
 		/**
 		 * Navigation search.
@@ -6,7 +8,7 @@
 		 * @param e The event.
 		 * @param _this The clicked item.
 		 */
-		toggleSearch = function( e, item ) {
+		var toggleSearch = function( e, item ) {
 			e.preventDefault();
 
 			if ( ! item ) {
@@ -21,7 +23,7 @@
 
 			var form = nav.querySelector( '.navigation-search' );
 
-			if ( isVisible( form ) ) {
+			if ( form.classList.contains( 'nav-search-active' ) ) {
 				item.querySelector( 'i' ).classList.remove( 'fa-close' );
 				item.querySelector( 'i' ).classList.add( 'fa-search' );
 				item.style.opacity = '1';

@@ -1,19 +1,36 @@
 ( function() {
+	'use strict';
+
     if ( 'querySelector' in document && 'addEventListener' in window ) {
+		/**
+		 * matches() pollyfil
+		 * @see https://developer.mozilla.org/en-US/docs/Web/API/Element/closest#Browser_compatibility
+		 */
+		if ( ! Element.prototype.matches ) {
+			Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+		}
+
 		/**
 		 * closest() pollyfil
 		 * @see https://developer.mozilla.org/en-US/docs/Web/API/Element/closest#Browser_compatibility
 		 */
 		if ( ! Element.prototype.closest ) {
-			Element.prototype.closest = function (s) {
-				var matches = (this.document || this.ownerDocument).querySelectorAll(s),
-					i,
-					el = this;
+			Element.prototype.closest = function( s ) {
+				var el = this;
+				var ancestor = this;
+
+				if ( ! document.documentElement.contains( el ) ) {
+					return null;
+				}
+
 				do {
-					i = matches.length;
-					while (--i >= 0 && matches.item(i) !== el) {};
-				} while ((i < 0) && (el = el.parentElement));
-				return el;
+					if ( ancestor.matches( s ) ) {
+						return ancestor;
+					}
+
+					ancestor = ancestor.parentElement;
+				} while ( ancestor !== null ); 
+				return null;
 			};
 		}
 
@@ -22,7 +39,7 @@
 		 *
 		 * @param  {element} element
 		 */
-		isVisible = function (el) {
+		var isVisible = function (el) {
 			if ( el.offsetParent === null ) {
 				return false;
 			}
@@ -55,7 +72,7 @@
 		 * @param e The event.
 		 * @param _this The clicked item.
 		 */
-		toggleNav = function( e, _this ) {
+		var toggleNav = function( e, _this ) {
 			if ( ! _this ) {
 				var _this = this;
 			}
@@ -103,7 +120,7 @@
 		 * @param e The event.
 		 * @param _this The clicked item.
 		 */
-		toggleSubNav = function( e, _this ) {
+		var toggleSubNav = function( e, _this ) {
 
 			if ( ! _this ) {
 				var _this = this;
@@ -136,7 +153,7 @@
 		 * Disable the mobile menu if our toggle isn't visible.
 		 * Makes it possible to style mobile item with .toggled class.
 		 */
-		checkMobile = function() {
+		var checkMobile = function() {
 			for ( var i = 0; i < allNavToggles.length; i++ ) {
 				if ( ! isVisible( allNavToggles[i] ) ) {
 					var closestParent = allNavToggles[i].closest( 'nav' );
@@ -203,7 +220,7 @@
 			 * Make menu items tab accessible when using the hover dropdown type
 			 */
 			var toggleFocus = function() {
-				if ( this.closest( 'nav' ).classList.contains( 'toggled' ) ) {
+				if ( this.closest( 'nav' ).classList.contains( 'toggled' ) || this.closest( 'nav' ).classList.contains( 'slideout-navigation' ) ) {
 					return;
 				}
 
@@ -300,7 +317,7 @@
 		 * @param e The event.
 		 * @param _this The clicked item.
 		 */
-		dropdownClick = function( e, _this ) {
+		var dropdownClick = function( e, _this ) {
 			e.preventDefault();
 			e.stopPropagation();
 

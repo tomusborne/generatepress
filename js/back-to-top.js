@@ -1,10 +1,10 @@
-(function() {
-     'use strict';
+( function() {
+    'use strict';
 
     // Feature Test
     if ( 'querySelector' in document && 'addEventListener' in window ) {
 
-		function trackScroll() {
+		var trackScroll = function() {
 			var scrolled = window.pageYOffset;
 			var coords = goTopBtn.getAttribute( 'data-start-scroll' ) ;
 
@@ -56,4 +56,5 @@
 		}, false );
 
     }
- })();
+
+ } )();
