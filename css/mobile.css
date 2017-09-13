@@ -35,6 +35,12 @@ nav.toggled ul ul.sub-menu {
 	width: 100%;
 }
 
+.dropdown-hover .main-navigation.toggled ul li:hover > ul,
+.dropdown-hover .main-navigation.toggled ul li.sfHover > ul,
+.dropdown-hover .secondary-navigation.toggled ul li:hover > ul,
+.dropdown-hover .secondary-navigation.toggled ul li.sfHover > ul {
+	transition-delay: 0s;
+}
 @media (max-width: 768px) {
 	.top-bar.top-bar-align-left,
 	.top-bar.top-bar-align-right {
