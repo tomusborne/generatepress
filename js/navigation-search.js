@@ -1,6 +1,5 @@
 ( function() {
     if ( 'querySelector' in document && 'addEventListener' in window ) {
-		var touchEvent = 'ontouchend' in document.documentElement ? 'touchend' : 'click';
 		/**
 		 * Navigation search.
 		 *
@@ -55,7 +54,7 @@
 			var searchItems = document.querySelectorAll( '.search-item' );
 
 			for ( var i = 0; i < searchItems.length; i++ ) {
-				searchItems[i].addEventListener( touchEvent, toggleSearch, false );
+				searchItems[i].addEventListener( 'click', toggleSearch, false );
 			}
 
 			// Close navigation search on click elsewhere

@@ -47,7 +47,6 @@
 			allNavToggles = document.querySelectorAll( '.menu-toggle' ),
 			dropdownToggle = document.querySelectorAll( 'nav .dropdown-menu-toggle' ),
 			navLinks = document.querySelectorAll( 'nav ul a' ),
-			touchEvent = 'ontouchend' in document.documentElement ? 'touchend' : 'click',
 			htmlEl = document.documentElement,
 			secondaryNavItems = document.querySelectorAll( '.secondary-navigation .menu-item-has-children' );
 
@@ -96,7 +95,7 @@
 		}
 
 		for ( var i = 0; i < allNavToggles.length; i++ ) {
-			allNavToggles[i].addEventListener( touchEvent, toggleNav, false );
+			allNavToggles[i].addEventListener( 'click', toggleNav, false );
 		}
 
 		/**
@@ -125,7 +124,7 @@
 		}
 
 		for ( var i = 0; i < dropdownToggle.length; i++ ) {
-			dropdownToggle[i].addEventListener( touchEvent, toggleSubNav, false );
+			dropdownToggle[i].addEventListener( 'click', toggleSubNav, false );
 			dropdownToggle[i].addEventListener( 'keypress', function( e ) {
 				var key = e.which || e.keyCode;
 				if (key === 13) { // 13 is enter
@@ -171,7 +170,7 @@
 		 * Do some essential things when menu items are clicked.
 		 */
 		for ( var i = 0; i < navLinks.length; i++ ) {
-			navLinks[i].addEventListener( touchEvent, function( e ) {
+			navLinks[i].addEventListener( 'click', function( e ) {
 				if ( ( this.closest( 'nav' ).classList.contains( 'toggled' ) || htmlEl.classList.contains( 'slide-opened' ) ) && ! document.body.classList.contains( 'dropdown-click' ) ) {
 					var parent = this.closest( 'nav' );
 					var url = this.getAttribute( 'href' );
@@ -352,7 +351,7 @@
 			// Open the sub-menu by clicking on the entire link element
 			if ( document.body.classList.contains( 'dropdown-click-menu-item' ) ) {
 				for ( var i = 0; i < parentElementLinks.length; i++ ) {
-					parentElementLinks[i].addEventListener( touchEvent, dropdownClick, true );
+					parentElementLinks[i].addEventListener( 'click', dropdownClick, true );
 				}
 			}
 
@@ -368,7 +367,7 @@
 
 				var dropdownToggleLinks = document.querySelectorAll( '.main-nav .menu-item-has-children > a .dropdown-menu-toggle' );
 				for ( var i = 0; i < dropdownToggleLinks.length; i++ ) {
-					dropdownToggleLinks[i].addEventListener( touchEvent, dropdownClick, false );
+					dropdownToggleLinks[i].addEventListener( 'click', dropdownClick, false );
 
 					dropdownToggleLinks[i].addEventListener( 'keydown', function( e ) {
 						var _this = this;
@@ -380,7 +379,7 @@
 				}
 
 				for ( var i = 0; i < document.querySelectorAll( '.main-nav .menu-item-has-children > a.menu-item-dropdown-click' ).length; i++ ) {
-					document.querySelectorAll( '.main-nav .menu-item-has-children > a.menu-item-dropdown-click' )[i].addEventListener( touchEvent, dropdownClick, false );
+					document.querySelectorAll( '.main-nav .menu-item-has-children > a.menu-item-dropdown-click' )[i].addEventListener( 'click', dropdownClick, false );
 				}
 			}
 
