@@ -47,8 +47,7 @@
 			allNavToggles = document.querySelectorAll( '.menu-toggle' ),
 			dropdownToggle = document.querySelectorAll( 'nav .dropdown-menu-toggle' ),
 			navLinks = document.querySelectorAll( 'nav ul a' ),
-			htmlEl = document.documentElement,
-			secondaryNavItems = document.querySelectorAll( '.secondary-navigation .menu-item-has-children' );
+			htmlEl = document.documentElement;
 
 		/**
 		 * Start mobile menu toggle.
@@ -234,11 +233,9 @@
 			 */
 			if ( 'touchend' in document.documentElement ) {
 				for ( var i = 0; i < parentElements.length; i++ ) {
-					var $this = parentElements[i];
-					var closestParent = $this.parentNode.closest( '.menu-item-has-children' );
-
-					$this.addEventListener( 'touchend', function( e ) {
-						if ( $this.closest( 'nav' ).classList.contains( 'toggled' ) ) {
+					parentElements[i].addEventListener( 'touchend', function( e ) {
+						// Bail on mobile
+						if ( parentElements[i].closest( 'nav' ).classList.contains( 'toggled' ) ) {
 							return;
 						}
 
@@ -253,8 +250,7 @@
 									e.preventDefault();
 								}
 
-								var closestLi = this.closest( 'li' );
-								var siblings = closestLi.siblings();
+								var siblings = this.closest( 'li' ).siblings();
 								for ( var o = 0; o < siblings.length; o++ ) {
 
 									if ( siblings[o].querySelector( '.toggled-on' ) ) {
@@ -291,6 +287,7 @@
 				this.classList.toggle( 'sfHover' );
 			}
 
+			var secondaryNavItems = document.querySelectorAll( '.secondary-navigation .menu-item-has-children' );
 			for ( var i = 0; i < secondaryNavItems.length; i++ ) {
 					secondaryNavItems[i].addEventListener( 'mouseenter', addFocusClass );
 					secondaryNavItems[i].addEventListener( 'mouseleave', addFocusClass );
@@ -315,14 +312,6 @@
 			var siblings = closestLi.siblings();
 			var parent = _this.closest( 'nav' );
 
-			// Close the secondary menu if we're clicking inside the main menu
-			if ( parent.classList.contains( '.main-navigation' ) ) {
-				if ( isVisible( document.querySelector( '.secondary-navigation ul.toggled-on' ) ) ) {
-					var navLink = document.querySelector( '.secondary-navigation .main-nav .menu-item-has-children > a' );
-					navLink.parentNode.classList.remove( 'sfHover' );
-				}
-			}
-
 			// Close other sub-menus
 			for ( var o = 0; o < siblings.length; o++ ) {
 				if ( siblings[o].querySelector( '.toggled-on' ) ) {
@@ -345,7 +334,6 @@
 
 		// Do stuff if click dropdown if enabled
 		if ( document.body.classList.contains( 'dropdown-click' ) ) {
-
 			var parentElementLinks = document.querySelectorAll( '.main-nav .menu-item-has-children > a' );
 
 			// Open the sub-menu by clicking on the entire link element
@@ -357,7 +345,6 @@
 
 			// Open the sub-menu by clicking on a dropdown arrow
 			if ( document.body.classList.contains( 'dropdown-click-arrow' ) ) {
-
 				// Add a class to sub-menu items that are set to #
 				for ( var i = 0; i < document.querySelectorAll( '.main-nav .menu-item-has-children > a' ).length; i++ ) {
 					if ( '#' == document.querySelectorAll( '.main-nav .menu-item-has-children > a' )[i].getAttribute( 'href' ) ) {
