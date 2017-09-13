@@ -446,7 +446,6 @@ input[type="file"] {
 	transition: opacity 100ms linear, transform 50ms ease-in-out;
 	transition-delay: 0s;
 	transform: scale(0.9);
-	visibility: hidden;
 }
 .main-navigation ul ul a {
 	display: block;
@@ -463,7 +462,6 @@ input[type="file"] {
 	opacity: 1;
 	transition-delay: 150ms;
 	transform: scale(1);
-	visibility: visible;
 }
 .dropdown-hover .main-navigation ul ul li:hover > ul,
 .dropdown-hover .main-navigation ul ul li.sfHover > ul,
@@ -473,6 +471,10 @@ input[type="file"] {
 	top: 0;
 }
 
+.dropdown-click .main-navigation ul ul,
+.dropdown-click .secondary-navigation ul ul {
+	visibility: hidden;
+}
 .dropdown-click .main-navigation ul.toggled-on,
 .dropdown-click .main-navigation ul li.sfHover > ul.toggled-on,
 .dropdown-click .secondary-navigation ul.toggled-on,

@@ -45,6 +45,16 @@ nav.toggled ul ul.sub-menu {
 .toggled .menu-item-has-children .dropdown-menu-toggle {
 	padding-left: 20px;
 }
+
+.main-navigation.toggled ul ul,
+.secondary-navigation.toggled ul ul {
+	visibility: hidden;
+}
+
+.main-navigation.toggled ul ul.toggled-on,
+.secondary-navigation.toggled ul ul.toggled-on {
+	visibility: visible;
+}
 @media (max-width: 768px) {
 	.top-bar.top-bar-align-left,
 	.top-bar.top-bar-align-right {
