@@ -41,6 +41,10 @@ nav.toggled ul ul.sub-menu {
 .dropdown-hover .secondary-navigation.toggled ul li.sfHover > ul {
 	transition-delay: 0s;
 }
+
+.toggled .menu-item-has-children .dropdown-menu-toggle {
+	padding-left: 20px;
+}
 @media (max-width: 768px) {
 	.top-bar.top-bar-align-left,
 	.top-bar.top-bar-align-right {
