@@ -460,8 +460,11 @@ input[type="file"] {
 	left: auto;
 	height: auto;
 	opacity: 1;
-	transition-delay: 150ms;
 	transform: scale(1);
+}
+.dropdown-hover .main-navigation ul li:hover > ul,
+.dropdown-hover .secondary-navigation ul li:hover > ul {
+	transition-delay: 150ms;
 }
 .dropdown-hover .main-navigation ul ul li:hover > ul,
 .dropdown-hover .main-navigation ul ul li.sfHover > ul,
