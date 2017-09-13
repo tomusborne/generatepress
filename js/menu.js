@@ -233,49 +233,51 @@
 			/**
 			 * Make hover dropdown touch-friendly.
 			 */
-			if ( 'ontouchstart' in document.documentElement ) {
+			if ( 'touchend' in document.documentElement ) {
 				for ( var i = 0; i < parentElements.length; i++ ) {
 					var $this = parentElements[i];
 					var closestParent = $this.parentNode.closest( '.menu-item-has-children' );
 
-					if ( ! $this.closest( 'nav' ).classList.contains( 'toggled' ) ) {
-						$this.addEventListener( 'touchstart', function( e ) {
-							if ( e.touches.length === 1 ) {
-								// Prevent touch events within dropdown bubbling down to document
-								e.stopPropagation();
+					$this.addEventListener( 'touchend', function( e ) {
+						if ( $this.closest( 'nav' ).classList.contains( 'toggled' ) ) {
+							return;
+						}
 
-								// Toggle hover
-								if ( ! this.classList.contains( 'sfHover' ) ) {
-									// Prevent link on first touch
-									if ( e.target === this || e.target.parentNode === this ) {
-										e.preventDefault();
-									}
+						if ( e.touches.length === 1 ) {
+							// Prevent touch events within dropdown bubbling down to document
+							e.stopPropagation();
 
-									var closestLi = this.closest( 'li' );
-									var siblings = closestLi.siblings();
-									for ( var o = 0; o < siblings.length; o++ ) {
-
-										if ( siblings[o].querySelector( '.toggled-on' ) ) {
-											siblings[o].querySelector( '.toggled-on' ).classList.remove( 'toggled-on' );
-										}
-
-										siblings[o].classList.remove( 'sfHover' );
-
-									}
-
-									this.classList.add( 'sfHover' );
-
-									// Hide dropdown on touch outside
-									document.addEventListener( 'touchstart', closeDropdown = function(e) {
-										e.stopPropagation();
-
-										this.classList.remove( 'sfHover' );
-										document.removeEventListener( 'touchstart', closeDropdown );
-									} );
+							// Toggle hover
+							if ( ! this.classList.contains( 'sfHover' ) ) {
+								// Prevent link on first touch
+								if ( e.target === this || e.target.parentNode === this ) {
+									e.preventDefault();
 								}
+
+								var closestLi = this.closest( 'li' );
+								var siblings = closestLi.siblings();
+								for ( var o = 0; o < siblings.length; o++ ) {
+
+									if ( siblings[o].querySelector( '.toggled-on' ) ) {
+										siblings[o].querySelector( '.toggled-on' ).classList.remove( 'toggled-on' );
+									}
+
+									siblings[o].classList.remove( 'sfHover' );
+
+								}
+
+								this.classList.add( 'sfHover' );
+
+								// Hide dropdown on touch outside
+								document.addEventListener( 'touchend', closeDropdown = function(e) {
+									e.stopPropagation();
+
+									this.classList.remove( 'sfHover' );
+									document.removeEventListener( 'touchend', closeDropdown );
+								} );
 							}
-						}, true );
-					}
+						}
+					}, true );
 				}
 			}
 
