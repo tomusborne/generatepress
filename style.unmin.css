@@ -446,6 +446,7 @@ input[type="file"] {
 	transition: opacity 100ms linear, transform 50ms ease-in-out;
 	transition-delay: 0s;
 	transform: scale(0.9);
+	visibility: hidden;
 }
 .main-navigation ul ul a {
 	display: block;
@@ -462,6 +463,7 @@ input[type="file"] {
 	opacity: 1;
 	transition-delay: 150ms;
 	transform: scale(1);
+	visibility: visible;
 }
 .dropdown-hover .main-navigation ul ul li:hover > ul,
 .dropdown-hover .main-navigation ul ul li.sfHover > ul,
@@ -479,6 +481,7 @@ input[type="file"] {
 	height: auto;
 	opacity: 1;
 	transform: scale(1);
+	visibility: visible;
 }
 .dropdown-click nav ul ul ul {
 	background-color: transparent;
