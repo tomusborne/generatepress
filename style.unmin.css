@@ -241,8 +241,6 @@ input[type="radio"] {
 }
 input[type="search"] {
 	-webkit-appearance: textfield; /* Addresses appearance set to searchfield in S5, Chrome */
-	-webkit-box-sizing: content-box; /* Addresses box sizing set to border-box in S5, Chrome (include -moz to future-proof) */
-	-moz-box-sizing:    content-box;
 	box-sizing:         content-box;
 }
 input[type="search"]::-webkit-search-decoration { /* Corrects inner padding displayed oddly in S5, Chrome on OSX */
@@ -267,8 +265,6 @@ select {
 	border: 1px solid #ccc;
 	border-radius: 0px;
 	padding: 10px 15px;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	max-width: 100%;
 }
@@ -292,8 +288,6 @@ textarea {
 
 input[type="file"] {
 	max-width: 100%;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
@@ -437,16 +431,17 @@ input[type="file"] {
 	float: left;
 	position: absolute;
 	left: -99999px;
-	height: 0;
 	opacity: 0;
 	z-index: 99999;
 	width:200px;
 	text-align:left;
 	top: auto;
-	transition: opacity 100ms linear, transform 50ms ease-in-out;
+	transition: opacity 100ms linear;
 	transition-delay: 0s;
-	transform: scale(0.9);
+	pointer-events: none;
+	visibility: hidden;
 }
+
 .main-navigation ul ul a {
 	display: block;
 }
@@ -458,10 +453,10 @@ input[type="file"] {
 .dropdown-hover .secondary-navigation ul li:hover > ul,
 .dropdown-hover .secondary-navigation ul li.sfHover > ul {
 	left: auto;
-	height: auto;
 	opacity: 1;
 	transition-delay: 150ms;
-	transform: scale(1);
+	pointer-events: auto;
+	visibility: visible;
 }
 .dropdown-hover .main-navigation ul ul li:hover > ul,
 .dropdown-hover .main-navigation ul ul li.sfHover > ul,
@@ -471,19 +466,14 @@ input[type="file"] {
 	top: 0;
 }
 
-.dropdown-click .main-navigation ul ul,
-.dropdown-click .secondary-navigation ul ul {
-	visibility: hidden;
-}
 .dropdown-click .main-navigation ul.toggled-on,
 .dropdown-click .main-navigation ul li.sfHover > ul.toggled-on,
 .dropdown-click .secondary-navigation ul.toggled-on,
 .dropdown-click .secondary-navigation ul li.sfHover > ul.toggled-on {
 	left: auto;
-	height: auto;
 	opacity: 1;
-	transform: scale(1);
 	visibility: visible;
+	pointer-events: auto;
 }
 .dropdown-click nav ul ul ul {
 	background-color: transparent;
@@ -745,8 +735,7 @@ nav:not(.toggled):not(.slideout-navigation) ul ul .menu-item-has-children .dropd
 
 .dropdown-hover.both-right .widget-area .main-navigation ul ul,
 .dropdown-hover.right-sidebar .widget-area .main-navigation ul ul,
-.dropdown-hover.both-sidebars .widget-area .inside-right-sidebar .main-navigation ul ul
- {
+.dropdown-hover.both-sidebars .widget-area .inside-right-sidebar .main-navigation ul ul {
 	right: 100%;
 	left: auto;
 }
@@ -1063,9 +1052,6 @@ body {
 }
 
 a {
-	-webkit-transition:color 0.1s ease-in-out, background-color 0.1s ease-in-out;
-	-moz-transition:color 0.1s ease-in-out, background-color 0.1s ease-in-out;
-	-o-transition:color 0.1s ease-in-out, background-color 0.1s ease-in-out;
 	transition:color 0.1s ease-in-out, background-color 0.1s ease-in-out;
 }
 
@@ -1259,9 +1245,7 @@ h4, h5, h6 {
 	margin-bottom: 0;
 }
 .widget {
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 .widget-title {
 	margin-bottom: 30px;

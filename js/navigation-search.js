@@ -79,7 +79,7 @@
 					if ( key === 27 ) { // 27 is esc
 						var activeSearchItems = document.querySelectorAll( '.search-item.active' );
 						for ( var i = 0; i < activeSearchItems.length; i++ ) {
-							toggleSearch( event, activeSearchItems[i] );
+							toggleSearch( e, activeSearchItems[i] );
 						}
 					}
 				}
