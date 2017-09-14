@@ -18,45 +18,17 @@
 			Element.prototype.closest = function( s ) {
 				var el = this;
 				var ancestor = this;
-
 				if ( ! document.documentElement.contains( el ) ) {
 					return null;
 				}
-
 				do {
 					if ( ancestor.matches( s ) ) {
 						return ancestor;
 					}
-
 					ancestor = ancestor.parentElement;
 				} while ( ancestor !== null ); 
 				return null;
 			};
-		}
-
-		/**
-		 * Check if an element is visible
-		 *
-		 * @param  {element} element
-		 */
-		var isVisible = function (el) {
-			if ( el.offsetParent === null ) {
-				return false;
-			}
-
-			return true;
-		}
-
-		if ( ! Element.prototype.siblings ) {
-			Element.prototype.siblings = function () {
-				var siblings = [];
-				var sibling = this.parentNode.firstChild;
-				for (; sibling; sibling = sibling.nextSibling) {
-					if (sibling.nodeType !== 1 || sibling === this) continue;
-					siblings.push(sibling);
-				}
-				return siblings;
-			}
 		}
 
 		var parentElements = document.querySelectorAll( '.sf-menu .menu-item-has-children' ),
@@ -64,6 +36,7 @@
 			allNavToggles = document.querySelectorAll( '.menu-toggle' ),
 			dropdownToggle = document.querySelectorAll( 'nav .dropdown-menu-toggle' ),
 			navLinks = document.querySelectorAll( 'nav ul a' ),
+			body = document.body,
 			htmlEl = document.documentElement;
 
 		/**
@@ -90,7 +63,7 @@
 				htmlEl.classList.remove( 'mobile-menu-open' );
 				nav.setAttribute( 'aria-hidden', 'true' );
 
-				if ( document.body.classList.contains( 'dropdown-hover' ) ) {
+				if ( body.classList.contains( 'dropdown-hover' ) ) {
 					var dropdownItems = nav.querySelectorAll( 'li.menu-item-has-children' );
 					for ( var i = 0; i < dropdownItems.length; i++ ) {
 						dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'tabindex', '' );
@@ -101,7 +74,7 @@
 				htmlEl.classList.add( 'mobile-menu-open' );
 				nav.setAttribute( 'aria-hidden', 'false' );
 
-				if ( document.body.classList.contains( 'dropdown-hover' ) ) {
+				if ( body.classList.contains( 'dropdown-hover' ) ) {
 					var dropdownItems = nav.querySelectorAll( 'li.menu-item-has-children' );
 					for ( var i = 0; i < dropdownItems.length; i++ ) {
 						dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'tabindex', '0' );
@@ -126,7 +99,7 @@
 				var _this = this;
 			}
 
-			if ( ( _this.closest( 'nav' ).classList.contains( 'toggled' ) || htmlEl.classList.contains( 'slide-opened' ) ) && ! document.body.classList.contains( 'dropdown-click' ) ) {
+			if ( ( _this.closest( 'nav' ).classList.contains( 'toggled' ) || htmlEl.classList.contains( 'slide-opened' ) ) && ! body.classList.contains( 'dropdown-click' ) ) {
 				e.preventDefault();
 				var closestLi = _this.closest( 'li' );
 
@@ -155,7 +128,7 @@
 		 */
 		var checkMobile = function() {
 			for ( var i = 0; i < allNavToggles.length; i++ ) {
-				if ( ! isVisible( allNavToggles[i] ) ) {
+				if ( allNavToggles[i].offsetParent === null ) {
 					var closestParent = allNavToggles[i].closest( 'nav' );
 					var closestNav = closestParent.getElementsByTagName( 'ul' )[0];
 					var closestNavItems = closestNav.getElementsByTagName( 'li' );
@@ -182,40 +155,7 @@
 		window.addEventListener( 'resize', checkMobile, false );
 		window.addEventListener( 'orientationchange', checkMobile, false );
 
-		/**
-		 * Do some essential things when menu items are clicked.
-		 */
-		for ( var i = 0; i < navLinks.length; i++ ) {
-			navLinks[i].addEventListener( 'click', function( e ) {
-				if ( ( this.closest( 'nav' ).classList.contains( 'toggled' ) || htmlEl.classList.contains( 'slide-opened' ) ) && ! document.body.classList.contains( 'dropdown-click' ) ) {
-					var parent = this.closest( 'nav' );
-					var url = this.getAttribute( 'href' );
-
-					// Open the sub-menu if the link has no destination
-					if ( '#' == url || '' == url ) {
-						e.preventDefault();
-						var closestLi = this.closest( 'li' );
-						closestLi.classList.toggle( 'sfHover' );
-						var subMenu = closestLi.querySelector( '.sub-menu' );
-
-						if ( subMenu ) {
-							subMenu.classList.toggle( 'toggled-on' );
-						}
-					}
-
-					// Close the mobile menu if our link does something - good for one page sites.
-					if ( '#' !== url && '' !== url && ! navigator.userAgent.match( /iemobile/i ) ) {
-						setTimeout( function() {
-							parent.classList.remove( 'toggled' );
-							htmlEl.classList.remove( 'mobile-menu-open' );
-							nav.setAttribute( 'aria-hidden', 'true' );
-						}, 200 );
-					}
-				}
-			}, false );
-		}
-
-		if ( document.body.classList.contains( 'dropdown-hover' ) ) {
+		if ( body.classList.contains( 'dropdown-hover' ) ) {
 			/**
 			 * Make menu items tab accessible when using the hover dropdown type
 			 */
@@ -266,16 +206,14 @@
 								if ( e.target === this || e.target.parentNode === this ) {
 									e.preventDefault();
 								}
-
-								var siblings = this.closest( 'li' ).siblings();
-								for ( var o = 0; o < siblings.length; o++ ) {
-
-									if ( siblings[o].querySelector( '.toggled-on' ) ) {
-										siblings[o].querySelector( '.toggled-on' ).classList.remove( 'toggled-on' );
+								
+								// Close other sub-menus
+								var openedSubMenus = parentElements[i].closest( 'nav' ).querySelectorAll( 'ul.toggled-on' );
+								if ( openedSubMenus && ! this.closest( 'ul' ).classList.contains( 'toggled-on' ) && ! this.closest( 'li' ).classList.contains( 'sfHover' ) ) {
+									for ( var o = 0; o < openedSubMenus.length; o++ ) {
+										openedSubMenus[o].classList.remove( 'toggled-on' );
+										openedSubMenus[o].closest( 'li' ).classList.remove( 'sfHover' );
 									}
-
-									siblings[o].classList.remove( 'sfHover' );
-
 								}
 
 								this.classList.add( 'sfHover' );
@@ -309,6 +247,39 @@
 					secondaryNavItems[i].addEventListener( 'mouseenter', addFocusClass );
 					secondaryNavItems[i].addEventListener( 'mouseleave', addFocusClass );
 			}
+			
+			/**
+			 * Do some essential things when menu items are clicked.
+			 */
+			for ( var i = 0; i < navLinks.length; i++ ) {
+				navLinks[i].addEventListener( 'click', function( e ) {
+					if ( ( this.closest( 'nav' ).classList.contains( 'toggled' ) || htmlEl.classList.contains( 'slide-opened' ) ) ) {
+						var parent = this.closest( 'nav' );
+						var url = this.getAttribute( 'href' );
+	
+						// Open the sub-menu if the link has no destination
+						if ( '#' == url || '' == url ) {
+							e.preventDefault();
+							var closestLi = this.closest( 'li' );
+							closestLi.classList.toggle( 'sfHover' );
+							var subMenu = closestLi.querySelector( '.sub-menu' );
+	
+							if ( subMenu ) {
+								subMenu.classList.toggle( 'toggled-on' );
+							}
+						}
+	
+						// Close the mobile menu if our link does something - good for one page sites.
+						if ( '#' !== url && '' !== url && ! navigator.userAgent.match( /iemobile/i ) ) {
+							setTimeout( function() {
+								parent.classList.remove( 'toggled' );
+								htmlEl.classList.remove( 'mobile-menu-open' );
+								nav.setAttribute( 'aria-hidden', 'true' );
+							}, 200 );
+						}
+					}
+				}, false );
+			}
 		}
 
 		/**
@@ -326,42 +297,41 @@
 			}
 
 			var closestLi = _this.closest( 'li' );
-			var siblings = closestLi.siblings();
 			var parent = _this.closest( 'nav' );
 
 			// Close other sub-menus
-			for ( var o = 0; o < siblings.length; o++ ) {
-				if ( siblings[o].querySelector( '.toggled-on' ) ) {
-					siblings[o].querySelector( '.toggled-on' ).classList.remove( 'toggled-on' );
+			var openedSubMenus = parent.querySelectorAll( 'ul.toggled-on' );
+			if ( openedSubMenus && ! _this.closest( 'ul' ).classList.contains( 'toggled-on' ) && ! _this.closest( 'li' ).classList.contains( 'sfHover' ) ) {
+				for ( var o = 0; o < openedSubMenus.length; o++ ) {
+					openedSubMenus[o].classList.remove( 'toggled-on' );
+					openedSubMenus[o].closest( 'li' ).classList.remove( 'sfHover' );
 				}
-
-				siblings[o].classList.remove( 'sfHover' );
 			}
 
 			// Add sfHover class to parent li
 			closestLi.classList.toggle( 'sfHover' );
 
 			// Open the sub-menu
-			if ( document.body.classList.contains( 'dropdown-click-menu-item' ) ) {
+			if ( body.classList.contains( 'dropdown-click-menu-item' ) ) {
 				_this.parentNode.querySelector( '.sub-menu' ).classList.toggle( 'toggled-on' );
-			} else if ( document.body.classList.contains( 'dropdown-click-arrow' ) ) {
+			} else if ( body.classList.contains( 'dropdown-click-arrow' ) ) {
 				closestLi.querySelector( '.sub-menu' ).classList.toggle( 'toggled-on' );
 			}
 		}
 
 		// Do stuff if click dropdown if enabled
-		if ( document.body.classList.contains( 'dropdown-click' ) ) {
+		if ( body.classList.contains( 'dropdown-click' ) ) {
 			var parentElementLinks = document.querySelectorAll( '.main-nav .menu-item-has-children > a' );
 
 			// Open the sub-menu by clicking on the entire link element
-			if ( document.body.classList.contains( 'dropdown-click-menu-item' ) ) {
+			if ( body.classList.contains( 'dropdown-click-menu-item' ) ) {
 				for ( var i = 0; i < parentElementLinks.length; i++ ) {
 					parentElementLinks[i].addEventListener( 'click', dropdownClick, true );
 				}
 			}
 
 			// Open the sub-menu by clicking on a dropdown arrow
-			if ( document.body.classList.contains( 'dropdown-click-arrow' ) ) {
+			if ( body.classList.contains( 'dropdown-click-arrow' ) ) {
 				// Add a class to sub-menu items that are set to #
 				for ( var i = 0; i < document.querySelectorAll( '.main-nav .menu-item-has-children > a' ).length; i++ ) {
 					if ( '#' == document.querySelectorAll( '.main-nav .menu-item-has-children > a' )[i].getAttribute( 'href' ) ) {
@@ -386,32 +356,29 @@
 					document.querySelectorAll( '.main-nav .menu-item-has-children > a.menu-item-dropdown-click' )[i].addEventListener( 'click', dropdownClick, false );
 				}
 			}
+			
+			var closeSubMenus = function() {
+				if ( document.querySelector( 'nav ul .toggled-on' ) ) {
+					var activeSubMenus = document.querySelectorAll( 'nav ul .toggled-on' );
+					for ( var i = 0; i < activeSubMenus.length; i++ ) {
+						activeSubMenus[i].classList.remove( 'toggled-on' );
+						activeSubMenus[i].closest( '.sfHover' ).classList.remove( 'sfHover' );
+					}
+				}
+			}
 
 			// Close sub-menus when clicking elsewhere
 			document.addEventListener( 'click', function ( event ) {
-				if ( document.querySelector( 'nav ul .toggled-on' ) ) {
-					if ( ! event.target.closest( '.sfHover' ) ) {
-						var activeSubMenus = document.querySelectorAll( 'nav ul .toggled-on' );
-						for ( var i = 0; i < activeSubMenus.length; i++ ) {
-							activeSubMenus[i].classList.remove( 'toggled-on' );
-							activeSubMenus[i].closest( '.sfHover' ).classList.remove( 'sfHover' );
-						}
-					}
+				if ( ! event.target.closest( '.sfHover' ) ) {
+					closeSubMenus();
 				}
 			}, false);
 
 			// Close sub-menus on escape key
 			document.addEventListener( 'keydown', function( e ) {
-				if ( document.querySelector( 'nav ul .toggled-on' ) ) {
-					var key = e.which || e.keyCode;
-
-					if ( key === 27 ) { // 27 is esc
-						var activeSubMenus = document.querySelectorAll( 'nav ul .toggled-on' );
-						for ( var i = 0; i < activeSubMenus.length; i++ ) {
-							activeSubMenus[i].classList.remove( 'toggled-on' );
-							activeSubMenus[i].closest( '.sfHover' ).classList.remove( 'sfHover' );
-						}
-					}
+				var key = e.which || e.keyCode;
+				if ( key === 27 ) { // 27 is esc
+					closeSubMenus();
 				}
 			}, false );
 
