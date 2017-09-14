@@ -288,6 +288,11 @@ function generate_scripts()
 	$icon_essentials = ( $icon_essentials ) ? '-essentials' : false;
 	wp_enqueue_style( "font-awesome{$icon_essentials}", get_template_directory_uri() . "/css/font-awesome{$icon_essentials}{$suffix}.css", false, '4.7', 'all' );
 	
+	if ( function_exists( 'wp_script_add_data' ) ) {
+		wp_enqueue_script( 'generate-classlist', get_template_directory_uri() . "/js/classList{$suffix}.js", array(), GENERATE_VERSION, true );
+		wp_script_add_data( 'generate-classlist', 'conditional', 'lte IE 11' );
+	}
+
 	wp_enqueue_script( 'generate-menu', get_template_directory_uri() . "/js/menu{$suffix}.js", array(), GENERATE_VERSION, true );
 	
 	wp_enqueue_script( 'generate-a11y', get_template_directory_uri() . "/js/a11y{$suffix}.js", array(), GENERATE_VERSION, true );
