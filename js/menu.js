@@ -1,7 +1,7 @@
 ( function() {
 	'use strict';
 
-    if ( 'querySelector' in document && 'addEventListener' in window ) {
+	if ( 'querySelector' in document && 'addEventListener' in window ) {
 		/**
 		 * matches() pollyfil
 		 * @see https://developer.mozilla.org/en-US/docs/Web/API/Element/closest#Browser_compatibility
@@ -206,7 +206,7 @@
 								if ( e.target === this || e.target.parentNode === this ) {
 									e.preventDefault();
 								}
-								
+
 								// Close other sub-menus
 								var openedSubMenus = parentElements[i].closest( 'nav' ).querySelectorAll( 'ul.toggled-on' );
 								if ( openedSubMenus && ! this.closest( 'ul' ).classList.contains( 'toggled-on' ) && ! this.closest( 'li' ).classList.contains( 'sfHover' ) ) {
@@ -247,34 +247,32 @@
 					secondaryNavItems[i].addEventListener( 'mouseenter', addFocusClass );
 					secondaryNavItems[i].addEventListener( 'mouseleave', addFocusClass );
 			}
-			
+
 			/**
 			 * Do some essential things when menu items are clicked.
 			 */
 			for ( var i = 0; i < navLinks.length; i++ ) {
 				navLinks[i].addEventListener( 'click', function( e ) {
 					if ( ( this.closest( 'nav' ).classList.contains( 'toggled' ) || htmlEl.classList.contains( 'slide-opened' ) ) ) {
-						var parent = this.closest( 'nav' );
 						var url = this.getAttribute( 'href' );
-	
+
 						// Open the sub-menu if the link has no destination
 						if ( '#' == url || '' == url ) {
 							e.preventDefault();
 							var closestLi = this.closest( 'li' );
 							closestLi.classList.toggle( 'sfHover' );
 							var subMenu = closestLi.querySelector( '.sub-menu' );
-	
+
 							if ( subMenu ) {
 								subMenu.classList.toggle( 'toggled-on' );
 							}
 						}
-	
+
 						// Close the mobile menu if our link does something - good for one page sites.
 						if ( '#' !== url && '' !== url && ! navigator.userAgent.match( /iemobile/i ) ) {
 							setTimeout( function() {
-								parent.classList.remove( 'toggled' );
+								this.closest( 'nav' ).classList.remove( 'toggled' );
 								htmlEl.classList.remove( 'mobile-menu-open' );
-								nav.setAttribute( 'aria-hidden', 'true' );
 							}, 200 );
 						}
 					}
@@ -297,10 +295,9 @@
 			}
 
 			var closestLi = _this.closest( 'li' );
-			var parent = _this.closest( 'nav' );
 
 			// Close other sub-menus
-			var openedSubMenus = parent.querySelectorAll( 'ul.toggled-on' );
+			var openedSubMenus = _this.closest( 'nav' ).querySelectorAll( 'ul.toggled-on' );
 			if ( openedSubMenus && ! _this.closest( 'ul' ).classList.contains( 'toggled-on' ) && ! _this.closest( 'li' ).classList.contains( 'sfHover' ) ) {
 				for ( var o = 0; o < openedSubMenus.length; o++ ) {
 					openedSubMenus[o].classList.remove( 'toggled-on' );
@@ -356,7 +353,7 @@
 					document.querySelectorAll( '.main-nav .menu-item-has-children > a.menu-item-dropdown-click' )[i].addEventListener( 'click', dropdownClick, false );
 				}
 			}
-			
+
 			var closeSubMenus = function() {
 				if ( document.querySelector( 'nav ul .toggled-on' ) ) {
 					var activeSubMenus = document.querySelectorAll( 'nav ul .toggled-on' );
