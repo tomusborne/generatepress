@@ -275,7 +275,7 @@ function generate_scripts()
 	
 	// Enqueue our CSS.
 	wp_enqueue_style( 'generate-style-grid', get_template_directory_uri() . "/css/unsemantic-grid{$suffix}.css", false, GENERATE_VERSION, 'all' );
-	wp_enqueue_style( 'generate-style', get_template_directory_uri() . '/style.css', array( 'generate-style-grid' ), GENERATE_VERSION, 'all' );
+	wp_enqueue_style( 'generate-style', get_template_directory_uri() . "/style{$suffix}.css", array( 'generate-style-grid' ), GENERATE_VERSION, 'all' );
 	wp_enqueue_style( 'generate-mobile-style', get_template_directory_uri() . "/css/mobile{$suffix}.css", array( 'generate-style' ), GENERATE_VERSION, 'all' );
 	
 	// Add the child theme CSS if child theme is active.
