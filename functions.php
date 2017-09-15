@@ -297,14 +297,18 @@ function generate_scripts()
 	wp_enqueue_script( 'generate-menu', get_template_directory_uri() . "/js/menu{$suffix}.js", array(), GENERATE_VERSION, true );
 	wp_enqueue_script( 'generate-a11y', get_template_directory_uri() . "/js/a11y{$suffix}.js", array(), GENERATE_VERSION, true );
 	
-	// Add the back to top script if it's enabled
-	if ( 'enable' == $generate_settings['back_to_top'] ) {
-		wp_enqueue_script( 'generate-back-to-top', get_template_directory_uri() . "/js/back-to-top{$suffix}.js", array(), GENERATE_VERSION, true );
-	}
+	// Add our hover or click dropdown menu scripts
+	$click = ( 'click' == $generate_settings[ 'nav_dropdown_type' ] || 'click-arrow' == $generate_settings[ 'nav_dropdown_type' ] ) ? '-click' : '';
+	wp_enqueue_script( 'generate-dropdown', get_template_directory_uri() . "/js/dropdown{$click}{$suffix}.js", array( 'generate-menu' ), GENERATE_VERSION, true );
 
 	// Add our navigation search if it's enabled
 	if ( 'enable' == $generate_settings['nav_search'] ) {
 		wp_enqueue_script( 'generate-navigation-search', get_template_directory_uri() . "/js/navigation-search{$suffix}.js", array( 'generate-menu' ), GENERATE_VERSION, true );
+	}
+	
+	// Add the back to top script if it's enabled
+	if ( 'enable' == $generate_settings['back_to_top'] ) {
+		wp_enqueue_script( 'generate-back-to-top', get_template_directory_uri() . "/js/back-to-top{$suffix}.js", array(), GENERATE_VERSION, true );
 	}
 	
 	// Add the threaded comments script
