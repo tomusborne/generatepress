@@ -223,3 +223,35 @@ function generate_dropdown_icon_to_menu_link( $title, $item, $args, $depth ) {
 	return $title;
 }
 endif;
+
+add_action( 'wp_footer', 'generate_clone_sidebar_navigation' );
+/**
+ * Clone our sidebar navigation and place it below the header.
+ * This places our mobile menu in a more user-friendly location.
+ *
+ * We're not using wp_add_inline_script() as this needs to happens
+ * before menu.js is enqueued.
+ *
+ * @since 1.5
+ */
+function generate_clone_sidebar_navigation() {
+	if ( 'nav-left-sidebar' !== generate_get_navigation_location() && 'nav-right-sidebar' !== generate_get_navigation_location() ) {
+		return;
+	}
+	?>
+	<script>
+		var target, nav, clone;
+		nav = document.getElementById( 'site-navigation' );
+		if ( nav ) {
+			clone = nav.cloneNode( true );
+			clone.className += ' sidebar-nav-mobile';
+			target = document.getElementById( 'masthead' );
+			if ( target ) {
+				target.insertAdjacentHTML( 'afterend', clone.outerHTML );
+			} else {
+				document.body.insertAdjacentHTML( 'afterbegin', clone.outerHTML )
+			}
+		}
+	</script>
+	<?php
+}

@@ -273,12 +273,12 @@ function generate_scripts()
 	// Get the minified suffix.
 	$suffix = generate_get_min_suffix();
 	
-	// Enqueue our CSS.
+	// Enqueue CSS
 	wp_enqueue_style( 'generate-style-grid', get_template_directory_uri() . "/css/unsemantic-grid{$suffix}.css", false, GENERATE_VERSION, 'all' );
 	wp_enqueue_style( 'generate-style', get_template_directory_uri() . "/style{$suffix}.css", array( 'generate-style-grid' ), GENERATE_VERSION, 'all' );
 	wp_enqueue_style( 'generate-mobile-style', get_template_directory_uri() . "/css/mobile{$suffix}.css", array( 'generate-style' ), GENERATE_VERSION, 'all' );
 	
-	// Add the child theme CSS if child theme is active.
+	// Add the child theme CSS if child theme is active
 	if ( is_child_theme() ) {
 		wp_enqueue_style( 'generate-child', get_stylesheet_uri(), array( 'generate-style' ), filemtime( get_stylesheet_directory() . '/style.css' ), 'all' );
 	}
@@ -293,26 +293,9 @@ function generate_scripts()
 		wp_script_add_data( 'generate-classlist', 'conditional', 'lte IE 11' );
 	}
 
+	// Enqueue scripts
 	wp_enqueue_script( 'generate-menu', get_template_directory_uri() . "/js/menu{$suffix}.js", array(), GENERATE_VERSION, true );
-	
 	wp_enqueue_script( 'generate-a11y', get_template_directory_uri() . "/js/a11y{$suffix}.js", array(), GENERATE_VERSION, true );
-	
-	// Clone our navigation below the header on mobile if it's in a sidebar
-	if ( function_exists( 'wp_add_inline_script' ) && ( 'nav-left-sidebar' == generate_get_navigation_location() || 'nav-right-sidebar' == generate_get_navigation_location() ) ) {
-		wp_add_inline_script( 'generate-menu', "var target, nav, clone;
-			nav = document.getElementById( 'site-navigation' );
-			if ( nav ) {
-				clone = nav.cloneNode( true );
-				clone.className += ' sidebar-nav-mobile';
-				target = document.getElementById( 'masthead' );
-				if ( target ) {
-					target.insertAdjacentHTML( 'afterend', clone.outerHTML );
-				} else {
-					document.body.insertAdjacentHTML( 'afterbegin', clone.outerHTML )
-				}
-			}"
-		);
-	}
 	
 	// Add the back to top script if it's enabled
 	if ( 'enable' == $generate_settings['back_to_top'] ) {
