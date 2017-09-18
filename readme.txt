@@ -80,15 +80,16 @@ http://pixabay.com/en/desk-computer-modern-keyboard-1140699/
 http://opensource.org/licenses/mit-license.php
 http://www.gnu.org/licenses/gpl.html
 
-= HTML5 Shiv =
-
-https://code.google.com/p/html5shiv/
-Dual licensed under the MIT or GPL Version 2 licenses
-
-= FontAwesome =
+= Font Awesome =
 
 Font License: SIL OFL 1.1 - http://scripts.sil.org/OFL
 Code License: MIT License - http://opensource.org/licenses/mit-license.html
+
+= classList =
+
+By Eli Grey, http://eligrey.com
+License: Dedicated to the public domain.
+See https://github.com/eligrey/classList.js/blob/master/LICENSE.md
 
 == Changelog ==
 
