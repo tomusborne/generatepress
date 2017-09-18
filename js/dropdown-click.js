@@ -1,121 +1,105 @@
-(function ( $ ) {
-	$.fn.generateDropdownClick = function( options ) {
-		// Set the default settings
-		var settings = $.extend({
-			item: 'menu-item'
-		}, options );
+( function() {
+	'use strict';
 
-		$( this ).on( 'click', function( e ) {
+	if ( 'querySelector' in document && 'addEventListener' in window ) {
+		var body = document.body;
+		/**
+		 * Dropdown click
+		 *
+		 * @param e The event.
+		 * @param _this The clicked item.
+		 */
+		var dropdownClick = function( e, _this ) {
 			e.preventDefault();
-			// Get the clicked element
-			var _this = $( this );
-			
-			// Bail if we're clicking a mega menu sub-menu item
-			if ( _this.closest( '.sub-menu' ).closest( '.menu-item-has-children' ).hasClass( 'mega-menu' ) )
-				return;
-			
-			// Get clicked parent
-			var _parent = _this.closest( 'nav' );
-			
-			// If we're clicking on the main navigation, close the secondary navigation dropdown
-			if ( 'main-navigation' == _parent.attr( 'class' ) ) {
-				if ( $( '.secondary-navigation ul.toggled-on' ).is( ':visible' ) ) {
-					$( '.secondary-navigation .main-nav .menu-item-has-children > a' ).parent().removeClass( 'sfHover' );
-					$( '.secondary-navigation .main-nav .menu-item-has-children > a' ).siblings( '.children, .sub-menu' ).removeClass( 'toggled-on' );
-				}
+			e.stopPropagation();
+
+			if ( ! _this ) {
+				var _this = this;
 			}
-			
-			// If we're clicking on the secondary navigation, close the main navigation dropdown
-			if ( 'secondary-navigation' == _parent.attr( 'class' ) ) {
-				if ( $( '.main-navigation ul.toggled-on' ).is( ':visible' ) ) {
-					$( '.main-navigation .main-nav .menu-item-has-children > a' ).parent().removeClass( 'sfHover' );
-					$( '.main-navigation .main-nav .menu-item-has-children > a' ).siblings( '.children, .sub-menu' ).removeClass( 'toggled-on' );
-				}
-			}
-			
+
+			var closestLi = _this.closest( 'li' );
+
 			// Close other sub-menus
-			_this.closest( 'li' ).siblings().find('.toggled-on').removeClass( 'toggled-on' );
-			
-			// Remove sfHover class from other menu items
-			_this.closest( 'li' ).siblings( '.sfHover' ).removeClass( 'sfHover' );
-			
-			// Remove sfHover class from other sub menu items
-			_this.closest( 'li' ).siblings().find( '.sfHover' ).removeClass( 'sfHover' );
+			var openedSubMenus = _this.closest( 'nav' ).querySelectorAll( 'ul.toggled-on' );
+			if ( openedSubMenus && ! _this.closest( 'ul' ).classList.contains( 'toggled-on' ) && ! _this.closest( 'li' ).classList.contains( 'sfHover' ) ) {
+				for ( var o = 0; o < openedSubMenus.length; o++ ) {
+					openedSubMenus[o].classList.remove( 'toggled-on' );
+					openedSubMenus[o].closest( 'li' ).classList.remove( 'sfHover' );
+				}
+			}
 
 			// Add sfHover class to parent li
-			_this.closest( 'li' ).toggleClass( 'sfHover' );
+			closestLi.classList.toggle( 'sfHover' );
 
-			if ( 'menu-item' == settings.item ) {
-				// Add toggled-on class to nearest sub-menus
-				_this.siblings( '.children, .sub-menu' ).toggleClass( 'toggled-on' );
-				
-				// Change accessibility attributes
-				_this.children( 'span' ).attr( 'aria-expanded', _this.attr( 'aria-expanded' ) === 'true' ? 'false' : 'true' );
-			}
-			
-			if ( 'arrow' == settings.item ) {
-				// Add toggled-on class to nearest sub-menus
-				_this.parent().siblings( '.children, .sub-menu' ).toggleClass( 'toggled-on' );
-				
-				// Change accessibility attributes
-				_this.attr( 'aria-expanded', _this.attr( 'aria-expanded' ) === 'true' ? 'false' : 'true' );
-			}
-			
-			return false;
-		} );
-		
-		$.fn.generateDropdownClick.close = function() {
-			if ( $( 'ul.toggled-on' ).is( ':visible' ) ) {
-				$( '.main-nav .menu-item-has-children > a' ).parent().removeClass( 'sfHover' );
-				$( '.main-nav .menu-item-has-children > a' ).siblings( '.children, .sub-menu' ).removeClass( 'toggled-on' );
-			}
-        }
-		
-	};
-}( jQuery ));
-
-jQuery(document).ready(function($) {
-	// Initiate dropdown click on the menu item
-	if ( $( 'body' ).hasClass( 'dropdown-click-menu-item' ) ) {
-		$( '.dropdown-click-menu-item .main-nav .menu-item-has-children > a' ).generateDropdownClick({
-			item: 'menu-item'
-		});
-	}
-	
-	// Initiate dropdown click on the arrow
-	if ( $( 'body' ).hasClass( 'dropdown-click-arrow' ) ) {
-		// Set the dropdown click to the arrows
-		$( '.dropdown-click-arrow .main-nav .menu-item-has-children > a .dropdown-menu-toggle' ).generateDropdownClick({
-			item: 'arrow'
-		});
-		
-		// If our parent item has # as the URL, add a class to it
-		$( '.main-nav .menu-item-has-children > a' ).each( function() {
-			if ( $( this ).attr( 'href' ) == '#' ) $( this ).addClass( 'menu-item-dropdown-click' );
-		});
-		
-		// If our parent item has the menu-item-dropdown-click class, set the dropdown click to the whole item
-		$( '.dropdown-click-arrow .main-nav .menu-item-has-children > a.menu-item-dropdown-click' ).generateDropdownClick({
-			item: 'menu-item'
-		});
-	}
-	
-	// Close the search area on click outside of area
-	$( document ).click( function( event ) { 
-		if ( $( 'ul.toggled-on' ).is( ':visible' ) ) {
-			if ( $( event.target ).closest('ul.toggled-on').length ) {
-				// do nothing
-			} else {
-				$( 'ul.toggled-on' ).generateDropdownClick.close();
+			// Open the sub-menu
+			if ( body.classList.contains( 'dropdown-click-menu-item' ) ) {
+				_this.parentNode.querySelector( '.sub-menu' ).classList.toggle( 'toggled-on' );
+			} else if ( body.classList.contains( 'dropdown-click-arrow' ) ) {
+				closestLi.querySelector( '.sub-menu' ).classList.toggle( 'toggled-on' );
 			}
 		}
-	});
-	
-	// Close the dropdown menus when we click the navigation search or slideout button
-	$( '.search-item a, .slideout-toggle a' ).on( 'click', function() {
-		if ( $( 'ul.toggled-on' ).is( ':visible' ) ) {
-			$( 'ul.toggled-on' ).generateDropdownClick.close();
+
+		// Do stuff if click dropdown if enabled
+		var parentElementLinks = document.querySelectorAll( '.main-nav .menu-item-has-children > a' );
+
+		// Open the sub-menu by clicking on the entire link element
+		if ( body.classList.contains( 'dropdown-click-menu-item' ) ) {
+			for ( var i = 0; i < parentElementLinks.length; i++ ) {
+				parentElementLinks[i].addEventListener( 'click', dropdownClick, true );
+			}
 		}
-	});
-	
-});
+
+		// Open the sub-menu by clicking on a dropdown arrow
+		if ( body.classList.contains( 'dropdown-click-arrow' ) ) {
+			// Add a class to sub-menu items that are set to #
+			for ( var i = 0; i < document.querySelectorAll( '.main-nav .menu-item-has-children > a' ).length; i++ ) {
+				if ( '#' == document.querySelectorAll( '.main-nav .menu-item-has-children > a' )[i].getAttribute( 'href' ) ) {
+					document.querySelectorAll( '.main-nav .menu-item-has-children > a' )[i].classList.add( 'menu-item-dropdown-click' );
+				}
+			}
+
+			var dropdownToggleLinks = document.querySelectorAll( '.main-nav .menu-item-has-children > a .dropdown-menu-toggle' );
+			for ( var i = 0; i < dropdownToggleLinks.length; i++ ) {
+				dropdownToggleLinks[i].addEventListener( 'click', dropdownClick, false );
+
+				dropdownToggleLinks[i].addEventListener( 'keydown', function( e ) {
+					var _this = this;
+					var key = e.which || e.keyCode;
+					if ( key === 13 ) { // 13 is enter
+						dropdownClick( e, _this );
+					}
+				}, false );
+			}
+
+			for ( var i = 0; i < document.querySelectorAll( '.main-nav .menu-item-has-children > a.menu-item-dropdown-click' ).length; i++ ) {
+				document.querySelectorAll( '.main-nav .menu-item-has-children > a.menu-item-dropdown-click' )[i].addEventListener( 'click', dropdownClick, false );
+			}
+		}
+
+		var closeSubMenus = function() {
+			if ( document.querySelector( 'nav ul .toggled-on' ) ) {
+				var activeSubMenus = document.querySelectorAll( 'nav ul .toggled-on' );
+				for ( var i = 0; i < activeSubMenus.length; i++ ) {
+					activeSubMenus[i].classList.remove( 'toggled-on' );
+					activeSubMenus[i].closest( '.sfHover' ).classList.remove( 'sfHover' );
+				}
+			}
+		}
+
+		// Close sub-menus when clicking elsewhere
+		document.addEventListener( 'click', function ( event ) {
+			if ( ! event.target.closest( '.sfHover' ) ) {
+				closeSubMenus();
+			}
+		}, false);
+
+		// Close sub-menus on escape key
+		document.addEventListener( 'keydown', function( e ) {
+			var key = e.which || e.keyCode;
+			if ( key === 27 ) { // 27 is esc
+				closeSubMenus();
+			}
+		}, false );
+	}
+
+})();
