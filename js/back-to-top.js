@@ -1,27 +1,60 @@
-jQuery( document ).ready( function($) {
-	var _amountScrolled = $( '.generate-back-to-top' ).data( 'start-scroll' ),
-		_scrollSpeed = $( '.generate-back-to-top' ).data( 'scroll-speed' ),
-		_button = $( 'a.generate-back-to-top' ),
-		_window = $( window );
+( function() {
+    'use strict';
 
-	_window.scroll(function() {
-		if ( _window.scrollTop() > _amountScrolled ) {
-			$( _button ).css({
-				'opacity': '1',
-				'visibility': 'visible'
-			});
-		} else {
-			$( _button ).css({
-				'opacity': '0',
-				'visibility' : 'hidden'
-			});
+    // Feature Test
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+
+		var trackScroll = function() {
+			var scrolled = window.pageYOffset;
+			var coords = goTopBtn.getAttribute( 'data-start-scroll' ) ;
+
+			if ( scrolled > coords ) {
+				goTopBtn.style.opacity = '1';
+				goTopBtn.style.visibility = 'visible';
+			}
+
+			if (scrolled < coords) {
+				goTopBtn.style.opacity = '0';
+				goTopBtn.style.visibility = 'hidden';
+			}
 		}
-	});
+		window.addEventListener( 'scroll', trackScroll );
 
-	$( _button ).on( 'click', function( e ) {
-		e.preventDefault();
-		$('html, body').animate({
-			scrollTop: 0
-		}, _scrollSpeed);
-	});
-});
+        // Function to animate the scroll
+        var smoothScroll = function (anchor, duration) {
+
+            // Calculate how far and how fast to scroll
+            var startLocation = window.pageYOffset;
+            var endLocation = document.body.offsetTop;
+            var distance = endLocation - startLocation;
+            var increments = distance/(duration/16);
+            var stopAnimation;
+
+            // Scroll the page by an increment, and check if it's time to stop
+            var animateScroll = function () {
+                window.scrollBy(0, increments);
+                stopAnimation();
+            };
+
+            // Stop animation when you reach the anchor OR the top of the page
+            stopAnimation = function () {
+                var travelled = window.pageYOffset;
+                if ( travelled <= (endLocation || 0) ) {
+                    clearInterval(runAnimation);
+                }
+            };
+
+            // Loop the animation function
+            var runAnimation = setInterval(animateScroll, 16);
+
+        };
+
+		var goTopBtn = document.querySelector( '.generate-back-to-top' );
+		goTopBtn.addEventListener( 'click', function( e ) {
+			e.preventDefault();
+			smoothScroll( document.body, goTopBtn.getAttribute( 'data-scroll-speed' ) || 400 );
+		}, false );
+
+    }
+
+ } )();

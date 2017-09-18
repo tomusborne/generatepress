@@ -2,16 +2,7 @@ button.menu-toggle {
 	background-color: transparent;
 	width: 100%;
 	border: 0;
-	outline: 0;
 	text-align: center;
-}
-
-button.menu-toggle:hover,
-button.menu-toggle:active,
-button.menu-toggle:focus {
-	background-color: transparent;
-	border: 0;
-	outline: 0;
 }
 
 .nav-search-enabled .main-navigation .menu-toggle {
@@ -31,6 +22,39 @@ button.menu-toggle:focus {
 	display: inline-block;
 }
 
+.mobile-bar-items .search-item.active {
+	transition: opacity 300ms ease-in-out;
+}
+
+.main-navigation.toggled ul ul,
+.secondary-navigation.toggled ul ul {
+	transition: 0s;
+}
+
+nav.toggled ul ul.sub-menu {
+	width: 100%;
+}
+
+.dropdown-hover .main-navigation.toggled ul li:hover > ul,
+.dropdown-hover .main-navigation.toggled ul li.sfHover > ul,
+.dropdown-hover .secondary-navigation.toggled ul li:hover > ul,
+.dropdown-hover .secondary-navigation.toggled ul li.sfHover > ul {
+	transition-delay: 0s;
+}
+
+.toggled .menu-item-has-children .dropdown-menu-toggle {
+	padding-left: 20px;
+}
+
+.main-navigation.toggled ul ul,
+.secondary-navigation.toggled ul ul {
+	visibility: hidden;
+}
+
+.main-navigation.toggled ul ul.toggled-on,
+.secondary-navigation.toggled ul ul.toggled-on {
+	visibility: visible;
+}
 @media (max-width: 768px) {
 	.top-bar.top-bar-align-left,
 	.top-bar.top-bar-align-right {
@@ -93,12 +117,19 @@ button.menu-toggle:focus {
 		display: block;
 	}
 	
-	.main-navigation .main-nav ul ul {
+	.main-navigation .main-nav ul ul.toggled-on {
 		position: relative;
 		top: 0;
 		left: auto;
 		right: auto;
 		width: 100%;
+	}
+
+	nav.main-navigation ul li:hover > ul:not(.toggled-on),
+	nav.secondary-navigation ul li:hover > ul:not(.toggled-on),
+	.secondary-navigation .main-nav ul ul:not(.toggled-on)	{
+		left: -99999px;
+		position: absolute;
 	}
 	
 	.main-navigation .main-nav li {
@@ -114,8 +145,10 @@ button.menu-toggle:focus {
 	
 	.main-navigation .sub-menu.toggled-on,
 	.main-navigation .children.toggled-on {
-		display: block !important;
-		opacity: 1 !important;
+		left: auto !important;
+		height: auto;
+		opacity: 1;
+		display: block;
 	}
 	
 	.main-navigation .dropdown-menu-toggle:before {

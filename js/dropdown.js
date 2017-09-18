@@ -1,162 +1,134 @@
-(function ( $ ) {
-	$.fn.GenerateDropdownMenu = function( options ) {
-		// Set the default settings
-		var settings = $.extend({
-			transition: 'slide',
-			transition_speed: 150,
-			open_delay: 300,
-			close_delay: 300
-		}, options );
-		
-		var $dropdowns, mobile, slideout, click = true;
-		
-		$dropdowns = $( this );
-		mobile = $( '.menu-toggle' );
-		slideout = $( '.slideout-navigation' );
-		
-		$dropdowns.attr( 'aria-haspopup', 'true' );
-		$dropdowns.children( 'ul' ).css( {
-			'display': 'none',
-			'opacity': 0
-		});
-		
-		over = function() {
-			var $this = $(this);
-			mobile = $this.closest( '.main-nav' ).prevAll( '.menu-toggle' );
-			
-			if ( mobile.is( ':visible' ) )
-				return;
-			
-			if ( $this.parent().closest( '.menu-item-has-children' ).hasClass( 'mega-menu' ) )
-				return;
+( function() {
+	'use strict';
 
-			if ($this.prop('hoverTimeout')) {
-				$this.prop('hoverTimeout', clearTimeout($this.prop('hoverTimeout')));
+	if ( 'querySelector' in document && 'addEventListener' in window ) {
+		var parentElements = document.querySelectorAll( '.sf-menu .menu-item-has-children' ),
+			body = document.body,
+			navLinks = document.querySelectorAll( 'nav ul a' ),
+			htmlEl = document.documentElement;
+
+		/**
+		 * Make menu items tab accessible when using the hover dropdown type
+		 */
+		var toggleFocus = function() {
+			if ( this.closest( 'nav' ).classList.contains( 'toggled' ) || this.closest( 'nav' ).classList.contains( 'slideout-navigation' ) ) {
+				return;
 			}
 
-			$this.prop('hoverIntent', setTimeout(function() {
-				if ( 'slide' == settings.transition ) {
-					$this.children( 'ul' )
-						.slideDown( settings.transition_speed )
-						.animate(
-							{ opacity: 1 },
-							{ queue: false, duration: 'fast' }
-						).css( 'display','block' );
-				} else {
-					$this.children( 'ul' ).fadeIn( settings.transition_speed ).css( 'display','block' );
+			var self = this;
+
+			while ( -1 === self.className.indexOf( 'main-nav' ) ) {
+
+				if ( 'li' === self.tagName.toLowerCase() ) {
+					if ( -1 !== self.className.indexOf( 'sfHover' ) ) {
+						self.className = self.className.replace( ' sfHover', '' );
+					} else {
+						self.className += ' sfHover';
+					}
 				}
-				$this.addClass('sfHover');
-			}, settings.open_delay));
-		}
-		
-		out = function() {
-			var $this = $(this);
-			mobile = $this.closest( '.main-nav' ).prevAll( '.menu-toggle' );
-			
-			if ( mobile.is( ':visible' ) )
-				return;
 
-			if ($this.prop('hoverIntent')) {
-				$this.prop('hoverIntent', clearTimeout($this.prop('hoverIntent')));
+				self = self.parentElement;
 			}
-
-			$this.prop('hoverTimeout', setTimeout(function() {
-				$this.children( 'ul' ).fadeTo( 10, 0, function() {
-					$this.children( 'ul' ).css( 'display','none' );
-				});
-				$this.removeClass('sfHover');
-			}, settings.close_delay));
 		}
-		
-		$dropdowns.on( 'mouseenter', over ).on( 'mouseleave', out );
-		$dropdowns.on( 'focusin', over ).on( 'focusout', out );
-		
-		if (  document.addEventListener  ) {
-			if ('ontouchstart' in document.documentElement) {
-				$dropdowns.each(function() {
-					var $this = $(this);
-					mobile = $this.closest( '.main-nav' ).prevAll( '.menu-toggle' );
-					
-					if ( mobile.is( ':visible' ) )
+
+		for ( var i = 0; i < navLinks.length; i++ ) {
+			navLinks[i].addEventListener( 'focus', toggleFocus );
+			navLinks[i].addEventListener( 'blur', toggleFocus );
+		}
+
+		/**
+		 * Make hover dropdown touch-friendly.
+		 */
+		if ( 'touchend' in document.documentElement ) {
+			for ( var i = 0; i < parentElements.length; i++ ) {
+				parentElements[i].addEventListener( 'touchend', function( e ) {
+					// Bail on mobile
+					if ( parentElements[i].closest( 'nav' ).classList.contains( 'toggled' ) ) {
 						return;
-					
-					if ( $this.parent().closest( '.menu-item-has-children' ).hasClass( 'mega-menu' ) )
-						return;
+					}
 
-					this.addEventListener('touchstart', function(e) {
-						if (e.touches.length === 1) {
-							// Prevent touch events within dropdown bubbling down to document
-							e.stopPropagation();
+					if ( e.touches.length === 1 ) {
+						// Prevent touch events within dropdown bubbling down to document
+						e.stopPropagation();
 
-							// Toggle hover
-							if (!$this.hasClass('sfHover')) {
-								// Prevent link on first touch
-								if (e.target === this || e.target.parentNode === this) {
-									e.preventDefault();
-								}
-								
-								click = false;
-
-								// Hide other open dropdowns
-								$this.siblings().removeClass('sfHover');
-								$this.siblings().children( 'ul' ).css({
-									'display': 'none',
-									'opacity': 0
-								});
-								
-								// Show this dropdown
-								$this.addClass('sfHover');
-								$this.children( 'ul' ).css({
-									'display': 'block',
-									'opacity': 1
-								});
-
-								// Hide dropdown on touch outside
-								document.addEventListener('touchstart', closeDropdown = function(e) {
-									e.stopPropagation();
-
-									$this.removeClass('sfHover');
-									$this.children( 'ul' ).css({
-										'display': 'none',
-										'opacity': 0
-									});
-									document.removeEventListener('touchstart', closeDropdown);
-								});
+						// Toggle hover
+						if ( ! this.classList.contains( 'sfHover' ) ) {
+							// Prevent link on first touch
+							if ( e.target === this || e.target.parentNode === this ) {
+								e.preventDefault();
 							}
+
+							// Close other sub-menus
+							var openedSubMenus = parentElements[i].closest( 'nav' ).querySelectorAll( 'ul.toggled-on' );
+							if ( openedSubMenus && ! this.closest( 'ul' ).classList.contains( 'toggled-on' ) && ! this.closest( 'li' ).classList.contains( 'sfHover' ) ) {
+								for ( var o = 0; o < openedSubMenus.length; o++ ) {
+									openedSubMenus[o].classList.remove( 'toggled-on' );
+									openedSubMenus[o].closest( 'li' ).classList.remove( 'sfHover' );
+								}
+							}
+
+							this.classList.add( 'sfHover' );
+
+							// Hide dropdown on touch outside
+							document.addEventListener( 'touchend', closeDropdown = function(e) {
+								e.stopPropagation();
+
+								this.classList.remove( 'sfHover' );
+								document.removeEventListener( 'touchend', closeDropdown );
+							} );
 						}
-					}, false);
-				});
+					}
+				}, true );
 			}
 		}
 
-		$( '.dropdown-menu-toggle' ).on( 'click', function() {
-			mobile = $( this ).closest( '.main-nav' ).prevAll( '.menu-toggle' );
-			if ( mobile.is( ':visible' ) || 'visible' == slideout.css( 'visibility' ) ) {
+		/**
+		 * Provides compatibility for the Secondary Navigation until GPP is updated.
+		 */
+		var addFocusClass = function( e ) {
+			if ( this.closest( 'nav' ).classList.contains( 'toggled' ) ) {
 				return;
 			}
-			var url = $( this ).parent().attr( 'href' );
-			if ( typeof url != 'undefined' && click ) {
-				window.location.href = $( this ).parent().attr( 'href' );
-			}
-		});
 
-		
-		$.fn.GenerateDropdownMenu.destroy = function() {
-			$dropdowns.children( 'ul' ).css( 'display','' );
-			$dropdowns.unbind('mouseenter mouseleave focusin focusout');
-        }
-	};
-}( jQuery ));
+			this.classList.toggle( 'sfHover' );
+		}
 
-jQuery( document ).ready( function( $ ) {
-	// Initiate our dropdown menu
-   $( '.sf-menu .menu-item-has-children' ).GenerateDropdownMenu();
-});
+		var secondaryNavItems = document.querySelectorAll( '.secondary-navigation .menu-item-has-children' );
+		for ( var i = 0; i < secondaryNavItems.length; i++ ) {
+				secondaryNavItems[i].addEventListener( 'mouseenter', addFocusClass );
+				secondaryNavItems[i].addEventListener( 'mouseleave', addFocusClass );
+		}
 
-// Nullify superfish function if it's being called in an old version of GP Premium
-// This can be removed after a while (GP Premium 1.2.78)
-;(function ($) {
-	$.fn.superfish = function () {
-		return false;
-	};
-})(jQuery, window);
+		/**
+		 * Do some essential things when menu items are clicked.
+		 */
+		for ( var i = 0; i < navLinks.length; i++ ) {
+			navLinks[i].addEventListener( 'click', function( e ) {
+				if ( ( this.closest( 'nav' ).classList.contains( 'toggled' ) || htmlEl.classList.contains( 'slide-opened' ) ) ) {
+					var url = this.getAttribute( 'href' );
+
+					// Open the sub-menu if the link has no destination
+					if ( '#' == url || '' == url ) {
+						e.preventDefault();
+						var closestLi = this.closest( 'li' );
+						closestLi.classList.toggle( 'sfHover' );
+						var subMenu = closestLi.querySelector( '.sub-menu' );
+
+						if ( subMenu ) {
+							subMenu.classList.toggle( 'toggled-on' );
+						}
+					}
+
+					// Close the mobile menu if our link does something - good for one page sites.
+					if ( '#' !== url && '' !== url && ! navigator.userAgent.match( /iemobile/i ) ) {
+						setTimeout( function() {
+							this.closest( 'nav' ).classList.remove( 'toggled' );
+							htmlEl.classList.remove( 'mobile-menu-open' );
+						}, 200 );
+					}
+				}
+			}, false );
+		}
+	}
+
+})();
