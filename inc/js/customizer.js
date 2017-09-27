@@ -214,7 +214,7 @@ function generatepress_classes_live_update( id, classes, selector, prefix ) {
 		value.bind( function( newval ) {
 			if ( 'fluid-header' == newval ) {
 				$( '.site-header' ).removeClass( 'grid-container' ).removeClass( 'grid-parent' );
-				if ( '' == wp.customize.value('generate_settings[header_inner_width]')() ) {
+				if ( 'contained' == wp.customize.value('generate_settings[header_inner_width]')() ) {
 					$( '.inside-header' ).addClass( 'grid-container' ).addClass( 'grid-parent' );
 				}
 			}
