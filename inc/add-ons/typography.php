@@ -110,6 +110,13 @@ function generate_get_default_fonts( $filter = true )
 		'heading_5_transform' => 'none',
 		'heading_5_font_size' => '',
 		'heading_5_line_height' => '', // em
+		'font_heading_6' => 'inherit',
+		'font_heading_6_category' => '',
+		'font_heading_6_variants' => '',
+		'heading_6_weight' => 'normal',
+		'heading_6_transform' => 'none',
+		'heading_6_font_size' => '',
+		'heading_6_line_height' => '', // em
 		'font_footer' => 'inherit',
 		'font_footer_category' => '',
 		'font_footer_variants' => '',
@@ -284,7 +291,21 @@ function generate_font_css()
 	if ( '' !== $generate_settings['heading_5_line_height'] ) {
 		$css->add_property( 'line-height', floatval( $generate_settings['heading_5_line_height'] ), $og_defaults['heading_5_line_height'], 'em' );
 	}
-	
+
+	// H6
+	$css->set_selector( 'h6' );
+	$css->add_property( 'font-family', $og_defaults[ 'font_heading_6' ] !== $generate_settings[ 'font_heading_6' ] ? $h6_family : null );
+	$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'heading_6_weight' ] ), $og_defaults[ 'heading_6_weight' ] );
+	$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'heading_6_transform' ] ), $og_defaults[ 'heading_6_transform' ] );
+
+	if ( '' !== $generate_settings[ 'heading_6_font_size' ] ) {
+		$css->add_property( 'font-size', absint( $generate_settings[ 'heading_6_font_size' ] ), $og_defaults[ 'heading_6_font_size' ], 'px' );
+	}
+
+	if ( '' !== $generate_settings['heading_6_line_height'] ) {
+		$css->add_property( 'line-height', floatval( $generate_settings['heading_6_line_height'] ), $og_defaults['heading_6_line_height'], 'em' );
+	}
+
 	// Footer
 	$css->set_selector( '.site-info' );
 	$css->add_property( 'font-family', $og_defaults[ 'font_footer' ] !== $generate_settings[ 'font_footer' ] ? $footer_family : null );
