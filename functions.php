@@ -81,11 +81,6 @@ function generate_setup() {
 	 */
 	add_theme_support( 'customize-selective-refresh-widgets' );
 
-	/*
-	 * Tell fresh installs to only use essential Font Awesome icons.
-	 */
-	add_theme_support( 'starter-content', array( 'options' => array( 'generate_settings[font_awesome]' => 'essentials' ) ) );
-
 	/**
 	 * Set the content width to something large
 	 * We set a more accurate width in generate_smart_content_width()
