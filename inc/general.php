@@ -167,3 +167,19 @@ add_filter( 'img_caption_shortcode_width', 'generate_set_caption_width' );
 function generate_set_caption_width( $width ) {
 	return $width - 10;
 }
+
+add_filter( 'generate_fontawesome_essentials', 'generate_set_font_awesome_library' );
+/**
+ * Check to see if we should include the full Font Awesome library or not.
+ *
+ * @since 1.5
+ *
+ * @param bool $essentials
+ * @return bool
+ */
+function generate_set_font_awesome_library( $essentials ) {
+	if ( 'essentials' == generate_get_setting( 'font_awesome' ) ) {
+		return true;
+	}
+	return $essentials;
+}
