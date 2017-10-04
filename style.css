@@ -457,7 +457,7 @@ input[type="file"] {
 	width:200px;
 	text-align:left;
 	top: auto;
-	transition: opacity 100ms linear;
+	transition: opacity 80ms linear;
 	transition-delay: 0s;
 	pointer-events: none;
 }
