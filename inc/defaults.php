@@ -226,6 +226,13 @@ if ( ! function_exists( 'generate_get_default_fonts' ) ) {
 			'heading_5_transform' => 'none',
 			'heading_5_font_size' => '',
 			'heading_5_line_height' => '', // em
+			'font_heading_6' => 'inherit',
+			'font_heading_6_category' => '',
+			'font_heading_6_variants' => '',
+			'heading_6_weight' => 'normal',
+			'heading_6_transform' => 'none',
+			'heading_6_font_size' => '',
+			'heading_6_line_height' => '', // em
 			'font_footer' => 'inherit',
 			'font_footer_category' => '',
 			'font_footer_variants' => '',

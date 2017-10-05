@@ -371,6 +371,7 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$h3_family = generate_get_font_family_css( 'font_heading_3', 'generate_settings', generate_get_default_fonts() );
 		$h4_family = generate_get_font_family_css( 'font_heading_4', 'generate_settings', generate_get_default_fonts() );
 		$h5_family = generate_get_font_family_css( 'font_heading_5', 'generate_settings', generate_get_default_fonts() );
+		$h6_family = generate_get_font_family_css( 'font_heading_6', 'generate_settings', generate_get_default_fonts() );
 		$footer_family = generate_get_font_family_css( 'font_footer', 'generate_settings', generate_get_default_fonts() );
 		$buttons_family = generate_get_font_family_css( 'font_buttons', 'generate_settings', generate_get_default_fonts() );
 
@@ -497,6 +498,20 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 
 		if ( '' !== $generate_settings['heading_5_line_height'] ) {
 			$css->add_property( 'line-height', floatval( $generate_settings['heading_5_line_height'] ), $og_defaults['heading_5_line_height'], 'em' );
+		}
+
+		// H6
+		$css->set_selector( 'h6' );
+		$css->add_property( 'font-family', $og_defaults[ 'font_heading_6' ] !== $generate_settings[ 'font_heading_6' ] ? $h6_family : null );
+		$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'heading_6_weight' ] ), $og_defaults[ 'heading_6_weight' ] );
+		$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'heading_6_transform' ] ), $og_defaults[ 'heading_6_transform' ] );
+
+		if ( '' !== $generate_settings[ 'heading_6_font_size' ] ) {
+			$css->add_property( 'font-size', absint( $generate_settings[ 'heading_6_font_size' ] ), $og_defaults[ 'heading_6_font_size' ], 'px' );
+		}
+
+		if ( '' !== $generate_settings['heading_6_line_height'] ) {
+			$css->add_property( 'line-height', floatval( $generate_settings['heading_6_line_height'] ), $og_defaults['heading_6_line_height'], 'em' );
 		}
 
 		// Footer

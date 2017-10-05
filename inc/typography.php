@@ -34,6 +34,7 @@ if ( ! function_exists( 'generate_enqueue_google_fonts' ) ) {
 			'font_heading_3',
 			'font_heading_4',
 			'font_heading_5',
+			'font_heading_6',
 			'font_footer',
 		);
 
