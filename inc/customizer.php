@@ -994,41 +994,41 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				)
 			);
 		}
+
+		// Add Performance section
+		$wp_customize->add_section(
+			'generate_performance',
+			array(
+				'title' => __( 'Performance', 'generatepress' ),
+				'capability' => 'edit_theme_options',
+				'description' => '',
+				'priority' => 99
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[font_awesome]',
+			array(
+				'default' => $defaults['font_awesome'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_choices'
+			)
+		);
+
+		$wp_customize->add_control(
+			'generate_settings[font_awesome]',
+			array(
+				'type' => 'radio',
+				'label' => __( 'Font Awesome Library', 'generatepress' ),
+				'section' => 'generate_performance',
+				'choices' => array(
+					'full-library' => __( 'Full library', 'generatepress' ),
+					'essentials' => __( 'Essentials only', 'generatepress' )
+				),
+				'settings' => 'generate_settings[font_awesome]',
+			)
+		);
 	}
-
-	// Add Performance section
-	$wp_customize->add_section(
-		'generate_performance',
-		array(
-			'title' => __( 'Performance', 'generatepress' ),
-			'capability' => 'edit_theme_options',
-			'description' => '',
-			'priority' => 99
-		)
-	);
-
-	$wp_customize->add_setting(
-		'generate_settings[font_awesome]',
-		array(
-			'default' => $defaults['font_awesome'],
-			'type' => 'option',
-			'sanitize_callback' => 'generate_sanitize_choices'
-		)
-	);
-
-	$wp_customize->add_control(
-		'generate_settings[font_awesome]',
-		array(
-			'type' => 'radio',
-			'label' => __( 'Font Awesome Library', 'generatepress' ),
-			'section' => 'generate_performance',
-			'choices' => array(
-				'full-library' => __( 'Full library', 'generatepress' ),
-				'essentials' => __( 'Essentials only', 'generatepress' )
-			),
-			'settings' => 'generate_settings[font_awesome]',
-		)
-	);
 }
 
 if ( ! function_exists( 'generate_customizer_live_preview' ) ) {

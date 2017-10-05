@@ -178,7 +178,7 @@ add_filter( 'generate_fontawesome_essentials', 'generate_set_font_awesome_librar
  * @return bool
  */
 function generate_set_font_awesome_library( $essentials ) {
-	if ( 'essentials' == generate_get_setting( 'font_awesome' ) ) {
+	if ( 'essentials' == generate_get_option( 'font_awesome' ) ) {
 		return true;
 	}
 	return $essentials;
