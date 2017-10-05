@@ -36,13 +36,8 @@ if ( ! function_exists( 'generate_header_items' ) ) {
 	 * @since 1.2.9.7
 	 */
 	function generate_header_items() {
-		// Header widget
 		generate_construct_header_widget();
-
-		// Site title and tagline
 		generate_construct_site_title();
-
-		// Site logo
 		generate_construct_logo();
 	}
 }
@@ -53,34 +48,102 @@ if ( ! function_exists( 'generate_construct_logo' ) ) {
 	 *
 	 * @since 1.3.28
 	 */
-	function generate_construct_logo() {
-		// Get our logo URL if we're using the custom logo
-		$logo_url = ( function_exists( 'the_custom_logo' ) && get_theme_mod( 'custom_logo' ) ) ? wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ), 'full' ) : false;
+	 function generate_construct_logo() {
+ 		$logo = get_custom_logo();
 
-		// Get our logo from the custom logo or our GP setting
-		$logo = ( $logo_url ) ? $logo_url[0] : generate_get_option( 'logo' );
+ 		// If we don't have a logo, bail
+ 		if ( empty( $logo ) ) {
+ 			return;
+ 		}
 
-		// If we don't have a logo, bail
-		if ( empty( $logo ) ) {
-			return;
+ 		do_action( 'generate_before_logo' );
+
+ 		echo apply_filters( 'generate_logo_output', sprintf(
+ 			'<div class="site-logo">
+ 				%s
+ 			</div>',
+ 			$logo
+ 		) );
+
+ 		do_action( 'generate_after_logo' );
+ 	}
+}
+
+add_filter( 'get_custom_logo', 'generate_adjust_custom_logo_output' );
+/**
+ * Adjust the output of our custom logo.
+ * Allows us to add a custom class and some filters to the output.
+ *
+ * @since 1.5
+ *
+ * @param string $html
+ * @return string
+ */
+function generate_adjust_custom_logo_output( $html ) {
+	$custom_logo_id = get_theme_mod( 'custom_logo' );
+
+	if ( $custom_logo_id ) {
+		$custom_logo_attr = array(
+            'class'    => 'custom-logo header-image',
+            'itemprop' => 'logo',
+        );
+
+        /*
+         * If the logo alt attribute is empty, get the site title and explicitly
+         * pass it to the attributes used by wp_get_attachment_image().
+         */
+        $image_alt = get_post_meta( $custom_logo_id, '_wp_attachment_image_alt', true );
+        if ( empty( $image_alt ) ) {
+            $custom_logo_attr['alt'] = get_bloginfo( 'name', 'display' );
+        }
+
+		$html = sprintf( '<a href="%1$s" class="custom-logo-link" rel="home" itemprop="url" title="%2$s">%3$s</a>',
+            esc_url( apply_filters( 'generate_logo_href' , home_url( '/' ) ) ),
+			esc_attr( apply_filters( 'generate_logo_title', get_bloginfo( 'name', 'display' ) ) ),
+            wp_get_attachment_image( $custom_logo_id, 'full', false, $custom_logo_attr )
+        );
+	} elseif ( is_customize_preview() ) {
+        $html = sprintf( '<a href="%1$s" class="custom-logo-link" style="display:none;"><img class="custom-logo header-image"/></a>',
+            esc_url( home_url( '/' ) )
+        );
+    }
+
+	return $html;
+}
+
+add_filter( 'wp_get_attachment_image_attributes', 'generate_do_custom_logo_attributes', 10, 2 );
+/**
+ * Add custom srcset to our logo to allow a retina logo.
+ * Also filters the logo URL.
+ *
+ * @since 1.5
+ *
+ * @param array $attr
+ * @param object $attachment
+ * @return string
+ */
+function generate_do_custom_logo_attributes( $attr, $attachment ) {
+	$custom_logo_id = get_theme_mod( 'custom_logo' );
+
+	if ( $custom_logo_id == $attachment->ID ) {
+
+		// Get our logo URL
+		$logo_url = ( function_exists( 'the_custom_logo' ) && get_theme_mod( 'custom_logo' ) ) ? wp_get_attachment_image_src( $custom_logo_id, 'full' ) : false;
+		$logo_url = ( $logo_url ) ? $logo_url[0] : generate_get_option( 'logo' );
+		$logo_url = esc_url( apply_filters( 'generate_logo', $logo_url ) );
+
+		$attr['src'] = $logo_url;
+		$attr['srcset'] = '';
+
+		$retina_logo = esc_url( apply_filters( 'generate_retina_logo', generate_get_option( 'retina_logo' ) ) );
+
+		if ( '' !== $retina_logo ) {
+			$attr['srcset'] = $logo_url . ' 1x, ' . $retina_logo . ' 2x';
 		}
 
-		do_action( 'generate_before_logo' );
-
-		// Print our HTML
-		echo apply_filters( 'generate_logo_output', sprintf(
-			'<div class="site-logo">
-				<a href="%1$s" title="%2$s" rel="home">
-					<img class="header-image" src="%3$s" alt="%2$s" title="%2$s" />
-				</a>
-			</div>',
-			esc_url( apply_filters( 'generate_logo_href' , home_url( '/' ) ) ),
-			esc_attr( apply_filters( 'generate_logo_title', get_bloginfo( 'name', 'display' ) ) ),
-			esc_url( apply_filters( 'generate_logo', $logo ) )
-		), $logo );
-
-		do_action( 'generate_after_logo' );
 	}
+
+	return $attr;
 }
 
 if ( ! function_exists( 'generate_construct_site_title' ) ) {
