@@ -9,9 +9,8 @@
  *
  * @package GeneratePress
  */
- 
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
+
+defined( 'WPINC' ) or die;
 
 /*
  * If the current post is protected by a password and
@@ -22,7 +21,7 @@ if ( post_password_required() ) {
 	return;
 }
 
-do_action( 'generate_before_comments' ); 
+do_action( 'generate_before_comments' );
 ?>
 <div id="comments">
 
@@ -30,7 +29,7 @@ do_action( 'generate_before_comments' );
 
 	<?php if ( have_comments() ) : ?>
 		<h3 class="comments-title">
-			<?php					
+			<?php
 				$comments_number = get_comments_number();
 				if ( 1 === $comments_number ) {
 					printf(
@@ -54,7 +53,7 @@ do_action( 'generate_before_comments' );
 				}
 			?>
 		</h3>
-		
+
 		<?php do_action( 'generate_below_comments_title' ); ?>
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
@@ -73,7 +72,7 @@ do_action( 'generate_before_comments' );
 				 * define generate_comment() and that will be used instead.
 				 * See generate_comment() in inc/template-tags.php for more.
 				 */
-				wp_list_comments( array( 
+				wp_list_comments( array(
 					'callback' => 'generate_comment'
 				) );
 			?>
@@ -116,7 +115,7 @@ do_action( 'generate_before_comments' );
 		'cancel_reply_link'    => apply_filters( 'generate_cancel_reply', __( 'Cancel reply','generatepress' ) ),
 		'label_submit'         => apply_filters( 'generate_post_comment', __( 'Post Comment','generatepress' ) ),
 	);
-	comment_form($defaults); 
+	comment_form( $defaults );
 	?>
 
 </div><!-- #comments -->

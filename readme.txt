@@ -85,6 +85,10 @@ http://www.gnu.org/licenses/gpl.html
 Font License: SIL OFL 1.1 - http://scripts.sil.org/OFL
 Code License: MIT License - http://opensource.org/licenses/mit-license.html
 
+= Select2 =
+
+Select2 is licensed under MIT
+
 = classList =
 
 By Eli Grey, http://eligrey.com

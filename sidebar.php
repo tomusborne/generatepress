@@ -1,27 +1,26 @@
 <?php
 /**
  * The Sidebar containing the main widget areas.
- *
- * @package GeneratePress
  */
- 
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
+
+defined( 'WPINC' ) or die;
 
 // If the navigation is set in the sidebar, set variable to true
-$navigation_active = ( 'nav-right-sidebar' == generate_get_navigation_location() ) ? true : false;
+$navigation_active = ( 'nav-right-sidebar' == generate_get_primary_menu_location() ) ? true : false;
 
 // If the secondary navigation is set in the sidebar, set variable to true
-if ( function_exists( 'generate_secondary_nav_get_defaults' ) ) :
-	$secondary_nav = wp_parse_args( 
-		get_option( 'generate_secondary_nav_settings', array() ), 
-		generate_secondary_nav_get_defaults() 
+if ( function_exists( 'generate_secondary_nav_get_defaults' ) ) {
+	$secondary_nav = wp_parse_args(
+		get_option( 'generate_secondary_nav_settings', array() ),
+		generate_secondary_nav_get_defaults()
 	);
-	if ( 'secondary-nav-right-sidebar' == $secondary_nav['secondary_nav_position_setting'] )
+
+	if ( 'secondary-nav-right-sidebar' == $secondary_nav['secondary_nav_position_setting'] ) {
 		$navigation_active = true;
-endif;
+	}
+}
 ?>
-<div id="right-sidebar" itemtype="http://schema.org/WPSideBar" itemscope="itemscope" role="complementary" <?php generate_right_sidebar_class(); ?>>
+<div <?php generate_do_attr( 'right-sidebar' ); ?>>
 	<div class="inside-right-sidebar">
 		<?php do_action( 'generate_before_right_sidebar_content' ); ?>
 		<?php if ( ! dynamic_sidebar( 'sidebar-1' ) ) : ?>

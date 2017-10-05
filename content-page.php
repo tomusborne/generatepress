@@ -1,25 +1,22 @@
 <?php
 /**
  * The template used for displaying page content in page.php
- *
- * @package GeneratePress
  */
- 
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
+
+defined( 'WPINC' ) or die;
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php generate_article_schema( 'CreativeWork' ); ?>>
+<article <?php generate_do_attr( 'post' ); ?>>
 	<div class="inside-article">
-		<?php do_action( 'generate_before_content'); ?>
-		
-		<?php if ( generate_show_title() ) : ?>
+		<?php do_action( 'generate_before_content' ); ?>
+
+		<?php if ( generate_show_content_title() ) : ?>
 			<header class="entry-header">
 				<?php the_title( '<h1 class="entry-title" itemprop="headline">', '</h1>' ); ?>
 			</header><!-- .entry-header -->
 		<?php endif; ?>
-		
-		<?php do_action( 'generate_after_entry_header'); ?>
+
+		<?php do_action( 'generate_after_entry_header' ); ?>
 		<div class="entry-content" itemprop="text">
 			<?php the_content(); ?>
 			<?php
@@ -29,6 +26,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			) );
 			?>
 		</div><!-- .entry-content -->
-		<?php do_action( 'generate_after_content'); ?>
+		<?php do_action( 'generate_after_content' ); ?>
 	</div><!-- .inside-article -->
 </article><!-- #post-## -->

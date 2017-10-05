@@ -7,17 +7,14 @@
  * It is used to display a page when nothing more specific matches a query.
  * E.g., it puts together the home page when no home.php file exists.
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
- *
- * @package GeneratePress
  */
- 
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
+
+defined( 'WPINC' ) or die;
 
 get_header(); ?>
 
-	<div id="primary" <?php generate_content_class();?>>
-		<main id="main" <?php generate_main_class(); ?>>
+	<div <?php generate_do_attr( 'primary' ); ?>>
+		<main <?php generate_do_attr( 'main' ); ?>>
 		<?php do_action( 'generate_before_main_content' ); ?>
 		<?php if ( have_posts() ) : ?>
 
@@ -45,6 +42,6 @@ get_header(); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
-<?php 
+<?php
 do_action( 'generate_sidebars' );
 get_footer();
