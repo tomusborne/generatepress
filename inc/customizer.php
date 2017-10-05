@@ -136,6 +136,27 @@ function generate_customize_register( $wp_customize ) {
 		);
 	}
 
+	$wp_customize->add_setting(
+		'generate_settings[retina_logo]',
+		array(
+			'default' => $defaults['retina_logo'],
+			'type' => 'option',
+			'sanitize_callback' => 'esc_url_raw'
+		)
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Image_Control(
+			$wp_customize,
+			'generate_settings[retina_logo]',
+			array(
+				'label' => __( 'Retina Logo', 'generatepress' ),
+				'section' => 'title_tagline',
+				'settings' => 'generate_settings[retina_logo]'
+			)
+		)
+	);
+
 	if ( $wp_customize->get_panel( 'generate_colors_panel' ) ) {
 		$wp_customize->add_section(
 			'body_section',
