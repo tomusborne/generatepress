@@ -41,7 +41,7 @@ function generate_mobile_search_spacing_fallback_css() {
 endif;
 
 if ( ! function_exists( 'generate_addons_available' ) ) :
-/** 
+/**
  * Check to see if there's any addons not already activated
  * @since 1.0.9
  * @deprecated 1.3.47
@@ -50,7 +50,7 @@ function generate_addons_available()
 {
 	if ( defined( 'GP_PREMIUM_VERSION' ) )
 		return false;
-		
+
 	if ( !function_exists('generate_fonts_setup') ||
 		!function_exists('generate_colors_setup') ||
 		!function_exists('generate_backgrounds_setup') ||
@@ -72,7 +72,7 @@ function generate_addons_available()
 endif;
 
 if ( ! function_exists( 'generate_no_addons' ) ) :
-/** 
+/**
  * Check to see if no addons are activated
  * @since 1.0.9
  * @deprecated 1.3.47
@@ -81,7 +81,7 @@ function generate_no_addons()
 {
 	if ( defined( 'GP_PREMIUM_VERSION' ) )
 		return false;
-		
+
 	if ( !function_exists('generate_fonts_setup') &&
 		!function_exists('generate_colors_setup') &&
 		!function_exists('generate_backgrounds_setup') &&
@@ -101,3 +101,86 @@ function generate_no_addons()
 		endif;
 }
 endif;
+
+if ( ! function_exists( 'generate_get_min_suffix' ) ) :
+/**
+ * Figure out if we should use minified scripts or not
+ * @since 1.3.29
+ * @deprecated 1.5
+ */
+function generate_get_min_suffix() {
+	return defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+}
+endif;
+
+if ( ! function_exists( 'generate_add_layout_meta_box' ) ) {
+	function generate_add_layout_meta_box() {
+		_deprecated_function( __FUNCTION__, '1.5', "generate_register_layout_meta_box()" );
+	}
+}
+
+if ( ! function_exists( 'generate_show_layout_meta_box' ) ) {
+	function generate_show_layout_meta_box() {
+		_deprecated_function( __FUNCTION__, '1.5', "generate_do_layout_meta_box()" );
+	}
+}
+
+if ( ! function_exists( 'generate_save_layout_meta' ) ) {
+	function generate_save_layout_meta() {
+		_deprecated_function( __FUNCTION__, '1.5', "generate_save_layout_meta_data()" );
+	}
+}
+
+if ( ! function_exists( 'generate_add_footer_widget_meta_box' ) ) {
+	function generate_add_footer_widget_meta_box() {
+		_deprecated_function( __FUNCTION__, '1.5', "generate_register_layout_meta_box()" );
+	}
+}
+
+if ( ! function_exists( 'generate_show_footer_widget_meta_box' ) ) {
+	function generate_show_footer_widget_meta_box() {
+		_deprecated_function( __FUNCTION__, '1.5', "generate_do_layout_meta_box()" );
+	}
+}
+
+if ( ! function_exists( 'generate_save_footer_widget_meta' ) ) {
+	function generate_save_footer_widget_meta() {
+		_deprecated_function( __FUNCTION__, '1.5', "generate_save_layout_meta_data()" );
+	}
+}
+
+if ( ! function_exists( 'generate_add_page_builder_meta_box' ) ) {
+	function generate_add_page_builder_meta_box() {
+		_deprecated_function( __FUNCTION__, '1.5', "generate_register_layout_meta_box()" );
+	}
+}
+
+if ( ! function_exists( 'generate_show_page_builder_meta_box' ) ) {
+	function generate_show_page_builder_meta_box() {
+		_deprecated_function( __FUNCTION__, '1.5', "generate_do_layout_meta_box()" );
+	}
+}
+
+if ( ! function_exists( 'generate_save_page_builder_meta' ) ) {
+	function generate_save_page_builder_meta() {
+		_deprecated_function( __FUNCTION__, '1.5', "generate_save_layout_meta_data()" );
+	}
+}
+
+if ( ! function_exists( 'generate_add_de_meta_box' ) ) {
+	function generate_add_de_meta_box() {
+		_deprecated_function( __FUNCTION__, '1.5', "generate_register_layout_meta_box()" );
+	}
+}
+
+if ( ! function_exists( 'generate_show_de_meta_box' ) ) {
+	function generate_show_de_meta_box() {
+		_deprecated_function( __FUNCTION__, '1.5', "generate_do_layout_meta_box()" );
+	}
+}
+
+if ( ! function_exists( 'generate_save_de_meta' ) ) {
+	function generate_save_de_meta() {
+		_deprecated_function( __FUNCTION__, '1.5', "generate_save_layout_meta_data()" );
+	}
+}
