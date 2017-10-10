@@ -241,10 +241,6 @@ add_action( 'customize_controls_enqueue_scripts', 'generate_do_control_inline_sc
  * @since 1.5
  */
 function generate_do_control_inline_scripts() {
-	if ( function_exists( 'generate_premium_control_inline_scripts' ) ) {
-		return;
-	}
-
 	wp_localize_script( 'generatepress-typography-customizer', 'gp_customize', array( 'nonce' => wp_create_nonce( 'gp_customize_nonce' ) ) );
 	wp_localize_script( 'generatepress-typography-customizer', 'typography_defaults', generate_typography_default_fonts() );
 }
