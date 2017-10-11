@@ -1,26 +1,13 @@
 <?php
-/*
- WARNING: This is a core Generate file. DO NOT edit
- this file under any circumstances. Please do all modifications
- in the form of a child theme.
- */
-
-/**
- * Creates the options page.
- *
- * This file is a core Generate file and should not be edited.
- *
- * @package  GeneratePress
- * @author   Thomas Usborne
- * @license  http://www.opensource.org/licenses/gpl-license.php GPL v2.0 (or later)
- * @link     http://www.generatepress.com
- */
-
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
+defined( 'WPINC' ) or die;
 
 if ( ! function_exists( 'generate_create_menu' ) ) {
 	add_action( 'admin_menu', 'generate_create_menu' );
+	/**
+	 * Adds our "GeneratePress" dashboard menu item
+	 *
+	 * @since 0.1
+	 */
 	function generate_create_menu() {
 		$generate_page = add_theme_page( 'GeneratePress', 'GeneratePress', 'edit_theme_options', 'generate-options', 'generate_settings_page' );
 		add_action( "admin_print_styles-$generate_page", 'generate_options_styles' );
@@ -28,12 +15,22 @@ if ( ! function_exists( 'generate_create_menu' ) ) {
 }
 
 if ( ! function_exists( 'generate_options_styles' ) ) {
+	/**
+	 * Adds any necessary scripts to the GP dashboard page
+	 *
+	 * @since 0.1
+	 */
 	function generate_options_styles() {
 		wp_enqueue_style( 'generate-options', get_template_directory_uri() . '/css/admin/style.css', array(), GENERATE_VERSION );
 	}
 }
 
 if ( ! function_exists( 'generate_settings_page' ) ) {
+	/**
+	 * Builds the content of our GP dashboard page
+	 *
+	 * @since 0.1
+	 */
 	function generate_settings_page() {
 		?>
 		<div class="wrap">
@@ -199,54 +196,59 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 	}
 }
 
-if ( ! function_exists( 'generate_reset_customizer_settings' ) ) :
-/**
- * Reset customizer settings
- */
-add_action( 'admin_init', 'generate_reset_customizer_settings' );
-function generate_reset_customizer_settings() {
+if ( ! function_exists( 'generate_reset_customizer_settings' ) ) {
+	add_action( 'admin_init', 'generate_reset_customizer_settings' );
+	/**
+	 * Reset customizer settings
+	 *
+	 * @since 0.1
+	 */
+	function generate_reset_customizer_settings() {
+		if ( empty( $_POST['generate_reset_customizer'] ) || 'generate_reset_customizer_settings' !== $_POST['generate_reset_customizer'] ) {
+			return;
+		}
 
-	if( empty( $_POST['generate_reset_customizer'] ) || 'generate_reset_customizer_settings' !== $_POST['generate_reset_customizer'] )
-		return;
+		if ( ! wp_verify_nonce( sanitize_key( $_POST['generate_reset_customizer_nonce'] ), 'generate_reset_customizer_nonce' ) ) {
+			return;
+		}
 
-	if( ! wp_verify_nonce( sanitize_key( $_POST['generate_reset_customizer_nonce'] ), 'generate_reset_customizer_nonce' ) )
-		return;
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
 
-	if( ! current_user_can( 'manage_options' ) )
-		return;
+		delete_option('generate_settings');
+		remove_theme_mod( 'font_body_variants' );
+		remove_theme_mod( 'font_body_category' );
 
-	delete_option('generate_settings');
-	remove_theme_mod( 'font_body_variants' );
-	remove_theme_mod( 'font_body_category' );
-
-	wp_safe_redirect( admin_url( 'themes.php?page=generate-options&status=reset' ) ); exit;
-
+		wp_safe_redirect( admin_url( 'themes.php?page=generate-options&status=reset' ) );
+		exit;
+	}
 }
-endif;
 
-if ( ! function_exists( 'generate_admin_errors' ) ) :
-/**
- * Add our admin notices
- */
-add_action( 'admin_notices', 'generate_admin_errors' );
-function generate_admin_errors()
-{
-	$screen = get_current_screen();
-	if ( 'appearance_page_generate-options' !== $screen->base )
-		return;
+if ( ! function_exists( 'generate_admin_errors' ) ) {
+	add_action( 'admin_notices', 'generate_admin_errors' );
+	/**
+	 * Add our admin notices
+	 *
+	 * @since 0.1
+	 */
+	function generate_admin_errors() {
+		$screen = get_current_screen();
+		if ( 'appearance_page_generate-options' !== $screen->base )
+			return;
 
-	if ( isset( $_GET['settings-updated'] ) && 'true' == $_GET['settings-updated'] ) {
-		 add_settings_error( 'generate-notices', 'true', __( 'Settings saved.', 'generatepress' ), 'updated' );
+		if ( isset( $_GET['settings-updated'] ) && 'true' == $_GET['settings-updated'] ) {
+			 add_settings_error( 'generate-notices', 'true', __( 'Settings saved.', 'generatepress' ), 'updated' );
+		}
+
+		if ( isset( $_GET['status'] ) && 'imported' == $_GET['status'] ) {
+			 add_settings_error( 'generate-notices', 'imported', __( 'Import successful.', 'generatepress' ), 'updated' );
+		}
+
+		if ( isset( $_GET['status'] ) && 'reset' == $_GET['status'] ) {
+			 add_settings_error( 'generate-notices', 'reset', __( 'Settings removed.', 'generatepress' ), 'updated' );
+		}
+
+		settings_errors( 'generate-notices' );
 	}
-
-	if ( isset( $_GET['status'] ) && 'imported' == $_GET['status'] ) {
-		 add_settings_error( 'generate-notices', 'imported', __( 'Import successful.', 'generatepress' ), 'updated' );
-	}
-
-	if ( isset( $_GET['status'] ) && 'reset' == $_GET['status'] ) {
-		 add_settings_error( 'generate-notices', 'reset', __( 'Settings removed.', 'generatepress' ), 'updated' );
-	}
-
-	settings_errors( 'generate-notices' );
 }
-endif;

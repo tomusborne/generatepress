@@ -75,9 +75,9 @@ if ( ! function_exists( 'generate_body_classes' ) ) {
 		$classes[] = ( '' !== $full_width && false !== $full_width && is_singular() && 'contained' == $full_width ) ? 'contained-content' : '';
 
 		// Let us know if a featured image is being used
-		if ( has_post_thumbnail() ) :
+		if ( has_post_thumbnail() ) {
 			$classes[] = 'featured-image-active';
-		endif;
+		}
 
 		// Layout classes
 		$classes[] = ( $layout ) ? $layout : 'right-sidebar';
@@ -88,26 +88,26 @@ if ( ! function_exists( 'generate_body_classes' ) ) {
 		$classes[] = ( 'enable' == $generate_settings['nav_search'] ) ? 'nav-search-enabled' : '';
 
 		// Navigation alignment class
-		if ( $generate_settings['nav_alignment_setting'] == 'left' ) :
+		if ( $generate_settings['nav_alignment_setting'] == 'left' ) {
 			$classes[] = 'nav-aligned-left';
-		elseif ( $generate_settings['nav_alignment_setting'] == 'center' ) :
+		} elseif ( $generate_settings['nav_alignment_setting'] == 'center' ) {
 			$classes[] = 'nav-aligned-center';
-		elseif ( $generate_settings['nav_alignment_setting'] == 'right' ) :
+		} elseif ( $generate_settings['nav_alignment_setting'] == 'right' ) {
 			$classes[] = 'nav-aligned-right';
-		else :
+		} else {
 			$classes[] = 'nav-aligned-left';
-		endif;
+		}
 
 		// Header alignment class
-		if ( $generate_settings['header_alignment_setting'] == 'left' ) :
+		if ( $generate_settings['header_alignment_setting'] == 'left' ) {
 			$classes[] = 'header-aligned-left';
-		elseif ( $generate_settings['header_alignment_setting'] == 'center' ) :
+		} elseif ( $generate_settings['header_alignment_setting'] == 'center' ) {
 			$classes[] = 'header-aligned-center';
-		elseif ( $generate_settings['header_alignment_setting'] == 'right' ) :
+		} elseif ( $generate_settings['header_alignment_setting'] == 'right' ) {
 			$classes[] = 'header-aligned-right';
-		else :
+		} else {
 			$classes[] = 'header-aligned-left';
-		endif;
+		}
 
 		// Navigation dropdown type
 		if ( 'click' == $generate_settings[ 'nav_dropdown_type' ] ) {
@@ -132,7 +132,6 @@ if ( ! function_exists( 'generate_top_bar_classes' ) ) {
 	 * @since 0.1
 	 */
 	function generate_top_bar_classes( $classes ) {
-
 		$classes[] = 'top-bar';
 
 		if ( 'contained' == generate_get_setting( 'top_bar_width' ) ) {
@@ -143,7 +142,6 @@ if ( ! function_exists( 'generate_top_bar_classes' ) ) {
 		$classes[] = 'top-bar-align-' . generate_get_setting( 'top_bar_alignment' );
 
 		return $classes;
-
 	}
 }
 
@@ -183,7 +181,6 @@ if ( ! function_exists( 'generate_right_sidebar_classes' ) ) {
 		}
 
 		return $classes;
-
 	}
 }
 
@@ -229,7 +226,6 @@ if ( ! function_exists( 'generate_left_sidebar_classes' ) ) {
 		}
 
 		return $classes;
-
 	}
 }
 
@@ -298,7 +294,6 @@ if ( ! function_exists( 'generate_content_classes' ) ) {
 		}
 
 		return $classes;
-
 	}
 }
 
@@ -310,7 +305,6 @@ if ( ! function_exists( 'generate_header_classes' ) ) {
 	 * @since 0.1
 	 */
 	function generate_header_classes( $classes ) {
-
 		$classes[] = 'site-header';
 
 		// Get theme options
@@ -326,7 +320,6 @@ if ( ! function_exists( 'generate_header_classes' ) ) {
 		}
 
 		return $classes;
-
 	}
 }
 
@@ -338,7 +331,6 @@ if ( ! function_exists( 'generate_inside_header_classes' ) ) {
 	 * @since 0.1
 	 */
 	function generate_inside_header_classes( $classes ) {
-
 		$classes[] = 'inside-header';
 		$inner_header_width = generate_get_setting( 'header_inner_width' );
 
@@ -348,7 +340,6 @@ if ( ! function_exists( 'generate_inside_header_classes' ) ) {
 		}
 
 		return $classes;
-
 	}
 }
 
@@ -360,7 +351,6 @@ if ( ! function_exists( 'generate_navigation_classes' ) ) {
 	 * @since 0.1
 	 */
 	function generate_navigation_classes( $classes ) {
-
 		$classes[] = 'main-navigation';
 
 		// Get theme options
@@ -376,7 +366,6 @@ if ( ! function_exists( 'generate_navigation_classes' ) ) {
 		}
 
 		return $classes;
-
 	}
 }
 
@@ -388,7 +377,6 @@ if ( ! function_exists( 'generate_inside_navigation_classes' ) ) {
 	 * @since 1.3.41
 	 */
 	function generate_inside_navigation_classes( $classes ) {
-
 		$classes[] = 'inside-navigation';
 		$inner_nav_width = generate_get_setting( 'nav_inner_width' );
 
@@ -398,7 +386,6 @@ if ( ! function_exists( 'generate_inside_navigation_classes' ) ) {
 		}
 
 		return $classes;
-
 	}
 }
 
@@ -410,11 +397,9 @@ if ( ! function_exists( 'generate_menu_classes' ) ) {
 	 * @since 0.1
 	 */
 	function generate_menu_classes( $classes ) {
-
 		$classes[] = 'menu';
 		$classes[] = 'sf-menu';
 		return $classes;
-
 	}
 }
 
@@ -445,7 +430,6 @@ if ( ! function_exists( 'generate_footer_classes' ) ) {
 		$classes[] = ( is_active_sidebar( 'footer-bar' ) ) ? 'footer-bar-align-' . $generate_settings[ 'footer_bar_alignment' ] : '';
 
 		return $classes;
-
 	}
 }
 
@@ -466,7 +450,6 @@ if ( ! function_exists( 'generate_inside_footer_classes' ) ) {
 		}
 
 		return $classes;
-
 	}
 }
 
@@ -477,10 +460,8 @@ if ( ! function_exists( 'generate_main_classes' ) ) {
 	 * @since 1.1.0
 	 */
 	function generate_main_classes( $classes ) {
-
 		$classes[] = 'site-main';
 		return $classes;
-
 	}
 }
 
