@@ -10,15 +10,15 @@
 						_value = _this.val(),
 						_categoryID = _this.attr( 'data-category' ),
 						_variantsID = _this.attr( 'data-variants' );
-						
+
 					// Set our font family
 					control.settings['family'].set( _this.val() );
-						
+
 					// Bail if our controls don't exist
 					if ( 'undefined' == typeof control.settings['category'] || 'undefined' == typeof control.settings['variant'] ) {
 						return;
 					}
-					
+
 					setTimeout( function() {
 						// Send our request to the generate_get_all_google_fonts_ajax function
 						var response = jQuery.getJSON({
@@ -31,21 +31,21 @@
 							async: false,
 							dataType: 'json',
 						});
-						
+
 						// Get our response
 						var fonts = response.responseJSON;
-						
+
 						// Create an ID from our selected font
 						var id = _value.split(' ').join('_').toLowerCase();
-						
+
 						// Set our values if we have them
 						if ( id in fonts ) {
-							
+
 							// Get existing variants if this font is already selected
 							var got_variants = false;
 							jQuery( '.generatepress-font-family select' ).not( _this ).each( function( key, select ) {
 								var parent = jQuery( this ).closest( '.generatepress-font-family' );
-								
+
 								if ( _value == jQuery( select ).val() && _this.data( 'category' ) !== jQuery( select ).data( 'category' ) ) {
 									if ( ! got_variants ) {
 										updated_variants = jQuery( parent.next( '.generatepress-font-variant' ).find( 'select' ) ).val();
@@ -53,13 +53,13 @@
 									}
 								}
 							} );
-							
+
 							// We're using a Google font, so show the variants field
 							_this.closest( '.generatepress-font-family' ).next( 'div' ).show();
 
 							// Remove existing variants
 							jQuery( 'select[name="' + _variantsID + '"]' ).find( 'option' ).remove();
-							
+
 							// Loop through each available variant for the selected font
 							jQuery.each( fonts[ id ].variants, function( key, value ) {
 								if ( ! got_variants ) {
@@ -71,7 +71,7 @@
 									control.settings[ 'variant' ].set( updated_variants );
 								}
 							} );
-							
+
 							// Set our font category
 							control.settings[ 'category' ].set( fonts[ id ].category );
 							jQuery( 'input[name="' + _categoryID + '"' ).val( fonts[ id ].category );
@@ -85,14 +85,14 @@
 					}, 25 );
 				}
 			);
-			
+
 			control.container.on( 'change', '.generatepress-font-variant select',
 				function() {
 					var _this = jQuery( this );
 					var variants = _this.val();
 
 					control.settings['variant'].set( variants );
-					
+
 					jQuery( '.generatepress-font-variant select' ).each( function( key, value ) {
 						var this_control = jQuery( this ).closest( 'li' ).attr( 'id' ).replace( 'customize-control-', '' );
 						var parent = jQuery( this ).closest( '.generatepress-font-variant' );
@@ -105,7 +105,7 @@
 					} );
 				}
 			);
-			
+
 			control.container.on( 'change', '.generatepress-font-category input',
 				function() {
 					control.settings['category'].set( jQuery( this ).val() );
@@ -131,7 +131,7 @@
 
 jQuery( window ).load( function() {
 	jQuery(".typography-multi-select, .generatepress-font-family select").select2();
-	
+
 	jQuery( ".generatepress-font-family" ).each( function( key, value ) {
 		var _this = jQuery( this );
 		if ( jQuery.inArray( _this.find( 'select' ).val(), typography_defaults ) !== -1 ) {
