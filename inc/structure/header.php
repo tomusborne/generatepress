@@ -42,7 +42,7 @@ if ( ! function_exists( 'generate_construct_logo' ) ) {
 	 * @since 1.3.28
 	 */
 	function generate_construct_logo() {
-		$logo = get_custom_logo();
+		$logo = function_exists( 'get_custom_logo' ) ? get_custom_logo() : false;
 
 		// If we don't have a logo, bail
 		if ( empty( $logo ) ) {
@@ -50,14 +50,7 @@ if ( ! function_exists( 'generate_construct_logo' ) ) {
 		}
 
 		do_action( 'generate_before_logo' );
-
-		echo apply_filters( 'generate_logo_output', sprintf(
-			'<div class="site-logo">
-				%s
-			</div>',
-			$logo
-		) );
-
+		the_custom_logo();
 		do_action( 'generate_after_logo' );
 	}
 }
@@ -90,16 +83,19 @@ function generate_adjust_custom_logo_output( $html ) {
             $custom_logo_attr['alt'] = get_bloginfo( 'name', 'display' );
         }
 
-		$html = sprintf( '<a href="%1$s" class="custom-logo-link" rel="home" itemprop="url" title="%2$s">%3$s</a>',
+		// Get our logo URL
+		$logo_url = get_theme_mod( 'custom_logo' ) ? wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ), 'full' ) : false;
+		$logo_url = $logo_url ? $logo_url[0] : generate_get_setting( 'logo' );
+
+		$html = apply_filters( 'generate_logo_output', sprintf(
+			'<div class="site-logo">
+				<a href="%1$s" class="custom-logo-link" rel="home" itemprop="url" title="%2$s">%3$s</a>
+			</div>',
             esc_url( apply_filters( 'generate_logo_href' , home_url( '/' ) ) ),
 			esc_attr( apply_filters( 'generate_logo_title', get_bloginfo( 'name', 'display' ) ) ),
             wp_get_attachment_image( $custom_logo_id, 'full', false, $custom_logo_attr )
-        );
-	} elseif ( is_customize_preview() ) {
-        $html = sprintf( '<a href="%1$s" class="custom-logo-link" style="display:none;"><img class="custom-logo header-image"/></a>',
-            esc_url( home_url( '/' ) )
-        );
-    }
+        ), $logo_url );
+	}
 
 	return $html;
 }

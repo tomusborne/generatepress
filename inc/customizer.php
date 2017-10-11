@@ -25,6 +25,10 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			$wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
 		}
 
+		if ( $wp_customize->get_control( 'custom_logo' ) ) {
+			$wp_customize->get_setting( 'custom_logo' )->transport = 'refresh';
+		}
+
 		// Add control types so controls can be built using JS
 		if ( method_exists( $wp_customize, 'register_control_type' ) ) {
 			$wp_customize->register_control_type( 'Generate_Customize_Misc_Control' );
@@ -144,7 +148,8 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				array(
 					'label' => __( 'Retina Logo', 'generatepress' ),
 					'section' => 'title_tagline',
-					'settings' => 'generate_settings[retina_logo]'
+					'settings' => 'generate_settings[retina_logo]',
+					'active_callback' => 'has_custom_logo'
 				)
 			)
 		);
