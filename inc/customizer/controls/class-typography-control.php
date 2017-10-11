@@ -37,7 +37,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 					'link'  => $this->get_link( $setting_key ),
 					'value' => $this->value( $setting_key ),
 					'value_array' => $this->value( $setting_key ) ? explode( ',', $this->value( $setting_key ) ) : null,
-					'default' => isset( $setting_id->default ) ? $setting_id->default : '',
+					'default' => isset( $setting_id->default ) ? explode( ',', $setting_id->default ) : '',
 					'id' => isset( $setting_id->id ) ? $setting_id->id : ''
 				);
 
@@ -86,6 +86,10 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 				var variants = '';
 				if ( typeof font_data !== 'undefined' ) {
 					variants = font_data.variants;
+				}
+
+				if ( null === data.variant.value_array ) {
+					data.variant.value_array = data.variant.default;
 				}
 				#>
 				<div id={{{ data.variant.id }}}" class="generatepress-font-variant">

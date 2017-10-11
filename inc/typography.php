@@ -149,7 +149,7 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 		$wp_customize->add_setting(
 			'font_body_category',
 			array(
-				'default' => '',
+				'default' => $defaults['font_body_category'],
 				'sanitize_callback' => 'sanitize_text_field'
 			)
 		);
@@ -157,7 +157,7 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 		$wp_customize->add_setting(
 			'font_body_variants',
 			array(
-				'default' => '',
+				'default' => $defaults['font_body_variants'],
 				'sanitize_callback' => 'generate_sanitize_variants'
 			)
 		);
