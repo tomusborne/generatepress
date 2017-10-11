@@ -36,8 +36,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 				$this->json[ $setting_key ] = array(
 					'link'  => $this->get_link( $setting_key ),
 					'value' => $this->value( $setting_key ),
-					'value_array' => $this->value( $setting_key ) ? explode( ',', $this->value( $setting_key ) ) : null,
-					'default' => isset( $setting_id->default ) ? explode( ',', $setting_id->default ) : '',
+					'default' => isset( $setting_id->default ) ? $setting_id->default : '',
 					'id' => isset( $setting_id->id ) ? $setting_id->id : ''
 				);
 
@@ -88,15 +87,15 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 					variants = font_data.variants;
 				}
 
-				if ( null === data.variant.value_array ) {
-					data.variant.value_array = data.variant.default;
+				if ( null === data.variant.value ) {
+					data.variant.value = data.variant.default;
 				}
 				#>
-				<div id={{{ data.variant.id }}}" class="generatepress-font-variant">
+				<div id={{{ data.variant.id }}}" class="generatepress-font-variant" data-saved-value="{{ data.variant.value }}">
 					<label>
 						<select name="{{{ data.variant.id }}}" multiple class="typography-multi-select" style="width:100%;" {{{ data.variant.link }}}>
 							<# _.each( variants, function( label, choice ) { #>
-								<option value="{{ label }}" <# if ( jQuery.inArray( label, data.variant.value_array ) !== -1 ) { #> selected="selected" <# } #>>{{ label }}</option>
+								<option value="{{ label }}">{{ label }}</option>
 							<# } ) #>
 						</select>
 
