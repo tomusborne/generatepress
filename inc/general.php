@@ -278,6 +278,28 @@ if ( ! function_exists( 'generate_category_transient_flusher' ) ) {
 	}
 }
 
+if ( ! function_exists( 'generate_get_default_color_palettes' ) ) {
+	/**
+	 * Set up our colors for the color picker palettes and filter them so you can change them.
+	 *
+	 * @since 1.3.42
+	 */
+	function generate_get_default_color_palettes() {
+		$palettes = array(
+			'#000000',
+			'#FFFFFF',
+			'#F1C40F',
+			'#E74C3C',
+			'#1ABC9C',
+			'#1e72bd',
+			'#8E44AD',
+			'#00CC77',
+		);
+
+		return apply_filters( 'generate_default_color_palettes', $palettes );
+	}
+}
+
 add_filter( 'generate_fontawesome_essentials', 'generate_set_font_awesome_library' );
 /**
  * Check to see if we should include the full Font Awesome library or not.
