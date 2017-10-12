@@ -73,7 +73,7 @@ if ( ! function_exists( 'generate_construct_footer_widgets' ) ) {
 		// Get how many widgets to show
 		$widgets = generate_get_footer_widgets();
 
-		if ( !empty( $widgets ) && 0 !== $widgets ) :
+		if ( ! empty( $widgets ) && 0 !== $widgets ) :
 
 			// Set up the widget width
 			$widget_width = '';
@@ -88,7 +88,7 @@ if ( ! function_exists( 'generate_construct_footer_widgets' ) ) {
 					<div class="inside-footer-widgets">
 						<?php if ( $widgets >= 1 ) : ?>
 							<div class="footer-widget-1 grid-parent grid-<?php echo absint( apply_filters( 'generate_footer_widget_1_width', $widget_width ) ); ?> tablet-grid-<?php echo absint( apply_filters( 'generate_footer_widget_1_tablet_width', '50' ) ); ?> mobile-grid-100">
-								<?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('footer-1')): ?>
+								<?php if ( ! function_exists( 'dynamic_sidebar' ) || ! dynamic_sidebar( 'footer-1' ) ): ?>
 									<aside class="widget inner-padding widget_text">
 										<h4 class="widget-title"><?php _e('Footer Widget 1','generatepress');?></h4>
 										<div class="textwidget">
@@ -102,7 +102,7 @@ if ( ! function_exists( 'generate_construct_footer_widgets' ) ) {
 
 						if ( $widgets >= 2 ) : ?>
 						<div class="footer-widget-2 grid-parent grid-<?php echo absint( apply_filters( 'generate_footer_widget_2_width', $widget_width ) ); ?> tablet-grid-<?php echo absint( apply_filters( 'generate_footer_widget_2_tablet_width', '50' ) ); ?> mobile-grid-100">
-							<?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('footer-2')): ?>
+							<?php if ( ! function_exists( 'dynamic_sidebar' ) || ! dynamic_sidebar( 'footer-2' ) ): ?>
 								<aside class="widget inner-padding widget_text">
 									<h4 class="widget-title"><?php _e('Footer Widget 2','generatepress');?></h4>
 									<div class="textwidget">
@@ -116,7 +116,7 @@ if ( ! function_exists( 'generate_construct_footer_widgets' ) ) {
 
 						if ( $widgets >= 3 ) : ?>
 						<div class="footer-widget-3 grid-parent grid-<?php echo absint( apply_filters( 'generate_footer_widget_3_width', $widget_width ) ); ?> tablet-grid-<?php echo absint( apply_filters( 'generate_footer_widget_3_tablet_width', '50' ) ); ?> mobile-grid-100">
-							<?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('footer-3')): ?>
+							<?php if ( ! function_exists( 'dynamic_sidebar' ) || ! dynamic_sidebar( 'footer-3' ) ): ?>
 								<aside class="widget inner-padding widget_text">
 									<h4 class="widget-title"><?php _e('Footer Widget 3','generatepress');?></h4>
 									<div class="textwidget">
@@ -130,7 +130,7 @@ if ( ! function_exists( 'generate_construct_footer_widgets' ) ) {
 
 						if ( $widgets >= 4 ) : ?>
 						<div class="footer-widget-4 grid-parent grid-<?php echo absint( apply_filters( 'generate_footer_widget_4_width', $widget_width ) ); ?> tablet-grid-<?php echo absint( apply_filters( 'generate_footer_widget_4_tablet_width', '50' ) ); ?> mobile-grid-100">
-							<?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('footer-4')): ?>
+							<?php if ( ! function_exists( 'dynamic_sidebar' ) || ! dynamic_sidebar( 'footer-4' ) ): ?>
 								<aside class="widget inner-padding widget_text">
 									<h4 class="widget-title"><?php _e('Footer Widget 4','generatepress');?></h4>
 									<div class="textwidget">
@@ -144,7 +144,7 @@ if ( ! function_exists( 'generate_construct_footer_widgets' ) ) {
 
 						if ( $widgets >= 5 ) : ?>
 						<div class="footer-widget-5 grid-parent grid-<?php echo absint( apply_filters( 'generate_footer_widget_5_width', $widget_width ) ); ?> tablet-grid-<?php echo absint( apply_filters( 'generate_footer_widget_5_tablet_width', '50' ) ); ?> mobile-grid-100">
-							<?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('footer-5')): ?>
+							<?php if ( ! function_exists( 'dynamic_sidebar' ) || ! dynamic_sidebar( 'footer-5' ) ): ?>
 								<aside class="widget inner-padding widget_text">
 									<h4 class="widget-title"><?php _e('Footer Widget 5','generatepress');?></h4>
 									<div class="textwidget">
