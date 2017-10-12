@@ -26,7 +26,7 @@
 						return ancestor;
 					}
 					ancestor = ancestor.parentElement;
-				} while ( ancestor !== null ); 
+				} while ( ancestor !== null );
 				return null;
 			};
 		}
