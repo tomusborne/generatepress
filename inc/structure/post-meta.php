@@ -36,17 +36,17 @@ if ( ! function_exists( 'generate_content_nav' ) ) {
 
 			<?php if ( is_single() ) : // navigation links for single posts
 
-				previous_post_link( '<div class="nav-previous"><span class="prev" title="' . __('Previous','generatepress') . '">%link</span></div>', '%title', $category_specific );
-				next_post_link( '<div class="nav-next"><span class="next" title="' . __('Next','generatepress') . '">%link</span></div>', '%title', $category_specific );
+				previous_post_link( '<div class="nav-previous"><span class="prev" title="' . __( 'Previous', 'generatepress' ) . '">%link</span></div>', '%title', $category_specific );
+				next_post_link( '<div class="nav-next"><span class="next" title="' . __( 'Next', 'generatepress' ) . '">%link</span></div>', '%title', $category_specific );
 
 			elseif ( is_home() || is_archive() || is_search() ) : // navigation links for home, archive, and search pages
 
 				if ( get_next_posts_link() ) : ?>
-					<div class="nav-previous"><span class="prev" title="<?php _e('Previous','generatepress');?>"><?php next_posts_link( __( 'Older posts', 'generatepress' ) ); ?></span></div>
+					<div class="nav-previous"><span class="prev" title="<?php _e( 'Previous', 'generatepress' );?>"><?php next_posts_link( __( 'Older posts', 'generatepress' ) ); ?></span></div>
 				<?php endif;
 
 				if ( get_previous_posts_link() ) : ?>
-					<div class="nav-next"><span class="next" title="<?php _e('Next','generatepress');?>"><?php previous_posts_link( __( 'Newer posts', 'generatepress' ) ); ?></span></div>
+					<div class="nav-next"><span class="next" title="<?php _e( 'Next', 'generatepress' );?>"><?php previous_posts_link( __( 'Newer posts', 'generatepress' ) ); ?></span></div>
 				<?php endif;
 
 				if ( function_exists( 'the_posts_pagination' ) ) {
@@ -57,7 +57,7 @@ if ( ! function_exists( 'generate_content_nav' ) ) {
 					) );
 				}
 
-				do_action('generate_paging_navigation');
+				do_action( 'generate_paging_navigation' );
 
 			endif; ?>
 		</nav><!-- #<?php echo esc_html( $nav_id ); ?> -->
