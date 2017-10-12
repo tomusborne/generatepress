@@ -26,6 +26,7 @@ if ( ! function_exists( 'generate_footer_bar' ) ) {
 	add_action( 'generate_before_copyright', 'generate_footer_bar', 15 );
 	/**
 	 * Build our footer bar
+	 *
 	 * @since 1.3.42
 	 */
 	function generate_footer_bar() {

@@ -72,6 +72,10 @@ if ( ! function_exists( 'generate_modify_posts_pagination_template' ) ) {
 	 * We add this in ourselves in generate_content_nav()
 	 *
 	 * @since 1.3.45
+	 *
+	 * @param string $template The default template.
+	 * @param string $class The class passed by the calling function.
+	 * @return string The HTML for the post navigation.
 	 */
 	function generate_modify_posts_pagination_template( $template, $class ) {
 
@@ -86,6 +90,8 @@ if ( ! function_exists( 'generate_modify_posts_pagination_template' ) ) {
 if ( ! function_exists( 'generate_posted_on' ) ) {
 	/**
 	 * Prints HTML with meta information for the current post-date/time and author.
+	 *
+	 * @since 0.1
 	 */
 	function generate_posted_on() {
 		$date = apply_filters( 'generate_post_date', true );
@@ -204,12 +210,12 @@ if ( ! function_exists( 'generate_content_more' ) ) {
 }
 
 if ( ! function_exists( 'generate_post_meta' ) ) {
+	add_action( 'generate_after_entry_title', 'generate_post_meta' );
 	/**
 	 * Build the post meta.
 	 *
 	 * @since 1.3.29
 	 */
-	add_action( 'generate_after_entry_title', 'generate_post_meta' );
 	function generate_post_meta() {
 		if ( 'post' == get_post_type() ) : ?>
 			<div class="entry-meta">
@@ -220,12 +226,12 @@ if ( ! function_exists( 'generate_post_meta' ) ) {
 }
 
 if ( ! function_exists( 'generate_footer_meta' ) ) {
+	add_action( 'generate_after_entry_content', 'generate_footer_meta' );
 	/**
 	 * Build the footer post meta.
 	 *
 	 * @since 1.3.30
 	 */
-	add_action( 'generate_after_entry_content', 'generate_footer_meta' );
 	function generate_footer_meta() {
 		if ( 'post' == get_post_type() ) : ?>
 			<footer class="entry-meta">

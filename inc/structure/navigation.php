@@ -40,9 +40,10 @@ if ( ! function_exists( 'generate_menu_fallback' ) ) {
 	/**
 	 * Menu fallback.
 	 *
+	 * @since 1.1.4
+	 *
 	 * @param  array $args
 	 * @return string
-	 * @since 1.1.4
 	 */
 	function generate_menu_fallback( $args ) {
 		$generate_settings = wp_parse_args(
@@ -183,6 +184,12 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 	 * Add dropdown icon if menu item has children.
 	 *
 	 * @since 1.3.42
+	 *
+	 * @param string $title The menu item title.
+	 * @param WP_Post $item All of our menu item data.
+	 * @param stdClass $args All of our menu item args.
+	 * @param int $dept Depth of menu item.
+	 * @return string The menu item.
 	 */
 	function generate_dropdown_icon_to_menu_link( $title, $item, $args, $depth ) {
 		// Build an array with our theme location
@@ -242,6 +249,10 @@ if ( ! function_exists( 'generate_menu_search_icon' ) ) {
 	 * Add search icon to primary menu if set
 	 *
 	 * @since 1.2.9.7
+	 *
+	 * @param string $nav The HTML list content for the menu items.
+	 * @param stdClass $args An object containing wp_nav_menu() arguments.
+	 * @return string The search icon menu item.
 	 */
 	function generate_menu_search_icon( $nav, $args ) {
 		$generate_settings = wp_parse_args(
