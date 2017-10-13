@@ -3,7 +3,7 @@ Contributors: edge22
 Donate link: https://generatepress.com/ongoing-development/
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options
+Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options, accessibility-ready
 Requires at least: 4.5
 Tested up to: 4.8
 Stable tag: 1.4
@@ -12,17 +12,17 @@ GeneratePress is a fast, lightweight (less than 1MB zipped), mobile responsive W
 
 == Description ==
 
-GeneratePress is a fast, lightweight (less than 1MB zipped), mobile responsive WordPress theme built with speed, SEO and usability in mind. 
+GeneratePress is a fast, lightweight (less than 1MB zipped), mobile responsive WordPress theme built with speed, SEO and usability in mind.
 
-GP can serve as a solid base for any website, and works great with any of your favorite page builders. 
+GP can serve as a solid base for any website, and works great with any of your favorite page builders.
 
-With an emphasis on WordPress coding standards, we ensure GeneratePress is compatible with all well-coded plugins, including major ones like WooCommerce, WPML, BuddyPress and bbPress. 
+With an emphasis on WordPress coding standards, we ensure GeneratePress is compatible with all well-coded plugins, including major ones like WooCommerce, WPML, BuddyPress and bbPress.
 
-GeneratePress is device friendly (mobile and tablet), uses 100% valid HTML, is fully schema microdata integrated, is translated into over 20 languages by our amazing community and is cross browser compatible (IE9+). 
+GeneratePress is device friendly (mobile and tablet), uses 100% valid HTML, is fully schema microdata integrated, is translated into over 20 languages by our amazing community and is cross browser compatible (IE9+).
 
-Some of our features include 9 widget areas, 5 navigation positions, 5 sidebar layouts, dropdown menus (click or hover) and a back to top button. 
+Some of our features include 9 widget areas, 5 navigation positions, 5 sidebar layouts, dropdown menus (click or hover) and a back to top button.
 
-All our options use the native WordPress Customizer, meaning you can see every change you make instantly before pressing the publish button. 
+All our options use the native WordPress Customizer, meaning you can see every change you make instantly before pressing the publish button.
 
 Learn more and check out our [powerful premium version](https://generatepress.com).
 
