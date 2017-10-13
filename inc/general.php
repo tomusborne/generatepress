@@ -97,8 +97,8 @@ if ( ! function_exists( 'generate_widgets_init' ) ) {
 				'id'            => $id,
 				'before_widget' => '<aside id="%1$s" class="widget inner-padding %2$s">',
 				'after_widget'  => '</aside>',
-				'before_title'  => apply_filters( 'generate_start_widget_title', '<h4 class="widget-title">' ),
-				'after_title'   => apply_filters( 'generate_end_widget_title', '</h4>' ),
+				'before_title'  => apply_filters( 'generate_start_widget_title', '<h2 class="widget-title">' ),
+				'after_title'   => apply_filters( 'generate_end_widget_title', '</h2>' ),
 			) );
 		}
 	}
