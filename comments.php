@@ -69,7 +69,8 @@ do_action( 'generate_before_comments' );
 
 		<ol class="comment-list">
 			<?php
-			/* Loop through and list the comments. Tell wp_list_comments()
+			/* 
+			 * Loop through and list the comments. Tell wp_list_comments()
 			 * to use generate_comment() to format the comments.
 			 * If you want to override this in a child theme, then you can
 			 * define generate_comment() and that will be used instead.

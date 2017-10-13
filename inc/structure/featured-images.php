@@ -16,12 +16,12 @@ if ( ! function_exists( 'generate_post_image' ) ) {
 	 * Prints the Post Image to post excerpts
 	 */
 	function generate_post_image() {
-		// If there's no featured image, return
+		// If there's no featured image, return.
 		if ( ! has_post_thumbnail() ) {
 			return;
 		}
 
-		// If we're not on any single post/page or the 404 template, we must be showing excerpts
+		// If we're not on any single post/page or the 404 template, we must be showing excerpts.
 		if ( ! is_singular() && ! is_404() ) {
 			echo apply_filters( 'generate_featured_image_output', sprintf(
 				'<div class="post-image">
@@ -36,7 +36,7 @@ if ( ! function_exists( 'generate_post_image' ) ) {
 					apply_filters( 'generate_page_header_default_size', 'full' ),
 					array(
 						'itemprop' => 'image',
-						'alt' => the_title_attribute( 'echo=0' )
+						'alt' => the_title_attribute( 'echo=0' ),
 					)
 				)
 			));
@@ -53,12 +53,12 @@ if ( ! function_exists( 'generate_featured_page_header_area' ) ) {
 	 * @param string The featured image container class
 	 */
 	function generate_featured_page_header_area( $class ) {
-		// Don't run the function unless we're on a page it applies to
+		// Don't run the function unless we're on a page it applies to.
 		if ( ! is_singular() ) {
 			return;
 		}
 
-		// Don't run the function unless we have a post thumbnail
+		// Don't run the function unless we have a post thumbnail.
 		if ( ! has_post_thumbnail() ) {
 			return;
 		}
@@ -109,7 +109,7 @@ if ( ! function_exists( 'generate_featured_page_header_inside_single' ) ) {
 		}
 
 		if ( is_single() ) {
-			generate_featured_page_header_area('page-header-image-single');
+			generate_featured_page_header_area( 'page-header-image-single' );
 		}
 	}
 }

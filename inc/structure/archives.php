@@ -61,7 +61,8 @@ if ( ! function_exists( 'generate_filter_the_archive_title' ) ) {
 		} elseif ( is_tag() ) {
 			$title = single_tag_title( '', false );
 		} elseif ( is_author() ) {
-			/* Queue the first post, that way we know
+			/*
+			 * Queue the first post, that way we know
 			 * what author we're dealing with (if that is the case).
 			 */
 			the_post();
@@ -69,7 +70,8 @@ if ( ! function_exists( 'generate_filter_the_archive_title' ) ) {
 				get_avatar( get_the_author_meta( 'ID' ), 75 ),
 				get_the_author()
 			);
-			/* Since we called the_post() above, we need to
+			/*
+			 * Since we called the_post() above, we need to
 			 * rewind the loop back to the beginning that way
 			 * we can run the loop properly, in full.
 			 */
