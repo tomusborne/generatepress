@@ -5,9 +5,8 @@
  * @package GeneratePress
  */
 
-// No direct access, please.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 if ( ! function_exists( 'generate_archive_title' ) ) {
@@ -23,23 +22,41 @@ if ( ! function_exists( 'generate_archive_title' ) ) {
 		}
 		?>
 		<header class="page-header<?php if ( is_author() ) echo ' clearfix';?>">
-			<?php do_action( 'generate_before_archive_title' ); ?>
+			<?php
+			/**
+			 * generate_before_archive_title hook.
+			 *
+			 * @since 0.1
+			 */
+			do_action( 'generate_before_archive_title' );
+			?>
 			<h1 class="page-title">
 				<?php the_archive_title(); ?>
 			</h1>
-			<?php do_action( 'generate_after_archive_title' ); ?>
 			<?php
-				// Show an optional term description.
-				$term_description = term_description();
-				if ( ! empty( $term_description ) ) {
-					printf( '<div class="taxonomy-description">%s</div>', $term_description );
-				}
+			/**
+			 * generate_after_archive_title hook.
+			 *
+			 * @since 0.1
+			 */
+			do_action( 'generate_after_archive_title' );
 
-				if ( get_the_author_meta('description') && is_author() ) {
-					echo '<div class="author-info">' . get_the_author_meta('description') . '</div>';
-				}
-			?>
-			<?php do_action( 'generate_after_archive_description' ); ?>
+			// Show an optional term description.
+			$term_description = term_description();
+			if ( ! empty( $term_description ) ) {
+				printf( '<div class="taxonomy-description">%s</div>', $term_description );
+			}
+
+			if ( get_the_author_meta('description') && is_author() ) {
+				echo '<div class="author-info">' . get_the_author_meta('description') . '</div>';
+			}
+
+			/**
+			 * generate_after_archive_description hook.
+			 *
+			 * @since 0.1
+			 */
+			do_action( 'generate_after_archive_description' ); ?>
 		</header><!-- .page-header -->
 		<?php
 	}

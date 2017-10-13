@@ -5,43 +5,60 @@
  * @package GeneratePress
  */
 
-// No direct access, please.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 get_header(); ?>
 
 	<section id="primary" <?php generate_content_class(); ?>>
 		<main id="main" <?php generate_main_class(); ?>>
-		<?php
-		do_action( 'generate_before_main_content' );
-		if ( have_posts() ) : ?>
-
-			<header class="page-header">
-				<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'generatepress' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
-			</header><!-- .page-header -->
-
 			<?php
-			/* Start the Loop */
-			while ( have_posts() ) : the_post();
+			/**
+			 * generate_before_main_content hook.
+			 *
+			 * @since 0.1
+			 */
+			do_action( 'generate_before_main_content' );
 
-				get_template_part( 'content', 'search' );
+			if ( have_posts() ) : ?>
 
-			endwhile;
+				<header class="page-header">
+					<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'generatepress' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+				</header><!-- .page-header -->
 
-			generate_content_nav( 'nav-below' );
+				<?php while ( have_posts() ) : the_post();
 
-		else :
+					get_template_part( 'content', 'search' );
 
-			get_template_part( 'no-results', 'search' );
+				endwhile;
 
-		endif;
+				generate_content_nav( 'nav-below' );
 
-		do_action( 'generate_after_main_content' ); ?>
+			else :
+
+				get_template_part( 'no-results', 'search' );
+
+			endif;
+
+			/**
+			 * generate_after_main_content hook.
+			 *
+			 * @since 0.1
+			 */
+			do_action( 'generate_after_main_content' );
+			?>
 		</main><!-- #main -->
 	</section><!-- #primary -->
 
 <?php
+/**
+ * generate_sidebars hook.
+ *
+ * @since 0.1
+ *
+ * @hooked generate_construct_sidebars - 10
+ */
 do_action( 'generate_sidebars' );
+
 get_footer();

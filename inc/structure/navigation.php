@@ -5,9 +5,8 @@
  * @package GeneratePress
  */
 
-// No direct access, please.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 if ( ! function_exists( 'generate_navigation_position' ) ) {
@@ -20,7 +19,17 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 		?>
 		<nav itemtype="http://schema.org/SiteNavigationElement" itemscope="itemscope" id="site-navigation" <?php generate_navigation_class(); ?>>
 			<div <?php generate_inside_navigation_class(); ?>>
-				<?php do_action( 'generate_inside_navigation' ); ?>
+				<?php
+				/**
+				 * generate_inside_navigation hook.
+				 *
+				 * @since 0.1
+				 *
+				 * @hooked generate_navigation_search - 10
+				 * @hooked generate_mobile_menu_search_icon - 10
+				 */
+				do_action( 'generate_inside_navigation' );
+				?>
 				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
 					<?php do_action( 'generate_inside_mobile_menu' ); ?>
 					<span class="mobile-menu"><?php echo apply_filters('generate_mobile_menu_label', __( 'Menu', 'generatepress' ) ); ?></span>

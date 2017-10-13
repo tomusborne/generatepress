@@ -5,9 +5,8 @@
  * @package GeneratePress
  */
 
-// No direct access, please.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 // If the navigation is set in the sidebar, set variable to true.
@@ -27,9 +26,17 @@ if ( function_exists( 'generate_secondary_nav_get_defaults' ) ) {
 ?>
 <div id="right-sidebar" itemtype="http://schema.org/WPSideBar" itemscope="itemscope" role="complementary" <?php generate_right_sidebar_class(); ?>>
 	<div class="inside-right-sidebar">
-		<?php do_action( 'generate_before_right_sidebar_content' ); ?>
-		<?php if ( ! dynamic_sidebar( 'sidebar-1' ) ) : ?>
-			<?php if ( false == $navigation_active ) : ?>
+		<?php
+		/**
+		 * generate_before_right_sidebar_content hook.
+		 *
+		 * @since 0.1
+		 */
+		do_action( 'generate_before_right_sidebar_content' );
+
+		if ( ! dynamic_sidebar( 'sidebar-1' ) ) :
+
+			if ( false == $navigation_active ) : ?>
 				<aside id="search" class="widget widget_search">
 					<?php get_search_form(); ?>
 				</aside>
@@ -40,8 +47,16 @@ if ( function_exists( 'generate_secondary_nav_get_defaults' ) ) {
 						<?php wp_get_archives( array( 'type' => 'monthly' ) ); ?>
 					</ul>
 				</aside>
-			<?php endif; ?>
-		<?php endif; ?>
-		<?php do_action( 'generate_after_right_sidebar_content' ); ?>
+			<?php endif;
+
+		endif;
+
+		/**
+		 * generate_after_right_sidebar_content hook.
+		 *
+		 * @since 0.1
+		 */
+		do_action( 'generate_after_right_sidebar_content' );
+		?>
 	</div><!-- .inside-right-sidebar -->
 </div><!-- #secondary -->

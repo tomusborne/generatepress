@@ -5,9 +5,8 @@
  * @package GeneratePress
  */
 
-// No direct access, please.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 ?>
 <form method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">

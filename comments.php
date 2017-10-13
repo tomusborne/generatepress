@@ -10,9 +10,8 @@
  * @package GeneratePress
  */
 
-// No direct access, please.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 /*
@@ -24,11 +23,23 @@ if ( post_password_required() ) {
 	return;
 }
 
+/**
+ * generate_before_comments hook.
+ *
+ * @since 0.1
+ */
 do_action( 'generate_before_comments' );
 ?>
 <div id="comments">
 
-	<?php do_action( 'generate_inside_comments' ); ?>
+	<?php
+	/**
+	 * generate_inside_comments hook.
+	 *
+	 * @since 1.3.47
+	 */
+	do_action( 'generate_inside_comments' );
+	?>
 
 	<?php if ( have_comments() ) : ?>
 		<h3 class="comments-title">
@@ -57,7 +68,14 @@ do_action( 'generate_before_comments' );
 			?>
 		</h3>
 
-		<?php do_action( 'generate_below_comments_title' ); ?>
+		<?php
+		/**
+		 * generate_below_comments_title hook.
+		 *
+		 * @since 0.1
+		 */
+		do_action( 'generate_below_comments_title' );
+		?>
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
 			<nav id="comment-nav-above" class="comment-navigation" role="navigation">
@@ -69,7 +87,7 @@ do_action( 'generate_before_comments' );
 
 		<ol class="comment-list">
 			<?php
-			/* 
+			/*
 			 * Loop through and list the comments. Tell wp_list_comments()
 			 * to use generate_comment() to format the comments.
 			 * If you want to override this in a child theme, then you can
@@ -98,11 +116,13 @@ do_action( 'generate_before_comments' );
 	<?php endif;
 
 	$commenter = wp_get_current_commenter();
+
 	$fields = array(
 		'author' => '<input placeholder="' . __( 'Name','generatepress' ) . ' *" id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" />',
 		'email' => '<input placeholder="' . __( 'Email','generatepress' ) . ' *" id="email" name="email" type="text" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" />',
 		'url' => '<input placeholder="' . __( 'Website','generatepress' ) . '" id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" />',
 	);
+
 	$defaults = array(
 		'fields'		=> apply_filters( 'comment_form_default_fields', $fields ),
 		'comment_field' => '<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>',
@@ -117,6 +137,7 @@ do_action( 'generate_before_comments' );
 		'cancel_reply_link'    => apply_filters( 'generate_cancel_reply', __( 'Cancel reply', 'generatepress' ) ),
 		'label_submit'         => apply_filters( 'generate_post_comment', __( 'Post Comment', 'generatepress' ) ),
 	);
+
 	comment_form( $defaults );
 	?>
 

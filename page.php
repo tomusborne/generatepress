@@ -10,9 +10,8 @@
  * @package GeneratePress
  */
 
-// No direct access, please.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 get_header(); ?>
@@ -20,6 +19,11 @@ get_header(); ?>
 	<div id="primary" <?php generate_content_class();?>>
 		<main id="main" <?php generate_main_class(); ?>>
 			<?php
+			/**
+			 * generate_before_main_content hook.
+			 *
+			 * @since 0.1
+			 */
 			do_action( 'generate_before_main_content' );
 
 			while ( have_posts() ) : the_post();
@@ -35,11 +39,24 @@ get_header(); ?>
 
 			endwhile;
 
+			/**
+			 * generate_after_main_content hook.
+			 *
+			 * @since 0.1
+			 */
 			do_action( 'generate_after_main_content' );
 			?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
 <?php
+/**
+ * generate_sidebars hook.
+ *
+ * @since 0.1
+ *
+ * @hooked generate_construct_sidebars - 10
+ */
 do_action( 'generate_sidebars' );
+
 get_footer();

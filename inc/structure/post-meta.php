@@ -5,9 +5,8 @@
  * @package GeneratePress
  */
 
-// No direct access, please.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 if ( ! function_exists( 'generate_content_nav' ) ) {
@@ -70,6 +69,11 @@ if ( ! function_exists( 'generate_content_nav' ) ) {
 					) );
 				}
 
+				/**
+				 * generate_paging_navigation hook.
+				 *
+				 * @since 0.1
+				 */
 				do_action( 'generate_paging_navigation' );
 
 			endif; ?>

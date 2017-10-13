@@ -5,34 +5,89 @@
  * @package GeneratePress
  */
 
-// No direct access, please.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 get_header(); ?>
 
 	<div id="primary" <?php generate_content_class(); ?>>
 		<main id="main" <?php generate_main_class(); ?>>
-			<?php do_action( 'generate_before_main_content' ); ?>
+			<?php
+			/**
+			 * generate_before_main_content hook.
+			 *
+			 * @since 0.1
+			 */
+			do_action( 'generate_before_main_content' );
+			?>
+
 			<div class="inside-article">
-				<?php do_action( 'generate_before_content' ); ?>
+
+				<?php
+				/**
+				 * generate_before_content hook.
+				 *
+				 * @since 0.1
+				 *
+				 * @hooked generate_featured_page_header_inside_single - 10
+				 */
+				do_action( 'generate_before_content' );
+				?>
+
 				<header class="entry-header">
 					<h1 class="entry-title" itemprop="headline"><?php echo apply_filters( 'generate_404_title', __( 'Oops! That page can&rsquo;t be found.', 'generatepress' ) ); ?></h1>
 				</header><!-- .entry-header -->
-				<?php do_action( 'generate_after_entry_header' ); ?>
+
+				<?php
+				/**
+				 * generate_after_entry_header hook.
+				 *
+				 * @since 0.1
+				 *
+				 * @hooked generate_post_image - 10
+				 */
+				do_action( 'generate_after_entry_header' );
+				?>
+
 				<div class="entry-content" itemprop="text">
-					<p>
-						<?php echo apply_filters( 'generate_404_text', __( 'It looks like nothing was found at this location. Maybe try searching?', 'generatepress' ) ); ?>
-					</p>
-					<?php get_search_form(); ?>
+					<?php
+					echo apply_filters( 'generate_404_text', '<p>' . __( 'It looks like nothing was found at this location. Maybe try searching?', 'generatepress' ) . '</p>' );
+
+					get_search_form();
+					?>
 				</div><!-- .entry-content -->
-				<?php do_action( 'generate_after_content' ); ?>
+
+				<?php
+				/**
+				 * generate_after_content hook.
+				 *
+				 * @since 0.1
+				 */
+				do_action( 'generate_after_content' );
+				?>
+
 			</div><!-- .inside-article -->
-			<?php do_action( 'generate_after_main_content' ); ?>
+
+			<?php
+			/**
+			 * generate_after_main_content hook.
+			 *
+			 * @since 0.1
+			 */
+			do_action( 'generate_after_main_content' );
+			?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
 <?php
+/**
+ * generate_sidebars hook.
+ *
+ * @since 0.1
+ *
+ * @hooked generate_construct_sidebars - 10
+ */
 do_action( 'generate_sidebars' );
+
 get_footer();

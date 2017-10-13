@@ -5,9 +5,8 @@
  * @package GeneratePress
  */
 
-// No direct access, please.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 if ( ! function_exists( 'generate_construct_header' ) ) {
@@ -21,9 +20,26 @@ if ( ! function_exists( 'generate_construct_header' ) ) {
 		?>
 		<header itemtype="http://schema.org/WPHeader" itemscope="itemscope" id="masthead" <?php generate_header_class(); ?>>
 			<div <?php generate_inside_header_class(); ?>>
-				<?php do_action( 'generate_before_header_content' ); ?>
-				<?php generate_header_items(); ?>
-				<?php do_action( 'generate_after_header_content' ); ?>
+				<?php
+				/**
+				 * generate_before_header_content hook.
+				 *
+				 * @since 0.1
+				 */
+				do_action( 'generate_before_header_content' );
+
+				// Add our main header items.
+				generate_header_items();
+
+				/**
+				 * generate_after_header_content hook.
+				 *
+				 * @since 0.1
+				 *
+				 * @hooked generate_add_navigation_float_right - 5
+				 */
+				do_action( 'generate_after_header_content' );
+				?>
 			</div><!-- .inside-header -->
 		</header><!-- #masthead -->
 		<?php
@@ -62,6 +78,11 @@ if ( ! function_exists( 'generate_construct_logo' ) ) {
 			return;
 		}
 
+		/**
+		 * generate_before_logo hook.
+		 *
+		 * @since 0.1
+		 */
 		do_action( 'generate_before_logo' );
 
 		$attr = apply_filters( 'generate_logo_attributes', array(
@@ -94,6 +115,11 @@ if ( ! function_exists( 'generate_construct_logo' ) ) {
 			$html_attr
 		), $logo_url, $html_attr );
 
+		/**
+		 * generate_after_logo hook.
+		 *
+		 * @since 0.1
+		 */
 		do_action( 'generate_after_logo' );
 	}
 }

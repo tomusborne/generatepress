@@ -5,19 +5,39 @@
  * @package GeneratePress
  */
 
-// No direct access, please.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 ?>
 
 <section class="no-results not-found">
 	<div class="inside-article">
-		<?php do_action( 'generate_before_content' ); ?>
+		<?php
+		/**
+		 * generate_before_content hook.
+		 *
+		 * @since 0.1
+		 *
+		 * @hooked generate_featured_page_header_inside_single - 10
+		 */
+		do_action( 'generate_before_content' );
+		?>
+
 		<header class="entry-header">
 			<h1 class="entry-title"><?php _e( 'Nothing Found', 'generatepress' ); ?></h1>
 		</header><!-- .entry-header -->
-		<?php do_action( 'generate_after_entry_header' ); ?>
+
+		<?php
+		/**
+		 * generate_after_entry_header hook.
+		 *
+		 * @since 0.1
+		 *
+		 * @hooked generate_post_image - 10
+		 */
+		do_action( 'generate_after_entry_header' );
+		?>
+
 		<div class="entry-content">
 
 				<?php if ( is_home() && current_user_can( 'publish_posts' ) ) : ?>
@@ -37,6 +57,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php endif; ?>
 
 		</div><!-- .entry-content -->
-		<?php do_action( 'generate_after_content' ); ?>
+
+		<?php
+		/**
+		 * generate_after_content hook.
+		 *
+		 * @since 0.1
+		 */
+		do_action( 'generate_after_content' );
+		?>
 	</div><!-- .inside-article -->
 </section><!-- .no-results -->

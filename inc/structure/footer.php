@@ -5,25 +5,42 @@
  * @package GeneratePress
  */
 
-// No direct access, please.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 if ( ! function_exists( 'generate_construct_footer' ) ) {
+	add_action( 'generate_footer', 'generate_construct_footer' );
 	/**
 	 * Build our footer.
 	 *
 	 * @since 1.3.42
 	 */
-	add_action( 'generate_footer', 'generate_construct_footer' );
 	function generate_construct_footer() {
 		?>
 		<footer class="site-info" itemtype="http://schema.org/WPFooter" itemscope="itemscope">
 			<div class="inside-site-info <?php if ( 'full-width' !== generate_get_setting( 'footer_inner_width' ) ) : ?>grid-container grid-parent<?php endif; ?>">
-				<?php do_action( 'generate_before_copyright' ); ?>
+				<?php
+				/**
+				 * generate_before_copyright hook.
+				 *
+				 * @since 0.1
+				 *
+				 * @hooked generate_footer_bar - 15
+				 */
+				do_action( 'generate_before_copyright' );
+				?>
 				<div class="copyright-bar">
-					<?php do_action( 'generate_credits' ); ?>
+					<?php
+					/**
+					 * generate_credits hook.
+					 *
+					 * @since 0.1
+					 *
+					 * @hooked generate_add_footer_info - 10
+					 */
+					do_action( 'generate_credits' );
+					?>
 				</div>
 			</div>
 		</footer><!-- .site-info -->
@@ -169,6 +186,12 @@ if ( ! function_exists( 'generate_construct_footer_widgets' ) ) {
 			</div>
 		<?php
 		endif;
+
+		/**
+		 * generate_after_footer_widgets hook.
+		 *
+		 * @since 0.1
+		 */
 		do_action( 'generate_after_footer_widgets' );
 	}
 }

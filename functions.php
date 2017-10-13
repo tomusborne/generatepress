@@ -7,9 +7,8 @@
  * @package GeneratePress
  */
 
-// No direct access, please.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 define( 'GENERATE_VERSION', '1.5-beta.1' );
