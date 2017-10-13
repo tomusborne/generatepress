@@ -25,12 +25,11 @@ if ( ! function_exists( 'generate_post_image' ) ) {
 		if ( ! is_singular() && ! is_404() ) {
 			echo apply_filters( 'generate_featured_image_output', sprintf(
 				'<div class="post-image">
-					<a href="%1$s" title="%2$s">
-						%3$s
+					<a href="%1$s">
+						%2$s
 					</a>
 				</div>',
 				esc_url( get_permalink() ),
-				the_title_attribute( 'echo=0' ),
 				get_the_post_thumbnail(
 					get_the_ID(),
 					apply_filters( 'generate_page_header_default_size', 'full' ),
