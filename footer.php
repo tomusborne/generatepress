@@ -2,13 +2,13 @@
 /**
  * The template for displaying the footer.
  *
- * Contains the closing of the id=main div and all content after
- *
  * @package GeneratePress
  */
 
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
+// No direct access, please.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 ?>
 
 	</div><!-- #content -->

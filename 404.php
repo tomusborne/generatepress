@@ -5,8 +5,10 @@
  * @package GeneratePress
  */
 
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
+// No direct access, please.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 get_header(); ?>
 
@@ -33,4 +35,4 @@ get_header(); ?>
 
 <?php
 do_action( 'generate_sidebars' );
-get_footer(); 
+get_footer();

@@ -1,5 +1,14 @@
 <?php
-defined( 'WPINC' ) or die;
+/**
+ * Builds our main Layout meta box.
+ *
+ * @package GeneratePress
+ */
+
+// No direct access, please.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 add_action( 'admin_enqueue_scripts', 'generate_enqueue_meta_box_scripts' );
 /**

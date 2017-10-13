@@ -1,5 +1,14 @@
 <?php
-defined( 'WPINC' ) or die;
+/**
+ * General functions.
+ *
+ * @package GeneratePress
+ */
+
+// No direct access, please.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! function_exists( 'generate_scripts' ) ) {
 	add_action( 'wp_enqueue_scripts', 'generate_scripts' );

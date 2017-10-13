@@ -10,8 +10,10 @@
  * @package GeneratePress
  */
 
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
+// No direct access, please.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 get_header(); ?>
 
@@ -24,14 +26,14 @@ get_header(); ?>
 
 				get_template_part( 'content', 'page' );
 
-				// If comments are open or we have at least one comment, load up the comment template
+				// If comments are open or we have at least one comment, load up the comment template.
 				if ( comments_open() || '0' != get_comments_number() ) : ?>
 					<div class="comments-area">
 						<?php comments_template(); ?>
 					</div>
 				<?php endif;
 
-			endwhile; // end of the loop.
+			endwhile;
 
 			do_action( 'generate_after_main_content' );
 			?>

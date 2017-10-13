@@ -1,6 +1,14 @@
 <?php
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
+/**
+ * Where old functions retire.
+ *
+ * @package GeneratePress
+ */
+
+// No direct access, please.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! function_exists( 'generate_paging_nav' ) ) :
 /**

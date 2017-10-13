@@ -5,13 +5,15 @@
  * @package GeneratePress
  */
 
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
+// No direct access, please.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
-// If the navigation is set in the sidebar, set variable to true
+// If the navigation is set in the sidebar, set variable to true.
 $navigation_active = ( 'nav-left-sidebar' == generate_get_navigation_location() ) ? true : false;
 
-// If the secondary navigation is set in the sidebar, set variable to true
+// If the secondary navigation is set in the sidebar, set variable to true.
 if ( function_exists( 'generate_secondary_nav_get_defaults' ) ) {
 	$secondary_nav = wp_parse_args(
 		get_option( 'generate_secondary_nav_settings', array() ),
@@ -41,7 +43,7 @@ if ( function_exists( 'generate_secondary_nav_get_defaults' ) ) {
 				</aside>
 			<?php endif; ?>
 
-		<?php endif; // end sidebar widget area ?>
+		<?php endif; ?>
 		<?php do_action( 'generate_after_left_sidebar_content' ); ?>
 	</div><!-- .inside-left-sidebar -->
 </div><!-- #secondary -->

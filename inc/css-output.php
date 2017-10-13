@@ -1,5 +1,14 @@
 <?php
-defined( 'WPINC' ) or die;
+/**
+ * Output all of our dynamic CSS.
+ *
+ * @package GeneratePress
+ */
+
+// No direct access, please.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! function_exists( 'generate_base_css' ) ) {
 	/**

@@ -1,5 +1,8 @@
 <?php
-defined( 'WPINC' ) or die;
+// No direct access, please.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! function_exists( 'generate_is_posts_page' ) ) {
 	/**

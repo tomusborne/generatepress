@@ -1,5 +1,14 @@
 <?php
-defined( 'WPINC' ) or die;
+/**
+ * Comment structure.
+ *
+ * @package GeneratePress
+ */
+
+// No direct access, please.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! function_exists( 'generate_comment' ) ) {
 	/**

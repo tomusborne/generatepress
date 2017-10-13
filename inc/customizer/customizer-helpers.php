@@ -1,5 +1,8 @@
 <?php
-defined( 'WPINC' ) or die;
+// No direct access, please.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 // Controls
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-range-control.php';

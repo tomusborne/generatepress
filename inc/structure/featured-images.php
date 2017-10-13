@@ -1,5 +1,14 @@
 <?php
-defined( 'WPINC' ) or die;
+/**
+ * Featured image elements.
+ *
+ * @package GeneratePress
+ */
+
+// No direct access, please.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! function_exists( 'generate_post_image' ) ) {
 	add_action( 'generate_after_entry_header', 'generate_post_image' );

@@ -1,5 +1,16 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) exit;
+/**
+ * GeneratePress.
+ *
+ * Please do not make any edits to this file. All edits should be done in a child theme.
+ *
+ * @package GeneratePress
+ */
+
+// No direct access, please.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 define( 'GENERATE_VERSION', '1.5-beta.1' );
 define( 'GENERATE_URI', get_template_directory_uri() );
@@ -9,12 +20,14 @@ if ( ! function_exists( 'generate_setup' ) ) {
 	add_action( 'after_setup_theme', 'generate_setup' );
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
+	 *
+	 * @since 0.1
 	 */
 	function generate_setup() {
-		// Make theme available for translation
+		// Make theme available for translation.
 		load_theme_textdomain( 'generatepress' );
 
-		// Add theme support for various features
+		// Add theme support for various features.
 		add_theme_support( 'automatic-feed-links' );
 		add_theme_support( 'post-thumbnails' );
 		add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link', 'status' ) );
@@ -24,7 +37,7 @@ if ( ! function_exists( 'generate_setup' ) ) {
 		add_theme_support( 'custom-logo', array( 'height' => 70, 'width' => 350, 'flex-height' => true, 'flex-width' => true ) );
 		add_theme_support( 'customize-selective-refresh-widgets' );
 
-		// Register primary menu
+		// Register primary menu.
 		register_nav_menus( array(
 			'primary' => __( 'Primary Menu', 'generatepress' ),
 		) );
@@ -38,7 +51,7 @@ if ( ! function_exists( 'generate_setup' ) ) {
 			$content_width = 1200; /* pixels */
 		}
 
-		// This theme styles the visual editor to resemble the theme style
+		// This theme styles the visual editor to resemble the theme style.
 		add_editor_style( 'css/admin/editor-style.css' );
 	}
 }

@@ -1,14 +1,14 @@
 <?php
 /**
- * The Header for our theme.
- *
- * Displays all of the <head> section and everything up till <main id="main">
+ * The template for displaying the header.
  *
  * @package GeneratePress
  */
 
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
+// No direct access, please.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>

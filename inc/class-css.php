@@ -1,6 +1,14 @@
 <?php
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
+/**
+ * Builds our dynamic CSS.
+ *
+ * @package GeneratePress
+ */
+
+// No direct access, please.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 	/**

@@ -1,5 +1,14 @@
 <?php
-defined( 'WPINC' ) or die;
+/**
+ * Typography related functions.
+ *
+ * @package GeneratePress
+ */
+
+// No direct access, please.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! function_exists( 'generate_enqueue_google_fonts' ) ) {
 	add_action( 'wp_enqueue_scripts', 'generate_enqueue_google_fonts', 0 );

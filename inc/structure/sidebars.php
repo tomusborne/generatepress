@@ -1,5 +1,14 @@
 <?php
-defined( 'WPINC' ) or die;
+/**
+ * Build the sidebars.
+ *
+ * @package GeneratePress
+ */
+
+// No direct access, please.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! function_exists( 'generate_construct_sidebars' ) ) {
 	add_action( 'generate_sidebars', 'generate_construct_sidebars' );
@@ -9,21 +18,21 @@ if ( ! function_exists( 'generate_construct_sidebars' ) ) {
 	 * @since 0.1
 	 */
 	function generate_construct_sidebars() {
-		// Get the layout
+		// Get the layout.
 		$layout = generate_get_layout();
 
-		// When to show the right sidebar
+		// When to show the right sidebar.
 		$rs = array( 'right-sidebar', 'both-sidebars', 'both-right', 'both-left' );
 
-		// When to show the left sidebar
+		// When to show the left sidebar.
 		$ls = array( 'left-sidebar', 'both-sidebars', 'both-right', 'both-left' );
 
-		// If left sidebar, show it
+		// If left sidebar, show it.
 		if ( in_array( $layout, $ls ) ) {
 			get_sidebar( 'left' );
 		}
 
-		// If right sidebar, show it
+		// If right sidebar, show it.
 		if ( in_array( $layout, $rs ) ) {
 			get_sidebar();
 		}

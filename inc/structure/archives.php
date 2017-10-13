@@ -1,5 +1,14 @@
 <?php
-defined( 'WPINC' ) or die;
+/**
+ * Archive elements.
+ *
+ * @package GeneratePress
+ */
+
+// No direct access, please.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! function_exists( 'generate_archive_title' ) ) {
 	add_action( 'generate_archive_title', 'generate_archive_title' );
@@ -22,13 +31,13 @@ if ( ! function_exists( 'generate_archive_title' ) ) {
 			<?php
 				// Show an optional term description.
 				$term_description = term_description();
-				if ( ! empty( $term_description ) ) :
+				if ( ! empty( $term_description ) ) {
 					printf( '<div class="taxonomy-description">%s</div>', $term_description );
-				endif;
+				}
 
-				if ( get_the_author_meta('description') && is_author() ) : // If a user has filled out their decscription show a bio on their entries
+				if ( get_the_author_meta('description') && is_author() ) {
 					echo '<div class="author-info">' . get_the_author_meta('description') . '</div>';
-				endif;
+				}
 			?>
 			<?php do_action( 'generate_after_archive_description' ); ?>
 		</header><!-- .page-header -->

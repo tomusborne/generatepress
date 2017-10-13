@@ -1,5 +1,8 @@
 <?php
-defined( 'WPINC' ) or die;
+// No direct access, please.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( class_exists( 'WP_Customize_Section' ) && ! class_exists( 'GeneratePress_Upsell_Section' ) ) {
 	/**

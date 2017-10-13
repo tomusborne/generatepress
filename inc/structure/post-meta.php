@@ -1,5 +1,14 @@
 <?php
-defined( 'WPINC' ) or die;
+/**
+ * Post meta elements.
+ *
+ * @package GeneratePress
+ */
+
+// No direct access, please.
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 if ( ! function_exists( 'generate_content_nav' ) ) {
 	/**
@@ -34,12 +43,12 @@ if ( ! function_exists( 'generate_content_nav' ) ) {
 		<nav id="<?php echo esc_attr( $nav_id ); ?>" class="<?php echo $nav_class; ?>">
 			<span class="screen-reader-text"><?php _e( 'Post navigation', 'generatepress' ); ?></span>
 
-			<?php if ( is_single() ) : // navigation links for single posts
+			<?php if ( is_single() ) : // navigation links for single posts.
 
 				previous_post_link( '<div class="nav-previous"><span class="prev" title="' . __( 'Previous', 'generatepress' ) . '">%link</span></div>', '%title', $category_specific );
 				next_post_link( '<div class="nav-next"><span class="next" title="' . __( 'Next', 'generatepress' ) . '">%link</span></div>', '%title', $category_specific );
 
-			elseif ( is_home() || is_archive() || is_search() ) : // navigation links for home, archive, and search pages
+			elseif ( is_home() || is_archive() || is_search() ) : // navigation links for home, archive, and search pages.
 
 				if ( get_next_posts_link() ) : ?>
 					<div class="nav-previous"><span class="prev" title="<?php _e( 'Previous', 'generatepress' );?>"><?php next_posts_link( __( 'Older posts', 'generatepress' ) ); ?></span></div>
@@ -109,7 +118,7 @@ if ( ! function_exists( 'generate_posted_on' ) ) {
 			esc_html( get_the_modified_date() )
 		);
 
-		// If our date is enabled, show it
+		// If our date is enabled, show it.
 		if ( $date ) {
 			echo apply_filters( 'generate_post_date_output', sprintf( '<span class="posted-on">%1$s</span>',
 				sprintf( '<a href="%1$s" title="%2$s" rel="bookmark">%3$s</a>',
@@ -120,7 +129,7 @@ if ( ! function_exists( 'generate_posted_on' ) ) {
 			), $time_string );
 		}
 
-		// If our author is enabled, show it
+		// If our author is enabled, show it.
 		if ( $author ) {
 			echo apply_filters( 'generate_post_author_output', sprintf( ' <span class="byline">%1$s</span>',
 				sprintf( '<span class="author vcard" itemtype="http://schema.org/Person" itemscope="itemscope" itemprop="author">%1$s <a class="url fn n" href="%2$s" title="%3$s" rel="author" itemprop="url"><span class="author-name" itemprop="name">%4$s</span></a></span>',
