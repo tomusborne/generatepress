@@ -37,6 +37,7 @@ if ( function_exists( 'generate_secondary_nav_get_defaults' ) ) {
 		if ( ! dynamic_sidebar( 'sidebar-1' ) ) :
 
 			if ( false == $navigation_active ) : ?>
+
 				<aside id="search" class="widget widget_search">
 					<?php get_search_form(); ?>
 				</aside>
@@ -47,6 +48,7 @@ if ( function_exists( 'generate_secondary_nav_get_defaults' ) ) {
 						<?php wp_get_archives( array( 'type' => 'monthly' ) ); ?>
 					</ul>
 				</aside>
+
 			<?php endif;
 
 		endif;

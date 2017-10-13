@@ -60,7 +60,6 @@ if ( ! function_exists( 'generate_featured_page_header_area' ) ) {
 		if ( ! has_post_thumbnail() ) {
 			return;
 		}
-
 		?>
 		<div class="<?php echo esc_attr( $class ); ?> grid-container grid-parent">
 			<?php the_post_thumbnail(

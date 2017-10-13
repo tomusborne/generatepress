@@ -21,7 +21,6 @@ get_header(); ?>
 			 */
 			do_action( 'generate_before_main_content' );
 
-
 			if ( have_posts() ) :
 
 				/**

@@ -16,28 +16,22 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 	 * Enqueue scripts and styles
 	 */
 	function generate_scripts() {
-		// Get our options.
 		$generate_settings = wp_parse_args(
 			get_option( 'generate_settings', array() ),
 			generate_get_defaults()
 		);
 
-		// Get the minified suffix.
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
-		// Enqueue CSS
 		wp_enqueue_style( 'generate-style-grid', get_template_directory_uri() . "/css/unsemantic-grid{$suffix}.css", false, GENERATE_VERSION, 'all' );
 		wp_enqueue_style( 'generate-style', get_template_directory_uri() . "/style{$suffix}.css", array( 'generate-style-grid' ), GENERATE_VERSION, 'all' );
 		wp_enqueue_style( 'generate-mobile-style', get_template_directory_uri() . "/css/mobile{$suffix}.css", array( 'generate-style' ), GENERATE_VERSION, 'all' );
 
-		// Add the child theme CSS if child theme is active
 		if ( is_child_theme() ) {
 			wp_enqueue_style( 'generate-child', get_stylesheet_uri(), array( 'generate-style' ), filemtime( get_stylesheet_directory() . '/style.css' ), 'all' );
 		}
 
-		// Font Awesome
-		$icon_essentials = apply_filters( 'generate_fontawesome_essentials', false );
-		$icon_essentials = ( $icon_essentials ) ? '-essentials' : false;
+		$icon_essentials = apply_filters( 'generate_fontawesome_essentials', false ) ? '-essentials' : false;
 		wp_enqueue_style( "font-awesome{$icon_essentials}", get_template_directory_uri() . "/css/font-awesome{$icon_essentials}{$suffix}.css", false, '4.7', 'all' );
 
 		if ( function_exists( 'wp_script_add_data' ) ) {
@@ -45,25 +39,20 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 			wp_script_add_data( 'generate-classlist', 'conditional', 'lte IE 11' );
 		}
 
-		// Enqueue scripts
 		wp_enqueue_script( 'generate-menu', get_template_directory_uri() . "/js/menu{$suffix}.js", array(), GENERATE_VERSION, true );
 		wp_enqueue_script( 'generate-a11y', get_template_directory_uri() . "/js/a11y{$suffix}.js", array(), GENERATE_VERSION, true );
 
-		// Add our hover or click dropdown menu scripts
 		$click = ( 'click' == $generate_settings[ 'nav_dropdown_type' ] || 'click-arrow' == $generate_settings[ 'nav_dropdown_type' ] ) ? '-click' : '';
 		wp_enqueue_script( 'generate-dropdown', get_template_directory_uri() . "/js/dropdown{$click}{$suffix}.js", array( 'generate-menu' ), GENERATE_VERSION, true );
 
-		// Add our navigation search if it's enabled
 		if ( 'enable' == $generate_settings['nav_search'] ) {
 			wp_enqueue_script( 'generate-navigation-search', get_template_directory_uri() . "/js/navigation-search{$suffix}.js", array( 'generate-menu' ), GENERATE_VERSION, true );
 		}
 
-		// Add the back to top script if it's enabled
 		if ( 'enable' == $generate_settings['back_to_top'] ) {
 			wp_enqueue_script( 'generate-back-to-top', get_template_directory_uri() . "/js/back-to-top{$suffix}.js", array(), GENERATE_VERSION, true );
 		}
 
-		// Add the threaded comments script
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );
 		}
@@ -76,7 +65,6 @@ if ( ! function_exists( 'generate_widgets_init' ) ) {
 	 * Register widgetized area and update sidebar with default widgets
 	 */
 	function generate_widgets_init() {
-		// Set up our array of widgets
 		$widgets = array(
 			'sidebar-1' => __( 'Right Sidebar', 'generatepress' ),
 			'sidebar-2' => __( 'Left Sidebar', 'generatepress' ),
@@ -90,7 +78,6 @@ if ( ! function_exists( 'generate_widgets_init' ) ) {
 			'top-bar' => __( 'Top Bar','generatepress' ),
 		);
 
-		// Loop through them to create our widget areas
 		foreach ( $widgets as $id => $name ) {
 			register_sidebar( array(
 				'name'          => $name,
@@ -115,13 +102,11 @@ if ( ! function_exists( 'generate_smart_content_width' ) ) {
 
 		global $content_width;
 
-		// Get Customizer options
 		$generate_settings = wp_parse_args(
 			get_option( 'generate_settings', array() ),
 			generate_get_defaults()
 		);
 
-		// Get sidebar widths
 		$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '25' );
 		$left_sidebar_width = apply_filters( 'generate_left_sidebar_width', '25' );
 		$layout = generate_get_layout();
@@ -164,18 +149,14 @@ if ( ! function_exists( 'generate_disable_title' ) ) {
 	 * @return bool Whether to display the content title.
 	 */
 	function generate_disable_title() {
-		// Get our post
 		global $post;
 
-		// Get our option
 		$disable_headline = ( isset( $post ) ) ? get_post_meta( $post->ID, '_generate-disable-headline', true ) : '';
 
-		// If our option is set, disable the title
 		if ( ! empty( $disable_headline ) && false !== $disable_headline ) {
 			return false;
 		}
 
-		// If we've reached this point, our option is not set, so we should continue to show our title
 		return true;
 	}
 }

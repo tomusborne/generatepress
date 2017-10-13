@@ -30,9 +30,11 @@ if ( ! function_exists( 'generate_archive_title' ) ) {
 			 */
 			do_action( 'generate_before_archive_title' );
 			?>
+
 			<h1 class="page-title">
 				<?php the_archive_title(); ?>
 			</h1>
+
 			<?php
 			/**
 			 * generate_after_archive_title hook.

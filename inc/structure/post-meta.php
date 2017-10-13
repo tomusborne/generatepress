@@ -18,7 +18,6 @@ if ( ! function_exists( 'generate_content_nav' ) ) {
 	 * @param string $nav_id The id of our navigation.
 	 */
 	function generate_content_nav( $nav_id ) {
-
 		if ( ! apply_filters( 'generate_show_post_navigation', true ) ) {
 			return;
 		}
@@ -95,7 +94,6 @@ if ( ! function_exists( 'generate_modify_posts_pagination_template' ) ) {
 	 * @return string The HTML for the post navigation.
 	 */
 	function generate_modify_posts_pagination_template( $template, $class ) {
-
 	    if ( ! empty( $class ) && false !== strpos( $class, 'pagination' ) ) {
 	        $template = '<div class="nav-links">%3$s</div>';
 	    }

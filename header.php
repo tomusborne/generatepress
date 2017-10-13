@@ -45,7 +45,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	 *
 	 * @since 0.1
 	 *
-	 * @hooked generate_add_navigation_float_right - 5
 	 * @hooked generate_featured_page_header - 10
 	 */
 	do_action( 'generate_after_header' );
