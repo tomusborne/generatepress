@@ -183,3 +183,41 @@ if ( ! function_exists( 'generate_typography_set_font_data' ) ) {
 		}
 	}
 }
+
+add_action( 'admin_init', 'generate_migrate_font_awesome_library' );
+/**
+ * Turn on the full Font Awesome library if content exists on the site.
+ *
+ * We want essentials to be the default, but need existing sites to continue
+ * loading the full library.
+ *
+ * @since 1.5
+ */
+function generate_migrate_font_awesome_library() {
+	$settings = get_option( 'generate_migration_settings', array() );
+
+	if ( isset( $settings['font_awesome_essentials_updated'] ) && 'true' == $settings['font_awesome_essentials_updated'] ) {
+		return;
+	}
+
+	$count_pages = wp_count_posts( 'page' );
+	$count_posts = wp_count_posts( 'post' );
+
+	if ( $count_pages->publish > 1 && $count_posts->publish > 1 ) {
+		$generate_settings = wp_parse_args(
+			get_option( 'generate_settings', array() ),
+			generate_get_defaults()
+		);
+
+		$new_settings = array();
+		$new_settings[ 'font_awesome' ] = 'full-library';
+
+		$update_settings = wp_parse_args( $new_settings, $generate_settings );
+		update_option( 'generate_settings', $update_settings );
+	}
+
+	$updated = array();
+	$updated['font_awesome_essentials_updated'] = 'true';
+	$migration_settings = wp_parse_args( $updated, $settings );
+	update_option( 'generate_migration_settings', $migration_settings );
+}
