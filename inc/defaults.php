@@ -145,9 +145,9 @@ if ( ! function_exists( 'generate_get_default_fonts' ) ) {
 	 */
 	function generate_get_default_fonts( $filter = true ) {
 		$generate_font_defaults = array(
-			'font_body' => 'Open Sans',
+			'font_body' => 'System Stack',
 			'font_body_category' => 'sans-serif',
-			'font_body_variants' => '300,regular,italic,700',
+			'font_body_variants' => '',
 			'body_font_weight' => 'normal',
 			'body_font_transform' => 'none',
 			'body_font_size' => '17',
