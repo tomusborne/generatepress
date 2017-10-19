@@ -204,7 +204,7 @@ function generate_migrate_font_awesome_library() {
 	$count_posts = wp_count_posts( 'post' );
 	$existing_settings = get_option( 'generate_settings' );
 
-	if ( ( $count_pages->publish > 1 && $count_posts->publish > 1 ) || ! empty( $existing_settings ) ) {
+	if ( ( $count_pages->publish > 1 || $count_posts->publish > 1 ) || ! empty( $existing_settings ) ) {
 		$generate_settings = wp_parse_args(
 			get_option( 'generate_settings', array() ),
 			generate_get_defaults()
