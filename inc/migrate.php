@@ -200,11 +200,10 @@ function generate_migrate_font_awesome_library() {
 		return;
 	}
 
-	$count_pages = wp_count_posts( 'page' );
-	$count_posts = wp_count_posts( 'post' );
 	$existing_settings = get_option( 'generate_settings' );
 
-	if ( ( $count_pages->publish > 1 || $count_posts->publish > 1 ) || ! empty( $existing_settings ) ) {
+	// If we have existing settings, we should use the full FA library.
+	if ( ! empty( $existing_settings ) ) {
 		$generate_settings = wp_parse_args(
 			get_option( 'generate_settings', array() ),
 			generate_get_defaults()
