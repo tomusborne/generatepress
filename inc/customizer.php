@@ -1032,9 +1032,9 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 
 		// Add Performance section
 		$wp_customize->add_section(
-			'generate_performance',
+			'generate_general_section',
 			array(
-				'title' => __( 'Performance', 'generatepress' ),
+				'title' => __( 'General', 'generatepress' ),
 				'capability' => 'edit_theme_options',
 				'description' => '',
 				'priority' => 99
@@ -1055,7 +1055,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			array(
 				'type' => 'radio',
 				'label' => __( 'Font Awesome Library', 'generatepress' ),
-				'section' => 'generate_performance',
+				'section' => 'generate_general_section',
 				'choices' => array(
 					'full-library' => __( 'Full library', 'generatepress' ),
 					'essentials' => __( 'Essentials only', 'generatepress' )
