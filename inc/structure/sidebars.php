@@ -14,6 +14,9 @@ if ( ! function_exists( 'generate_construct_sidebars' ) ) {
 	/**
 	 * Construct the sidebars.
 	 *
+	 * The generate_sidebars hook was removed from the theme for performance reasons.
+	 * Existing child themes will still be using it, so we're leaving it for now.
+	 *
 	 * @since 0.1
 	 */
 	function generate_construct_sidebars() {

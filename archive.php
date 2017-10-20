@@ -62,13 +62,5 @@ get_header(); ?>
 	</section><!-- #primary -->
 
 <?php
-/**
- * generate_sidebars hook.
- *
- * @since 0.1
- *
- * @hooked generate_construct_sidebars - 10
- */
-do_action( 'generate_sidebars' );
-
+generate_construct_sidebars();
 get_footer();
