@@ -72,6 +72,15 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 					<div class="postbox-container clearfix" style="float: none;">
 						<div class="grid-container grid-parent">
 
+							<?php
+							/**
+							 * generate_dashboard_inside_container hook.
+							 *
+							 * @since 1.5
+							 */
+							 do_action( 'generate_dashboard_inside_container' );
+							 ?>
+
 							<div class="form-metabox grid-70" style="padding-left: 0;">
 								<form method="post" action="options.php">
 									<?php settings_fields( 'generate-settings-group' ); ?>
