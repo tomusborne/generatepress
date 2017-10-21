@@ -99,7 +99,6 @@ if ( ! function_exists( 'generate_smart_content_width' ) ) {
 	 * Hooking into "after_setup_theme" doesn't get the correct layout setting
 	 */
 	function generate_smart_content_width() {
-
 		global $content_width;
 
 		$generate_settings = wp_parse_args(

@@ -30,7 +30,7 @@ function generate_setup_woocommerce() {
 	remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
 	remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
 	remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
-	add_action('woocommerce_sidebar','generate_construct_sidebars');
+	add_action( 'woocommerce_sidebar', 'generate_construct_sidebars' );
 }
 
 if ( ! function_exists( 'generate_woocommerce_start' ) ) {
@@ -43,10 +43,26 @@ if ( ! function_exists( 'generate_woocommerce_start' ) ) {
 	function generate_woocommerce_start() { ?>
 		<div id="primary" <?php generate_content_class();?>>
 			<main id="main" <?php generate_main_class(); ?>>
-				<?php do_action('generate_before_main_content'); ?>
+				<?php
+				/**
+				 * generate_before_main_content hook.
+				 *
+				 * @since 0.1
+				 */
+				do_action( 'generate_before_main_content' );
+				?>
 				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php generate_article_schema( 'CreativeWork' ); ?>>
 					<div class="inside-article">
-						<?php do_action( 'generate_before_content'); ?>
+						<?php
+						/**
+						 * generate_before_content hook.
+						 *
+						 * @since 0.1
+						 *
+						 * @hooked generate_featured_page_header_inside_single - 10
+						 */
+						do_action( 'generate_before_content' );
+						?>
 						<div class="entry-content" itemprop="text">
 	<?php
 	}
@@ -61,10 +77,24 @@ if ( ! function_exists( 'generate_woocommerce_end' ) ) {
 	 */
 	function generate_woocommerce_end() { ?>
 						</div><!-- .entry-content -->
-						<?php do_action( 'generate_after_content'); ?>
+						<?php
+						/**
+						 * generate_after_content hook.
+						 *
+						 * @since 0.1
+						 */
+						do_action( 'generate_after_content' );
+						?>
 					</div><!-- .inside-article -->
 				</article><!-- #post-## -->
-				<?php do_action('generate_after_main_content'); ?>
+				<?php
+				/**
+				 * generate_after_main_content hook.
+				 *
+				 * @since 0.1
+				 */
+				do_action( 'generate_after_main_content' );
+				?>
 			</main><!-- #main -->
 		</div><!-- #primary -->
 	<?php
