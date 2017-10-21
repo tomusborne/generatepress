@@ -5,16 +5,15 @@
  * @package GeneratePress
  */
 
-// No direct access, please.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 add_action( 'admin_enqueue_scripts', 'generate_enqueue_meta_box_scripts' );
 /**
  * Adds any scripts for this meta box.
  *
- * @since 1.5
+ * @since 2.0
  *
  * @param string $hook The current admin page.
  */
@@ -34,7 +33,7 @@ add_action( 'add_meta_boxes', 'generate_register_layout_meta_box' );
 /**
  * Generate the layout metabox
  *
- * @since 1.5
+ * @since 2.0
  */
 function generate_register_layout_meta_box() {
 	if ( ! current_user_can( apply_filters( 'generate_metabox_capability', 'edit_theme_options' ) ) ) {
@@ -61,7 +60,7 @@ function generate_register_layout_meta_box() {
 /**
  * Build our meta box.
  *
- * @since 1.5
+ * @since 2.0
  *
  * @param object $post All post information.
  */
@@ -206,7 +205,7 @@ add_action( 'save_post', 'generate_save_layout_meta_data' );
 /**
  * Saves the sidebar layout meta data.
  *
- * @since 1.5
+ * @since 2.0
  *
  * @param int Post ID.
  */

@@ -1,7 +1,12 @@
 <?php
-// No direct access, please.
+/**
+ * The range slider Customizer control.
+ *
+ * @package GeneratePress
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_Slider_Control' ) ) {

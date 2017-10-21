@@ -5,9 +5,8 @@
  * @package GeneratePress
  */
 
-// No direct access, please.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 if ( ! function_exists( 'generate_scripts' ) ) {
@@ -293,7 +292,7 @@ add_filter( 'generate_fontawesome_essentials', 'generate_set_font_awesome_librar
 /**
  * Check to see if we should include the full Font Awesome library or not.
  *
- * @since 1.5
+ * @since 2.0
  *
  * @param bool $essentials
  * @return bool

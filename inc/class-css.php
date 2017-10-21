@@ -5,9 +5,8 @@
  * @package GeneratePress
  */
 
-// No direct access, please.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 if ( ! class_exists( 'GeneratePress_CSS' ) ) {
@@ -76,10 +75,11 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 		 * @return $this
 		 */
 		public function set_selector( $selector = '' ) {
-			// Render the css in the output string everytime the selector changes
-			if( $this->_selector !== '' ){
+			// Render the css in the output string everytime the selector changes.
+			if ( $this->_selector !== '' ) {
 				$this->add_selector_rules_to_output();
 			}
+
 			$this->_selector = $selector;
 			return $this;
 		}
@@ -97,7 +97,7 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 		 * @return $this
 		 */
 		public function add_property( $property, $value, $og_default = false, $unit = false ) {
-			// Add our unit to our value if it exists
+			// Add our unit to our value if it exists.
 			if ( $unit && '' !== $unit ) {
 				$value = $value . $unit;
 				if ( '' !== $og_default ) {
@@ -105,9 +105,10 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 				}
 			}
 
-			// If we don't have a value or our value is the same as our og default, bail
-			if ( empty( $value ) || $og_default == $value )
+			// If we don't have a value or our value is the same as our og default, bail.
+			if ( empty( $value ) || $og_default == $value ) {
 				return false;
+			}
 
 			$this->_css .= $property . ':' . $value . ';';
 			return $this;
@@ -121,15 +122,15 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 		 * @return $this
 		 */
 		public function start_media_query( $value ) {
-			// Add the current rules to the output
+			// Add the current rules to the output.
 			$this->add_selector_rules_to_output();
 
-			// Add any previous media queries to the output
+			// Add any previous media queries to the output.
 			if ( ! empty( $this->_media_query ) ) {
 				$this->add_media_query_rules_to_output();
 			}
 
-			// Set the new media query
+			// Set the new media query.
 			$this->_media_query = $value;
 			return $this;
 		}
@@ -153,12 +154,13 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 		 * @return $this
 		 */
 		private function add_media_query_rules_to_output() {
-			if( !empty( $this->_media_query_output ) ) {
+			if ( ! empty( $this->_media_query_output ) ) {
 				$this->_output .= sprintf( '@media %1$s{%2$s}', $this->_media_query, $this->_media_query_output );
 
-				// Reset the media query output string
+				// Reset the media query output string.
 				$this->_media_query_output = '';
 			}
+
 			return $this;
 		}
 
@@ -171,11 +173,11 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 		 * @return $this
 		 */
 		private function add_selector_rules_to_output() {
-			if( !empty( $this->_css ) ) {
+			if ( ! empty( $this->_css ) ) {
 				$this->_selector_output = $this->_selector;
 				$selector_output = sprintf( '%1$s{%2$s}', $this->_selector_output, $this->_css );
 
-				// Add our CSS to the output
+				// Add our CSS to the output.
 				if ( ! empty( $this->_media_query ) ) {
 					$this->_media_query_output .= $selector_output;
 					$this->_css = '';
@@ -183,7 +185,7 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 					$this->_output .= $selector_output;
 				}
 
-				// Reset the css
+				// Reset the css.
 				$this->_css = '';
 			}
 
@@ -199,10 +201,10 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 		 * @return string
 		 */
 		public function css_output() {
-			// Add current selector's rules to output
+			// Add current selector's rules to output.
 			$this->add_selector_rules_to_output();
 
-			// Output minified css
+			// Output minified css.
 			return $this->_output;
 		}
 

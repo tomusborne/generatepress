@@ -5,9 +5,8 @@
  * @package GeneratePress
  */
 
-// No direct access, please.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 if ( ! function_exists( 'generate_create_menu' ) ) {
@@ -63,7 +62,7 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 				/**
 				 * generate_dashboard_after_header hook.
 				 *
-				 * @since 1.5
+				 * @since 2.0
 				 */
 				 do_action( 'generate_dashboard_after_header' );
 				 ?>
@@ -76,7 +75,7 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 							/**
 							 * generate_dashboard_inside_container hook.
 							 *
-							 * @since 1.5
+							 * @since 2.0
 							 */
 							 do_action( 'generate_dashboard_inside_container' );
 							 ?>

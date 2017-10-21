@@ -1,7 +1,12 @@
 <?php
-// No direct access, please.
+/**
+ * Helper functions for the Customizer.
+ *
+ * @package GeneratePress
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 if ( ! function_exists( 'generate_is_posts_page' ) ) {
@@ -203,7 +208,7 @@ if ( ! function_exists( 'generate_sanitize_choices' ) ) {
 /**
  * Sanitize our Google Font variants
  *
- * @since 1.5
+ * @since 2.0
  */
 function generate_sanitize_variants( $input ) {
 	if ( is_array( $input ) ) {
@@ -219,7 +224,7 @@ add_action( 'customize_controls_enqueue_scripts', 'generate_do_control_inline_sc
  * We don't want to add these to the controls themselves, as they will be repeated
  * each time the control is initialized.
  *
- * @since 1.5
+ * @since 2.0
  */
 function generate_do_control_inline_scripts() {
 	wp_localize_script( 'generatepress-typography-customizer', 'gp_customize', array( 'nonce' => wp_create_nonce( 'gp_customize_nonce' ) ) );

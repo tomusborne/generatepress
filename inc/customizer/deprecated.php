@@ -1,7 +1,12 @@
 <?php
-// No direct access, please.
+/**
+ * Where old Customizer functions retire.
+ *
+ * @package GeneratePress
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 if ( ! function_exists( 'generate_sanitize_typography' ) ) {

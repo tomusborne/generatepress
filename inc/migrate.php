@@ -5,9 +5,8 @@
  * @package GeneratePress
  */
 
-// No direct access, please.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 if ( ! function_exists( 'generate_update_logo_setting' ) ) {
@@ -191,7 +190,7 @@ add_action( 'admin_init', 'generate_migrate_font_awesome_library' );
  * We want essentials to be the default, but need existing sites to continue
  * loading the full library.
  *
- * @since 1.5
+ * @since 2.0
  */
 function generate_migrate_font_awesome_library() {
 	$settings = get_option( 'generate_migration_settings', array() );

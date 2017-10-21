@@ -1,7 +1,12 @@
 <?php
-// No direct access, please.
+/**
+ * Load necessary Customizer controls and functions.
+ *
+ * @package GeneratePress
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 // Controls

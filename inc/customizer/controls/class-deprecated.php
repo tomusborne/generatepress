@@ -1,7 +1,12 @@
 <?php
-// No direct access, please.
+/**
+ * Where old Customizer controls retire.
+ *
+ * @package GeneratePress
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Customize_Width_Slider_Control' ) ) {

@@ -333,7 +333,7 @@ add_action( 'wp_footer', 'generate_clone_sidebar_navigation' );
  * We're not using wp_add_inline_script() as this needs to happens
  * before menu.js is enqueued.
  *
- * @since 1.5
+ * @since 2.0
  */
 function generate_clone_sidebar_navigation() {
 	if ( 'nav-left-sidebar' !== generate_get_navigation_location() && 'nav-right-sidebar' !== generate_get_navigation_location() ) {

@@ -5,9 +5,8 @@
  * @package GeneratePress
  */
 
-// No direct access, please.
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly.
 }
 
 add_action( 'after_setup_theme', 'generate_setup_woocommerce' );

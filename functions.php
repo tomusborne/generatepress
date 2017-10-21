@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'GENERATE_VERSION', '1.5-beta.1' );
+define( 'GENERATE_VERSION', '2.0-alpha.1' );
 define( 'GENERATE_URI', get_template_directory_uri() );
 define( 'GENERATE_DIR', get_template_directory() );
 
@@ -33,8 +33,14 @@ if ( ! function_exists( 'generate_setup' ) ) {
 		add_theme_support( 'woocommerce' );
 		add_theme_support( 'title-tag' );
 		add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ) );
-		add_theme_support( 'custom-logo', array( 'height' => 70, 'width' => 350, 'flex-height' => true, 'flex-width' => true ) );
 		add_theme_support( 'customize-selective-refresh-widgets' );
+
+		add_theme_support( 'custom-logo', array(
+			'height' => 70,
+			'width' => 350,
+			'flex-height' => true,
+			'flex-width' => true
+		) );
 
 		// Register primary menu.
 		register_nav_menus( array(
