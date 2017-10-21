@@ -58,6 +58,16 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 						</div>
 					</div>
 				</div>
+
+				<?php
+				/**
+				 * generate_dashboard_after_header hook.
+				 *
+				 * @since 1.5
+				 */
+				 do_action( 'generate_dashboard_after_header' );
+				 ?>
+
 				<div class="gp-container">
 					<div class="postbox-container clearfix" style="float: none;">
 						<div class="grid-container grid-parent">
