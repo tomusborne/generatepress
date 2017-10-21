@@ -61,6 +61,14 @@ get_header(); ?>
 		</main><!-- #main -->
 	</section><!-- #primary -->
 
-<?php
-generate_construct_sidebars();
+	<?php
+	/**
+	 * generate_after_primary_content_area hook.
+	 *
+	 * @since 2.0
+	 */
+	 do_action( 'generate_after_primary_content_area' );
+
+	 generate_construct_sidebars();
+
 get_footer();
