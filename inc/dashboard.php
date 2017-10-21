@@ -18,7 +18,7 @@ if ( ! function_exists( 'generate_create_menu' ) ) {
 	 * @since 0.1
 	 */
 	function generate_create_menu() {
-		$generate_page = add_theme_page( 'GeneratePress', 'GeneratePress', 'edit_theme_options', 'generate-options', 'generate_settings_page' );
+		$generate_page = add_theme_page( 'GeneratePress', 'GeneratePress', apply_filters( 'generate_dashboard_page_capability', 'edit_theme_options' ), 'generate-options', 'generate_settings_page' );
 		add_action( "admin_print_styles-$generate_page", 'generate_options_styles' );
 	}
 }
