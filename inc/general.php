@@ -21,35 +21,36 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 		);
 
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+		$dir_uri = get_template_directory_uri();
 
-		wp_enqueue_style( 'generate-style-grid', get_template_directory_uri() . "/css/unsemantic-grid{$suffix}.css", false, GENERATE_VERSION, 'all' );
-		wp_enqueue_style( 'generate-style', get_template_directory_uri() . "/style{$suffix}.css", array( 'generate-style-grid' ), GENERATE_VERSION, 'all' );
-		wp_enqueue_style( 'generate-mobile-style', get_template_directory_uri() . "/css/mobile{$suffix}.css", array( 'generate-style' ), GENERATE_VERSION, 'all' );
+		wp_enqueue_style( 'generate-style-grid', $dir_uri . "/css/unsemantic-grid{$suffix}.css", false, GENERATE_VERSION, 'all' );
+		wp_enqueue_style( 'generate-style', $dir_uri . "/style{$suffix}.css", array( 'generate-style-grid' ), GENERATE_VERSION, 'all' );
+		wp_enqueue_style( 'generate-mobile-style', $dir_uri . "/css/mobile{$suffix}.css", array( 'generate-style' ), GENERATE_VERSION, 'all' );
 
 		if ( is_child_theme() ) {
 			wp_enqueue_style( 'generate-child', get_stylesheet_uri(), array( 'generate-style' ), filemtime( get_stylesheet_directory() . '/style.css' ), 'all' );
 		}
 
 		$icon_essentials = apply_filters( 'generate_fontawesome_essentials', false ) ? '-essentials' : false;
-		wp_enqueue_style( "font-awesome{$icon_essentials}", get_template_directory_uri() . "/css/font-awesome{$icon_essentials}{$suffix}.css", false, '4.7', 'all' );
+		wp_enqueue_style( "font-awesome{$icon_essentials}", $dir_uri . "/css/font-awesome{$icon_essentials}{$suffix}.css", false, '4.7', 'all' );
 
 		if ( function_exists( 'wp_script_add_data' ) ) {
-			wp_enqueue_script( 'generate-classlist', get_template_directory_uri() . "/js/classList{$suffix}.js", array(), GENERATE_VERSION, true );
+			wp_enqueue_script( 'generate-classlist', $dir_uri . "/js/classList{$suffix}.js", array(), GENERATE_VERSION, true );
 			wp_script_add_data( 'generate-classlist', 'conditional', 'lte IE 11' );
 		}
 
-		wp_enqueue_script( 'generate-menu', get_template_directory_uri() . "/js/menu{$suffix}.js", array(), GENERATE_VERSION, true );
-		wp_enqueue_script( 'generate-a11y', get_template_directory_uri() . "/js/a11y{$suffix}.js", array(), GENERATE_VERSION, true );
+		wp_enqueue_script( 'generate-menu', $dir_uri . "/js/menu{$suffix}.js", array(), GENERATE_VERSION, true );
+		wp_enqueue_script( 'generate-a11y', $dir_uri . "/js/a11y{$suffix}.js", array(), GENERATE_VERSION, true );
 
 		$click = ( 'click' == $generate_settings[ 'nav_dropdown_type' ] || 'click-arrow' == $generate_settings[ 'nav_dropdown_type' ] ) ? '-click' : '';
-		wp_enqueue_script( 'generate-dropdown', get_template_directory_uri() . "/js/dropdown{$click}{$suffix}.js", array( 'generate-menu' ), GENERATE_VERSION, true );
+		wp_enqueue_script( 'generate-dropdown', $dir_uri . "/js/dropdown{$click}{$suffix}.js", array( 'generate-menu' ), GENERATE_VERSION, true );
 
 		if ( 'enable' == $generate_settings['nav_search'] ) {
-			wp_enqueue_script( 'generate-navigation-search', get_template_directory_uri() . "/js/navigation-search{$suffix}.js", array( 'generate-menu' ), GENERATE_VERSION, true );
+			wp_enqueue_script( 'generate-navigation-search', $dir_uri . "/js/navigation-search{$suffix}.js", array( 'generate-menu' ), GENERATE_VERSION, true );
 		}
 
 		if ( 'enable' == $generate_settings['back_to_top'] ) {
-			wp_enqueue_script( 'generate-back-to-top', get_template_directory_uri() . "/js/back-to-top{$suffix}.js", array(), GENERATE_VERSION, true );
+			wp_enqueue_script( 'generate-back-to-top', $dir_uri . "/js/back-to-top{$suffix}.js", array(), GENERATE_VERSION, true );
 		}
 
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {

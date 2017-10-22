@@ -558,6 +558,7 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		);
 
 		$og_defaults = generate_spacing_get_defaults( false );
+		$sidebar_layout = generate_get_layout();
 
 		$css = new GeneratePress_CSS;
 
@@ -600,28 +601,28 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 			$css->add_property( 'margin-bottom', absint( $spacing_settings[ 'separator' ] ), absint( $og_defaults[ 'separator' ] ), 'px' );
 
 			// Right sidebar
-			if ( 'right-sidebar' == generate_get_layout() ) {
+			if ( 'right-sidebar' == $sidebar_layout ) {
 				// Right sidebar separating space
 				$css->set_selector( '.right-sidebar.separate-containers .site-main' );
 				$css->add_property( 'margin', generate_padding_css( $spacing_settings[ 'separator' ], $spacing_settings[ 'separator' ], $spacing_settings[ 'separator' ], '0' ), generate_padding_css( $og_defaults[ 'separator' ], $og_defaults[ 'separator' ], $og_defaults[ 'separator' ], '0' ) );
 			}
 
 			// Left sidebar
-			if ( 'left-sidebar' == generate_get_layout() ) {
+			if ( 'left-sidebar' == $sidebar_layout ) {
 				// Left sidebar separating space
 				$css->set_selector( '.left-sidebar.separate-containers .site-main' );
 				$css->add_property( 'margin', generate_padding_css( $spacing_settings[ 'separator' ], '0', $spacing_settings[ 'separator' ], $spacing_settings[ 'separator' ] ), generate_padding_css( $og_defaults[ 'separator' ], '0', $og_defaults[ 'separator' ], $og_defaults[ 'separator' ] ) );
 			}
 
 			// Both sidebars
-			if ( 'both-sidebars' == generate_get_layout() ) {
+			if ( 'both-sidebars' == $sidebar_layout ) {
 				// Both sidebars separating space
 				$css->set_selector( '.both-sidebars.separate-containers .site-main' );
 				$css->add_property( 'margin', absint( $spacing_settings['separator'] ), absint( $og_defaults['separator'] ), 'px' );
 			}
 
 			// Both sidebars on the right
-			if ( 'both-right' == generate_get_layout() ) {
+			if ( 'both-right' == $sidebar_layout ) {
 				// Both right sidebar content separating space
 				$css->set_selector( '.both-right.separate-containers .site-main' );
 				$css->add_property( 'margin', generate_padding_css( $spacing_settings[ 'separator' ], $spacing_settings[ 'separator' ], $spacing_settings[ 'separator' ], '0' ), generate_padding_css( $og_defaults[ 'separator' ], $og_defaults[ 'separator' ], $og_defaults[ 'separator' ], '0' ) );
@@ -636,7 +637,7 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 			}
 
 			// Both sidebars on the left
-			if ( 'both-left' == generate_get_layout() ) {
+			if ( 'both-left' == $sidebar_layout ) {
 				// Both left sidebar content separating space
 				$css->set_selector( '.both-left.separate-containers .site-main' );
 				$css->add_property( 'margin', generate_padding_css( $spacing_settings[ 'separator' ], '0', $spacing_settings[ 'separator' ], $spacing_settings[ 'separator' ] ), generate_padding_css( $og_defaults[ 'separator' ], '0', $og_defaults[ 'separator' ], $og_defaults[ 'separator' ] ) );
@@ -659,7 +660,7 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 			$css->set_selector( '.separate-containers .page-header-image, .separate-containers .page-header-contained, .separate-containers .page-header-image-single, .separate-containers .page-header-content-single' );
 			$css->add_property( 'margin-top', absint( $spacing_settings[ 'separator' ] ), absint( $og_defaults[ 'separator' ] ), 'px' );
 
-			if ( 'no-sidebar' !== generate_get_layout() ) {
+			if ( 'no-sidebar' !== $sidebar_layout ) {
 				// Sidebar separator
 				$css->set_selector( '.separate-containers .inside-right-sidebar, .separate-containers .inside-left-sidebar' );
 				$css->add_property( 'margin-top', absint( $spacing_settings[ 'separator' ] ), absint( $og_defaults[ 'separator' ] ), 'px' );
@@ -711,7 +712,7 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		}
 
 		// Sidebar widgets
-		if ( 'no-sidebar' !== generate_get_layout() ) {
+		if ( 'no-sidebar' !== $sidebar_layout ) {
 			// Sidebar widget padding
 			$css->set_selector( '.widget-area .widget' );
 			$css->add_property( 'padding', generate_padding_css( $spacing_settings[ 'widget_top' ], $spacing_settings[ 'widget_right' ], $spacing_settings[ 'widget_bottom' ], $spacing_settings[ 'widget_left' ] ), generate_padding_css( $og_defaults[ 'widget_top' ], $og_defaults[ 'widget_right' ], $og_defaults[ 'widget_bottom' ], $og_defaults[ 'widget_left' ] ) );
