@@ -27,10 +27,12 @@
 				item.querySelector( 'i' ).classList.remove( 'fa-close' );
 				item.querySelector( 'i' ).classList.add( 'fa-search' );
 				item.classList.remove( 'active' );
+				item.classList.remove( 'sfHover' );
 				form.classList.remove( 'nav-search-active' );
 				item.style.float = '';
 			} else {
 				item.classList.add( 'active' );
+				item.classList.add( 'sfHover' );
 				form.classList.add( 'nav-search-active' );
 				form.querySelector( 'input' ).focus();
 
