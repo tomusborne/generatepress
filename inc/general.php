@@ -101,23 +101,19 @@ if ( ! function_exists( 'generate_smart_content_width' ) ) {
 	function generate_smart_content_width() {
 		global $content_width;
 
-		$generate_settings = wp_parse_args(
-			get_option( 'generate_settings', array() ),
-			generate_get_defaults()
-		);
-
+		$container_width = generate_get_setting( 'container_width' );
 		$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '25' );
 		$left_sidebar_width = apply_filters( 'generate_left_sidebar_width', '25' );
 		$layout = generate_get_layout();
 
 		if ( 'left-sidebar' == $layout ) {
-			$content_width = $generate_settings['container_width'] * ( ( 100 - $left_sidebar_width ) / 100 );
+			$content_width = $container_width * ( ( 100 - $left_sidebar_width ) / 100 );
 		} elseif ( 'right-sidebar' == $layout ) {
-			$content_width = $generate_settings['container_width'] * ( ( 100 - $right_sidebar_width ) / 100 );
+			$content_width = $container_width * ( ( 100 - $right_sidebar_width ) / 100 );
 		} elseif ( 'no-sidebar' == $layout ) {
-			$content_width = $generate_settings['container_width'];
+			$content_width = $container_width;
 		} else {
-			$content_width = $generate_settings['container_width'] * ( ( 100 - ( $left_sidebar_width + $right_sidebar_width ) ) / 100 );
+			$content_width = $container_width * ( ( 100 - ( $left_sidebar_width + $right_sidebar_width ) ) / 100 );
 		}
 	}
 }
