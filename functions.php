@@ -81,9 +81,6 @@ require get_template_directory() . '/inc/deprecated.php';
 
 /**
  * Load our theme structure
- *
- * The functions in these files are all pluggable, but you
- * should use filters where possible.
  */
 require get_template_directory() . '/inc/structure/archives.php';
 require get_template_directory() . '/inc/structure/comments.php';

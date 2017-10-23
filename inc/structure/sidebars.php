@@ -10,17 +10,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! function_exists( 'generate_construct_sidebars' ) ) {
-	add_action( 'generate_sidebars', 'generate_construct_sidebars' );
 	/**
 	 * Construct the sidebars.
-	 *
-	 * The generate_sidebars hook was removed from the theme for performance reasons.
-	 * Existing child themes will still be using it, so we're leaving it for now.
 	 *
 	 * @since 0.1
 	 */
 	function generate_construct_sidebars() {
-		// Get the layout.
 		$layout = generate_get_layout();
 
 		// When to show the right sidebar.
@@ -39,4 +34,10 @@ if ( ! function_exists( 'generate_construct_sidebars' ) ) {
 			get_sidebar();
 		}
 	}
+
+	/**
+	 * The below hook was removed in 2.0, but we'll keep the call here so child themes
+	 * don't lose their sidebar when they update the theme.
+	 */
+	 add_action( 'generate_sidebars', 'generate_construct_sidebars' );
 }
