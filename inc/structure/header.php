@@ -241,3 +241,16 @@ if ( ! function_exists( 'generate_add_viewport' ) ) {
 		echo apply_filters( 'generate_meta_viewport', '<meta name="viewport" content="width=device-width, initial-scale=1">' );
 	}
 }
+
+add_action( 'generate_before_header', 'generate_do_skip_to_content_link', 2 );
+/**
+ * Add skip to content link before the header.
+ *
+ * @since 2.0
+ */
+function generate_do_skip_to_content_link() {
+	printf( '<a class="screen-reader-text skip-link" href="#content" title="%1$s">%2$s</a>',
+		esc_attr__( 'Skip to content', 'generatepress' ),
+		__( 'Skip to content', 'generatepress' )
+	);
+}

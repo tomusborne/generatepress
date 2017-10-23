@@ -19,13 +19,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 </head>
 
 <body <?php generate_body_schema();?> <?php body_class(); ?>>
-	<a class="screen-reader-text skip-link" href="#content" title="<?php esc_attr_e( 'Skip to content', 'generatepress' ); ?>"><?php _e( 'Skip to content', 'generatepress' ); ?></a>
 	<?php
 	/**
 	 * generate_before_header hook.
 	 *
 	 * @since 0.1
 	 *
+	 * @hooked generate_do_skip_to_content_link - 2
 	 * @hooked generate_top_bar - 5
 	 * @hooked generate_add_navigation_before_header - 5
 	 */
