@@ -243,7 +243,9 @@ if ( ! function_exists( 'generate_reset_customizer_settings' ) ) {
 			return;
 		}
 
-		delete_option('generate_settings');
+		delete_option( 'generate_settings' );
+		delete_option( 'generate_dynamic_css_output' );
+		delete_option( 'generate_dynamic_css_cached_version' );
 		remove_theme_mod( 'font_body_variants' );
 		remove_theme_mod( 'font_body_category' );
 

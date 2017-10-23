@@ -772,44 +772,57 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 	}
 }
 
-if ( ! function_exists( 'generate_add_base_inline_css' ) ) {
-	add_action( 'wp_enqueue_scripts', 'generate_add_base_inline_css', 40 );
-	/**
-	 * Add our base inline CSS.
-	 *
-	 * @since 1.3.42
-	 */
-	function generate_add_base_inline_css() {
-		wp_add_inline_style( 'generate-style', generate_base_css() );
+add_action( 'wp_enqueue_scripts', 'generate_enqueue_dynamic_css', 50 );
+/**
+ * Enqueue our dynamic CSS.
+ *
+ * @since 2.0
+ */
+function generate_enqueue_dynamic_css() {
+	if ( ! get_option( 'generate_dynamic_css_output', false ) || is_customize_preview() || apply_filters( 'generate_dynamic_css_skip_cache', false ) ) {
+		$css = generate_base_css() . generate_advanced_css() . generate_font_css() . generate_spacing_css();
+	} else {
+		$css = get_option( 'generate_dynamic_css_output' );
+	}
+
+	wp_add_inline_style( 'generate-style', $css );
+}
+
+add_action( 'init', 'generate_set_dynamic_css' );
+/**
+ * Sets our dynamic CSS cache if it doesn't exist.
+ *
+ * If the theme version changed, bust the cache.
+ *
+ * @since 2.0
+ */
+function generate_set_dynamic_css() {
+	if ( apply_filters( 'generate_dynamic_css_skip_cache', false ) ) {
+		return;
+	}
+
+	$cached_css = get_option( 'generate_dynamic_css_output', false );
+	$cached_version = get_option( 'generate_dynamic_css_cached_version', '' );
+
+	if ( ! $cached_css || $cached_version !== GENERATE_VERSION ) {
+		$css = generate_base_css() . generate_advanced_css() . generate_font_css() . generate_spacing_css();
+
+		update_option( 'generate_dynamic_css_output', $css );
+		update_option( 'generate_dynamic_css_cached_version', GENERATE_VERSION );
 	}
 }
 
-if ( ! function_exists( 'generate_color_scripts' ) ) {
-	add_action( 'wp_enqueue_scripts', 'generate_color_scripts', 50 );
-	/**
-	 * Enqueue scripts and styles
-	 */
-	function generate_color_scripts() {
-		wp_add_inline_style( 'generate-style', generate_advanced_css() );
+add_action( 'customize_save_after', 'generate_bust_dynamic_css_cache' );
+/**
+ * Update our CSS cache when done saving Customizer options.
+ *
+ * @since 2.0
+ */
+function generate_bust_dynamic_css_cache() {
+	if ( apply_filters( 'generate_dynamic_css_skip_cache', false ) ) {
+		return;
 	}
-}
 
-if ( ! function_exists( 'generate_typography_scripts' ) ) {
-	add_action( 'wp_enqueue_scripts', 'generate_typography_scripts', 50 );
-	/**
-	 * Enqueue scripts and styles
-	 */
-	function generate_typography_scripts() {
-		wp_add_inline_style( 'generate-style', generate_font_css() );
-	}
-}
-
-if ( ! function_exists( 'generate_spacing_scripts' ) ) {
-	add_action( 'wp_enqueue_scripts', 'generate_spacing_scripts', 50 );
-	/**
-	 * Enqueue scripts and styles
-	 */
-	function generate_spacing_scripts() {
-		wp_add_inline_style( 'generate-style', generate_spacing_css() );
-	}
+	$css = generate_base_css() . generate_advanced_css() . generate_font_css() . generate_spacing_css();
+	update_option( 'generate_dynamic_css_output', $css );
 }

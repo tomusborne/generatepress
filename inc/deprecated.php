@@ -191,5 +191,27 @@ if ( ! function_exists( 'generate_save_de_meta' ) ) {
 		_deprecated_function( __FUNCTION__, '2.0', "generate_save_layout_meta_data()" );
 	}
 }
+
+if ( ! function_exists( 'generate_add_base_inline_css' ) ) {
+	function generate_add_base_inline_css() {
+		_deprecated_function( __FUNCTION__, '2.0', "generate_enqueue_dynamic_css()" );
+	}
+}
+
+if ( ! function_exists( 'generate_color_scripts' ) ) {
+	function generate_color_scripts() {
+		_deprecated_function( __FUNCTION__, '2.0', "generate_enqueue_dynamic_css()" );
+	}
+}
+
+if ( ! function_exists( 'generate_typography_scripts' ) ) {
+	function generate_typography_scripts() {
+		_deprecated_function( __FUNCTION__, '2.0', "generate_enqueue_dynamic_css()" );
+	}
+}
+
+if ( ! function_exists( 'generate_spacing_scripts' ) ) {
+	function generate_spacing_scripts() {
+		_deprecated_function( __FUNCTION__, '2.0', "generate_enqueue_dynamic_css()" );
 	}
 }
