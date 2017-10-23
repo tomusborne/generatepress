@@ -72,12 +72,15 @@ require get_template_directory() . '/inc/general.php';
 require get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/markup.php';
 require get_template_directory() . '/inc/element-classes.php';
-require get_template_directory() . '/inc/meta-box.php';
 require get_template_directory() . '/inc/typography.php';
-require get_template_directory() . '/inc/dashboard.php';
 require get_template_directory() . '/inc/plugin-compat.php';
 require get_template_directory() . '/inc/migrate.php';
 require get_template_directory() . '/inc/deprecated.php';
+
+if ( is_admin() ) {
+	require get_template_directory() . '/inc/meta-box.php';
+	require get_template_directory() . '/inc/dashboard.php';
+}
 
 /**
  * Load our theme structure
