@@ -788,7 +788,7 @@ function generate_enqueue_dynamic_css() {
 	wp_add_inline_style( 'generate-style', $css );
 }
 
-add_action( 'init', 'generate_set_dynamic_css' );
+add_action( 'init', 'generate_set_dynamic_css_cache' );
 /**
  * Sets our dynamic CSS cache if it doesn't exist.
  *
@@ -796,7 +796,7 @@ add_action( 'init', 'generate_set_dynamic_css' );
  *
  * @since 2.0
  */
-function generate_set_dynamic_css() {
+function generate_set_dynamic_css_cache() {
 	if ( apply_filters( 'generate_dynamic_css_skip_cache', false ) ) {
 		return;
 	}
@@ -812,13 +812,13 @@ function generate_set_dynamic_css() {
 	}
 }
 
-add_action( 'customize_save_after', 'generate_bust_dynamic_css_cache' );
+add_action( 'customize_save_after', 'generate_update_dynamic_css_cache' );
 /**
  * Update our CSS cache when done saving Customizer options.
  *
  * @since 2.0
  */
-function generate_bust_dynamic_css_cache() {
+function generate_update_dynamic_css_cache() {
 	if ( apply_filters( 'generate_dynamic_css_skip_cache', false ) ) {
 		return;
 	}
