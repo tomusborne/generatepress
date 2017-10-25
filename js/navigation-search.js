@@ -32,9 +32,13 @@
 				item.style.float = '';
 			} else {
 				item.classList.add( 'active' );
-				item.classList.add( 'sfHover' );
 				form.classList.add( 'nav-search-active' );
 				form.querySelector( 'input' ).focus();
+
+				// Set a delay to stop conflict with toggleFocus() in dropdown.js
+				setTimeout( function() {
+					item.classList.add( 'sfHover' );
+				}, 50 );
 
 				if ( ! document.body.classList.contains( 'nav-aligned-center' ) ) {
 					item.querySelector( 'i' ).classList.remove( 'fa-search' );
