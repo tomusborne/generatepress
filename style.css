@@ -1437,7 +1437,8 @@ h4, h5, h6 {
 .page-header .author-info {
 	overflow: hidden;
 }
-.page-header > *:last-child {
+.page-header > *:last-child,
+.page-header .author-info > *:last-child {
 	margin-bottom:0;
 }
 .entry-meta {
