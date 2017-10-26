@@ -409,6 +409,8 @@ input[type="file"] {
 	text-align: center;
 	display: inline-block;
 	margin-right: 5px;
+	position: relative;
+	bottom: -1px;
 }
 .toggled .menu-toggle .mobile-menu:before {
 	content: "\f00d";
