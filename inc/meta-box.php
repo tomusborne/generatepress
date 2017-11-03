@@ -40,7 +40,9 @@ function generate_register_layout_meta_box() {
 		return;
 	}
 
-	define( 'GENERATE_LAYOUT_META_BOX', true );
+	if ( ! defined( 'GENERATE_LAYOUT_META_BOX' ) ) {
+		define( 'GENERATE_LAYOUT_META_BOX', true );
+	}
 
 	$post_types = get_post_types( array( 'public' => true ) );
 	foreach ($post_types as $type) {
