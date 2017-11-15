@@ -32,7 +32,7 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 				?>
 				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
 					<?php do_action( 'generate_inside_mobile_menu' ); ?>
-					<span class="mobile-menu"><?php echo apply_filters('generate_mobile_menu_label', __( 'Menu', 'generatepress' ) ); ?></span>
+					<span class="mobile-menu"><?php echo apply_filters( 'generate_mobile_menu_label', __( 'Menu', 'generatepress' ) ); ?></span>
 				</button>
 				<?php
 				wp_nav_menu(
@@ -76,10 +76,12 @@ if ( ! function_exists( 'generate_menu_fallback' ) ) {
 					'title_li' => '',
 					'walker' => new Generate_Page_Walker()
 				);
+
 				wp_list_pages( $args );
-				if ( 'enable' == $generate_settings['nav_search'] ) :
+
+				if ( 'enable' == $generate_settings['nav_search'] ) {
 					echo '<li class="search-item" title="' . esc_attr_x( 'Search', 'submit button', 'generatepress' ) . '"><a href="#"><i class="fa fa-fw fa-search" aria-hidden="true"></i><span class="screen-reader-text">' . _x( 'Search', 'submit button', 'generatepress' ) . '</span></a></li>';
-				endif;
+				}
 				?>
 			</ul>
 		</div><!-- .main-nav -->

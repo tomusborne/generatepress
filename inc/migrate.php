@@ -37,8 +37,9 @@ if ( ! function_exists( 'generate_update_logo_setting' ) ) {
 		$old_value = $generate_settings['logo'];
 
 		// If there's no old value, bail.
-		if ( empty( $old_value ) )
+		if ( empty( $old_value ) ) {
 			return;
+		}
 
 		// We made it this far, that means we have an old logo, and no new logo.
 
@@ -60,7 +61,7 @@ if ( ! function_exists( 'generate_update_logo_setting' ) ) {
 }
 
 if ( ! function_exists( 'generate_typography_convert_values' ) ) {
-	add_action('admin_init', 'generate_typography_convert_values' );
+	add_action( 'admin_init', 'generate_typography_convert_values' );
 	/**
 	 * Take the old body font value and strip it of variants
 	 * This should only run once

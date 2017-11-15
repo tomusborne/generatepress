@@ -39,9 +39,8 @@ do_action( 'generate_before_comments' );
 	 * @since 1.3.47
 	 */
 	do_action( 'generate_inside_comments' );
-	?>
 
-	<?php if ( have_comments() ) : ?>
+	if ( have_comments() ) : ?>
 		<h3 class="comments-title">
 			<?php
 			$comments_number = get_comments_number();
@@ -75,9 +74,8 @@ do_action( 'generate_before_comments' );
 		 * @since 0.1
 		 */
 		do_action( 'generate_below_comments_title' );
-		?>
 
-		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
+		if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
 			<nav id="comment-nav-above" class="comment-navigation" role="navigation">
 				<h2 class="screen-reader-text"><?php _e( 'Comment navigation', 'generatepress' ); ?></h2>
 				<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'generatepress' ) ); ?></div>

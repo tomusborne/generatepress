@@ -49,8 +49,8 @@ if ( ! function_exists( 'generate_archive_title' ) ) {
 				printf( '<div class="taxonomy-description">%s</div>', $term_description );
 			}
 
-			if ( get_the_author_meta('description') && is_author() ) {
-				echo '<div class="author-info">' . get_the_author_meta('description') . '</div>';
+			if ( get_the_author_meta( 'description' ) && is_author() ) {
+				echo '<div class="author-info">' . get_the_author_meta( 'description' ) . '</div>';
 			}
 
 			/**

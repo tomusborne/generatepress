@@ -265,7 +265,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			);
 		}
 
-		if ( class_exists( 'WP_Customize_Panel' ) ) :
+		if ( class_exists( 'WP_Customize_Panel' ) ) {
 			if ( ! $wp_customize->get_panel( 'generate_layout_panel' ) ) {
 				$wp_customize->add_panel( 'generate_layout_panel', array(
 					'priority'       => 25,
@@ -275,7 +275,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					'description'    => '',
 				) );
 			}
-		endif;
+		}
 
 		// Add Layout section
 		$wp_customize->add_section(
@@ -1004,15 +1004,14 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 		);
 
 		if ( ! function_exists( 'generate_blog_customize_register' ) && ! defined( 'GP_PREMIUM_VERSION' ) ) {
-
 			$wp_customize->add_control(
 				new Generate_Customize_Misc_Control(
 					$wp_customize,
 					'blog_get_addon_desc',
 					array(
-						'section'     => 'blog_section',
-						'type'        => 'addon',
-						'label'			=> __( 'More Settings','generatepress' ),
+						'section' => 'blog_section',
+						'type' => 'addon',
+						'label' => __( 'More Settings','generatepress' ),
 						'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-blog/' ),
 						'description' => sprintf(
 							__( 'Looking to add more blog settings?<br /> %s.', 'generatepress' ),
@@ -1022,7 +1021,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 								__( 'Check out Generate Blog', 'generatepress' )
 							)
 						),
-						'priority'    => 30,
+						'priority' => 30,
 						'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname'
 					)
 				)

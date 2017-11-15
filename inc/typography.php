@@ -75,7 +75,7 @@ if ( ! function_exists( 'generate_enqueue_google_fonts' ) ) {
 				$value = ! empty( $variants ) ? $value . ':' . $variants : $value;
 
 				// Make sure we don't add the same font twice
-				if( ! in_array( $value, $google_fonts ) ) {
+				if ( ! in_array( $value, $google_fonts ) ) {
 					$google_fonts[] = $value;
 				}
 
@@ -84,10 +84,10 @@ if ( ! function_exists( 'generate_enqueue_google_fonts' ) ) {
 		}
 
 		// Ignore any non-Google fonts
-		$google_fonts = array_diff($google_fonts, $not_google);
+		$google_fonts = array_diff( $google_fonts, $not_google );
 
 		// Separate each different font with a bar
-		$google_fonts = implode('|', $google_fonts);
+		$google_fonts = implode( '|', $google_fonts );
 
 		// Apply a filter to the output
 		$google_fonts = apply_filters( 'generate_typography_google_fonts', $google_fonts );
@@ -332,7 +332,7 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 								__( 'Check out Generate Typography', 'generatepress' )
 							)
 						),
-						'priority'    => 50,
+						'priority' => 50,
 						'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname'
 					)
 				)

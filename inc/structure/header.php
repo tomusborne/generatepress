@@ -156,7 +156,7 @@ if ( ! function_exists( 'generate_construct_site_title' ) ) {
 			( is_front_page() && is_home() ) ? 'h1' : 'p',
 			esc_url( apply_filters( 'generate_site_title_href', home_url( '/' ) ) ),
 			get_bloginfo( 'name' )
-		));
+		) );
 
 		// Build our tagline.
 		$site_tagline = apply_filters( 'generate_site_description_output', sprintf(
@@ -164,7 +164,7 @@ if ( ! function_exists( 'generate_construct_site_title' ) ) {
 				%1$s
 			</p>',
 			html_entity_decode( get_bloginfo( 'description', 'display' ) )
-		));
+		) );
 
 		// Site title and tagline.
 		if ( false == $disable_title || false == $disable_tagline ) {
