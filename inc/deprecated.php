@@ -9,6 +9,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+// Deprecated constants
+define( 'GENERATE_URI', get_template_directory_uri() );
+define( 'GENERATE_DIR', get_template_directory() );
+
 if ( ! function_exists( 'generate_paging_nav' ) ) {
 	/**
 	 * Build the pagination links

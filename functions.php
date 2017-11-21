@@ -11,9 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+// Set our theme version.
 define( 'GENERATE_VERSION', '2.0-alpha.1' );
-define( 'GENERATE_URI', get_template_directory_uri() );
-define( 'GENERATE_DIR', get_template_directory() );
 
 if ( ! function_exists( 'generate_setup' ) ) {
 	add_action( 'after_setup_theme', 'generate_setup' );
