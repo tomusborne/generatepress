@@ -131,12 +131,12 @@
 
 jQuery( document ).ready( function($) {
 
-	jQuery( '.generatepress-font-family select' ).select2();
+	jQuery( '.generatepress-font-family select' ).selectWoo();
 	jQuery( '.generatepress-font-variant' ).each( function( key, value ) {
 		var _this = $( this );
 		var value = _this.data( 'saved-value' );
 		value = value.split( ',' );
-		_this.find( 'select' ).select2().val( value ).trigger( 'change.select2' );
+		_this.find( 'select' ).selectWoo().val( value ).trigger( 'change.select2' );
 	} );
 
 	$( ".generatepress-font-family" ).each( function( key, value ) {
