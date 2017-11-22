@@ -60,17 +60,17 @@
 							// Remove existing variants
 							jQuery( 'select[name="' + _variantsID + '"]' ).find( 'option' ).remove();
 
-							// Loop through each available variant for the selected font
+							// Populate our select input with available variants
 							jQuery.each( fonts[ id ].variants, function( key, value ) {
-								if ( ! got_variants ) {
-									jQuery( 'select[name="' + _variantsID + '"]' ).append( jQuery( '<option></option>' ).attr( 'value', value ).text( value ).attr( 'selected', 'selected' ) );
-									control.settings[ 'variant' ].set( fonts[ id ].variants.join( ',' ) );
-								} else {
-									jQuery( 'select[name="' + _variantsID + '"]' ).append( jQuery( '<option></option>' ).attr( 'value', value ).text( value ) );
-									jQuery( 'select[name="' + _variantsID + '"]' ).val( updated_variants );
-									control.settings[ 'variant' ].set( updated_variants );
-								}
+								jQuery( 'select[name="' + _variantsID + '"]' ).append( jQuery( '<option></option>' ).attr( 'value', value ).text( value ) );
 							} );
+
+							// Set our variants
+							if ( ! got_variants ) {
+								control.settings[ 'variant' ].set( fonts[ id ].variants );
+							} else {
+								control.settings[ 'variant' ].set( updated_variants );
+							}
 
 							// Set our font category
 							control.settings[ 'category' ].set( fonts[ id ].category );
