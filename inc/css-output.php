@@ -46,17 +46,6 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 		// Container width
 		$css->set_selector( 'body .grid-container' )->add_property( 'max-width', absint( $generate_settings['container_width'] ), false, 'px' );
 
-		// Content margin if there's no title
-		if ( ! generate_show_title() ) {
-			$css->set_selector( '.page .entry-content' )->add_property( 'margin-top', '0px' );
-
-			if ( is_single() ) {
-				if ( ! apply_filters( 'generate_post_author', true ) && ! apply_filters( 'generate_post_date', true ) ) {
-					$css->set_selector( '.single .entry-content' )->add_property( 'margin-top', '0px' );
-				}
-			}
-		}
-
 		// Allow us to hook CSS into our output
 		do_action( 'generate_base_css', $css );
 
@@ -80,20 +69,18 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		// Initiate our CSS class
 		$css = new GeneratePress_CSS;
 
-		if ( is_active_sidebar( 'top-bar' ) ) {
-			// Top bar
-			$css->set_selector( '.top-bar' );
-			$css->add_property( 'background-color', esc_attr( $generate_settings[ 'top_bar_background_color' ] ) );
-			$css->add_property( 'color', esc_attr( $generate_settings[ 'top_bar_text_color' ] ) );
+		// Top bar
+		$css->set_selector( '.top-bar' );
+		$css->add_property( 'background-color', esc_attr( $generate_settings[ 'top_bar_background_color' ] ) );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'top_bar_text_color' ] ) );
 
-			// Top bar link
-			$css->set_selector( '.top-bar a,.top-bar a:visited' );
-			$css->add_property( 'color', esc_attr( $generate_settings[ 'top_bar_link_color' ] ) );
+		// Top bar link
+		$css->set_selector( '.top-bar a,.top-bar a:visited' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'top_bar_link_color' ] ) );
 
-			// Top bar link hover
-			$css->set_selector( '.top-bar a:hover' );
-			$css->add_property( 'color', esc_attr( $generate_settings[ 'top_bar_link_color_hover' ] ) );
-		}
+		// Top bar link hover
+		$css->set_selector( '.top-bar a:hover' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'top_bar_link_color_hover' ] ) );
 
 		// Header
 		$css->set_selector( '.site-header' );
@@ -116,71 +103,65 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->set_selector( '.site-description' );
 		$css->add_property( 'color', esc_attr( $generate_settings[ 'site_tagline_color' ] ) );
 
-		// Navigation styling
-		if ( '' !== generate_get_navigation_location() || is_customize_preview() ) {
-			// Navigation background
-			$css->set_selector( '.main-navigation,.main-navigation ul ul' );
-			$css->add_property( 'background-color', esc_attr( $generate_settings[ 'navigation_background_color' ] ) );
+		// Navigation background
+		$css->set_selector( '.main-navigation,.main-navigation ul ul' );
+		$css->add_property( 'background-color', esc_attr( $generate_settings[ 'navigation_background_color' ] ) );
 
-			// Navigation text
-			$css->set_selector( '.main-navigation .main-nav ul li a,.menu-toggle' );
-			$css->add_property( 'color', esc_attr( $generate_settings[ 'navigation_text_color' ] ) );
+		// Navigation text
+		$css->set_selector( '.main-navigation .main-nav ul li a,.menu-toggle' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'navigation_text_color' ] ) );
 
-			// Navigation background/text on hover
-			$css->set_selector( '.main-navigation .main-nav ul li:hover > a,.main-navigation .main-nav ul li:focus > a, .main-navigation .main-nav ul li.sfHover > a' );
-			$css->add_property( 'color', esc_attr( $generate_settings[ 'navigation_text_hover_color' ] ) );
-			$css->add_property( 'background-color', esc_attr( $generate_settings[ 'navigation_background_hover_color' ] ) );
+		// Navigation background/text on hover
+		$css->set_selector( '.main-navigation .main-nav ul li:hover > a,.main-navigation .main-nav ul li:focus > a, .main-navigation .main-nav ul li.sfHover > a' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'navigation_text_hover_color' ] ) );
+		$css->add_property( 'background-color', esc_attr( $generate_settings[ 'navigation_background_hover_color' ] ) );
 
-			// Mobile button text
-			$css->set_selector( 'button.menu-toggle:hover,button.menu-toggle:focus,.main-navigation .mobile-bar-items a,.main-navigation .mobile-bar-items a:hover,.main-navigation .mobile-bar-items a:focus' );
-			$css->add_property( 'color', esc_attr( $generate_settings[ 'navigation_text_color' ] ) );
+		// Mobile button text
+		$css->set_selector( 'button.menu-toggle:hover,button.menu-toggle:focus,.main-navigation .mobile-bar-items a,.main-navigation .mobile-bar-items a:hover,.main-navigation .mobile-bar-items a:focus' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'navigation_text_color' ] ) );
 
-			// Navigation background/text current
-			$css->set_selector( '.main-navigation .main-nav ul li[class*="current-menu-"] > a' );
-			$css->add_property( 'color', esc_attr( $generate_settings[ 'navigation_text_current_color' ] ) );
-			$css->add_property( 'background-color', esc_attr( $generate_settings[ 'navigation_background_current_color' ] ) );
+		// Navigation background/text current
+		$css->set_selector( '.main-navigation .main-nav ul li[class*="current-menu-"] > a' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'navigation_text_current_color' ] ) );
+		$css->add_property( 'background-color', esc_attr( $generate_settings[ 'navigation_background_current_color' ] ) );
 
-			// Navigation background text current text hover
-			$css->set_selector( '.main-navigation .main-nav ul li[class*="current-menu-"] > a:hover,.main-navigation .main-nav ul li[class*="current-menu-"].sfHover > a' );
-			$css->add_property( 'color', esc_attr( $generate_settings[ 'navigation_text_current_color' ] ) );
-			$css->add_property( 'background-color', esc_attr( $generate_settings[ 'navigation_background_current_color' ] ) );
+		// Navigation background text current text hover
+		$css->set_selector( '.main-navigation .main-nav ul li[class*="current-menu-"] > a:hover,.main-navigation .main-nav ul li[class*="current-menu-"].sfHover > a' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'navigation_text_current_color' ] ) );
+		$css->add_property( 'background-color', esc_attr( $generate_settings[ 'navigation_background_current_color' ] ) );
 
-			// Navigation search styling
-			if ( 'enable' == generate_get_setting( 'nav_search' ) ) {
-				// Navigation search input
-				$css->set_selector( '.navigation-search input[type="search"],.navigation-search input[type="search"]:active' );
-				$css->add_property( 'color', esc_attr( $generate_settings[ 'navigation_background_hover_color' ] ) );
-				$css->add_property( 'background-color', esc_attr( $generate_settings[ 'navigation_background_hover_color' ] ) );
+		// Navigation search input
+		$css->set_selector( '.navigation-search input[type="search"],.navigation-search input[type="search"]:active' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'navigation_background_hover_color' ] ) );
+		$css->add_property( 'background-color', esc_attr( $generate_settings[ 'navigation_background_hover_color' ] ) );
 
-				// Navigation search input on focus
-				$css->set_selector( '.navigation-search input[type="search"]:focus' );
-				$css->add_property( 'color', esc_attr( $generate_settings[ 'navigation_text_hover_color' ] ) );
-				$css->add_property( 'background-color', esc_attr( $generate_settings[ 'navigation_background_hover_color' ] ) );
-			}
+		// Navigation search input on focus
+		$css->set_selector( '.navigation-search input[type="search"]:focus' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'navigation_text_hover_color' ] ) );
+		$css->add_property( 'background-color', esc_attr( $generate_settings[ 'navigation_background_hover_color' ] ) );
 
-			// Sub-navigation background
-			$css->set_selector( '.main-navigation ul ul' );
-			$css->add_property( 'background-color', esc_attr( $generate_settings[ 'subnavigation_background_color' ] ) );
+		// Sub-navigation background
+		$css->set_selector( '.main-navigation ul ul' );
+		$css->add_property( 'background-color', esc_attr( $generate_settings[ 'subnavigation_background_color' ] ) );
 
-			// Sub-navigation text
-			$css->set_selector( '.main-navigation .main-nav ul ul li a' );
-			$css->add_property( 'color', esc_attr( $generate_settings[ 'subnavigation_text_color' ] ) );
+		// Sub-navigation text
+		$css->set_selector( '.main-navigation .main-nav ul ul li a' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'subnavigation_text_color' ] ) );
 
-			// Sub-Navigation background/text on hover
-			$css->set_selector( '.main-navigation .main-nav ul ul li:hover > a,.main-navigation .main-nav ul ul li:focus > a,.main-navigation .main-nav ul ul li.sfHover > a' );
-			$css->add_property( 'color', esc_attr( $generate_settings[ 'subnavigation_text_hover_color' ] ) );
-			$css->add_property( 'background-color', esc_attr( $generate_settings[ 'subnavigation_background_hover_color' ] ) );
+		// Sub-Navigation background/text on hover
+		$css->set_selector( '.main-navigation .main-nav ul ul li:hover > a,.main-navigation .main-nav ul ul li:focus > a,.main-navigation .main-nav ul ul li.sfHover > a' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'subnavigation_text_hover_color' ] ) );
+		$css->add_property( 'background-color', esc_attr( $generate_settings[ 'subnavigation_background_hover_color' ] ) );
 
-			// Sub-Navigation background / text current
-			$css->set_selector( '.main-navigation .main-nav ul ul li[class*="current-menu-"] > a' );
-			$css->add_property( 'color', esc_attr( $generate_settings[ 'subnavigation_text_current_color' ] ) );
-			$css->add_property( 'background-color', esc_attr( $generate_settings[ 'subnavigation_background_current_color' ] ) );
+		// Sub-Navigation background / text current
+		$css->set_selector( '.main-navigation .main-nav ul ul li[class*="current-menu-"] > a' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'subnavigation_text_current_color' ] ) );
+		$css->add_property( 'background-color', esc_attr( $generate_settings[ 'subnavigation_background_current_color' ] ) );
 
-			// Sub-Navigation current background / text current
-			$css->set_selector( '.main-navigation .main-nav ul ul li[class*="current-menu-"] > a:hover,.main-navigation .main-nav ul ul li[class*="current-menu-"].sfHover > a' );
-			$css->add_property( 'color', esc_attr( $generate_settings[ 'subnavigation_text_current_color' ] ) );
-			$css->add_property( 'background-color', esc_attr( $generate_settings[ 'subnavigation_background_current_color' ] ) );
-		}
+		// Sub-Navigation current background / text current
+		$css->set_selector( '.main-navigation .main-nav ul ul li[class*="current-menu-"] > a:hover,.main-navigation .main-nav ul ul li[class*="current-menu-"].sfHover > a' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'subnavigation_text_current_color' ] ) );
+		$css->add_property( 'background-color', esc_attr( $generate_settings[ 'subnavigation_background_current_color' ] ) );
 
 		// Content
 		$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .one-container .container, .separate-containers .paging-navigation, .inside-page-header' );
@@ -239,46 +220,39 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->set_selector( 'h5' );
 		$css->add_property( 'color', esc_attr( $generate_settings[ 'h5_color' ] ) );
 
-		// Sidebar widgets
-		if ( 'no-sidebar' !== generate_get_layout() ) {
-			// Sidebar widget
-			$css->set_selector( '.sidebar .widget' );
-			$css->add_property( 'color', esc_attr( $generate_settings[ 'sidebar_widget_text_color' ] ) );
-			$css->add_property( 'background-color', esc_attr( $generate_settings[ 'sidebar_widget_background_color' ] ) );
+		// Sidebar widget
+		$css->set_selector( '.sidebar .widget' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'sidebar_widget_text_color' ] ) );
+		$css->add_property( 'background-color', esc_attr( $generate_settings[ 'sidebar_widget_background_color' ] ) );
 
-			// Sidebar widget links
-			$css->set_selector( '.sidebar .widget a,.sidebar .widget a:visited' );
-			$css->add_property( 'color', esc_attr( $generate_settings[ 'sidebar_widget_link_color' ] ) );
+		// Sidebar widget links
+		$css->set_selector( '.sidebar .widget a,.sidebar .widget a:visited' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'sidebar_widget_link_color' ] ) );
 
-			// Sidebar widget links on hover
-			$css->set_selector( '.sidebar .widget a:hover' );
-			$css->add_property( 'color', esc_attr( $generate_settings[ 'sidebar_widget_link_hover_color' ] ) );
+		// Sidebar widget links on hover
+		$css->set_selector( '.sidebar .widget a:hover' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'sidebar_widget_link_hover_color' ] ) );
 
-			// Sidebar widget title
-			$css->set_selector( '.sidebar .widget .widget-title' );
-			$css->add_property( 'color', esc_attr( $generate_settings[ 'sidebar_widget_title_color' ] ) );
-		}
+		// Sidebar widget title
+		$css->set_selector( '.sidebar .widget .widget-title' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'sidebar_widget_title_color' ] ) );
 
-		// Footer widgets
-		$footer_widgets = generate_get_footer_widgets();
-		if ( ! empty( $footer_widgets ) && 0 !== $footer_widgets ) {
-			// Footer widget
-			$css->set_selector( '.footer-widgets' );
-			$css->add_property( 'color', esc_attr( $generate_settings[ 'footer_widget_text_color' ] ) );
-			$css->add_property( 'background-color', esc_attr( $generate_settings[ 'footer_widget_background_color' ] ) );
+		// Footer widget
+		$css->set_selector( '.footer-widgets' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'footer_widget_text_color' ] ) );
+		$css->add_property( 'background-color', esc_attr( $generate_settings[ 'footer_widget_background_color' ] ) );
 
-			// Footer widget links
-			$css->set_selector( '.footer-widgets a,.footer-widgets a:visited' );
-			$css->add_property( 'color', esc_attr( $generate_settings[ 'footer_widget_link_color' ] ) );
+		// Footer widget links
+		$css->set_selector( '.footer-widgets a,.footer-widgets a:visited' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'footer_widget_link_color' ] ) );
 
-			// Footer widget links on hover
-			$css->set_selector( '.footer-widgets a:hover' );
-			$css->add_property( 'color', esc_attr( $generate_settings[ 'footer_widget_link_hover_color' ] ) );
+		// Footer widget links on hover
+		$css->set_selector( '.footer-widgets a:hover' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'footer_widget_link_hover_color' ] ) );
 
-			// Footer widget title
-			$css->set_selector( '.footer-widgets .widget-title' );
-			$css->add_property( 'color', esc_attr( $generate_settings[ 'footer_widget_title_color' ] ) );
-		}
+		// Footer widget title
+		$css->set_selector( '.footer-widgets .widget-title' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'footer_widget_title_color' ] ) );
 
 		// Footer
 		$css->set_selector( '.site-info' );
@@ -319,16 +293,14 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->add_property( 'color', esc_attr( $generate_settings[ 'form_button_text_color_hover' ] ) );
 		$css->add_property( 'background-color', esc_attr( $generate_settings[ 'form_button_background_color_hover' ] ) );
 
-		if ( '' !== generate_get_setting( 'back_to_top' ) ) {
-			// Back to top button
-			$css->set_selector( '.generate-back-to-top,.generate-back-to-top:visited' );
-			$css->add_property( 'background-color', esc_attr( $generate_settings['back_to_top_background_color'] ) );
-			$css->add_property( 'color', esc_attr( $generate_settings['back_to_top_text_color'] ) );
+		// Back to top button
+		$css->set_selector( '.generate-back-to-top,.generate-back-to-top:visited' );
+		$css->add_property( 'background-color', esc_attr( $generate_settings['back_to_top_background_color'] ) );
+		$css->add_property( 'color', esc_attr( $generate_settings['back_to_top_text_color'] ) );
 
-			$css->set_selector( '.generate-back-to-top:hover,.generate-back-to-top:focus' );
-			$css->add_property( 'background-color', esc_attr( $generate_settings['back_to_top_background_color_hover'] ) );
-			$css->add_property( 'color', esc_attr( $generate_settings['back_to_top_text_color_hover'] ) );
-		}
+		$css->set_selector( '.generate-back-to-top:hover,.generate-back-to-top:focus' );
+		$css->add_property( 'background-color', esc_attr( $generate_settings['back_to_top_background_color_hover'] ) );
+		$css->add_property( 'color', esc_attr( $generate_settings['back_to_top_text_color_hover'] ) );
 
 		// Allow us to hook CSS into our output
 		do_action( 'generate_colors_css', $css );
@@ -390,13 +362,11 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->add_property( 'margin-bottom', floatval( $generate_settings['paragraph_margin'] ), $og_defaults['paragraph_margin'], 'em' );
 
 		// Top bar
-		if ( is_active_sidebar( 'top-bar' ) ) {
-			$css->set_selector( '.top-bar' );
-			$css->add_property( 'font-family', $og_defaults[ 'font_top_bar' ] !== $generate_settings[ 'font_top_bar' ] ? $top_bar_family : null );
-			$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'top_bar_font_weight' ] ), $og_defaults[ 'top_bar_font_weight' ] );
-			$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'top_bar_font_transform' ] ), $og_defaults[ 'top_bar_font_transform' ] );
-			$css->add_property( 'font-size', absint( $generate_settings[ 'top_bar_font_size' ] ), absint( $og_defaults[ 'top_bar_font_size' ] ), 'px' );
-		}
+		$css->set_selector( '.top-bar' );
+		$css->add_property( 'font-family', $og_defaults[ 'font_top_bar' ] !== $generate_settings[ 'font_top_bar' ] ? $top_bar_family : null );
+		$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'top_bar_font_weight' ] ), $og_defaults[ 'top_bar_font_weight' ] );
+		$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'top_bar_font_transform' ] ), $og_defaults[ 'top_bar_font_transform' ] );
+		$css->add_property( 'font-size', absint( $generate_settings[ 'top_bar_font_size' ] ), absint( $og_defaults[ 'top_bar_font_size' ] ), 'px' );
 
 		// Site title
 		$css->set_selector( '.main-title' );
@@ -413,17 +383,15 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->add_property( 'font-size', absint( $generate_settings[ 'site_tagline_font_size' ] ), $og_defaults[ 'site_tagline_font_size' ], 'px' );
 
 		// Navigation
-		if ( '' !== generate_get_navigation_location() || is_customize_preview() ) {
-			$css->set_selector( '.main-navigation a, .menu-toggle' );
-			$css->add_property( 'font-family', $og_defaults[ 'font_navigation' ] !== $generate_settings[ 'font_navigation' ] ? $navigation_family : null );
-			$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'navigation_font_weight' ] ), $og_defaults[ 'navigation_font_weight' ] );
-			$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'navigation_font_transform' ] ), $og_defaults[ 'navigation_font_transform' ] );
-			$css->add_property( 'font-size', absint( $generate_settings[ 'navigation_font_size' ] ), $og_defaults[ 'navigation_font_size' ], 'px' );
+		$css->set_selector( '.main-navigation a, .menu-toggle' );
+		$css->add_property( 'font-family', $og_defaults[ 'font_navigation' ] !== $generate_settings[ 'font_navigation' ] ? $navigation_family : null );
+		$css->add_property( 'font-weight', esc_attr( $generate_settings[ 'navigation_font_weight' ] ), $og_defaults[ 'navigation_font_weight' ] );
+		$css->add_property( 'text-transform', esc_attr( $generate_settings[ 'navigation_font_transform' ] ), $og_defaults[ 'navigation_font_transform' ] );
+		$css->add_property( 'font-size', absint( $generate_settings[ 'navigation_font_size' ] ), $og_defaults[ 'navigation_font_size' ], 'px' );
 
-			// Sub-navigation font size
-			$css->set_selector( '.main-navigation .main-nav ul ul li a' );
-			$css->add_property( 'font-size', absint( $subnav_font_size ), false, 'px' );
-		}
+		// Sub-navigation font size
+		$css->set_selector( '.main-navigation .main-nav ul ul li a' );
+		$css->add_property( 'font-size', absint( $subnav_font_size ), false, 'px' );
 
 		// Widget title
 		$css->set_selector( '.widget-title' );
@@ -563,10 +531,8 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css = new GeneratePress_CSS;
 
 		// Top bar padding
-		if ( is_active_sidebar( 'top-bar' ) ) {
-			$css->set_selector( '.inside-top-bar' );
-			$css->add_property( 'padding', generate_padding_css( $spacing_settings[ 'top_bar_top' ], $spacing_settings[ 'top_bar_right' ], $spacing_settings[ 'top_bar_bottom' ], $spacing_settings[ 'top_bar_left' ] ), generate_padding_css( $og_defaults[ 'top_bar_top' ], $og_defaults[ 'top_bar_right' ], $og_defaults[ 'top_bar_bottom' ], $og_defaults[ 'top_bar_left' ] ) );
-		}
+		$css->set_selector( '.inside-top-bar' );
+		$css->add_property( 'padding', generate_padding_css( $spacing_settings[ 'top_bar_top' ], $spacing_settings[ 'top_bar_right' ], $spacing_settings[ 'top_bar_bottom' ], $spacing_settings[ 'top_bar_left' ] ), generate_padding_css( $og_defaults[ 'top_bar_top' ], $og_defaults[ 'top_bar_right' ], $og_defaults[ 'top_bar_bottom' ], $og_defaults[ 'top_bar_left' ] ) );
 
 		// Header padding
 		$css->set_selector( '.inside-header' );
@@ -583,155 +549,120 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->stop_media_query();
 
 		// One container
-		if ( 'one-container' == generate_get_setting( 'content_layout_setting' ) || is_customize_preview() ) {
-			$css->set_selector( '.one-container.right-sidebar .site-main,.one-container.both-right .site-main' );
-			$css->add_property( 'margin-right', absint( $spacing_settings['content_right'] ), absint( $og_defaults['content_right'] ), 'px' );
+		$css->set_selector( '.one-container.right-sidebar .site-main,.one-container.both-right .site-main' );
+		$css->add_property( 'margin-right', absint( $spacing_settings['content_right'] ), absint( $og_defaults['content_right'] ), 'px' );
 
-			$css->set_selector( '.one-container.left-sidebar .site-main,.one-container.both-left .site-main' );
-			$css->add_property( 'margin-left', absint( $spacing_settings['content_left'] ), absint( $og_defaults['content_left'] ), 'px' );
+		$css->set_selector( '.one-container.left-sidebar .site-main,.one-container.both-left .site-main' );
+		$css->add_property( 'margin-left', absint( $spacing_settings['content_left'] ), absint( $og_defaults['content_left'] ), 'px' );
 
-			$css->set_selector( '.one-container.both-sidebars .site-main' );
-			$css->add_property( 'margin', generate_padding_css( '0', $spacing_settings[ 'content_right' ], '0', $spacing_settings[ 'content_left' ] ), generate_padding_css( '0', $og_defaults[ 'content_right' ], '0', $og_defaults[ 'content_left' ] ) );
-		}
+		$css->set_selector( '.one-container.both-sidebars .site-main' );
+		$css->add_property( 'margin', generate_padding_css( '0', $spacing_settings[ 'content_right' ], '0', $spacing_settings[ 'content_left' ] ), generate_padding_css( '0', $og_defaults[ 'content_right' ], '0', $og_defaults[ 'content_left' ] ) );
 
 		// Separate containers
-		if ( 'separate-containers' == generate_get_setting( 'content_layout_setting' ) || is_customize_preview() ) {
-			// Container bottom margins
-			$css->set_selector( '.separate-containers .widget, .separate-containers .site-main > *, .separate-containers .page-header, .widget-area .main-navigation' );
-			$css->add_property( 'margin-bottom', absint( $spacing_settings[ 'separator' ] ), absint( $og_defaults[ 'separator' ] ), 'px' );
+		// Container bottom margins
+		$css->set_selector( '.separate-containers .widget, .separate-containers .site-main > *, .separate-containers .page-header, .widget-area .main-navigation' );
+		$css->add_property( 'margin-bottom', absint( $spacing_settings[ 'separator' ] ), absint( $og_defaults[ 'separator' ] ), 'px' );
 
-			// Right sidebar
-			if ( 'right-sidebar' == $sidebar_layout ) {
-				// Right sidebar separating space
-				$css->set_selector( '.right-sidebar.separate-containers .site-main' );
-				$css->add_property( 'margin', generate_padding_css( $spacing_settings[ 'separator' ], $spacing_settings[ 'separator' ], $spacing_settings[ 'separator' ], '0' ), generate_padding_css( $og_defaults[ 'separator' ], $og_defaults[ 'separator' ], $og_defaults[ 'separator' ], '0' ) );
-			}
+		// Right sidebar
+		$css->set_selector( '.right-sidebar.separate-containers .site-main' );
+		$css->add_property( 'margin', generate_padding_css( $spacing_settings[ 'separator' ], $spacing_settings[ 'separator' ], $spacing_settings[ 'separator' ], '0' ), generate_padding_css( $og_defaults[ 'separator' ], $og_defaults[ 'separator' ], $og_defaults[ 'separator' ], '0' ) );
 
-			// Left sidebar
-			if ( 'left-sidebar' == $sidebar_layout ) {
-				// Left sidebar separating space
-				$css->set_selector( '.left-sidebar.separate-containers .site-main' );
-				$css->add_property( 'margin', generate_padding_css( $spacing_settings[ 'separator' ], '0', $spacing_settings[ 'separator' ], $spacing_settings[ 'separator' ] ), generate_padding_css( $og_defaults[ 'separator' ], '0', $og_defaults[ 'separator' ], $og_defaults[ 'separator' ] ) );
-			}
+		// Left sidebar
+		$css->set_selector( '.left-sidebar.separate-containers .site-main' );
+		$css->add_property( 'margin', generate_padding_css( $spacing_settings[ 'separator' ], '0', $spacing_settings[ 'separator' ], $spacing_settings[ 'separator' ] ), generate_padding_css( $og_defaults[ 'separator' ], '0', $og_defaults[ 'separator' ], $og_defaults[ 'separator' ] ) );
 
-			// Both sidebars
-			if ( 'both-sidebars' == $sidebar_layout ) {
-				// Both sidebars separating space
-				$css->set_selector( '.both-sidebars.separate-containers .site-main' );
-				$css->add_property( 'margin', absint( $spacing_settings['separator'] ), absint( $og_defaults['separator'] ), 'px' );
-			}
+		// Both sidebars
+		$css->set_selector( '.both-sidebars.separate-containers .site-main' );
+		$css->add_property( 'margin', absint( $spacing_settings['separator'] ), absint( $og_defaults['separator'] ), 'px' );
 
-			// Both sidebars on the right
-			if ( 'both-right' == $sidebar_layout ) {
-				// Both right sidebar content separating space
-				$css->set_selector( '.both-right.separate-containers .site-main' );
-				$css->add_property( 'margin', generate_padding_css( $spacing_settings[ 'separator' ], $spacing_settings[ 'separator' ], $spacing_settings[ 'separator' ], '0' ), generate_padding_css( $og_defaults[ 'separator' ], $og_defaults[ 'separator' ], $og_defaults[ 'separator' ], '0' ) );
+		// Both right sidebar content separating space
+		$css->set_selector( '.both-right.separate-containers .site-main' );
+		$css->add_property( 'margin', generate_padding_css( $spacing_settings[ 'separator' ], $spacing_settings[ 'separator' ], $spacing_settings[ 'separator' ], '0' ), generate_padding_css( $og_defaults[ 'separator' ], $og_defaults[ 'separator' ], $og_defaults[ 'separator' ], '0' ) );
 
-				// Both right sidebar - left sidebar separating space
-				$css->set_selector( '.both-right.separate-containers .inside-left-sidebar' );
-				$css->add_property( 'margin-right', absint( $spacing_settings[ 'separator' ] / 2 ), absint( $og_defaults[ 'separator' ] / 2 ), 'px' );
+		// Both right sidebar - left sidebar separating space
+		$css->set_selector( '.both-right.separate-containers .inside-left-sidebar' );
+		$css->add_property( 'margin-right', absint( $spacing_settings[ 'separator' ] / 2 ), absint( $og_defaults[ 'separator' ] / 2 ), 'px' );
 
-				// Both right sidebar - right sidebar separating space
-				$css->set_selector( '.both-right.separate-containers .inside-right-sidebar' );
-				$css->add_property( 'margin-left', absint( $spacing_settings[ 'separator' ] / 2 ), absint( $og_defaults[ 'separator' ] / 2 ), 'px' );
-			}
+		// Both right sidebar - right sidebar separating space
+		$css->set_selector( '.both-right.separate-containers .inside-right-sidebar' );
+		$css->add_property( 'margin-left', absint( $spacing_settings[ 'separator' ] / 2 ), absint( $og_defaults[ 'separator' ] / 2 ), 'px' );
 
-			// Both sidebars on the left
-			if ( 'both-left' == $sidebar_layout ) {
-				// Both left sidebar content separating space
-				$css->set_selector( '.both-left.separate-containers .site-main' );
-				$css->add_property( 'margin', generate_padding_css( $spacing_settings[ 'separator' ], '0', $spacing_settings[ 'separator' ], $spacing_settings[ 'separator' ] ), generate_padding_css( $og_defaults[ 'separator' ], '0', $og_defaults[ 'separator' ], $og_defaults[ 'separator' ] ) );
+		// Both left sidebar content separating space
+		$css->set_selector( '.both-left.separate-containers .site-main' );
+		$css->add_property( 'margin', generate_padding_css( $spacing_settings[ 'separator' ], '0', $spacing_settings[ 'separator' ], $spacing_settings[ 'separator' ] ), generate_padding_css( $og_defaults[ 'separator' ], '0', $og_defaults[ 'separator' ], $og_defaults[ 'separator' ] ) );
 
-				// Both left sidebar - left sidebar separating space
-				$css->set_selector( '.both-left.separate-containers .inside-left-sidebar' );
-				$css->add_property( 'margin-right', absint( $spacing_settings[ 'separator' ] / 2 ), absint( $og_defaults[ 'separator' ] / 2 ), 'px' );
+		// Both left sidebar - left sidebar separating space
+		$css->set_selector( '.both-left.separate-containers .inside-left-sidebar' );
+		$css->add_property( 'margin-right', absint( $spacing_settings[ 'separator' ] / 2 ), absint( $og_defaults[ 'separator' ] / 2 ), 'px' );
 
-				// Both left sidebar - right sidebar separating space
-				$css->set_selector( '.both-left.separate-containers .inside-right-sidebar' );
-				$css->add_property( 'margin-left', absint( $spacing_settings[ 'separator' ] / 2 ), absint( $og_defaults[ 'separator' ] / 2 ), 'px' );
-			}
+		// Both left sidebar - right sidebar separating space
+		$css->set_selector( '.both-left.separate-containers .inside-right-sidebar' );
+		$css->add_property( 'margin-left', absint( $spacing_settings[ 'separator' ] / 2 ), absint( $og_defaults[ 'separator' ] / 2 ), 'px' );
 
-			// Site main separators
-			$css->set_selector( '.separate-containers .site-main' );
-			$css->add_property( 'margin-top', absint( $spacing_settings[ 'separator' ] ), absint( $og_defaults[ 'separator' ] ), 'px' );
-			$css->add_property( 'margin-bottom', absint( $spacing_settings[ 'separator' ] ), absint( $og_defaults[ 'separator' ] ), 'px' );
+		// Site main separators
+		$css->set_selector( '.separate-containers .site-main' );
+		$css->add_property( 'margin-top', absint( $spacing_settings[ 'separator' ] ), absint( $og_defaults[ 'separator' ] ), 'px' );
+		$css->add_property( 'margin-bottom', absint( $spacing_settings[ 'separator' ] ), absint( $og_defaults[ 'separator' ] ), 'px' );
 
-			// Page header top margin
-			$css->set_selector( '.separate-containers .page-header-image, .separate-containers .page-header-contained, .separate-containers .page-header-image-single, .separate-containers .page-header-content-single' );
-			$css->add_property( 'margin-top', absint( $spacing_settings[ 'separator' ] ), absint( $og_defaults[ 'separator' ] ), 'px' );
+		// Page header top margin
+		$css->set_selector( '.separate-containers .page-header-image, .separate-containers .page-header-contained, .separate-containers .page-header-image-single, .separate-containers .page-header-content-single' );
+		$css->add_property( 'margin-top', absint( $spacing_settings[ 'separator' ] ), absint( $og_defaults[ 'separator' ] ), 'px' );
 
-			if ( 'no-sidebar' !== $sidebar_layout ) {
-				// Sidebar separator
-				$css->set_selector( '.separate-containers .inside-right-sidebar, .separate-containers .inside-left-sidebar' );
-				$css->add_property( 'margin-top', absint( $spacing_settings[ 'separator' ] ), absint( $og_defaults[ 'separator' ] ), 'px' );
-				$css->add_property( 'margin-bottom', absint( $spacing_settings[ 'separator' ] ), absint( $og_defaults[ 'separator' ] ), 'px' );
-			}
-		}
+		// Sidebar separator
+		$css->set_selector( '.separate-containers .inside-right-sidebar, .separate-containers .inside-left-sidebar' );
+		$css->add_property( 'margin-top', absint( $spacing_settings[ 'separator' ] ), absint( $og_defaults[ 'separator' ] ), 'px' );
+		$css->add_property( 'margin-bottom', absint( $spacing_settings[ 'separator' ] ), absint( $og_defaults[ 'separator' ] ), 'px' );
 
 		// Navigation spacing
-		if ( '' !== generate_get_navigation_location() || is_customize_preview() ) {
-			// Menu item size
-			$css->set_selector( '.main-navigation .main-nav ul li a,.menu-toggle,.main-navigation .mobile-bar-items a' );
-			$css->add_property( 'padding-left', absint( $spacing_settings['menu_item'] ), absint( $og_defaults['menu_item'] ), 'px' );
-			$css->add_property( 'padding-right', absint( $spacing_settings['menu_item'] ), absint( $og_defaults['menu_item'] ), 'px' );
-			$css->add_property( 'line-height', absint( $spacing_settings['menu_item_height'] ), absint( $og_defaults['menu_item_height'] ), 'px' );
+		// Menu item size
+		$css->set_selector( '.main-navigation .main-nav ul li a,.menu-toggle,.main-navigation .mobile-bar-items a' );
+		$css->add_property( 'padding-left', absint( $spacing_settings['menu_item'] ), absint( $og_defaults['menu_item'] ), 'px' );
+		$css->add_property( 'padding-right', absint( $spacing_settings['menu_item'] ), absint( $og_defaults['menu_item'] ), 'px' );
+		$css->add_property( 'line-height', absint( $spacing_settings['menu_item_height'] ), absint( $og_defaults['menu_item_height'] ), 'px' );
 
-			// Sub-menu item size
-			$css->set_selector( '.main-navigation .main-nav ul ul li a' );
-			$css->add_property( 'padding', generate_padding_css( $spacing_settings[ 'sub_menu_item_height' ], $spacing_settings[ 'menu_item' ], $spacing_settings[ 'sub_menu_item_height' ], $spacing_settings[ 'menu_item' ] ), generate_padding_css( $og_defaults[ 'sub_menu_item_height' ], $og_defaults[ 'menu_item' ], $og_defaults[ 'sub_menu_item_height' ], $og_defaults[ 'menu_item' ] ) );
+		// Sub-menu item size
+		$css->set_selector( '.main-navigation .main-nav ul ul li a' );
+		$css->add_property( 'padding', generate_padding_css( $spacing_settings[ 'sub_menu_item_height' ], $spacing_settings[ 'menu_item' ], $spacing_settings[ 'sub_menu_item_height' ], $spacing_settings[ 'menu_item' ] ), generate_padding_css( $og_defaults[ 'sub_menu_item_height' ], $og_defaults[ 'menu_item' ], $og_defaults[ 'sub_menu_item_height' ], $og_defaults[ 'menu_item' ] ) );
 
-			// Sub-menu positioning
-			$css->set_selector( '.main-navigation ul ul' );
-			$css->add_property( 'top', 'auto' ); // Added for compatibility purposes on 22/12/2016
+		// Sub-menu positioning
+		$css->set_selector( '.main-navigation ul ul' );
+		$css->add_property( 'top', 'auto' ); // Added for compatibility purposes on 22/12/2016
 
-			// Navigation search
-			if ( 'enable' == generate_get_setting( 'nav_search' ) ) {
-				$css->set_selector( '.navigation-search, .navigation-search input' );
-				$css->add_property( 'height', '100%' ); // Added to give browser caches a chance to clear
-			}
+		// Navigation search
+		$css->set_selector( '.navigation-search, .navigation-search input' );
+		$css->add_property( 'height', '100%' ); // Added to give browser caches a chance to clear
 
-			// Dropdown arrow spacing
-			$css->set_selector( '.menu-item-has-children .dropdown-menu-toggle' );
-			if ( is_rtl() ) {
-				$css->add_property( 'padding-left', absint( $spacing_settings[ 'menu_item' ] ), false, 'px' );
-			} else {
-				$css->add_property( 'padding-right', absint( $spacing_settings[ 'menu_item' ] ), absint( $og_defaults[ 'menu_item' ] ), 'px' );
-			}
+		// Dropdown arrow spacing
+		$css->set_selector( '.rtl .menu-item-has-children .dropdown-menu-toggle' );
+		$css->add_property( 'padding-left', absint( $spacing_settings[ 'menu_item' ] ), false, 'px' );
 
-			// Sub-menu dropdown arrow spacing
-			$css->set_selector( '.menu-item-has-children ul .dropdown-menu-toggle' );
-			$css->add_property( 'padding-top', absint( $spacing_settings[ 'sub_menu_item_height' ] ), absint( $og_defaults[ 'sub_menu_item_height' ] ), 'px' );
-			$css->add_property( 'padding-bottom', absint( $spacing_settings[ 'sub_menu_item_height' ] ), absint( $og_defaults[ 'sub_menu_item_height' ] ), 'px' );
-			$css->add_property( 'margin-top', '-' . absint( $spacing_settings[ 'sub_menu_item_height' ] ), '-' . absint( $og_defaults[ 'sub_menu_item_height' ] ), 'px' );
+		$css->set_selector( '.menu-item-has-children .dropdown-menu-toggle' );
+		$css->add_property( 'padding-right', absint( $spacing_settings[ 'menu_item' ] ), absint( $og_defaults[ 'menu_item' ] ), 'px' );
 
-			// RTL menu item padding
-			if ( is_rtl() ) {
-				$css->set_selector( '.main-navigation .main-nav ul li.menu-item-has-children > a' );
-				$css->add_property( 'padding-right', absint( $spacing_settings[ 'menu_item' ] ), false, 'px' );
-			}
-		}
+		// Sub-menu dropdown arrow spacing
+		$css->set_selector( '.menu-item-has-children ul .dropdown-menu-toggle' );
+		$css->add_property( 'padding-top', absint( $spacing_settings[ 'sub_menu_item_height' ] ), absint( $og_defaults[ 'sub_menu_item_height' ] ), 'px' );
+		$css->add_property( 'padding-bottom', absint( $spacing_settings[ 'sub_menu_item_height' ] ), absint( $og_defaults[ 'sub_menu_item_height' ] ), 'px' );
+		$css->add_property( 'margin-top', '-' . absint( $spacing_settings[ 'sub_menu_item_height' ] ), '-' . absint( $og_defaults[ 'sub_menu_item_height' ] ), 'px' );
 
-		// Sidebar widgets
-		if ( 'no-sidebar' !== $sidebar_layout ) {
-			// Sidebar widget padding
-			$css->set_selector( '.widget-area .widget' );
-			$css->add_property( 'padding', generate_padding_css( $spacing_settings[ 'widget_top' ], $spacing_settings[ 'widget_right' ], $spacing_settings[ 'widget_bottom' ], $spacing_settings[ 'widget_left' ] ), generate_padding_css( $og_defaults[ 'widget_top' ], $og_defaults[ 'widget_right' ], $og_defaults[ 'widget_bottom' ], $og_defaults[ 'widget_left' ] ) );
-		}
+		// RTL menu item padding
+		$css->set_selector( '.rtl .main-navigation .main-nav ul li.menu-item-has-children > a' );
+		$css->add_property( 'padding-right', absint( $spacing_settings[ 'menu_item' ] ), false, 'px' );
 
-		// Footer widgets
-		$footer_widgets = generate_get_footer_widgets();
-		if ( ! empty( $footer_widgets ) && 0 !== $footer_widgets ) {
-			// Footer widget padding
-			$css->set_selector( '.footer-widgets' );
-			$css->add_property( 'padding', generate_padding_css( $spacing_settings[ 'footer_widget_container_top' ], $spacing_settings[ 'footer_widget_container_right' ], $spacing_settings[ 'footer_widget_container_bottom' ], $spacing_settings[ 'footer_widget_container_left' ] ), generate_padding_css( $og_defaults[ 'footer_widget_container_top' ], $og_defaults[ 'footer_widget_container_right' ], $og_defaults[ 'footer_widget_container_bottom' ], $og_defaults[ 'footer_widget_container_left' ] ) );
+		// Sidebar widget padding
+		$css->set_selector( '.widget-area .widget' );
+		$css->add_property( 'padding', generate_padding_css( $spacing_settings[ 'widget_top' ], $spacing_settings[ 'widget_right' ], $spacing_settings[ 'widget_bottom' ], $spacing_settings[ 'widget_left' ] ), generate_padding_css( $og_defaults[ 'widget_top' ], $og_defaults[ 'widget_right' ], $og_defaults[ 'widget_bottom' ], $og_defaults[ 'widget_left' ] ) );
 
-			// Footer widget separator
-			$css->set_selector( '.site-footer .footer-widgets-container .inner-padding' );
-			$css->add_property( 'padding', generate_padding_css( '0', '0', '0', $spacing_settings[ 'footer_widget_separator' ] ), generate_padding_css( '0', '0', '0', $og_defaults[ 'footer_widget_separator' ] ) );
+		// Footer widget padding
+		$css->set_selector( '.footer-widgets' );
+		$css->add_property( 'padding', generate_padding_css( $spacing_settings[ 'footer_widget_container_top' ], $spacing_settings[ 'footer_widget_container_right' ], $spacing_settings[ 'footer_widget_container_bottom' ], $spacing_settings[ 'footer_widget_container_left' ] ), generate_padding_css( $og_defaults[ 'footer_widget_container_top' ], $og_defaults[ 'footer_widget_container_right' ], $og_defaults[ 'footer_widget_container_bottom' ], $og_defaults[ 'footer_widget_container_left' ] ) );
 
-			$css->set_selector( '.site-footer .footer-widgets-container .inside-footer-widgets' );
-			$css->add_property( 'margin-left', '-' . absint( $spacing_settings[ 'footer_widget_separator' ] ), '-' . absint( $og_defaults[ 'footer_widget_separator' ] ), 'px' );
-		}
+		// Footer widget separator
+		$css->set_selector( '.site-footer .footer-widgets-container .inner-padding' );
+		$css->add_property( 'padding', generate_padding_css( '0', '0', '0', $spacing_settings[ 'footer_widget_separator' ] ), generate_padding_css( '0', '0', '0', $og_defaults[ 'footer_widget_separator' ] ) );
+
+		$css->set_selector( '.site-footer .footer-widgets-container .inside-footer-widgets' );
+		$css->add_property( 'margin-left', '-' . absint( $spacing_settings[ 'footer_widget_separator' ] ), '-' . absint( $og_defaults[ 'footer_widget_separator' ] ), 'px' );
 
 		// Footer padding
 		$css->set_selector( '.site-info' );
@@ -745,24 +676,22 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		}
 
 		$output = '';
-		if ( 'one-container' == generate_get_setting( 'content_layout_setting' ) || is_customize_preview() ) {
-			// Get color settings
-			$generate_settings = wp_parse_args(
-				get_option( 'generate_settings', array() ),
-				generate_get_color_defaults()
-			);
+		// Get color settings
+		$generate_settings = wp_parse_args(
+			get_option( 'generate_settings', array() ),
+			generate_get_color_defaults()
+		);
 
-			// Find out if the content background color and sidebar widget background color is the same
-			$sidebar = strtoupper( $generate_settings['sidebar_widget_background_color'] );
-			$content = strtoupper( $generate_settings['content_background_color'] );
-			$colors_match = ( ( $sidebar == $content ) || '' == $sidebar ) ? true : false;
+		// Find out if the content background color and sidebar widget background color is the same
+		$sidebar = strtoupper( $generate_settings['sidebar_widget_background_color'] );
+		$content = strtoupper( $generate_settings['content_background_color'] );
+		$colors_match = ( ( $sidebar == $content ) || '' == $sidebar ) ? true : false;
 
-			// If they're all 40 (default), remove the padding when one container is set
-			// This way, the user can still adjust the padding and it will work (unless they want 40px padding)
-			// We'll also remove the padding if there's no color difference between the widgets and content background color
-			if ( ( '40' == $spacing_settings[ 'widget_top' ] && '40' == $spacing_settings[ 'widget_right' ] && '40' == $spacing_settings[ 'widget_bottom' ] && '40' == $spacing_settings[ 'widget_left' ] ) && $colors_match ) {
-				$output .= '.one-container .sidebar .widget{padding:0px;}';
-			}
+		// If they're all 40 (default), remove the padding when one container is set
+		// This way, the user can still adjust the padding and it will work (unless they want 40px padding)
+		// We'll also remove the padding if there's no color difference between the widgets and content background color
+		if ( ( '40' == $spacing_settings[ 'widget_top' ] && '40' == $spacing_settings[ 'widget_right' ] && '40' == $spacing_settings[ 'widget_bottom' ] && '40' == $spacing_settings[ 'widget_left' ] ) && $colors_match ) {
+			$output .= '.one-container .sidebar .widget{padding:0px;}';
 		}
 
 		// Allow us to hook CSS into our output
@@ -770,6 +699,29 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 
 		return apply_filters( 'generate_spacing_css_output', $css->css_output() . $output );
 	}
+}
+
+/**
+ * Generates any CSS that can't be cached (can change from page to page).
+ *
+ * @since 2.0
+ */
+function generate_no_cache_dynamic_css() {
+	// Initiate our class
+	$css = new GeneratePress_CSS;
+
+	// Content margin if there's no title
+	if ( ! generate_show_title() ) {
+		$css->set_selector( '.page .entry-content' )->add_property( 'margin-top', '0px' );
+
+		if ( is_single() ) {
+			if ( ! apply_filters( 'generate_post_author', true ) && ! apply_filters( 'generate_post_date', true ) ) {
+				$css->set_selector( '.single .entry-content' )->add_property( 'margin-top', '0px' );
+			}
+		}
+	}
+
+	return $css->css_output();
 }
 
 add_action( 'wp_enqueue_scripts', 'generate_enqueue_dynamic_css', 50 );
@@ -780,10 +732,12 @@ add_action( 'wp_enqueue_scripts', 'generate_enqueue_dynamic_css', 50 );
  */
 function generate_enqueue_dynamic_css() {
 	if ( ! get_option( 'generate_dynamic_css_output', false ) || is_customize_preview() || apply_filters( 'generate_dynamic_css_skip_cache', false ) ) {
-		$css = generate_base_css() . generate_advanced_css() . generate_font_css() . generate_spacing_css();
+		$css = generate_base_css() . generate_font_css() . generate_advanced_css() . generate_spacing_css();
 	} else {
 		$css = get_option( 'generate_dynamic_css_output' );
 	}
+
+	$css = $css . generate_no_cache_dynamic_css();
 
 	wp_add_inline_style( 'generate-style', $css );
 }
@@ -805,7 +759,7 @@ function generate_set_dynamic_css_cache() {
 	$cached_version = get_option( 'generate_dynamic_css_cached_version', '' );
 
 	if ( ! $cached_css || $cached_version !== GENERATE_VERSION ) {
-		$css = generate_base_css() . generate_advanced_css() . generate_font_css() . generate_spacing_css();
+		$css = generate_base_css() . generate_font_css() . generate_advanced_css() . generate_spacing_css();
 
 		update_option( 'generate_dynamic_css_output', $css );
 		update_option( 'generate_dynamic_css_cached_version', GENERATE_VERSION );
@@ -823,6 +777,6 @@ function generate_update_dynamic_css_cache() {
 		return;
 	}
 
-	$css = generate_base_css() . generate_advanced_css() . generate_font_css() . generate_spacing_css();
+	$css = generate_base_css() . generate_font_css() . generate_advanced_css() . generate_spacing_css();
 	update_option( 'generate_dynamic_css_output', $css );
 }
