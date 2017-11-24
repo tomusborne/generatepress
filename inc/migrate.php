@@ -184,40 +184,90 @@ if ( ! function_exists( 'generate_typography_set_font_data' ) ) {
 	}
 }
 
-add_action( 'admin_init', 'generate_migrate_font_awesome_library' );
+add_action( 'admin_init', 'generate_migrate_existing_settings', 1 );
 /**
- * Turn on the full Font Awesome library if content exists on the site.
+ * Execute functions after existing sites update.
  *
- * We want essentials to be the default, but need existing sites to continue
- * loading the full library.
+ * We check to see if options already exist. If they do, we can assume the user has
+ * updated the theme, and not installed it from scratch.
+ *
+ * We run this right away in the Dashboard to avoid other migration functions from
+ * setting options and causing these functions to run on fresh installs.
  *
  * @since 2.0
  */
-function generate_migrate_font_awesome_library() {
-	$settings = get_option( 'generate_migration_settings', array() );
-
-	if ( isset( $settings['font_awesome_essentials_updated'] ) && 'true' == $settings['font_awesome_essentials_updated'] ) {
-		return;
-	}
-
+function generate_migrate_existing_settings() {
+	// Existing settings with no defaults.
 	$existing_settings = get_option( 'generate_settings' );
 
-	// If we have existing settings, we should use the full FA library.
+	if ( get_theme_mod( 'font_body_variants', '' ) ) {
+		$existing_settings['font_body_variants'] = get_theme_mod( 'font_body_variants' );
+	}
+
+	if ( get_theme_mod( 'font_body_category', '' ) ) {
+		$existing_settings['font_body_category'] = get_theme_mod( 'font_body_category' );
+	}
+
+	// Existing settings with defaults.
+	$settings = wp_parse_args(
+		get_option( 'generate_settings', array() ),
+		generate_get_defaults()
+	);
+
+	// Empty arrays to add data to.
+	$migrated_flags = array();
+	$new_settings = array();
+
+	// An option to see what we've migrated.
+	$migration_settings = get_option( 'generate_migration_settings', array() );
+
+	// We have settings, so this isn't a fresh install.
 	if ( ! empty( $existing_settings ) ) {
-		$generate_settings = wp_parse_args(
-			get_option( 'generate_settings', array() ),
-			generate_get_defaults()
-		);
 
-		$new_settings = array();
-		$new_settings[ 'font_awesome' ] = 'full-library';
+		// Turn on Font Awesome for existing websites.
+		if ( ! isset( $migration_settings['font_awesome_essentials_updated'] ) || 'true' !== $migration_settings['font_awesome_essentials_updated'] ) {
+			$new_settings[ 'font_awesome' ] = 'full-library';
+		}
 
-		$update_settings = wp_parse_args( $new_settings, $generate_settings );
+		// Set our font family to Open Sans if we never saved a different font.
+		if ( ! isset( $migration_settings['default_font_updated'] ) || 'true' !== $migration_settings['default_font_updated'] ) {
+			$generate_settings = wp_parse_args(
+				get_option( 'generate_settings', array() ),
+				array(
+					'font_body' => 'Open Sans',
+				)
+			);
+
+			$category = get_theme_mod( 'font_body_category', 'sans-serif' );
+			$variants = get_theme_mod( 'font_body_variants', '300,300italic,regular,italic,600,600italic,700,700italic,800,800italic' );
+
+			if ( 'Open Sans' == $generate_settings['font_body'] ) {
+				$new_settings[ 'font_body' ] = 'Open Sans';
+				set_theme_mod( 'font_body_category', $category );
+				set_theme_mod( 'font_body_variants', $variants );
+			}
+		}
+
+	}
+
+	// Set our flags
+	if ( ! isset( $migration_settings['font_awesome_essentials_updated'] ) || 'true' !== $migration_settings['font_awesome_essentials_updated'] ) {
+		$migrated_flags['font_awesome_essentials_updated'] = 'true';
+	}
+
+	if ( ! isset( $migration_settings['default_font_updated'] ) || 'true' !== $migration_settings['default_font_updated'] ) {
+		$migrated_flags['default_font_updated'] = 'true';
+	}
+
+	// Merge our new settings with our existing settings.
+	if ( ! empty( $new_settings ) ) {
+		$update_settings = wp_parse_args( $new_settings, $settings );
 		update_option( 'generate_settings', $update_settings );
 	}
 
-	$updated = array();
-	$updated['font_awesome_essentials_updated'] = 'true';
-	$migration_settings = wp_parse_args( $updated, $settings );
-	update_option( 'generate_migration_settings', $migration_settings );
+	// Set our migrated setting flags.
+	if ( ! empty( $migrated_flags ) ) {
+		$update_migration_flags = wp_parse_args( $migrated_flags, $migration_settings );
+		update_option( 'generate_migration_settings', $update_migration_flags );
+	}
 }
