@@ -135,7 +135,9 @@ jQuery( document ).ready( function($) {
 	jQuery( '.generatepress-font-variant' ).each( function( key, value ) {
 		var _this = $( this );
 		var value = _this.data( 'saved-value' );
-		value = value.split( ',' );
+		if ( value ) {
+			value = value.split( ',' );
+		}
 		_this.find( 'select' ).selectWoo().val( value ).trigger( 'change.select2' );
 	} );
 
