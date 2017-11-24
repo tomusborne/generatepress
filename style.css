@@ -400,7 +400,7 @@ input[type="file"] {
 	margin: 0;
 	padding: 0;
 }
-.menu-toggle .mobile-menu:before {
+.menu-toggle:before {
 	content: "\f0c9";
 	font-family: FontAwesome;
 	line-height: 1em;
@@ -408,16 +408,16 @@ input[type="file"] {
 	width: 1.28571429em;
 	text-align: center;
 	display: inline-block;
-	margin-right: 5px;
-	position: relative;
-	bottom: -1px;
 }
-.toggled .menu-toggle .mobile-menu:before {
+.toggled .menu-toggle:before {
 	content: "\f00d";
 	speak: none;
 }
-.menu-toggle .mobile-menu:empty:before {
-	margin-right: 0;
+.menu-toggle .mobile-menu {
+	margin-right: 5px;
+}
+.menu-toggle .mobile-menu:empty {
+	display: none;
 }
 .main-navigation .main-nav ul ul li a {
 	line-height: normal;
