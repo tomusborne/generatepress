@@ -133,13 +133,8 @@ if ( ! function_exists( 'generate_sanitize_checkbox' ) ) {
 	 *
 	 * @since 1.0.8
 	 */
-	function generate_sanitize_checkbox( $input ) {
-		if ( $input ) {
-			$output = '1';
-		} else {
-			$output = false;
-		}
-		return $output;
+	function generate_sanitize_checkbox( $checked ) {
+		return ( ( isset( $checked ) && true == $checked ) ? true : false );
 	}
 }
 
