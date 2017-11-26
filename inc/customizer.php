@@ -961,12 +961,12 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 
 		// Add Layout section
 		$wp_customize->add_section(
-			'blog_section',
+			'generate_blog_section',
 			array(
 				'title' => __( 'Blog', 'generatepress' ),
 				'capability' => 'edit_theme_options',
-				'description' => '',
-				'priority' => 35
+				'priority' => 55,
+				'panel' => 'generate_layout_panel'
 			)
 		);
 
@@ -985,11 +985,11 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			'blog_content_control',
 			array(
 				'type' => 'select',
-				'label' => __( 'Blog Post Content', 'generatepress' ),
-				'section' => 'blog_section',
+				'label' => __( 'Content Type', 'generatepress' ),
+				'section' => 'generate_blog_section',
 				'choices' => array(
-					'full' => __( 'Show full post', 'generatepress' ),
-					'excerpt' => __( 'Show excerpt', 'generatepress' )
+					'full' => __( 'Full', 'generatepress' ),
+					'excerpt' => __( 'Excerpt', 'generatepress' )
 				),
 				'settings' => 'generate_settings[post_content]',
 				'priority' => 10
