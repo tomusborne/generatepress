@@ -260,6 +260,10 @@ function generate_migrate_existing_settings() {
 		$migrated_flags['font_awesome_essentials_updated'] = 'true';
 	}
 
+	if ( ! isset( $migration_settings['skip_dynamic_css_cache'] ) || 'true' !== $migration_settings['skip_dynamic_css_cache'] ) {
+		$migrated_flags['skip_dynamic_css_cache'] = 'true';
+	}
+
 	if ( ! isset( $migration_settings['default_font_updated'] ) || 'true' !== $migration_settings['default_font_updated'] ) {
 		$migrated_flags['default_font_updated'] = 'true';
 	}

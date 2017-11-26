@@ -301,3 +301,20 @@ function generate_set_font_awesome_essentials( $essentials ) {
 
 	return $essentials;
 }
+
+add_filter( 'generate_dynamic_css_skip_cache', 'generate_skip_dynamic_css_cache' );
+/**
+ * Skips caching of the dynamic CSS if set to false.
+ *
+ * @since 2.0
+ *
+ * @param bool $cache
+ * @return bool
+ */
+function generate_skip_dynamic_css_cache( $cache ) {
+	if ( ! generate_get_setting( 'dynamic_css_cache' ) ) {
+		return true;
+	}
+
+	return $cache;
+}
