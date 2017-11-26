@@ -49,7 +49,7 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 			'link_color' => '#1e73be',
 			'link_color_hover' => '#000000',
 			'link_color_visited' => '',
-			'font_awesome' => 'essentials',
+			'font_awesome_essentials' => true,
 		);
 
 		return apply_filters( 'generate_option_defaults', $generate_defaults );

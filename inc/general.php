@@ -285,7 +285,7 @@ if ( ! function_exists( 'generate_get_default_color_palettes' ) ) {
 	}
 }
 
-add_filter( 'generate_fontawesome_essentials', 'generate_set_font_awesome_library' );
+add_filter( 'generate_fontawesome_essentials', 'generate_set_font_awesome_essentials' );
 /**
  * Check to see if we should include the full Font Awesome library or not.
  *
@@ -294,8 +294,8 @@ add_filter( 'generate_fontawesome_essentials', 'generate_set_font_awesome_librar
  * @param bool $essentials
  * @return bool
  */
-function generate_set_font_awesome_library( $essentials ) {
-	if ( 'essentials' == generate_get_setting( 'font_awesome' ) ) {
+function generate_set_font_awesome_essentials( $essentials ) {
+	if ( generate_get_setting( 'font_awesome_essentials' ) ) {
 		return true;
 	}
 

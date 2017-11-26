@@ -224,9 +224,14 @@ function generate_migrate_existing_settings() {
 	// We have settings, so this isn't a fresh install.
 	if ( ! empty( $existing_settings ) ) {
 
-		// Turn on Font Awesome for existing websites.
+		// Turn on the full Font Awesome library for existing websites.
 		if ( ! isset( $migration_settings['font_awesome_essentials_updated'] ) || 'true' !== $migration_settings['font_awesome_essentials_updated'] ) {
-			$new_settings[ 'font_awesome' ] = 'full-library';
+			$new_settings[ 'font_awesome_essentials' ] = false;
+		}
+
+		// Turn off dynamic CSS caching for existing websites.
+		if ( ! isset( $migration_settings['skip_dynamic_css_cache'] ) || 'true' !== $migration_settings['skip_dynamic_css_cache'] ) {
+			$new_settings[ 'dynamic_css_cache' ] = false;
 		}
 
 		// Set our font family to Open Sans if we never saved a different font.
@@ -250,7 +255,7 @@ function generate_migrate_existing_settings() {
 
 	}
 
-	// Set our flags
+	// Set our flags.
 	if ( ! isset( $migration_settings['font_awesome_essentials_updated'] ) || 'true' !== $migration_settings['font_awesome_essentials_updated'] ) {
 		$migrated_flags['font_awesome_essentials_updated'] = 'true';
 	}
