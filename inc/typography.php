@@ -617,7 +617,7 @@ if ( ! function_exists( 'generate_add_to_font_customizer_list' ) ) {
 
 			$id = strtolower( str_replace( ' ', '_', $generate_settings[ $setting ] ) );
 
-			if ( array_key_exists( $id, $select_fonts ) || in_array( $id, generate_typography_default_fonts() ) ) {
+			if ( array_key_exists( $id, $select_fonts ) || in_array( $generate_settings[ $setting ], generate_typography_default_fonts() ) ) {
 				continue;
 			}
 
