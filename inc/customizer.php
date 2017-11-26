@@ -66,7 +66,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			$wp_customize->add_section(
 				new GeneratePress_Upsell_Section( $wp_customize, 'generatepress_upsell_section',
 					array(
-						'pro_text' => __( 'Add-ons Available! Take a look', 'generatepress' ),
+						'pro_text' => __( 'Pro Modules Available', 'generatepress' ),
 						'pro_url' => generate_get_premium_url( 'https://generatepress.com/premium' ),
 						'capability' => 'edit_theme_options',
 						'priority' => 0,
@@ -246,19 +246,12 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					$wp_customize,
 					'colors_get_addon_desc',
 					array(
-						'section'     => 'body_section',
-						'type'        => 'addon',
-						'label'			=> __( 'More Settings','generatepress' ),
+						'section' => 'body_section',
+						'type' => 'addon',
+						'label' => __( 'Learn More', 'generatepress' ),
+						'description' => __( 'More options are available for this section in our premium version.', 'generatepress' ),
 						'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-colors/' ),
-						'description' => sprintf(
-							__( 'Looking to add more color settings?<br /> %s.', 'generatepress' ),
-							sprintf(
-								'<a href="%1$s" target="_blank">%2$s</a>',
-								generate_get_premium_url( 'https://generatepress.com/downloads/generate-colors/' ),
-								__( 'Check out Generate Colors', 'generatepress' )
-							)
-						),
-						'priority'    => 30,
+						'priority' => 30,
 						'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname'
 					)
 				)
@@ -1009,18 +1002,11 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					$wp_customize,
 					'blog_get_addon_desc',
 					array(
-						'section' => 'blog_section',
+						'section' => 'generate_blog_section',
 						'type' => 'addon',
-						'label' => __( 'More Settings','generatepress' ),
+						'label' => __( 'Learn more', 'generatepress' ),
+						'description' => __( 'More options are available for this section in our premium version.', 'generatepress' ),
 						'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-blog/' ),
-						'description' => sprintf(
-							__( 'Looking to add more blog settings?<br /> %s.', 'generatepress' ),
-							sprintf(
-								'<a href="%1$s" target="_blank">%2$s</a>',
-								generate_get_premium_url( 'https://generatepress.com/downloads/generate-blog/' ),
-								__( 'Check out Generate Blog', 'generatepress' )
-							)
-						),
 						'priority' => 30,
 						'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname'
 					)

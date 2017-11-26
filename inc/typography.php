@@ -322,16 +322,9 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 					array(
 						'section' => 'font_section',
 						'type' => 'addon',
-						'label' => __( 'More Settings','generatepress' ),
+						'label' => __( 'Learn more','generatepress' ),
+						'description' => __( 'More options are available for this section in our premium version.', 'generatepress' ),
 						'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-typography/' ),
-						'description' => sprintf(
-							__( 'Looking to add more typography settings?<br /> %s.', 'generatepress' ),
-							sprintf(
-								'<a href="%1$s" target="_blank">%2$s</a>',
-								generate_get_premium_url( 'https://generatepress.com/downloads/generate-typography/' ),
-								__( 'Check out Generate Typography', 'generatepress' )
-							)
-						),
 						'priority' => 50,
 						'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname'
 					)

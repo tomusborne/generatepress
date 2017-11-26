@@ -1,14 +1,10 @@
-.customize-control-title.addon {
-	display:inline;
-}
-
-.get-addon a {
-	background: #D54E21;
-	color:#FFF;
-	text-transform: uppercase;
-	font-size:11px;
-	padding: 3px 5px;
-	font-weight: bold;
+.customize-control-addon:before {
+    content: "";
+    height: 1px;
+    width: 50px;
+    background: rgba(0,0,0,.10);
+    display: block;
+    margin-bottom: 10px;
 }
 
 .customize-control-addon {
@@ -55,7 +51,4 @@ li#accordion-section-generatepress_upsell_section {
 	text-align: center;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-}
-.customize-control-addon a {
-	text-decoration: none;
 }
