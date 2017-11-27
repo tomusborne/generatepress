@@ -23,7 +23,7 @@ function generate_enqueue_meta_box_scripts( $hook ) {
 		$screen = get_current_screen();
 		$post_type = $screen->id;
 
-		if ( in_array( $post_type, ( array ) $post_types ) ){
+		if ( in_array( $post_type, ( array ) $post_types ) ) {
 			wp_enqueue_style( 'generate-layout-metabox', get_template_directory_uri() . '/css/admin/meta-box.css', array(), GENERATE_VERSION );
 		}
 	}
@@ -49,7 +49,7 @@ function generate_register_layout_meta_box() {
 		if ( 'attachment' !== $type ) {
 			add_meta_box (
 				'generate_layout_options_meta_box',
-				__( 'Layout','generatepress' ),
+				__( 'Layout', 'generatepress' ),
 				'generate_do_layout_meta_box',
 				$type,
 				'normal',

@@ -52,7 +52,7 @@ get_header(); ?>
 
 				<div class="entry-content" itemprop="text">
 					<?php
-					echo apply_filters( 'generate_404_text', '<p>' . __( 'It looks like nothing was found at this location. Maybe try searching?', 'generatepress' ) . '</p>' );
+					echo '<p>' . apply_filters( 'generate_404_text', __( 'It looks like nothing was found at this location. Maybe try searching?', 'generatepress' ) ) . '</p>';
 
 					get_search_form();
 					?>

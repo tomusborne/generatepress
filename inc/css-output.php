@@ -734,7 +734,7 @@ function generate_enqueue_dynamic_css() {
 	if ( ! get_option( 'generate_dynamic_css_output', false ) || is_customize_preview() || apply_filters( 'generate_dynamic_css_skip_cache', false ) ) {
 		$css = generate_base_css() . generate_font_css() . generate_advanced_css() . generate_spacing_css();
 	} else {
-		$css = get_option( 'generate_dynamic_css_output' ) . '/* End cached CSS*/';
+		$css = get_option( 'generate_dynamic_css_output' ) . '/* End cached CSS */';
 	}
 
 	$css = $css . generate_no_cache_dynamic_css();

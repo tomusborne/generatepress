@@ -95,7 +95,14 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 										?>
 									</div>
 
-									<?php do_action('generate_inside_options_form'); ?>
+									<?php
+									/**
+									 * generate_inside_options_form hook.
+									 *
+									 * @since 0.1
+									 */
+									 do_action( 'generate_inside_options_form' );
+									 ?>
 								</form>
 
 								<?php
@@ -142,27 +149,34 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 								);
 
 								if ( ! defined( 'GP_PREMIUM_VERSION' ) ) : ?>
-								<div class="postbox generate-metabox">
-									<h3 class="hndle"><?php _e( 'Add-ons','generatepress' ); ?></h3>
-									<div class="inside" style="margin:0;padding:0;">
-										<div class="premium-addons">
-											<?php foreach( $modules as $module => $info ) { ?>
-											<div class="add-on activated gp-clear addon-container grid-parent">
-												<div class="addon-name column-addon-name" style="">
-													<a href="<?php echo esc_url( $info[ 'url' ] ); ?>" target="_blank"><?php echo $module; ?></a>
+									<div class="postbox generate-metabox">
+										<h3 class="hndle"><?php _e( 'Add-ons', 'generatepress' ); ?></h3>
+										<div class="inside" style="margin:0;padding:0;">
+											<div class="premium-addons">
+												<?php foreach( $modules as $module => $info ) { ?>
+												<div class="add-on activated gp-clear addon-container grid-parent">
+													<div class="addon-name column-addon-name" style="">
+														<a href="<?php echo esc_url( $info[ 'url' ] ); ?>" target="_blank"><?php echo $module; ?></a>
+													</div>
+													<div class="addon-action addon-addon-action" style="text-align:right;">
+														<a href="<?php echo esc_url( $info[ 'url' ] ); ?>" target="_blank"><?php _e( 'Learn more','generatepress' ); ?></a>
+													</div>
 												</div>
-												<div class="addon-action addon-addon-action" style="text-align:right;">
-													<a href="<?php echo esc_url( $info[ 'url' ] ); ?>" target="_blank"><?php _e( 'Learn more','generatepress' ); ?></a>
-												</div>
+												<div class="gp-clear"></div>
+												<?php } ?>
 											</div>
-											<div class="gp-clear"></div>
-											<?php } ?>
 										</div>
 									</div>
-								</div>
-								<?php endif; ?>
+								<?php
+								endif;
 
-								<?php do_action('generate_options_items'); ?>
+								/**
+								 * generate_options_items hook.
+								 *
+								 * @since 0.1
+								 */
+								do_action( 'generate_options_items' );
+								?>
 							</div>
 
 							<div class="generate-right-sidebar grid-30" style="padding-right: 0;">
@@ -176,23 +190,32 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 									);
 									?>
 								</div>
-								<?php do_action( 'generate_admin_right_panel' ); ?>
-								<?php if ( ! defined( 'GP_PREMIUM_VERSION' ) ) : ?>
+
+								<?php
+								/**
+								 * generate_admin_right_panel hook.
+								 *
+								 * @since 0.1
+								 */
+								 do_action( 'generate_admin_right_panel' );
+
+								 if ( ! defined( 'GP_PREMIUM_VERSION' ) ) : ?>
 									<div class="postbox generate-metabox popular-articles">
-										<h3 class="hndle"><a href="https://docs.generatepress.com" target="_blank"><?php _e( 'View all','generatepress' ); ?></a><?php _e( 'Documentation','generatepress' ); ?></h3>
+										<h3 class="hndle"><a href="https://docs.generatepress.com" target="_blank"><?php _e( 'View all', 'generatepress' ); ?></a><?php _e( 'Documentation', 'generatepress' ); ?></h3>
 										<div class="inside">
 											<ul>
-												<li><a href="https://docs.generatepress.com/article/adding-header-logo/" target="_blank"><?php _e( 'Adding a Logo','generatepress' ); ?></a></li>
-												<li><a href="https://docs.generatepress.com/article/sidebar-layout/" target="_blank"><?php _e( 'Sidebar Layout','generatepress' ); ?></a></li>
-												<li><a href="https://docs.generatepress.com/article/container-width/" target="_blank"><?php _e( 'Container Width','generatepress' ); ?></a></li>
-												<li><a href="https://docs.generatepress.com/article/navigation-location/" target="_blank"><?php _e( 'Navigation Location','generatepress' ); ?></a></li>
-												<li><a href="https://docs.generatepress.com/article/footer-widgets/" target="_blank"><?php _e( 'Footer Widgets','generatepress' ); ?></a></li>
+												<li><a href="https://docs.generatepress.com/article/adding-header-logo/" target="_blank"><?php _e( 'Adding a Logo', 'generatepress' ); ?></a></li>
+												<li><a href="https://docs.generatepress.com/article/sidebar-layout/" target="_blank"><?php _e( 'Sidebar Layout', 'generatepress' ); ?></a></li>
+												<li><a href="https://docs.generatepress.com/article/container-width/" target="_blank"><?php _e( 'Container Width', 'generatepress' ); ?></a></li>
+												<li><a href="https://docs.generatepress.com/article/navigation-location/" target="_blank"><?php _e( 'Navigation Location', 'generatepress' ); ?></a></li>
+												<li><a href="https://docs.generatepress.com/article/footer-widgets/" target="_blank"><?php _e( 'Footer Widgets', 'generatepress' ); ?></a></li>
 											</ul>
 										</div>
 									</div>
 								<?php endif; ?>
+
 								<div class="postbox generate-metabox" id="gen-delete">
-									<h3 class="hndle"><?php _e('Delete Customizer Settings','generatepress');?></h3>
+									<h3 class="hndle"><?php _e( 'Delete Customizer Settings', 'generatepress' );?></h3>
 									<div class="inside">
 										<p><?php printf( __( '<strong>Warning:</strong> Deleting your <a href="%1$s">Customizer</a> settings can not be undone.','generatepress' ), admin_url('customize.php') ); ?></p>
 										<p><?php _e( 'Consider using our Import/Export add-on to export your settings before deleting them.','generatepress');?></p>
@@ -207,7 +230,14 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 											</p>
 
 										</form>
-										<?php do_action('generate_delete_settings_form');?>
+										<?php
+										/**
+										 * generate_delete_settings_form hook.
+										 *
+										 * @since 0.1
+										 */
+										 do_action( 'generate_delete_settings_form' );
+										 ?>
 									</div>
 								</div>
 							</div>
@@ -263,7 +293,7 @@ if ( ! function_exists( 'generate_admin_errors' ) ) {
 	 */
 	function generate_admin_errors() {
 		$screen = get_current_screen();
-		
+
 		if ( 'appearance_page_generate-options' !== $screen->base ) {
 			return;
 		}
