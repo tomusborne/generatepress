@@ -414,7 +414,7 @@ input[type="file"] {
 	speak: none;
 }
 .menu-toggle .mobile-menu {
-	margin-right: 5px;
+	padding-left: 3px;
 }
 .menu-toggle .mobile-menu:empty {
 	display: none;
