@@ -101,18 +101,19 @@ Release date: TBA
 * New: All jQuery replaced with vanilla javascript
 * New: System stack font set to default
 * New: H6 typography options
-* New: Font Awesome library option
+* New: Option to turn on Font Awesome essentials
 * New: Font Awesome set to essentials by default
 * New: Retina logo option
 * New: Cache dynamic CSS
-* New: Layout meta box with all meta box options
+* New: Option to enable/disable dynamic CSS caching
+* New: Merge all separate metaboxes into one master metabox
 * New: generate_dashboard_page_capability filter
 * New: generate_dashboard_inside_container hook
 * New: generate_dashboard_after_header hook
 * New: generate_after_primary_content_area hook
 * New: generate_show_post_navigation filter
 * Tweak: PHP performance profiled and improved
-* Tweak: generate_sidebars hook removed
+* Tweak: generate_sidebars hook removed ** Update your child themes *
 * Tweak: Style select inputs the same as other inputs
 * Tweak: Archive titles same font size as other h1 elements
 * Tweak: Add accessibility to read more links
