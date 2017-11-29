@@ -146,6 +146,10 @@ footer.entry-meta .posted-on:before {
 	right: auto;
 }
 
+.rtl .navigation-search {
+	left: auto;
+	right: -999999px;
+}
 @media (max-width: 768px) {
 	.main-navigation .main-nav li {
 		text-align: right !important;
