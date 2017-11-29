@@ -100,6 +100,7 @@ if ( ! function_exists( 'generate_get_color_defaults' ) ) {
 			'h3_color' => '',
 			'h4_color' => '',
 			'h5_color' => '',
+			'h6_color' => '',
 			'sidebar_widget_background_color' => '#ffffff',
 			'sidebar_widget_text_color' => '',
 			'sidebar_widget_link_color' => '',

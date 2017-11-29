@@ -220,6 +220,10 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->set_selector( 'h5' );
 		$css->add_property( 'color', esc_attr( $generate_settings[ 'h5_color' ] ) );
 
+		// H6 color
+		$css->set_selector( 'h6' );
+		$css->add_property( 'color', esc_attr( $generate_settings[ 'h6_color' ] ) );
+
 		// Sidebar widget
 		$css->set_selector( '.sidebar .widget' );
 		$css->add_property( 'color', esc_attr( $generate_settings[ 'sidebar_widget_text_color' ] ) );
