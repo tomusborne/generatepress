@@ -161,8 +161,9 @@ footer.entry-meta .posted-on:before {
 		text-align: right !important;
 	}
 	.rtl .mobile-bar-items {
-        float: left !important;
-        position: relative;
+        position: absolute;
+		left: 0;
+		top: 0;
     }
 }
 
