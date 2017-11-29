@@ -762,16 +762,16 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle {
 	margin: 0;
 }
 
-.widget-area .main-navigation ul ul,
-.widget-area .secondary-navigation ul ul {
+.dropdown-hover .widget-area .main-navigation ul li:hover ul,
+.dropdown-hover .widget-area .secondary-navigation ul li:hover ul {
 	top: 0;
 	left: 100%;
 	width:220px;
 }
 
-.dropdown-hover.both-right .widget-area .main-navigation ul ul,
-.dropdown-hover.right-sidebar .widget-area .main-navigation ul ul,
-.dropdown-hover.both-sidebars .widget-area .inside-right-sidebar .main-navigation ul ul {
+.dropdown-hover.both-right .widget-area .main-navigation ul li:hover ul,
+.dropdown-hover.right-sidebar .widget-area .main-navigation ul li:hover ul,
+.dropdown-hover.both-sidebars .widget-area .inside-right-sidebar .main-navigation ul li:hover ul {
 	right: 100%;
 	left: auto;
 }
