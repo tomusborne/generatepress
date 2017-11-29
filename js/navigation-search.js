@@ -27,15 +27,16 @@
 				item.querySelector( 'i' ).classList.remove( 'fa-close' );
 				item.querySelector( 'i' ).classList.add( 'fa-search' );
 				item.classList.remove( 'active' );
+				document.activeElement.blur();
 				item.classList.remove( 'sfHover' );
 				form.classList.remove( 'nav-search-active' );
 				item.style.float = '';
 			} else {
 				item.classList.add( 'active' );
 				form.classList.add( 'nav-search-active' );
-				form.querySelector( 'input' ).focus();
+				form.querySelector( '.search-field' ).focus();
 
-				// Set a delay to stop conflict with toggleFocus() in dropdown.js
+				// Set a delay to stop conflict with toggleFocus() in a11y.js
 				setTimeout( function() {
 					item.classList.add( 'sfHover' );
 				}, 50 );
