@@ -236,7 +236,8 @@ function generate_save_layout_meta_data( $post_id ) {
 	$footer_widget_key   = '_generate-footer-widget-meta';
 	$footer_widget_value = filter_input( INPUT_POST, $footer_widget_key, FILTER_SANITIZE_STRING );
 
-	if ( $footer_widget_value ) {
+	// Check for empty string to allow 0 as a value.
+	if ( '' !== $footer_widget_value ) {
 		update_post_meta( $post_id, $footer_widget_key, $footer_widget_value );
 	} else {
 		delete_post_meta( $post_id, $footer_widget_key );
