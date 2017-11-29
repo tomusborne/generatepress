@@ -1884,7 +1884,7 @@ button,
 input,
 select,
 textarea {
-    font-family: "Open Sans", sans-serif;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-weight: normal;
     text-transform: none;
     font-size: 17px;
