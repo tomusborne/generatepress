@@ -150,6 +150,12 @@ footer.entry-meta .posted-on:before {
 	left: auto;
 	right: -999999px;
 }
+
+.rtl .footer-bar .widget_nav_menu li {
+    direction: rtl;
+    float: right;
+}
+
 @media (max-width: 768px) {
 	.main-navigation .main-nav li {
 		text-align: right !important;
