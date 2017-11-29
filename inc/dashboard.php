@@ -150,7 +150,7 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 
 								if ( ! defined( 'GP_PREMIUM_VERSION' ) ) : ?>
 									<div class="postbox generate-metabox">
-										<h3 class="hndle"><?php _e( 'Add-ons', 'generatepress' ); ?></h3>
+										<h3 class="hndle"><?php _e( 'Premium Modules', 'generatepress' ); ?></h3>
 										<div class="inside" style="margin:0;padding:0;">
 											<div class="premium-addons">
 												<?php foreach( $modules as $module => $info ) { ?>

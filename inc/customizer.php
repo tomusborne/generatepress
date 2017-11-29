@@ -66,7 +66,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			$wp_customize->add_section(
 				new GeneratePress_Upsell_Section( $wp_customize, 'generatepress_upsell_section',
 					array(
-						'pro_text' => __( 'Pro Modules Available', 'generatepress' ),
+						'pro_text' => __( 'Premium Modules Available', 'generatepress' ),
 						'pro_url' => generate_get_premium_url( 'https://generatepress.com/premium' ),
 						'capability' => 'edit_theme_options',
 						'priority' => 0,
