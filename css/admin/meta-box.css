@@ -69,3 +69,9 @@
 .generate-meta-box-menu li {
 	display: inline-block;
 }
+
+#side-sortables #generate-meta-box-container .generate-meta-box-menu,
+#side-sortables #generate-meta-box-container .generate-meta-box-content  {
+    float: none;
+    width: 100%;
+}
