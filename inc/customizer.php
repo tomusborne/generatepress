@@ -9,8 +9,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+add_action( 'customize_register', 'generate_set_customizer_helpers', 1 );
+/**
+ * Set up helpers early so they're always available.
+ * Other modules might need access to them at some point.
+ *
+ * @since 2.0
+ */
+function generate_set_customizer_helpers( $wp_customize ) {
+	// Load helpers
+	require_once trailingslashit( get_template_directory() ) . 'inc/customizer/customizer-helpers.php';
+}
+
 if ( ! function_exists( 'generate_customize_register' ) ) {
-	add_action( 'customize_register', 'generate_customize_register', 5 );
+	add_action( 'customize_register', 'generate_customize_register' );
 	/**
 	 * Add our base options to the Customizer.
 	 *
@@ -19,9 +31,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 	function generate_customize_register( $wp_customize ) {
 		// Get our default values
 		$defaults = generate_get_defaults();
-
-		// Load helpers
-		require trailingslashit( get_template_directory() ) . 'inc/customizer/customizer-helpers.php';
 
 		if ( $wp_customize->get_control( 'blogdescription' ) ) {
 			$wp_customize->get_control('blogdescription')->priority = 3;
