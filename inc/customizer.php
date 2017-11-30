@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! function_exists( 'generate_customize_register' ) ) {
-	add_action( 'customize_register', 'generate_customize_register' );
+	add_action( 'customize_register', 'generate_customize_register', 5 );
 	/**
 	 * Add our base options to the Customizer.
 	 *
