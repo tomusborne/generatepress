@@ -32,6 +32,9 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 		// Get our default values
 		$defaults = generate_get_defaults();
 
+		// Load helpers
+		require_once trailingslashit( get_template_directory() ) . 'inc/customizer/customizer-helpers.php';
+
 		if ( $wp_customize->get_control( 'blogdescription' ) ) {
 			$wp_customize->get_control('blogdescription')->priority = 3;
 			$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';

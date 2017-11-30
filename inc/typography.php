@@ -125,6 +125,9 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 			return;
 		}
 
+		// Load helpers
+		require_once trailingslashit( get_template_directory() ) . 'inc/customizer/customizer-helpers.php';
+
 		$defaults = generate_get_default_fonts();
 
 		if ( method_exists( $wp_customize,'register_control_type' ) ) {
