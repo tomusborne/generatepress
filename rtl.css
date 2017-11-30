@@ -151,6 +151,10 @@ footer.entry-meta .posted-on:before {
 	right: -999999px;
 }
 
+.rtl .navigation-search.nav-search-active {
+    right: 0;
+}
+
 .rtl .footer-bar .widget_nav_menu li {
     direction: rtl;
     float: right;
