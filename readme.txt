@@ -134,6 +134,8 @@ Release date: TBA
 * Tweak: Remove existing separate meta boxes
 * Tweak: File structure completely re-organized
 * Tweak: Code re-written to adhere to WordPress coding standards
+* Tweak: Fix mobile nav search position on RTL sites
+* Tweak: Make footer bar menu widget RTL compatible
 * Fix: Button text color in content when content link is set
 * Fix: Left aligned footer bar alignment
 * Fix: Spacing when sticky nav is activated
