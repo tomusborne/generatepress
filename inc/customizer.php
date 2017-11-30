@@ -99,7 +99,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			'generate_settings[hide_title]',
 			array(
 				'type' => 'checkbox',
-				'label' => __('Hide site title','generatepress'),
+				'label' => __( 'Hide site title', 'generatepress' ),
 				'section' => 'title_tagline',
 				'priority' => 2
 			)
@@ -119,7 +119,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			'generate_settings[hide_tagline]',
 			array(
 				'type' => 'checkbox',
-				'label' => __('Hide site tagline','generatepress'),
+				'label' => __( 'Hide site tagline', 'generatepress' ),
 				'section' => 'title_tagline',
 				'priority' => 4
 			)
@@ -141,7 +141,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					$wp_customize,
 					'generate_settings[logo]',
 					array(
-						'label' => __('Logo','generatepress'),
+						'label' => __( 'Logo', 'generatepress' ),
 						'section' => 'title_tagline',
 						'settings' => 'generate_settings[logo]'
 					)
@@ -171,85 +171,122 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			)
 		);
 
-		if ( $wp_customize->get_panel( 'generate_colors_panel' ) ) {
-			$wp_customize->add_section(
-				'body_section',
+		$wp_customize->add_section(
+			'body_section',
+			array(
+				'title' => $wp_customize->get_panel( 'generate_colors_panel' ) ? __( 'Body', 'generatepress' ) : __( 'Colors', 'generatepress' ),
+				'capability' => 'edit_theme_options',
+				'priority' => 30,
+				'panel' => $wp_customize->get_panel( 'generate_colors_panel' ) ? 'generate_colors_panel' : false,
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[background_color]', array(
+				'default' => $defaults['background_color'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_hex_color',
+				'transport' => 'postMessage',
+			)
+		);
+
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				'generate_settings[background_color]',
 				array(
-					'title' => __( 'Body', 'generatepress' ),
-					'capability' => 'edit_theme_options',
-					'priority' => 30,
-					'panel' => 'generate_colors_panel'
+					'label' => __( 'Background Color', 'generatepress' ),
+					'section' => 'body_section',
+					'settings' => 'generate_settings[background_color]'
 				)
-			);
-		} else {
-			$wp_customize->add_section(
-				'body_section',
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[text_color]', array(
+				'default' => $defaults['text_color'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_hex_color',
+				'transport' => 'postMessage',
+			)
+		);
+
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				'generate_settings[text_color]',
 				array(
-					'title' => __( 'Colors', 'generatepress' ),
-					'capability' => 'edit_theme_options',
-					'priority' => 30,
+					'label' => __( 'Text Color', 'generatepress' ),
+					'section' => 'body_section',
+					'settings' => 'generate_settings[text_color]'
 				)
-			);
-		}
-
-		// Add color settings
-		$body_colors = array();
-		$body_colors[] = array(
-			'slug'=>'background_color',
-			'default' => $defaults['background_color'],
-			'label' => __('Background Color', 'generatepress'),
-			'transport' => 'postMessage'
-		);
-		$body_colors[] = array(
-			'slug'=>'text_color',
-			'default' => $defaults['text_color'],
-			'label' => __('Text Color', 'generatepress'),
-			'transport' => 'postMessage'
-		);
-		$body_colors[] = array(
-			'slug'=>'link_color',
-			'default' => $defaults['link_color'],
-			'label' => __('Link Color', 'generatepress'),
-			'transport' => 'postMessage'
-		);
-		$body_colors[] = array(
-			'slug'=>'link_color_hover',
-			'default' => $defaults['link_color_hover'],
-			'label' => __('Link Color Hover', 'generatepress'),
-			'transport' => 'postMessage'
-		);
-		$body_colors[] = array(
-			'slug'=>'link_color_visited',
-			'default' => $defaults['link_color_visited'],
-			'label' => __('Link Color Visited', 'generatepress'),
-			'transport' => 'refresh'
+			)
 		);
 
-		foreach( $body_colors as $color ) {
-			$wp_customize->add_setting(
-				'generate_settings[' . $color['slug'] . ']', array(
-					'default' => $color['default'],
-					'type' => 'option',
-					'capability' => 'edit_theme_options',
-					'sanitize_callback' => 'generate_sanitize_hex_color',
-					'transport' => $color['transport']
+		$wp_customize->add_setting(
+			'generate_settings[link_color]', array(
+				'default' => $defaults['link_color'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_hex_color',
+				'transport' => 'postMessage',
+			)
+		);
+
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				'generate_settings[link_color]',
+				array(
+					'label' => __( 'Link Color', 'generatepress' ),
+					'section' => 'body_section',
+					'settings' => 'generate_settings[link_color]'
 				)
-			);
-			$wp_customize->add_control(
-				new WP_Customize_Color_Control(
-					$wp_customize,
-					$color['slug'],
-					array(
-						'label' => $color['label'],
-						'section' => 'body_section',
-						'settings' => 'generate_settings[' . $color['slug'] . ']'
-					)
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[link_color_hover]', array(
+				'default' => $defaults['link_color_hover'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_hex_color',
+				'transport' => 'postMessage',
+			)
+		);
+
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				'generate_settings[link_color_hover]',
+				array(
+					'label' => __( 'Link Color Hover', 'generatepress' ),
+					'section' => 'body_section',
+					'settings' => 'generate_settings[link_color_hover]'
 				)
-			);
-		}
+			)
+		);
 
-		if ( !function_exists( 'generate_colors_customize_register' ) && ! defined( 'GP_PREMIUM_VERSION' ) ) {
+		$wp_customize->add_setting(
+			'generate_settings[link_color_visited]', array(
+				'default' => $defaults['link_color_visited'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_hex_color',
+				'transport' => 'refresh',
+			)
+		);
 
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				'generate_settings[link_color_visited]',
+				array(
+					'label' => __( 'Link Color Visited', 'generatepress' ),
+					'section' => 'body_section',
+					'settings' => 'generate_settings[link_color_visited]'
+				)
+			)
+		);
+
+		if ( ! function_exists( 'generate_colors_customize_register' ) && ! defined( 'GP_PREMIUM_VERSION' ) ) {
 			$wp_customize->add_control(
 				new Generate_Customize_Misc_Control(
 					$wp_customize,
@@ -270,11 +307,8 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 		if ( class_exists( 'WP_Customize_Panel' ) ) {
 			if ( ! $wp_customize->get_panel( 'generate_layout_panel' ) ) {
 				$wp_customize->add_panel( 'generate_layout_panel', array(
-					'priority'       => 25,
-					'capability'     => 'edit_theme_options',
-					'theme_supports' => '',
-					'title'          => __( 'Layout','generatepress' ),
-					'description'    => '',
+					'priority' => 25,
+					'title' => __( 'Layout', 'generatepress' ),
 				) );
 			}
 		}
@@ -284,7 +318,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			'generate_layout_container',
 			array(
 				'title' => __( 'Container', 'generatepress' ),
-				'capability' => 'edit_theme_options',
 				'priority' => 10,
 				'panel' => 'generate_layout_panel'
 			)
@@ -331,7 +364,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			'generate_top_bar',
 			array(
 				'title' => __( 'Top Bar', 'generatepress' ),
-				'capability' => 'edit_theme_options',
 				'priority' => 15,
 				'panel' => 'generate_layout_panel',
 			)
@@ -427,7 +459,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			'generate_layout_header',
 			array(
 				'title' => __( 'Header', 'generatepress' ),
-				'capability' => 'edit_theme_options',
 				'priority' => 20,
 				'panel' => 'generate_layout_panel'
 			)
@@ -519,7 +550,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			'generate_layout_navigation',
 			array(
 				'title' => __( 'Primary Navigation', 'generatepress' ),
-				'capability' => 'edit_theme_options',
 				'priority' => 30,
 				'panel' => 'generate_layout_panel'
 			)
@@ -723,7 +753,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			'generate_layout_sidebars',
 			array(
 				'title' => __( 'Sidebars', 'generatepress' ),
-				'capability' => 'edit_theme_options',
 				'priority' => 40,
 				'panel' => 'generate_layout_panel'
 			)
@@ -823,7 +852,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			'generate_layout_footer',
 			array(
 				'title' => __( 'Footer', 'generatepress' ),
-				'capability' => 'edit_theme_options',
 				'priority' => 50,
 				'panel' => 'generate_layout_panel'
 			)
@@ -973,7 +1001,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			'generate_blog_section',
 			array(
 				'title' => __( 'Blog', 'generatepress' ),
-				'capability' => 'edit_theme_options',
 				'priority' => 55,
 				'panel' => 'generate_layout_panel'
 			)
@@ -1028,8 +1055,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			'generate_general_section',
 			array(
 				'title' => __( 'General', 'generatepress' ),
-				'capability' => 'edit_theme_options',
-				'description' => '',
 				'priority' => 99
 			)
 		);
