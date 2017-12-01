@@ -101,7 +101,7 @@
 			if ( ( _this.closest( 'nav' ).classList.contains( 'toggled' ) || htmlEl.classList.contains( 'slide-opened' ) ) && ! body.classList.contains( 'dropdown-click' ) ) {
 				e.preventDefault();
 				var closestLi = _this.closest( 'li' );
-				
+
 				var dropdownToggle = closestLi.querySelector( '.dropdown-menu-toggle' );
 				if ( 'false' == dropdownToggle.getAttribute( 'aria-expanded' ) ) {
 					dropdownToggle.setAttribute( 'aria-expanded', 'true' );
