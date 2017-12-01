@@ -117,7 +117,7 @@ do_action( 'generate_before_comments' );
 
 	$fields = array(
 		'author' => '<label for="author" class="screen-reader-text">' . __( 'Name', 'generatepress' ) . '</label><input placeholder="' . __( 'Name', 'generatepress' ) . ' *" id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" />',
-		'email' => '<label for="email" class="screen-reader-text">' . __( 'Email', 'generatepress' ) . '</label><input placeholder="' . __( 'Email', 'generatepress' ) . ' *" id="email" name="email" type="text" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" />',
+		'email' => '<label for="email" class="screen-reader-text">' . __( 'Email', 'generatepress' ) . '</label><input placeholder="' . __( 'Email', 'generatepress' ) . ' *" id="email" name="email" type="email" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" />',
 		'url' => '<label for="url" class="screen-reader-text">' . __( 'Website', 'generatepress' ) . '</label><input placeholder="' . __( 'Website', 'generatepress' ) . '" id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" />',
 	);
 
