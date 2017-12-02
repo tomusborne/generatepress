@@ -91,6 +91,10 @@ By Eli Grey, http://eligrey.com
 License: Dedicated to the public domain.
 See https://github.com/eligrey/classList.js/blob/master/LICENSE.md
 
+= selectWoo =
+
+MIT License: https://github.com/woocommerce/selectWoo/blob/master/LICENSE.md
+
 == Changelog ==
 
 = 2.0 =
@@ -159,6 +163,8 @@ Release date: TBA
 * Deprecated: generate_color_scripts()
 * Deprecated: generate_typography_scripts()
 * Deprecated: generate_spacing_scripts()
+* Deprecated: generate_leave_reply
+* Deprecated: generate_cancel_reply
 
 = 1.4 =
 
