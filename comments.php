@@ -116,16 +116,26 @@ do_action( 'generate_before_comments' );
 	$commenter = wp_get_current_commenter();
 
 	$fields = array(
-		'author' => '<label for="author" class="screen-reader-text">' . __( 'Name', 'generatepress' ) . '</label><input placeholder="' . __( 'Name', 'generatepress' ) . ' *" id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" />',
-		'email' => '<label for="email" class="screen-reader-text">' . __( 'Email', 'generatepress' ) . '</label><input placeholder="' . __( 'Email', 'generatepress' ) . ' *" id="email" name="email" type="email" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" />',
-		'url' => '<label for="url" class="screen-reader-text">' . __( 'Website', 'generatepress' ) . '</label><input placeholder="' . __( 'Website', 'generatepress' ) . '" id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" />',
+		'author' => '<label for="author" class="screen-reader-text">' . esc_html__( 'Name', 'generatepress' ) . '</label><input placeholder="' . esc_attr__( 'Name', 'generatepress' ) . ' *" id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" />',
+		'email' => '<label for="email" class="screen-reader-text">' . esc_html__( 'Email', 'generatepress' ) . '</label><input placeholder="' . esc_attr__( 'Email', 'generatepress' ) . ' *" id="email" name="email" type="email" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" />',
+		'url' => '<label for="url" class="screen-reader-text">' . esc_html__( 'Website', 'generatepress' ) . '</label><input placeholder="' . esc_attr__( 'Website', 'generatepress' ) . '" id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" />',
 	);
 
 	$defaults = array(
 		'fields'		=> apply_filters( 'comment_form_default_fields', $fields ),
-		'comment_field' => '<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>',
-		'must_log_in' 	=> '<p class="must-log-in">' .  sprintf( __( 'You must be <a href="%1$s">logged in</a> to post a comment.','generatepress' ), wp_login_url( get_permalink() ) ) . '</p>',
-		'logged_in_as'	=> '<p class="logged-in-as">' . sprintf( __( 'Logged in as <a href="%1$s">%2$s</a>. <a href="%3$s" class="comment-logout" title="Log out of this account">Log out?</a>', 'generatepress' ), admin_url( 'profile.php' ), $user_identity, wp_logout_url( get_permalink() ) ) . '</p>',
+		'comment_field' => '<p class="comment-form-comment"><label for="comment" class="screen-reader-text">' . esc_html__( 'Comment', 'generatepress' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>',
+		'must_log_in' 	=> '<p class="must-log-in">' . sprintf(
+			/* translators: 1: Login URL */
+			__( 'You must be <a href="%1$s">logged in</a> to post a comment.', 'generatepress' ),
+			wp_login_url( get_permalink() )
+		) . '</p>',
+		'logged_in_as'	=> '<p class="logged-in-as">' . sprintf(
+			/* translators: 1: edit user link, 2: user name, 3: logout URL */
+			__( 'Logged in as <a href="%1$s">%2$s</a>. <a href="%3$s" class="comment-logout" title="Log out of this account">Log out?</a>', 'generatepress' ),
+			admin_url( 'profile.php' ),
+			$user_identity,
+			wp_logout_url( get_permalink() )
+		) . '</p>',
 		'comment_notes_before' => null,
 		'comment_notes_after'  => null,
 		'id_form'              => 'commentform',
