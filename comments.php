@@ -124,18 +124,6 @@ do_action( 'generate_before_comments' );
 	$defaults = array(
 		'fields'		=> apply_filters( 'comment_form_default_fields', $fields ),
 		'comment_field' => '<p class="comment-form-comment"><label for="comment" class="screen-reader-text">' . esc_html__( 'Comment', 'generatepress' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>',
-		'must_log_in' 	=> '<p class="must-log-in">' . sprintf(
-			/* translators: 1: Login URL */
-			__( 'You must be <a href="%1$s">logged in</a> to post a comment.', 'generatepress' ),
-			wp_login_url( get_permalink() )
-		) . '</p>',
-		'logged_in_as'	=> '<p class="logged-in-as">' . sprintf(
-			/* translators: 1: edit user link, 2: user name, 3: logout URL */
-			__( 'Logged in as <a href="%1$s">%2$s</a>. <a href="%3$s" class="comment-logout" title="Log out of this account">Log out?</a>', 'generatepress' ),
-			admin_url( 'profile.php' ),
-			$user_identity,
-			wp_logout_url( get_permalink() )
-		) . '</p>',
 		'comment_notes_before' => null,
 		'comment_notes_after'  => null,
 		'id_form'              => 'commentform',
