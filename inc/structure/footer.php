@@ -78,10 +78,10 @@ if ( ! function_exists( 'generate_add_footer_info' ) ) {
 		$copyright = sprintf( '<span class="copyright">&copy; %1$s</span> &bull; <a href="%2$s" target="_blank" itemprop="url">%3$s</a>',
 			date( 'Y' ),
 			esc_url( 'https://generatepress.com' ),
-			__( 'GeneratePress','generatepress' )
+			__( 'GeneratePress', 'generatepress' )
 		);
 
-		echo apply_filters( 'generate_copyright', $copyright );
+		echo apply_filters( 'generate_copyright', $copyright ); // WPCS: XSS ok.
 	}
 }
 
@@ -224,7 +224,7 @@ if ( ! function_exists( 'generate_back_to_top' ) ) {
 			return;
 		}
 
-		echo apply_filters( 'generate_back_to_top_output', sprintf(
+		echo apply_filters( 'generate_back_to_top_output', sprintf( // WPCS: XSS ok.
 			'<a title="%1$s" rel="nofollow" href="#" class="generate-back-to-top" style="opacity:0;visibility:hidden;" data-scroll-speed="%2$s" data-start-scroll="%3$s">
 				<i class="fa %4$s" aria-hidden="true"></i>
 				<span class="screen-reader-text">%5$s</span>
@@ -234,6 +234,6 @@ if ( ! function_exists( 'generate_back_to_top' ) ) {
 			absint( apply_filters( 'generate_back_to_top_start_scroll', 300 ) ),
 			esc_attr( apply_filters( 'generate_back_to_top_icon','fa-angle-up' ) ),
 			__( 'Scroll back to top','generatepress' )
-		));
+		) );
 	}
 }

@@ -32,7 +32,7 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 				?>
 				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
 					<?php do_action( 'generate_inside_mobile_menu' ); ?>
-					<span class="mobile-menu"><?php echo apply_filters( 'generate_mobile_menu_label', __( 'Menu', 'generatepress' ) ); ?></span>
+					<span class="mobile-menu"><?php echo apply_filters( 'generate_mobile_menu_label', __( 'Menu', 'generatepress' ) ); // WPCS: XSS ok. ?></span>
 				</button>
 				<?php
 				wp_nav_menu(
