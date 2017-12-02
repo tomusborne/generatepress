@@ -129,7 +129,6 @@ do_action( 'generate_before_comments' );
 		'id_form'              => 'commentform',
 		'id_submit'            => 'submit',
 		'title_reply'          => apply_filters( 'generate_leave_comment', __( 'Leave a Comment', 'generatepress' ) ),
-		'title_reply_to'       => apply_filters( 'generate_leave_reply', __( 'Leave a Reply to %s', 'generatepress' ) ),
 		'cancel_reply_link'    => apply_filters( 'generate_cancel_reply', __( 'Cancel reply', 'generatepress' ) ),
 		'label_submit'         => apply_filters( 'generate_post_comment', __( 'Post Comment', 'generatepress' ) ),
 	);
