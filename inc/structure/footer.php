@@ -85,6 +85,49 @@ if ( ! function_exists( 'generate_add_footer_info' ) ) {
 	}
 }
 
+/**
+ * Build our individual footer widgets.
+ * Displays a sample widget if no widget is found in the area.
+ *
+ * @since 2.0
+ *
+ * @param int $widget_width The width class of our widget.
+ * @param int $widget The ID of our widget.
+ */
+function generate_do_footer_widget( $widget_width, $widget ) {
+	$widget_width = apply_filters( "generate_footer_widget_{$widget}_width", $widget_width );
+	$tablet_widget_width = apply_filters( "generate_footer_widget_{$widget}_tablet_width", '50' );
+	?>
+	<div class="footer-widget-<?php echo absint( $widget ); ?> grid-parent grid-<?php echo absint( $widget_width ); ?> tablet-grid-<?php echo absint( $tablet_widget_width ); ?> mobile-grid-100">
+		<?php if ( ! dynamic_sidebar( 'footer-' . absint( $widget ) ) ) : ?>
+			<aside class="widget inner-padding widget_text">
+				<h4 class="widget-title"><?php esc_html_e( 'Footer Widget', 'generatepress' );?></h4>
+				<div class="textwidget">
+					<p>
+						<?php
+						printf( // WPCS: XSS ok.
+							/* translators: 1: admin URL */
+							__( 'Replace this widget content by going to <a href="%1$s"><strong>Appearance / Widgets</strong></a> and dragging widgets into this widget area.', 'generatepress' ),
+							esc_url( admin_url( 'widgets.php' ) )
+						);
+						?>
+					</p>
+					<p>
+						<?php
+						printf( // WPCS: XSS ok.
+							/* translators: 1: admin URL */
+							__( 'To remove or choose the number of footer widgets, go to <a href="%1$s"><strong>Appearance / Customize / Layout / Footer Widgets</strong></a>.', 'generatepress' ),
+							esc_url( admin_url( 'customize.php' ) )
+						);
+						?>
+					</p>
+				</div>
+			</aside>
+		<?php endif; ?>
+	</div>
+	<?php
+}
+
 if ( ! function_exists( 'generate_construct_footer_widgets' ) ) {
 	add_action( 'generate_footer', 'generate_construct_footer_widgets', 5 );
 	/**
@@ -123,75 +166,27 @@ if ( ! function_exists( 'generate_construct_footer_widgets' ) ) {
 			<div id="footer-widgets" class="site footer-widgets">
 				<div <?php generate_inside_footer_class(); ?>>
 					<div class="inside-footer-widgets">
-						<?php if ( $widgets >= 1 ) : ?>
-							<div class="footer-widget-1 grid-parent grid-<?php echo absint( apply_filters( 'generate_footer_widget_1_width', $widget_width ) ); ?> tablet-grid-<?php echo absint( apply_filters( 'generate_footer_widget_1_tablet_width', '50' ) ); ?> mobile-grid-100">
-								<?php if ( ! function_exists( 'dynamic_sidebar' ) || ! dynamic_sidebar( 'footer-1' ) ): ?>
-									<aside class="widget inner-padding widget_text">
-										<h2 class="widget-title"><?php _e( 'Footer Widget 1', 'generatepress' );?></h2>
-										<div class="textwidget">
-											<p><?php printf( __( 'Replace this widget content by going to <a href="%1$s"><strong>Appearance / Widgets</strong></a> and dragging widgets into this widget area.','generatepress' ), esc_url( admin_url( 'widgets.php' ) ) ); ?></p>
-											<p><?php printf( __( 'To remove or choose the number of footer widgets, go to <a href="%1$s"><strong>Appearance / Customize / Layout / Footer Widgets</strong></a>.','generatepress' ), esc_url( admin_url( 'customize.php' ) ) ); ?></p>
-										</div>
-									</aside>
-								<?php endif; ?>
-							</div>
-						<?php endif;
+						<?php
+						if ( $widgets >= 1 ) {
+							generate_do_footer_widget( $widget_width, 1 );
+						}
 
-						if ( $widgets >= 2 ) : ?>
-						<div class="footer-widget-2 grid-parent grid-<?php echo absint( apply_filters( 'generate_footer_widget_2_width', $widget_width ) ); ?> tablet-grid-<?php echo absint( apply_filters( 'generate_footer_widget_2_tablet_width', '50' ) ); ?> mobile-grid-100">
-							<?php if ( ! function_exists( 'dynamic_sidebar' ) || ! dynamic_sidebar( 'footer-2' ) ): ?>
-								<aside class="widget inner-padding widget_text">
-									<h2 class="widget-title"><?php _e( 'Footer Widget 2', 'generatepress' );?></h2>
-									<div class="textwidget">
-										<p><?php printf( __( 'Replace this widget content by going to <a href="%1$s"><strong>Appearance / Widgets</strong></a> and dragging widgets into this widget area.','generatepress' ), esc_url( admin_url( 'widgets.php' ) ) ); ?></p>
-										<p><?php printf( __( 'To remove or choose the number of footer widgets, go to <a href="%1$s"><strong>Appearance / Customize / Layout / Footer Widgets</strong></a>.','generatepress' ), esc_url( admin_url( 'customize.php' ) ) ); ?></p>
-									</div>
-								</aside>
-							<?php endif; ?>
-						</div>
-						<?php endif;
+						if ( $widgets >= 2 ) {
+							generate_do_footer_widget( $widget_width, 2 );
+						}
 
-						if ( $widgets >= 3 ) : ?>
-						<div class="footer-widget-3 grid-parent grid-<?php echo absint( apply_filters( 'generate_footer_widget_3_width', $widget_width ) ); ?> tablet-grid-<?php echo absint( apply_filters( 'generate_footer_widget_3_tablet_width', '50' ) ); ?> mobile-grid-100">
-							<?php if ( ! function_exists( 'dynamic_sidebar' ) || ! dynamic_sidebar( 'footer-3' ) ): ?>
-								<aside class="widget inner-padding widget_text">
-									<h2 class="widget-title"><?php _e( 'Footer Widget 3', 'generatepress' );?></h2>
-									<div class="textwidget">
-										<p><?php printf( __( 'Replace this widget content by going to <a href="%1$s"><strong>Appearance / Widgets</strong></a> and dragging widgets into this widget area.','generatepress' ), esc_url( admin_url( 'widgets.php' ) ) ); ?></p>
-										<p><?php printf( __( 'To remove or choose the number of footer widgets, go to <a href="%1$s"><strong>Appearance / Customize / Layout / Footer Widgets</strong></a>.','generatepress' ), esc_url( admin_url( 'customize.php' ) ) ); ?></p>
-									</div>
-								</aside>
-							<?php endif; ?>
-						</div>
-						<?php endif;
+						if ( $widgets >= 3 ) {
+							generate_do_footer_widget( $widget_width, 3 );
+						}
 
-						if ( $widgets >= 4 ) : ?>
-						<div class="footer-widget-4 grid-parent grid-<?php echo absint( apply_filters( 'generate_footer_widget_4_width', $widget_width ) ); ?> tablet-grid-<?php echo absint( apply_filters( 'generate_footer_widget_4_tablet_width', '50' ) ); ?> mobile-grid-100">
-							<?php if ( ! function_exists( 'dynamic_sidebar' ) || ! dynamic_sidebar( 'footer-4' ) ): ?>
-								<aside class="widget inner-padding widget_text">
-									<h2 class="widget-title"><?php _e( 'Footer Widget 4', 'generatepress' );?></h2>
-									<div class="textwidget">
-										<p><?php printf( __( 'Replace this widget content by going to <a href="%1$s"><strong>Appearance / Widgets</strong></a> and dragging widgets into this widget area.','generatepress' ), esc_url( admin_url( 'widgets.php' ) ) ); ?></p>
-										<p><?php printf( __( 'To remove or choose the number of footer widgets, go to <a href="%1$s"><strong>Appearance / Customize / Layout / Footer Widgets</strong></a>.','generatepress' ), esc_url( admin_url( 'customize.php' ) ) ); ?></p>
-									</div>
-								</aside>
-							<?php endif; ?>
-						</div>
-						<?php endif;
+						if ( $widgets >= 4 ) {
+							generate_do_footer_widget( $widget_width, 4 );
+						}
 
-						if ( $widgets >= 5 ) : ?>
-						<div class="footer-widget-5 grid-parent grid-<?php echo absint( apply_filters( 'generate_footer_widget_5_width', $widget_width ) ); ?> tablet-grid-<?php echo absint( apply_filters( 'generate_footer_widget_5_tablet_width', '50' ) ); ?> mobile-grid-100">
-							<?php if ( ! function_exists( 'dynamic_sidebar' ) || ! dynamic_sidebar( 'footer-5' ) ): ?>
-								<aside class="widget inner-padding widget_text">
-									<h2 class="widget-title"><?php _e( 'Footer Widget 5', 'generatepress' );?></h2>
-									<div class="textwidget">
-										<p><?php printf( __( 'Replace this widget content by going to <a href="%1$s"><strong>Appearance / Widgets</strong></a> and dragging widgets into this widget area.','generatepress' ), esc_url( admin_url( 'widgets.php' ) ) ); ?></p>
-										<p><?php printf( __( 'To remove or choose the number of footer widgets, go to <a href="%1$s"><strong>Appearance / Customize / Layout / Footer Widgets</strong></a>.','generatepress' ), esc_url( admin_url( 'customize.php' ) ) ); ?></p>
-									</div>
-								</aside>
-							<?php endif; ?>
-						</div>
-						<?php endif; ?>
+						if ( $widgets >= 5 ) {
+							generate_do_footer_widget( $widget_width, 5 );
+						}
+						?>
 					</div>
 				</div>
 			</div>
