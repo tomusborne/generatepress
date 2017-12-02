@@ -22,7 +22,7 @@ if ( ! function_exists( 'generate_comment' ) ) {
 
 		<li id="comment-<?php comment_ID(); ?>" <?php comment_class(); ?>>
 			<div class="comment-body">
-				<?php _e( 'Pingback:', 'generatepress' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( 'Edit', 'generatepress' ), '<span class="edit-link">', '</span>' ); ?>
+				<?php _e( 'Pingback:', 'generatepress' ); // WPCS: XSS OK. ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( 'Edit', 'generatepress' ), '<span class="edit-link">', '</span>' ); ?>
 			</div>
 
 		<?php else : ?>
@@ -39,7 +39,12 @@ if ( ! function_exists( 'generate_comment' ) ) {
 						<div class="entry-meta comment-metadata">
 							<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
 								<time datetime="<?php comment_time( 'c' ); ?>">
-									<?php printf( _x( '%1$s at %2$s', '1: date, 2: time', 'generatepress' ), get_comment_date(), get_comment_time() ); ?>
+									<?php printf( // WPCS: XSS OK.
+										/* translators: 1: date, 2: time */
+										_x( '%1$s at %2$s', '1: date, 2: time', 'generatepress' ),
+										get_comment_date(),
+										get_comment_time()
+									); ?>
 								</time>
 							</a>
 							<?php edit_comment_link( __( 'Edit', 'generatepress' ), '<span class="edit-link">| ', '</span>' ); ?>
@@ -56,7 +61,7 @@ if ( ! function_exists( 'generate_comment' ) ) {
 					</div><!-- .comment-author-info -->
 
 					<?php if ( '0' == $comment->comment_approved ) : ?>
-					<p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'generatepress' ); ?></p>
+						<p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'generatepress' ); // WPCS: XSS OK. ?></p>
 					<?php endif; ?>
 				</footer><!-- .comment-meta -->
 

@@ -42,22 +42,22 @@ if ( ! function_exists( 'generate_content_nav' ) ) {
 		$nav_class = ( is_single() ) ? 'post-navigation' : 'paging-navigation';
 		$category_specific = apply_filters( 'generate_category_post_navigation', false );
 		?>
-		<nav id="<?php echo esc_attr( $nav_id ); ?>" class="<?php echo $nav_class; ?>">
-			<span class="screen-reader-text"><?php _e( 'Post navigation', 'generatepress' ); ?></span>
+		<nav id="<?php echo esc_attr( $nav_id ); ?>" class="<?php echo esc_attr( $nav_class ); ?>">
+			<span class="screen-reader-text"><?php esc_html_e( 'Post navigation', 'generatepress' ); ?></span>
 
 			<?php if ( is_single() ) : // navigation links for single posts.
 
-				previous_post_link( '<div class="nav-previous"><span class="prev" title="' . __( 'Previous', 'generatepress' ) . '">%link</span></div>', '%title', $category_specific );
-				next_post_link( '<div class="nav-next"><span class="next" title="' . __( 'Next', 'generatepress' ) . '">%link</span></div>', '%title', $category_specific );
+				previous_post_link( '<div class="nav-previous"><span class="prev" title="' . esc_attr__( 'Previous', 'generatepress' ) . '">%link</span></div>', '%title', $category_specific );
+				next_post_link( '<div class="nav-next"><span class="next" title="' . esc_attr__( 'Next', 'generatepress' ) . '">%link</span></div>', '%title', $category_specific );
 
 			elseif ( is_home() || is_archive() || is_search() ) : // navigation links for home, archive, and search pages.
 
 				if ( get_next_posts_link() ) : ?>
-					<div class="nav-previous"><span class="prev" title="<?php _e( 'Previous', 'generatepress' );?>"><?php next_posts_link( __( 'Older posts', 'generatepress' ) ); ?></span></div>
+					<div class="nav-previous"><span class="prev" title="<?php esc_attr_e( 'Previous', 'generatepress' );?>"><?php next_posts_link( __( 'Older posts', 'generatepress' ) ); ?></span></div>
 				<?php endif;
 
 				if ( get_previous_posts_link() ) : ?>
-					<div class="nav-next"><span class="next" title="<?php _e( 'Next', 'generatepress' );?>"><?php previous_posts_link( __( 'Newer posts', 'generatepress' ) ); ?></span></div>
+					<div class="nav-next"><span class="next" title="<?php esc_attr_e( 'Next', 'generatepress' );?>"><?php previous_posts_link( __( 'Newer posts', 'generatepress' ) ); ?></span></div>
 				<?php endif;
 
 				if ( function_exists( 'the_posts_pagination' ) ) {
@@ -126,7 +126,7 @@ if ( ! function_exists( 'generate_posted_on' ) ) {
 
 		// If our date is enabled, show it.
 		if ( $date ) {
-			echo apply_filters( 'generate_post_date_output', sprintf( '<span class="posted-on">%1$s</span>',
+			echo apply_filters( 'generate_post_date_output', sprintf( '<span class="posted-on">%1$s</span>', // WPCS: XSS ok, sanitization ok.
 				sprintf( '<a href="%1$s" title="%2$s" rel="bookmark">%3$s</a>',
 					esc_url( get_permalink() ),
 					esc_attr( get_the_time() ),
@@ -137,10 +137,11 @@ if ( ! function_exists( 'generate_posted_on' ) ) {
 
 		// If our author is enabled, show it.
 		if ( $author ) {
-			echo apply_filters( 'generate_post_author_output', sprintf( ' <span class="byline">%1$s</span>',
+			echo apply_filters( 'generate_post_author_output', sprintf( ' <span class="byline">%1$s</span>', // WPCS: XSS ok, sanitization ok.
 				sprintf( '<span class="author vcard" itemtype="http://schema.org/Person" itemscope="itemscope" itemprop="author">%1$s <a class="url fn n" href="%2$s" title="%3$s" rel="author" itemprop="url"><span class="author-name" itemprop="name">%4$s</span></a></span>',
 					__( 'by','generatepress'),
 					esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
+					/* translators: 1: Author name */
 					esc_attr( sprintf( __( 'View all posts by %s', 'generatepress' ), get_the_author() ) ),
 					esc_html( get_the_author() )
 				)
@@ -162,16 +163,16 @@ if ( ! function_exists( 'generate_entry_meta' ) ) {
 
 		$categories_list = get_the_category_list( _x( ', ', 'Used between list items, there is a space after the comma.', 'generatepress' ) );
 		if ( $categories_list && $categories ) {
-			echo apply_filters( 'generate_category_list_output', sprintf( '<span class="cat-links"><span class="screen-reader-text">%1$s </span>%2$s</span>',
-				_x( 'Categories', 'Used before category names.', 'generatepress' ),
+			echo apply_filters( 'generate_category_list_output', sprintf( '<span class="cat-links"><span class="screen-reader-text">%1$s </span>%2$s</span>', // WPCS: XSS ok, sanitization ok.
+				esc_html_x( 'Categories', 'Used before category names.', 'generatepress' ),
 				$categories_list
 			) );
 		}
 
 		$tags_list = get_the_tag_list( '', _x( ', ', 'Used between list items, there is a space after the comma.', 'generatepress' ) );
 		if ( $tags_list && $tags ) {
-			echo apply_filters( 'generate_tag_list_output', sprintf( '<span class="tags-links"><span class="screen-reader-text">%1$s </span>%2$s</span>',
-				_x( 'Tags', 'Used before tag names.', 'generatepress' ),
+			echo apply_filters( 'generate_tag_list_output', sprintf( '<span class="tags-links"><span class="screen-reader-text">%1$s </span>%2$s</span>', // WPCS: XSS ok, sanitization ok.
+				esc_html_x( 'Tags', 'Used before tag names.', 'generatepress' ),
 				$tags_list
 			) );
 		}

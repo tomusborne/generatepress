@@ -29,10 +29,10 @@ if ( ! function_exists( 'generate_body_schema' ) ) {
 		$itemtype = ( is_search() ) ? 'SearchResultsPage' : $itemtype;
 
 		// Get the result
-		$result = apply_filters( 'generate_body_itemtype', $itemtype );
+		$result = esc_html( apply_filters( 'generate_body_itemtype', $itemtype ) );
 
 		// Return our HTML
-		echo "itemtype='http://schema.org/$result' itemscope='itemscope'";
+		echo "itemtype='http://schema.org/$result' itemscope='itemscope'"; // WPCS: XSS ok, sanitization ok.
 	}
 }
 
@@ -44,10 +44,10 @@ if ( ! function_exists( 'generate_article_schema' ) ) {
 	 */
 	function generate_article_schema( $type = 'CreativeWork' ) {
 		// Get the itemtype
-		$itemtype = apply_filters( 'generate_article_itemtype', $type );
+		$itemtype = esc_html( apply_filters( 'generate_article_itemtype', $type ) );
 
 		// Print the results
-		echo "itemtype='http://schema.org/$itemtype' itemscope='itemscope'";
+		echo "itemtype='http://schema.org/$itemtype' itemscope='itemscope'"; // WPCS: XSS ok, sanitization ok.
 	}
 }
 

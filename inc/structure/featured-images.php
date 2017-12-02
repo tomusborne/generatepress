@@ -22,7 +22,7 @@ if ( ! function_exists( 'generate_post_image' ) ) {
 
 		// If we're not on any single post/page or the 404 template, we must be showing excerpts.
 		if ( ! is_singular() && ! is_404() ) {
-			echo apply_filters( 'generate_featured_image_output', sprintf(
+			echo apply_filters( 'generate_featured_image_output', sprintf( // WPCS: XSS ok.
 				'<div class="post-image">
 					<a href="%1$s">
 						%2$s
@@ -37,7 +37,7 @@ if ( ! function_exists( 'generate_post_image' ) ) {
 						'alt' => the_title_attribute( 'echo=0' ),
 					)
 				)
-			));
+			) );
 		}
 	}
 }

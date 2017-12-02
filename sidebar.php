@@ -43,7 +43,7 @@ if ( function_exists( 'generate_secondary_nav_get_defaults' ) ) {
 				</aside>
 
 				<aside id="archives" class="widget">
-					<h2 class="widget-title"><?php _e( 'Archives', 'generatepress' ); ?></h2>
+					<h2 class="widget-title"><?php esc_html_e( 'Archives', 'generatepress' ); ?></h2>
 					<ul>
 						<?php wp_get_archives( array( 'type' => 'monthly' ) ); ?>
 					</ul>

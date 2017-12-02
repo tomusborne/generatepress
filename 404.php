@@ -36,7 +36,7 @@ get_header(); ?>
 				?>
 
 				<header class="entry-header">
-					<h1 class="entry-title" itemprop="headline"><?php echo apply_filters( 'generate_404_title', __( 'Oops! That page can&rsquo;t be found.', 'generatepress' ) ); ?></h1>
+					<h1 class="entry-title" itemprop="headline"><?php echo apply_filters( 'generate_404_title', __( 'Oops! That page can&rsquo;t be found.', 'generatepress' ) ); // WPCS: XSS OK. ?></h1>
 				</header><!-- .entry-header -->
 
 				<?php
@@ -52,7 +52,7 @@ get_header(); ?>
 
 				<div class="entry-content" itemprop="text">
 					<?php
-					echo '<p>' . apply_filters( 'generate_404_text', __( 'It looks like nothing was found at this location. Maybe try searching?', 'generatepress' ) ) . '</p>';
+					echo '<p>' . apply_filters( 'generate_404_text', __( 'It looks like nothing was found at this location. Maybe try searching?', 'generatepress' ) ) . '</p>'; // WPCS: XSS OK.
 
 					get_search_form();
 					?>

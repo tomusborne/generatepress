@@ -24,7 +24,15 @@ get_header(); ?>
 			if ( have_posts() ) : ?>
 
 				<header class="page-header">
-					<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'generatepress' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+					<h1 class="page-title">
+						<?php
+						printf( // WPCS: XSS ok.
+							/* translators: 1: Search query name */
+							__( 'Search Results for: %s', 'generatepress' ),
+							'<span>' . get_search_query() . '</span>'
+						);
+						?>
+					</h1>
 				</header><!-- .page-header -->
 
 				<?php while ( have_posts() ) : the_post();

@@ -18,7 +18,7 @@ if ( ! function_exists( 'generate_right_sidebar_class' ) ) {
 	 */
 	function generate_right_sidebar_class( $class = '' ) {
 		// Separates classes with a single space, collates classes for post DIV
-		echo 'class="' . join( ' ', generate_get_right_sidebar_class( $class ) ) . '"';
+		echo 'class="' . join( ' ', generate_get_right_sidebar_class( $class ) ) . '"'; // WPCS: XSS ok, sanitization ok.
 	}
 }
 
@@ -55,7 +55,7 @@ if ( ! function_exists( 'generate_left_sidebar_class' ) ) {
 	 */
 	function generate_left_sidebar_class( $class = '' ) {
 		// Separates classes with a single space, collates classes for post DIV
-		echo 'class="' . join( ' ', generate_get_left_sidebar_class( $class ) ) . '"';
+		echo 'class="' . join( ' ', generate_get_left_sidebar_class( $class ) ) . '"'; // WPCS: XSS ok, sanitization ok.
 	}
 }
 
@@ -92,7 +92,7 @@ if ( ! function_exists( 'generate_content_class' ) ) {
 	 */
 	function generate_content_class( $class = '' ) {
 		// Separates classes with a single space, collates classes for post DIV
-		echo 'class="' . join( ' ', generate_get_content_class( $class ) ) . '"';
+		echo 'class="' . join( ' ', generate_get_content_class( $class ) ) . '"'; // WPCS: XSS ok, sanitization ok.
 	}
 }
 
@@ -129,7 +129,7 @@ if ( ! function_exists( 'generate_header_class' ) ) {
 	 */
 	function generate_header_class( $class = '' ) {
 		// Separates classes with a single space, collates classes for post DIV
-		echo 'class="' . join( ' ', generate_get_header_class( $class ) ) . '"';
+		echo 'class="' . join( ' ', generate_get_header_class( $class ) ) . '"'; // WPCS: XSS ok, sanitization ok.
 	}
 }
 
@@ -166,7 +166,7 @@ if ( ! function_exists( 'generate_inside_header_class' ) ) {
 	 */
 	function generate_inside_header_class( $class = '' ) {
 		// Separates classes with a single space, collates classes for post DIV
-		echo 'class="' . join( ' ', generate_get_inside_header_class( $class ) ) . '"';
+		echo 'class="' . join( ' ', generate_get_inside_header_class( $class ) ) . '"'; // WPCS: XSS ok, sanitization ok.
 	}
 }
 
@@ -203,7 +203,7 @@ if ( ! function_exists( 'generate_container_class' ) ) {
 	 */
 	function generate_container_class( $class = '' ) {
 		// Separates classes with a single space, collates classes for post DIV
-		echo 'class="' . join( ' ', generate_get_container_class( $class ) ) . '"';
+		echo 'class="' . join( ' ', generate_get_container_class( $class ) ) . '"'; // WPCS: XSS ok, sanitization ok.
 	}
 }
 
@@ -240,7 +240,7 @@ if ( ! function_exists( 'generate_navigation_class' ) ) {
 	 */
 	function generate_navigation_class( $class = '' ) {
 		// Separates classes with a single space, collates classes for post DIV
-		echo 'class="' . join( ' ', generate_get_navigation_class( $class ) ) . '"';
+		echo 'class="' . join( ' ', generate_get_navigation_class( $class ) ) . '"'; // WPCS: XSS ok, sanitization ok.
 	}
 }
 
@@ -289,7 +289,7 @@ if ( ! function_exists( 'generate_inside_navigation_class' ) ) {
 		$return = apply_filters('generate_inside_navigation_class', $classes, $class);
 
 		// Separates classes with a single space, collates classes for post DIV
-		echo 'class="' . join( ' ', $return ) . '"';
+		echo 'class="' . join( ' ', $return ) . '"'; // WPCS: XSS ok, sanitization ok.
 	}
 }
 
@@ -302,7 +302,7 @@ if ( ! function_exists( 'generate_menu_class' ) ) {
 	 */
 	function generate_menu_class( $class = '' ) {
 		// Separates classes with a single space, collates classes for post DIV
-		echo 'class="' . join( ' ', generate_get_menu_class( $class ) ) . '"';
+		echo 'class="' . join( ' ', generate_get_menu_class( $class ) ) . '"'; // WPCS: XSS ok, sanitization ok.
 	}
 }
 
@@ -339,7 +339,7 @@ if ( ! function_exists( 'generate_main_class' ) ) {
 	 */
 	function generate_main_class( $class = '' ) {
 		// Separates classes with a single space, collates classes for post DIV
-		echo 'class="' . join( ' ', generate_get_main_class( $class ) ) . '"';
+		echo 'class="' . join( ' ', generate_get_main_class( $class ) ) . '"'; // WPCS: XSS ok, sanitization ok.
 	}
 }
 
@@ -376,7 +376,7 @@ if ( ! function_exists( 'generate_footer_class' ) ) {
 	 */
 	function generate_footer_class( $class = '' ) {
 		// Separates classes with a single space, collates classes for post DIV
-		echo 'class="' . join( ' ', generate_get_footer_class( $class ) ) . '"';
+		echo 'class="' . join( ' ', generate_get_footer_class( $class ) ) . '"'; // WPCS: XSS ok, sanitization ok.
 	}
 }
 
@@ -425,7 +425,7 @@ if ( ! function_exists( 'generate_inside_footer_class' ) ) {
 		$return = apply_filters( 'generate_inside_footer_class', $classes, $class );
 
 		// Separates classes with a single space, collates classes for post DIV
-		echo 'class="' . join( ' ', $return ) . '"';
+		echo 'class="' . join( ' ', $return ) . '"'; // WPCS: XSS ok, sanitization ok.
 	}
 }
 
@@ -450,6 +450,6 @@ if ( ! function_exists( 'generate_top_bar_class' ) ) {
 		$return = apply_filters( 'generate_top_bar_class', $classes, $class );
 
 		// Separates classes with a single space, collates classes for post DIV
-		echo 'class="' . join( ' ', $return ) . '"';
+		echo 'class="' . join( ' ', $return ) . '"'; // WPCS: XSS ok, sanitization ok.
 	}
 }

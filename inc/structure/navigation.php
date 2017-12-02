@@ -80,7 +80,7 @@ if ( ! function_exists( 'generate_menu_fallback' ) ) {
 				wp_list_pages( $args );
 
 				if ( 'enable' == $generate_settings['nav_search'] ) {
-					echo '<li class="search-item" title="' . esc_attr_x( 'Search', 'submit button', 'generatepress' ) . '"><a href="#"><i class="fa fa-fw fa-search" aria-hidden="true"></i><span class="screen-reader-text">' . _x( 'Search', 'submit button', 'generatepress' ) . '</span></a></li>';
+					echo '<li class="search-item" title="' . esc_attr_x( 'Search', 'submit button', 'generatepress' ) . '"><a href="#"><i class="fa fa-fw fa-search" aria-hidden="true"></i><span class="screen-reader-text">' . esc_html_x( 'Search', 'submit button', 'generatepress' ) . '</span></a></li>';
 				}
 				?>
 			</ul>
@@ -251,7 +251,7 @@ if ( ! function_exists( 'generate_navigation_search' ) ) {
 			return;
 		}
 
-		echo apply_filters( 'generate_navigation_search_output', sprintf(
+		echo apply_filters( 'generate_navigation_search_output', sprintf( // WPCS: XSS ok, sanitization ok.
 			'<form method="get" class="search-form navigation-search" action="%1$s">
 				<input type="search" class="search-field" value="%2$s" name="s" title="%3$s" />
 			</form>',
@@ -316,10 +316,10 @@ if ( ! function_exists( 'generate_mobile_menu_search_icon' ) ) {
 		?>
 		<div class="mobile-bar-items">
 			<?php do_action( 'generate_inside_mobile_menu_bar' ); ?>
-			<span class="search-item" title="<?php esc_attr( _ex( 'Search', 'submit button', 'generatepress' ) ); ?>">
+			<span class="search-item" title="<?php echo esc_attr_x( 'Search', 'submit button', 'generatepress' ); ?>">
 				<a href="#">
 					<i class="fa fa-fw fa-search" aria-hidden="true"></i>
-					<span class="screen-reader-text"><?php esc_attr( _ex( 'Search', 'submit button', 'generatepress' ) ); ?></span>
+					<span class="screen-reader-text"><?php echo esc_attr_x( 'Search', 'submit button', 'generatepress' ); ?></span>
 				</a>
 			</span>
 		</div><!-- .mobile-bar-items -->
