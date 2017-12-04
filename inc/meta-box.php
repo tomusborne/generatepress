@@ -49,7 +49,7 @@ function generate_register_layout_meta_box() {
 		if ( 'attachment' !== $type ) {
 			add_meta_box (
 				'generate_layout_options_meta_box',
-				__( 'Layout', 'generatepress' ),
+				esc_html__( 'Layout', 'generatepress' ),
 				'generate_do_layout_meta_box',
 				$type,
 				'normal',
