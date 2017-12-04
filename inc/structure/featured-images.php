@@ -34,7 +34,6 @@ if ( ! function_exists( 'generate_post_image' ) ) {
 					apply_filters( 'generate_page_header_default_size', 'full' ),
 					array(
 						'itemprop' => 'image',
-						'alt' => the_title_attribute( 'echo=0' ),
 					)
 				)
 			) );
