@@ -189,7 +189,7 @@ function generate_do_layout_meta_box( $post ) {
 						</label>
 						<?php if ( ! defined( 'GP_PREMIUM_VERSION' ) ) : ?>
 							<span style="display:block;padding-top:1em;border-top:1px solid #EFEFEF;">
-								<a href="<?php echo generate_get_premium_url( 'https://generatepress.com/downloads/generate-disable-elements' ); // WPCS: XSS ok, sanitization ok. ?>" target="_blank"><?php esc_html_e( 'Add-on available', 'generatepress' ); ?></a>
+								<a href="<?php echo generate_get_premium_url( 'https://generatepress.com/downloads/generate-disable-elements' ); // WPCS: XSS ok, sanitization ok. ?>" target="_blank"><?php esc_html_e( 'Premium module available', 'generatepress' ); ?></a>
 							</span>
 						<?php endif; ?>
 					</div>
