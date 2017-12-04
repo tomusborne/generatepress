@@ -81,6 +81,7 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 							 ?>
 
 							<div class="form-metabox grid-70" style="padding-left: 0;">
+								<h2 style="height:0;margin:0;"><!-- admin notices below this element --></h2>
 								<form method="post" action="options.php">
 									<?php settings_fields( 'generate-settings-group' ); ?>
 									<?php do_settings_sections( 'generate-settings-group' ); ?>
