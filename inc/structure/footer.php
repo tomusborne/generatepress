@@ -224,11 +224,11 @@ if ( ! function_exists( 'generate_back_to_top' ) ) {
 				<i class="fa %4$s" aria-hidden="true"></i>
 				<span class="screen-reader-text">%5$s</span>
 			</a>',
-			esc_attr__( 'Scroll back to top','generatepress' ),
+			esc_attr__( 'Scroll back to top', 'generatepress' ),
 			absint( apply_filters( 'generate_back_to_top_scroll_speed', 400 ) ),
 			absint( apply_filters( 'generate_back_to_top_start_scroll', 300 ) ),
-			esc_attr( apply_filters( 'generate_back_to_top_icon','fa-angle-up' ) ),
-			__( 'Scroll back to top','generatepress' )
+			esc_attr( apply_filters( 'generate_back_to_top_icon', 'fa-angle-up' ) ),
+			esc_html__( 'Scroll back to top', 'generatepress' )
 		) );
 	}
 }
