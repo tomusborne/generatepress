@@ -140,6 +140,11 @@ Release date: TBA
 * Tweak: Code re-written to adhere to WordPress coding standards
 * Tweak: Fix mobile nav search position on RTL sites
 * Tweak: Make footer bar menu widget RTL compatible
+* Tweak: Set comment website field as URL input type
+* Tweak: Set comment email field as email input type
+* Tweak: Use WP defaults for comment must_log_in and logged_in_as messages
+* Tweak: Fix admin notice position in GP Dashboard
+* Tweak: Let WP figure out featured image alt attribute
 * Fix: Button text color in content when content link is set
 * Fix: Left aligned footer bar alignment
 * Fix: Spacing when sticky nav is activated
