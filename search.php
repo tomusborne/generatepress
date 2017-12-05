@@ -4,38 +4,69 @@
  *
  * @package GeneratePress
  */
- 
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
 get_header(); ?>
 
 	<section id="primary" <?php generate_content_class(); ?>>
 		<main id="main" <?php generate_main_class(); ?>>
-		<?php do_action('generate_before_main_content'); ?>
-		<?php if ( have_posts() ) : ?>
+			<?php
+			/**
+			 * generate_before_main_content hook.
+			 *
+			 * @since 0.1
+			 */
+			do_action( 'generate_before_main_content' );
 
-			<header class="page-header">
-				<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'generatepress' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
-			</header><!-- .page-header -->
+			if ( have_posts() ) : ?>
 
-			<?php /* Start the Loop */ ?>
-			<?php while ( have_posts() ) : the_post(); ?>
+				<header class="page-header">
+					<h1 class="page-title">
+						<?php
+						printf( // WPCS: XSS ok.
+							/* translators: 1: Search query name */
+							__( 'Search Results for: %s', 'generatepress' ),
+							'<span>' . get_search_query() . '</span>'
+						);
+						?>
+					</h1>
+				</header><!-- .page-header -->
 
-				<?php get_template_part( 'content', 'search' ); ?>
+				<?php while ( have_posts() ) : the_post();
 
-			<?php endwhile; ?>
+					get_template_part( 'content', 'search' );
 
-			<?php generate_content_nav( 'nav-below' ); ?>
+				endwhile;
 
-		<?php else : ?>
+				generate_content_nav( 'nav-below' );
 
-			<?php get_template_part( 'no-results', 'search' ); ?>
+			else :
 
-		<?php endif; ?>
-		<?php do_action('generate_after_main_content'); ?>
+				get_template_part( 'no-results', 'search' );
+
+			endif;
+
+			/**
+			 * generate_after_main_content hook.
+			 *
+			 * @since 0.1
+			 */
+			do_action( 'generate_after_main_content' );
+			?>
 		</main><!-- #main -->
 	</section><!-- #primary -->
 
-<?php do_action('generate_sidebars'); ?>
-<?php get_footer(); ?>
+	<?php
+	/**
+	 * generate_after_primary_content_area hook.
+	 *
+	 * @since 2.0
+	 */
+	 do_action( 'generate_after_primary_content_area' );
+
+	 generate_construct_sidebars();
+
+get_footer();

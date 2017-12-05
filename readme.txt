@@ -3,26 +3,26 @@ Contributors: edge22
 Donate link: https://generatepress.com/ongoing-development/
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options
+Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options, accessibility-ready
 Requires at least: 4.5
-Tested up to: 4.8
+Tested up to: 4.9
 Stable tag: 1.4
 
 GeneratePress is a fast, lightweight (less than 1MB zipped), mobile responsive WordPress theme built with speed, SEO and usability in mind.
 
 == Description ==
 
-GeneratePress is a fast, lightweight (less than 1MB zipped), mobile responsive WordPress theme built with speed, SEO and usability in mind. 
+GeneratePress is a fast, lightweight (less than 1MB zipped), mobile responsive WordPress theme built with speed, SEO and usability in mind.
 
-GP can serve as a solid base for any website, and works great with any of your favorite page builders. 
+GP can serve as a solid base for any website, and works great with any of your favorite page builders.
 
-With an emphasis on WordPress coding standards, we ensure GeneratePress is compatible with all well-coded plugins, including major ones like WooCommerce, WPML, BuddyPress and bbPress. 
+With an emphasis on WordPress coding standards, we ensure GeneratePress is compatible with all well-coded plugins, including major ones like WooCommerce, WPML, BuddyPress and bbPress.
 
-GeneratePress is device friendly (mobile and tablet), uses 100% valid HTML, is fully schema microdata integrated, is translated into over 20 languages by our amazing community and is cross browser compatible (IE9+). 
+GeneratePress is device friendly (mobile and tablet), uses 100% valid HTML, is fully schema microdata integrated, is translated into over 20 languages by our amazing community and is cross browser compatible (IE9+).
 
-Some of our features include 9 widget areas, 5 navigation positions, 5 sidebar layouts, dropdown menus (click or hover) and a back to top button. 
+Some of our features include 9 widget areas, 5 navigation positions, 5 sidebar layouts, dropdown menus (click or hover) and a back to top button.
 
-All our options use the native WordPress Customizer, meaning you can see every change you make instantly before pressing the publish button. 
+All our options use the native WordPress Customizer, meaning you can see every change you make instantly before pressing the publish button.
 
 Learn more and check out our [powerful premium version](https://generatepress.com).
 
@@ -91,7 +91,85 @@ By Eli Grey, http://eligrey.com
 License: Dedicated to the public domain.
 See https://github.com/eligrey/classList.js/blob/master/LICENSE.md
 
+= selectWoo =
+
+MIT License: https://github.com/woocommerce/selectWoo/blob/master/LICENSE.md
+
 == Changelog ==
+
+= 2.0 =
+
+Release date: TBA
+
+* New: Full web accessibility
+* New: All jQuery replaced with vanilla javascript
+* New: System stack font set to default
+* New: H6 typography options
+* New: Option to turn on Font Awesome essentials
+* New: Font Awesome set to essentials by default
+* New: Retina logo option
+* New: Cache dynamic CSS
+* New: Option to enable/disable dynamic CSS caching
+* New: Merge all separate metaboxes into one master metabox
+* New: generate_dashboard_page_capability filter
+* New: generate_dashboard_inside_container hook
+* New: generate_dashboard_after_header hook
+* New: generate_after_primary_content_area hook
+* New: generate_show_post_navigation filter
+* Tweak: PHP performance profiled and improved
+* Tweak: generate_sidebars hook removed ** Update your child themes *
+* Tweak: Style select inputs the same as other inputs
+* Tweak: Archive titles same font size as other h1 elements
+* Tweak: Add accessibility to read more links
+* Tweak: Add alt tag to featured images
+* Tweak: Remove title tag from featured images
+* Tweak: Make mobile menu keyboard accessible
+* Tweak: Make dropdown menu types keyboard accessible
+* Tweak: Make dropdown toggle arrow larger on mobile
+* Tweak: Load style.min.css instead of style.css
+* Tweak: Clean up minified Font Awesome file
+* Tweak: Comments title screen reader text set to h2
+* Tweak: Remove margin from last author info paragraph
+* Tweak: Adjust mobile menu icon position
+* Tweak: Load admin-specific files in the admin only
+* Tweak: Move skip to content link into hook and remove from header.php
+* Tweak: Add screen reader labels to comment form fields
+* Tweak: Change widget titles to h2 elements
+* Tweak: Remove existing separate meta boxes
+* Tweak: File structure completely re-organized
+* Tweak: Code re-written to adhere to WordPress coding standards
+* Tweak: Fix mobile nav search position on RTL sites
+* Tweak: Make footer bar menu widget RTL compatible
+* Tweak: Set comment website field as URL input type
+* Tweak: Set comment email field as email input type
+* Tweak: Use WP defaults for comment must_log_in and logged_in_as messages
+* Tweak: Fix admin notice position in GP Dashboard
+* Tweak: Let WP figure out featured image alt attribute
+* Fix: Button text color in content when content link is set
+* Fix: Left aligned footer bar alignment
+* Fix: Spacing when sticky nav is activated
+* Fix: Header alignment in RTL languages
+* Fix: Tablet/desktop grid bug
+* Fix: Header inner width live preview bug
+* Deprecated: generate_get_min_suffix()
+* Deprecated: generate_add_layout_meta_box()
+* Deprecated: generate_show_layout_meta_box()
+* Deprecated: generate_save_layout_meta()
+* Deprecated: generate_add_footer_widget_meta_box()
+* Deprecated: generate_show_footer_widget_meta_box()
+* Deprecated: generate_save_footer_widget_meta()
+* Deprecated: generate_add_page_builder_meta_box()
+* Deprecated: generate_show_page_builder_meta_box()
+* Deprecated: generate_save_page_builder_meta()
+* Deprecated: generate_add_de_meta_box()
+* Deprecated: generate_show_de_meta_box()
+* Deprecated: generate_save_de_meta()
+* Deprecated: generate_add_base_inline_css()
+* Deprecated: generate_color_scripts()
+* Deprecated: generate_typography_scripts()
+* Deprecated: generate_spacing_scripts()
+* Deprecated: generate_leave_reply
+* Deprecated: generate_cancel_reply
 
 = 1.4 =
 
@@ -110,35 +188,6 @@ Release date: August 14, 2017
 * Tweak: Style number inputs like others
 * Tweak: Style tel inputs like others
 * Tweak: Improve sidebar navigation mobile menu
-
-= 1.3.48 =
-
-Release date: June 9, 2017
-
-* Fix: Revert image caption width/padding change
-
-= 1.3.47 =
-
-Release date: June 9, 2017
-
-* Fix: Issue where category title was displaying above header in rare cases
-* New: generate_previous_link_text filter
-* New: generate_next_link_text filter
-* New: generate_before_comments hook
-* Tweak: Make single top bar widget full width if all alone
-* Tweak: Add support for WooCommerce 3.0
-* Tweak: Make logo URL accessible in generate_logo_output filter
-* Tweak: Make date accessible in generate_post_date_output filter
-* Tweak: Re-build range slider customizer control
-* Tweak: Set navigation search form to 100% height (instead of specifying line-height)
-* Tweak: Deprecate generate_additional_spacing() and generate_mobile_search_spacing_fallback_css()
-* Tweak: Deprecate generate_remove_caption_padding()
-* Tweak: Make upsell notices check for GP Premium instead of all individual add-ons
-* Tweak: Improve/adjust screen-reader-text class
-* Tweak: Add 1px transparent border to buttons to match inputs
-* Tweak: Set image caption padding to 0
-* Tweak: Remove bottom margin from single paragraph in top bar text widget
-* Tweak: Remove bottom margin from single paragraph in footer bar text widget
 
 = Earlier versions =
 

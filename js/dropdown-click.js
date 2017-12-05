@@ -31,6 +31,14 @@
 			// Add sfHover class to parent li
 			closestLi.classList.toggle( 'sfHover' );
 
+			// Set aria-expanded on arrow
+			var dropdownToggle = closestLi.querySelector( '.dropdown-menu-toggle' );
+			if ( 'false' == dropdownToggle.getAttribute( 'aria-expanded' ) ) {
+				dropdownToggle.setAttribute( 'aria-expanded', 'true' );
+			} else {
+				dropdownToggle.setAttribute( 'aria-expanded', 'false' );
+			}
+
 			// Open the sub-menu
 			if ( body.classList.contains( 'dropdown-click-menu-item' ) ) {
 				_this.parentNode.querySelector( '.sub-menu' ).classList.toggle( 'toggled-on' );

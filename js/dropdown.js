@@ -8,35 +8,6 @@
 			htmlEl = document.documentElement;
 
 		/**
-		 * Make menu items tab accessible when using the hover dropdown type
-		 */
-		var toggleFocus = function() {
-			if ( this.closest( 'nav' ).classList.contains( 'toggled' ) || this.closest( 'nav' ).classList.contains( 'slideout-navigation' ) ) {
-				return;
-			}
-
-			var self = this;
-
-			while ( -1 === self.className.indexOf( 'main-nav' ) ) {
-
-				if ( 'li' === self.tagName.toLowerCase() ) {
-					if ( -1 !== self.className.indexOf( 'sfHover' ) ) {
-						self.className = self.className.replace( ' sfHover', '' );
-					} else {
-						self.className += ' sfHover';
-					}
-				}
-
-				self = self.parentElement;
-			}
-		}
-
-		for ( var i = 0; i < navLinks.length; i++ ) {
-			navLinks[i].addEventListener( 'focus', toggleFocus );
-			navLinks[i].addEventListener( 'blur', toggleFocus );
-		}
-
-		/**
 		 * Make hover dropdown touch-friendly.
 		 */
 		if ( 'touchend' in document.documentElement ) {

@@ -138,7 +138,7 @@
 }
 
 .gp-masthead .gp-masthead-links {
-	float: right; 
+	float: right;
 }
 
 .gp-masthead-links a {
@@ -160,11 +160,6 @@
 	text-align: center;
 }
 
-.appearance_page_generate-options .notice {
-    max-width: 100%;
-    margin: 0;
-}
-
 .popular-articles ul {
     list-style-type: disc;
     margin-left: 20px;
@@ -180,7 +175,7 @@
 	.hide-on-desktop {
 		display: none;
 	}
-	
+
 	.grid-70 {
 		float: left;
 		width: 70%;
@@ -194,7 +189,7 @@
 		box-sizing: border-box;
 		padding-left: 20px;
 	}
-	
+
 	.grid-parent {
 		padding-left: 0;
 		padding-right: 0;

@@ -26,7 +26,7 @@
 						return ancestor;
 					}
 					ancestor = ancestor.parentElement;
-				} while ( ancestor !== null ); 
+				} while ( ancestor !== null );
 				return null;
 			};
 		}
@@ -59,6 +59,7 @@
 				parentContainer.classList.remove( 'toggled' );
 				htmlEl.classList.remove( 'mobile-menu-open' );
 				nav.setAttribute( 'aria-hidden', 'true' );
+				_this.setAttribute( 'aria-expanded', 'false' );
 
 				if ( body.classList.contains( 'dropdown-hover' ) ) {
 					var dropdownItems = nav.querySelectorAll( 'li.menu-item-has-children' );
@@ -70,6 +71,7 @@
 				parentContainer.classList.add( 'toggled' );
 				htmlEl.classList.add( 'mobile-menu-open' );
 				nav.setAttribute( 'aria-hidden', 'false' );
+				_this.setAttribute( 'aria-expanded', 'true' );
 
 				if ( body.classList.contains( 'dropdown-hover' ) ) {
 					var dropdownItems = nav.querySelectorAll( 'li.menu-item-has-children' );
@@ -99,6 +101,13 @@
 			if ( ( _this.closest( 'nav' ).classList.contains( 'toggled' ) || htmlEl.classList.contains( 'slide-opened' ) ) && ! body.classList.contains( 'dropdown-click' ) ) {
 				e.preventDefault();
 				var closestLi = _this.closest( 'li' );
+
+				var dropdownToggle = closestLi.querySelector( '.dropdown-menu-toggle' );
+				if ( 'false' == dropdownToggle.getAttribute( 'aria-expanded' ) ) {
+					dropdownToggle.setAttribute( 'aria-expanded', 'true' );
+				} else {
+					dropdownToggle.setAttribute( 'aria-expanded', 'false' );
+				}
 
 				var subMenu = closestLi.querySelector( '.sub-menu' );
 
@@ -133,6 +142,7 @@
 					if ( closestParent ) {
 						closestParent.classList.remove( 'toggled' );
 						htmlEl.classList.remove( 'mobile-menu-open' );
+						allNavToggles[i].setAttribute( 'aria-expanded', 'false' );
 
 						for ( var li = 0; li < closestNavItems.length; li++ ) {
 							closestNavItems[li].classList.remove( 'sfHover' );

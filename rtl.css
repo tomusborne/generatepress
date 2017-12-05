@@ -146,13 +146,28 @@ footer.entry-meta .posted-on:before {
 	right: auto;
 }
 
+.rtl .navigation-search {
+	left: auto;
+	right: -999999px;
+}
+
+.rtl .navigation-search.nav-search-active {
+    right: 0;
+}
+
+.rtl .footer-bar .widget_nav_menu li {
+    direction: rtl;
+    float: right;
+}
+
 @media (max-width: 768px) {
 	.main-navigation .main-nav li {
 		text-align: right !important;
 	}
 	.rtl .mobile-bar-items {
-        float: left !important;
-        position: relative;
+        position: absolute;
+		left: 0;
+		top: 0;
     }
 }
 

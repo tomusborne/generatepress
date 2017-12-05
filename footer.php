@@ -2,23 +2,51 @@
 /**
  * The template for displaying the footer.
  *
- * Contains the closing of the id=main div and all content after
- *
  * @package GeneratePress
  */
- 
-// No direct access, please
-if ( ! defined( 'ABSPATH' ) ) exit;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 ?>
 
 	</div><!-- #content -->
 </div><!-- #page -->
-<?php do_action('generate_before_footer'); ?>
+
+<?php
+/**
+ * generate_before_footer hook.
+ *
+ * @since 0.1
+ */
+do_action( 'generate_before_footer' );
+?>
+
 <div <?php generate_footer_class(); ?>>
-	<?php 
+	<?php
+	/**
+	 * generate_before_footer_content hook.
+	 *
+	 * @since 0.1
+	 */
 	do_action( 'generate_before_footer_content' );
+
+	/**
+	 * generate_footer hook.
+	 *
+	 * @since 1.3.42
+	 *
+	 * @hooked generate_construct_footer_widgets - 5
+	 * @hooked generate_construct_footer - 10
+	 */
 	do_action( 'generate_footer' );
-	do_action( 'generate_after_footer_content' ); 
+
+	/**
+	 * generate_after_footer_content hook.
+	 *
+	 * @since 0.1
+	 */
+	do_action( 'generate_after_footer_content' );
 	?>
 </div><!-- .site-footer -->
 

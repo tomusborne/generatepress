@@ -1,0 +1,54 @@
+.customize-control-addon:before {
+    content: "";
+    height: 1px;
+    width: 50px;
+    background: rgba(0,0,0,.10);
+    display: block;
+    margin-bottom: 10px;
+}
+
+.customize-control-addon {
+	margin-top: 10px;
+}
+
+li#accordion-section-generatepress_upsell_section {
+	border-top: 1px solid #D54E21;
+	border-bottom: 1px solid #D54E21;
+}
+.generate-upsell-accordion-section a {
+	background: #FFF;
+	display: block;
+	padding: 10px 10px 11px 14px;
+	line-height: 21px;
+	color: #D54E21;
+	text-decoration: none;
+}
+
+.generate-upsell-accordion-section a:hover {
+	background:#FAFAFA;
+}
+
+.generate-upsell-accordion-section h3 {
+	margin: 0;
+	position: relative;
+}
+
+.generate-upsell-accordion-section h3 a:after {
+	content: "\f345";
+	color: #D54E21;
+	position: absolute;
+	top: 11px;
+	right: 10px;
+	z-index: 1;
+	float: right;
+	border: none;
+	background: none;
+	font: normal 20px/1 dashicons;
+	speak: none;
+	display: block;
+	padding: 0;
+	text-indent: 0;
+	text-align: center;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}

@@ -62,3 +62,41 @@
 	});
 
 })(document);
+
+( function() {
+	'use strict';
+
+	if ( 'querySelector' in document && 'addEventListener' in window && document.body.classList.contains( 'dropdown-hover' ) ) {
+		var navLinks = document.querySelectorAll( 'nav ul a' );
+
+		/**
+		 * Make menu items tab accessible when using the hover dropdown type
+		 */
+		var toggleFocus = function() {
+			if ( this.closest( 'nav' ).classList.contains( 'toggled' ) || this.closest( 'nav' ).classList.contains( 'slideout-navigation' ) ) {
+				return;
+			}
+
+			var self = this;
+
+			while ( -1 === self.className.indexOf( 'main-nav' ) ) {
+
+				if ( 'li' === self.tagName.toLowerCase() ) {
+					if ( -1 !== self.className.indexOf( 'sfHover' ) ) {
+						self.className = self.className.replace( ' sfHover', '' );
+					} else {
+						self.className += ' sfHover';
+					}
+				}
+
+				self = self.parentElement;
+			}
+		}
+
+		for ( var i = 0; i < navLinks.length; i++ ) {
+			navLinks[i].addEventListener( 'focus', toggleFocus );
+			navLinks[i].addEventListener( 'blur', toggleFocus );
+		}
+	}
+
+})();
