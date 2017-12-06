@@ -99,7 +99,7 @@ MIT License: https://github.com/woocommerce/selectWoo/blob/master/LICENSE.md
 
 = 2.0 =
 
-Release date: TBA
+Release date: December 6, 2017
 
 * New: Full web accessibility
 * New: All jQuery replaced with vanilla javascript
