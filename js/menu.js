@@ -109,7 +109,11 @@
 					dropdownToggle.setAttribute( 'aria-expanded', 'false' );
 				}
 
-				var subMenu = closestLi.querySelector( '.sub-menu' );
+				if ( closestLi.querySelector( '.sub-menu' ) ) {
+					var subMenu = closestLi.querySelector( '.sub-menu' );
+				} else {
+					var subMenu = closestLi.querySelector( '.children' );
+				}
 
 				closestLi.classList.toggle( 'sfHover' );
 				subMenu.classList.toggle( 'toggled-on' );
