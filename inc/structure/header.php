@@ -94,6 +94,16 @@ if ( ! function_exists( 'generate_construct_logo' ) ) {
 
 		if ( '' !== $retina_logo_url ) {
 			$attr[ 'srcset' ] = $logo_url . ' 1x, ' . $retina_logo_url . ' 2x';
+
+			// Add dimensions to image if retina is set. This fixes a container width bug in Firefox.
+			if ( function_exists( 'the_custom_logo' ) && get_theme_mod( 'custom_logo' ) ) {
+				$data = wp_get_attachment_metadata( get_theme_mod( 'custom_logo' ) );
+
+				if ( ! empty( $data ) ) {
+					$attr['width'] = $data['width'];
+					$attr['height'] = $data['height'];
+				}
+			}
 		}
 
 		$attr = array_map( 'esc_attr', $attr );
