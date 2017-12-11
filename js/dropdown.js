@@ -75,7 +75,8 @@
 		 */
 		for ( var i = 0; i < navLinks.length; i++ ) {
 			navLinks[i].addEventListener( 'click', function( e ) {
-				if ( ( this.closest( 'nav' ).classList.contains( 'toggled' ) || htmlEl.classList.contains( 'slide-opened' ) ) ) {
+				var closest_nav = this.closest( 'nav' );
+				if ( ( closest_nav.classList.contains( 'toggled' ) || htmlEl.classList.contains( 'slide-opened' ) ) ) {
 					var url = this.getAttribute( 'href' );
 
 					// Open the sub-menu if the link has no destination
@@ -93,7 +94,7 @@
 					// Close the mobile menu if our link does something - good for one page sites.
 					if ( '#' !== url && '' !== url && ! navigator.userAgent.match( /iemobile/i ) ) {
 						setTimeout( function() {
-							this.closest( 'nav' ).classList.remove( 'toggled' );
+							closest_nav.classList.remove( 'toggled' );
 							htmlEl.classList.remove( 'mobile-menu-open' );
 						}, 200 );
 					}
