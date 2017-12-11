@@ -17,6 +17,25 @@ th {
 .menu-item-has-children .dropdown-menu-toggle {
 	float: left !important;
 }
+
+.rtl .main-navigation ul ul, .rtl .secondary-navigation ul ul.sub-menu {
+    right: -999999px;
+}
+
+.rtl.dropdown-hover .main-navigation ul li.sfHover > ul,
+.rtl.dropdown-hover .main-navigation ul li:hover > ul,
+.rtl.dropdown-hover .secondary-navigation ul li.sfHover > ul,
+.rtl.dropdown-hover .secondary-navigation ul li:hover > ul {
+    right: 0;
+}
+
+.rtl.dropdown-hover .main-navigation ul ul li.sfHover > ul,
+.rtl.dropdown-hover .main-navigation ul ul li:hover > ul,
+.rtl.dropdown-hover .secondary-navigation ul ul li.sfHover > ul,
+.rtl.dropdown-hover .secondary-navigation ul ul li:hover > ul {
+    right: 100%;
+}
+
 .alignleft {
     float: right;
     margin-left: 1.5em;
