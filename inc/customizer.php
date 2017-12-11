@@ -169,7 +169,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					'label' => __( 'Retina Logo', 'generatepress' ),
 					'section' => 'title_tagline',
 					'settings' => 'generate_settings[retina_logo]',
-					'active_callback' => 'has_custom_logo'
+					'active_callback' => 'generate_has_custom_logo_callback'
 				)
 			)
 		);

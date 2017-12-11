@@ -225,3 +225,19 @@ function generate_do_control_inline_scripts() {
 	wp_localize_script( 'generatepress-typography-customizer', 'gp_customize', array( 'nonce' => wp_create_nonce( 'gp_customize_nonce' ) ) );
 	wp_localize_script( 'generatepress-typography-customizer', 'typography_defaults', generate_typography_default_fonts() );
 }
+
+/**
+ * Check to see if we have a logo or not.
+ *
+ * Used as an active callback. Calling has_custom_logo creates a PHP notice for
+ * multisite users.
+ *
+ * @since 2.0.1
+ */
+function generate_has_custom_logo_callback() {
+	if ( get_theme_mod( 'custom_logo' ) ) {
+		return true;
+	}
+
+	return false;
+}
