@@ -76,7 +76,7 @@
 		for ( var i = 0; i < navLinks.length; i++ ) {
 			navLinks[i].addEventListener( 'click', function( e ) {
 				var closest_nav = this.closest( 'nav' );
-				if ( ( closest_nav.classList.contains( 'toggled' ) || htmlEl.classList.contains( 'slide-opened' ) ) ) {
+				if ( closest_nav.classList.contains( 'toggled' ) || htmlEl.classList.contains( 'slide-opened' ) ) {
 					var url = this.getAttribute( 'href' );
 
 					// Open the sub-menu if the link has no destination
