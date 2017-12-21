@@ -23,7 +23,7 @@ if ( ! function_exists( 'generate_setup' ) ) {
 	 */
 	function generate_setup() {
 		// Make theme available for translation.
-		load_theme_textdomain( 'generatepress' );
+		load_theme_textdomain( 'schemapress', get_template_directory() . '/languages' );
 
 		// Add theme support for various features.
 		add_theme_support( 'automatic-feed-links' );
