@@ -118,6 +118,7 @@ nav.toggled ul ul.sub-menu {
 	}
 
 	.main-navigation .main-nav ul ul.toggled-on {
+		display: block;
 		position: relative;
 		top: 0;
 		left: auto;
@@ -128,6 +129,7 @@ nav.toggled ul ul.sub-menu {
 	nav.main-navigation ul li:hover > ul:not(.toggled-on),
 	nav.secondary-navigation ul li:hover > ul:not(.toggled-on),
 	.secondary-navigation .main-nav ul ul:not(.toggled-on)	{
+		display: none;
 		left: -99999px;
 		position: absolute;
 	}
