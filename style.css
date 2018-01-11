@@ -770,8 +770,8 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle {
 
 .dropdown-hover .widget-area .main-navigation ul li:hover ul,
 .dropdown-hover .widget-area .main-navigation ul li.sfHover > ul,
-.dropdown-hover .widget-area .secondary-navigation ul li:hover ul,
-.dropdown-hover .widget-area .secondary-navigation ul li.sfHover > ul {
+.dropdown-hover .widget-area .secondary-navigation:not(.toggled) ul li:hover ul,
+.dropdown-hover .widget-area .secondary-navigation:not(.toggled) ul li.sfHover > ul {
 	top: 0;
 	left: 100%;
 	width:220px;
@@ -780,9 +780,9 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle {
 .dropdown-hover.both-right .widget-area .main-navigation ul li:hover ul,
 .dropdown-hover.right-sidebar .widget-area .main-navigation ul li:hover ul,
 .dropdown-hover.both-sidebars .widget-area .inside-right-sidebar .main-navigation ul li:hover ul,
-.dropdown-hover.both-right .widget-area .secondary-navigation ul li:hover ul,
-.dropdown-hover.right-sidebar .widget-area .secondary-navigation ul li:hover ul,
-.dropdown-hover.both-sidebars .widget-area .inside-right-sidebar .secondary-navigation ul li:hover ul {
+.dropdown-hover.both-right .widget-area .secondary-navigation:not(.toggled) ul li:hover ul,
+.dropdown-hover.right-sidebar .widget-area .secondary-navigation:not(.toggled) ul li:hover ul,
+.dropdown-hover.both-sidebars .widget-area .inside-right-sidebar .secondary-navigation:not(.toggled) ul li:hover ul {
 	right: 100%;
 	left: auto;
 }
