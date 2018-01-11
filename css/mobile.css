@@ -117,19 +117,17 @@ nav.toggled ul ul.sub-menu {
 		display: block;
 	}
 
-	.main-navigation .main-nav ul ul.toggled-on {
+	.main-navigation .main-nav ul ul.toggled-on,
+	.secondary-navigation .main-nav ul ul.toggled-on {
 		position: relative;
 		top: 0;
-		left: auto;
+		left: auto !important;
 		right: auto;
 		width: 100%;
-	}
-
-	nav.main-navigation ul li:hover > ul:not(.toggled-on),
-	nav.secondary-navigation ul li:hover > ul:not(.toggled-on),
-	.secondary-navigation .main-nav ul ul:not(.toggled-on)	{
-		left: -99999px;
-		position: absolute;
+		pointer-events: auto;
+		height: auto;
+		opacity: 1;
+		display: block;
 	}
 
 	.main-navigation .main-nav li {
@@ -141,14 +139,6 @@ nav.toggled ul ul.sub-menu {
 
 	.main-navigation .main-nav li.hide-on-mobile {
 		display: none !important;
-	}
-
-	.main-navigation .sub-menu.toggled-on,
-	.main-navigation .children.toggled-on {
-		left: auto !important;
-		height: auto;
-		opacity: 1;
-		display: block;
 	}
 
 	.main-navigation .dropdown-menu-toggle:before {

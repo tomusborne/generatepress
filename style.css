@@ -470,10 +470,10 @@ input[type="file"] {
 .main-navigation ul ul li {
 	width:100%;
 }
-.dropdown-hover .main-navigation ul li:hover > ul,
-.dropdown-hover .main-navigation ul li.sfHover > ul,
-.dropdown-hover .secondary-navigation ul li:hover > ul,
-.dropdown-hover .secondary-navigation ul li.sfHover > ul {
+.dropdown-hover .main-navigation:not(.toggled) ul li:hover > ul,
+.dropdown-hover .main-navigation:not(.toggled) ul li.sfHover > ul,
+.dropdown-hover .secondary-navigation:not(.toggled) ul li:hover > ul,
+.dropdown-hover .secondary-navigation:not(.toggled) ul li.sfHover > ul {
 	left: auto;
 	opacity: 1;
 	transition-delay: 150ms;
@@ -481,10 +481,10 @@ input[type="file"] {
 	height: auto;
 	overflow: visible;
 }
-.dropdown-hover .main-navigation ul ul li:hover > ul,
-.dropdown-hover .main-navigation ul ul li.sfHover > ul,
-.dropdown-hover .secondary-navigation ul ul li:hover > ul,
-.dropdown-hover .secondary-navigation ul ul li.sfHover > ul {
+.dropdown-hover .main-navigation:not(.toggled) ul ul li:hover > ul,
+.dropdown-hover .main-navigation:not(.toggled) ul ul li.sfHover > ul,
+.dropdown-hover .secondary-navigation:not(.toggled) ul ul li:hover > ul,
+.dropdown-hover .secondary-navigation:not(.toggled) ul ul li.sfHover > ul {
 	left: 100%;
 	top: 0;
 }
