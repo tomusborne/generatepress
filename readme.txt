@@ -6,7 +6,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options
 Requires at least: 4.5
 Tested up to: 4.9
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 
 GeneratePress is a fast, lightweight (less than 1MB zipped), mobile responsive WordPress theme built with speed, SEO and usability in mind.
 
@@ -96,6 +96,13 @@ See https://github.com/eligrey/classList.js/blob/master/LICENSE.md
 MIT License: https://github.com/woocommerce/selectWoo/blob/master/LICENSE.md
 
 == Changelog ==
+
+= 2.0.2 =
+
+Release date: January 17, 2018
+
+* Fix: Double tap issue in sub-menus on iOS devices
+* Fix: Secondary nav sub-menu positioning in sidebars
 
 = 2.0.1 =
 
