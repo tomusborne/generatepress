@@ -399,12 +399,21 @@ input[type="file"] {
 }
 .menu-toggle:before {
 	content: "\f0c9";
-	font-family: FontAwesome;
-	line-height: 1em;
-	speak: none;
+	font-family: GeneratePress;
+
 	width: 1.28571429em;
 	text-align: center;
 	display: inline-block;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 .toggled .menu-toggle:before {
 	content: "\f00d";
@@ -429,6 +438,32 @@ input[type="file"] {
 	margin: 0;
 	padding-left: 0;
 }
+
+li.search-item a:before,
+span.search-item a:before {
+	content: "\f002";
+	font-family: GeneratePress;
+
+	width: 1.28571429em;
+	text-align: center;
+	display: inline-block;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+li.search-item.close-search a:before,
+span.search-item.close-search a:before {
+	content: "\f00d";
+}
+
 .search-item .screen-reader-text {
 	top: 0;
 	right: 0;
@@ -697,9 +732,18 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle {
 
 .dropdown-menu-toggle:before {
 	content: "\f107";
-	font-family: FontAwesome;
-	line-height: 1em;
+	font-family: GeneratePress;
+
 	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 .dropdown-click .menu-item-has-children.sfHover > a .dropdown-menu-toggle:before {
@@ -1471,16 +1515,24 @@ footer.entry-meta .posted-on:before,
 .comments-link:before,
 .nav-previous .prev:before,
 .nav-next .next:before {
-	font-family: FontAwesome;
-  	font-weight: normal;
- 	font-style: normal;
-	display: inline-block;
+	font-family: GeneratePress;
 	text-decoration: inherit;
-	position:relative;
+	position: relative;
 	margin-right: 0.6em;
 	width: 13px;
-	text-align:center;
+
+	text-align: center;
+	display: inline-block;
 	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 footer.entry-meta .author:before {
@@ -1751,6 +1803,22 @@ footer.entry-meta .byline {
 }
 
 /* Back to top icon */
+.generate-back-to-top:before {
+	content: "\f106";
+	font-family: GeneratePress;
+
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
 .generate-back-to-top,
 .generate-back-to-top:visited {
 	font-size: 20px;
@@ -1962,9 +2030,24 @@ h3 {
 }
 
 /*
- * Backwards compatibility until Slideout is updated
- * GP Premium 1.2.93
+ * Icons
  */
-.slideout-navigation .menu-item-has-children .dropdown-menu-toggle {
-	float: right;
+@font-face {
+	font-family: 'GeneratePress';
+	src:  url('fonts/generatepress.eot');
+	src:  url('fonts/generatepress.eot#iefix') format('embedded-opentype'),
+	 url('fonts/generatepress.ttf') format('truetype'),
+	 url('fonts/generatepress.woff') format('woff'),
+	 url('fonts/generatepress.svg#GeneratePress') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/*
+ * Backwards compatibility until Slideout is updated
+ * GP Premium 1.6
+ */
+.main-navigation .slideout-toggle a:before,
+.slide-opened .slideout-overlay .slideout-exit:before {
+	font-family: GeneratePress;
 }
