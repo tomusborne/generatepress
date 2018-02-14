@@ -80,7 +80,7 @@ if ( ! function_exists( 'generate_menu_fallback' ) ) {
 				wp_list_pages( $args );
 
 				if ( 'enable' == $generate_settings['nav_search'] ) {
-					echo '<li class="search-item" title="' . esc_attr_x( 'Search', 'submit button', 'generatepress' ) . '"><a href="#"><i class="fa fa-fw fa-search" aria-hidden="true"></i><span class="screen-reader-text">' . esc_html_x( 'Search', 'submit button', 'generatepress' ) . '</span></a></li>';
+					echo '<li class="search-item" title="' . esc_attr_x( 'Search', 'submit button', 'generatepress' ) . '"><a href="#"><span class="screen-reader-text">' . esc_html_x( 'Search', 'submit button', 'generatepress' ) . '</span></a></li>';
 				}
 				?>
 			</ul>
@@ -286,7 +286,7 @@ if ( ! function_exists( 'generate_menu_search_icon' ) ) {
 
 		// If our primary menu is set, add the search icon.
 		if ( $args->theme_location == 'primary' ) {
-			return $nav . '<li class="search-item" title="' . esc_attr_x( 'Search', 'submit button', 'generatepress' ) . '"><a href="#"><i class="fa fa-fw fa-search" aria-hidden="true"></i><span class="screen-reader-text">' . _x( 'Search', 'submit button', 'generatepress' ) . '</span></a></li>';
+			return $nav . '<li class="search-item" title="' . esc_attr_x( 'Search', 'submit button', 'generatepress' ) . '"><a href="#"><span class="screen-reader-text">' . _x( 'Search', 'submit button', 'generatepress' ) . '</span></a></li>';
 		}
 
 		// Our primary menu isn't set, return the regular nav.

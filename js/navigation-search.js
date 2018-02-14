@@ -24,8 +24,7 @@
 			var form = nav.querySelector( '.navigation-search' );
 
 			if ( form.classList.contains( 'nav-search-active' ) ) {
-				item.querySelector( 'i' ).classList.remove( 'fa-close' );
-				item.querySelector( 'i' ).classList.add( 'fa-search' );
+				item.classList.remove( 'close-search' );
 				item.classList.remove( 'active' );
 				document.activeElement.blur();
 				item.classList.remove( 'sfHover' );
@@ -42,13 +41,11 @@
 				}, 50 );
 
 				if ( ! document.body.classList.contains( 'nav-aligned-center' ) ) {
-					item.querySelector( 'i' ).classList.remove( 'fa-search' );
-					item.querySelector( 'i' ).classList.add( 'fa-close' );
+					item.classList.add( 'close-search' );
 				} else {
 					item.style.opacity = 0;
 					setTimeout( function() {
-						item.querySelector( 'i' ).classList.remove( 'fa-search' );
-						item.querySelector( 'i' ).classList.add( 'fa-close' );
+						item.classList.add( 'close-search' );
 						item.style.opacity = 1;
 						if ( document.body.classList.contains ( 'rtl' ) ) {
 							item.style.float = 'left';
