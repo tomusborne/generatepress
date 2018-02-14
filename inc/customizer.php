@@ -1063,22 +1063,22 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 		);
 
 		$wp_customize->add_setting(
-			'generate_settings[font_awesome_essentials]',
+			'generate_settings[font_awesome]',
 			array(
-				'default' => $defaults['font_awesome_essentials'],
+				'default' => $defaults['font_awesome'],
 				'type' => 'option',
 				'sanitize_callback' => 'generate_sanitize_checkbox'
 			)
 		);
 
 		$wp_customize->add_control(
-			'generate_settings[font_awesome_essentials]',
+			'generate_settings[font_awesome]',
 			array(
 				'type' => 'checkbox',
-				'label' => __( 'Load essential icons only', 'generatepress' ),
-				'description' => __( 'Load essential Font Awesome icons instead of the full library.', 'generatepress' ),
+				'label' => __( 'Font Awesome', 'generatepress' ),
+				'description' => __( 'Load the entire Font Awesome library.', 'generatepress' ),
 				'section' => 'generate_general_section',
-				'settings' => 'generate_settings[font_awesome_essentials]',
+				'settings' => 'generate_settings[font_awesome]',
 			)
 		);
 

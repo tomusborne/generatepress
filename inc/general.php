@@ -31,8 +31,9 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 			wp_enqueue_style( 'generate-child', get_stylesheet_uri(), array( 'generate-style' ), filemtime( get_stylesheet_directory() . '/style.css' ), 'all' );
 		}
 
-		$icon_essentials = apply_filters( 'generate_fontawesome_essentials', false ) ? '-essentials' : false;
-		wp_enqueue_style( "font-awesome{$icon_essentials}", $dir_uri . "/css/font-awesome{$icon_essentials}{$suffix}.css", false, '4.7', 'all' );
+		if ( generate_get_setting( 'font_awesome' ) && ! apply_filters( 'generate_fontawesome_essentials', false ) ) {
+			wp_enqueue_style( "font-awesome", $dir_uri . "/css/font-awesome{$suffix}.css", false, '4.7', 'all' );
+		}
 
 		if ( function_exists( 'wp_script_add_data' ) ) {
 			wp_enqueue_script( 'generate-classlist', $dir_uri . "/js/classList{$suffix}.js", array(), GENERATE_VERSION, true );
@@ -283,23 +284,6 @@ if ( ! function_exists( 'generate_get_default_color_palettes' ) ) {
 
 		return apply_filters( 'generate_default_color_palettes', $palettes );
 	}
-}
-
-add_filter( 'generate_fontawesome_essentials', 'generate_set_font_awesome_essentials' );
-/**
- * Check to see if we should include the full Font Awesome library or not.
- *
- * @since 2.0
- *
- * @param bool $essentials
- * @return bool
- */
-function generate_set_font_awesome_essentials( $essentials ) {
-	if ( generate_get_setting( 'font_awesome_essentials' ) ) {
-		return true;
-	}
-
-	return $essentials;
 }
 
 add_filter( 'generate_dynamic_css_skip_cache', 'generate_skip_dynamic_css_cache' );

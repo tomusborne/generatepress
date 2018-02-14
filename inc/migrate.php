@@ -214,6 +214,11 @@ function generate_migrate_existing_settings() {
 		generate_get_defaults()
 	);
 
+	// Default was removed in 2.1, so we'll set it here.
+	if ( ! isset( $settings['font_awesome_essentials'] ) ) {
+		$settings['font_awesome_essentials'] = true;
+	}
+
 	// Empty arrays to add data to.
 	$migrated_flags = array();
 	$new_settings = array();
