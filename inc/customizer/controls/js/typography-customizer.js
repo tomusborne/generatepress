@@ -136,7 +136,7 @@ jQuery( document ).ready( function($) {
 		var _this = $( this );
 		var value = _this.data( 'saved-value' );
 		if ( value ) {
-			value = value.split( ',' );
+			value = value.toString().split( ',' );
 		}
 		_this.find( 'select' ).selectWoo().val( value ).trigger( 'change.select2' );
 	} );
