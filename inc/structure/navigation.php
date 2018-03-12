@@ -318,7 +318,6 @@ if ( ! function_exists( 'generate_mobile_menu_search_icon' ) ) {
 			<?php do_action( 'generate_inside_mobile_menu_bar' ); ?>
 			<span class="search-item" title="<?php echo esc_attr_x( 'Search', 'submit button', 'generatepress' ); ?>">
 				<a href="#">
-					<i class="fa fa-fw fa-search" aria-hidden="true"></i>
 					<span class="screen-reader-text"><?php echo esc_attr_x( 'Search', 'submit button', 'generatepress' ); ?></span>
 				</a>
 			</span>
