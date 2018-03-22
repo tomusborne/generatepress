@@ -68,7 +68,7 @@ function generate_register_layout_meta_box() {
  */
 function generate_do_layout_meta_box( $post ) {
 	wp_nonce_field( basename( __FILE__ ), 'generate_layout_nonce' );
-	$stored_meta = get_post_meta( $post->ID );
+	$stored_meta = (array) get_post_meta( $post->ID );
 	$stored_meta['_generate-sidebar-layout-meta'][0] = ( isset( $stored_meta['_generate-sidebar-layout-meta'][0] ) ) ? $stored_meta['_generate-sidebar-layout-meta'][0] : '';
 	$stored_meta['_generate-footer-widget-meta'][0] = ( isset( $stored_meta['_generate-footer-widget-meta'][0] ) ) ? $stored_meta['_generate-footer-widget-meta'][0] : '';
 	$stored_meta['_generate-full-width-content'][0] = ( isset( $stored_meta['_generate-full-width-content'][0] ) ) ? $stored_meta['_generate-full-width-content'][0] : '';
