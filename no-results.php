@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-<section class="no-results not-found">
+<div class="no-results not-found">
 	<div class="inside-article">
 		<?php
 		/**
@@ -75,4 +75,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 		do_action( 'generate_after_content' );
 		?>
 	</div><!-- .inside-article -->
-</section><!-- .no-results -->
+</div><!-- .no-results -->
