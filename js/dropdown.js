@@ -54,23 +54,6 @@
 		}
 
 		/**
-		 * Provides compatibility for the Secondary Navigation until GPP is updated.
-		 */
-		var addFocusClass = function( e ) {
-			if ( this.closest( 'nav' ).classList.contains( 'toggled' ) ) {
-				return;
-			}
-
-			this.classList.toggle( 'sfHover' );
-		}
-
-		var secondaryNavItems = document.querySelectorAll( '.secondary-navigation .menu-item-has-children' );
-		for ( var i = 0; i < secondaryNavItems.length; i++ ) {
-				secondaryNavItems[i].addEventListener( 'mouseenter', addFocusClass );
-				secondaryNavItems[i].addEventListener( 'mouseleave', addFocusClass );
-		}
-
-		/**
 		 * Do some essential things when menu items are clicked.
 		 */
 		for ( var i = 0; i < navLinks.length; i++ ) {
