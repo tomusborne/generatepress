@@ -366,17 +366,26 @@ input[type="file"] {
 /* Clearing */
 .clear:before,
 .clear:after,
-[class*="content"]:before,
-[class*="content"]:after,
-[class*="site"]:before,
-[class*="site"]:after {
-	content: '';
+.entry-content:before,
+.entry-content:after,
+.comment-content:before,
+.comment-content:after,
+.site-header:before,
+.site-header:after,
+.site-content:before,
+.site-content:after,
+.site-footer:before,
+.site-footer:after {
+	content: "";
 	display: table;
 }
 
 .clear:after,
-[class*="content"]:after,
-[class*="site"]:after {
+.entry-content:after,
+.comment-content:after,
+.site-header:after,
+.site-content:after,
+.site-footer:after {
 	clear: both;
 }
 
@@ -941,7 +950,9 @@ object {
 /* =Navigation
 ----------------------------------------------- */
 
-.site-main [class*="navigation"] {
+.site-main .comment-navigation,
+.site-main .posts-navigation,
+.site-main .post-navigation {
 	margin: 0 0 2em;
 	overflow: hidden;
 }
