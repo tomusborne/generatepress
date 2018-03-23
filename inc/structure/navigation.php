@@ -211,12 +211,6 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 	 * @return string The menu item.
 	 */
 	function generate_dropdown_icon_to_menu_link( $title, $item, $args, $depth ) {
-		// Build an array with our theme location.
-		$theme_locations = array(
-			'primary',
-			'secondary',
-			'slideout'
-		);
 
 		$role = 'presentation';
 		$tabindex = '';
@@ -227,7 +221,7 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 		}
 
 		// Loop through our menu items and add our dropdown icons.
-		if ( in_array( $args->theme_location, apply_filters( 'generate_menu_arrow_theme_locations', $theme_locations ) ) ) {
+		if ( 'main-nav' === $args->container_class ) {
 			foreach ( $item->classes as $value ) {
 				if ( 'menu-item-has-children' === $value  ) {
 					$title = $title . '<span role="' . $role . '" class="dropdown-menu-toggle"' . $tabindex .'></span>';
