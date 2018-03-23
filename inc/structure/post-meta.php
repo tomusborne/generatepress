@@ -138,7 +138,7 @@ if ( ! function_exists( 'generate_posted_on' ) ) {
 		// If our author is enabled, show it.
 		if ( $author ) {
 			echo apply_filters( 'generate_post_author_output', sprintf( ' <span class="byline">%1$s</span>', // WPCS: XSS ok, sanitization ok.
-				sprintf( '<span class="author vcard" itemtype="http://schema.org/Person" itemscope="itemscope" itemprop="author">%1$s <a class="url fn n" href="%2$s" title="%3$s" rel="author" itemprop="url"><span class="author-name" itemprop="name">%4$s</span></a></span>',
+				sprintf( '<span class="author vcard" itemtype="https://schema.org/Person" itemscope="itemscope" itemprop="author">%1$s <a class="url fn n" href="%2$s" title="%3$s" rel="author" itemprop="url"><span class="author-name" itemprop="name">%4$s</span></a></span>',
 					__( 'by','generatepress'),
 					esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 					/* translators: 1: Author name */

@@ -18,7 +18,7 @@ if ( ! function_exists( 'generate_construct_header' ) ) {
 	 */
 	function generate_construct_header() {
 		?>
-		<header itemtype="http://schema.org/WPHeader" itemscope="itemscope" id="masthead" <?php generate_header_class(); ?>>
+		<header itemtype="https://schema.org/WPHeader" itemscope="itemscope" id="masthead" <?php generate_header_class(); ?>>
 			<div <?php generate_inside_header_class(); ?>>
 				<?php
 				/**

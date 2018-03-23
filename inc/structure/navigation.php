@@ -17,7 +17,7 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 	 */
 	function generate_navigation_position() {
 		?>
-		<nav itemtype="http://schema.org/SiteNavigationElement" itemscope="itemscope" id="site-navigation" <?php generate_navigation_class(); ?>>
+		<nav itemtype="https://schema.org/SiteNavigationElement" itemscope="itemscope" id="site-navigation" <?php generate_navigation_class(); ?>>
 			<div <?php generate_inside_navigation_class(); ?>>
 				<?php
 				/**
