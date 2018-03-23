@@ -1317,12 +1317,14 @@ h4, h5, h6 {
 .widget ol {
 	margin: 0;
 }
-.widget ul li {
+.sidebar .widget ul li,
+.footer-widgets .widget ul li {
 	list-style-type: none;
 	position:relative;
 	padding-bottom: 5px;
 }
-.widget ul li ul li:before {
+.sidebar .widget ul li ul li:before,
+.footer-widgets .widget ul li ul li:before {
 	opacity:.7;
 }
 .widget .search-field {
