@@ -250,7 +250,6 @@ input[type="submit"]:active {
 .button {
 	padding: 10px 20px;
 	display: inline-block;
-	*display: inline;
 }
 input[type="checkbox"],
 input[type="radio"] {
@@ -654,8 +653,6 @@ li.search-item.active {
 .nav-aligned-center.nav-above-header .main-navigation .menu > li {
 	float: none;
 	display: inline-block;
-	*display: inline;
-	*zoom: 1;
 }
 
 .nav-aligned-right .main-navigation ul,
@@ -975,8 +972,6 @@ object {
 
 .comment-author-info {
 	display: inline-block;
-	*display: inline;
-	*zoom: 1;
 	vertical-align:middle;
 }
 
@@ -1577,8 +1572,6 @@ footer.entry-meta .byline {
 }
 .site-logo {
 	display: inline-block;
-	*display: inline;
-	*zoom: 1;
 	max-width: 100%;
 }
 .site-description {
