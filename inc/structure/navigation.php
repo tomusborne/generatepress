@@ -347,6 +347,7 @@ function generate_clone_sidebar_navigation() {
 		if ( nav ) {
 			clone = nav.cloneNode( true );
 			clone.className += ' sidebar-nav-mobile';
+			clone.setAttribute( 'aria-label', '<?php esc_attr_e( 'Mobile Menu', 'generatepress' ); ?>' );
 			target = document.getElementById( 'masthead' );
 			if ( target ) {
 				target.insertAdjacentHTML( 'afterend', clone.outerHTML );

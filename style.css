@@ -250,7 +250,6 @@ input[type="submit"]:active {
 .button {
 	padding: 10px 20px;
 	display: inline-block;
-	*display: inline;
 }
 input[type="checkbox"],
 input[type="radio"] {
@@ -366,17 +365,26 @@ input[type="file"] {
 /* Clearing */
 .clear:before,
 .clear:after,
-[class*="content"]:before,
-[class*="content"]:after,
-[class*="site"]:before,
-[class*="site"]:after {
-	content: '';
+.entry-content:before,
+.entry-content:after,
+.comment-content:before,
+.comment-content:after,
+.site-header:before,
+.site-header:after,
+.site-content:before,
+.site-content:after,
+.site-footer:before,
+.site-footer:after {
+	content: "";
 	display: table;
 }
 
 .clear:after,
-[class*="content"]:after,
-[class*="site"]:after {
+.entry-content:after,
+.comment-content:after,
+.site-header:after,
+.site-content:after,
+.site-footer:after {
 	clear: both;
 }
 
@@ -477,8 +485,7 @@ span.search-item.close-search a:before {
 	display: block;
 	text-decoration: none;
 }
-.main-navigation ul ul,
-.secondary-navigation ul ul.sub-menu {
+.main-navigation ul ul {
 	display: block;
 	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
 	float: left;
@@ -503,9 +510,7 @@ span.search-item.close-search a:before {
 	width:100%;
 }
 .dropdown-hover .main-navigation:not(.toggled) ul li:hover > ul,
-.dropdown-hover .main-navigation:not(.toggled) ul li.sfHover > ul,
-.dropdown-hover .secondary-navigation:not(.toggled) ul li:hover > ul,
-.dropdown-hover .secondary-navigation:not(.toggled) ul li.sfHover > ul {
+.dropdown-hover .main-navigation:not(.toggled) ul li.sfHover > ul {
 	left: auto;
 	opacity: 1;
 	transition-delay: 150ms;
@@ -514,22 +519,17 @@ span.search-item.close-search a:before {
 	overflow: visible;
 }
 .dropdown-hover .main-navigation:not(.toggled) ul ul li:hover > ul,
-.dropdown-hover .main-navigation:not(.toggled) ul ul li.sfHover > ul,
-.dropdown-hover .secondary-navigation:not(.toggled) ul ul li:hover > ul,
-.dropdown-hover .secondary-navigation:not(.toggled) ul ul li.sfHover > ul {
+.dropdown-hover .main-navigation:not(.toggled) ul ul li.sfHover > ul {
 	left: 100%;
 	top: 0;
 }
 
-.dropdown-click .main-navigation ul ul,
-.dropdown-click .secondary-navigation ul ul {
+.dropdown-click .main-navigation ul ul {
 	visibility: hidden;
 }
 
 .dropdown-click .main-navigation ul.toggled-on,
-.dropdown-click .main-navigation ul li.sfHover > ul.toggled-on,
-.dropdown-click .secondary-navigation ul.toggled-on,
-.dropdown-click .secondary-navigation ul li.sfHover > ul.toggled-on {
+.dropdown-click .main-navigation ul li.sfHover > ul.toggled-on {
 	left: auto;
 	opacity: 1;
 	visibility: visible;
@@ -680,8 +680,6 @@ li.search-item.active {
 .nav-aligned-center.nav-above-header .main-navigation .menu > li {
 	float: none;
 	display: inline-block;
-	*display: inline;
-	*zoom: 1;
 }
 
 .nav-aligned-right .main-navigation ul,
@@ -708,11 +706,6 @@ li.search-item.active {
 .nav-aligned-right.nav-below-header .main-navigation,
 .nav-aligned-right.nav-above-header .main-navigation {
 	text-align: right;
-}
-
-.main-navigation ul li .dropdown-toggle,
-.secondary-navigation ul li .dropdown-toggle {
-	display: none;
 }
 
 .menu-item-has-children .dropdown-menu-toggle {
@@ -765,21 +758,13 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle {
 	content: "\f105";
 }
 
-.dropdown-click .main-navigation ul ul ul.toggled-on,
-.dropdown-click .secondary-navigation ul ul ul.toggled-on {
+.dropdown-click .main-navigation ul ul ul.toggled-on {
 	left: 0;
 	top: auto;
 	position: relative;
 }
 
-.dropdown-click.both-right .widget-area .secondary-navigation ul ul,
-.dropdown-click.right-sidebar .widget-area .secondary-navigation ul ul,
-.dropdown-click.both-sidebars .widget-area .inside-right-sidebar .secondary-navigation ul ul {
-	right: 0;
-}
-
-.dropdown-click .widget-area .main-navigation ul ul,
-.dropdown-click .widget-area .secondary-navigation ul ul {
+.dropdown-click .widget-area .main-navigation ul ul {
 	top: auto;
 	position: absolute;
 	float: none;
@@ -787,21 +772,18 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle {
 	left: -99999px;
 }
 
-.dropdown-click .widget-area .main-navigation ul ul.toggled-on,
-.dropdown-click .widget-area .secondary-navigation ul ul.toggled-on {
+.dropdown-click .widget-area .main-navigation ul ul.toggled-on {
 	position: relative;
 	left: 0;
 	right: 0;
 }
 
-.main-navigation .main-nav ul li.menu-item-has-children > a,
-.secondary-navigation .main-nav ul li.menu-item-has-children > a {
+.main-navigation .main-nav ul li.menu-item-has-children > a {
 	padding-right: 0;
 	position: relative;
 }
 
-.widget-area .main-navigation li,
-.widget-area .secondary-navigation li {
+.widget-area .main-navigation li {
 	float: none;
 	display: block;
 	width:100%;
@@ -810,9 +792,7 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle {
 }
 
 .dropdown-hover .widget-area .main-navigation ul li:hover ul,
-.dropdown-hover .widget-area .main-navigation ul li.sfHover > ul,
-.dropdown-hover .widget-area .secondary-navigation:not(.toggled) ul li:hover ul,
-.dropdown-hover .widget-area .secondary-navigation:not(.toggled) ul li.sfHover > ul {
+.dropdown-hover .widget-area .main-navigation ul li.sfHover > ul {
 	top: 0;
 	left: 100%;
 	width:220px;
@@ -823,13 +803,7 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle {
 .dropdown-hover.right-sidebar .widget-area .main-navigation ul li:hover ul,
 .dropdown-hover.right-sidebar .widget-area .main-navigation ul li.sfHover ul,
 .dropdown-hover.both-sidebars .widget-area .inside-right-sidebar .main-navigation ul li:hover ul,
-.dropdown-hover.both-sidebars .widget-area .inside-right-sidebar .main-navigation ul li.sfHover ul,
-.dropdown-hover.both-right .widget-area .secondary-navigation:not(.toggled) ul li:hover ul,
-.dropdown-hover.both-right .widget-area .secondary-navigation:not(.toggled) ul li.sfHover ul,
-.dropdown-hover.right-sidebar .widget-area .secondary-navigation:not(.toggled) ul li:hover ul,
-.dropdown-hover.right-sidebar .widget-area .secondary-navigation:not(.toggled) ul li.sfHover ul,
-.dropdown-hover.both-sidebars .widget-area .inside-right-sidebar .secondary-navigation:not(.toggled) ul li:hover ul,
-.dropdown-hover.both-sidebars .widget-area .inside-right-sidebar .secondary-navigation:not(.toggled) ul li.sfHover ul {
+.dropdown-hover.both-sidebars .widget-area .inside-right-sidebar .main-navigation ul li.sfHover ul {
 	right: 100%;
 	left: auto;
 }
@@ -985,7 +959,9 @@ object {
 /* =Navigation
 ----------------------------------------------- */
 
-.site-main [class*="navigation"] {
+.site-main .comment-navigation,
+.site-main .posts-navigation,
+.site-main .post-navigation {
 	margin: 0 0 2em;
 	overflow: hidden;
 }
@@ -1008,8 +984,6 @@ object {
 
 .comment-author-info {
 	display: inline-block;
-	*display: inline;
-	*zoom: 1;
 	vertical-align:middle;
 }
 
@@ -1350,12 +1324,14 @@ h4, h5, h6 {
 .widget ol {
 	margin: 0;
 }
-.widget ul li {
+.sidebar .widget ul li,
+.footer-widgets .widget ul li {
 	list-style-type: none;
 	position:relative;
 	padding-bottom: 5px;
 }
-.widget ul li ul li:before {
+.sidebar .widget ul li ul li:before,
+.footer-widgets .widget ul li ul li:before {
 	opacity:.7;
 }
 .widget .search-field {
@@ -1616,8 +1592,6 @@ footer.entry-meta .byline {
 }
 .site-logo {
 	display: inline-block;
-	*display: inline;
-	*zoom: 1;
 	max-width: 100%;
 }
 .site-description {
