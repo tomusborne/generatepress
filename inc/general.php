@@ -32,7 +32,11 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 		}
 
 		if ( generate_get_setting( 'font_awesome' ) && ! apply_filters( 'generate_fontawesome_essentials', false ) ) {
-			wp_enqueue_style( "font-awesome", $dir_uri . "/css/font-awesome{$suffix}.css", false, '4.7', 'all' );
+			wp_enqueue_script( 'font-awesome', $dir_uri . "/js/fontawesome-all{$suffix}.js", array(), '5.0.6', false );
+
+			if ( generate_get_setting( 'font_awesome_v4_shim' ) ) {
+				wp_enqueue_script( 'font-awesome-v4-shims', $dir_uri . "/js/fa-v4-shims{$suffix}.js", array( 'font-awesome' ), GENERATE_VERSION, false );
+			}
 		}
 
 		if ( function_exists( 'wp_script_add_data' ) ) {
@@ -301,4 +305,22 @@ function generate_skip_dynamic_css_cache( $cache ) {
 	}
 
 	return $cache;
+}
+
+add_filter( 'script_loader_tag', 'generate_defer_font_awesome', 10, 2 );
+/**
+ * Defer both possible Font Awesome scripts.
+ *
+ * @since 2.1
+ *
+ * @param string $tag
+ * @param string $handle
+ * @return string
+ */
+function generate_defer_font_awesome( $tag, $handle ) {
+    if ( 'font-awesome' === $handle || 'font-awesome-v4-shims' === $handle ) {
+        return str_replace( ' src', ' defer="defer" src', $tag );
+	}
+
+	return $tag;
 }

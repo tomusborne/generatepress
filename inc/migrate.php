@@ -232,10 +232,12 @@ function generate_migrate_existing_settings() {
 		if ( ! isset( $migration_settings['font_awesome_library_updated'] ) || 'true' !== $migration_settings['font_awesome_library_updated'] ) {
 			// Turn on Font Awesome for existing websites.
 			$new_settings[ 'font_awesome' ] = true;
+			$new_settings[ 'font_awesome_v4_shim' ] = true;
 
 			// If we've turned on the old essentials option, turn off the full library.
 			if ( $settings['font_awesome_essentials'] || apply_filters( 'generate_fontawesome_essentials', false ) ) {
 				$new_settings[ 'font_awesome' ] = false;
+				$new_settings[ 'font_awesome_v4_shim' ] = false;
 			}
  		}
 

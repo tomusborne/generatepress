@@ -50,6 +50,7 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 			'link_color_hover' => '#000000',
 			'link_color_visited' => '',
 			'font_awesome' => false,
+			'font_awesome_v4_shim' => false,
 			'dynamic_css_cache' => true,
 		);
 
