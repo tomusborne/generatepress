@@ -50,6 +50,7 @@ nav.toggled ul ul.sub-menu {
 .main-navigation.toggled ul ul.toggled-on {
 	visibility: visible;
 }
+
 @media (max-width: 768px) {
 	.top-bar.top-bar-align-left,
 	.top-bar.top-bar-align-right {
