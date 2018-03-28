@@ -33,6 +33,7 @@
 
 		var allNavToggles = document.querySelectorAll( '.menu-toggle' ),
 			dropdownToggle = document.querySelectorAll( 'nav .dropdown-menu-toggle' ),
+			navLinks = document.querySelectorAll( 'nav ul a' ),
 			body = document.body,
 			htmlEl = document.documentElement;
 
@@ -178,6 +179,40 @@
 		}
 		window.addEventListener( 'resize', checkMobile, false );
 		window.addEventListener( 'orientationchange', checkMobile, false );
+
+		if ( body.classList.contains( 'dropdown-hover' ) ) {
+			/**
+			 * Do some essential things when menu items are clicked.
+			 */
+			for ( var i = 0; i < navLinks.length; i++ ) {
+				navLinks[i].addEventListener( 'click', function( e ) {
+					var closest_nav = this.closest( 'nav' );
+					if ( closest_nav.classList.contains( 'toggled' ) || htmlEl.classList.contains( 'slide-opened' ) ) {
+						var url = this.getAttribute( 'href' );
+
+						// Open the sub-menu if the link has no destination
+						if ( '#' == url || '' == url ) {
+							e.preventDefault();
+							var closestLi = this.closest( 'li' );
+							closestLi.classList.toggle( 'sfHover' );
+							var subMenu = closestLi.querySelector( '.sub-menu' );
+
+							if ( subMenu ) {
+								subMenu.classList.toggle( 'toggled-on' );
+							}
+						}
+
+						// Close the mobile menu if our link does something - good for one page sites.
+						if ( '#' !== url && '' !== url && ! navigator.userAgent.match( /iemobile/i ) ) {
+							setTimeout( function() {
+								closest_nav.classList.remove( 'toggled' );
+								htmlEl.classList.remove( 'mobile-menu-open' );
+							}, 200 );
+						}
+					}
+				}, false );
+			}
+		}
 
 	}
 
