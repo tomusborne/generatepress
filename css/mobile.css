@@ -26,8 +26,7 @@ button.menu-toggle {
 	transition: opacity 300ms ease-in-out;
 }
 
-.main-navigation.toggled ul ul,
-.secondary-navigation.toggled ul ul {
+.main-navigation.toggled ul ul {
 	transition: 0s;
 }
 
@@ -36,9 +35,7 @@ nav.toggled ul ul.sub-menu {
 }
 
 .dropdown-hover .main-navigation.toggled ul li:hover > ul,
-.dropdown-hover .main-navigation.toggled ul li.sfHover > ul,
-.dropdown-hover .secondary-navigation.toggled ul li:hover > ul,
-.dropdown-hover .secondary-navigation.toggled ul li.sfHover > ul {
+.dropdown-hover .main-navigation.toggled ul li.sfHover > ul {
 	transition-delay: 0s;
 }
 
@@ -46,13 +43,11 @@ nav.toggled ul ul.sub-menu {
 	padding-left: 20px;
 }
 
-.main-navigation.toggled ul ul,
-.secondary-navigation.toggled ul ul {
+.main-navigation.toggled ul ul {
 	visibility: hidden;
 }
 
-.main-navigation.toggled ul ul.toggled-on,
-.secondary-navigation.toggled ul ul.toggled-on {
+.main-navigation.toggled ul ul.toggled-on {
 	visibility: visible;
 }
 @media (max-width: 768px) {
@@ -117,8 +112,7 @@ nav.toggled ul ul.sub-menu {
 		display: block;
 	}
 
-	.main-navigation .main-nav ul ul.toggled-on,
-	.secondary-navigation .main-nav ul ul.toggled-on {
+	.main-navigation .main-nav ul ul.toggled-on {
 		position: relative;
 		top: 0;
 		left: auto !important;
