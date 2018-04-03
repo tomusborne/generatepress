@@ -97,6 +97,30 @@ MIT License: https://github.com/woocommerce/selectWoo/blob/master/LICENSE.md
 
 == Changelog ==
 
+= 2.1 =
+
+Release date: TBA
+
+* New: generate_before_comments_container hook
+* New: Structured data to comments
+* New: aria-label to sidebar navigation mobile menu
+* New: Built in font icons where necessary
+* Tweak: Update to Font Awesome 5
+* Tweak: Simplify mobile menu CSS
+* Tweak: Load updated date before published date
+* Tweak: Force array in Layout metabox to prevent PHP notices
+* Tweak: Use https for schema.org references
+* Tweak: Replace wildcard CSS selectors with specific selectors
+* Tweak: Remove list item bullets in sidebar and footer widgets only
+* Fix: Sidebar sub-menu positioning after click
+* Fix: Rare Customizer JS error related to typography
+* Fix: Various small W3 errors
+* Remove: Font Awesome Essentials HTTP request
+* Remove: dropdown.js HTTP request
+* Remove: IE6 CSS
+* Remove: Secondary navigation CSS added to GPP 1.6
+* Remove: Secondary navigation JS
+
 = 2.0.2 =
 
 Release date: January 17, 2018
