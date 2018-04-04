@@ -458,21 +458,10 @@ input[type="file"] {
 	width: 1.28571429em;
 	text-align: center;
 	display: inline-block;
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-
-	/* Better Font Rendering =========== */
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 }
 
 .toggled .menu-toggle:before {
 	content: "\f00d";
-	speak: none;
 }
 
 .menu-toggle .mobile-menu {
@@ -507,16 +496,6 @@ span.search-item a:before {
 	width: 1.28571429em;
 	text-align: center;
 	display: inline-block;
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-
-	/* Better Font Rendering =========== */
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 }
 
 li.search-item.close-search a:before,
@@ -791,17 +770,6 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle {
 .dropdown-menu-toggle:before {
 	content: "\f107";
 	font-family: GeneratePress;
-
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-
-	/* Better Font Rendering =========== */
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 }
 
 .dropdown-click .menu-item-has-children.sfHover > a .dropdown-menu-toggle:before {
@@ -1593,19 +1561,8 @@ footer.entry-meta .posted-on:before,
 	position: relative;
 	margin-right: 0.6em;
 	width: 13px;
-
 	text-align: center;
 	display: inline-block;
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-
-	/* Better Font Rendering =========== */
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 }
 
 footer.entry-meta .author:before {
@@ -1890,17 +1847,6 @@ footer.entry-meta .byline {
 .generate-back-to-top:before {
 	content: "\f106";
 	font-family: GeneratePress;
-
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-
-	/* Better Font Rendering =========== */
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 }
 
 .generate-back-to-top,
@@ -2166,6 +2112,27 @@ h3 {
 	 url('fonts/generatepress.svg#GeneratePress') format('svg');
 	font-weight: normal;
 	font-style: normal;
+}
+
+.menu-toggle:before,
+li.search-item a:before,
+span.search-item a:before,
+.dropdown-menu-toggle:before,
+footer.entry-meta .author:before,
+footer.entry-meta .posted-on:before,
+.cat-links:before,
+.tags-links:before,
+.comments-link:before,
+.nav-previous .prev:before,
+.nav-next .next:before,
+.generate-back-to-top:before {
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	line-height: 1;
+	speak: none;
 }
 
 /*
