@@ -73,6 +73,31 @@ function generate_do_layout_meta_box( $post ) {
 	$stored_meta['_generate-footer-widget-meta'][0] = ( isset( $stored_meta['_generate-footer-widget-meta'][0] ) ) ? $stored_meta['_generate-footer-widget-meta'][0] : '';
 	$stored_meta['_generate-full-width-content'][0] = ( isset( $stored_meta['_generate-full-width-content'][0] ) ) ? $stored_meta['_generate-full-width-content'][0] : '';
 	$stored_meta['_generate-disable-headline'][0] = ( isset( $stored_meta['_generate-disable-headline'][0] ) ) ? $stored_meta['_generate-disable-headline'][0] : '';
+
+	$tabs = apply_filters( 'generate_metabox_tabs',
+		array(
+			'sidebars' => array(
+				'title' => esc_html__( 'Sidebars', 'generatepress' ),
+				'target' => '#generate-layout-sidebars',
+				'class' => 'current',
+			),
+			'footer_widgets' => array(
+				'title' => esc_html__( 'Footer Widgets', 'generatepress' ),
+				'target' => '#generate-layout-footer-widgets',
+				'class' => '',
+			),
+			'disable_elements' => array(
+				'title' => esc_html__( 'Disable Elements', 'generatepress' ),
+				'target' => '#generate-layout-disable-elements',
+				'class' => '',
+			),
+			'container' => array(
+				'title' => esc_html__( 'Page Builder Container', 'generatepress' ),
+				'target' => '#generate-layout-page-builder-container',
+				'class' => '',
+			),
+		)
+	);
 	?>
 	<script>
 		jQuery(document).ready(function($) {
@@ -80,7 +105,13 @@ function generate_do_layout_meta_box( $post ) {
 				event.preventDefault();
 				$( this ).parent().addClass( 'current' );
 				$( this ).parent().siblings().removeClass( 'current' );
-				var tab = $( this ).attr( 'href' );
+				var tab = $( this ).attr( 'data-target' );
+
+				// Page header module still using href.
+				if ( ! tab ) {
+					tab = $( this ).attr( 'href' );
+				}
+
 				$( '.generate-meta-box-content' ).children( 'div' ).not( tab ).css( 'display', 'none' );
 				$( tab ).fadeIn( 100 );
 			});
@@ -88,13 +119,13 @@ function generate_do_layout_meta_box( $post ) {
 	</script>
 	<div id="generate-meta-box-container">
 		<ul class="generate-meta-box-menu">
-			<li class="current"><a href="#generate-layout-sidebars"><?php esc_html_e( 'Sidebars', 'generatepress' ); ?></a></li>
-			<li><a href="#generate-layout-footer-widgets"><?php esc_html_e( 'Footer Widgets', 'generatepress' ); ?></a></li>
-			<?php if ( ! defined( 'GENERATE_DE_VERSION' ) || defined( 'GENERATE_DE_LAYOUT_META_BOX' ) ) : ?>
-				<li><a href="#generate-layout-disable-elements"><?php esc_html_e( 'Disable Elements', 'generatepress' ); ?></a></li>
-			<?php endif; ?>
-			<li><a href="#generate-layout-page-builder-container"><?php esc_html_e( 'Page Builder Container', 'generatepress' ); ?></a></li>
-			<?php do_action( 'generate_layout_meta_box_menu_item' ); ?>
+			<?php
+			foreach ( ( array ) $tabs as $tab => $data ) {
+				echo '<li class="' . esc_attr( $data['class'] ) . '"><a data-target="' . esc_attr( $data['target'] ) . '" href="#">' . esc_html( $data['title'] ) . '</a></li>';
+			}
+
+			do_action( 'generate_layout_meta_box_menu_item' );
+			?>
 		</ul>
 		<div class="generate-meta-box-content">
 			<div id="generate-layout-sidebars">
