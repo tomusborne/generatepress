@@ -247,11 +247,6 @@ textarea {
 }
 
 button,
-input {
-	line-height: normal; /* Addresses FF3/4 setting line-height using !important in the UA stylesheet */
-}
-
-button,
 html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
@@ -434,7 +429,6 @@ input[type="file"] {
 
 /* =Menu
 ----------------------------------------------- */
-
 .main-navigation {
 	z-index: 100;
 	padding: 0;
@@ -1154,7 +1148,9 @@ body {
 	font-size: 15px;
 }
 
-a {
+a,
+button,
+input {
 	transition:color 0.1s ease-in-out, background-color 0.1s ease-in-out;
 }
 
