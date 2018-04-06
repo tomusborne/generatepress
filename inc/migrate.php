@@ -9,6 +9,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+add_action( 'admin_init', 'generate_do_db_updates' );
+/**
+ * Process database updates if necessary.
+ * There's nothing in here yet, but we're setting the version to use later.
+ *
+ * @since 2.1
+ */
+function generate_do_db_updates() {
+	// Get the current version.
+	$current_version = get_option( 'generate_db_version', false );
+
+	// Process future database updates here.
+
+	// Set the new database version.
+	if ( version_compare( $current_version, GENERATE_VERSION, '!=' ) ) {
+		update_option( 'generate_db_version', GENERATE_VERSION, false );
+	}
+}
+
 if ( ! function_exists( 'generate_update_logo_setting' ) ) {
 	add_action( 'admin_init', 'generate_update_logo_setting' );
 	/**
