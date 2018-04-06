@@ -105,6 +105,8 @@ Release date: TBA
 * New: Structured data to comments
 * New: aria-label to sidebar navigation mobile menu
 * New: Built in font icons where necessary
+* New: generate_metabox_tabs filter
+* New: generate_fontawesome_styles filter
 * Tweak: Update to Font Awesome 5
 * Tweak: Simplify mobile menu CSS
 * Tweak: Load updated date before published date
@@ -112,6 +114,8 @@ Release date: TBA
 * Tweak: Use https for schema.org references
 * Tweak: Replace wildcard CSS selectors with specific selectors
 * Tweak: Remove list item bullets in sidebar and footer widgets only
+* Tweak: Make button/input line height consistent with link buttons
+* Tweak: Add version to database for future migrations
 * Fix: Sidebar sub-menu positioning after click
 * Fix: Rare Customizer JS error related to typography
 * Fix: Various small W3 errors
