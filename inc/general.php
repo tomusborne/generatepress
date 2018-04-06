@@ -54,7 +54,7 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 			wp_enqueue_script( 'font-awesome', $dir_uri . "/js/fontawesome/fontawesome{$suffix}.js", array(), '5.0.9', false );
 
 			if ( generate_get_setting( 'font_awesome_v4_shim' ) ) {
-				wp_enqueue_script( 'font-awesome-v4-shims', $dir_uri . "/js/fa-v4-shims{$suffix}.js", array( 'font-awesome' ), GENERATE_VERSION, false );
+				wp_enqueue_script( 'font-awesome-v4-shims', $dir_uri . "/js/fontawesome/fa-v4-shims{$suffix}.js", array( 'font-awesome' ), GENERATE_VERSION, false );
 			}
 
 			if ( function_exists( 'wp_add_inline_script' ) ) {
