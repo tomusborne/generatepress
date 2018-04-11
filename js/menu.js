@@ -186,6 +186,11 @@
 			 */
 			for ( var i = 0; i < navLinks.length; i++ ) {
 				navLinks[i].addEventListener( 'click', function( e ) {
+					// Remove sfHover class if we're going to another site.
+					if ( this.hostname !== window.location.hostname ) {
+						document.activeElement.blur();
+					}
+
 					var closest_nav = this.closest( 'nav' );
 					if ( closest_nav.classList.contains( 'toggled' ) || htmlEl.classList.contains( 'slide-opened' ) ) {
 						var url = this.getAttribute( 'href' );
