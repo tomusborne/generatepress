@@ -107,6 +107,7 @@ Release date: TBA
 * New: Built in font icons where necessary
 * New: generate_metabox_tabs filter
 * New: generate_fontawesome_styles filter
+* New: generate_after_footer hook
 * Tweak: Update to Font Awesome 5
 * Tweak: Simplify mobile menu CSS
 * Tweak: Load updated date before published date
@@ -116,6 +117,8 @@ Release date: TBA
 * Tweak: Remove list item bullets in sidebar and footer widgets only
 * Tweak: Make button/input line height consistent with link buttons
 * Tweak: Add version to database for future migrations
+* Tweak: Move back to top button to generate_after_footer
+* Tweak: Remove focus class from menu items on click if leaving site
 * Fix: Sidebar sub-menu positioning after click
 * Fix: Rare Customizer JS error related to typography
 * Fix: Various small W3 errors
