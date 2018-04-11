@@ -203,7 +203,7 @@ if ( ! function_exists( 'generate_construct_footer_widgets' ) ) {
 }
 
 if ( ! function_exists( 'generate_back_to_top' ) ) {
-	add_action( 'wp_footer', 'generate_back_to_top' );
+	add_action( 'generate_after_footer', 'generate_back_to_top' );
 	/**
 	 * Build the back to top button
 	 *
