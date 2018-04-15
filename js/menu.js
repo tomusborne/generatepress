@@ -66,7 +66,7 @@
 					var dropdownItems = nav.querySelectorAll( 'li.menu-item-has-children' );
 					for ( var i = 0; i < dropdownItems.length; i++ ) {
 						dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).removeAttribute( 'tabindex' );
-						dropdownItems[d].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'role', 'presentation' );
+						dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'role', 'presentation' );
 						dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).removeAttribute( 'aria-expanded' );
 					}
 				}
