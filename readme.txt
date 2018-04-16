@@ -119,6 +119,8 @@ Release date: TBA
 * Tweak: Add version to database for future migrations
 * Tweak: Move back to top button to generate_after_footer
 * Tweak: Remove focus class from menu items on click if leaving site
+* Tweak: Keep tab focus inside navigation search when open
+* Tweak: Remove roles from sidebars
 * Fix: Sidebar sub-menu positioning after click
 * Fix: Rare Customizer JS error related to typography
 * Fix: Various small W3 errors
