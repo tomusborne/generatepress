@@ -1371,15 +1371,13 @@ h4, h5, h6 {
 	margin: 0;
 }
 
-.sidebar .widget ul li,
-.footer-widgets .widget ul li {
+div:not(.entry-content) .widget ul li {
 	list-style-type: none;
 	position:relative;
 	padding-bottom: 5px;
 }
 
-.sidebar .widget ul li ul li:before,
-.footer-widgets .widget ul li ul li:before {
+div:not(.entry-content) .widget ul li ul li:before {
 	opacity:.7;
 }
 
