@@ -23,6 +23,8 @@
 
 			var form = nav.querySelector( '.navigation-search' );
 
+			var focusableEls = document.querySelectorAll('a[href], area[href], input:not([disabled]):not(.navigation-search), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [tabindex="0"]');
+
 			if ( form.classList.contains( 'nav-search-active' ) ) {
 				item.classList.remove( 'close-search' );
 				item.classList.remove( 'active' );
@@ -30,10 +32,24 @@
 				item.classList.remove( 'sfHover' );
 				form.classList.remove( 'nav-search-active' );
 				item.style.float = '';
+
+				// Allow tabindex on items again.
+				for ( var i = 0; i < focusableEls.length; i++ ) {
+					if ( ! focusableEls[i].closest( '.navigation-search' ) && ! focusableEls[i].closest( '.search-item' ) ) {
+						focusableEls[i].removeAttribute( 'tabindex' );
+					}
+				};
 			} else {
 				item.classList.add( 'active' );
 				form.classList.add( 'nav-search-active' );
 				form.querySelector( '.search-field' ).focus();
+
+				// Trap tabindex within the search element
+				for ( var i = 0; i < focusableEls.length; i++ ) {
+					if ( ! focusableEls[i].closest( '.navigation-search' ) && ! focusableEls[i].closest( '.search-item' ) ) {
+						focusableEls[i].setAttribute( 'tabindex', '-1' );
+					}
+				};
 
 				// Set a delay to stop conflict with toggleFocus() in a11y.js
 				setTimeout( function() {
