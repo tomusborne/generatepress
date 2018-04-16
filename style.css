@@ -708,10 +708,6 @@ li.search-item.active {
 	float: right;
 }
 
-.navigation-search input:focus {
-	outline: 0;
-}
-
 .nav-aligned-right.nav-below-header .main-navigation .menu > li,
 .nav-aligned-right.nav-above-header .main-navigation .menu > li,
 .nav-aligned-center.nav-below-header .main-navigation .menu > li,
