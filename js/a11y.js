@@ -30,8 +30,7 @@
 	}
 } )();
 
-// outline.js
-// based on http://www.paciellogroup.com/blog/2012/04/how-to-remove-css-outlines-in-an-accessible-manner/
+/*! outline.js v1.2.0 - https://github.com/lindsayevans/outline.js/ */
 (function(d){
 
 	var style_element = d.createElement('STYLE'),
