@@ -23,7 +23,7 @@ function generate_do_db_updates() {
 	// Process future database updates here.
 
 	// Set the new database version.
-	if ( version_compare( $current_version, GENERATE_VERSION, '!=' ) ) {
+	if ( version_compare( $current_version, GENERATE_VERSION, '<' ) ) {
 		update_option( 'generate_db_version', GENERATE_VERSION, false );
 	}
 }
