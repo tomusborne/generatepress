@@ -149,6 +149,7 @@
 					var closestNavItems = closestNav.getElementsByTagName( 'li' );
 					var closestSubMenus = closestNav.getElementsByTagName( 'ul' );
 					if ( closestParent ) {
+						document.activeElement.blur();
 						closestParent.classList.remove( 'toggled' );
 						htmlEl.classList.remove( 'mobile-menu-open' );
 						allNavToggles[i].setAttribute( 'aria-expanded', 'false' );
