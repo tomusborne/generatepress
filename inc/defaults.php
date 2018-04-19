@@ -49,8 +49,7 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 			'link_color' => '#1e73be',
 			'link_color_hover' => '#000000',
 			'link_color_visited' => '',
-			'font_awesome' => false,
-			'font_awesome_v4_shim' => false,
+			'font_awesome_essentials' => true,
 			'dynamic_css_cache' => true,
 		);
 

@@ -1063,43 +1063,22 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 		);
 
 		$wp_customize->add_setting(
-			'generate_settings[font_awesome]',
+			'generate_settings[font_awesome_essentials]',
 			array(
-				'default' => $defaults['font_awesome'],
+				'default' => $defaults['font_awesome_essentials'],
 				'type' => 'option',
 				'sanitize_callback' => 'generate_sanitize_checkbox'
 			)
 		);
 
 		$wp_customize->add_control(
-			'generate_settings[font_awesome]',
+			'generate_settings[font_awesome_essentials]',
 			array(
 				'type' => 'checkbox',
-				'label' => __( 'Font Awesome', 'generatepress' ),
-				'description' => __( 'Load the entire Font Awesome library.', 'generatepress' ),
+				'label' => __( 'Load essential icons only', 'generatepress' ),
+				'description' => __( 'Load essential Font Awesome icons instead of the full library.', 'generatepress' ),
 				'section' => 'generate_general_section',
-				'settings' => 'generate_settings[font_awesome]',
-			)
-		);
-
-		$wp_customize->add_setting(
-			'generate_settings[font_awesome_v4_shim]',
-			array(
-				'default' => $defaults['font_awesome_v4_shim'],
-				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_checkbox'
-			)
-		);
-
-		$wp_customize->add_control(
-			'generate_settings[font_awesome_v4_shim]',
-			array(
-				'type' => 'checkbox',
-				'label' => __( 'Font Awesome 4 Compatibility', 'generatepress' ),
-				'description' => sprintf( __( 'Prevent changed Font Awesome 4 icons from breaking. Learn more about updating your icon names <a href="%s" target="_blank" rel="noopener noreferrer">here</a>.', 'generatepress' ), 'https://fontawesome.com/how-to-use/upgrading-from-4#icon-name-changes' ),
-				'section' => 'generate_general_section',
-				'settings' => 'generate_settings[font_awesome_v4_shim]',
-				'active_callback' => 'generate_is_font_awesome_activated',
+				'settings' => 'generate_settings[font_awesome_essentials]',
 			)
 		);
 

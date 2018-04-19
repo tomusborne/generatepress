@@ -183,20 +183,3 @@ if ( ! function_exists( 'generate_spacing_scripts' ) ) {
 		_deprecated_function( __FUNCTION__, '2.0', "generate_enqueue_dynamic_css()" );
 	}
 }
-
-/**
- * Check to see if we should include the full Font Awesome library or not.
- *
- * @since 2.0
- * @deprecated 2.1
- *
- * @param bool $essentials
- * @return bool
- */
-function generate_set_font_awesome_essentials( $essentials ) {
-	if ( generate_get_setting( 'font_awesome_essentials' ) ) {
-		return true;
-	}
-
-	return $essentials;
-}

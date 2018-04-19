@@ -233,11 +233,6 @@ function generate_migrate_existing_settings() {
 		generate_get_defaults()
 	);
 
-	// Default was removed in 2.1, so we'll set it here.
-	if ( ! isset( $settings['font_awesome_essentials'] ) ) {
-		$settings['font_awesome_essentials'] = true;
-	}
-
 	// Empty arrays to add data to.
 	$migrated_flags = array();
 	$new_settings = array();
@@ -248,17 +243,10 @@ function generate_migrate_existing_settings() {
 	// We have settings, so this isn't a fresh install.
 	if ( ! empty( $existing_settings ) ) {
 
-		if ( ! isset( $migration_settings['font_awesome_library_updated'] ) || 'true' !== $migration_settings['font_awesome_library_updated'] ) {
-			// Turn on Font Awesome for existing websites.
-			$new_settings[ 'font_awesome' ] = true;
-			$new_settings[ 'font_awesome_v4_shim' ] = true;
-
-			// If we've turned on the old essentials option, turn off the full library.
-			if ( $settings['font_awesome_essentials'] || apply_filters( 'generate_fontawesome_essentials', false ) ) {
-				$new_settings[ 'font_awesome' ] = false;
-				$new_settings[ 'font_awesome_v4_shim' ] = false;
-			}
- 		}
+		// Turn on the full Font Awesome library for existing websites.
+		if ( ! isset( $migration_settings['font_awesome_essentials_updated'] ) || 'true' !== $migration_settings['font_awesome_essentials_updated'] ) {
+			$new_settings[ 'font_awesome_essentials' ] = false;
+		}
 
 		// Turn off dynamic CSS caching for existing websites.
 		if ( ! isset( $migration_settings['skip_dynamic_css_cache'] ) || 'true' !== $migration_settings['skip_dynamic_css_cache'] ) {
@@ -287,8 +275,8 @@ function generate_migrate_existing_settings() {
 	}
 
 	// Set our flags.
-	if ( ! isset( $migration_settings['font_awesome_library_updated'] ) || 'true' !== $migration_settings['font_awesome_library_updated'] ) {
-		$migrated_flags['font_awesome_library_updated'] = 'true';
+	if ( ! isset( $migration_settings['font_awesome_essentials_updated'] ) || 'true' !== $migration_settings['font_awesome_essentials_updated'] ) {
+		$migrated_flags['font_awesome_essentials_updated'] = 'true';
 	}
 
 	if ( ! isset( $migration_settings['skip_dynamic_css_cache'] ) || 'true' !== $migration_settings['skip_dynamic_css_cache'] ) {

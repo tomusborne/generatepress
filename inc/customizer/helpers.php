@@ -241,18 +241,3 @@ function generate_has_custom_logo_callback() {
 
 	return false;
 }
-
-/**
- * Check to see if the Font Awesome library is activated.
- *
- * @since 2.1
- *
- * @return bool
- */
-function generate_is_font_awesome_activated() {
-	if ( generate_get_setting( 'font_awesome' ) ) {
-		return true;
-	}
-
-	return false;
-}

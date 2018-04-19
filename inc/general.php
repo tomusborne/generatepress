@@ -31,35 +31,8 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 			wp_enqueue_style( 'generate-child', get_stylesheet_uri(), array( 'generate-style' ), filemtime( get_stylesheet_directory() . '/style.css' ), 'all' );
 		}
 
-		if ( generate_get_setting( 'font_awesome' ) && ! apply_filters( 'generate_fontawesome_essentials', false ) ) {
-			$styles = ( array ) apply_filters( 'generate_fontawesome_styles', array(
-				'regular' => array(
-					'file' => $dir_uri . "/js/fontawesome/fa-regular{$suffix}.js",
-					'version' => '5.0.9',
-				),
-				'solid' => array(
-					'file' => $dir_uri . "/js/fontawesome/fa-solid{$suffix}.js",
-					'version' => '5.0.9',
-				),
-				'brands' => array(
-					'file' => $dir_uri . "/js/fontawesome/fa-brands{$suffix}.js",
-					'version' => '5.0.9',
-				)
-			) );
-
-			foreach ( $styles as $name => $data ) {
-				wp_enqueue_script( 'font-awesome-' . esc_attr( $name ), esc_url( $data['file'] ), array(), esc_attr( $data['version'] ), false );
-			}
-
-			wp_enqueue_script( 'font-awesome', $dir_uri . "/js/fontawesome/fontawesome{$suffix}.js", array(), '5.0.9', false );
-
-			if ( generate_get_setting( 'font_awesome_v4_shim' ) ) {
-				wp_enqueue_script( 'font-awesome-v4-shims', $dir_uri . "/js/fontawesome/fa-v4-shims{$suffix}.js", array( 'font-awesome' ), GENERATE_VERSION, false );
-			}
-
-			if ( function_exists( 'wp_add_inline_script' ) ) {
-				wp_add_inline_script( 'font-awesome', 'var FontAwesomeConfig = { autoReplaceSvg: "nest" }', 'before' );
-			}
+		if ( ! apply_filters( 'generate_fontawesome_essentials', false ) ) {
+			wp_enqueue_style( 'font-awesome', $dir_uri . "/css/font-awesome{$suffix}.css", false, '4.7', 'all' );
 		}
 
 		if ( function_exists( 'wp_script_add_data' ) ) {
@@ -314,6 +287,23 @@ if ( ! function_exists( 'generate_get_default_color_palettes' ) ) {
 	}
 }
 
+add_filter( 'generate_fontawesome_essentials', 'generate_set_font_awesome_essentials' );
+/**
+ * Check to see if we should include the full Font Awesome library or not.
+ *
+ * @since 2.0
+ *
+ * @param bool $essentials
+ * @return bool
+ */
+function generate_set_font_awesome_essentials( $essentials ) {
+	if ( generate_get_setting( 'font_awesome_essentials' ) ) {
+		return true;
+	}
+
+	return $essentials;
+}
+
 add_filter( 'generate_dynamic_css_skip_cache', 'generate_skip_dynamic_css_cache' );
 /**
  * Skips caching of the dynamic CSS if set to false.
@@ -329,31 +319,4 @@ function generate_skip_dynamic_css_cache( $cache ) {
 	}
 
 	return $cache;
-}
-
-add_filter( 'script_loader_tag', 'generate_defer_font_awesome', 10, 2 );
-/**
- * Defer both possible Font Awesome scripts.
- *
- * @since 2.1
- *
- * @param string $tag
- * @param string $handle
- * @return string
- */
-function generate_defer_font_awesome( $tag, $handle ) {
-	$handles = array(
-		'font-awesome',
-		'font-awesome-brands',
-		'font-awesome-solid',
-		'font-awesome-regular',
-		'font-awesome-light',
-		'font-awesome-v4-shims',
-	);
-
-    if ( in_array( $handle, $handles ) ) {
-        return str_replace( ' src', ' defer="defer" src', $tag );
-	}
-
-	return $tag;
 }
