@@ -104,11 +104,9 @@ Release date: TBA
 * New: generate_before_comments_container hook
 * New: Structured data to comments
 * New: aria-label to sidebar navigation mobile menu
-* New: Built in font icons where necessary
+* New: Update all theme icons
 * New: generate_metabox_tabs filter
-* New: generate_fontawesome_styles filter
 * New: generate_after_footer hook
-* Tweak: Update to Font Awesome 5
 * Tweak: Simplify mobile menu CSS
 * Tweak: Load updated date before published date
 * Tweak: Force array in Layout metabox to prevent PHP notices
