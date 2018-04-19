@@ -101,12 +101,12 @@ MIT License: https://github.com/woocommerce/selectWoo/blob/master/LICENSE.md
 
 Release date: TBA
 
-* New: generate_before_comments_container hook
 * New: Structured data to comments
 * New: aria-label to sidebar navigation mobile menu
 * New: Update all theme icons
 * New: generate_metabox_tabs filter
 * New: generate_after_footer hook
+* New: generate_before_comments_container hook
 * Tweak: Simplify mobile menu CSS
 * Tweak: Load updated date before published date
 * Tweak: Force array in Layout metabox to prevent PHP notices
