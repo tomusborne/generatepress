@@ -145,10 +145,12 @@
 			for ( var i = 0; i < allNavToggles.length; i++ ) {
 				if ( allNavToggles[i].offsetParent === null ) {
 					var closestParent = allNavToggles[i].closest( 'nav' );
-					var closestNav = closestParent.getElementsByTagName( 'ul' )[0];
-					var closestNavItems = closestNav.getElementsByTagName( 'li' );
-					var closestSubMenus = closestNav.getElementsByTagName( 'ul' );
-					if ( closestParent ) {
+
+					if ( closestParent && closestParent.classList.contains( 'toggled' ) ) {
+						var closestNav = closestParent.getElementsByTagName( 'ul' )[0];
+						var closestNavItems = closestNav.getElementsByTagName( 'li' );
+						var closestSubMenus = closestNav.getElementsByTagName( 'ul' );
+
 						document.activeElement.blur();
 						closestParent.classList.remove( 'toggled' );
 						htmlEl.classList.remove( 'mobile-menu-open' );
@@ -163,7 +165,7 @@
 						}
 
 						if ( closestNav ) {
-							closestNav.setAttribute( 'aria-hidden', 'true' );
+							closestNav.removeAttribute( 'aria-hidden' );
 						}
 
 						if ( body.classList.contains( 'dropdown-hover' ) ) {
