@@ -122,6 +122,7 @@ Release date: TBA
 * Fix: Sidebar sub-menu positioning after click
 * Fix: Rare Customizer JS error related to typography
 * Fix: Various small W3 errors
+* Fix: Navigation aria-hidden issue
 * Remove: Font Awesome Essentials HTTP request
 * Remove: dropdown.js HTTP request
 * Remove: IE6 CSS
