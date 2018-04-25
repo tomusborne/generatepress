@@ -1703,6 +1703,17 @@ footer.entry-meta .byline {
 	margin-top: 2em;
 }
 
+/* Temporary clearing until GPP 1.6.3 */
+.page-header-content-container:before,
+.page-header-content-container:after {
+	content: "";
+	display: table;
+}
+
+.page-header-content-container:after {
+	clear: both;
+}
+
 /* Full width template */
 .full-width-content .container.grid-container {
 	max-width: 100%;
