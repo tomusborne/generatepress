@@ -24,7 +24,7 @@ if ( function_exists( 'generate_secondary_nav_get_defaults' ) ) {
 	}
 }
 ?>
-<div id="right-sidebar" itemtype="https://schema.org/WPSideBar" itemscope="itemscope" role="complementary" <?php generate_right_sidebar_class(); ?>>
+<div id="right-sidebar" itemtype="https://schema.org/WPSideBar" itemscope="itemscope" <?php generate_right_sidebar_class(); ?>>
 	<div class="inside-right-sidebar">
 		<?php
 		/**

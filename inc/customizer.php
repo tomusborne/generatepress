@@ -1062,25 +1062,27 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			)
 		);
 
-		$wp_customize->add_setting(
-			'generate_settings[font_awesome_essentials]',
-			array(
-				'default' => $defaults['font_awesome_essentials'],
-				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_checkbox'
-			)
-		);
+		if ( ! apply_filters( 'generate_fontawesome_essentials', false ) ) {
+			$wp_customize->add_setting(
+				'generate_settings[font_awesome_essentials]',
+				array(
+					'default' => $defaults['font_awesome_essentials'],
+					'type' => 'option',
+					'sanitize_callback' => 'generate_sanitize_checkbox'
+				)
+			);
 
-		$wp_customize->add_control(
-			'generate_settings[font_awesome_essentials]',
-			array(
-				'type' => 'checkbox',
-				'label' => __( 'Load essential icons only', 'generatepress' ),
-				'description' => __( 'Load essential Font Awesome icons instead of the full library.', 'generatepress' ),
-				'section' => 'generate_general_section',
-				'settings' => 'generate_settings[font_awesome_essentials]',
-			)
-		);
+			$wp_customize->add_control(
+				'generate_settings[font_awesome_essentials]',
+				array(
+					'type' => 'checkbox',
+					'label' => __( 'Load essential icons only', 'generatepress' ),
+					'description' => __( 'Load essential Font Awesome icons instead of the full library.', 'generatepress' ),
+					'section' => 'generate_general_section',
+					'settings' => 'generate_settings[font_awesome_essentials]',
+				)
+			);
+		}
 
 		$wp_customize->add_setting(
 			'generate_settings[dynamic_css_cache]',

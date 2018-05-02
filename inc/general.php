@@ -31,8 +31,9 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 			wp_enqueue_style( 'generate-child', get_stylesheet_uri(), array( 'generate-style' ), filemtime( get_stylesheet_directory() . '/style.css' ), 'all' );
 		}
 
-		$icon_essentials = apply_filters( 'generate_fontawesome_essentials', false ) ? '-essentials' : false;
-		wp_enqueue_style( "font-awesome{$icon_essentials}", $dir_uri . "/css/font-awesome{$icon_essentials}{$suffix}.css", false, '4.7', 'all' );
+		if ( ! apply_filters( 'generate_fontawesome_essentials', false ) ) {
+			wp_enqueue_style( 'font-awesome', $dir_uri . "/css/font-awesome{$suffix}.css", false, '4.7', 'all' );
+		}
 
 		if ( function_exists( 'wp_script_add_data' ) ) {
 			wp_enqueue_script( 'generate-classlist', $dir_uri . "/js/classList{$suffix}.js", array(), GENERATE_VERSION, true );
@@ -42,8 +43,9 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 		wp_enqueue_script( 'generate-menu', $dir_uri . "/js/menu{$suffix}.js", array(), GENERATE_VERSION, true );
 		wp_enqueue_script( 'generate-a11y', $dir_uri . "/js/a11y{$suffix}.js", array(), GENERATE_VERSION, true );
 
-		$click = ( 'click' == $generate_settings[ 'nav_dropdown_type' ] || 'click-arrow' == $generate_settings[ 'nav_dropdown_type' ] ) ? '-click' : '';
-		wp_enqueue_script( 'generate-dropdown', $dir_uri . "/js/dropdown{$click}{$suffix}.js", array( 'generate-menu' ), GENERATE_VERSION, true );
+		if ( 'click' == $generate_settings[ 'nav_dropdown_type' ] || 'click-arrow' == $generate_settings[ 'nav_dropdown_type' ] ) {
+			wp_enqueue_script( 'generate-dropdown-click', $dir_uri . "/js/dropdown-click{$suffix}.js", array( 'generate-menu' ), GENERATE_VERSION, true );
+		}
 
 		if ( 'enable' == $generate_settings['nav_search'] ) {
 			wp_enqueue_script( 'generate-navigation-search', $dir_uri . "/js/navigation-search{$suffix}.js", array( 'generate-menu' ), GENERATE_VERSION, true );

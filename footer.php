@@ -50,7 +50,16 @@ do_action( 'generate_before_footer' );
 	?>
 </div><!-- .site-footer -->
 
-<?php wp_footer(); ?>
+<?php
+/**
+ * generate_after_footer hook.
+ *
+ * @since 2.1
+ */
+do_action( 'generate_after_footer' );
+
+wp_footer();
+?>
 
 </body>
 </html>

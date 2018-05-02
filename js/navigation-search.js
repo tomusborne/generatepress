@@ -23,18 +23,33 @@
 
 			var form = nav.querySelector( '.navigation-search' );
 
+			var focusableEls = document.querySelectorAll('a[href], area[href], input:not([disabled]):not(.navigation-search), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [tabindex="0"]');
+
 			if ( form.classList.contains( 'nav-search-active' ) ) {
-				item.querySelector( 'i' ).classList.remove( 'fa-close' );
-				item.querySelector( 'i' ).classList.add( 'fa-search' );
+				item.classList.remove( 'close-search' );
 				item.classList.remove( 'active' );
 				document.activeElement.blur();
 				item.classList.remove( 'sfHover' );
 				form.classList.remove( 'nav-search-active' );
 				item.style.float = '';
+
+				// Allow tabindex on items again.
+				for ( var i = 0; i < focusableEls.length; i++ ) {
+					if ( ! focusableEls[i].closest( '.navigation-search' ) && ! focusableEls[i].closest( '.search-item' ) ) {
+						focusableEls[i].removeAttribute( 'tabindex' );
+					}
+				};
 			} else {
 				item.classList.add( 'active' );
 				form.classList.add( 'nav-search-active' );
 				form.querySelector( '.search-field' ).focus();
+
+				// Trap tabindex within the search element
+				for ( var i = 0; i < focusableEls.length; i++ ) {
+					if ( ! focusableEls[i].closest( '.navigation-search' ) && ! focusableEls[i].closest( '.search-item' ) ) {
+						focusableEls[i].setAttribute( 'tabindex', '-1' );
+					}
+				};
 
 				// Set a delay to stop conflict with toggleFocus() in a11y.js
 				setTimeout( function() {
@@ -42,13 +57,11 @@
 				}, 50 );
 
 				if ( ! document.body.classList.contains( 'nav-aligned-center' ) ) {
-					item.querySelector( 'i' ).classList.remove( 'fa-search' );
-					item.querySelector( 'i' ).classList.add( 'fa-close' );
+					item.classList.add( 'close-search' );
 				} else {
 					item.style.opacity = 0;
 					setTimeout( function() {
-						item.querySelector( 'i' ).classList.remove( 'fa-search' );
-						item.querySelector( 'i' ).classList.add( 'fa-close' );
+						item.classList.add( 'close-search' );
 						item.style.opacity = 1;
 						if ( document.body.classList.contains ( 'rtl' ) ) {
 							item.style.float = 'left';

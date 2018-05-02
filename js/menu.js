@@ -33,6 +33,7 @@
 
 		var allNavToggles = document.querySelectorAll( '.menu-toggle' ),
 			dropdownToggle = document.querySelectorAll( 'nav .dropdown-menu-toggle' ),
+			navLinks = document.querySelectorAll( 'nav ul a' ),
 			body = document.body,
 			htmlEl = document.documentElement;
 
@@ -64,7 +65,9 @@
 				if ( body.classList.contains( 'dropdown-hover' ) ) {
 					var dropdownItems = nav.querySelectorAll( 'li.menu-item-has-children' );
 					for ( var i = 0; i < dropdownItems.length; i++ ) {
-						dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'tabindex', '' );
+						dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).removeAttribute( 'tabindex' );
+						dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'role', 'presentation' );
+						dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).removeAttribute( 'aria-expanded' );
 					}
 				}
 			} else {
@@ -77,6 +80,8 @@
 					var dropdownItems = nav.querySelectorAll( 'li.menu-item-has-children' );
 					for ( var i = 0; i < dropdownItems.length; i++ ) {
 						dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'tabindex', '0' );
+						dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'role', 'button' );
+						dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'aria-expanded', 'false' );
 					}
 				}
 			}
@@ -140,10 +145,13 @@
 			for ( var i = 0; i < allNavToggles.length; i++ ) {
 				if ( allNavToggles[i].offsetParent === null ) {
 					var closestParent = allNavToggles[i].closest( 'nav' );
-					var closestNav = closestParent.getElementsByTagName( 'ul' )[0];
-					var closestNavItems = closestNav.getElementsByTagName( 'li' );
-					var closestSubMenus = closestNav.getElementsByTagName( 'ul' );
-					if ( closestParent ) {
+
+					if ( closestParent && closestParent.classList.contains( 'toggled' ) ) {
+						var closestNav = closestParent.getElementsByTagName( 'ul' )[0];
+						var closestNavItems = closestNav.getElementsByTagName( 'li' );
+						var closestSubMenus = closestNav.getElementsByTagName( 'ul' );
+
+						document.activeElement.blur();
 						closestParent.classList.remove( 'toggled' );
 						htmlEl.classList.remove( 'mobile-menu-open' );
 						allNavToggles[i].setAttribute( 'aria-expanded', 'false' );
@@ -157,7 +165,16 @@
 						}
 
 						if ( closestNav ) {
-							closestNav.setAttribute( 'aria-hidden', 'true' );
+							closestNav.removeAttribute( 'aria-hidden' );
+						}
+
+						if ( body.classList.contains( 'dropdown-hover' ) ) {
+							var dropdownItems = closestParent.querySelectorAll( 'li.menu-item-has-children' );
+							for ( var d = 0; d < dropdownItems.length; d++ ) {
+								dropdownItems[d].querySelector( '.dropdown-menu-toggle' ).removeAttribute( 'tabindex' );
+								dropdownItems[d].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'role', 'presentation' );
+								dropdownItems[d].querySelector( '.dropdown-menu-toggle' ).removeAttribute( 'aria-expanded' );
+							}
 						}
 					}
 				}
@@ -165,6 +182,45 @@
 		}
 		window.addEventListener( 'resize', checkMobile, false );
 		window.addEventListener( 'orientationchange', checkMobile, false );
+
+		if ( body.classList.contains( 'dropdown-hover' ) ) {
+			/**
+			 * Do some essential things when menu items are clicked.
+			 */
+			for ( var i = 0; i < navLinks.length; i++ ) {
+				navLinks[i].addEventListener( 'click', function( e ) {
+					// Remove sfHover class if we're going to another site.
+					if ( this.hostname !== window.location.hostname ) {
+						document.activeElement.blur();
+					}
+
+					var closest_nav = this.closest( 'nav' );
+					if ( closest_nav.classList.contains( 'toggled' ) || htmlEl.classList.contains( 'slide-opened' ) ) {
+						var url = this.getAttribute( 'href' );
+
+						// Open the sub-menu if the link has no destination
+						if ( '#' == url || '' == url ) {
+							e.preventDefault();
+							var closestLi = this.closest( 'li' );
+							closestLi.classList.toggle( 'sfHover' );
+							var subMenu = closestLi.querySelector( '.sub-menu' );
+
+							if ( subMenu ) {
+								subMenu.classList.toggle( 'toggled-on' );
+							}
+						}
+
+						// Close the mobile menu if our link does something - good for one page sites.
+						if ( '#' !== url && '' !== url && ! navigator.userAgent.match( /iemobile/i ) ) {
+							setTimeout( function() {
+								closest_nav.classList.remove( 'toggled' );
+								htmlEl.classList.remove( 'mobile-menu-open' );
+							}, 200 );
+						}
+					}
+				}, false );
+			}
+		}
 
 	}
 

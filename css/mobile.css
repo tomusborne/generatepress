@@ -50,6 +50,55 @@ nav.toggled ul ul.sub-menu {
 .main-navigation.toggled ul ul.toggled-on {
 	visibility: visible;
 }
+
+.main-navigation.toggled .main-nav > ul {
+	display: block;
+}
+
+.main-navigation.toggled .main-nav ul ul.toggled-on {
+	position: relative;
+	top: 0;
+	left: auto !important;
+	right: auto !important;
+	width: 100%;
+	pointer-events: auto;
+	height: auto;
+	opacity: 1;
+	display: block;
+}
+
+.main-navigation.toggled .main-nav li {
+	float: none;
+	clear: both;
+	display: block !important;
+	text-align: left !important;
+}
+
+.main-navigation.toggled .main-nav li.hide-on-mobile {
+	display: none !important;
+}
+
+.main-navigation.toggled .dropdown-menu-toggle:before {
+	content: "\f107" !important;
+}
+
+.main-navigation.toggled .sfHover > a .dropdown-menu-toggle:before {
+	content: "\f106" !important;
+}
+
+.main-navigation.toggled .menu-item-has-children .dropdown-menu-toggle {
+	float: right;
+}
+
+.main-navigation.toggled .menu li.search-item {
+	display: none !important;
+}
+
+.main-navigation.toggled .sf-menu > li.menu-item-float-right {
+	float: none !important;
+	display: inline-block !important;
+}
+
 @media (max-width: 768px) {
 	.top-bar.top-bar-align-left,
 	.top-bar.top-bar-align-right {
@@ -100,77 +149,20 @@ nav.toggled ul ul.sub-menu {
 	}
 
 	/* Start mobile navigation */
-	.main-navigation .menu-toggle {
+	.main-navigation .menu-toggle,
+	.main-navigation .mobile-bar-items,
+	.sidebar-nav-mobile:not(#sticky-placeholder) {
 		display: block;
 	}
 
-	.main-navigation ul {
+	.main-navigation ul,
+	.gen-sidebar-nav {
 		display: none;
-	}
-
-	.main-navigation.toggled .main-nav > ul {
-		display: block;
-	}
-
-	.main-navigation .main-nav ul ul.toggled-on {
-		position: relative;
-		top: 0;
-		left: auto !important;
-		right: auto !important;
-		width: 100%;
-		pointer-events: auto;
-		height: auto;
-		opacity: 1;
-		display: block;
-	}
-
-	.main-navigation .main-nav li {
-		float: none;
-		clear: both;
-		display: block !important;
-		text-align: left !important;
-	}
-
-	.main-navigation .main-nav li.hide-on-mobile {
-		display: none !important;
-	}
-
-	.main-navigation .dropdown-menu-toggle:before {
-		content: "\f107" !important;
-	}
-
-	.main-navigation .sfHover > a .dropdown-menu-toggle:before {
-		content: "\f106" !important;
-	}
-
-	.main-navigation .menu-item-has-children .dropdown-menu-toggle {
-		float: right;
-	}
-
-	.main-navigation .mobile-bar-items {
-		display: block;
-	}
-
-	.main-navigation .menu li.search-item {
-		display: none !important;
-	}
-
-	.main-navigation .sf-menu > li.menu-item-float-right {
-		float: none !important;
-		display: inline-block !important;
 	}
 
 	[class*="nav-float-"] .site-header .inside-header > * {
 		float: none;
 		clear: both;
-	}
-
-	.gen-sidebar-nav {
-		display: none;
-	}
-
-	.sidebar-nav-mobile:not(#sticky-placeholder) {
-		display: block;
 	}
 	/* End mobile navigation */
 

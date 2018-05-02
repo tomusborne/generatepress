@@ -80,7 +80,7 @@ if ( ! function_exists( 'generate_menu_fallback' ) ) {
 				wp_list_pages( $args );
 
 				if ( 'enable' == $generate_settings['nav_search'] ) {
-					echo '<li class="search-item" title="' . esc_attr_x( 'Search', 'submit button', 'generatepress' ) . '"><a href="#"><i class="fa fa-fw fa-search" aria-hidden="true"></i><span class="screen-reader-text">' . esc_html_x( 'Search', 'submit button', 'generatepress' ) . '</span></a></li>';
+					echo '<li class="search-item" title="' . esc_attr_x( 'Search', 'submit button', 'generatepress' ) . '"><a href="#"><span class="screen-reader-text">' . esc_html_x( 'Search', 'submit button', 'generatepress' ) . '</span></a></li>';
 				}
 				?>
 			</ul>
@@ -211,20 +211,20 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 	 * @return string The menu item.
 	 */
 	function generate_dropdown_icon_to_menu_link( $title, $item, $args, $depth ) {
-		// Build an array with our theme location.
-		$theme_locations = array(
-			'primary',
-			'secondary',
-			'slideout'
-		);
 
-		$tabindex = 'click-arrow' !== generate_get_setting( 'nav_dropdown_type' ) ? ' tabindex="-1"' : 'tabindex="0"';
+		$role = 'presentation';
+		$tabindex = '';
+
+		if ( 'click-arrow' === generate_get_setting( 'nav_dropdown_type' ) ) {
+			$role = 'button';
+			$tabindex = ' tabindex="0"';
+		}
 
 		// Loop through our menu items and add our dropdown icons.
-		if ( in_array( $args->theme_location, apply_filters( 'generate_menu_arrow_theme_locations', $theme_locations ) ) ) {
+		if ( 'main-nav' === $args->container_class ) {
 			foreach ( $item->classes as $value ) {
 				if ( 'menu-item-has-children' === $value  ) {
-					$title = $title . '<span role="button" class="dropdown-menu-toggle" aria-expanded="false"' . $tabindex . '></span>';
+					$title = $title . '<span role="' . $role . '" class="dropdown-menu-toggle"' . $tabindex .'></span>';
 				}
 			}
 		}
@@ -286,7 +286,7 @@ if ( ! function_exists( 'generate_menu_search_icon' ) ) {
 
 		// If our primary menu is set, add the search icon.
 		if ( $args->theme_location == 'primary' ) {
-			return $nav . '<li class="search-item" title="' . esc_attr_x( 'Search', 'submit button', 'generatepress' ) . '"><a href="#"><i class="fa fa-fw fa-search" aria-hidden="true"></i><span class="screen-reader-text">' . _x( 'Search', 'submit button', 'generatepress' ) . '</span></a></li>';
+			return $nav . '<li class="search-item" title="' . esc_attr_x( 'Search', 'submit button', 'generatepress' ) . '"><a href="#"><span class="screen-reader-text">' . _x( 'Search', 'submit button', 'generatepress' ) . '</span></a></li>';
 		}
 
 		// Our primary menu isn't set, return the regular nav.
@@ -318,7 +318,6 @@ if ( ! function_exists( 'generate_mobile_menu_search_icon' ) ) {
 			<?php do_action( 'generate_inside_mobile_menu_bar' ); ?>
 			<span class="search-item" title="<?php echo esc_attr_x( 'Search', 'submit button', 'generatepress' ); ?>">
 				<a href="#">
-					<i class="fa fa-fw fa-search" aria-hidden="true"></i>
 					<span class="screen-reader-text"><?php echo esc_attr_x( 'Search', 'submit button', 'generatepress' ); ?></span>
 				</a>
 			</span>

@@ -6,7 +6,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options
 Requires at least: 4.5
 Tested up to: 4.9
-Stable tag: 2.0.2
+Stable tag: 2.1
 
 GeneratePress is a fast, lightweight (less than 1MB zipped), mobile responsive WordPress theme built with speed, SEO and usability in mind.
 
@@ -96,6 +96,38 @@ See https://github.com/eligrey/classList.js/blob/master/LICENSE.md
 MIT License: https://github.com/woocommerce/selectWoo/blob/master/LICENSE.md
 
 == Changelog ==
+
+= 2.1 =
+
+Release date: May 2, 2018
+
+* New: Structured data to comments
+* New: aria-label to sidebar navigation mobile menu
+* New: Update all theme icons
+* New: generate_metabox_tabs filter
+* New: generate_after_footer hook
+* New: generate_before_comments_container hook
+* Tweak: Simplify mobile menu CSS
+* Tweak: Load updated date before published date
+* Tweak: Force array in Layout metabox to prevent PHP notices
+* Tweak: Use https for schema.org references
+* Tweak: Replace wildcard CSS selectors with specific selectors
+* Tweak: Remove list item bullets in sidebar and footer widgets only
+* Tweak: Make button/input line height consistent with link buttons
+* Tweak: Add version to database for future migrations
+* Tweak: Move back to top button to generate_after_footer
+* Tweak: Remove focus class from menu items on click if leaving site
+* Tweak: Keep tab focus inside navigation search when open
+* Tweak: Remove roles from sidebars
+* Fix: Sidebar sub-menu positioning after click
+* Fix: Rare Customizer JS error related to typography
+* Fix: Various small W3 errors
+* Fix: Navigation aria-hidden issue
+* Remove: Font Awesome Essentials HTTP request
+* Remove: dropdown.js HTTP request
+* Remove: IE6 CSS
+* Remove: Secondary navigation CSS added to GPP 1.6
+* Remove: Secondary navigation JS
 
 = 2.0.2 =
 

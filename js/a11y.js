@@ -30,8 +30,7 @@
 	}
 } )();
 
-// outline.js
-// based on http://www.paciellogroup.com/blog/2012/04/how-to-remove-css-outlines-in-an-accessible-manner/
+/*! outline.js v1.2.0 - https://github.com/lindsayevans/outline.js/ */
 (function(d){
 
 	var style_element = d.createElement('STYLE'),
@@ -67,7 +66,8 @@
 	'use strict';
 
 	if ( 'querySelector' in document && 'addEventListener' in window && document.body.classList.contains( 'dropdown-hover' ) ) {
-		var navLinks = document.querySelectorAll( 'nav ul a' );
+		var navLinks = document.querySelectorAll( 'nav ul a' ),
+			parentElements = document.querySelectorAll( '.sf-menu .menu-item-has-children' );
 
 		/**
 		 * Make menu items tab accessible when using the hover dropdown type
@@ -96,6 +96,52 @@
 		for ( var i = 0; i < navLinks.length; i++ ) {
 			navLinks[i].addEventListener( 'focus', toggleFocus );
 			navLinks[i].addEventListener( 'blur', toggleFocus );
+		}
+	}
+
+	/**
+	 * Make hover dropdown touch-friendly.
+	 */
+	if ( 'touchend' in document.documentElement ) {
+		for ( var i = 0; i < parentElements.length; i++ ) {
+			parentElements[i].addEventListener( 'touchend', function( e ) {
+				// Bail on mobile
+				if ( parentElements[i].closest( 'nav' ).classList.contains( 'toggled' ) ) {
+					return;
+				}
+
+				if ( e.touches.length === 1 ) {
+					// Prevent touch events within dropdown bubbling down to document
+					e.stopPropagation();
+
+					// Toggle hover
+					if ( ! this.classList.contains( 'sfHover' ) ) {
+						// Prevent link on first touch
+						if ( e.target === this || e.target.parentNode === this ) {
+							e.preventDefault();
+						}
+
+						// Close other sub-menus
+						var openedSubMenus = parentElements[i].closest( 'nav' ).querySelectorAll( 'ul.toggled-on' );
+						if ( openedSubMenus && ! this.closest( 'ul' ).classList.contains( 'toggled-on' ) && ! this.closest( 'li' ).classList.contains( 'sfHover' ) ) {
+							for ( var o = 0; o < openedSubMenus.length; o++ ) {
+								openedSubMenus[o].classList.remove( 'toggled-on' );
+								openedSubMenus[o].closest( 'li' ).classList.remove( 'sfHover' );
+							}
+						}
+
+						this.classList.add( 'sfHover' );
+
+						// Hide dropdown on touch outside
+						document.addEventListener( 'touchend', closeDropdown = function(e) {
+							e.stopPropagation();
+
+							this.classList.remove( 'sfHover' );
+							document.removeEventListener( 'touchend', closeDropdown );
+						} );
+					}
+				}
+			}, true );
 		}
 	}
 
