@@ -179,10 +179,11 @@ footer.entry-meta .posted-on:before {
     float: right;
 }
 
+.main-navigation.toggled .main-nav li {
+	text-align: right !important;
+}
+
 @media (max-width: 768px) {
-	.main-navigation .main-nav li {
-		text-align: right !important;
-	}
 	.rtl .mobile-bar-items {
         position: absolute;
 		left: 0;
