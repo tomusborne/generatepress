@@ -412,7 +412,9 @@ input[type="file"] {
 .site-content:before,
 .site-content:after,
 .site-footer:before,
-.site-footer:after {
+.site-footer:after,
+.site-info:before,
+.site-info:after {
 	content: "";
 	display: table;
 }
@@ -422,7 +424,8 @@ input[type="file"] {
 .comment-content:after,
 .site-header:after,
 .site-content:after,
-.site-footer:after {
+.site-footer:after,
+.site-info:after {
 	clear: both;
 }
 
