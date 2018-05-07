@@ -1,8 +1,10 @@
 ( function() {
-    'use strict';
+	'use strict';
 
     // Feature Test
-    if ( 'querySelector' in document && 'addEventListener' in window ) {
+	if ( 'querySelector' in document && 'addEventListener' in window ) {
+
+		var goTopBtn = document.querySelector( '.generate-back-to-top' );
 
 		var trackScroll = function() {
 			var scrolled = window.pageYOffset;
@@ -17,44 +19,46 @@
 				goTopBtn.style.opacity = '0';
 				goTopBtn.style.visibility = 'hidden';
 			}
+		};
+
+		// Function to animate the scroll
+		var smoothScroll = function (anchor, duration) {
+			// Calculate how far and how fast to scroll
+			var startLocation = window.pageYOffset;
+			var endLocation = document.body.offsetTop;
+			var distance = endLocation - startLocation;
+			var increments = distance/(duration/16);
+			var stopAnimation;
+
+			// Scroll the page by an increment, and check if it's time to stop
+			var animateScroll = function () {
+				window.scrollBy(0, increments);
+				stopAnimation();
+			};
+
+			// Stop animation when you reach the anchor OR the top of the page
+			stopAnimation = function () {
+				var travelled = window.pageYOffset;
+				if ( travelled <= (endLocation || 0) ) {
+					clearInterval(runAnimation);
+				}
+			};
+
+			// Loop the animation function
+			var runAnimation = setInterval(animateScroll, 16);
+		};
+
+		if ( goTopBtn ) {
+			// Show the button when scrolling down.
+			window.addEventListener( 'scroll', trackScroll );
+
+			// Scroll back to top when clicked.
+			goTopBtn.addEventListener( 'click', function( e ) {
+				e.preventDefault();
+				smoothScroll( document.body, goTopBtn.getAttribute( 'data-scroll-speed' ) || 400 );
+			}, false );
 		}
-		window.addEventListener( 'scroll', trackScroll );
 
-        // Function to animate the scroll
-        var smoothScroll = function (anchor, duration) {
-
-            // Calculate how far and how fast to scroll
-            var startLocation = window.pageYOffset;
-            var endLocation = document.body.offsetTop;
-            var distance = endLocation - startLocation;
-            var increments = distance/(duration/16);
-            var stopAnimation;
-
-            // Scroll the page by an increment, and check if it's time to stop
-            var animateScroll = function () {
-                window.scrollBy(0, increments);
-                stopAnimation();
-            };
-
-            // Stop animation when you reach the anchor OR the top of the page
-            stopAnimation = function () {
-                var travelled = window.pageYOffset;
-                if ( travelled <= (endLocation || 0) ) {
-                    clearInterval(runAnimation);
-                }
-            };
-
-            // Loop the animation function
-            var runAnimation = setInterval(animateScroll, 16);
-
-        };
-
-		var goTopBtn = document.querySelector( '.generate-back-to-top' );
-		goTopBtn.addEventListener( 'click', function( e ) {
-			e.preventDefault();
-			smoothScroll( document.body, goTopBtn.getAttribute( 'data-scroll-speed' ) || 400 );
-		}, false );
-
-    }
+	}
 
  } )();
