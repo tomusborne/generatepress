@@ -1102,6 +1102,10 @@ ol.comment-list {
 	margin-bottom: 1.5em;
 }
 
+#wp-comment-cookies-consent {
+	margin-right: 10px;
+}
+
 /* =Widgets
 ----------------------------------------------- */
 .widget {
