@@ -73,3 +73,21 @@ if ( ! function_exists( 'generate_comment' ) ) {
 		endif;
 	}
 }
+
+add_filter( 'comment_form_default_fields', 'generate_filter_comment_fields' );
+/**
+ * Customizes the existing comment fields.
+ *
+ * @since 2.1.2
+ * @param array $fields
+ * @return array
+ */
+function generate_filter_comment_fields( $fields ) {
+	$commenter = wp_get_current_commenter();
+
+	$fields['author'] = '<label for="author" class="screen-reader-text">' . esc_html__( 'Name', 'generatepress' ) . '</label><input placeholder="' . esc_attr__( 'Name', 'generatepress' ) . ' *" id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" />';
+	$fields['email'] = '<label for="email" class="screen-reader-text">' . esc_html__( 'Email', 'generatepress' ) . '</label><input placeholder="' . esc_attr__( 'Email', 'generatepress' ) . ' *" id="email" name="email" type="email" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" />';
+	$fields['url'] = '<label for="url" class="screen-reader-text">' . esc_html__( 'Website', 'generatepress' ) . '</label><input placeholder="' . esc_attr__( 'Website', 'generatepress' ) . '" id="url" name="url" type="url" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" />';
+
+	return $fields;
+}
