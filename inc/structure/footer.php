@@ -215,7 +215,7 @@ if ( ! function_exists( 'generate_back_to_top' ) ) {
 			generate_get_defaults()
 		);
 
-		if ( 'enable' !== $generate_settings[ 'back_to_top' ] ) {
+		if ( 'enable' !== $generate_settings['back_to_top'] ) {
 			return;
 		}
 

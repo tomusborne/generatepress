@@ -30,15 +30,15 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 			parent::to_json();
 
 			$number_of_fonts = apply_filters( 'generate_number_of_fonts', 200 );
-			$this->json[ 'default_fonts_title'] = __( 'System fonts', 'generatepress' );
-			$this->json[ 'google_fonts_title'] = __( 'Google fonts', 'generatepress' );
-			$this->json[ 'google_fonts' ] = apply_filters( 'generate_typography_customize_list', generate_get_all_google_fonts( $number_of_fonts ) );
-			$this->json[ 'default_fonts' ] = generate_typography_default_fonts();
-			$this->json[ 'family_title' ] = esc_html__( 'Font family', 'generatepress' );
-			$this->json[ 'weight_title' ] = esc_html__( 'Font weight', 'generatepress' );
-			$this->json[ 'transform_title' ] = esc_html__( 'Text transform', 'generatepress' );
-			$this->json[ 'category_title' ] = '';
-			$this->json[ 'variant_title' ] = esc_html__( 'Variants', 'generatepress' );
+			$this->json['default_fonts_title'] = __( 'System fonts', 'generatepress' );
+			$this->json['google_fonts_title'] = __( 'Google fonts', 'generatepress' );
+			$this->json['google_fonts'] = apply_filters( 'generate_typography_customize_list', generate_get_all_google_fonts( $number_of_fonts ) );
+			$this->json['default_fonts'] = generate_typography_default_fonts();
+			$this->json['family_title'] = esc_html__( 'Font family', 'generatepress' );
+			$this->json['weight_title'] = esc_html__( 'Font weight', 'generatepress' );
+			$this->json['transform_title'] = esc_html__( 'Text transform', 'generatepress' );
+			$this->json['category_title'] = '';
+			$this->json['variant_title'] = esc_html__( 'Variants', 'generatepress' );
 
 			foreach ( $this->settings as $setting_key => $setting_id ) {
 				$this->json[ $setting_key ] = array(

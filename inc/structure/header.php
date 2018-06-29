@@ -93,7 +93,7 @@ if ( ! function_exists( 'generate_construct_logo' ) ) {
 		) );
 
 		if ( '' !== $retina_logo_url ) {
-			$attr[ 'srcset' ] = $logo_url . ' 1x, ' . $retina_logo_url . ' 2x';
+			$attr['srcset'] = $logo_url . ' 1x, ' . $retina_logo_url . ' 2x';
 
 			// Add dimensions to image if retina is set. This fixes a container width bug in Firefox.
 			if ( function_exists( 'the_custom_logo' ) && get_theme_mod( 'custom_logo' ) ) {
@@ -151,10 +151,10 @@ if ( ! function_exists( 'generate_construct_site_title' ) ) {
 		$tagline = get_bloginfo( 'description' );
 
 		// If the disable title checkbox is checked, or the title field is empty, return true.
-		$disable_title = ( '1' == $generate_settings[ 'hide_title' ] || '' == $title ) ? true : false;
+		$disable_title = ( '1' == $generate_settings['hide_title'] || '' == $title ) ? true : false;
 
 		// If the disable tagline checkbox is checked, or the tagline field is empty, return true.
-		$disable_tagline = ( '1' == $generate_settings[ 'hide_tagline' ] || '' == $tagline ) ? true : false;
+		$disable_tagline = ( '1' == $generate_settings['hide_tagline'] || '' == $tagline ) ? true : false;
 
 		// Build our site title.
 		$site_title = apply_filters( 'generate_site_title_output', sprintf(

@@ -191,13 +191,13 @@ if ( ! function_exists( 'generate_get_premium_url' ) ) {
 		) );
 
 		// Set up our URL if we have an ID
-		if ( isset( $args[ 'ref' ] ) ) {
-			$url = add_query_arg( 'ref', absint( $args[ 'ref' ] ), $url );
+		if ( isset( $args['ref'] ) ) {
+			$url = add_query_arg( 'ref', absint( $args['ref'] ), $url );
 		}
 
 		// Set up our URL if we have a campaign
-		if ( isset( $args[ 'campaign' ] ) ) {
-			$url = add_query_arg( 'campaign', sanitize_text_field( $args[ 'campaign' ] ), $url );
+		if ( isset( $args['campaign'] ) ) {
+			$url = add_query_arg( 'campaign', sanitize_text_field( $args['campaign'] ), $url );
 		}
 
 		return esc_url( $url );

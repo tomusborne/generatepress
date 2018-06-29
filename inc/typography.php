@@ -97,9 +97,9 @@ if ( ! function_exists( 'generate_enqueue_google_fonts' ) ) {
 
 		// Set up our arguments
 		$font_args = array();
-		$font_args[ 'family' ] = $google_fonts;
+		$font_args['family'] = $google_fonts;
 		if ( '' !== $subset ) {
-			$font_args[ 'subset' ] = urlencode( $subset );
+			$font_args['subset'] = urlencode( $subset );
 		}
 
 		// Create our URL using the arguments
@@ -389,7 +389,7 @@ if ( ! function_exists( 'generate_get_all_google_fonts_ajax' ) ) {
 	 */
 	function generate_get_all_google_fonts_ajax() {
 		// Bail if the nonce doesn't check out
-		if ( ! isset( $_POST[ 'gp_customize_nonce' ] ) || ! wp_verify_nonce( sanitize_key( $_POST[ 'gp_customize_nonce' ] ), 'gp_customize_nonce' ) ) {
+		if ( ! isset( $_POST['gp_customize_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['gp_customize_nonce'] ), 'gp_customize_nonce' ) ) {
 			wp_die();
 		}
 
@@ -434,7 +434,7 @@ if ( ! function_exists( 'generate_get_google_font_variants' ) ) {
 
 		// If our default font is selected and the category isn't saved, we already know the category
 		if ( $defaults[ $key ] == $font ) {
-			return $defaults[ $key . '_variants' ];
+			return $defaults[ $key . '_variants'];
 		}
 
 		// Grab all of our fonts
@@ -490,7 +490,7 @@ if ( ! function_exists( 'generate_get_google_font_category' ) ) {
 
 		// If our default font is selected and the category isn't saved, we already know the category
 		if ( $defaults[ $key ] == $font ) {
-			return ', ' . $defaults[ $key . '_category' ];
+			return ', ' . $defaults[ $key . '_category'];
 		}
 
 		// Grab all of our fonts
@@ -634,11 +634,11 @@ if ( ! function_exists( 'generate_add_to_font_customizer_list' ) ) {
 				generate_secondary_nav_get_defaults()
 			);
 
-			$secondary_nav_id = strtolower( str_replace( ' ', '_', $secondary_nav_settings[ 'font_secondary_navigation' ] ) );
+			$secondary_nav_id = strtolower( str_replace( ' ', '_', $secondary_nav_settings['font_secondary_navigation'] ) );
 
-			if ( ! array_key_exists( $secondary_nav_id, $select_fonts ) && ! in_array( $secondary_nav_settings[ 'font_secondary_navigation' ], generate_typography_default_fonts() ) ) {
-				$fonts[ strtolower( str_replace( ' ', '_', $secondary_nav_settings[ 'font_secondary_navigation' ] ) ) ] = array(
-					'name' => $secondary_nav_settings[ 'font_secondary_navigation' ],
+			if ( ! array_key_exists( $secondary_nav_id, $select_fonts ) && ! in_array( $secondary_nav_settings['font_secondary_navigation'], generate_typography_default_fonts() ) ) {
+				$fonts[ strtolower( str_replace( ' ', '_', $secondary_nav_settings['font_secondary_navigation'] ) ) ] = array(
+					'name' => $secondary_nav_settings['font_secondary_navigation'],
 					'variants' => array_key_exists( $secondary_nav_id, $all_fonts ) ? $all_fonts[$secondary_nav_id]['variants'] : array(),
 					'category' => array_key_exists( $secondary_nav_id, $all_fonts ) ? $all_fonts[$secondary_nav_id]['category'] : 'sans-serif'
 				);

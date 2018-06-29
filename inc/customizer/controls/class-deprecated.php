@@ -46,13 +46,13 @@ if ( ! class_exists( 'Generate_Google_Font_Dropdown_Custom_Control' ) ) {
 			parent::to_json();
 
 			$number_of_fonts = apply_filters( 'generate_number_of_fonts', 200 );
-			$this->json[ 'link' ] = $this->get_link();
-			$this->json[ 'value' ] = $this->value();
-			$this->json[ 'default_fonts_title'] = __( 'Default fonts', 'generatepress' );
-			$this->json[ 'google_fonts_title'] = __( 'Google fonts', 'generatepress' );
-			$this->json[ 'description' ] = __( 'Font family','generatepress' );
-			$this->json[ 'google_fonts' ] = apply_filters( 'generate_typography_customize_list', generate_get_all_google_fonts( $number_of_fonts ) );
-			$this->json[ 'default_fonts' ] = generate_typography_default_fonts();
+			$this->json['link'] = $this->get_link();
+			$this->json['value'] = $this->value();
+			$this->json['default_fonts_title'] = __( 'Default fonts', 'generatepress' );
+			$this->json['google_fonts_title'] = __( 'Google fonts', 'generatepress' );
+			$this->json['description'] = __( 'Font family','generatepress' );
+			$this->json['google_fonts'] = apply_filters( 'generate_typography_customize_list', generate_get_all_google_fonts( $number_of_fonts ) );
+			$this->json['default_fonts'] = generate_typography_default_fonts();
 		}
 
 		public function content_template() {
@@ -94,9 +94,9 @@ if ( ! class_exists( 'Generate_Select_Control' ) ) {
 				$this->choices[ $name ] = $choice;
 			}
 
-			$this->json[ 'choices' ] = $this->choices;
-			$this->json[ 'link' ] = $this->get_link();
-			$this->json[ 'value' ] = $this->value();
+			$this->json['choices'] = $this->choices;
+			$this->json['link'] = $this->get_link();
+			$this->json['value'] = $this->value();
 
 		}
 
@@ -131,9 +131,9 @@ if ( ! class_exists( 'Generate_Hidden_Input_Control' ) ) {
 
 		public function to_json() {
 			parent::to_json();
-			$this->json[ 'link' ] = $this->get_link();
-			$this->json[ 'value' ] = $this->value();
-			$this->json[ 'id' ] = $this->id;
+			$this->json['link'] = $this->get_link();
+			$this->json['value'] = $this->value();
+			$this->json['id'] = $this->id;
 		}
 
 		public function content_template() {
