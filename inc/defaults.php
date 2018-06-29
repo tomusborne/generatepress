@@ -275,6 +275,7 @@ if ( ! function_exists( 'generate_spacing_get_defaults' ) ) {
 			'menu_item' => '20',
 			'menu_item_height' => '60',
 			'sub_menu_item_height' => '10',
+			'sub_menu_width' => '200',
 			'content_top' => '40',
 			'content_right' => '40',
 			'content_bottom' => '40',
