@@ -72,7 +72,7 @@ if ( ! function_exists( 'generate_get_color_defaults' ) ) {
 			'header_link_color' => '#3a3a3a',
 			'header_link_hover_color' => '',
 			'site_title_color' => '#222222',
-			'site_tagline_color' => '#999999',
+			'site_tagline_color' => '#757575',
 			'navigation_background_color' => '#222222',
 			'navigation_text_color' => '#ffffff',
 			'navigation_background_hover_color' => '#3f3f3f',
