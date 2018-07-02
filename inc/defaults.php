@@ -333,7 +333,7 @@ if ( ! function_exists( 'generate_typography_default_fonts' ) ) {
 			'Segoe UI, Helvetica Neue, Helvetica, sans-serif',
 			'Tahoma, Geneva, sans-serif',
 			'Trebuchet MS, Helvetica, sans-serif',
-			'Verdana, Geneva, sans-serif'
+			'Verdana, Geneva, sans-serif',
 		);
 
 		return apply_filters( 'generate_typography_default_fonts', $fonts );

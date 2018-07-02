@@ -38,7 +38,7 @@ if ( ! function_exists( 'generate_setup' ) ) {
 			'height' => 70,
 			'width' => 350,
 			'flex-height' => true,
-			'flex-width' => true
+			'flex-width' => true,
 		) );
 
 		// Register primary menu.

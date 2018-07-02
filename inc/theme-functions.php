@@ -187,7 +187,7 @@ if ( ! function_exists( 'generate_get_premium_url' ) ) {
 
 		$args = apply_filters( 'generate_premium_url_args', array(
 			'ref' => null,
-			'campaign' => null
+			'campaign' => null,
 		) );
 
 		// Set up our URL if we have an ID

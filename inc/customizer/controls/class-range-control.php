@@ -36,11 +36,11 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 
 			$devices = array( 'desktop','tablet','mobile' );
 			foreach ( $devices as $device ) {
-				$this->json['choices'][$device]['min']  = ( isset( $this->choices[$device]['min'] ) ) ? $this->choices[$device]['min'] : '0';
-				$this->json['choices'][$device]['max']  = ( isset( $this->choices[$device]['max'] ) ) ? $this->choices[$device]['max'] : '100';
-				$this->json['choices'][$device]['step'] = ( isset( $this->choices[$device]['step'] ) ) ? $this->choices[$device]['step'] : '1';
-				$this->json['choices'][$device]['edit'] = ( isset( $this->choices[$device]['edit'] ) ) ? $this->choices[$device]['edit'] : false;
-				$this->json['choices'][$device]['unit'] = ( isset( $this->choices[$device]['unit'] ) ) ? $this->choices[$device]['unit'] : false;
+				$this->json['choices'][ $device ]['min']  = ( isset( $this->choices[ $device ]['min'] ) ) ? $this->choices[ $device ]['min'] : '0';
+				$this->json['choices'][ $device ]['max']  = ( isset( $this->choices[ $device ]['max'] ) ) ? $this->choices[ $device ]['max'] : '100';
+				$this->json['choices'][ $device ]['step'] = ( isset( $this->choices[ $device ]['step'] ) ) ? $this->choices[ $device ]['step'] : '1';
+				$this->json['choices'][ $device ]['edit'] = ( isset( $this->choices[ $device ]['edit'] ) ) ? $this->choices[ $device ]['edit'] : false;
+				$this->json['choices'][ $device ]['unit'] = ( isset( $this->choices[ $device ]['unit'] ) ) ? $this->choices[ $device ]['unit'] : false;
 			}
 
 			foreach ( $this->settings as $setting_key => $setting_id ) {

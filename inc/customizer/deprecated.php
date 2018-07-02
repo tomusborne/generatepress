@@ -33,11 +33,11 @@ if ( ! function_exists( 'generate_sanitize_typography' ) ) {
 		$valid = array_merge( $font_names, $not_google );
 
 		// Sanitize
-	    if ( in_array( $input, $valid ) ) {
-	        return $input;
-	    } else {
-	        return 'Open Sans';
-	    }
+		if ( in_array( $input, $valid ) ) {
+			return $input;
+		} else {
+			return 'Open Sans';
+		}
 	}
 }
 
@@ -50,8 +50,8 @@ if ( ! function_exists( 'generate_sanitize_font_weight' ) ) {
 	 */
 	function generate_sanitize_font_weight( $input ) {
 
-	    $valid = array(
-	        'normal',
+		$valid = array(
+			'normal',
 			'bold',
 			'100',
 			'200',
@@ -61,14 +61,14 @@ if ( ! function_exists( 'generate_sanitize_font_weight' ) ) {
 			'600',
 			'700',
 			'800',
-			'900'
-	    );
+			'900',
+		);
 
-	    if ( in_array( $input, $valid ) ) {
-	        return $input;
-	    } else {
-	        return 'normal';
-	    }
+		if ( in_array( $input, $valid ) ) {
+			return $input;
+		} else {
+			return 'normal';
+		}
 	}
 }
 
@@ -81,18 +81,18 @@ if ( ! function_exists( 'generate_sanitize_text_transform' ) ) {
 	 */
 	function generate_sanitize_text_transform( $input ) {
 
-	    $valid = array(
-	        'none',
+		$valid = array(
+			'none',
 			'capitalize',
 			'uppercase',
-			'lowercase'
+			'lowercase',
 	    );
 
-	    if ( in_array( $input, $valid ) ) {
-	        return $input;
-	    } else {
-	        return 'none';
-	    }
+		if ( in_array( $input, $valid ) ) {
+			return $input;
+		} else {
+			return 'none';
+		}
 	}
 }
 

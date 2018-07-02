@@ -30,7 +30,11 @@ if ( ! function_exists( 'generate_comment' ) ) {
 		<li id="comment-<?php comment_ID(); ?>" <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?>>
 			<article id="div-comment-<?php comment_ID(); ?>" class="comment-body" itemscope itemtype="https://schema.org/Comment">
 				<footer class="comment-meta">
-					<?php if ( 0 != $args['avatar_size'] ) echo get_avatar( $comment, $args['avatar_size'] ); ?>
+					<?php
+					if ( 0 != $args['avatar_size'] ) {
+						echo get_avatar( $comment, $args['avatar_size'] );
+					}
+					?>
 					<div class="comment-author-info">
 						<div class="comment-author vcard" itemprop="author" itemscope itemtype="https://schema.org/Person">
 							<?php printf( '<cite itemprop="name" class="fn">%s</cite>', get_comment_author_link() ); ?>

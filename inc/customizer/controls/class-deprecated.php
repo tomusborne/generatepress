@@ -151,38 +151,38 @@ if ( ! class_exists( 'Generate_Font_Weight_Custom_Control' ) ) {
 	 */
 	class Generate_Font_Weight_Custom_Control extends WP_Customize_Control {
 
-	    public function __construct($manager, $id, $args = array(), $options = array()) {
-	        parent::__construct( $manager, $id, $args );
+		public function __construct( $manager, $id, $args = array(), $options = array() ) {
+			parent::__construct( $manager, $id, $args );
 	    }
 
-	    /**
-	     * Render the content of the category dropdown
-	     *
-	     * @return HTML
-	     */
-	    public function render_content() {
-	        ?>
-	        <label>
-				<select <?php $this->link(); ?>>
-					<?php
-					printf('<option value="%s" %s>%s</option>', 'normal', selected($this->value(), 'normal', false), 'normal');
-					printf('<option value="%s" %s>%s</option>', 'bold', selected($this->value(), 'bold', false), 'bold');
-					printf('<option value="%s" %s>%s</option>', '100', selected($this->value(), '100', false), '100');
-					printf('<option value="%s" %s>%s</option>', '200', selected($this->value(), '200', false), '200');
-					printf('<option value="%s" %s>%s</option>', '300', selected($this->value(), '300', false), '300');
-					printf('<option value="%s" %s>%s</option>', '400', selected($this->value(), '400', false), '400');
-					printf('<option value="%s" %s>%s</option>', '500', selected($this->value(), '500', false), '500');
-					printf('<option value="%s" %s>%s</option>', '600', selected($this->value(), '600', false), '600');
-					printf('<option value="%s" %s>%s</option>', '700', selected($this->value(), '700', false), '700');
-					printf('<option value="%s" %s>%s</option>', '800', selected($this->value(), '800', false), '800');
-					printf('<option value="%s" %s>%s</option>', '900', selected($this->value(), '900', false), '900');
-					?>
-	            </select>
-				<p class="description"><?php echo esc_html( $this->label ); ?></p>
-	        </label>
-	        <?php
-	    }
-	}
+		/**
+		 * Render the content of the category dropdown
+		 *
+		 * @return HTML
+		 */
+		 public function render_content() {
+			 ?>
+			 <label>
+				 <select <?php $this->link(); ?>>
+					 <?php
+					 printf('<option value="%s" %s>%s</option>', 'normal', selected($this->value(), 'normal', false), 'normal');
+					 printf('<option value="%s" %s>%s</option>', 'bold', selected($this->value(), 'bold', false), 'bold');
+					 printf('<option value="%s" %s>%s</option>', '100', selected($this->value(), '100', false), '100');
+					 printf('<option value="%s" %s>%s</option>', '200', selected($this->value(), '200', false), '200');
+					 printf('<option value="%s" %s>%s</option>', '300', selected($this->value(), '300', false), '300');
+					 printf('<option value="%s" %s>%s</option>', '400', selected($this->value(), '400', false), '400');
+					 printf('<option value="%s" %s>%s</option>', '500', selected($this->value(), '500', false), '500');
+					 printf('<option value="%s" %s>%s</option>', '600', selected($this->value(), '600', false), '600');
+					 printf('<option value="%s" %s>%s</option>', '700', selected($this->value(), '700', false), '700');
+					 printf('<option value="%s" %s>%s</option>', '800', selected($this->value(), '800', false), '800');
+					 printf('<option value="%s" %s>%s</option>', '900', selected($this->value(), '900', false), '900');
+					 ?>
+				 </select>
+				 <p class="description"><?php echo esc_html( $this->label ); ?></p>
+			 </label>
+			 <?php
+		 }
+	 }
 }
 
 if ( ! class_exists( 'Generate_Text_Transform_Custom_Control' ) ) {
@@ -192,33 +192,31 @@ if ( ! class_exists( 'Generate_Text_Transform_Custom_Control' ) ) {
 	 */
 	class Generate_Text_Transform_Custom_Control extends WP_Customize_Control {
 
-	    public function __construct($manager, $id, $args = array(), $options = array())
-	    {
-	        parent::__construct( $manager, $id, $args );
-	    }
+		public function __construct( $manager, $id, $args = array(), $options = array() ) {
+			parent::__construct( $manager, $id, $args );
+		}
 
-	    /**
-	     * Render the content of the category dropdown
-	     *
-	     * @return HTML
-	     */
-	    public function render_content()
-	    {
-	        ?>
-	        <label>
-				<select <?php $this->link(); ?>>
-					<?php
-					printf('<option value="%s" %s>%s</option>', 'none', selected($this->value(), 'none', false), 'none');
-					printf('<option value="%s" %s>%s</option>', 'capitalize', selected($this->value(), 'capitalize', false), 'capitalize');
-					printf('<option value="%s" %s>%s</option>', 'uppercase', selected($this->value(), 'uppercase', false), 'uppercase');
-					printf('<option value="%s" %s>%s</option>', 'lowercase', selected($this->value(), 'lowercase', false), 'lowercase');
-					?>
-	            </select>
-				<p class="description"><?php echo esc_html( $this->label ); ?></p>
-	        </label>
-	        <?php
-	    }
-	}
+		/**
+		 * Render the content of the category dropdown
+		 *
+		 * @return HTML
+		 */
+		 public function render_content() {
+			 ?>
+			 <label>
+				 <select <?php $this->link(); ?>>
+					 <?php
+					 printf('<option value="%s" %s>%s</option>', 'none', selected($this->value(), 'none', false), 'none');
+					 printf('<option value="%s" %s>%s</option>', 'capitalize', selected($this->value(), 'capitalize', false), 'capitalize');
+					 printf('<option value="%s" %s>%s</option>', 'uppercase', selected($this->value(), 'uppercase', false), 'uppercase');
+					 printf('<option value="%s" %s>%s</option>', 'lowercase', selected($this->value(), 'lowercase', false), 'lowercase');
+					 ?>
+				 </select>
+				 <p class="description"><?php echo esc_html( $this->label ); ?></p>
+			 </label>
+			 <?php
+		 }
+	 }
 }
 
 if ( ! class_exists( 'Generate_Customize_Slider_Control' ) ) {

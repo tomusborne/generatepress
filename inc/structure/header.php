@@ -197,7 +197,7 @@ if ( ! function_exists( 'generate_construct_header_widget' ) ) {
 	 * @since 1.3.28
 	 */
 	function generate_construct_header_widget() {
-		if ( is_active_sidebar('header') ) : ?>
+		if ( is_active_sidebar( 'header' ) ) : ?>
 			<div class="header-widget">
 				<?php dynamic_sidebar( 'header' ); ?>
 			</div>
