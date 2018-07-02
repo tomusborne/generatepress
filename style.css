@@ -2142,6 +2142,7 @@ footer.entry-meta .posted-on:before,
 	text-rendering: auto;
 	line-height: 1;
 	speak: none;
+	opacity: 0.7;
 }
 
 /*
