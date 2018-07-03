@@ -46,13 +46,13 @@ if ( ! class_exists( 'Generate_Google_Font_Dropdown_Custom_Control' ) ) {
 			parent::to_json();
 
 			$number_of_fonts = apply_filters( 'generate_number_of_fonts', 200 );
-			$this->json[ 'link' ] = $this->get_link();
-			$this->json[ 'value' ] = $this->value();
-			$this->json[ 'default_fonts_title'] = __( 'Default fonts', 'generatepress' );
-			$this->json[ 'google_fonts_title'] = __( 'Google fonts', 'generatepress' );
-			$this->json[ 'description' ] = __( 'Font family','generatepress' );
-			$this->json[ 'google_fonts' ] = apply_filters( 'generate_typography_customize_list', generate_get_all_google_fonts( $number_of_fonts ) );
-			$this->json[ 'default_fonts' ] = generate_typography_default_fonts();
+			$this->json['link'] = $this->get_link();
+			$this->json['value'] = $this->value();
+			$this->json['default_fonts_title'] = __( 'Default fonts', 'generatepress' );
+			$this->json['google_fonts_title'] = __( 'Google fonts', 'generatepress' );
+			$this->json['description'] = __( 'Font family','generatepress' );
+			$this->json['google_fonts'] = apply_filters( 'generate_typography_customize_list', generate_get_all_google_fonts( $number_of_fonts ) );
+			$this->json['default_fonts'] = generate_typography_default_fonts();
 		}
 
 		public function content_template() {
@@ -94,9 +94,9 @@ if ( ! class_exists( 'Generate_Select_Control' ) ) {
 				$this->choices[ $name ] = $choice;
 			}
 
-			$this->json[ 'choices' ] = $this->choices;
-			$this->json[ 'link' ] = $this->get_link();
-			$this->json[ 'value' ] = $this->value();
+			$this->json['choices'] = $this->choices;
+			$this->json['link'] = $this->get_link();
+			$this->json['value'] = $this->value();
 
 		}
 
@@ -131,9 +131,9 @@ if ( ! class_exists( 'Generate_Hidden_Input_Control' ) ) {
 
 		public function to_json() {
 			parent::to_json();
-			$this->json[ 'link' ] = $this->get_link();
-			$this->json[ 'value' ] = $this->value();
-			$this->json[ 'id' ] = $this->id;
+			$this->json['link'] = $this->get_link();
+			$this->json['value'] = $this->value();
+			$this->json['id'] = $this->id;
 		}
 
 		public function content_template() {
@@ -151,38 +151,38 @@ if ( ! class_exists( 'Generate_Font_Weight_Custom_Control' ) ) {
 	 */
 	class Generate_Font_Weight_Custom_Control extends WP_Customize_Control {
 
-	    public function __construct($manager, $id, $args = array(), $options = array()) {
-	        parent::__construct( $manager, $id, $args );
+		public function __construct( $manager, $id, $args = array(), $options = array() ) {
+			parent::__construct( $manager, $id, $args );
 	    }
 
-	    /**
-	     * Render the content of the category dropdown
-	     *
-	     * @return HTML
-	     */
-	    public function render_content() {
-	        ?>
-	        <label>
-				<select <?php $this->link(); ?>>
-					<?php
-					printf('<option value="%s" %s>%s</option>', 'normal', selected($this->value(), 'normal', false), 'normal');
-					printf('<option value="%s" %s>%s</option>', 'bold', selected($this->value(), 'bold', false), 'bold');
-					printf('<option value="%s" %s>%s</option>', '100', selected($this->value(), '100', false), '100');
-					printf('<option value="%s" %s>%s</option>', '200', selected($this->value(), '200', false), '200');
-					printf('<option value="%s" %s>%s</option>', '300', selected($this->value(), '300', false), '300');
-					printf('<option value="%s" %s>%s</option>', '400', selected($this->value(), '400', false), '400');
-					printf('<option value="%s" %s>%s</option>', '500', selected($this->value(), '500', false), '500');
-					printf('<option value="%s" %s>%s</option>', '600', selected($this->value(), '600', false), '600');
-					printf('<option value="%s" %s>%s</option>', '700', selected($this->value(), '700', false), '700');
-					printf('<option value="%s" %s>%s</option>', '800', selected($this->value(), '800', false), '800');
-					printf('<option value="%s" %s>%s</option>', '900', selected($this->value(), '900', false), '900');
-					?>
-	            </select>
-				<p class="description"><?php echo esc_html( $this->label ); ?></p>
-	        </label>
-	        <?php
-	    }
-	}
+		/**
+		 * Render the content of the category dropdown
+		 *
+		 * @return HTML
+		 */
+		 public function render_content() {
+			 ?>
+			 <label>
+				 <select <?php $this->link(); ?>>
+					 <?php
+					 printf('<option value="%s" %s>%s</option>', 'normal', selected($this->value(), 'normal', false), 'normal');
+					 printf('<option value="%s" %s>%s</option>', 'bold', selected($this->value(), 'bold', false), 'bold');
+					 printf('<option value="%s" %s>%s</option>', '100', selected($this->value(), '100', false), '100');
+					 printf('<option value="%s" %s>%s</option>', '200', selected($this->value(), '200', false), '200');
+					 printf('<option value="%s" %s>%s</option>', '300', selected($this->value(), '300', false), '300');
+					 printf('<option value="%s" %s>%s</option>', '400', selected($this->value(), '400', false), '400');
+					 printf('<option value="%s" %s>%s</option>', '500', selected($this->value(), '500', false), '500');
+					 printf('<option value="%s" %s>%s</option>', '600', selected($this->value(), '600', false), '600');
+					 printf('<option value="%s" %s>%s</option>', '700', selected($this->value(), '700', false), '700');
+					 printf('<option value="%s" %s>%s</option>', '800', selected($this->value(), '800', false), '800');
+					 printf('<option value="%s" %s>%s</option>', '900', selected($this->value(), '900', false), '900');
+					 ?>
+				 </select>
+				 <p class="description"><?php echo esc_html( $this->label ); ?></p>
+			 </label>
+			 <?php
+		 }
+	 }
 }
 
 if ( ! class_exists( 'Generate_Text_Transform_Custom_Control' ) ) {
@@ -192,33 +192,31 @@ if ( ! class_exists( 'Generate_Text_Transform_Custom_Control' ) ) {
 	 */
 	class Generate_Text_Transform_Custom_Control extends WP_Customize_Control {
 
-	    public function __construct($manager, $id, $args = array(), $options = array())
-	    {
-	        parent::__construct( $manager, $id, $args );
-	    }
+		public function __construct( $manager, $id, $args = array(), $options = array() ) {
+			parent::__construct( $manager, $id, $args );
+		}
 
-	    /**
-	     * Render the content of the category dropdown
-	     *
-	     * @return HTML
-	     */
-	    public function render_content()
-	    {
-	        ?>
-	        <label>
-				<select <?php $this->link(); ?>>
-					<?php
-					printf('<option value="%s" %s>%s</option>', 'none', selected($this->value(), 'none', false), 'none');
-					printf('<option value="%s" %s>%s</option>', 'capitalize', selected($this->value(), 'capitalize', false), 'capitalize');
-					printf('<option value="%s" %s>%s</option>', 'uppercase', selected($this->value(), 'uppercase', false), 'uppercase');
-					printf('<option value="%s" %s>%s</option>', 'lowercase', selected($this->value(), 'lowercase', false), 'lowercase');
-					?>
-	            </select>
-				<p class="description"><?php echo esc_html( $this->label ); ?></p>
-	        </label>
-	        <?php
-	    }
-	}
+		/**
+		 * Render the content of the category dropdown
+		 *
+		 * @return HTML
+		 */
+		 public function render_content() {
+			 ?>
+			 <label>
+				 <select <?php $this->link(); ?>>
+					 <?php
+					 printf('<option value="%s" %s>%s</option>', 'none', selected($this->value(), 'none', false), 'none');
+					 printf('<option value="%s" %s>%s</option>', 'capitalize', selected($this->value(), 'capitalize', false), 'capitalize');
+					 printf('<option value="%s" %s>%s</option>', 'uppercase', selected($this->value(), 'uppercase', false), 'uppercase');
+					 printf('<option value="%s" %s>%s</option>', 'lowercase', selected($this->value(), 'lowercase', false), 'lowercase');
+					 ?>
+				 </select>
+				 <p class="description"><?php echo esc_html( $this->label ); ?></p>
+			 </label>
+			 <?php
+		 }
+	 }
 }
 
 if ( ! class_exists( 'Generate_Customize_Slider_Control' ) ) {

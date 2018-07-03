@@ -6,7 +6,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options
 Requires at least: 4.5
 Tested up to: 4.9
-Stable tag: 2.1.2
+Stable tag: 2.1.3
 
 GeneratePress is a fast, lightweight (less than 1MB zipped), mobile responsive WordPress theme built with speed, SEO and usability in mind.
 
@@ -96,6 +96,19 @@ See https://github.com/eligrey/classList.js/blob/master/LICENSE.md
 MIT License: https://github.com/woocommerce/selectWoo/blob/master/LICENSE.md
 
 == Changelog ==
+
+= 2.1.3 =
+
+Release date: July 3, 2018
+
+* Tweak: Set blog index content to show excerpts by default
+* Tweak: Darken default post meta colors for better contrast (a11y)
+* Tweak: Darken default site tagline color for better contrast (a11y)
+* Tweak: Add slight opacity to post meta icons
+* Tweak: Set post meta font size to 100% on mobile (SEO)
+* Tweak: Various WP Coding Standard tweaks
+* Tweak: Update default copyright message
+* Tweak: Reduce author archives avatar margin
 
 = 2.1.2 =
 

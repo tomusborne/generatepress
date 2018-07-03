@@ -65,7 +65,7 @@ if ( ! function_exists( 'generate_featured_page_header_area' ) ) {
 				apply_filters( 'generate_page_header_default_size', 'full' ),
 				array(
 					'itemprop' => 'image',
-					'alt' => the_title_attribute( 'echo=0' )
+					'alt' => the_title_attribute( 'echo=0' ),
 				)
 			); ?>
 		</div>

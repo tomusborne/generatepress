@@ -75,9 +75,11 @@ if ( ! function_exists( 'generate_add_footer_info' ) ) {
 	 * @since 0.1
 	 */
 	function generate_add_footer_info() {
-		$copyright = sprintf( '<span class="copyright">&copy; %1$s</span> &bull; <a href="%2$s" target="_blank" itemprop="url">%3$s</a>',
+		$copyright = sprintf( '<span class="copyright">&copy; %1$s %2$s</span> &bull; %4$s <a href="%3$s" itemprop="url">%5$s</a>',
 			date( 'Y' ),
+			get_bloginfo( 'name' ),
 			esc_url( 'https://generatepress.com' ),
+			_x( 'Powered by', 'GeneratePress', 'generatepress' ),
 			__( 'GeneratePress', 'generatepress' )
 		);
 
@@ -215,7 +217,7 @@ if ( ! function_exists( 'generate_back_to_top' ) ) {
 			generate_get_defaults()
 		);
 
-		if ( 'enable' !== $generate_settings[ 'back_to_top' ] ) {
+		if ( 'enable' !== $generate_settings['back_to_top'] ) {
 			return;
 		}
 

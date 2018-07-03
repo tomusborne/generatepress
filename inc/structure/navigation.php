@@ -43,7 +43,7 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 						'container_id' => 'primary-menu',
 						'menu_class' => '',
 						'fallback_cb' => 'generate_menu_fallback',
-						'items_wrap' => '<ul id="%1$s" class="%2$s ' . join( ' ', generate_get_menu_class() ) . '">%3$s</ul>'
+						'items_wrap' => '<ul id="%1$s" class="%2$s ' . join( ' ', generate_get_menu_class() ) . '">%3$s</ul>',
 					)
 				);
 				?>
@@ -74,7 +74,7 @@ if ( ! function_exists( 'generate_menu_fallback' ) ) {
 				$args = array(
 					'sort_column' => 'menu_order',
 					'title_li' => '',
-					'walker' => new Generate_Page_Walker()
+					'walker' => new Generate_Page_Walker(),
 				);
 
 				wp_list_pages( $args );
@@ -175,7 +175,7 @@ if ( ! class_exists( 'Generate_Page_Walker' ) && class_exists( 'Walker_Page' ) )
 				} elseif ( $_current_page && $page->ID == $_current_page->post_parent ) {
 					$css_class[] = 'current-menu-parent';
 				}
-			} elseif ( $page->ID == get_option('page_for_posts') ) {
+			} elseif ( $page->ID == get_option( 'page_for_posts' ) ) {
 				$css_class[] = 'current-menu-parent';
 			}
 
@@ -223,8 +223,8 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 		// Loop through our menu items and add our dropdown icons.
 		if ( 'main-nav' === $args->container_class ) {
 			foreach ( $item->classes as $value ) {
-				if ( 'menu-item-has-children' === $value  ) {
-					$title = $title . '<span role="' . $role . '" class="dropdown-menu-toggle"' . $tabindex .'></span>';
+				if ( 'menu-item-has-children' === $value ) {
+					$title = $title . '<span role="' . $role . '" class="dropdown-menu-toggle"' . $tabindex . '></span>';
 				}
 			}
 		}
@@ -291,7 +291,7 @@ if ( ! function_exists( 'generate_menu_search_icon' ) ) {
 
 		// Our primary menu isn't set, return the regular nav.
 		// In this case, the search icon is added to the generate_menu_fallback() function in navigation.php.
-	    return $nav;
+		return $nav;
 	}
 }
 

@@ -28,7 +28,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Customi
 
 		public function to_json() {
 			parent::to_json();
-			$this->json[ 'url' ] = esc_url( $this->url );
+			$this->json['url'] = esc_url( $this->url );
 		}
 
 		public function content_template() {

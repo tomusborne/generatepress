@@ -19,26 +19,26 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 		public $type = 'gp-customizer-typography';
 
 		public function enqueue() {
-			wp_enqueue_script( 'generatepress-typography-selectWoo', trailingslashit( get_template_directory_uri() )  . 'inc/customizer/controls/js/selectWoo.min.js', array( 'customize-controls', 'jquery' ), GENERATE_VERSION, true );
-			wp_enqueue_style( 'generatepress-typography-selectWoo', trailingslashit( get_template_directory_uri() )  . 'inc/customizer/controls/css/selectWoo.min.css', array(), GENERATE_VERSION );
+			wp_enqueue_script( 'generatepress-typography-selectWoo', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/js/selectWoo.min.js', array( 'customize-controls', 'jquery' ), GENERATE_VERSION, true );
+			wp_enqueue_style( 'generatepress-typography-selectWoo', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/css/selectWoo.min.css', array(), GENERATE_VERSION );
 
-			wp_enqueue_script( 'generatepress-typography-customizer', trailingslashit( get_template_directory_uri() )  . 'inc/customizer/controls/js/typography-customizer.js', array( 'customize-controls', 'generatepress-typography-selectWoo' ), GENERATE_VERSION, true );
-			wp_enqueue_style( 'generatepress-typography-customizer', trailingslashit( get_template_directory_uri() )  . 'inc/customizer/controls/css/typography-customizer.css', array(), GENERATE_VERSION );
+			wp_enqueue_script( 'generatepress-typography-customizer', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/js/typography-customizer.js', array( 'customize-controls', 'generatepress-typography-selectWoo' ), GENERATE_VERSION, true );
+			wp_enqueue_style( 'generatepress-typography-customizer', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/css/typography-customizer.css', array(), GENERATE_VERSION );
 		}
 
 		public function to_json() {
 			parent::to_json();
 
 			$number_of_fonts = apply_filters( 'generate_number_of_fonts', 200 );
-			$this->json[ 'default_fonts_title'] = __( 'System fonts', 'generatepress' );
-			$this->json[ 'google_fonts_title'] = __( 'Google fonts', 'generatepress' );
-			$this->json[ 'google_fonts' ] = apply_filters( 'generate_typography_customize_list', generate_get_all_google_fonts( $number_of_fonts ) );
-			$this->json[ 'default_fonts' ] = generate_typography_default_fonts();
-			$this->json[ 'family_title' ] = esc_html__( 'Font family', 'generatepress' );
-			$this->json[ 'weight_title' ] = esc_html__( 'Font weight', 'generatepress' );
-			$this->json[ 'transform_title' ] = esc_html__( 'Text transform', 'generatepress' );
-			$this->json[ 'category_title' ] = '';
-			$this->json[ 'variant_title' ] = esc_html__( 'Variants', 'generatepress' );
+			$this->json['default_fonts_title'] = __( 'System fonts', 'generatepress' );
+			$this->json['google_fonts_title'] = __( 'Google fonts', 'generatepress' );
+			$this->json['google_fonts'] = apply_filters( 'generate_typography_customize_list', generate_get_all_google_fonts( $number_of_fonts ) );
+			$this->json['default_fonts'] = generate_typography_default_fonts();
+			$this->json['family_title'] = esc_html__( 'Font family', 'generatepress' );
+			$this->json['weight_title'] = esc_html__( 'Font weight', 'generatepress' );
+			$this->json['transform_title'] = esc_html__( 'Text transform', 'generatepress' );
+			$this->json['category_title'] = '';
+			$this->json['variant_title'] = esc_html__( 'Variants', 'generatepress' );
 
 			foreach ( $this->settings as $setting_key => $setting_id ) {
 				$this->json[ $setting_key ] = array(

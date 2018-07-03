@@ -64,8 +64,8 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 				 *
 				 * @since 2.0
 				 */
-				 do_action( 'generate_dashboard_after_header' );
-				 ?>
+				do_action( 'generate_dashboard_after_header' );
+				?>
 
 				<div class="gp-container">
 					<div class="postbox-container clearfix" style="float: none;">
@@ -77,8 +77,8 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 							 *
 							 * @since 2.0
 							 */
-							 do_action( 'generate_dashboard_inside_container' );
-							 ?>
+							do_action( 'generate_dashboard_inside_container' );
+							?>
 
 							<div class="form-metabox grid-70" style="padding-left: 0;">
 								<h2 style="height:0;margin:0;"><!-- admin notices below this element --></h2>
@@ -100,8 +100,8 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 									 *
 									 * @since 0.1
 									 */
-									 do_action( 'generate_inside_options_form' );
-									 ?>
+									do_action( 'generate_inside_options_form' );
+									?>
 								</form>
 
 								<?php
@@ -144,7 +144,7 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 									),
 									'Typography' => array(
 											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-typography/' ),
-									)
+									),
 								);
 
 								if ( ! defined( 'GP_PREMIUM_VERSION' ) ) : ?>
@@ -155,10 +155,10 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 												<?php foreach( $modules as $module => $info ) { ?>
 												<div class="add-on activated gp-clear addon-container grid-parent">
 													<div class="addon-name column-addon-name" style="">
-														<a href="<?php echo esc_url( $info[ 'url' ] ); ?>" target="_blank"><?php echo esc_html( $module ); ?></a>
+														<a href="<?php echo esc_url( $info['url'] ); ?>" target="_blank"><?php echo esc_html( $module ); ?></a>
 													</div>
 													<div class="addon-action addon-addon-action" style="text-align:right;">
-														<a href="<?php echo esc_url( $info[ 'url' ] ); ?>" target="_blank"><?php esc_html_e( 'Learn more', 'generatepress' ); ?></a>
+														<a href="<?php echo esc_url( $info['url'] ); ?>" target="_blank"><?php esc_html_e( 'Learn more', 'generatepress' ); ?></a>
 													</div>
 												</div>
 												<div class="gp-clear"></div>
@@ -194,9 +194,9 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 								 *
 								 * @since 0.1
 								 */
-								 do_action( 'generate_admin_right_panel' );
+								do_action( 'generate_admin_right_panel' );
 
-								 if ( ! defined( 'GP_PREMIUM_VERSION' ) ) : ?>
+								if ( ! defined( 'GP_PREMIUM_VERSION' ) ) : ?>
 									<div class="postbox generate-metabox popular-articles">
 										<h3 class="hndle"><a href="https://docs.generatepress.com" target="_blank"><?php esc_html_e( 'View all', 'generatepress' ); ?></a><?php esc_html_e( 'Documentation', 'generatepress' ); ?></h3>
 										<div class="inside">
@@ -221,7 +221,11 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 												<?php
 												$warning = 'return confirm("' . esc_html__( 'Warning: This will delete your settings.', 'generatepress' ) . '")';
 												wp_nonce_field( 'generate_reset_customizer_nonce', 'generate_reset_customizer_nonce' );
-												submit_button( esc_attr__( 'Delete Default Settings', 'generatepress' ), 'button', 'submit', false, array( 'onclick' => esc_js( $warning ) ) );
+												submit_button( esc_attr__( 'Delete Default Settings', 'generatepress' ), 'button', 'submit', false,
+													array(
+														'onclick' => esc_js( $warning )
+													)
+												);
 												?>
 											</p>
 
@@ -232,8 +236,8 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 										 *
 										 * @since 0.1
 										 */
-										 do_action( 'generate_delete_settings_form' );
-										 ?>
+										do_action( 'generate_delete_settings_form' );
+										?>
 									</div>
 								</div>
 							</div>

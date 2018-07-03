@@ -20,8 +20,10 @@ if ( ! function_exists( 'generate_archive_title' ) ) {
 		if ( ! function_exists( 'the_archive_title' ) ) {
 			return;
 		}
+
+		$clearfix = is_author() ? ' clearfix' : '';
 		?>
-		<header class="page-header<?php if ( is_author() ) echo ' clearfix';?>">
+		<header class="page-header<?php echo $clearfix; ?>">
 			<?php
 			/**
 			 * generate_before_archive_title hook.

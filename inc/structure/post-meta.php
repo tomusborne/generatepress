@@ -94,11 +94,11 @@ if ( ! function_exists( 'generate_modify_posts_pagination_template' ) ) {
 	 * @return string The HTML for the post navigation.
 	 */
 	function generate_modify_posts_pagination_template( $template, $class ) {
-	    if ( ! empty( $class ) && false !== strpos( $class, 'pagination' ) ) {
-	        $template = '<div class="nav-links">%3$s</div>';
-	    }
+		if ( ! empty( $class ) && false !== strpos( $class, 'pagination' ) ) {
+			$template = '<div class="nav-links">%3$s</div>';
+		}
 
-	    return $template;
+		return $template;
 	}
 }
 
@@ -139,7 +139,7 @@ if ( ! function_exists( 'generate_posted_on' ) ) {
 		if ( $author ) {
 			echo apply_filters( 'generate_post_author_output', sprintf( ' <span class="byline">%1$s</span>', // WPCS: XSS ok, sanitization ok.
 				sprintf( '<span class="author vcard" itemtype="https://schema.org/Person" itemscope="itemscope" itemprop="author">%1$s <a class="url fn n" href="%2$s" title="%3$s" rel="author" itemprop="url"><span class="author-name" itemprop="name">%4$s</span></a></span>',
-					__( 'by','generatepress'),
+					__( 'by', 'generatepress' ),
 					esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 					/* translators: 1: Author name */
 					esc_attr( sprintf( __( 'View all posts by %s', 'generatepress' ), get_the_author() ) ),
@@ -251,8 +251,13 @@ if ( ! function_exists( 'generate_footer_meta' ) ) {
 	function generate_footer_meta() {
 		if ( 'post' == get_post_type() ) : ?>
 			<footer class="entry-meta">
-				<?php generate_entry_meta(); ?>
-				<?php if ( is_single() ) generate_content_nav( 'nav-below' ); ?>
+				<?php
+				generate_entry_meta();
+
+				if ( is_single() ) {
+					generate_content_nav( 'nav-below' );
+				}
+				?>
 			</footer><!-- .entry-meta -->
 		<?php endif;
 	}

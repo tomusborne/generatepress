@@ -93,8 +93,9 @@ if ( ! function_exists( 'generate_enqueue_color_palettes' ) ) {
 	 */
 	function generate_enqueue_color_palettes() {
 		// Old versions of WP don't get nice things
-		if ( ! function_exists( 'wp_add_inline_script' ) )
+		if ( ! function_exists( 'wp_add_inline_script' ) ) {
 			return;
+		}
 
 		// Grab our palette array and turn it into JS
 		$palettes = json_encode( generate_get_default_color_palettes() );
@@ -145,18 +146,18 @@ if ( ! function_exists( 'generate_sanitize_blog_excerpt' ) ) {
 	 *
 	 * @since 1.0.8
 	 */
-	function generate_sanitize_blog_excerpt( $input ) {
-	    $valid = array(
-	        'full',
-			'excerpt'
-	    );
+	 function generate_sanitize_blog_excerpt( $input ) {
+		 $valid = array(
+			 'full',
+			 'excerpt'
+		 );
 
-	    if ( in_array( $input, $valid ) ) {
-	        return $input;
-	    } else {
-	        return 'full';
-	    }
-	}
+		 if ( in_array( $input, $valid ) ) {
+			 return $input;
+		 } else {
+			 return 'full';
+		 }
+	 }
 }
 
 if ( ! function_exists( 'generate_sanitize_hex_color' ) ) {
@@ -166,18 +167,18 @@ if ( ! function_exists( 'generate_sanitize_hex_color' ) ) {
 	 *
 	 * @since 1.2.9.6
 	 */
-	function generate_sanitize_hex_color( $color ) {
-	    if ( '' === $color ) {
-	        return '';
-		}
+	 function generate_sanitize_hex_color( $color ) {
+		 if ( '' === $color ) {
+			 return '';
+		 }
 
-	    // 3 or 6 hex digits, or the empty string.
-	    if ( preg_match('|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) ) {
-	        return $color;
-		}
+		 // 3 or 6 hex digits, or the empty string.
+		 if ( preg_match('|^#([A-Fa-f0-9]{3}){1,2}$|', $color ) ) {
+			 return $color;
+		 }
 
-	    return '';
-	}
+		 return '';
+	 }
 }
 
 if ( ! function_exists( 'generate_sanitize_choices' ) ) {
@@ -222,7 +223,11 @@ add_action( 'customize_controls_enqueue_scripts', 'generate_do_control_inline_sc
  * @since 2.0
  */
 function generate_do_control_inline_scripts() {
-	wp_localize_script( 'generatepress-typography-customizer', 'gp_customize', array( 'nonce' => wp_create_nonce( 'gp_customize_nonce' ) ) );
+	wp_localize_script( 'generatepress-typography-customizer', 'gp_customize',
+		array(
+			'nonce' => wp_create_nonce( 'gp_customize_nonce' )
+		)
+	);
 	wp_localize_script( 'generatepress-typography-customizer', 'typography_defaults', generate_typography_default_fonts() );
 }
 

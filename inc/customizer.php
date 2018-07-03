@@ -36,12 +36,12 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 		require_once trailingslashit( get_template_directory() ) . 'inc/customizer/customizer-helpers.php';
 
 		if ( $wp_customize->get_control( 'blogdescription' ) ) {
-			$wp_customize->get_control('blogdescription')->priority = 3;
+			$wp_customize->get_control( 'blogdescription' )->priority = 3;
 			$wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
 		}
 
 		if ( $wp_customize->get_control( 'blogname' ) ) {
-			$wp_customize->get_control('blogname')->priority = 1;
+			$wp_customize->get_control( 'blogname' )->priority = 1;
 			$wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
 		}
 
@@ -82,7 +82,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 						'pro_url' => generate_get_premium_url( 'https://generatepress.com/premium' ),
 						'capability' => 'edit_theme_options',
 						'priority' => 0,
-						'type' => 'gp-upsell-section'
+						'type' => 'gp-upsell-section',
 					)
 				)
 			);
@@ -94,7 +94,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			array(
 				'default' => $defaults['hide_title'],
 				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_checkbox'
+				'sanitize_callback' => 'generate_sanitize_checkbox',
 			)
 		);
 
@@ -104,7 +104,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'type' => 'checkbox',
 				'label' => __( 'Hide site title', 'generatepress' ),
 				'section' => 'title_tagline',
-				'priority' => 2
+				'priority' => 2,
 			)
 		);
 
@@ -114,7 +114,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			array(
 				'default' => $defaults['hide_tagline'],
 				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_checkbox'
+				'sanitize_callback' => 'generate_sanitize_checkbox',
 			)
 		);
 
@@ -124,7 +124,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'type' => 'checkbox',
 				'label' => __( 'Hide site tagline', 'generatepress' ),
 				'section' => 'title_tagline',
-				'priority' => 4
+				'priority' => 4,
 			)
 		);
 
@@ -135,7 +135,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				array(
 					'default' => $defaults['logo'],
 					'type' => 'option',
-					'sanitize_callback' => 'esc_url_raw'
+					'sanitize_callback' => 'esc_url_raw',
 				)
 			);
 
@@ -146,7 +146,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					array(
 						'label' => __( 'Logo', 'generatepress' ),
 						'section' => 'title_tagline',
-						'settings' => 'generate_settings[logo]'
+						'settings' => 'generate_settings[logo]',
 					)
 				)
 			);
@@ -157,7 +157,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			array(
 				'default' => $defaults['retina_logo'],
 				'type' => 'option',
-				'sanitize_callback' => 'esc_url_raw'
+				'sanitize_callback' => 'esc_url_raw',
 			)
 		);
 
@@ -169,7 +169,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					'label' => __( 'Retina Logo', 'generatepress' ),
 					'section' => 'title_tagline',
 					'settings' => 'generate_settings[retina_logo]',
-					'active_callback' => 'generate_has_custom_logo_callback'
+					'active_callback' => 'generate_has_custom_logo_callback',
 				)
 			)
 		);
@@ -200,7 +200,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				array(
 					'label' => __( 'Background Color', 'generatepress' ),
 					'section' => 'body_section',
-					'settings' => 'generate_settings[background_color]'
+					'settings' => 'generate_settings[background_color]',
 				)
 			)
 		);
@@ -221,7 +221,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				array(
 					'label' => __( 'Text Color', 'generatepress' ),
 					'section' => 'body_section',
-					'settings' => 'generate_settings[text_color]'
+					'settings' => 'generate_settings[text_color]',
 				)
 			)
 		);
@@ -242,7 +242,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				array(
 					'label' => __( 'Link Color', 'generatepress' ),
 					'section' => 'body_section',
-					'settings' => 'generate_settings[link_color]'
+					'settings' => 'generate_settings[link_color]',
 				)
 			)
 		);
@@ -263,7 +263,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				array(
 					'label' => __( 'Link Color Hover', 'generatepress' ),
 					'section' => 'body_section',
-					'settings' => 'generate_settings[link_color_hover]'
+					'settings' => 'generate_settings[link_color_hover]',
 				)
 			)
 		);
@@ -284,7 +284,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				array(
 					'label' => __( 'Link Color Visited', 'generatepress' ),
 					'section' => 'body_section',
-					'settings' => 'generate_settings[link_color_visited]'
+					'settings' => 'generate_settings[link_color_visited]',
 				)
 			)
 		);
@@ -301,7 +301,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 						'description' => __( 'More options are available for this section in our premium version.', 'generatepress' ),
 						'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-colors/' ),
 						'priority' => 30,
-						'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname'
+						'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
 					)
 				)
 			);
@@ -322,7 +322,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			array(
 				'title' => __( 'Container', 'generatepress' ),
 				'priority' => 10,
-				'panel' => 'generate_layout_panel'
+				'panel' => 'generate_layout_panel',
 			)
 		);
 
@@ -333,7 +333,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'default' => $defaults['container_width'],
 				'type' => 'option',
 				'sanitize_callback' => 'generate_sanitize_integer',
-				'transport' => 'postMessage'
+				'transport' => 'postMessage',
 			)
 		);
 
@@ -379,7 +379,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'default' => $defaults['top_bar_width'],
 				'type' => 'option',
 				'sanitize_callback' => 'generate_sanitize_choices',
-				'transport' => 'postMessage'
+				'transport' => 'postMessage',
 			)
 		);
 
@@ -392,7 +392,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'section' => 'generate_top_bar',
 				'choices' => array(
 					'full' => __( 'Full', 'generatepress' ),
-					'contained' => __( 'Contained', 'generatepress' )
+					'contained' => __( 'Contained', 'generatepress' ),
 				),
 				'settings' => 'generate_settings[top_bar_width]',
 				'priority' => 5,
@@ -407,7 +407,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'default' => $defaults['top_bar_inner_width'],
 				'type' => 'option',
 				'sanitize_callback' => 'generate_sanitize_choices',
-				'transport' => 'postMessage'
+				'transport' => 'postMessage',
 			)
 		);
 
@@ -420,7 +420,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'section' => 'generate_top_bar',
 				'choices' => array(
 					'full' => __( 'Full', 'generatepress' ),
-					'contained' => __( 'Contained', 'generatepress' )
+					'contained' => __( 'Contained', 'generatepress' ),
 				),
 				'settings' => 'generate_settings[top_bar_inner_width]',
 				'priority' => 10,
@@ -435,7 +435,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'default' => $defaults['top_bar_alignment'],
 				'type' => 'option',
 				'sanitize_callback' => 'generate_sanitize_choices',
-				'transport' => 'postMessage'
+				'transport' => 'postMessage',
 			)
 		);
 
@@ -449,7 +449,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'choices' => array(
 					'left' => __( 'Left', 'generatepress' ),
 					'center' => __( 'Center', 'generatepress' ),
-					'right' => __( 'Right', 'generatepress' )
+					'right' => __( 'Right', 'generatepress' ),
 				),
 				'settings' => 'generate_settings[top_bar_alignment]',
 				'priority' => 15,
@@ -463,7 +463,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			array(
 				'title' => __( 'Header', 'generatepress' ),
 				'priority' => 20,
-				'panel' => 'generate_layout_panel'
+				'panel' => 'generate_layout_panel',
 			)
 		);
 
@@ -474,7 +474,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'default' => $defaults['header_layout_setting'],
 				'type' => 'option',
 				'sanitize_callback' => 'generate_sanitize_choices',
-				'transport' => 'postMessage'
+				'transport' => 'postMessage',
 			)
 		);
 
@@ -487,10 +487,10 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'section' => 'generate_layout_header',
 				'choices' => array(
 					'fluid-header' => __( 'Full', 'generatepress' ),
-					'contained-header' => __( 'Contained', 'generatepress' )
+					'contained-header' => __( 'Contained', 'generatepress' ),
 				),
 				'settings' => 'generate_settings[header_layout_setting]',
-				'priority' => 5
+				'priority' => 5,
 			)
 		);
 
@@ -501,7 +501,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'default' => $defaults['header_inner_width'],
 				'type' => 'option',
 				'sanitize_callback' => 'generate_sanitize_choices',
-				'transport' => 'postMessage'
+				'transport' => 'postMessage',
 			)
 		);
 
@@ -514,10 +514,10 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'section' => 'generate_layout_header',
 				'choices' => array(
 					'contained' => __( 'Contained', 'generatepress' ),
-					'full-width' => __( 'Full', 'generatepress' )
+					'full-width' => __( 'Full', 'generatepress' ),
 				),
 				'settings' => 'generate_settings[header_inner_width]',
-				'priority' => 6
+				'priority' => 6,
 			)
 		);
 
@@ -528,7 +528,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'default' => $defaults['header_alignment_setting'],
 				'type' => 'option',
 				'sanitize_callback' => 'generate_sanitize_choices',
-				'transport' => 'postMessage'
+				'transport' => 'postMessage',
 			)
 		);
 
@@ -542,10 +542,10 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'choices' => array(
 					'left' => __( 'Left', 'generatepress' ),
 					'center' => __( 'Center', 'generatepress' ),
-					'right' => __( 'Right', 'generatepress' )
+					'right' => __( 'Right', 'generatepress' ),
 				),
 				'settings' => 'generate_settings[header_alignment_setting]',
-				'priority' => 10
+				'priority' => 10,
 			)
 		);
 
@@ -554,7 +554,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			array(
 				'title' => __( 'Primary Navigation', 'generatepress' ),
 				'priority' => 30,
-				'panel' => 'generate_layout_panel'
+				'panel' => 'generate_layout_panel',
 			)
 		);
 
@@ -565,7 +565,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'default' => $defaults['nav_layout_setting'],
 				'type' => 'option',
 				'sanitize_callback' => 'generate_sanitize_choices',
-				'transport' => 'postMessage'
+				'transport' => 'postMessage',
 			)
 		);
 
@@ -578,10 +578,10 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'section' => 'generate_layout_navigation',
 				'choices' => array(
 					'fluid-nav' => __( 'Full', 'generatepress' ),
-					'contained-nav' => __( 'Contained', 'generatepress' )
+					'contained-nav' => __( 'Contained', 'generatepress' ),
 				),
 				'settings' => 'generate_settings[nav_layout_setting]',
-				'priority' => 15
+				'priority' => 15,
 			)
 		);
 
@@ -592,7 +592,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'default' => $defaults['nav_inner_width'],
 				'type' => 'option',
 				'sanitize_callback' => 'generate_sanitize_choices',
-				'transport' => 'postMessage'
+				'transport' => 'postMessage',
 			)
 		);
 
@@ -605,10 +605,10 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'section' => 'generate_layout_navigation',
 				'choices' => array(
 					'contained' => __( 'Contained', 'generatepress' ),
-					'full-width' => __( 'Full', 'generatepress' )
+					'full-width' => __( 'Full', 'generatepress' ),
 				),
 				'settings' => 'generate_settings[nav_inner_width]',
-				'priority' => 16
+				'priority' => 16,
 			)
 		);
 
@@ -619,7 +619,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'default' => $defaults['nav_alignment_setting'],
 				'type' => 'option',
 				'sanitize_callback' => 'generate_sanitize_choices',
-				'transport' => 'postMessage'
+				'transport' => 'postMessage',
 			)
 		);
 
@@ -633,10 +633,10 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'choices' => array(
 					'left' => __( 'Left', 'generatepress' ),
 					'center' => __( 'Center', 'generatepress' ),
-					'right' => __( 'Right', 'generatepress' )
+					'right' => __( 'Right', 'generatepress' ),
 				),
 				'settings' => 'generate_settings[nav_alignment_setting]',
-				'priority' => 20
+				'priority' => 20,
 			)
 		);
 
@@ -647,7 +647,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'default' => $defaults['nav_position_setting'],
 				'type' => 'option',
 				'sanitize_callback' => 'generate_sanitize_choices',
-				'transport' => ( '' !== generate_get_setting( 'nav_position_setting' ) ) ? 'postMessage' : 'refresh'
+				'transport' => ( '' !== generate_get_setting( 'nav_position_setting' ) ) ? 'postMessage' : 'refresh',
 			)
 		);
 
@@ -665,10 +665,10 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					'nav-float-left' => __( 'Float Left', 'generatepress' ),
 					'nav-left-sidebar' => __( 'Left Sidebar', 'generatepress' ),
 					'nav-right-sidebar' => __( 'Right Sidebar', 'generatepress' ),
-					'' => __( 'No Navigation', 'generatepress' )
+					'' => __( 'No Navigation', 'generatepress' ),
 				),
 				'settings' => 'generate_settings[nav_position_setting]',
-				'priority' => 22
+				'priority' => 22,
 			)
 		);
 
@@ -678,7 +678,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			array(
 				'default' => $defaults['nav_dropdown_type'],
 				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_choices'
+				'sanitize_callback' => 'generate_sanitize_choices',
 			)
 		);
 
@@ -692,10 +692,10 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'choices' => array(
 					'hover' => __( 'Hover', 'generatepress' ),
 					'click' => __( 'Click - Menu Item', 'generatepress' ),
-					'click-arrow' => __( 'Click - Arrow', 'generatepress' )
+					'click-arrow' => __( 'Click - Arrow', 'generatepress' ),
 				),
 				'settings' => 'generate_settings[nav_dropdown_type]',
-				'priority' => 22
+				'priority' => 22,
 			)
 		);
 
@@ -705,7 +705,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			array(
 				'default' => $defaults['nav_search'],
 				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_choices'
+				'sanitize_callback' => 'generate_sanitize_choices',
 			)
 		);
 
@@ -718,10 +718,10 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'section' => 'generate_layout_navigation',
 				'choices' => array(
 					'enable' => __( 'Enable', 'generatepress' ),
-					'disable' => __( 'Disable', 'generatepress' )
+					'disable' => __( 'Disable', 'generatepress' ),
 				),
 				'settings' => 'generate_settings[nav_search]',
-				'priority' => 23
+				'priority' => 23,
 			)
 		);
 
@@ -732,7 +732,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'default' => $defaults['content_layout_setting'],
 				'type' => 'option',
 				'sanitize_callback' => 'generate_sanitize_choices',
-				'transport' => 'postMessage'
+				'transport' => 'postMessage',
 			)
 		);
 
@@ -745,10 +745,10 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'section' => 'generate_layout_container',
 				'choices' => array(
 					'separate-containers' => __( 'Separate Containers', 'generatepress' ),
-					'one-container' => __( 'One Container', 'generatepress' )
+					'one-container' => __( 'One Container', 'generatepress' ),
 				),
 				'settings' => 'generate_settings[content_layout_setting]',
-				'priority' => 25
+				'priority' => 25,
 			)
 		);
 
@@ -757,7 +757,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			array(
 				'title' => __( 'Sidebars', 'generatepress' ),
 				'priority' => 40,
-				'panel' => 'generate_layout_panel'
+				'panel' => 'generate_layout_panel',
 			)
 		);
 
@@ -767,7 +767,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			array(
 				'default' => $defaults['layout_setting'],
 				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_choices'
+				'sanitize_callback' => 'generate_sanitize_choices',
 			)
 		);
 
@@ -784,10 +784,10 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					'no-sidebar' => __( 'Content (no sidebars)', 'generatepress' ),
 					'both-sidebars' => __( 'Sidebar / Content / Sidebar', 'generatepress' ),
 					'both-left' => __( 'Sidebar / Sidebar / Content', 'generatepress' ),
-					'both-right' => __( 'Content / Sidebar / Sidebar', 'generatepress' )
+					'both-right' => __( 'Content / Sidebar / Sidebar', 'generatepress' ),
 				),
 				'settings' => 'generate_settings[layout_setting]',
-				'priority' => 30
+				'priority' => 30,
 			)
 		);
 
@@ -797,7 +797,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			array(
 				'default' => $defaults['blog_layout_setting'],
 				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_choices'
+				'sanitize_callback' => 'generate_sanitize_choices',
 			)
 		);
 
@@ -814,10 +814,10 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					'no-sidebar' => __( 'Content (no sidebars)', 'generatepress' ),
 					'both-sidebars' => __( 'Sidebar / Content / Sidebar', 'generatepress' ),
 					'both-left' => __( 'Sidebar / Sidebar / Content', 'generatepress' ),
-					'both-right' => __( 'Content / Sidebar / Sidebar', 'generatepress' )
+					'both-right' => __( 'Content / Sidebar / Sidebar', 'generatepress' ),
 				),
 				'settings' => 'generate_settings[blog_layout_setting]',
-				'priority' => 35
+				'priority' => 35,
 			)
 		);
 
@@ -827,7 +827,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			array(
 				'default' => $defaults['single_layout_setting'],
 				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_choices'
+				'sanitize_callback' => 'generate_sanitize_choices',
 			)
 		);
 
@@ -844,10 +844,10 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					'no-sidebar' => __( 'Content (no sidebars)', 'generatepress' ),
 					'both-sidebars' => __( 'Sidebar / Content / Sidebar', 'generatepress' ),
 					'both-left' => __( 'Sidebar / Sidebar / Content', 'generatepress' ),
-					'both-right' => __( 'Content / Sidebar / Sidebar', 'generatepress' )
+					'both-right' => __( 'Content / Sidebar / Sidebar', 'generatepress' ),
 				),
 				'settings' => 'generate_settings[single_layout_setting]',
-				'priority' => 36
+				'priority' => 36,
 			)
 		);
 
@@ -856,7 +856,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			array(
 				'title' => __( 'Footer', 'generatepress' ),
 				'priority' => 50,
-				'panel' => 'generate_layout_panel'
+				'panel' => 'generate_layout_panel',
 			)
 		);
 
@@ -867,7 +867,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'default' => $defaults['footer_layout_setting'],
 				'type' => 'option',
 				'sanitize_callback' => 'generate_sanitize_choices',
-				'transport' => 'postMessage'
+				'transport' => 'postMessage',
 			)
 		);
 
@@ -880,10 +880,10 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'section' => 'generate_layout_footer',
 				'choices' => array(
 					'fluid-footer' => __( 'Full', 'generatepress' ),
-					'contained-footer' => __( 'Contained', 'generatepress' )
+					'contained-footer' => __( 'Contained', 'generatepress' ),
 				),
 				'settings' => 'generate_settings[footer_layout_setting]',
-				'priority' => 40
+				'priority' => 40,
 			)
 		);
 
@@ -894,7 +894,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'default' => $defaults['footer_inner_width'],
 				'type' => 'option',
 				'sanitize_callback' => 'generate_sanitize_choices',
-				'transport' => 'postMessage'
+				'transport' => 'postMessage',
 			)
 		);
 
@@ -907,10 +907,10 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'section' => 'generate_layout_footer',
 				'choices' => array(
 					'contained' => __( 'Contained', 'generatepress' ),
-					'full-width' => __( 'Full', 'generatepress' )
+					'full-width' => __( 'Full', 'generatepress' ),
 				),
 				'settings' => 'generate_settings[footer_inner_width]',
-				'priority' => 41
+				'priority' => 41,
 			)
 		);
 
@@ -920,7 +920,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			array(
 				'default' => $defaults['footer_widget_setting'],
 				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_choices'
+				'sanitize_callback' => 'generate_sanitize_choices',
 			)
 		);
 
@@ -937,10 +937,10 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					'2' => '2',
 					'3' => '3',
 					'4' => '4',
-					'5' => '5'
+					'5' => '5',
 				),
 				'settings' => 'generate_settings[footer_widget_setting]',
-				'priority' => 45
+				'priority' => 45,
 			)
 		);
 
@@ -951,7 +951,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'default' => $defaults['footer_bar_alignment'],
 				'type' => 'option',
 				'sanitize_callback' => 'generate_sanitize_choices',
-				'transport' => 'postMessage'
+				'transport' => 'postMessage',
 			)
 		);
 
@@ -965,11 +965,11 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'choices' => array(
 					'left' => __( 'Left','generatepress' ),
 					'center' => __( 'Center','generatepress' ),
-					'right' => __( 'Right','generatepress' )
+					'right' => __( 'Right','generatepress' ),
 				),
 				'settings' => 'generate_settings[footer_bar_alignment]',
 				'priority' => 47,
-				'active_callback' => 'generate_is_footer_bar_active'
+				'active_callback' => 'generate_is_footer_bar_active',
 			)
 		);
 
@@ -979,7 +979,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			array(
 				'default' => $defaults['back_to_top'],
 				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_choices'
+				'sanitize_callback' => 'generate_sanitize_choices',
 			)
 		);
 
@@ -992,10 +992,10 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'section' => 'generate_layout_footer',
 				'choices' => array(
 					'enable' => __( 'Enable', 'generatepress' ),
-					'' => __( 'Disable', 'generatepress' )
+					'' => __( 'Disable', 'generatepress' ),
 				),
 				'settings' => 'generate_settings[back_to_top]',
-				'priority' => 50
+				'priority' => 50,
 			)
 		);
 
@@ -1005,7 +1005,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			array(
 				'title' => __( 'Blog', 'generatepress' ),
 				'priority' => 55,
-				'panel' => 'generate_layout_panel'
+				'panel' => 'generate_layout_panel',
 			)
 		);
 
@@ -1015,7 +1015,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			array(
 				'default' => $defaults['post_content'],
 				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_blog_excerpt'
+				'sanitize_callback' => 'generate_sanitize_blog_excerpt',
 			)
 		);
 
@@ -1028,10 +1028,10 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'section' => 'generate_blog_section',
 				'choices' => array(
 					'full' => __( 'Full', 'generatepress' ),
-					'excerpt' => __( 'Excerpt', 'generatepress' )
+					'excerpt' => __( 'Excerpt', 'generatepress' ),
 				),
 				'settings' => 'generate_settings[post_content]',
-				'priority' => 10
+				'priority' => 10,
 			)
 		);
 
@@ -1047,7 +1047,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 						'description' => __( 'More options are available for this section in our premium version.', 'generatepress' ),
 						'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-blog/' ),
 						'priority' => 30,
-						'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname'
+						'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
 					)
 				)
 			);
@@ -1058,7 +1058,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			'generate_general_section',
 			array(
 				'title' => __( 'General', 'generatepress' ),
-				'priority' => 99
+				'priority' => 99,
 			)
 		);
 
@@ -1068,7 +1068,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				array(
 					'default' => $defaults['font_awesome_essentials'],
 					'type' => 'option',
-					'sanitize_callback' => 'generate_sanitize_checkbox'
+					'sanitize_callback' => 'generate_sanitize_checkbox',
 				)
 			);
 
@@ -1089,7 +1089,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			array(
 				'default' => $defaults['dynamic_css_cache'],
 				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_checkbox'
+				'sanitize_callback' => 'generate_sanitize_checkbox',
 			)
 		);
 

@@ -20,7 +20,7 @@ if ( ! function_exists( 'generate_paging_nav' ) ) {
 	 * @deprecated 1.3.45
 	 */
 	function generate_paging_nav() {
-		_deprecated_function( __FUNCTION__, '1.3.45', "the_posts_navigation()" );
+		_deprecated_function( __FUNCTION__, '1.3.45', 'the_posts_navigation()' );
 		if ( function_exists( 'the_posts_pagination' ) ) {
 			the_posts_pagination( array(
 				'mid_size' => apply_filters( 'generate_pagination_mid_size', 1 ),
@@ -90,96 +90,96 @@ if ( ! function_exists( 'generate_get_min_suffix' ) ) {
 
 if ( ! function_exists( 'generate_add_layout_meta_box' ) ) {
 	function generate_add_layout_meta_box() {
-		_deprecated_function( __FUNCTION__, '2.0', "generate_register_layout_meta_box()" );
+		_deprecated_function( __FUNCTION__, '2.0', 'generate_register_layout_meta_box()' );
 	}
 }
 
 if ( ! function_exists( 'generate_show_layout_meta_box' ) ) {
 	function generate_show_layout_meta_box() {
-		_deprecated_function( __FUNCTION__, '2.0', "generate_do_layout_meta_box()" );
+		_deprecated_function( __FUNCTION__, '2.0', 'generate_do_layout_meta_box()' );
 	}
 }
 
 if ( ! function_exists( 'generate_save_layout_meta' ) ) {
 	function generate_save_layout_meta() {
-		_deprecated_function( __FUNCTION__, '2.0', "generate_save_layout_meta_data()" );
+		_deprecated_function( __FUNCTION__, '2.0', 'generate_save_layout_meta_data()' );
 	}
 }
 
 if ( ! function_exists( 'generate_add_footer_widget_meta_box' ) ) {
 	function generate_add_footer_widget_meta_box() {
-		_deprecated_function( __FUNCTION__, '2.0', "generate_register_layout_meta_box()" );
+		_deprecated_function( __FUNCTION__, '2.0', 'generate_register_layout_meta_box()' );
 	}
 }
 
 if ( ! function_exists( 'generate_show_footer_widget_meta_box' ) ) {
 	function generate_show_footer_widget_meta_box() {
-		_deprecated_function( __FUNCTION__, '2.0', "generate_do_layout_meta_box()" );
+		_deprecated_function( __FUNCTION__, '2.0', 'generate_do_layout_meta_box()' );
 	}
 }
 
 if ( ! function_exists( 'generate_save_footer_widget_meta' ) ) {
 	function generate_save_footer_widget_meta() {
-		_deprecated_function( __FUNCTION__, '2.0', "generate_save_layout_meta_data()" );
+		_deprecated_function( __FUNCTION__, '2.0', 'generate_save_layout_meta_data()' );
 	}
 }
 
 if ( ! function_exists( 'generate_add_page_builder_meta_box' ) ) {
 	function generate_add_page_builder_meta_box() {
-		_deprecated_function( __FUNCTION__, '2.0', "generate_register_layout_meta_box()" );
+		_deprecated_function( __FUNCTION__, '2.0', 'generate_register_layout_meta_box()' );
 	}
 }
 
 if ( ! function_exists( 'generate_show_page_builder_meta_box' ) ) {
 	function generate_show_page_builder_meta_box() {
-		_deprecated_function( __FUNCTION__, '2.0', "generate_do_layout_meta_box()" );
+		_deprecated_function( __FUNCTION__, '2.0', 'generate_do_layout_meta_box()' );
 	}
 }
 
 if ( ! function_exists( 'generate_save_page_builder_meta' ) ) {
 	function generate_save_page_builder_meta() {
-		_deprecated_function( __FUNCTION__, '2.0', "generate_save_layout_meta_data()" );
+		_deprecated_function( __FUNCTION__, '2.0', 'generate_save_layout_meta_data()' );
 	}
 }
 
 if ( ! function_exists( 'generate_add_de_meta_box' ) ) {
 	function generate_add_de_meta_box() {
-		_deprecated_function( __FUNCTION__, '2.0', "generate_register_layout_meta_box()" );
+		_deprecated_function( __FUNCTION__, '2.0', 'generate_register_layout_meta_box()' );
 	}
 }
 
 if ( ! function_exists( 'generate_show_de_meta_box' ) ) {
 	function generate_show_de_meta_box() {
-		_deprecated_function( __FUNCTION__, '2.0', "generate_do_layout_meta_box()" );
+		_deprecated_function( __FUNCTION__, '2.0', 'generate_do_layout_meta_box()' );
 	}
 }
 
 if ( ! function_exists( 'generate_save_de_meta' ) ) {
 	function generate_save_de_meta() {
-		_deprecated_function( __FUNCTION__, '2.0', "generate_save_layout_meta_data()" );
+		_deprecated_function( __FUNCTION__, '2.0', 'generate_save_layout_meta_data()' );
 	}
 }
 
 if ( ! function_exists( 'generate_add_base_inline_css' ) ) {
 	function generate_add_base_inline_css() {
-		_deprecated_function( __FUNCTION__, '2.0', "generate_enqueue_dynamic_css()" );
+		_deprecated_function( __FUNCTION__, '2.0', 'generate_enqueue_dynamic_css()' );
 	}
 }
 
 if ( ! function_exists( 'generate_color_scripts' ) ) {
 	function generate_color_scripts() {
-		_deprecated_function( __FUNCTION__, '2.0', "generate_enqueue_dynamic_css()" );
+		_deprecated_function( __FUNCTION__, '2.0', 'generate_enqueue_dynamic_css()' );
 	}
 }
 
 if ( ! function_exists( 'generate_typography_scripts' ) ) {
 	function generate_typography_scripts() {
-		_deprecated_function( __FUNCTION__, '2.0', "generate_enqueue_dynamic_css()" );
+		_deprecated_function( __FUNCTION__, '2.0', 'generate_enqueue_dynamic_css()' );
 	}
 }
 
 if ( ! function_exists( 'generate_spacing_scripts' ) ) {
 	function generate_spacing_scripts() {
-		_deprecated_function( __FUNCTION__, '2.0', "generate_enqueue_dynamic_css()" );
+		_deprecated_function( __FUNCTION__, '2.0', 'generate_enqueue_dynamic_css()' );
 	}
 }

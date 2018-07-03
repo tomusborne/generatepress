@@ -72,7 +72,7 @@ if ( ! function_exists( 'generate_update_logo_setting' ) ) {
 
 		// Got our custom logo? Time to delete the old value
 		if ( get_theme_mod( 'custom_logo' ) ) {
-			$new_settings[ 'logo' ] = '';
+			$new_settings['logo'] = '';
 			$update_settings = wp_parse_args( $new_settings, $generate_settings );
 			update_option( 'generate_settings', $update_settings );
 		}
@@ -104,7 +104,7 @@ if ( ! function_exists( 'generate_typography_convert_values' ) ) {
 		);
 
 		// Get our body font family setting
-		$value = $generate_settings[ 'font_body' ];
+		$value = $generate_settings['font_body'];
 
 		// Create a new, empty array
 		$new_settings = array();
@@ -116,7 +116,7 @@ if ( ! function_exists( 'generate_typography_convert_values' ) ) {
 			$value = current( explode( ':', $value ) );
 
 			// Populate our new array with our new, clean value
-			$new_settings[ 'font_body' ] = $value;
+			$new_settings['font_body'] = $value;
 
 		}
 
@@ -152,12 +152,12 @@ if ( ! function_exists( 'generate_typography_set_font_data' ) ) {
 		);
 
 		// We don't need to do this if we're using the default font, as these values have defaults already
-		if ( $defaults[ 'font_body' ] == $generate_settings[ 'font_body' ] ) {
+		if ( $defaults['font_body'] == $generate_settings['font_body'] ) {
 			return;
 		}
 
 		// Don't need to continue if we're using a system font or our default font
-		if ( in_array( $generate_settings[ 'font_body' ], generate_typography_default_fonts() ) ) {
+		if ( in_array( $generate_settings['font_body'], generate_typography_default_fonts() ) ) {
 			return;
 		}
 
@@ -170,7 +170,7 @@ if ( ! function_exists( 'generate_typography_set_font_data' ) ) {
 		$fonts = generate_get_all_google_fonts();
 
 		// Get the ID from our font
-		$id = strtolower( str_replace( ' ', '_', $generate_settings[ 'font_body' ] ) );
+		$id = strtolower( str_replace( ' ', '_', $generate_settings['font_body'] ) );
 
 		// If the ID doesn't exist within our fonts, we can bail
 		if ( ! array_key_exists( $id, $fonts ) ) {
@@ -245,12 +245,12 @@ function generate_migrate_existing_settings() {
 
 		// Turn on the full Font Awesome library for existing websites.
 		if ( ! isset( $migration_settings['font_awesome_essentials_updated'] ) || 'true' !== $migration_settings['font_awesome_essentials_updated'] ) {
-			$new_settings[ 'font_awesome_essentials' ] = false;
+			$new_settings['font_awesome_essentials'] = false;
 		}
 
 		// Turn off dynamic CSS caching for existing websites.
 		if ( ! isset( $migration_settings['skip_dynamic_css_cache'] ) || 'true' !== $migration_settings['skip_dynamic_css_cache'] ) {
-			$new_settings[ 'dynamic_css_cache' ] = false;
+			$new_settings['dynamic_css_cache'] = false;
 		}
 
 		// Set our font family to Open Sans if we never saved a different font.
@@ -266,9 +266,23 @@ function generate_migrate_existing_settings() {
 			$variants = get_theme_mod( 'font_body_variants', '300,300italic,regular,italic,600,600italic,700,700italic,800,800italic' );
 
 			if ( 'Open Sans' == $generate_settings['font_body'] ) {
-				$new_settings[ 'font_body' ] = 'Open Sans';
+				$new_settings['font_body'] = 'Open Sans';
 				set_theme_mod( 'font_body_category', $category );
 				set_theme_mod( 'font_body_variants', $variants );
+			}
+		}
+
+		// Set blog post content to full content if it hasn't been set otherwise.
+		if ( ! isset( $migration_settings['blog_post_content_preview'] ) || 'true' !== $migration_settings['blog_post_content_preview'] ) {
+			$generate_settings = wp_parse_args(
+				get_option( 'generate_settings', array() ),
+				array(
+					'post_content' => 'full',
+				)
+			);
+
+			if ( 'full' === $generate_settings['post_content'] ) {
+				$new_settings['post_content'] = 'full';
 			}
 		}
 
@@ -285,6 +299,10 @@ function generate_migrate_existing_settings() {
 
 	if ( ! isset( $migration_settings['default_font_updated'] ) || 'true' !== $migration_settings['default_font_updated'] ) {
 		$migrated_flags['default_font_updated'] = 'true';
+	}
+
+	if ( ! isset( $migration_settings['blog_post_content_preview'] ) || 'true' !== $migration_settings['blog_post_content_preview'] ) {
+		$migrated_flags['blog_post_content_preview'] = 'true';
 	}
 
 	// Merge our new settings with our existing settings.

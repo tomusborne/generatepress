@@ -38,7 +38,7 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 			'layout_setting' => 'right-sidebar',
 			'blog_layout_setting' => 'right-sidebar',
 			'single_layout_setting' => 'right-sidebar',
-			'post_content' => 'full',
+			'post_content' => 'excerpt',
 			'footer_layout_setting' => 'fluid-footer',
 			'footer_inner_width' => 'contained',
 			'footer_widget_setting' => '3',
@@ -72,7 +72,7 @@ if ( ! function_exists( 'generate_get_color_defaults' ) ) {
 			'header_link_color' => '#3a3a3a',
 			'header_link_hover_color' => '',
 			'site_title_color' => '#222222',
-			'site_tagline_color' => '#999999',
+			'site_tagline_color' => '#757575',
 			'navigation_background_color' => '#222222',
 			'navigation_text_color' => '#ffffff',
 			'navigation_background_hover_color' => '#3f3f3f',
@@ -92,8 +92,8 @@ if ( ! function_exists( 'generate_get_color_defaults' ) ) {
 			'content_title_color' => '',
 			'blog_post_title_color' => '',
 			'blog_post_title_hover_color' => '',
-			'entry_meta_text_color' => '#888888',
-			'entry_meta_link_color' => '#666666',
+			'entry_meta_text_color' => '#595959',
+			'entry_meta_link_color' => '#595959',
 			'entry_meta_link_color_hover' => '#1e73be',
 			'h1_color' => '',
 			'h2_color' => '',
@@ -332,7 +332,7 @@ if ( ! function_exists( 'generate_typography_default_fonts' ) ) {
 			'Segoe UI, Helvetica Neue, Helvetica, sans-serif',
 			'Tahoma, Geneva, sans-serif',
 			'Trebuchet MS, Helvetica, sans-serif',
-			'Verdana, Geneva, sans-serif'
+			'Verdana, Geneva, sans-serif',
 		);
 
 		return apply_filters( 'generate_typography_default_fonts', $fonts );

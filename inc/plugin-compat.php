@@ -39,7 +39,8 @@ if ( ! function_exists( 'generate_woocommerce_start' ) ) {
 	 *
 	 * @since 1.3.22
 	 */
-	function generate_woocommerce_start() { ?>
+	function generate_woocommerce_start() {
+		?>
 		<div id="primary" <?php generate_content_class();?>>
 			<main id="main" <?php generate_main_class(); ?>>
 				<?php
@@ -74,7 +75,8 @@ if ( ! function_exists( 'generate_woocommerce_end' ) ) {
 	 *
 	 * @since 1.3.22
 	 */
-	function generate_woocommerce_end() { ?>
+	function generate_woocommerce_end() {
+		?>
 						</div><!-- .entry-content -->
 						<?php
 						/**
@@ -151,7 +153,7 @@ if ( ! function_exists( 'generate_woocommerce_css' ) ) {
 			}
 		}';
 
-		$css = str_replace(array("\r", "\n", "\t"), '', $css);
+		$css = str_replace( array( "\r", "\n", "\t" ), '', $css );
 		wp_add_inline_style( 'woocommerce-general', $css );
 	}
 }
@@ -190,7 +192,7 @@ if ( ! function_exists( 'generate_bbpress_css' ) ) {
 			padding: 0;
 		}';
 
-		$css = str_replace(array("\r", "\n", "\t"), '', $css);
+		$css = str_replace( array( "\r", "\n", "\t" ), '', $css );
 		wp_add_inline_style( 'bbp-default', $css );
 	}
 }
@@ -208,7 +210,7 @@ if ( ! function_exists( 'generate_buddypress_css' ) ) {
 			overflow: visible;
 		}';
 
-		$css = str_replace(array("\r", "\n", "\t"), '', $css);
+		$css = str_replace( array( "\r", "\n", "\t" ), '', $css );
 		wp_add_inline_style( 'bp-legacy-css', $css );
 	}
 }
@@ -239,7 +241,7 @@ if ( ! function_exists( 'generate_beaver_builder_css' ) ) {
 				return;
 			}
 
-			$compare_date = strtotime( "2017-03-14" );
+			$compare_date = strtotime( '2017-03-14' );
 			$post_date    = strtotime( $post->post_date );
 			if ( $post_date < $compare_date ) {
 				$css = '.fl-builder.no-sidebar .container.grid-container {
@@ -249,7 +251,7 @@ if ( ! function_exists( 'generate_beaver_builder_css' ) ) {
 				.fl-builder.one-container.no-sidebar .site-content {
 					padding:0;
 				}';
-				$css = str_replace(array("\r", "\n", "\t"), '', $css);
+				$css = str_replace( array( "\r", "\n", "\t" ), '', $css );
 				wp_add_inline_style( 'generate-style', $css );
 			}
 		}

@@ -253,4 +253,8 @@ nav.toggled ul ul.sub-menu {
 		margin-bottom: 1.5em;
 		width: 100% !important;
 	}
+
+	.entry-meta {
+		font-size: inherit;
+	}
 }
