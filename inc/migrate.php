@@ -272,6 +272,20 @@ function generate_migrate_existing_settings() {
 			}
 		}
 
+		// Set blog post content to full content if it hasn't been set otherwise.
+		if ( ! isset( $migration_settings['blog_post_content_preview'] ) || 'true' !== $migration_settings['blog_post_content_preview'] ) {
+			$generate_settings = wp_parse_args(
+				get_option( 'generate_settings', array() ),
+				array(
+					'post_content' => 'full',
+				)
+			);
+
+			if ( 'full' === $generate_settings['post_content'] ) {
+				$new_settings['post_content'] = 'full';
+			}
+		}
+
 	}
 
 	// Set our flags.
@@ -285,6 +299,10 @@ function generate_migrate_existing_settings() {
 
 	if ( ! isset( $migration_settings['default_font_updated'] ) || 'true' !== $migration_settings['default_font_updated'] ) {
 		$migrated_flags['default_font_updated'] = 'true';
+	}
+
+	if ( ! isset( $migration_settings['blog_post_content_preview'] ) || 'true' !== $migration_settings['blog_post_content_preview'] ) {
+		$migrated_flags['blog_post_content_preview'] = 'true';
 	}
 
 	// Merge our new settings with our existing settings.
