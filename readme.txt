@@ -97,6 +97,19 @@ MIT License: https://github.com/woocommerce/selectWoo/blob/master/LICENSE.md
 
 == Changelog ==
 
+= 2.1.3 =
+
+Release date: TBA
+
+* Tweak: Set blog index content to show excerpts by default
+* Tweak: Darken default post meta colors for better contrast (a11y)
+* Tweak: Darken default site tagline color for better contrast (a11y)
+* Tweak: Add slight opacity to post meta icons
+* Tweak: Set post meta font size to 100% on mobile (SEO)
+* Tweak: Various WP Coding Standard tweaks
+* Tweak: Update default copyright message
+* Tweak: Reduce author archives avatar margin
+
 = 2.1.2 =
 
 Release date: May 16, 2018
