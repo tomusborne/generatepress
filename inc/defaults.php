@@ -38,7 +38,7 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 			'layout_setting' => 'right-sidebar',
 			'blog_layout_setting' => 'right-sidebar',
 			'single_layout_setting' => 'right-sidebar',
-			'post_content' => 'full',
+			'post_content' => 'excerpt',
 			'footer_layout_setting' => 'fluid-footer',
 			'footer_inner_width' => 'contained',
 			'footer_widget_setting' => '3',
