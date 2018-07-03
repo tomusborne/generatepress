@@ -1524,7 +1524,7 @@ div:not(.entry-content) .widget ul li ul li:before {
 
 .page-header .avatar {
 	float: left;
-	margin-right: 1.5em;
+	margin-right: 20px;
 }
 
 .page-header .author-info {
