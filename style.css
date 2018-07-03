@@ -2142,6 +2142,13 @@ footer.entry-meta .posted-on:before,
 	text-rendering: auto;
 	line-height: 1;
 	speak: none;
+}
+
+.cat-links:before,
+.tags-links:before,
+.comments-link:before,
+.nav-previous .prev:before,
+.nav-next .next:before {
 	opacity: 0.7;
 }
 
