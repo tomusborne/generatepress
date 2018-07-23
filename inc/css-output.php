@@ -630,6 +630,7 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 
 		// Sub-menu positioning
 		$css->set_selector( '.main-navigation ul ul' );
+		$css->add_property( 'width', absint( $spacing_settings['sub_menu_width'] ), absint( $og_defaults['sub_menu_width'] ), 'px' );
 		$css->add_property( 'top', 'auto' ); // Added for compatibility purposes on 22/12/2016
 
 		// Navigation search
