@@ -747,9 +747,38 @@ li.search-item.active {
 
 .menu-item-has-children .dropdown-menu-toggle {
 	display: inline-block;
-	height: 100%;
 	clear: both;
 	padding-left: 10px;
+
+	background: none;
+	color: inherit;
+	font-size: inherit;
+	border: 0;
+	line-height: inherit;
+	padding-right: 20px;
+	padding-top: 0;
+	padding-bottom: 0;
+	margin: 0;
+	-webkit-appearance: none;
+}
+
+.menu-item-has-children ul .dropdown-menu-toggle {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-top: -10px;
+}
+
+.menu-item-has-children button.dropdown-menu-toggle,
+.slideout-navigation .menu-item-has-children span.dropdown-menu-toggle,
+.toggled .menu-item-has-children span.dropdown-menu-toggle,
+.dropdown-arrow-click .menu-item-has-children span.dropdown-menu-toggle {
+	display: none;
+}
+
+.slideout-navigation .menu-item-has-children button.dropdown-menu-toggle,
+.toggled .menu-item-has-children button.dropdown-menu-toggle,
+.dropdown-arrow-click .menu-item-has-children button.dropdown-menu-toggle {
+	display: inline-block;
 }
 
 nav ul ul .menu-item-has-children .dropdown-menu-toggle {
@@ -763,6 +792,14 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle {
 .dropdown-menu-toggle:before {
 	content: "\f107";
 	font-family: GeneratePress;
+
+	display: inline-block;
+	width: 0.8em;
+	text-align: left;
+}
+
+ul ul .dropdown-menu-toggle:before {
+	text-align: right;
 }
 
 .dropdown-click .menu-item-has-children.sfHover > a .dropdown-menu-toggle:before {
@@ -1994,16 +2031,6 @@ footer.entry-meta .byline {
 .navigation-search,
 .navigation-search input {
     height: 100%;
-}
-
-.menu-item-has-children .dropdown-menu-toggle {
-    padding-right: 20px;
-}
-
-.menu-item-has-children ul .dropdown-menu-toggle {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-top: -10px;
 }
 
 .widget-area .widget {

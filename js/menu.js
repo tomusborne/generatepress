@@ -32,7 +32,7 @@
 		}
 
 		var allNavToggles = document.querySelectorAll( '.menu-toggle' ),
-			dropdownToggle = document.querySelectorAll( 'nav .dropdown-menu-toggle' ),
+			dropdownToggle = document.querySelectorAll( 'nav button.dropdown-menu-toggle' ),
 			navLinks = document.querySelectorAll( 'nav ul a' ),
 			body = document.body,
 			htmlEl = document.documentElement;
@@ -65,9 +65,10 @@
 				if ( body.classList.contains( 'dropdown-hover' ) ) {
 					var dropdownItems = nav.querySelectorAll( 'li.menu-item-has-children' );
 					for ( var i = 0; i < dropdownItems.length; i++ ) {
-						dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).removeAttribute( 'tabindex' );
-						dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'role', 'presentation' );
-						dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).removeAttribute( 'aria-expanded' );
+						dropdownItems[i].querySelector( 'button.dropdown-menu-toggle' ).setAttribute( 'tabindex', '-1' );
+						dropdownItems[i].querySelector( 'button.dropdown-menu-toggle' ).setAttribute( 'aria-expanded', 'false' );
+						dropdownItems[i].classList.remove( 'sfHover' );
+						dropdownItems[i].querySelector( 'ul' ).classList.remove( 'toggled-on' );
 					}
 				}
 			} else {
@@ -79,9 +80,7 @@
 				if ( body.classList.contains( 'dropdown-hover' ) ) {
 					var dropdownItems = nav.querySelectorAll( 'li.menu-item-has-children' );
 					for ( var i = 0; i < dropdownItems.length; i++ ) {
-						dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'tabindex', '0' );
-						dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'role', 'button' );
-						dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'aria-expanded', 'false' );
+						dropdownItems[i].querySelector( 'button.dropdown-menu-toggle' ).setAttribute( 'tabindex', '0' );
 					}
 				}
 			}
@@ -107,8 +106,8 @@
 				e.preventDefault();
 				var closestLi = _this.closest( 'li' );
 
-				var dropdownToggle = closestLi.querySelector( '.dropdown-menu-toggle' );
-				if ( 'false' == dropdownToggle.getAttribute( 'aria-expanded' ) ) {
+				var dropdownToggle = closestLi.querySelector( 'button.dropdown-menu-toggle' );
+				if ( 'false' === dropdownToggle.getAttribute( 'aria-expanded' ) || ! dropdownToggle.getAttribute( 'aria-expanded' ) ) {
 					dropdownToggle.setAttribute( 'aria-expanded', 'true' );
 				} else {
 					dropdownToggle.setAttribute( 'aria-expanded', 'false' );
@@ -171,9 +170,8 @@
 						if ( body.classList.contains( 'dropdown-hover' ) ) {
 							var dropdownItems = closestParent.querySelectorAll( 'li.menu-item-has-children' );
 							for ( var d = 0; d < dropdownItems.length; d++ ) {
-								dropdownItems[d].querySelector( '.dropdown-menu-toggle' ).removeAttribute( 'tabindex' );
-								dropdownItems[d].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'role', 'presentation' );
-								dropdownItems[d].querySelector( '.dropdown-menu-toggle' ).removeAttribute( 'aria-expanded' );
+								dropdownItems[d].querySelector( 'button.dropdown-menu-toggle' ).setAttribute( 'tabindex', '-1' );
+								dropdownItems[d].querySelector( 'button.dropdown-menu-toggle' ).setAttribute( 'aria-expanded', 'false' );
 							}
 						}
 					}
