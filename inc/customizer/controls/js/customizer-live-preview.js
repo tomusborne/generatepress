@@ -33,6 +33,70 @@ function generatepress_classes_live_update( id, classes, selector, prefix ) {
 	} );
 }
 
+function generatepress_typography_live_update( id, selector, property, unit, media, settings ) {
+	settings = typeof settings !== 'undefined' ? settings : 'generate_settings';
+	wp.customize( settings + '[' + id + ']', function( value ) {
+		value.bind( function( newval ) {
+			// Get our unit if applicable
+			unit = typeof unit !== 'undefined' ? unit : '';
+
+			var isTablet = ( 'tablet' == id.substring( 0, 6 ) ) ? true : false,
+				isMobile = ( 'mobile' == id.substring( 0, 6 ) ) ? true : false;
+
+			if ( isTablet ) {
+				if ( '' == wp.customize(settings + '[' + id + ']').get() ) {
+					var desktopID = id.replace( 'tablet_', '' );
+					newval = wp.customize(settings + '[' + desktopID + ']').get();
+				}
+			}
+
+			if ( isMobile ) {
+				if ( '' == wp.customize(settings + '[' + id + ']').get() ) {
+					var desktopID = id.replace( 'mobile_', '' );
+					newval = wp.customize(settings + '[' + desktopID + ']').get();
+				}
+			}
+
+			if ( 'buttons_font_size' == id && '' == wp.customize('generate_settings[buttons_font_size]').get() ) {
+				newval = wp.customize('generate_settings[body_font_size]').get();
+			}
+
+			// We're using a desktop value
+			if ( ! isTablet && ! isMobile ) {
+
+				var tabletValue = ( typeof wp.customize(settings + '[tablet_' + id + ']') !== 'undefined' ) ? wp.customize(settings + '[tablet_' + id + ']').get() : '',
+					mobileValue = ( typeof wp.customize(settings + '[mobile_' + id + ']') !== 'undefined' ) ? wp.customize(settings + '[mobile_' + id + ']').get() : '';
+
+				// The tablet setting exists, mobile doesn't
+				if ( '' !== tabletValue && '' == mobileValue ) {
+					media = generatepress_live_preview.desktop + ', ' + generatepress_live_preview.mobile;
+				}
+
+				// The tablet setting doesn't exist, mobile does
+				if ( '' == tabletValue && '' !== mobileValue ) {
+					media = generatepress_live_preview.desktop + ', ' + generatepress_live_preview.tablet;
+				}
+
+				// The tablet setting doesn't exist, neither does mobile
+				if ( '' == tabletValue && '' == mobileValue ) {
+					media = generatepress_live_preview.desktop + ', ' + generatepress_live_preview.tablet + ', ' + generatepress_live_preview.mobile;
+				}
+
+			}
+
+			// Check if media query
+			media_query = typeof media !== 'undefined' ? 'media="' + media + '"' : '';
+
+			jQuery( 'head' ).append( '<style id="' + id + '" ' + media_query + '>' + selector + '{' + property + ':' + newval + unit + ';}</style>' );
+			setTimeout(function() {
+				jQuery( 'style#' + id ).not( ':last' ).remove();
+			}, 1000);
+
+			setTimeout("jQuery('body').trigger('generate_spacing_updated');", 1000);
+		} );
+	} );
+}
+
 ( function( $ ) {
 
 	// Update the site title in real time...
@@ -95,79 +159,43 @@ function generatepress_classes_live_update( id, classes, selector, prefix ) {
 	} );
 
 	/**
-	 * Body font size
+	 * Body font size, weight and transform
 	 */
-	wp.customize( 'generate_settings[body_font_size]', function( value ) {
-		value.bind( function( newval ) {
-			if ( jQuery( 'style#body_font_size' ).length ) {
-				jQuery( 'style#body_font_size' ).html( 'body, button, input, select, textarea{font-size:' + newval + 'px;}' );
-			} else {
-				jQuery( 'head' ).append( '<style id="body_font_size">body, button, input, select, textarea{font-size:' + newval + 'px;}</style>' );
-				setTimeout(function() {
-					jQuery( 'style#body_font_size' ).not( ':last' ).remove();
-				}, 100);
-			}
-			setTimeout("jQuery('body').trigger('generate_spacing_updated');", 1000);
-		} );
-	} );
+	generatepress_typography_live_update( 'body_font_size', 'body, button, input, select, textarea', 'font-size', 'px' );
+	generatepress_typography_live_update( 'body_line_height', 'body', 'line-height', '' );
+	generatepress_typography_live_update( 'paragraph_margin', 'p', 'margin-bottom', 'em' );
+	generatepress_typography_live_update( 'body_font_weight', 'body, button, input, select, textarea', 'font-weight' );
+	generatepress_typography_live_update( 'body_font_transform', 'body, button, input, select, textarea', 'text-transform' );
 
 	/**
-	 * Body line height
+	 * H1 font size, weight and transform
 	 */
-	wp.customize( 'generate_settings[body_line_height]', function( value ) {
-		value.bind( function( newval ) {
-			if ( jQuery( 'style#body_line_height' ).length ) {
-				jQuery( 'style#body_line_height' ).html( 'body{line-height:' + newval + ';}' );
-			} else {
-				jQuery( 'head' ).append( '<style id="body_line_height">body{line-height:' + newval + ';}</style>' );
-				setTimeout(function() {
-					jQuery( 'style#body_line_height' ).not( ':last' ).remove();
-				}, 100);
-			}
-			setTimeout("jQuery('body').trigger('generate_spacing_updated');", 1000);
-		} );
-	} );
+	generatepress_typography_live_update( 'heading_1_font_size', 'h1', 'font-size', 'px', generatepress_live_preview.desktop );
+	generatepress_typography_live_update( 'mobile_heading_1_font_size', 'h1', 'font-size', 'px', generatepress_live_preview.mobile );
+	generatepress_typography_live_update( 'heading_1_weight', 'h1', 'font-weight' );
+	generatepress_typography_live_update( 'heading_1_transform', 'h1', 'text-transform' );
+	generatepress_typography_live_update( 'heading_1_line_height', 'h1', 'line-height', 'em' );
 
 	/**
-	 * Paragraph margin
+	 * H2 font size, weight and transform
 	 */
-	wp.customize( 'generate_settings[paragraph_margin]', function( value ) {
-		value.bind( function( newval ) {
-			if ( jQuery( 'style#paragraph_margin' ).length ) {
-				jQuery( 'style#paragraph_margin' ).html( 'p{margin-bottom:' + newval + 'em;}' );
-			} else {
-				jQuery( 'head' ).append( '<style id="paragraph_margin">p{margin-bottom:' + newval + 'em;}</style>' );
-				setTimeout(function() {
-					jQuery( 'style#paragraph_margin' ).not( ':last' ).remove();
-				}, 100);
-			}
-			setTimeout("jQuery('body').trigger('generate_spacing_updated');", 1000);
-		} );
-	} );
+	generatepress_typography_live_update( 'heading_2_font_size', 'h2', 'font-size', 'px', generatepress_live_preview.desktop );
+	generatepress_typography_live_update( 'mobile_heading_2_font_size', 'h2', 'font-size', 'px', generatepress_live_preview.mobile );
+	generatepress_typography_live_update( 'heading_2_weight', 'h2', 'font-weight' );
+	generatepress_typography_live_update( 'heading_2_transform', 'h2', 'text-transform' );
+	generatepress_typography_live_update( 'heading_2_line_height', 'h2', 'line-height', 'em' );
 
 	/**
-	 * Body font weight
+	 * H3 font size, weight and transform
 	 */
-	wp.customize( 'generate_settings[body_font_weight]', function( value ) {
-		value.bind( function( newval ) {
-			jQuery( 'head' ).append( '<style id="body_font_weight">body, button, input, select, textarea{font-weight:' + newval + ';}</style>' );
-			setTimeout(function() {
-				jQuery( 'style#body_font_weight' ).not( ':last' ).remove();
-			}, 100);
-		} );
-	} );
+	generatepress_typography_live_update( 'heading_3_font_size', 'h3', 'font-size', 'px' );
+	generatepress_typography_live_update( 'heading_3_weight', 'h3', 'font-weight' );
+	generatepress_typography_live_update( 'heading_3_transform', 'h3', 'text-transform' );
+	generatepress_typography_live_update( 'heading_3_line_height', 'h3', 'line-height', 'em' );
 
-	/**
-	 * Body text transform
-	 */
-	wp.customize( 'generate_settings[body_font_transform]', function( value ) {
-		value.bind( function( newval ) {
-			jQuery( 'head' ).append( '<style id="body_font_transform">body, button, input, select, textarea{text-transform:' + newval + ';}</style>' );
-			setTimeout(function() {
-				jQuery( 'style#body_font_transform' ).not( ':last' ).remove();
-			}, 100);
-		} );
-	} );
+	// if ( typeof gp_premium_typography_live_update !== 'undefined' && $.isFunction( gp_premium_typography_live_update ) ) {
+	// 	return; // Let GP Premium handle this.
+	// }
 
 	/**
 	 * Content layout

@@ -128,6 +128,19 @@ if ( ! function_exists( 'generate_sanitize_decimal_integer' ) ) {
 	}
 }
 
+/**
+ * Sanitize a positive number, but allow an empty value.
+ *
+ * @since 2.2
+ */
+function generate_sanitize_empty_absint( $input ) {
+	if ( '' == $input ) {
+		return '';
+	}
+
+	return absint( $input );
+}
+
 if ( ! function_exists( 'generate_sanitize_checkbox' ) ) {
 	/**
 	 * Sanitize checkbox values.
