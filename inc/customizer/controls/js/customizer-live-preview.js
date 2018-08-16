@@ -73,6 +73,10 @@ function generatepress_classes_live_update( id, classes, selector, prefix ) {
 	 */
 	generatepress_colors_live_update( 'link_color_hover', 'a:hover', 'color', 'initial' );
 
+	generatepress_colors_live_update( 'content_title_color', '.entry-header h1,.page-header h1', 'color', 'inherit', 'text_color' );
+	generatepress_colors_live_update( 'blog_post_title_color', '.entry-title a,.entry-title a:visited', 'color', '', 'link_color' );
+	generatepress_colors_live_update( 'blog_post_title_hover_color', '.entry-title a:hover', 'color', '', 'link_color_hover' );
+
 	/**
 	 * Container width
 	 */

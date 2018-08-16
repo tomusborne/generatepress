@@ -174,13 +174,19 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			)
 		);
 
+		$wp_customize->add_panel( 'generate_colors_panel', array(
+			'priority'       => 30,
+			'capability'     => 'edit_theme_options',
+			'title'          => __( 'Colors', 'generatepress' ),
+		) );
+
 		$wp_customize->add_section(
 			'body_section',
 			array(
-				'title' => $wp_customize->get_panel( 'generate_colors_panel' ) ? __( 'Body', 'generatepress' ) : __( 'Colors', 'generatepress' ),
+				'title' => __( 'Body', 'generatepress' ),
 				'capability' => 'edit_theme_options',
 				'priority' => 30,
-				'panel' => $wp_customize->get_panel( 'generate_colors_panel' ) ? 'generate_colors_panel' : false,
+				'panel' => 'generate_colors_panel',
 			)
 		);
 
@@ -289,13 +295,88 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			)
 		);
 
+		$color_defaults = generate_get_color_defaults();
+
+		$wp_customize->add_section(
+			'content_color_section',
+			array(
+				'title' => __( 'Content', 'generatepress' ),
+				'capability' => 'edit_theme_options',
+				'priority' => 80,
+				'panel' => 'generate_colors_panel',
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[content_title_color]', array(
+				'default' => $color_defaults['content_title_color'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_hex_color',
+				'transport' => 'postMessage',
+			)
+		);
+
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				'content_title_color',
+				array(
+					'label' => __( 'Content Title', 'generatepress' ),
+					'section' => 'content_color_section',
+					'settings' => 'generate_settings[content_title_color]',
+				)
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[blog_post_title_color]', array(
+				'default' => $color_defaults['blog_post_title_color'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_hex_color',
+				'transport' => 'postMessage',
+			)
+		);
+
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				'blog_post_title_color',
+				array(
+					'label' => __( 'Blog Post Title', 'generatepress' ),
+					'section' => 'content_color_section',
+					'settings' => 'generate_settings[blog_post_title_color]',
+				)
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[blog_post_title_hover_color]', array(
+				'default' => $color_defaults['blog_post_title_hover_color'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_hex_color',
+				'transport' => 'postMessage',
+			)
+		);
+
+		$wp_customize->add_control(
+			new WP_Customize_Color_Control(
+				$wp_customize,
+				'blog_post_title_hover_color',
+				array(
+					'label' => __( 'Blog Post Title Hover', 'generatepress' ),
+					'section' => 'content_color_section',
+					'settings' => 'generate_settings[blog_post_title_hover_color]',
+				)
+			)
+		);
+
 		if ( ! function_exists( 'generate_colors_customize_register' ) && ! defined( 'GP_PREMIUM_VERSION' ) ) {
 			$wp_customize->add_control(
 				new Generate_Customize_Misc_Control(
 					$wp_customize,
 					'colors_get_addon_desc',
 					array(
-						'section' => 'body_section',
+						'section' => 'content_color_section',
 						'type' => 'addon',
 						'label' => __( 'Learn More', 'generatepress' ),
 						'description' => __( 'More options are available for this section in our premium version.', 'generatepress' ),
