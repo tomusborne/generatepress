@@ -242,24 +242,6 @@ Release date: December 6, 2017
 * Deprecated: generate_leave_reply
 * Deprecated: generate_cancel_reply
 
-= 1.4 =
-
-Release date: August 14, 2017
-
-* Fix: Mobile bar items on RTL
-* New: Add support for back to top color options
-* New: Add support for widget title bottom margin option
-* New: Add support for line-height to headings
-* New: Add support for H4 and H5 typography options
-* New: Add support for footer typography options
-* New: Add support for H4 and H5 color options
-* New: Add support for button typography options
-* Tweak: Remove content margin if no title, date or author
-* Tweak: Update Font Awesome name in enqueue function
-* Tweak: Style number inputs like others
-* Tweak: Style tel inputs like others
-* Tweak: Improve sidebar navigation mobile menu
-
 = Earlier versions =
 
 For the changelog of earlier versions, please refer to our [development log](https://generatepress.com/category/development/).
