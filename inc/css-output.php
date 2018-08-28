@@ -46,6 +46,31 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 		// Container width
 		$css->set_selector( 'body .grid-container' )->add_property( 'max-width', absint( $generate_settings['container_width'] ), false, 'px' );
 
+		$nav_drop_point = generate_get_setting( 'nav_drop_point' );
+
+		if ( $nav_drop_point ) {
+			$media_query = sprintf(
+				'(max-width: %1$s) and %2$s',
+				absint( $nav_drop_point ) . 'px',
+				apply_filters( 'generate_not_mobile_media_query', '(min-width: 769px)' )
+			);
+
+			$css->start_media_query( $media_query );
+				$css->set_selector( '.inside-header' );
+				$css->add_property( 'display', '-ms-flexbox' );
+				$css->add_property( 'display', 'flex' );
+
+				$css->add_property( '-ms-flex-direction', 'column' );
+				$css->add_property( 'flex-direction', 'column' );
+
+				$css->add_property( '-ms-flex-align', 'center' );
+				$css->add_property( 'align-items', 'center' );
+
+				$css->set_selector( '.site-logo, .site-branding' );
+				$css->add_property( 'margin-bottom', '1.5em' );
+			$css->stop_media_query();
+		}
+
 		// Allow us to hook CSS into our output
 		do_action( 'generate_base_css', $css );
 

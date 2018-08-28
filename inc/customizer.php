@@ -753,6 +753,27 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			)
 		);
 
+		$wp_customize->add_setting(
+			'generate_settings[nav_drop_point]',
+			array(
+				'default' => $defaults['nav_drop_point'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_empty_absint',
+			)
+		);
+
+		$wp_customize->add_control(
+			'generate_settings[nav_drop_point]',
+			array(
+				'type' => 'number',
+				'label' => __( 'Navigation Drop Point', 'generatepress' ),
+				'description' => __( 'The width when the navigation ceases to float and drops below your logo.', 'generatepress' ),
+				'section' => 'generate_layout_navigation',
+				'settings' => 'generate_settings[nav_drop_point]',
+				'priority' => 22,
+			)
+		);
+
 		// Add navigation setting
 		$wp_customize->add_setting(
 			'generate_settings[nav_dropdown_type]',
