@@ -361,14 +361,7 @@ if ( ! function_exists( 'generate_navigation_classes' ) ) {
 	function generate_navigation_classes( $classes ) {
 		$classes[] = 'main-navigation';
 
-		// Get theme options
-		$generate_settings = wp_parse_args(
-			get_option( 'generate_settings', array() ),
-			generate_get_defaults()
-		);
-		$nav_layout = $generate_settings['nav_layout_setting'];
-
-		if ( $nav_layout == 'contained-nav' ) {
+		if ( 'contained-nav' === generate_get_setting( 'nav_layout_setting' ) ) {
 			$classes[] = 'grid-container';
 			$classes[] = 'grid-parent';
 		}
