@@ -780,6 +780,30 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			)
 		);
 
+		$wp_customize->add_setting(
+			'generate_settings[nav_dropdown_direction]',
+			array(
+				'default' => $defaults['nav_dropdown_direction'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_choices',
+			)
+		);
+
+		$wp_customize->add_control(
+			'generate_settings[nav_dropdown_direction]',
+			array(
+				'type' => 'select',
+				'label' => __( 'Sub-Menu Direction', 'generatepress' ),
+				'section' => 'generate_layout_navigation',
+				'choices' => array(
+					'right' => __( 'Right', 'generatepress' ),
+					'left' => __( 'Left', 'generatepress' ),
+				),
+				'settings' => 'generate_settings[nav_dropdown_direction]',
+				'priority' => 22,
+			)
+		);
+
 		// Add navigation setting
 		$wp_customize->add_setting(
 			'generate_settings[nav_search]',

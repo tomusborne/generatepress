@@ -542,6 +542,10 @@ span.search-item.close-search a:before {
 	width:100%;
 }
 
+.main-navigation.sub-menu-left .sub-menu {
+    right: 0;
+}
+
 .dropdown-hover .main-navigation:not(.toggled) ul li:hover > ul,
 .dropdown-hover .main-navigation:not(.toggled) ul li.sfHover > ul {
 	left: auto;
@@ -556,6 +560,12 @@ span.search-item.close-search a:before {
 .dropdown-hover .main-navigation:not(.toggled) ul ul li.sfHover > ul {
 	left: 100%;
 	top: 0;
+}
+
+.dropdown-hover .main-navigation.sub-menu-left:not(.toggled) ul ul li:hover > ul,
+.dropdown-hover .main-navigation.sub-menu-left:not(.toggled) ul ul li.sfHover > ul {
+	right: 100%;
+	left: auto;
 }
 
 .dropdown-click .main-navigation ul ul {
@@ -800,6 +810,10 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle {
 
 ul ul .dropdown-menu-toggle:before {
 	text-align: right;
+}
+
+.dropdown-hover .sub-menu-left ul ul .dropdown-menu-toggle {
+    transform: rotateY(180deg);
 }
 
 .dropdown-click .menu-item-has-children.sfHover > a .dropdown-menu-toggle:before {

@@ -33,6 +33,7 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 			'nav_inner_width' => 'contained',
 			'nav_position_setting' => 'nav-below-header',
 			'nav_dropdown_type' => 'hover',
+			'nav_dropdown_direction' => 'right',
 			'nav_search' => 'disable',
 			'content_layout_setting' => 'separate-containers',
 			'layout_setting' => 'right-sidebar',

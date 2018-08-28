@@ -366,6 +366,19 @@ if ( ! function_exists( 'generate_navigation_classes' ) ) {
 			$classes[] = 'grid-parent';
 		}
 
+		if ( 'left' === generate_get_setting( 'nav_dropdown_direction' ) ) {
+			$nav_layout = generate_get_setting( 'nav_position_setting' );
+
+			switch ( $nav_layout ) {
+				case 'nav-below-header':
+				case 'nav-above-header':
+				case 'nav-float-right':
+				case 'nav-float-left':
+					$classes[] = 'sub-menu-left';
+				break;
+			}
+		}
+
 		return $classes;
 	}
 }
