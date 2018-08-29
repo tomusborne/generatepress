@@ -38,8 +38,9 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 		$css->set_selector( 'body .grid-container' )->add_property( 'max-width', absint( $generate_settings['container_width'] ), false, 'px' );
 
 		$nav_drop_point = generate_get_setting( 'nav_drop_point' );
+		$nav_location = generate_get_setting( 'nav_position_setting' );
 
-		if ( $nav_drop_point ) {
+		if ( ( 'nav-float-right' === $nav_location || 'nav-float-left' === $nav_location ) && $nav_drop_point ) {
 			$media_query = sprintf(
 				'(max-width: %1$s) and %2$s',
 				absint( $nav_drop_point ) . 'px',
