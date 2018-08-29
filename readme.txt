@@ -6,7 +6,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options
 Requires at least: 4.5
 Tested up to: 4.9
-Stable tag: 2.1.3
+Stable tag: 2.1.4
 
 GeneratePress is a fast, lightweight (less than 1MB zipped), mobile responsive WordPress theme built with speed, SEO and usability in mind.
 
@@ -68,13 +68,6 @@ GeneratePress is licensed under the GNU General Public License v2 or later
 
 More details [here](http://www.gnu.org/licenses/gpl-2.0.html).
 
-= Screenshot Licenses =
-
-Screenshot images are all licensed under CC0 1.0 Universal - http://creativecommons.org/publicdomain/zero/1.0/deed.en
-http://pixabay.com/en/home-office-workstation-office-336378/
-http://pixabay.com/en/utah-mountain-biking-bike-biking-95032/
-http://pixabay.com/en/desk-computer-modern-keyboard-1140699/
-
 = Unsemantic Framework =
 
 http://opensource.org/licenses/mit-license.php
@@ -96,6 +89,12 @@ See https://github.com/eligrey/classList.js/blob/master/LICENSE.md
 MIT License: https://github.com/woocommerce/selectWoo/blob/master/LICENSE.md
 
 == Changelog ==
+
+= 2.1.4 =
+
+Release date: August 21, 2018
+
+* Tweak: Update theme screenshot to be within new WordPress.org rules
 
 = 2.1.3 =
 
@@ -248,24 +247,6 @@ Release date: December 6, 2017
 * Deprecated: generate_spacing_scripts()
 * Deprecated: generate_leave_reply
 * Deprecated: generate_cancel_reply
-
-= 1.4 =
-
-Release date: August 14, 2017
-
-* Fix: Mobile bar items on RTL
-* New: Add support for back to top color options
-* New: Add support for widget title bottom margin option
-* New: Add support for line-height to headings
-* New: Add support for H4 and H5 typography options
-* New: Add support for footer typography options
-* New: Add support for H4 and H5 color options
-* New: Add support for button typography options
-* Tweak: Remove content margin if no title, date or author
-* Tweak: Update Font Awesome name in enqueue function
-* Tweak: Style number inputs like others
-* Tweak: Style tel inputs like others
-* Tweak: Improve sidebar navigation mobile menu
 
 = Earlier versions =
 
