@@ -44,26 +44,20 @@ do_action( 'generate_before_comments' );
 		<h3 class="comments-title">
 			<?php
 			$comments_number = get_comments_number();
-			if ( 1 === $comments_number ) {
-				printf(
-					/* translators: %s: post title */
-					esc_html_x( 'One thought on &ldquo;%s&rdquo;', 'comments title', 'generatepress' ),
-					'<span>' . get_the_title() . '</span>'
-				);
-			} else {
-				printf( // WPCS: XSS OK.
-					/* translators: 1: number of comments, 2: post title */
-					esc_html( _nx(
-						'%1$s thought on &ldquo;%2$s&rdquo;',
-						'%1$s thoughts on &ldquo;%2$s&rdquo;',
-						$comments_number,
-						'comments title',
-						'generatepress'
-					) ),
-					number_format_i18n( $comments_number ),
-					'<span>' . get_the_title() . '</span>'
-				);
-			}
+			$comments_title = apply_filters( 'generate_comment_form_title', sprintf( // WPCS: XSS OK.
+				/* translators: 1: number of comments, 2: post title */
+				esc_html( _nx(
+					'%1$s thought on &ldquo;%2$s&rdquo;',
+					'%1$s thoughts on &ldquo;%2$s&rdquo;',
+					$comments_number,
+					'comments title',
+					'generatepress'
+				) ),
+				number_format_i18n( $comments_number ),
+				get_the_title()
+			) );
+
+			echo esc_html( $comments_title );
 			?>
 		</h3>
 
