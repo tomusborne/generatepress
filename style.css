@@ -616,10 +616,6 @@ span.search-item.close-search a:before {
 	position:relative;
 }
 
-.header-aligned-left .site-header {
-	text-align: left;
-}
-
 .header-aligned-center .site-header {
 	text-align: center;
 }

@@ -106,14 +106,11 @@ if ( ! function_exists( 'generate_body_classes' ) ) {
 			$classes[] = 'nav-aligned-left';
 		}
 
-		// Header alignment class
-		if ( $generate_settings['header_alignment_setting'] == 'left' ) {
-			$classes[] = 'header-aligned-left';
-		} elseif ( $generate_settings['header_alignment_setting'] == 'center' ) {
+		if ( 'center' === generate_get_option( 'header_alignment_setting' ) ) {
 			$classes[] = 'header-aligned-center';
-		} elseif ( $generate_settings['header_alignment_setting'] == 'right' ) {
+		} elseif ( 'right' === generate_get_option( 'header_alignment_setting' ) ) {
 			$classes[] = 'header-aligned-right';
-		} else {
+		} elseif ( 'left' === generate_get_option( 'header_alignment_setting' ) ) {
 			$classes[] = 'header-aligned-left';
 		}
 
