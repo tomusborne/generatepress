@@ -717,10 +717,8 @@ li.search-item.active {
 	float: right;
 }
 
-.nav-aligned-right.nav-below-header .main-navigation .menu > li,
-.nav-aligned-right.nav-above-header .main-navigation .menu > li,
-.nav-aligned-center.nav-below-header .main-navigation .menu > li,
-.nav-aligned-center.nav-above-header .main-navigation .menu > li {
+.nav-aligned-right .main-navigation .menu > li,
+.nav-aligned-center .main-navigation .menu > li {
 	float: none;
 	display: inline-block;
 }
@@ -736,18 +734,11 @@ li.search-item.active {
 	letter-spacing: normal;
 }
 
-.nav-aligned-left.nav-below-header .main-navigation,
-.nav-aligned-left.nav-above-header .main-navigation {
-	text-align: left;
-}
-
-.nav-aligned-center.nav-below-header .main-navigation,
-.nav-aligned-center.nav-above-header .main-navigation {
+.nav-aligned-center .main-navigation {
 	text-align: center;
 }
 
-.nav-aligned-right.nav-below-header .main-navigation,
-.nav-aligned-right.nav-above-header .main-navigation {
+.nav-aligned-right .main-navigation {
 	text-align: right;
 }
 

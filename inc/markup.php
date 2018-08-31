@@ -95,15 +95,15 @@ if ( ! function_exists( 'generate_body_classes' ) ) {
 		$classes[] = ( '' !== $widgets ) ? 'active-footer-widgets-' . $widgets : 'active-footer-widgets-3';
 		$classes[] = ( 'enable' == $generate_settings['nav_search'] ) ? 'nav-search-enabled' : '';
 
-		// Navigation alignment class
-		if ( $generate_settings['nav_alignment_setting'] == 'left' ) {
-			$classes[] = 'nav-aligned-left';
-		} elseif ( $generate_settings['nav_alignment_setting'] == 'center' ) {
-			$classes[] = 'nav-aligned-center';
-		} elseif ( $generate_settings['nav_alignment_setting'] == 'right' ) {
-			$classes[] = 'nav-aligned-right';
-		} else {
-			$classes[] = 'nav-aligned-left';
+		// Only necessary for nav before or after header.
+		if ( 'nav-below-header' === $navigation_location || 'nav-above-header' === $navigation_location ) {
+			if ( 'center' === generate_get_option( 'nav_alignment_setting' ) ) {
+				$classes[] = 'nav-aligned-center';
+			} elseif ( 'right' === generate_get_option( 'nav_alignment_setting' ) ) {
+				$classes[] = 'nav-aligned-right';
+			} elseif ( 'left' === generate_get_option( 'nav_alignment_setting' ) ) {
+				$classes[] = 'nav-aligned-left';
+			}
 		}
 
 		if ( 'center' === generate_get_option( 'header_alignment_setting' ) ) {
