@@ -142,12 +142,12 @@ if ( ! function_exists( 'generate_top_bar_classes' ) ) {
 	function generate_top_bar_classes( $classes ) {
 		$classes[] = 'top-bar';
 
-		if ( 'contained' == generate_get_setting( 'top_bar_width' ) ) {
+		if ( 'contained' == generate_get_option( 'top_bar_width' ) ) {
 			$classes[] = 'grid-container';
 			$classes[] = 'grid-parent';
 		}
 
-		$classes[] = 'top-bar-align-' . generate_get_setting( 'top_bar_alignment' );
+		$classes[] = 'top-bar-align-' . generate_get_option( 'top_bar_alignment' );
 
 		return $classes;
 	}
@@ -340,7 +340,7 @@ if ( ! function_exists( 'generate_inside_header_classes' ) ) {
 	 */
 	function generate_inside_header_classes( $classes ) {
 		$classes[] = 'inside-header';
-		$inner_header_width = generate_get_setting( 'header_inner_width' );
+		$inner_header_width = generate_get_option( 'header_inner_width' );
 
 		if ( $inner_header_width !== 'full-width' ) {
 			$classes[] = 'grid-container';
@@ -361,13 +361,13 @@ if ( ! function_exists( 'generate_navigation_classes' ) ) {
 	function generate_navigation_classes( $classes ) {
 		$classes[] = 'main-navigation';
 
-		if ( 'contained-nav' === generate_get_setting( 'nav_layout_setting' ) ) {
+		if ( 'contained-nav' === generate_get_option( 'nav_layout_setting' ) ) {
 			$classes[] = 'grid-container';
 			$classes[] = 'grid-parent';
 		}
 
-		if ( 'left' === generate_get_setting( 'nav_dropdown_direction' ) ) {
-			$nav_layout = generate_get_setting( 'nav_position_setting' );
+		if ( 'left' === generate_get_option( 'nav_dropdown_direction' ) ) {
+			$nav_layout = generate_get_option( 'nav_position_setting' );
 
 			switch ( $nav_layout ) {
 				case 'nav-below-header':
@@ -392,7 +392,7 @@ if ( ! function_exists( 'generate_inside_navigation_classes' ) ) {
 	 */
 	function generate_inside_navigation_classes( $classes ) {
 		$classes[] = 'inside-navigation';
-		$inner_nav_width = generate_get_setting( 'nav_inner_width' );
+		$inner_nav_width = generate_get_option( 'nav_inner_width' );
 
 		if ( $inner_nav_width !== 'full-width' ) {
 			$classes[] = 'grid-container';
@@ -456,7 +456,7 @@ if ( ! function_exists( 'generate_inside_footer_classes' ) ) {
 	 */
 	function generate_inside_footer_classes( $classes ) {
 		$classes[] = 'footer-widgets-container';
-		$inside_footer_width = generate_get_setting( 'footer_inner_width' );
+		$inside_footer_width = generate_get_option( 'footer_inner_width' );
 
 		if ( $inside_footer_width !== 'full-width' ) {
 			$classes[] = 'grid-container';

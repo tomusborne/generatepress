@@ -213,7 +213,7 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 	function generate_dropdown_icon_to_menu_link( $title, $item, $args, $depth ) {
 		$tabindex = ' tabindex="-1"';
 		$aria = ' aria-hidden="true"';
-		$dropdown_type = generate_get_setting( 'nav_dropdown_type' );
+		$dropdown_type = generate_get_option( 'nav_dropdown_type' );
 
 		if ( 'click-arrow' === $dropdown_type || ( 'hover' === $dropdown_type && 'slideout' === $args->theme_location ) ) {
 			$tabindex = ' tabindex="0"';

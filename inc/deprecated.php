@@ -183,3 +183,18 @@ if ( ! function_exists( 'generate_spacing_scripts' ) ) {
 		_deprecated_function( __FUNCTION__, '2.0', 'generate_enqueue_dynamic_css()' );
 	}
 }
+
+if ( ! function_exists( 'generate_get_setting' ) ) {
+	/**
+	 * A wrapper function to get our settings.
+	 *
+	 * @since 1.3.40
+	 *
+	 * @param string $option The option name to look up.
+	 * @return string The option value.
+	 * @todo Ability to specify different option name and defaults.
+	 */
+	function generate_get_setting( $setting ) {
+		return generate_get_option( $setting );
+	}
+}

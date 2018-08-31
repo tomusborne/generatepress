@@ -68,10 +68,10 @@ if ( ! function_exists( 'generate_construct_logo' ) ) {
 	 */
 	function generate_construct_logo() {
 		$logo_url = ( function_exists( 'the_custom_logo' ) && get_theme_mod( 'custom_logo' ) ) ? wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ), 'full' ) : false;
-		$logo_url = ( $logo_url ) ? $logo_url[0] : generate_get_setting( 'logo' );
+		$logo_url = ( $logo_url ) ? $logo_url[0] : generate_get_option( 'logo' );
 
 		$logo_url = esc_url( apply_filters( 'generate_logo', $logo_url ) );
-		$retina_logo_url = esc_url( apply_filters( 'generate_retina_logo', generate_get_setting( 'retina_logo' ) ) );
+		$retina_logo_url = esc_url( apply_filters( 'generate_retina_logo', generate_get_option( 'retina_logo' ) ) );
 
 		// If we don't have a logo, bail.
 		if ( empty( $logo_url ) ) {
@@ -218,7 +218,7 @@ if ( ! function_exists( 'generate_top_bar' ) ) {
 		}
 		?>
 		<div <?php generate_top_bar_class(); ?>>
-			<div class="inside-top-bar<?php if ( 'contained' == generate_get_setting( 'top_bar_inner_width' ) ) echo ' grid-container grid-parent'; ?>">
+			<div class="inside-top-bar<?php if ( 'contained' == generate_get_option( 'top_bar_inner_width' ) ) echo ' grid-container grid-parent'; ?>">
 				<?php dynamic_sidebar( 'top-bar' ); ?>
 			</div>
 		</div>

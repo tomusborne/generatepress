@@ -103,7 +103,7 @@ if ( ! function_exists( 'generate_smart_content_width' ) ) {
 	function generate_smart_content_width() {
 		global $content_width;
 
-		$container_width = generate_get_setting( 'container_width' );
+		$container_width = generate_get_option( 'container_width' );
 		$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '25' );
 		$left_sidebar_width = apply_filters( 'generate_left_sidebar_width', '25' );
 		$layout = generate_get_layout();
@@ -297,7 +297,7 @@ add_filter( 'generate_fontawesome_essentials', 'generate_set_font_awesome_essent
  * @return bool
  */
 function generate_set_font_awesome_essentials( $essentials ) {
-	if ( generate_get_setting( 'font_awesome_essentials' ) ) {
+	if ( generate_get_option( 'font_awesome_essentials' ) ) {
 		return true;
 	}
 
@@ -314,7 +314,7 @@ add_filter( 'generate_dynamic_css_skip_cache', 'generate_skip_dynamic_css_cache'
  * @return bool
  */
 function generate_skip_dynamic_css_cache( $cache ) {
-	if ( ! generate_get_setting( 'dynamic_css_cache' ) ) {
+	if ( ! generate_get_option( 'dynamic_css_cache' ) ) {
 		return true;
 	}
 

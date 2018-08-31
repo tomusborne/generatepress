@@ -9,24 +9,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( ! function_exists( 'generate_get_setting' ) ) {
-	/**
-	 * A wrapper function to get our settings.
-	 *
-	 * @since 1.3.40
-	 *
-	 * @param string $option The option name to look up.
-	 * @return string The option value.
-	 * @todo Ability to specify different option name and defaults.
-	 */
-	function generate_get_setting( $setting ) {
-		$generate_settings = wp_parse_args(
-			get_option( 'generate_settings', array() ),
-			generate_get_defaults()
-		);
+/**
+ * A wrapper function to get our options.
+ *
+ * @since 2.2
+ *
+ * @param string $option The option name to look up.
+ * @return string The option value.
+ * @todo Ability to specify different option name and defaults.
+ */
+function generate_get_option( $option ) {
+	$options = wp_parse_args(
+		get_option( 'generate_settings', array() ),
+		generate_get_defaults()
+	);
 
-		return $generate_settings[ $setting ];
-	}
+	return $options[ $option ];
 }
 
 if ( ! function_exists( 'generate_get_layout' ) ) {
@@ -230,6 +228,6 @@ if ( ! function_exists( 'generate_get_navigation_location' ) ) {
 	 * @return string The primary menu location.
 	 */
 	function generate_get_navigation_location() {
-		return apply_filters( 'generate_navigation_location', generate_get_setting( 'nav_position_setting' ) );
+		return apply_filters( 'generate_navigation_location', generate_get_option( 'nav_position_setting' ) );
 	}
 }
