@@ -47,7 +47,8 @@ th {
 .main-navigation li {
     float: right;
 }
-.main-navigation li.search-item {
+.main-navigation li.search-item,
+.nav-aligned-right.nav-below-header .main-navigation .menu > li.search-item {
     float: left;
 }
 .nav-left-sidebar .main-navigation li.search-item.current-menu-item,

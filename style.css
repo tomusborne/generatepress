@@ -642,11 +642,6 @@ span.search-item.close-search a:before {
 	z-index: 21;
 }
 
-.rtl .main-navigation li.search-item,
-.rtl.nav-aligned-right.nav-below-header .main-navigation .menu > li.search-item {
-	float: left;
-}
-
 li.search-item.active {
 	transition: opacity 100ms ease-in-out;
 }
