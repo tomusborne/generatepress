@@ -102,29 +102,8 @@ a img {
 
 /* =Global
 ----------------------------------------------- */
-body,
-button,
-input,
-select,
-textarea {
-	font-family: sans-serif;
-	font-size: 16px;
-	font-size: 1.6rem;
-	line-height: 1.5;
-}
-
-hr {
-	background-color: #ccc;
-	border: 0;
-	height: 1px;
-	margin-bottom: 40px;
-	margin-top: 40px;
-}
 
 /* Text elements */
-p {
-	margin-bottom: 1.5em;
-}
 
 ul, ol {
 	margin: 0 0 1.5em 3em;
@@ -166,18 +145,6 @@ blockquote {
 
 address {
 	margin: 0 0 1.5em;
-}
-
-pre {
-	background: #eee;
-	font-family: "Courier 10 Pitch", Courier, monospace;
-	font-size: 15px;
-	font-size: 1.5rem;
-	line-height: 1.6;
-	margin-bottom: 1.6em;
-	padding: 1.6em;
-	overflow: auto;
-	max-width: 100%;
 }
 
 code, kbd, tt, var {
@@ -859,10 +826,8 @@ ul ul .dropdown-menu-toggle:before {
 
 .dropdown-hover.both-right .widget-area .main-navigation ul li:hover ul,
 .dropdown-hover.both-right .widget-area .main-navigation ul li.sfHover ul,
-.dropdown-hover.right-sidebar .widget-area .main-navigation ul li:hover ul,
-.dropdown-hover.right-sidebar .widget-area .main-navigation ul li.sfHover ul,
-.dropdown-hover.both-sidebars .widget-area .inside-right-sidebar .main-navigation ul li:hover ul,
-.dropdown-hover.both-sidebars .widget-area .inside-right-sidebar .main-navigation ul li.sfHover ul {
+.dropdown-hover .widget-area .inside-right-sidebar .main-navigation ul li:hover ul,
+.dropdown-hover .widget-area .inside-right-sidebar .main-navigation ul li.sfHover ul {
 	right: 100%;
 	left: auto;
 }
@@ -1602,6 +1567,7 @@ footer.entry-meta .author:before {
 footer.entry-meta .posted-on:before {
 	content: "\f073";
 }
+
 .cat-links:before {
 	content: "\f07b";
 }
