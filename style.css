@@ -1145,6 +1145,10 @@ ol.comment-list {
 
 /* =Start custom CSS
 ----------------------------------------------- */
+body {
+	font-size: 15px;
+}
+
 a,
 button,
 input {
@@ -1737,62 +1741,66 @@ footer.entry-meta .byline {
 }
 
 /* Top bar */
-.inside-top-bar {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
-}
-
-div.top-bar .widget {
-	margin-bottom: 0;
-}
-
-.top-bar .widget {
+.top-bar .inside-top-bar .widget {
 	padding: 0;
-	margin: 0 10px;
-	display: inline-block; /* IE9 */
-}
-
-.top-bar-align-right .widget:nth-child(even),
-.top-bar-align-left .widget:nth-child(odd) {
-	-webkit-box-ordinal-group: -19;
-	    -ms-flex-order: -20;
-	        order: -20;
-}
-
-.top-bar-align-left .widget,
-.top-bar-align-right .widget:nth-child(2) {
-	margin-left: 0;
-}
-
-.top-bar-align-left .widget:last-child,
-.top-bar-align-right .widget {
-	margin-right: 0;
-}
-
-.top-bar-align-right .widget:first-child,
-.top-bar-align-left .widget:nth-child(2),
-.top-bar-align-center .widget:first-child {
-	margin-left: auto;
-}
-
-.top-bar-align-center .widget:last-child {
-	margin-right: auto;
-}
-
-.top-bar-align-center .widget:not(:first-child):not(:last-child) {
-	margin: 0 5px;
-}
-
-.top-bar .widget-title {
-	display: none;
+	display: inline-block;
+	margin: 0;
 }
 
 .top-bar .inside-top-bar .textwidget p:last-child {
 	margin: 0;
+}
+
+.top-bar-align-center {
+	text-align: center;
+}
+
+.top-bar-align-right {
+	text-align: right;
+}
+
+.top-bar-align-right .inside-top-bar >.widget:nth-child(even) {
+	float: left;
+	margin-right: 10px;
+}
+
+.top-bar-align-right .inside-top-bar >.widget:nth-child(odd) {
+	margin-left: 10px;
+}
+
+.top-bar-align-left .inside-top-bar >.widget:nth-child(even) {
+	margin-left: 10px;
+	float: right;
+}
+
+.top-bar-align-left .inside-top-bar > .widget:nth-child(odd) {
+	float: left;
+	margin-right: 10px;
+}
+
+.top-bar-align-center .inside-top-bar .widget:not(:first-child) {
+	margin-left: 10px;
+}
+
+.top-bar-align-center .inside-top-bar .widget:first-child:last-child {
+    display: block
+}
+
+.inside-top-bar:not(.grid-container):after,
+.inside-top-bar:not(.grid-container):before {
+	content: ".";
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    font-size: 0;
+    line-height: 0;
+    width: 0;
+    height: 0;
+	clear: both;
+}
+
+.top-bar .widget-title {
+	display: none;
 }
 
 /* Top bar menu */

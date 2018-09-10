@@ -100,19 +100,14 @@ nav.toggled ul ul.sub-menu {
 }
 
 @media (max-width: 768px) {
-	.top-bar .inside-top-bar > .widget {
-		-webkit-box-ordinal-group: 2;
-		-ms-flex-order: 1;
-		order: 1;
-		margin: 0 10px;
+	.top-bar.top-bar-align-left,
+	.top-bar.top-bar-align-right {
+		text-align: center;
 	}
 
-	.top-bar .inside-top-bar > .widget:first-child {
-		margin-left: auto;
-	}
-
-	.top-bar .inside-top-bar > .widget:last-child {
-		margin-right: auto;
+	.top-bar .widget {
+		float: none !important;
+		margin: 0 10px !important;
 	}
 
 	.top-bar .widget_nav_menu li {
