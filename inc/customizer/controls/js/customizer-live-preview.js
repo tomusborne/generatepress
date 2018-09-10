@@ -421,5 +421,4 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 	 * Footer bar alignment
 	 */
 	generatepress_classes_live_update( 'footer_bar_alignment', [ 'left', 'center', 'right' ], '.site-footer', 'footer-bar-align-' );
-
 } )( jQuery );
