@@ -26,6 +26,8 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 		public $type = 'generatepress-range-slider';
 
 		public $description = '';
+
+		public $sub_description = '';
 		/**
 		 * Refresh the parameters passed to the JavaScript via JSON.
 		 *
@@ -57,6 +59,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 			$this->json['reset_label'] = __( 'Reset','generatepress' );
 
 			$this->json['description'] = $this->description;
+			$this->json['sub_description'] = $this->sub_description;
 		}
 
 		/**
@@ -163,6 +166,10 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 						</label>
 					<# } #>
 				</div>
+
+				<# if ( data.sub_description ) { #>
+					<p class="description sub-description">{{{ data.sub_description }}}</p>
+				<# } #>
 			</div>
 			<?php
 		}

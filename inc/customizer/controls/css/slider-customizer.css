@@ -134,3 +134,7 @@
 .customize-control-generatepress-range-slider .gp-device-controls > span:first-child:last-child {
 	display: none;
 }
+
+.customize-control-generatepress-range-slider .sub-description {
+	margin-top: 10px;
+}

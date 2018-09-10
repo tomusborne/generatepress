@@ -758,14 +758,27 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 		);
 
 		$wp_customize->add_control(
-			'generate_settings[nav_drop_point]',
-			array(
-				'type' => 'number',
-				'label' => __( 'Navigation Drop Point', 'generatepress' ),
-				'description' => __( 'The width when the navigation ceases to float and drops below your logo.', 'generatepress' ),
-				'section' => 'generate_layout_navigation',
-				'settings' => 'generate_settings[nav_drop_point]',
-				'priority' => 22,
+			new Generate_Range_Slider_Control(
+				$wp_customize,
+				'generate_settings[nav_drop_point]',
+				array(
+					'label' => __( 'Navigation Drop Point', 'generatepress' ),
+					'sub_description' => __( 'The width when the navigation ceases to float and drops below your logo.', 'generatepress' ),
+					'section' => 'generate_layout_navigation',
+					'settings' => array(
+						'desktop' => 'generate_settings[nav_drop_point]',
+					),
+					'choices' => array(
+						'desktop' => array(
+							'min' => 500,
+							'max' => 2000,
+							'step' => 10,
+							'edit' => true,
+							'unit' => 'px',
+						),
+					),
+					'priority' => 22,
+				)
 			)
 		);
 
