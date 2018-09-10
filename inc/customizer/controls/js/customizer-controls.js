@@ -53,4 +53,66 @@
 		api.control( 'generate_settings[nav_drop_point]', linkSettingValueToControlActiveState );
 	} );
 
+	var setOption = function( headerAlignment, navLocation, navAlignment ) {
+		if ( headerAlignment ) {
+			api.control( 'generate_settings[header_alignment_setting]' ).setting.set( headerAlignment );
+		}
+
+		if ( navLocation ) {
+			api.control( 'generate_settings[nav_position_setting]' ).setting.set( navLocation );
+		}
+
+		if ( navAlignment ) {
+			api.control( 'generate_settings[nav_alignment_setting]' ).setting.set( navAlignment );
+		}
+	};
+
+	api( 'generate_header_helper', function( value ) {
+		var headerAlignment = false,
+			navLocation = false,
+			navAlignment = false;
+
+		value.bind( function( newval ) {
+			var headerAlignmentSetting = api.control( 'generate_settings[header_alignment_setting]' ).setting;
+			var navLocationSetting = api.control( 'generate_settings[nav_position_setting]' ).setting;
+			var navAlignmentSetting = api.control( 'generate_settings[nav_alignment_setting]' ).setting;
+
+			if ( ! headerAlignmentSetting._dirty ) {
+				headerAlignment = headerAlignmentSetting.get();
+			}
+
+			if ( ! navLocationSetting._dirty ) {
+				navLocation = navLocationSetting.get();
+			}
+
+			if ( ! navAlignmentSetting._dirty ) {
+				navAlignment = navAlignmentSetting.get();
+			}
+
+			if ( 'current' === newval ) {
+				setOption( headerAlignment, navLocation, navAlignment );
+			}
+
+			if ( 'default' === newval ) {
+				setOption( generatepress_defaults.header_alignment_setting, generatepress_defaults.nav_position_setting, generatepress_defaults.nav_alignment_setting );
+			}
+
+			if ( 'nav-before-centered' === newval ) {
+				setOption( 'center', 'nav-above-header', 'center' );
+			}
+
+			if ( 'nav-after-centered' === newval ) {
+				setOption( 'center', 'nav-below-header', 'center' );
+			}
+
+			if ( 'nav-right' === newval ) {
+				setOption( 'left', 'nav-float-right', 'left' );
+			}
+
+			if ( 'nav-left' === newval ) {
+				setOption( 'right', 'nav-float-left', 'right' );
+			}
+		} );
+	} );
+
 }( wp.customize ) );

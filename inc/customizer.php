@@ -529,6 +529,35 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 		);
 
 		$wp_customize->add_setting(
+			'generate_header_helper',
+			array(
+				'default' 			=> 'current',
+				'type' 				=> 'option',
+				'sanitize_callback' => 'generate_sanitize_preset_layout',
+				'transport' 		=> 'postMessage',
+			)
+		);
+
+		$wp_customize->add_control(
+			'generate_header_helper',
+			array(
+				'type' 		=> 'select',
+				'label' 	=> __( 'Header Presets', 'generatepress' ),
+				'section' 	=> 'generate_layout_header',
+				'choices' 	=> array(
+					'current' 				=> __( 'Current', 'generatepress' ),
+					'default'				=> __( 'Default', 'generatepress' ),
+					'nav-before-centered'	=> __( 'Navigation Before - Centered', 'generatepress' ),
+					'nav-after-centered' 	=> __( 'Navigation After - Centered', 'generatepress' ),
+					'nav-right' 		=> __( 'Navigation Right', 'generatepress' ),
+					'nav-left' 		=> __( 'Navigation Left', 'generatepress' ),
+				),
+				'settings' 	=> 'generate_header_helper',
+				'priority' 	=> 4,
+			)
+		);
+
+		$wp_customize->add_setting(
 			'generate_settings[header_layout_setting]',
 			array(
 				'default' => $defaults['header_layout_setting'],

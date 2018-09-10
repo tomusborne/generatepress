@@ -317,7 +317,14 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 	 */
 	wp.customize( 'generate_settings[nav_position_setting]', function( value ) {
 		value.bind( function( newval ) {
-			jQuery('body').trigger('generate_navigation_location_updated');
+			$( 'body' ).trigger( 'generate_navigation_location_updated' );
+
+			// Update navigation alignment settings.
+			$( 'body' ).removeClass( 'nav-aligned-center' );
+			$( 'body' ).removeClass( 'nav-aligned-left' );
+			$( 'body' ).removeClass( 'nav-aligned-right' );
+			$( 'body' ).addClass( 'nav-aligned-' + wp.customize.value('generate_settings[nav_alignment_setting]')() );
+
 			if ( $( '.gen-sidebar-nav' ).length ) {
 				wp.customize.preview.send( 'refresh' );
 				return false;
@@ -348,7 +355,11 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 				}
 			}
 			if ( 'nav-float-right' == newval ) {
-				$( '#site-navigation:first' ).appendTo( '.inside-header' ).show();
+				if ( ! $( 'body' ).hasClass( 'using-floats' ) && $( '.header-widget' ).length ) {
+					$( '#site-navigation:first' ).insertBefore( '.header-widget' ).show();
+				} else {
+					$( '#site-navigation:first' ).appendTo( '.inside-header' ).show();
+				}
 			}
 			if ( 'nav-float-left' == newval ) {
 				$( '#site-navigation:first' ).appendTo( '.inside-header' ).show();

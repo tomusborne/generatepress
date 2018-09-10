@@ -245,6 +245,7 @@ function generate_do_control_inline_scripts() {
 	wp_localize_script( 'generatepress-typography-customizer', 'typography_defaults', generate_typography_default_fonts() );
 
 	wp_enqueue_script( 'generatepress-customizer-controls', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/js/customizer-controls.js', array( 'customize-controls', 'jquery' ), GENERATE_VERSION, true );
+	wp_localize_script( 'generatepress-customizer-controls', 'generatepress_defaults', generate_get_defaults() );
 }
 
 if ( ! function_exists( 'generate_customizer_live_preview' ) ) {
@@ -279,4 +280,13 @@ function generate_has_custom_logo_callback() {
 	}
 
 	return false;
+}
+
+/**
+ * Save our preset layout controls. These should always save to be "current".
+ *
+ * @since 2.2
+ */
+function generate_sanitize_preset_layout( $input ) {
+	return 'current';
 }
