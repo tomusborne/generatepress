@@ -164,6 +164,40 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			)
 		);
 
+		$wp_customize->add_setting(
+			'generate_settings[logo_width]',
+			array(
+				'default' => $defaults['logo_width'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_empty_absint',
+				'transport' => 'postMessage',
+			)
+		);
+
+		$wp_customize->add_control(
+			new Generate_Range_Slider_Control(
+				$wp_customize,
+				'generate_settings[logo_width]',
+				array(
+					'label' => __( 'Logo Width', 'generatepress' ),
+					'section' => 'title_tagline',
+					'settings' => array(
+						'desktop' => 'generate_settings[logo_width]',
+					),
+					'choices' => array(
+						'desktop' => array(
+							'min' => 30,
+							'max' => 800,
+							'step' => 10,
+							'edit' => true,
+							'unit' => 'px',
+						),
+					),
+					'active_callback' => 'generate_has_custom_logo_callback',
+				)
+			)
+		);
+
 		$wp_customize->add_panel( 'generate_colors_panel', array(
 			'priority'       => 30,
 			'capability'     => 'edit_theme_options',

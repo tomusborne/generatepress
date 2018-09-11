@@ -113,6 +113,16 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 		} );
 	} );
 
+	wp.customize( 'generate_settings[logo_width]', function( value ) {
+		value.bind( function( newval ) {
+			$( '.site-logo img' ).css( 'width', newval + 'px' );
+
+			if ( '' == newval ) {
+				$( '.site-logo img' ).css( 'width', '' );
+			}
+		} );
+	} );
+
 	/**
 	 * Body background color
 	 * Empty:  white

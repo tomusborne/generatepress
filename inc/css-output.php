@@ -76,6 +76,11 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$css->stop_media_query();
 		}
 
+		if ( generate_get_option( 'logo_width' ) ) {
+			$css->set_selector( '.site-logo img' );
+			$css->add_property( 'width', absint( generate_get_option( 'logo_width' ) ), false, 'px' );
+		}
+
 		do_action( 'generate_base_css', $css );
 
 		return apply_filters( 'generate_base_css_output', $css->css_output() );

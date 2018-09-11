@@ -22,6 +22,7 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 				'hide_tagline' => '',
 				'logo' => '',
 				'retina_logo' => '',
+				'logo_width' => '',
 				'top_bar_width' => 'full',
 				'top_bar_inner_width' => 'contained',
 				'top_bar_alignment' => 'right',
