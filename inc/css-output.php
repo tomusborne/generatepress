@@ -81,6 +81,13 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$css->add_property( 'width', absint( generate_get_option( 'logo_width' ) ), false, 'px' );
 		}
 
+		if ( 'no-sidebar' === generate_get_layout() && generate_get_option( 'content_width' ) ) {
+			$css->set_selector( '.no-sidebar .inside-article > *, .no-sidebar #comments, .no-sidebar .paging-navigation' );
+			$css->add_property( 'max-width', absint( generate_get_option( 'content_width' ) ), false, 'px' );
+			$css->add_property( 'margin-left', 'auto' );
+			$css->add_property( 'margin-right', 'auto' );
+		}
+
 		do_action( 'generate_base_css', $css );
 
 		return apply_filters( 'generate_base_css_output', $css->css_output() );

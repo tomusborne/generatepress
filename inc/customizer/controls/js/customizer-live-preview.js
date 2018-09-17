@@ -169,6 +169,23 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 	} );
 
 	/**
+	 * Content width
+	 */
+	wp.customize( 'generate_settings[content_width]', function( value ) {
+		value.bind( function( newval ) {
+			if ( jQuery( 'style#content_width' ).length ) {
+				jQuery( 'style#content_width' ).html( '.no-sidebar .inside-article > *, .no-sidebar #comments, .no-sidebar .paging-navigation{max-width:' + newval + 'px;margin-left: auto;margin-right: auto;}' );
+			} else {
+				jQuery( 'head' ).append( '<style id="content_width">.no-sidebar .inside-article > *, .no-sidebar #comments, .no-sidebar .paging-navigation{max-width:' + newval + 'px;margin-left: auto;margin-right: auto;}</style>' );
+				setTimeout(function() {
+					jQuery( 'style#content_width' ).not( ':last' ).remove();
+				}, 100);
+			}
+			jQuery('body').trigger('generate_spacing_updated');
+		} );
+	} );
+
+	/**
 	 * Body font size, weight and transform
 	 */
 	generatepress_typography_live_update( 'body_font_size', 'body, button, input, select, textarea', 'font-size', 'px' );
