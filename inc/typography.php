@@ -135,19 +135,12 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 			$wp_customize->register_control_type( 'Generate_Range_Slider_Control' );
 		}
 
-		$wp_customize->add_panel( 'generate_typography_panel', array(
-			'priority'       => 30,
-			'capability'     => 'edit_theme_options',
-			'title'          => __( 'Typography', 'generatepress' ),
-		) );
-
 		$wp_customize->add_section(
 			'font_section',
 			array(
-				'title' => __( 'Body', 'generatepress' ),
+				'title' => __( 'Typography', 'generatepress' ),
 				'capability' => 'edit_theme_options',
 				'priority' => 30,
-				'panel' => 'generate_typography_panel',
 			)
 		);
 
@@ -202,6 +195,7 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 				$wp_customize,
 				'body_typography',
 				array(
+					'label' => __( 'Body', 'generatepress' ),
 					'section' => 'font_section',
 					'priority' => 1,
 					'settings' => array(
@@ -245,7 +239,6 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 							'unit' => 'px',
 						),
 					),
-					'priority' => 40,
 				)
 			)
 		);
@@ -280,7 +273,6 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 							'unit' => '',
 						),
 					),
-					'priority' => 45,
 				)
 			)
 		);
@@ -315,18 +307,7 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 							'unit' => 'em',
 						),
 					),
-					'priority' => 47,
 				)
-			)
-		);
-
-		$wp_customize->add_section(
-			'font_content_section',
-			array(
-				'title' => __( 'Headings', 'generatepress' ),
-				'capability' => 'edit_theme_options',
-				'priority' => 60,
-				'panel' => 'generate_typography_panel'
 			)
 		);
 
@@ -381,7 +362,7 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 				'font_heading_1_control',
 				array(
 					'label' => __( 'Heading 1 (H1)', 'generatepress' ),
-					'section' => 'font_content_section',
+					'section' => 'font_section',
 					'settings' => array(
 						'family' => 'generate_settings[font_heading_1]',
 						'variant' => 'font_heading_1_variants',
@@ -419,7 +400,7 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 				'h1_font_sizes',
 				array(
 					'description' => __( 'Font size', 'generatepress' ),
-					'section' => 'font_content_section',
+					'section' => 'font_section',
 					'settings' => array(
 						'desktop' => 'generate_settings[heading_1_font_size]',
 						'mobile' => 'generate_settings[mobile_heading_1_font_size]',
@@ -460,7 +441,7 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 				'generate_settings[heading_1_line_height]',
 				array(
 					'description' => __( 'Line height', 'generatepress' ),
-					'section' => 'font_content_section',
+					'section' => 'font_section',
 					'settings' => array(
 						'desktop' => 'generate_settings[heading_1_line_height]',
 					),
@@ -528,7 +509,7 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 				'font_heading_2_control',
 				array(
 					'label' => __( 'Heading 2 (H2)', 'generatepress' ),
-					'section' => 'font_content_section',
+					'section' => 'font_section',
 					'settings' => array(
 						'family' => 'generate_settings[font_heading_2]',
 						'variant' => 'font_heading_2_variants',
@@ -566,7 +547,7 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 				'h2_font_sizes',
 				array(
 					'description' => __( 'Font size', 'generatepress' ),
-					'section' => 'font_content_section',
+					'section' => 'font_section',
 					'settings' => array(
 						'desktop' => 'generate_settings[heading_2_font_size]',
 						'mobile' => 'generate_settings[mobile_heading_2_font_size]',
@@ -607,7 +588,7 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 				'generate_settings[heading_2_line_height]',
 				array(
 					'description' => __( 'Line height', 'generatepress' ),
-					'section' => 'font_content_section',
+					'section' => 'font_section',
 					'settings' => array(
 						'desktop' => 'generate_settings[heading_2_line_height]',
 					),
@@ -675,7 +656,7 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 				'font_heading_3_control',
 				array(
 					'label' => __( 'Heading 3 (H3)', 'generatepress' ),
-					'section' => 'font_content_section',
+					'section' => 'font_section',
 					'settings' => array(
 						'family' => 'generate_settings[font_heading_3]',
 						'variant' => 'font_heading_3_variants',
@@ -703,7 +684,7 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 				'h3_font_sizes',
 				array(
 					'description' => __( 'Font size', 'generatepress' ),
-					'section' => 'font_content_section',
+					'section' => 'font_section',
 					'settings' => array(
 						'desktop' => 'generate_settings[heading_3_font_size]'
 					),
@@ -736,7 +717,7 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 				'generate_settings[heading_3_line_height]',
 				array(
 					'description' => __( 'Line height', 'generatepress' ),
-					'section' => 'font_content_section',
+					'section' => 'font_section',
 					'settings' => array(
 						'desktop' => 'generate_settings[heading_3_line_height]',
 					),
@@ -759,7 +740,7 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 					$wp_customize,
 					'typography_get_addon_desc',
 					array(
-						'section' => 'font_content_section',
+						'section' => 'font_section',
 						'type' => 'addon',
 						'label' => __( 'Learn more','generatepress' ),
 						'description' => __( 'More options are available for this section in our premium version.', 'generatepress' ),
