@@ -153,10 +153,13 @@ if ( ! function_exists( 'generate_get_premium_url' ) ) {
 	 * @since 1.3.42
 	 *
 	 * @param string $url URL to premium page.
+	 * @param bool $trailing_slash Whether we want to include a trailing slash.
 	 * @return string The URL to generatepress.com.
 	 */
-	function generate_get_premium_url( $url = 'https://generatepress.com/premium' ) {
-		$url = trailingslashit( $url );
+	function generate_get_premium_url( $url = 'https://generatepress.com/premium', $trailing_slash = true ) {
+		if ( $trailing_slash ) {
+			$url = trailingslashit( $url );
+		}
 
 		$args = apply_filters( 'generate_premium_url_args', array(
 			'ref' => null,
