@@ -107,43 +107,43 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 								<?php
 								$modules = array(
 									'Backgrounds' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-backgrounds/' ),
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#backgrounds', false ),
 									),
 									'Blog' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-blog/' ),
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#blog', false ),
 									),
 									'Colors' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-colors/' ),
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#colors', false ),
 									),
 									'Copyright' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-copyright/' ),
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#copyright', false ),
 									),
 									'Disable Elements' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-disable-elements/' ),
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#disable-elements', false ),
 									),
-									'Hooks' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-hooks/' ),
+									'Elements' => array(
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#elements', false ),
 									),
 									'Import / Export' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-import-export/' ),
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#import-export', false ),
 									),
 									'Menu Plus' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-menu-plus/' ),
-									),
-									'Page Header' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-page-header/' ),
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#menu-plus', false ),
 									),
 									'Secondary Nav' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-secondary-nav/' ),
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#secondary-nav', false ),
 									),
 									'Sections' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-sections/' ),
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#sections', false ),
 									),
 									'Spacing' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-spacing/' ),
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#spacing', false ),
 									),
 									'Typography' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-typography/' ),
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#typography', false ),
+									),
+									'WooCommerce' => array(
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#woocommerce', false ),
 									),
 								);
 

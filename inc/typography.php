@@ -744,7 +744,7 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 						'type' => 'addon',
 						'label' => __( 'Learn more','generatepress' ),
 						'description' => __( 'More options are available for this section in our premium version.', 'generatepress' ),
-						'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-typography/' ),
+						'url' => generate_get_premium_url( 'https://generatepress.com/premium/#typography', false ),
 						'priority' => 50,
 						'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
 					)
