@@ -821,7 +821,6 @@ ul ul .dropdown-menu-toggle:before {
 .dropdown-hover .widget-area .main-navigation ul li.sfHover > ul {
 	top: 0;
 	left: 100%;
-	width:220px;
 }
 
 .dropdown-hover.both-right .widget-area .main-navigation ul li:hover ul,
