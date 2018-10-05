@@ -176,12 +176,12 @@ if ( ! function_exists( 'generate_top_bar_classes' ) ) {
 	function generate_top_bar_classes( $classes ) {
 		$classes[] = 'top-bar';
 
-		if ( 'contained' == generate_get_option( 'top_bar_width' ) ) {
+		if ( 'contained' === generate_get_option( 'top_bar_width' ) ) {
 			$classes[] = 'grid-container';
 			$classes[] = 'grid-parent';
 		}
 
-		$classes[] = 'top-bar-align-' . generate_get_option( 'top_bar_alignment' );
+		$classes[] = 'top-bar-align-' . esc_attr( generate_get_option( 'top_bar_alignment' ) );
 
 		return $classes;
 	}
@@ -349,14 +349,7 @@ if ( ! function_exists( 'generate_header_classes' ) ) {
 	function generate_header_classes( $classes ) {
 		$classes[] = 'site-header';
 
-		// Get theme options
-		$generate_settings = wp_parse_args(
-			get_option( 'generate_settings', array() ),
-			generate_get_defaults()
-		);
-		$header_layout = $generate_settings['header_layout_setting'];
-
-		if ( $header_layout == 'contained-header' ) {
+		if ( 'contained-header' === generate_get_option( 'header_layout_setting' ) ) {
 			$classes[] = 'grid-container';
 			$classes[] = 'grid-parent';
 		}
@@ -374,9 +367,8 @@ if ( ! function_exists( 'generate_inside_header_classes' ) ) {
 	 */
 	function generate_inside_header_classes( $classes ) {
 		$classes[] = 'inside-header';
-		$inner_header_width = generate_get_option( 'header_inner_width' );
 
-		if ( $inner_header_width !== 'full-width' ) {
+		if ( 'full-width' !== generate_get_option( 'header_inner_width' ) ) {
 			$classes[] = 'grid-container';
 			$classes[] = 'grid-parent';
 		}
@@ -426,9 +418,8 @@ if ( ! function_exists( 'generate_inside_navigation_classes' ) ) {
 	 */
 	function generate_inside_navigation_classes( $classes ) {
 		$classes[] = 'inside-navigation';
-		$inner_nav_width = generate_get_option( 'nav_inner_width' );
 
-		if ( $inner_nav_width !== 'full-width' ) {
+		if ( 'full-width' !== generate_get_option( 'nav_inner_width' ) ) {
 			$classes[] = 'grid-container';
 			$classes[] = 'grid-parent';
 		}
@@ -447,6 +438,7 @@ if ( ! function_exists( 'generate_menu_classes' ) ) {
 	function generate_menu_classes( $classes ) {
 		$classes[] = 'menu';
 		$classes[] = 'sf-menu';
+
 		return $classes;
 	}
 }
@@ -461,21 +453,13 @@ if ( ! function_exists( 'generate_footer_classes' ) ) {
 	function generate_footer_classes( $classes ) {
 		$classes[] = 'site-footer';
 
-		// Get theme options
-		$generate_settings = wp_parse_args(
-			get_option( 'generate_settings', array() ),
-			generate_get_defaults()
-		);
-		$footer_layout = $generate_settings['footer_layout_setting'];
-
-		if ( $footer_layout == 'contained-footer' ) {
+		if ( 'contained-footer' === generate_get_option( 'footer_layout_setting' ) ) {
 			$classes[] = 'grid-container';
 			$classes[] = 'grid-parent';
 		}
 
-		// Footer bar
 		$classes[] = ( is_active_sidebar( 'footer-bar' ) ) ? 'footer-bar-active' : '';
-		$classes[] = ( is_active_sidebar( 'footer-bar' ) ) ? 'footer-bar-align-' . $generate_settings['footer_bar_alignment'] : '';
+		$classes[] = ( is_active_sidebar( 'footer-bar' ) ) ? 'footer-bar-align-' . esc_attr( generate_get_option( 'footer_bar_alignment' ) ) : '';
 
 		return $classes;
 	}
@@ -490,9 +474,8 @@ if ( ! function_exists( 'generate_inside_footer_classes' ) ) {
 	 */
 	function generate_inside_footer_classes( $classes ) {
 		$classes[] = 'footer-widgets-container';
-		$inside_footer_width = generate_get_option( 'footer_inner_width' );
 
-		if ( $inside_footer_width !== 'full-width' ) {
+		if ( 'full-width' !== generate_get_option( 'footer_inner_width' ) ) {
 			$classes[] = 'grid-container';
 			$classes[] = 'grid-parent';
 		}
@@ -509,6 +492,7 @@ if ( ! function_exists( 'generate_main_classes' ) ) {
 	 */
 	function generate_main_classes( $classes ) {
 		$classes[] = 'site-main';
+
 		return $classes;
 	}
 }
