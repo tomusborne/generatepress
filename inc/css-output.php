@@ -67,7 +67,7 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 				$css->set_selector( '.header-widget' );
 				$css->add_property( 'margin-top', '1.5em' );
 
-				if ( 'nav-float-left' === generate_get_option( 'nav_position_setting' ) && 'floats' !== generate_get_option( 'grid' ) ) {
+				if ( 'nav-float-left' === generate_get_option( 'nav_position_setting' ) ) {
 					$css->set_selector( '.nav-float-left .site-logo,.nav-float-left .site-branding,.nav-float-left .header-widget' );
 					$css->add_property( '-webkit-box-ordinal-group', 'initial' );
 					$css->add_property( '-ms-flex-order', 'initial' );
