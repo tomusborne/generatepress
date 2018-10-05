@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 do_action( 'generate_before_footer' );
 ?>
 
-<div <?php generate_footer_class(); ?>>
+<div <?php generate_do_element_classes( 'footer' ); ?>>
 	<?php
 	/**
 	 * generate_before_footer_content hook.

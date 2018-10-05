@@ -51,6 +51,43 @@ if ( ! function_exists( 'generate_article_schema' ) ) {
 	}
 }
 
+/**
+ * Display HTML classes for an element.
+ *
+ * @since 2.2
+ *
+ * @param string $context The element we're targeting.
+ * @param string|array $class One or more classes to add to the class list.
+ */
+function generate_do_element_classes( $context, $class = '' ) {
+	echo 'class="' . join( ' ', generate_get_element_classes( $context, $class ) ) . '"'; // WPCS: XSS ok, sanitization ok.
+}
+
+/**
+ * Retrieve HTML classes for an element.
+ *
+ * @since 2.2
+ *
+ * @param string $context The element we're targeting.
+ * @param string|array $class One or more classes to add to the class list.
+ * @return array Array of classes.
+ */
+function generate_get_element_classes( $context, $class = '' ) {
+	$classes = array();
+
+	if ( ! empty( $class ) ) {
+		if ( ! is_array( $class ) ) {
+			$class = preg_split( '#\s+#', $class );
+		}
+
+		$classes = array_merge( $classes, $class );
+	}
+
+	$classes = array_map( 'esc_attr', $classes );
+
+	return apply_filters( "generate_{$context}_class", $classes, $class );
+}
+
 if ( ! function_exists( 'generate_body_classes' ) ) {
 	add_filter( 'body_class', 'generate_body_classes' );
 	/**

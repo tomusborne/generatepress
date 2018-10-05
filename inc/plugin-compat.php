@@ -41,8 +41,8 @@ if ( ! function_exists( 'generate_woocommerce_start' ) ) {
 	 */
 	function generate_woocommerce_start() {
 		?>
-		<div id="primary" <?php generate_content_class();?>>
-			<main id="main" <?php generate_main_class(); ?>>
+		<div id="primary" <?php generate_do_element_classes( 'content' );?>>
+			<main id="main" <?php generate_do_element_classes( 'main' ); ?>>
 				<?php
 				/**
 				 * generate_before_main_content hook.

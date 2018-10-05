@@ -18,8 +18,8 @@ if ( ! function_exists( 'generate_construct_header' ) ) {
 	 */
 	function generate_construct_header() {
 		?>
-		<header itemtype="https://schema.org/WPHeader" itemscope="itemscope" id="masthead" <?php generate_header_class(); ?>>
-			<div <?php generate_inside_header_class(); ?>>
+		<header itemtype="https://schema.org/WPHeader" itemscope="itemscope" id="masthead" <?php generate_do_element_classes( 'header' ); ?>>
+			<div <?php generate_do_element_classes( 'inside_header' ); ?>>
 				<?php
 				/**
 				 * generate_before_header_content hook.
@@ -217,7 +217,7 @@ if ( ! function_exists( 'generate_top_bar' ) ) {
 			return;
 		}
 		?>
-		<div <?php generate_top_bar_class(); ?>>
+		<div <?php generate_do_element_classes( 'top_bar' ); ?>>
 			<div class="inside-top-bar<?php if ( 'contained' == generate_get_option( 'top_bar_inner_width' ) ) echo ' grid-container grid-parent'; ?>">
 				<?php dynamic_sidebar( 'top-bar' ); ?>
 			</div>

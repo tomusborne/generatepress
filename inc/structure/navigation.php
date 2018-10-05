@@ -17,8 +17,8 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 	 */
 	function generate_navigation_position() {
 		?>
-		<nav itemtype="https://schema.org/SiteNavigationElement" itemscope="itemscope" id="site-navigation" <?php generate_navigation_class(); ?>>
-			<div <?php generate_inside_navigation_class(); ?>>
+		<nav itemtype="https://schema.org/SiteNavigationElement" itemscope="itemscope" id="site-navigation" <?php generate_do_element_classes( 'navigation' ); ?>>
+			<div <?php generate_do_element_classes( 'inside_navigation' ); ?>>
 				<?php
 				/**
 				 * generate_inside_navigation hook.
@@ -43,7 +43,7 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 						'container_id' => 'primary-menu',
 						'menu_class' => '',
 						'fallback_cb' => 'generate_menu_fallback',
-						'items_wrap' => '<ul id="%1$s" class="%2$s ' . join( ' ', generate_get_menu_class() ) . '">%3$s</ul>',
+						'items_wrap' => '<ul id="%1$s" class="%2$s ' . join( ' ', generate_get_element_classes( 'menu' ) ) . '">%3$s</ul>',
 					)
 				);
 				?>
@@ -69,7 +69,7 @@ if ( ! function_exists( 'generate_menu_fallback' ) ) {
 		);
 		?>
 		<div id="primary-menu" class="main-nav">
-			<ul <?php generate_menu_class(); ?>>
+			<ul <?php generate_do_element_classes( 'menu' ); ?>>
 				<?php
 				$args = array(
 					'sort_column' => 'menu_order',
