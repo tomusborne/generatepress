@@ -872,7 +872,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			'generate_settings[nav_dropdown_direction]',
 			array(
 				'type' => 'select',
-				'label' => __( 'Sub-Menu Direction', 'generatepress' ),
+				'label' => __( 'Dropdown Direction', 'generatepress' ),
 				'section' => 'generate_layout_navigation',
 				'choices' => array(
 					'right' => __( 'Right', 'generatepress' ),
