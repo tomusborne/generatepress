@@ -1262,5 +1262,24 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'section' => 'generate_general_section',
 			)
 		);
+
+		$wp_customize->add_setting(
+			'generate_settings[json_ld]',
+			array(
+				'default' => $defaults['json_ld'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_checkbox',
+			)
+		);
+
+		$wp_customize->add_control(
+			'generate_settings[json_ld]',
+			array(
+				'type' => 'checkbox',
+				'label' => __( 'Add JSON-LD', 'generatepress' ),
+				'description' => __( 'Add simple JSON-LD to your pages.', 'generatepress' ),
+				'section' => 'generate_general_section',
+			)
+		);
 	}
 }

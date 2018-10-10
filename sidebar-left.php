@@ -24,7 +24,7 @@ if ( function_exists( 'generate_secondary_nav_get_defaults' ) ) {
 	}
 }
 ?>
-<div id="left-sidebar" itemtype="https://schema.org/WPSideBar" itemscope="itemscope" <?php generate_do_element_classes( 'left_sidebar' ); ?>>
+<div id="left-sidebar" <?php generate_do_element_classes( 'left_sidebar' ); ?>>
 	<div class="inside-left-sidebar">
 		<?php
 		/**

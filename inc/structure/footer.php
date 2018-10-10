@@ -18,7 +18,7 @@ if ( ! function_exists( 'generate_construct_footer' ) ) {
 	 */
 	function generate_construct_footer() {
 		?>
-		<footer class="site-info" itemtype="https://schema.org/WPFooter" itemscope="itemscope">
+		<footer class="site-info">
 			<div class="inside-site-info <?php if ( 'full-width' !== generate_get_option( 'footer_inner_width' ) ) : ?>grid-container grid-parent<?php endif; ?>">
 				<?php
 				/**

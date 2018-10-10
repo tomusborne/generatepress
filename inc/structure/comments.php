@@ -28,7 +28,7 @@ if ( ! function_exists( 'generate_comment' ) ) {
 		<?php else : ?>
 
 		<li id="comment-<?php comment_ID(); ?>" <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?>>
-			<article id="div-comment-<?php comment_ID(); ?>" class="comment-body" itemscope itemtype="https://schema.org/Comment">
+			<article id="div-comment-<?php comment_ID(); ?>" class="comment-body">
 				<footer class="comment-meta">
 					<?php
 					if ( 0 != $args['avatar_size'] ) {
@@ -36,13 +36,13 @@ if ( ! function_exists( 'generate_comment' ) ) {
 					}
 					?>
 					<div class="comment-author-info">
-						<div class="comment-author vcard" itemprop="author" itemscope itemtype="https://schema.org/Person">
-							<?php printf( '<cite itemprop="name" class="fn">%s</cite>', get_comment_author_link() ); ?>
+						<div class="comment-author">
+							<?php printf( '<cite class="fn">%s</cite>', get_comment_author_link() ); ?>
 						</div><!-- .comment-author -->
 
 						<div class="entry-meta comment-metadata">
 							<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
-								<time datetime="<?php comment_time( 'c' ); ?>" itemprop="datePublished">
+								<time datetime="<?php comment_time( 'c' ); ?>">
 									<?php printf( // WPCS: XSS OK.
 										/* translators: 1: date, 2: time */
 										_x( '%1$s at %2$s', '1: date, 2: time', 'generatepress' ),
@@ -69,7 +69,7 @@ if ( ! function_exists( 'generate_comment' ) ) {
 					<?php endif; ?>
 				</footer><!-- .comment-meta -->
 
-				<div class="comment-content" itemprop="text">
+				<div class="comment-content">
 					<?php comment_text(); ?>
 				</div><!-- .comment-content -->
 			</article><!-- .comment-body -->
