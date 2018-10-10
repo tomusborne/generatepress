@@ -53,71 +53,73 @@ if ( ! function_exists( 'generate_body_classes' ) ) {
 	 * @since 0.1
 	 */
 	function generate_body_classes( $classes ) {
-		// Get Customizer settings
-		$generate_settings = wp_parse_args(
-			get_option( 'generate_settings', array() ),
-			generate_get_defaults()
-		);
+		$sidebar_layout 		= generate_get_layout();
+		$navigation_location 	= generate_get_navigation_location();
+		$navigation_alignment	= generate_get_option( 'nav_alignment_setting' );
+		$navigation_dropdown	= generate_get_option( 'nav_dropdown_type' );
+		$header_layout 			= generate_get_option( 'header_layout_setting' );
+		$header_alignment		= generate_get_option( 'header_alignment_setting' );
+		$content_layout 		= generate_get_option( 'content_layout_setting' );
+		$footer_widgets 		= generate_get_footer_widgets();
 
-		// Get the layout
-		$layout = generate_get_layout();
-
-		// Get the navigation location
-		$navigation_location = generate_get_navigation_location();
-
-		// Get the footer widgets
-		$widgets = generate_get_footer_widgets();
-
-		// Full width content
-		// Used for page builders, sets the content to full width and removes the padding
-		$full_width = get_post_meta( get_the_ID(), '_generate-full-width-content', true );
-		$classes[] = ( '' !== $full_width && false !== $full_width && is_singular() && 'true' == $full_width ) ? 'full-width-content' : '';
-
-		// Contained content
-		// Used for page builders, basically just removes the content padding
-		$classes[] = ( '' !== $full_width && false !== $full_width && is_singular() && 'contained' == $full_width ) ? 'contained-content' : '';
-
-		// Let us know if a featured image is being used
-		if ( has_post_thumbnail() ) {
-			$classes[] = 'featured-image-active';
-		}
-
-		// Layout classes
-		$classes[] = ( $layout ) ? $layout : 'right-sidebar';
+		// These values all have defaults, but we like to be extra careful.
+		$classes[] = ( $sidebar_layout ) ? $sidebar_layout : 'right-sidebar';
 		$classes[] = ( $navigation_location ) ? $navigation_location : 'nav-below-header';
-		$classes[] = ( $generate_settings['header_layout_setting'] ) ? $generate_settings['header_layout_setting'] : 'fluid-header';
-		$classes[] = ( $generate_settings['content_layout_setting'] ) ? $generate_settings['content_layout_setting'] : 'separate-containers';
-		$classes[] = ( '' !== $widgets ) ? 'active-footer-widgets-' . $widgets : 'active-footer-widgets-3';
-		$classes[] = ( 'enable' == $generate_settings['nav_search'] ) ? 'nav-search-enabled' : '';
+		$classes[] = ( $header_layout ) ? $header_layout : 'fluid-header';
+		$classes[] = ( $content_layout ) ? $content_layout : 'separate-containers';
+		$classes[] = ( '' !== $footer_widgets ) ? 'active-footer-widgets-' . absint( $footer_widgets ) : 'active-footer-widgets-3';
+
+		if ( 'enable' === generate_get_option( 'nav_search' ) ) {
+			$classes[] = 'nav-search-enabled';
+		}
 
 		// Only necessary for nav before or after header.
 		if ( 'nav-below-header' === $navigation_location || 'nav-above-header' === $navigation_location ) {
-			if ( 'center' === generate_get_option( 'nav_alignment_setting' ) ) {
+			if ( 'center' === $navigation_alignment ) {
 				$classes[] = 'nav-aligned-center';
-			} elseif ( 'right' === generate_get_option( 'nav_alignment_setting' ) ) {
+			} elseif ( 'right' === $navigation_alignment ) {
 				$classes[] = 'nav-aligned-right';
-			} elseif ( 'left' === generate_get_option( 'nav_alignment_setting' ) ) {
+			} elseif ( 'left' === $navigation_alignment ) {
 				$classes[] = 'nav-aligned-left';
 			}
 		}
 
-		if ( 'center' === generate_get_option( 'header_alignment_setting' ) ) {
+		if ( 'center' === $header_alignment ) {
 			$classes[] = 'header-aligned-center';
-		} elseif ( 'right' === generate_get_option( 'header_alignment_setting' ) ) {
+		} elseif ( 'right' === $header_alignment ) {
 			$classes[] = 'header-aligned-right';
-		} elseif ( 'left' === generate_get_option( 'header_alignment_setting' ) ) {
+		} elseif ( 'left' === $header_alignment ) {
 			$classes[] = 'header-aligned-left';
 		}
 
-		// Navigation dropdown type
-		if ( 'click' == $generate_settings['nav_dropdown_type'] ) {
+		if ( 'click' === $navigation_dropdown ) {
 			$classes[] = 'dropdown-click';
 			$classes[] = 'dropdown-click-menu-item';
-		} elseif ( 'click-arrow' == $generate_settings['nav_dropdown_type'] ) {
+		} elseif ( 'click-arrow' === $navigation_dropdown ) {
 			$classes[] = 'dropdown-click-arrow';
 			$classes[] = 'dropdown-click';
 		} else {
 			$classes[] = 'dropdown-hover';
+		}
+
+		if ( is_singular() ) {
+			// Page builder container metabox option.
+			// Used to be a single checkbox, hence the name/true value. Now it's a radio choice between full width and contained.
+			$content_container = get_post_meta( get_the_ID(), '_generate-full-width-content', true );
+
+			if ( $content_container ) {
+				if ( 'true' === $content_container ) {
+					$classes[] = 'full-width-content';
+				}
+
+				if ( 'contained' === $content_container ) {
+					$classes[] = 'contained-content';
+				}
+			}
+
+			if ( has_post_thumbnail() ) {
+				$classes[] = 'featured-image-active';
+			}
 		}
 
 		return $classes;

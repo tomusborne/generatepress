@@ -20,12 +20,12 @@ function generate_setup_woocommerce() {
 		return;
 	}
 
-	// Add support for WC features
+	// Add support for WC features.
 	add_theme_support( 'wc-product-gallery-zoom' );
 	add_theme_support( 'wc-product-gallery-lightbox' );
 	add_theme_support( 'wc-product-gallery-slider' );
 
-	//Remove default WooCommerce wrappers
+	// Remove default WooCommerce wrappers.
 	remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
 	remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
 	remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
@@ -166,6 +166,10 @@ if ( ! function_exists( 'generate_bbpress_css' ) ) {
 	 * @since 1.3.45
 	 */
 	function generate_bbpress_css() {
+		if ( ! class_exists( 'bbPress' ) ) {
+			return;
+		}
+
 		$css = '#bbpress-forums ul.bbp-lead-topic,
 		#bbpress-forums ul.bbp-topics,
 		#bbpress-forums ul.bbp-forums,
@@ -205,6 +209,10 @@ if ( ! function_exists( 'generate_buddypress_css' ) ) {
 	 * @since 1.3.45
 	 */
 	function generate_buddypress_css() {
+		if ( ! class_exists( 'BuddyPress' ) ) {
+			return;
+		}
+
 		$css = '#buddypress form#whats-new-form #whats-new-options[style] {
 			min-height: 6rem;
 			overflow: visible;

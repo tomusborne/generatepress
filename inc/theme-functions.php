@@ -16,7 +16,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @param string $option The option name to look up.
  * @return string The option value.
- * @todo Ability to specify different option name and defaults.
  */
 function generate_get_option( $option ) {
 	$options = wp_parse_args(
@@ -36,35 +35,22 @@ if ( ! function_exists( 'generate_get_layout' ) ) {
 	 * @return string The sidebar layout location.
 	 */
 	function generate_get_layout() {
-		global $post;
+		$layout = generate_get_option( 'layout_setting' );
 
-		$generate_settings = wp_parse_args(
-			get_option( 'generate_settings', array() ),
-			generate_get_defaults()
-		);
-
-		$layout = $generate_settings['layout_setting'];
-
-		$layout_meta = ( isset( $post ) ) ? get_post_meta( $post->ID, '_generate-sidebar-layout-meta', true ) : '';
-
-		$buddypress = false;
-		if ( function_exists( 'is_buddypress' ) ) {
-			$buddypress = ( is_buddypress() ) ? true : false;
+		if ( is_single() ) {
+			$layout = generate_get_option( 'single_layout_setting' );
 		}
 
-		// If we're not on a BuddyPress page - fixes a bug where BP thinks is_single() is true.
-		if ( is_single() && ! $buddypress ) {
-			$layout = null;
-			$layout = $generate_settings['single_layout_setting'];
-		}
+		if ( is_singular() ) {
+			$layout_meta = get_post_meta( get_the_ID(), '_generate-sidebar-layout-meta', true );
 
-		if ( '' !== $layout_meta && false !== $layout_meta ) {
-			$layout = $layout_meta;
+			if ( $layout_meta ) {
+				$layout = $layout_meta;
+			}
 		}
 
 		if ( is_home() || is_archive() || is_search() || is_tax() ) {
-			$layout = null;
-			$layout = $generate_settings['blog_layout_setting'];
+			$layout = generate_get_option( 'blog_layout_setting' );
 		}
 
 		return apply_filters( 'generate_sidebar_layout', $layout );
@@ -80,22 +66,14 @@ if ( ! function_exists( 'generate_get_footer_widgets' ) ) {
 	 * @return int The number of footer widgets.
 	 */
 	function generate_get_footer_widgets() {
-		global $post;
-		$generate_settings = wp_parse_args(
-			get_option( 'generate_settings', array() ),
-			generate_get_defaults()
-		);
+		$widgets = generate_get_option( 'footer_widget_setting' );
 
-		$widgets = $generate_settings['footer_widget_setting'];
+		if ( is_singular() ) {
+			$widgets_meta = get_post_meta( get_the_ID(), '_generate-footer-widget-meta', true );
 
-		$widgets_meta = ( isset( $post ) ) ? get_post_meta( $post->ID, '_generate-footer-widget-meta', true ) : '';
-
-		if ( ! is_singular() ) {
-			$widgets_meta = '';
-		}
-
-		if ( '' !== $widgets_meta && false !== $widgets_meta ) {
-			$widgets = $widgets_meta;
+			if ( $widgets_meta || '0' === $widgets_meta ) {
+				$widgets = $widgets_meta;
+			}
 		}
 
 		return apply_filters( 'generate_footer_widgets', $widgets );
@@ -110,17 +88,12 @@ if ( ! function_exists( 'generate_show_excerpt' ) ) {
 	function generate_show_excerpt() {
 		global $post;
 
-		$generate_settings = wp_parse_args(
-			get_option( 'generate_settings', array() ),
-			generate_get_defaults()
-		);
-
 		// Check to see if the more tag is being used.
 		$more_tag = apply_filters( 'generate_more_tag', strpos( $post->post_content, '<!--more-->' ) );
 
 		$format = ( false !== get_post_format() ) ? get_post_format() : 'standard';
 
-		$show_excerpt = ( 'excerpt' == $generate_settings['post_content'] ) ? true : false;
+		$show_excerpt = ( 'excerpt' === generate_get_option( 'post_content' ) ) ? true : false;
 
 		$show_excerpt = ( 'standard' !== $format ) ? false : $show_excerpt;
 
