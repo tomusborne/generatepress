@@ -1144,9 +1144,6 @@ ol.comment-list {
 
 /* =Start custom CSS
 ----------------------------------------------- */
-body {
-	font-size: 15px;
-}
 
 a,
 button,
@@ -1375,14 +1372,14 @@ h4, h5, h6 {
 	margin: 0;
 }
 
-div:not(.entry-content) .widget ul li {
+.widget ul li {
 	list-style-type: none;
 	position:relative;
 	padding-bottom: 5px;
 }
 
-div:not(.entry-content) .widget ul li ul li:before {
-	opacity:.7;
+.widget ul li ul li:before {
+	opacity: .7;
 }
 
 .widget .search-field {
@@ -1426,10 +1423,6 @@ div:not(.entry-content) .widget ul li ul li:before {
 
 .footer-widgets {
 	padding: 40px 0;
-}
-
-.inside-footer-widgets .inner-padding {
-	padding: 0 40px;
 }
 
 .site-info {
