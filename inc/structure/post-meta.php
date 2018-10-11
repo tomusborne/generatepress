@@ -253,7 +253,11 @@ if ( ! function_exists( 'generate_footer_meta' ) ) {
 	 * @since 1.3.30
 	 */
 	function generate_footer_meta() {
-		if ( 'post' == get_post_type() ) : ?>
+		$post_types = apply_filters( 'generate_footer_meta_post_types', array(
+			'post',
+		) );
+
+		if ( in_array( get_post_type(), $post_types ) ) : ?>
 			<footer class="entry-meta">
 				<?php
 				generate_entry_meta();
