@@ -233,7 +233,11 @@ if ( ! function_exists( 'generate_post_meta' ) ) {
 	 * @since 1.3.29
 	 */
 	function generate_post_meta() {
-		if ( 'post' == get_post_type() ) : ?>
+		$post_types = apply_filters( 'generate_entry_meta_post_types', array(
+			'post',
+		) );
+
+		if ( in_array( get_post_type(), $post_types ) ) : ?>
 			<div class="entry-meta">
 				<?php generate_posted_on(); ?>
 			</div><!-- .entry-meta -->
