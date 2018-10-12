@@ -560,10 +560,9 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 
 		$css->set_selector( '.main-navigation ul ul' );
 		$css->add_property( 'width', absint( $spacing_settings['sub_menu_width'] ), absint( $og_defaults['sub_menu_width'] ), 'px' );
-		$css->add_property( 'top', 'auto' ); // Added for compatibility purposes on 22/12/2016
 
 		$css->set_selector( '.navigation-search, .navigation-search input' );
-		$css->add_property( 'height', '100%' ); // Added to give browser caches a chance to clear
+		$css->add_property( 'height', absint( $spacing_settings['menu_item_height'] ), absint( $spacing_settings['menu_item_height'] ), 'px' ); // Added to give browser caches a chance to clear
 
 		$css->set_selector( '.rtl .menu-item-has-children .dropdown-menu-toggle' );
 		$css->add_property( 'padding-left', absint( $spacing_settings['menu_item'] ), false, 'px' );
