@@ -570,6 +570,9 @@ a:focus {
 .main-navigation a {
 	display: block;
 	text-decoration: none;
+	font-weight: normal;
+	text-transform: none;
+	font-size: 15px;
 }
 
 .main-navigation ul li a {
@@ -591,55 +594,10 @@ a:focus {
 	float: right !important;
 }
 
-.main-navigation .main-nav ul li a,
-.main-navigation .mobile-bar-items a {
+.main-navigation .main-nav ul li a {
 	padding-left: 20px;
 	padding-right: 20px;
 	line-height: 60px;
-}
-
-.main-navigation a,
-.menu-toggle {
-	font-weight: normal;
-	text-transform: none;
-	font-size: 15px;
-}
-
-/*--------------------------------------------------------------
-## Mobile Menu
---------------------------------------------------------------*/
-
-.menu-toggle,
-.mobile-bar-items,
-.sidebar-nav-mobile {
-	display: none;
-}
-
-.menu-toggle {
-	padding: 0 20px;
-	line-height: 60px;
-	margin: 0;
-}
-
-.menu-toggle:before {
-	content: "\f0c9";
-	font-family: GeneratePress;
-
-	width: 1.28571429em;
-	text-align: center;
-	display: inline-block;
-}
-
-.toggled .menu-toggle:before {
-	content: "\f00d";
-}
-
-.menu-toggle .mobile-menu {
-	padding-left: 3px;
-}
-
-.menu-toggle .mobile-menu:empty {
-	display: none;
 }
 
 /*--------------------------------------------------------------
