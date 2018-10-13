@@ -150,18 +150,18 @@ button,
 input,
 select,
 textarea {
-    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-weight: normal;
-    text-transform: none;
-    font-size: 17px;
+	font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-weight: normal;
+	text-transform: none;
+	font-size: 17px;
 }
 
 body {
-    line-height: 1.5;
+	line-height: 1.5;
 }
 
 p {
-    margin-bottom: 1.5em;
+	margin-bottom: 1.5em;
 }
 
 h1,
@@ -201,15 +201,15 @@ blockquote p:last-child {
 }
 
 table, th, td {
-    border: 1px solid rgba(0, 0, 0, 0.1);
+	border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 table {
-    border-collapse: separate;
-    border-spacing: 0;
-    border-width: 1px 0 0 1px;
-    margin: 0 0 1.5em;
-    width: 100%;
+	border-collapse: separate;
+	border-spacing: 0;
+	border-width: 1px 0 0 1px;
+	margin: 0 0 1.5em;
+	width: 100%;
 }
 
 th,
@@ -218,11 +218,11 @@ td {
 }
 
 th {
-    border-width: 0 1px 1px 0;
+	border-width: 0 1px 1px 0;
 }
 
 td {
-    border-width: 0 1px 1px 0;
+	border-width: 0 1px 1px 0;
 }
 
 hr {
@@ -248,8 +248,8 @@ h1 {
 	font-size: 40px;
 	margin-bottom: 20px;
 	line-height: 1.2em;
-    font-weight: 300;
-    text-transform: none;
+	font-weight: 300;
+	text-transform: none;
 }
 
 h2 {
@@ -257,7 +257,7 @@ h2 {
 	margin-bottom: 20px;
 	line-height: 1.2em;
 	font-weight: 300;
-    text-transform: none;
+	text-transform: none;
 }
 
 h3 {
@@ -265,7 +265,7 @@ h3 {
 	margin-bottom: 20px;
 	line-height: 1.2em;
 	font-weight: normal;
-    text-transform: none;
+	text-transform: none;
 }
 
 h4, h5, h6 {
@@ -495,8 +495,8 @@ a:focus {
 .size-large,
 .size-medium,
 .size-thumbnail {
-    max-width: 100%;
-    height: auto;
+	max-width: 100%;
+	height: auto;
 }
 
 /*--------------------------------------------------------------
@@ -593,16 +593,16 @@ a:focus {
 
 .main-navigation .main-nav ul li a,
 .main-navigation .mobile-bar-items a {
-    padding-left: 20px;
-    padding-right: 20px;
-    line-height: 60px;
+	padding-left: 20px;
+	padding-right: 20px;
+	line-height: 60px;
 }
 
 .main-navigation a,
 .menu-toggle {
-    font-weight: normal;
-    text-transform: none;
-    font-size: 15px;
+	font-weight: normal;
+	text-transform: none;
+	font-size: 15px;
 }
 
 /*--------------------------------------------------------------
@@ -738,7 +738,7 @@ li.search-item.active {
 
 .navigation-search,
 .navigation-search input {
-    height: 60px;
+	height: 60px;
 }
 
 /*--------------------------------------------------------------
@@ -778,7 +778,7 @@ li.search-item.active {
 }
 
 .main-navigation.sub-menu-left .sub-menu {
-    right: 0;
+	right: 0;
 }
 
 .dropdown-hover .main-navigation:not(.toggled) ul li:hover > ul,
@@ -891,7 +891,7 @@ ul ul .dropdown-menu-toggle:before {
 
 .dropdown-hover .sub-menu-left ul ul .dropdown-menu-toggle {
 	-webkit-transform: rotateY(180deg);
-    transform: rotateY(180deg);
+	transform: rotateY(180deg);
 }
 
 .dropdown-click .menu-item-has-children.sfHover > a .dropdown-menu-toggle:before {
@@ -973,22 +973,6 @@ ul ul .dropdown-menu-toggle:before {
 	clear: left;
 }
 
-.nav-float-left .inside-header .site-branding,
-.nav-float-left .inside-header .site-logo {
-	float: right;
-	clear: right;
-}
-
-.nav-float-left .inside-header:after {
-	clear: both;
-	content: '';
-	display: table;
-}
-
-.nav-float-right .inside-header .site-branding {
-	display: inline-block;
-}
-
 .nav-aligned-right .main-navigation .menu > li,
 .nav-aligned-center .main-navigation .menu > li {
 	float: none;
@@ -1059,7 +1043,7 @@ ul ul .dropdown-menu-toggle:before {
 }
 
 .inside-header {
-    padding: 40px;
+	padding: 40px;
 }
 
 .main-title {
@@ -1067,16 +1051,16 @@ ul ul .dropdown-menu-toggle:before {
 	font-size: 45px;
 	line-height: 1.2em;
 	word-wrap: break-word;
-    font-weight: bold;
-    text-transform: none;
+	font-weight: bold;
+	text-transform: none;
 }
 
 .site-description {
 	margin: 0;
 	line-height: 1.5;
-    font-weight: normal;
-    text-transform: none;
-    font-size: 15px;
+	font-weight: normal;
+	text-transform: none;
+	font-size: 15px;
 }
 
 .site-logo {
@@ -1124,6 +1108,22 @@ ul ul .dropdown-menu-toggle:before {
 	top: -10px;
 }
 
+.nav-float-left .inside-header .site-branding,
+.nav-float-left .inside-header .site-logo {
+	float: right;
+	clear: right;
+}
+
+.nav-float-left .inside-header:after {
+	clear: both;
+	content: '';
+	display: table;
+}
+
+.nav-float-right .inside-header .site-branding {
+	display: inline-block;
+}
+
 .header-widget .widget-title {
 	margin-bottom: 15px;
 }
@@ -1167,7 +1167,7 @@ ul ul .dropdown-menu-toggle:before {
 .archive .format-status .entry-header,
 .blog .format-status .entry-meta,
 .archive .format-status .entry-meta {
-    display: none;
+	display: none;
 }
 
 .blog .format-aside .entry-content,
@@ -1259,14 +1259,8 @@ footer.entry-meta {
 	display: block;
 }
 
-.taxonomy-description p:last-child {
-	margin-bottom: 0;
-}
-
-.read-more-container {
-	margin-bottom: 0;
-}
-
+.taxonomy-description p:last-child,
+.read-more-container,
 .page-content > *:last-child,
 .entry-content > *:last-child,
 .entry-summary > *:last-child {
@@ -1512,7 +1506,7 @@ ol.comment-list {
 
 .sidebar .widget,
 .footer-widgets .widget {
-    font-size: 17px;
+	font-size: 17px;
 }
 
 .widget select {
@@ -1524,7 +1518,7 @@ ol.comment-list {
 }
 
 .widget_categories .children {
-    margin-left: 1.5em;
+	margin-left: 1.5em;
 	padding-top: 5px;
 }
 
@@ -1545,8 +1539,8 @@ ol.comment-list {
 	margin-bottom: 30px;
 	font-size: 20px;
 	line-height: 1.5;
-    font-weight: normal;
-    text-transform: none;
+	font-weight: normal;
+	text-transform: none;
 }
 
 .widget ul,
@@ -1654,16 +1648,16 @@ ol.comment-list {
 
 .one-container.right-sidebar .site-main,
 .one-container.both-right .site-main {
-    margin-right: 40px;
+	margin-right: 40px;
 }
 
 .one-container.left-sidebar .site-main,
 .one-container.both-left .site-main {
-    margin-left: 40px;
+	margin-left: 40px;
 }
 
 .one-container.both-sidebars .site-main {
-    margin: 0px 40px 0px 40px;
+	margin: 0px 40px 0px 40px;
 }
 
 /*--------------------------------------------------------------
@@ -1676,68 +1670,68 @@ ol.comment-list {
 .separate-containers .paging-navigation,
 .one-container .site-content,
 .inside-page-header {
-    padding: 40px;
+	padding: 40px;
 }
 
 .separate-containers .widget,
 .separate-containers .site-main > *,
 .separate-containers .page-header,
 .widget-area .main-navigation {
-    margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .right-sidebar.separate-containers .site-main {
-    margin: 20px 20px 20px 0px;
+	margin: 20px 20px 20px 0px;
 }
 
 .left-sidebar.separate-containers .site-main {
-    margin: 20px 0px 20px 20px;
+	margin: 20px 0px 20px 20px;
 }
 
 .both-sidebars.separate-containers .site-main {
-    margin: 20px;
+	margin: 20px;
 }
 
 .both-right.separate-containers .site-main {
-    margin: 20px 20px 20px 0px;
+	margin: 20px 20px 20px 0px;
 }
 
 .both-right.separate-containers .inside-left-sidebar {
-    margin-right: 10px;
+	margin-right: 10px;
 }
 
 .both-right.separate-containers .inside-right-sidebar {
-    margin-left: 10px;
+	margin-left: 10px;
 }
 
 .both-left.separate-containers .site-main {
-    margin: 20px 0px 20px 20px;
+	margin: 20px 0px 20px 20px;
 }
 
 .both-left.separate-containers .inside-left-sidebar {
-    margin-right: 10px;
+	margin-right: 10px;
 }
 
 .both-left.separate-containers .inside-right-sidebar {
-    margin-left: 10px;
+	margin-left: 10px;
 }
 
 .separate-containers .site-main {
-    margin-top: 20px;
-    margin-bottom: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 .separate-containers .page-header-image,
 .separate-containers .page-header-contained,
 .separate-containers .page-header-image-single,
 .separate-containers .page-header-content-single {
-    margin-top: 20px;
+	margin-top: 20px;
 }
 
 .separate-containers .inside-right-sidebar,
 .separate-containers .inside-left-sidebar {
-    margin-top: 20px;
-    margin-bottom: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 /*--------------------------------------------------------------
@@ -1771,21 +1765,21 @@ ol.comment-list {
 --------------------------------------------------------------*/
 
 .footer-widgets {
-    padding: 40px;
+	padding: 40px;
 }
 
 .site-info {
 	text-align: center;
 	padding: 20px;
-    font-size: 15px;
+	font-size: 15px;
 }
 
 .site-footer .footer-widgets-container .inner-padding {
-    padding: 0px 0px 0px 40px;
+	padding: 0px 0px 0px 40px;
 }
 
 .site-footer .footer-widgets-container .inside-footer-widgets {
-    margin-left: -40px;
+	margin-left: -40px;
 }
 
 /*--------------------------------------------------------------
@@ -1890,13 +1884,13 @@ ol.comment-list {
 --------------------------------------------------------------*/
 
 .top-bar {
-    font-weight: normal;
-    text-transform: none;
-    font-size: 13px;
+	font-weight: normal;
+	text-transform: none;
+	font-size: 13px;
 }
 
 .inside-top-bar {
-    padding: 10px;
+	padding: 10px;
 }
 
 .top-bar .inside-top-bar .widget {
@@ -1941,7 +1935,7 @@ ol.comment-list {
 }
 
 .top-bar-align-center .inside-top-bar .widget:first-child:last-child {
-    display: block
+	display: block
 }
 
 .top-bar .widget-title {
