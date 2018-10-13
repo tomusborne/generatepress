@@ -78,10 +78,6 @@ button.menu-toggle {
 	line-height: 60px;
 }
 
-.main-navigation.toggled ul ul {
-	transition: 0s;
-}
-
 nav.toggled ul ul.sub-menu {
 	width: 100%;
 }
@@ -96,6 +92,7 @@ nav.toggled ul ul.sub-menu {
 }
 
 .main-navigation.toggled ul ul {
+	transition: 0s;
 	visibility: hidden;
 }
 
