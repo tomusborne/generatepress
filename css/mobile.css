@@ -78,10 +78,6 @@ button.menu-toggle {
 	line-height: 60px;
 }
 
-.mobile-bar-items .search-item.active {
-	transition: opacity 300ms ease-in-out;
-}
-
 .main-navigation.toggled ul ul {
 	transition: 0s;
 }
@@ -103,10 +99,6 @@ nav.toggled ul ul.sub-menu {
 	visibility: hidden;
 }
 
-.main-navigation.toggled ul ul.toggled-on {
-	visibility: visible;
-}
-
 .main-navigation.toggled .main-nav > ul {
 	display: block;
 }
@@ -121,6 +113,7 @@ nav.toggled ul ul.sub-menu {
 	height: auto;
 	opacity: 1;
 	display: block;
+	visibility: visible;
 }
 
 .main-navigation.toggled .main-nav li {
@@ -199,11 +192,7 @@ nav.toggled ul ul.sub-menu {
 		margin-bottom: 20px;
 	}
 
-	.inside-footer-widgets > div:not(:last-child) {
-		margin-bottom: 40px;
-	}
-
-	.fluid-header .inside-header {
+	.site-header {
 		text-align: center;
 	}
 
@@ -330,6 +319,10 @@ nav.toggled ul ul.sub-menu {
 		float: none;
 		display: inline-block;
 		padding: 5px 0;
+	}
+
+	.inside-footer-widgets > div:not(:last-child) {
+		margin-bottom: 40px;
 	}
 
 	.site-footer .footer-widgets .footer-widgets-container .inside-footer-widgets {
