@@ -178,17 +178,65 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 								 * @since 0.1
 								 */
 								do_action( 'generate_options_items' );
+
+								$typography_section = 'customize.php?autofocus[section]=font_section';
+								$colors_section = 'customize.php?autofocus[section]=body_section';
+
+								if ( defined( 'GP_PREMIUM_VERSION' ) ) {
+									$typography_section = 'customize.php?autofocus[panel]=generate_typography_panel';
+									$colors_section = 'customize.php?autofocus[panel]=generate_colors_panel';
+								}
+
+								$quick_settings = array(
+									'logo' => array(
+										'title' => __( 'Upload Logo', 'generatepress' ),
+										'icon' => 'dashicons-format-image',
+										'url' => admin_url( 'customize.php?autofocus[control]=custom_logo' ),
+									),
+									'typography' => array(
+										'title' => __( 'Customize Fonts', 'generatepress' ),
+										'icon' => 'dashicons-editor-textcolor',
+										'url' => admin_url( $typography_section ),
+									),
+									'colors' => array(
+										'title' => __( 'Customize Colors', 'generatepress' ),
+										'icon' => 'dashicons-admin-customizer',
+										'url' => admin_url( $colors_section ),
+									),
+									'layout' => array(
+										'title' => __( 'Layout Options', 'generatepress' ),
+										'icon' => 'dashicons-layout',
+										'url' => admin_url( 'customize.php?autofocus[panel]=generate_layout_panel' ),
+									),
+									'all' => array(
+										'title' => __( 'All Options', 'generatepress' ),
+										'icon' => 'dashicons-admin-generic',
+										'url' => admin_url( 'customize.php' ),
+									),
+								);
 								?>
 							</div>
 
 							<div class="generate-right-sidebar grid-30" style="padding-right: 0;">
-								<div class="customize-button hide-on-mobile">
-									<?php
-									printf( '<a id="generate_customize_button" class="button button-primary" href="%1$s">%2$s</a>',
-										esc_url( admin_url( 'customize.php' ) ),
-										esc_html__( 'Customize', 'generatepress' )
-									);
-									?>
+								<div class="postbox generate-metabox start-customizing">
+									<h3 class="hndle"><?php esc_html_e( 'Start Customizing', 'generatepress' ); ?></h3>
+									<div class="inside">
+										<ul>
+											<?php
+											foreach ( $quick_settings as $key => $data ) {
+												printf(
+													'<li><span class="dashicons %1$s"></span> <a href="%2$s">%3$s</a></li>',
+													esc_attr( $data['icon'] ),
+													esc_url( $data['url'] ),
+													esc_html( $data['title'] )
+												);
+											}
+											?>
+										</ul>
+
+										<p><?php _e( 'Want to learn more about the theme? Check out our extensive documentation.', 'generatepress' ); ?></p>
+										<a href="https://docs.generatepress.com"><?php _e( 'Visit documentation', 'generatepress' ); ?></a>
+									</div>
 								</div>
 
 								<?php
@@ -198,21 +246,7 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 								 * @since 0.1
 								 */
 								do_action( 'generate_admin_right_panel' );
-
-								if ( ! defined( 'GP_PREMIUM_VERSION' ) ) : ?>
-									<div class="postbox generate-metabox popular-articles">
-										<h3 class="hndle"><a href="https://docs.generatepress.com" target="_blank"><?php esc_html_e( 'View all', 'generatepress' ); ?></a><?php esc_html_e( 'Documentation', 'generatepress' ); ?></h3>
-										<div class="inside">
-											<ul>
-												<li><a href="https://docs.generatepress.com/article/adding-header-logo/" target="_blank"><?php esc_html_e( 'Adding a Logo', 'generatepress' ); ?></a></li>
-												<li><a href="https://docs.generatepress.com/article/sidebar-layout/" target="_blank"><?php esc_html_e( 'Sidebar Layout', 'generatepress' ); ?></a></li>
-												<li><a href="https://docs.generatepress.com/article/container-width/" target="_blank"><?php esc_html_e( 'Container Width', 'generatepress' ); ?></a></li>
-												<li><a href="https://docs.generatepress.com/article/navigation-location/" target="_blank"><?php esc_html_e( 'Navigation Location', 'generatepress' ); ?></a></li>
-												<li><a href="https://docs.generatepress.com/article/footer-widgets/" target="_blank"><?php esc_html_e( 'Footer Widgets', 'generatepress' ); ?></a></li>
-											</ul>
-										</div>
-									</div>
-								<?php endif; ?>
+								?>
 
 								<div class="postbox generate-metabox" id="gen-delete">
 									<h3 class="hndle"><?php esc_html_e( 'Reset Settings', 'generatepress' );?></h3>

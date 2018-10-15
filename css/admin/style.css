@@ -175,6 +175,23 @@
 	margin-bottom: 0;
 }
 
+.start-customizing li {
+	margin-bottom: 15px;
+}
+
+.start-customizing li span {
+	padding-right: 5px;
+}
+
+.start-customizing ul {
+	border-bottom: 1px solid #ddd;
+}
+
+.gp-container .postbox > h3.hndle {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
 @media (min-width: 768px) {
 	.hide-on-desktop {
 		display: none;
