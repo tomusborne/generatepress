@@ -921,7 +921,7 @@ ul ul .dropdown-menu-toggle:before {
 --------------------------------------------------------------*/
 
 .nav-float-right .inside-header .main-navigation {
-	float:right;
+	float: right;
 	clear: right;
 }
 
@@ -1459,6 +1459,7 @@ ol.comment-list {
 
 .widget {
 	margin: 0 0 30px;
+	box-sizing: border-box;
 }
 
 .sidebar .widget,
@@ -1488,10 +1489,6 @@ ol.comment-list {
 	margin-bottom: 0;
 }
 
-.widget {
-	box-sizing: border-box;
-}
-
 .widget-title {
 	margin-bottom: 30px;
 	font-size: 20px;
@@ -1509,10 +1506,6 @@ ol.comment-list {
 	list-style-type: none;
 	position:relative;
 	padding-bottom: 5px;
-}
-
-.widget ul li ul li:before {
-	opacity: .7;
 }
 
 .widget .search-field {
@@ -1580,14 +1573,7 @@ ol.comment-list {
 }
 
 .one-container .site-main {
-	margin-top: 0;
-	margin-bottom: 0;
-}
-
-.one-container .site-main {
-	margin-top: 0;
-	margin-left: 0;
-	margin-right: 0;
+	margin: 0;
 }
 
 .one-container .inside-right-sidebar,
