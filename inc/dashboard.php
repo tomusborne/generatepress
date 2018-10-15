@@ -212,16 +212,15 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 								<?php endif; ?>
 
 								<div class="postbox generate-metabox" id="gen-delete">
-									<h3 class="hndle"><?php esc_html_e( 'Delete Customizer Settings', 'generatepress' );?></h3>
+									<h3 class="hndle"><?php esc_html_e( 'Reset Settings', 'generatepress' );?></h3>
 									<div class="inside">
-										<p><?php esc_html_e( 'Deleting your settings can not be undone.', 'generatepress' ); ?></p>
 										<form method="post">
 											<p><input type="hidden" name="generate_reset_customizer" value="generate_reset_customizer_settings" /></p>
 											<p>
 												<?php
 												$warning = 'return confirm("' . esc_html__( 'Warning: This will delete your settings.', 'generatepress' ) . '")';
 												wp_nonce_field( 'generate_reset_customizer_nonce', 'generate_reset_customizer_nonce' );
-												submit_button( esc_attr__( 'Delete Default Settings', 'generatepress' ), 'button', 'submit', false,
+												submit_button( esc_attr__( 'Reset', 'generatepress' ), 'button-primary', 'submit', false,
 													array(
 														'onclick' => esc_js( $warning )
 													)

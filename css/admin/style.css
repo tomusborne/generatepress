@@ -171,6 +171,10 @@
 	font-size:13px;
 }
 
+#gen-delete p:last-child {
+	margin-bottom: 0;
+}
+
 @media (min-width: 768px) {
 	.hide-on-desktop {
 		display: none;
