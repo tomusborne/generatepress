@@ -133,11 +133,6 @@ q:after {
 	content: "";
 }
 
-blockquote,
-q {
-	quotes: "" "";
-}
-
 a {
 	background-color: transparent;
 }
@@ -318,10 +313,6 @@ cite,
 em,
 i {
 	font-style: italic;
-}
-
-blockquote {
-	margin: 0 1.5em 1.5em;
 }
 
 address {
