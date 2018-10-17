@@ -337,6 +337,9 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->set_selector( 'p' );
 		$css->add_property( 'margin-bottom', floatval( $generate_settings['paragraph_margin'] ), $og_defaults['paragraph_margin'], 'em' );
 
+		$css->set_selector( '[class*="wp-block-"]:not(:last-child):not(.wp-block-column)' );
+		$css->add_property( 'margin-bottom', floatval( $generate_settings['paragraph_margin'] ), false, 'em' );
+
 		$css->set_selector( '.top-bar' );
 		$css->add_property( 'font-family', $og_defaults['font_top_bar'] !== $generate_settings['font_top_bar'] ? $top_bar_family : null );
 		$css->add_property( 'font-weight', esc_attr( $generate_settings['top_bar_font_weight'] ), $og_defaults['top_bar_font_weight'] );
