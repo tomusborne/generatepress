@@ -182,9 +182,14 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 								$typography_section = 'customize.php?autofocus[section]=font_section';
 								$colors_section = 'customize.php?autofocus[section]=body_section';
 
-								if ( defined( 'GP_PREMIUM_VERSION' ) ) {
-									$typography_section = 'customize.php?autofocus[panel]=generate_typography_panel';
-									$colors_section = 'customize.php?autofocus[panel]=generate_colors_panel';
+								if ( function_exists( 'generatepress_is_module_active' ) ) {
+									if ( generatepress_is_module_active( 'generate_package_typography', 'GENERATE_TYPOGRAPHY' ) ) {
+										$typography_section = 'customize.php?autofocus[panel]=generate_typography_panel';
+									}
+
+									if ( generatepress_is_module_active( 'generate_package_colors', 'GENERATE_COLORS' ) ) {
+										$colors_section = 'customize.php?autofocus[panel]=generate_colors_panel';
+									}
 								}
 
 								$quick_settings = array(
@@ -235,7 +240,7 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 										</ul>
 
 										<p><?php _e( 'Want to learn more about the theme? Check out our extensive documentation.', 'generatepress' ); ?></p>
-										<a href="https://docs.generatepress.com"><?php _e( 'Visit documentation', 'generatepress' ); ?></a>
+										<a href="https://docs.generatepress.com"><?php _e( 'Visit documentation &rarr;', 'generatepress' ); ?></a>
 									</div>
 								</div>
 
