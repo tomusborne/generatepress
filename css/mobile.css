@@ -265,6 +265,11 @@ nav.toggled ul ul.sub-menu {
 		margin-right: auto;
 	}
 
+	.entry-content .alignwide {
+		margin-left: -20px;
+		margin-right: -20px;
+	}
+
 	.post-image-aligned-left .post-image,
 	.post-image-aligned-right .post-image {
 		float: none;

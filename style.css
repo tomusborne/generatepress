@@ -509,6 +509,19 @@ a:focus {
 	height: auto;
 }
 
+.entry-content .alignfull {
+	margin-left: calc( -100vw / 2 + 100% / 2 );
+	margin-right: calc( -100vw / 2 + 100% / 2 );
+	max-width: 100vw;
+	width: auto;
+}
+
+.entry-content .alignwide {
+	margin-left: -100px;
+	margin-right: -100px;
+	max-width: 1024px;
+}
+
 /*--------------------------------------------------------------
 # Accessibility
 --------------------------------------------------------------*/
