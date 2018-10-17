@@ -644,7 +644,7 @@ function generate_no_cache_dynamic_css() {
 	}
 
 	if ( 'no-sidebar' === generate_get_layout() && generate_get_option( 'content_width' ) ) {
-		$css->set_selector( '.no-sidebar .inside-article > *, .no-sidebar #comments, .no-sidebar .paging-navigation' );
+		$css->set_selector( '.no-sidebar:not(.full-width-content):not(.contained-content) .inside-article > *, .no-sidebar:not(.full-width-content):not(.contained-content) #comments, .no-sidebar:not(.full-width-content):not(.contained-content) .paging-navigation' );
 		$css->add_property( 'max-width', absint( generate_get_option( 'content_width' ) ), false, 'px' );
 		$css->add_property( 'margin-left', 'auto' );
 		$css->add_property( 'margin-right', 'auto' );
