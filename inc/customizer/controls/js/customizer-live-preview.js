@@ -190,7 +190,7 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 	 */
 	generatepress_typography_live_update( 'body_font_size', 'body, button, input, select, textarea', 'font-size', 'px' );
 	generatepress_typography_live_update( 'body_line_height', 'body', 'line-height', '' );
-	generatepress_typography_live_update( 'paragraph_margin', 'p', 'margin-bottom', 'em' );
+	generatepress_typography_live_update( 'paragraph_margin', 'p, [class*="wp-block-"]:not(:last-child):not(.wp-block-column)', 'margin-bottom', 'em' );
 	generatepress_typography_live_update( 'body_font_weight', 'body, button, input, select, textarea', 'font-weight' );
 	generatepress_typography_live_update( 'body_font_transform', 'body, button, input, select, textarea', 'text-transform' );
 
