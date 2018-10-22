@@ -645,6 +645,7 @@ a:focus {
 	top: 0;
 	right: 0;
 	left: auto;
+	margin: 0;
 }
 
 .main-navigation li.search-item {
@@ -1927,6 +1928,7 @@ ol.comment-list {
 
 .generate-back-to-top .screen-reader-text {
 	left: 0;
+	margin: 0;
 }
 
 /*--------------------------------------------------------------
