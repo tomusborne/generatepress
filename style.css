@@ -473,9 +473,16 @@ a:focus {
 	text-decoration: none;
 }
 
-.button {
+.button,
+.wp-block-button .wp-block-button__link {
 	padding: 10px 20px;
 	display: inline-block;
+}
+
+.wp-block-button .wp-block-button__link {
+	font-size: inherit;
+	line-height: inherit;
+	border-radius: 0;
 }
 
 /*--------------------------------------------------------------
