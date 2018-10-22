@@ -831,6 +831,7 @@ li.search-item.active {
 	padding-bottom: 0;
 	margin: 0;
 	-webkit-appearance: none;
+	font-family: inherit;
 }
 
 .menu-item-has-children ul .dropdown-menu-toggle {
@@ -866,7 +867,7 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 	text-align: left;
 }
 
-ul ul .dropdown-menu-toggle:before {
+nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
 	text-align: right;
 }
 
