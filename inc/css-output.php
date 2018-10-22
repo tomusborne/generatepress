@@ -498,9 +498,21 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header' );
 		$css->add_property( 'padding', generate_padding_css( $spacing_settings['content_top'], $spacing_settings['content_right'], $spacing_settings['content_bottom'], $spacing_settings['content_left'] ), generate_padding_css( $og_defaults['content_top'], $og_defaults['content_right'], $og_defaults['content_bottom'], $og_defaults['content_left'] ) );
 
+		$content_padding = $spacing_settings['content_right'] + $spacing_settings['content_left'];
+		$css->set_selector( '.entry-content .alignwide' );
+		$css->add_property( 'margin-left', '-' . absint( $spacing_settings['content_left'] ) . 'px' );
+		$css->add_property( 'width', 'calc(100% + ' . absint( $content_padding ) . 'px)' );
+		$css->add_property( 'max-width', 'calc(100% + ' . absint( $content_padding ) . 'px)' );
+
 		$css->start_media_query( apply_filters( 'generate_mobile_media_query', '(max-width:768px)' ) );
 			$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header' );
 			$css->add_property( 'padding', generate_padding_css( $spacing_settings['mobile_content_top'], $spacing_settings['mobile_content_right'], $spacing_settings['mobile_content_bottom'], $spacing_settings['mobile_content_left'] ) );
+
+			$mobile_content_padding = $spacing_settings['mobile_content_right'] + $spacing_settings['mobile_content_left'];
+			$css->set_selector( '.entry-content .alignwide' );
+			$css->add_property( 'margin-left', '-' . absint( $spacing_settings['mobile_content_left'] ) . 'px' );
+			$css->add_property( 'width', 'calc(100% + ' . absint( $mobile_content_padding ) . 'px)' );
+			$css->add_property( 'max-width', 'calc(100% + ' . absint( $mobile_content_padding ) . 'px)' );
 		$css->stop_media_query();
 
 		$css->set_selector( '.one-container.right-sidebar .site-main,.one-container.both-right .site-main' );
@@ -644,6 +656,14 @@ function generate_no_cache_dynamic_css() {
 				$css->set_selector( '.single .entry-content' )->add_property( 'margin-top', '0px' );
 			}
 		}
+
+		$spacing_settings = wp_parse_args(
+			get_option( 'generate_spacing_settings', array() ),
+			generate_spacing_get_defaults()
+		);
+
+		$css->set_selector( '.entry-content > .alignwide:first-child, .entry-content > .alignfull:first-child' );
+		$css->add_property( 'margin-top', '-' . absint( $spacing_settings['content_top'] ), false, 'px' );
 	}
 
 	if ( 'no-sidebar' === generate_get_layout() && generate_get_option( 'content_width' ) ) {
