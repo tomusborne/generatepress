@@ -337,7 +337,7 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->set_selector( 'p' );
 		$css->add_property( 'margin-bottom', floatval( $generate_settings['paragraph_margin'] ), $og_defaults['paragraph_margin'], 'em' );
 
-		$css->set_selector( '[class*="wp-block-"]:not(:last-child):not(.wp-block-column)' );
+		$css->set_selector( '.entry-content > [class*="wp-block-"]:not(:last-child)' );
 		$css->add_property( 'margin-bottom', floatval( $generate_settings['paragraph_margin'] ), false, 'em' );
 
 		$css->set_selector( '.top-bar' );
