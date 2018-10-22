@@ -205,6 +205,7 @@ if ( ! function_exists( 'generate_get_default_fonts' ) ) {
 			'heading_1_transform' => 'none',
 			'heading_1_font_size' => '40',
 			'heading_1_line_height' => '1.2', // em
+			'heading_1_margin_bottom' => '20',
 			'mobile_heading_1_font_size' => '30',
 			'font_heading_2' => 'inherit',
 			'font_heading_2_category' => '',
@@ -213,6 +214,7 @@ if ( ! function_exists( 'generate_get_default_fonts' ) ) {
 			'heading_2_transform' => 'none',
 			'heading_2_font_size' => '30',
 			'heading_2_line_height' => '1.2', // em
+			'heading_2_margin_bottom' => '20',
 			'mobile_heading_2_font_size' => '25',
 			'font_heading_3' => 'inherit',
 			'font_heading_3_category' => '',
@@ -221,6 +223,7 @@ if ( ! function_exists( 'generate_get_default_fonts' ) ) {
 			'heading_3_transform' => 'none',
 			'heading_3_font_size' => '20',
 			'heading_3_line_height' => '1.2', // em
+			'heading_3_margin_bottom' => '20',
 			'font_heading_4' => 'inherit',
 			'font_heading_4_category' => '',
 			'font_heading_4_variants' => '',

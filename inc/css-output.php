@@ -392,6 +392,8 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->add_property( 'text-transform', esc_attr( $generate_settings['heading_1_transform'] ), $og_defaults['heading_1_transform'] );
 		$css->add_property( 'font-size', absint( $generate_settings['heading_1_font_size'] ), $og_defaults['heading_1_font_size'], 'px' );
 		$css->add_property( 'line-height', floatval( $generate_settings['heading_1_line_height'] ), $og_defaults['heading_1_line_height'], 'em' );
+		$css->add_property( 'margin-bottom', floatval( $generate_settings['heading_1_margin_bottom'] ), $og_defaults['heading_1_margin_bottom'], 'px' );
+
 
 		$css->set_selector( 'h2' );
 		$css->add_property( 'font-family', $og_defaults['font_heading_2'] !== $generate_settings['font_heading_2'] ? $h2_family : null );
@@ -399,6 +401,7 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->add_property( 'text-transform', esc_attr( $generate_settings['heading_2_transform'] ), $og_defaults['heading_2_transform'] );
 		$css->add_property( 'font-size', absint( $generate_settings['heading_2_font_size'] ), $og_defaults['heading_2_font_size'], 'px' );
 		$css->add_property( 'line-height', floatval( $generate_settings['heading_2_line_height'] ), $og_defaults['heading_2_line_height'], 'em' );
+		$css->add_property( 'margin-bottom', floatval( $generate_settings['heading_2_margin_bottom'] ), $og_defaults['heading_2_margin_bottom'], 'px' );
 
 		$css->set_selector( 'h3' );
 		$css->add_property( 'font-family', $og_defaults['font_heading_3'] !== $generate_settings['font_heading_3'] ? $h3_family : null );
@@ -406,6 +409,7 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->add_property( 'text-transform', esc_attr( $generate_settings['heading_3_transform'] ), $og_defaults['heading_3_transform'] );
 		$css->add_property( 'font-size', absint( $generate_settings['heading_3_font_size'] ), $og_defaults['heading_3_font_size'], 'px' );
 		$css->add_property( 'line-height', floatval( $generate_settings['heading_3_line_height'] ), $og_defaults['heading_3_line_height'], 'em' );
+		$css->add_property( 'margin-bottom', floatval( $generate_settings['heading_3_margin_bottom'] ), $og_defaults['heading_3_margin_bottom'], 'px' );
 
 		$css->set_selector( 'h4' );
 		$css->add_property( 'font-family', $og_defaults['font_heading_4'] !== $generate_settings['font_heading_4'] ? $h4_family : null );
