@@ -97,23 +97,35 @@ body .wp-block-separator:not(.is-style-wide):not(.is-style-dots) {
 # Content Title
 --------------------------------------------------------------*/
 
+button.disable-content-title {
+	position: absolute;
+	right: 0;
+	font-size: 30px;
+	line-height: 30px;
+	top: calc(50% - 15px);
+	opacity: 0.4;
+	background: none;
+	border: none;
+	cursor: pointer;
+	display: none;
+}
+
+.editor-post-title__block:hover button.disable-content-title {
+	display: block;
+}
+
+button.disable-content-title:before {
+	font-family: dashicons;
+}
+
+body:not(.content-title-hidden) button.disable-content-title:before {
+	content: "\f530";
+}
+
+.content-title-hidden button.disable-content-title:before {
+	content: "\f177";
+}
+
 .content-title-hidden .editor-post-title textarea {
 	opacity: 0.4;
-}
-
-.content-title-hidden .editor-post-title__block:before {
-    font-family: dashicons;
-    content: "\f530";
-    position: absolute;
-    left: -25px;
-    font-size: 30px;
-    top: calc(50% - 15px);
-    opacity: 0.4;
-}
-
-@media (max-width: 700px) {
-	.content-title-hidden .editor-post-title__block:before {
-		left: auto;
-		right: 0;
-	}
 }

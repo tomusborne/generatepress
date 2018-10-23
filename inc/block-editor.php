@@ -84,6 +84,8 @@ function generate_enqueue_backend_block_editor_assets() {
 		'right_sidebar_width' => apply_filters( 'generate_right_sidebar_width', '25' ),
 		'left_sidebar_width' => apply_filters( 'generate_left_sidebar_width', '25' ),
 		'content_title' => generate_show_title() ? 'true' : 'false',
+		'disable_content_title' => esc_html( 'Disable Content Title', 'generatepress' ),
+		'show_content_title' => esc_html( 'Show Content Title', 'generatepress' ),
 	) );
 }
 
