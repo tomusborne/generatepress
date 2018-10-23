@@ -79,6 +79,7 @@ function generate_enqueue_backend_block_editor_assets() {
 
 	wp_localize_script( 'generate-block-editor-scripts', 'generate_block_editor', array(
 		'content_width' => generate_get_option( 'content_width' ),
+		'saved_content_width' => generate_get_block_editor_content_width(),
 		'container_width' => generate_get_option( 'container_width' ),
 		'right_sidebar_width' => apply_filters( 'generate_right_sidebar_width', '25' ),
 		'left_sidebar_width' => apply_filters( 'generate_left_sidebar_width', '25' ),

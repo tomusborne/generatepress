@@ -28,7 +28,7 @@ jQuery( document ).ready( function( $ ) {
 			} else if ( 'no-sidebar' === this.value ) {
 				calc = 'max-width: ' + container_width + 'px;';
 			} else if ( '' === this.value ) {
-				calc = '';
+				calc = 'max-width: ' + generate_block_editor.saved_content_width + 'px;';
 			} else {
 				calc = 'max-width: calc(' + container_width + 'px - ' + both_sidebars_width + '%);';
 			}
