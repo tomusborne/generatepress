@@ -92,3 +92,28 @@ body .wp-block-separator:not(.is-style-wide):not(.is-style-dots) {
 	padding: 10px 15px;
 	border-radius: 0;
 }
+
+/*--------------------------------------------------------------
+# Content Title
+--------------------------------------------------------------*/
+
+.content-title-hidden .editor-post-title textarea {
+	opacity: 0.4;
+}
+
+.content-title-hidden .editor-post-title__block:before {
+    font-family: dashicons;
+    content: "\f530";
+    position: absolute;
+    left: -25px;
+    font-size: 30px;
+    top: calc(50% - 15px);
+    opacity: 0.4;
+}
+
+@media (max-width: 700px) {
+	.content-title-hidden .editor-post-title__block:before {
+		left: auto;
+		right: 0;
+	}
+}

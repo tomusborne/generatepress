@@ -82,6 +82,7 @@ function generate_enqueue_backend_block_editor_assets() {
 		'container_width' => generate_get_option( 'container_width' ),
 		'right_sidebar_width' => apply_filters( 'generate_right_sidebar_width', '25' ),
 		'left_sidebar_width' => apply_filters( 'generate_left_sidebar_width', '25' ),
+		'content_title' => generate_show_title() ? 'true' : 'false',
 	) );
 }
 

@@ -41,4 +41,18 @@ jQuery( document ).ready( function( $ ) {
 			$( 'head' ).append( '<style id="sidebar_width">' + container_width_elements + '{' + calc + '}</style>' );
 		}
 	} );
+
+	var disable_content_title = $( '#meta-generate-disable-headline' );
+
+	if ( 'false' === generate_block_editor.content_title ) {
+		$( 'body' ).addClass( 'content-title-hidden' );
+	}
+
+	disable_content_title.on( 'change', function() {
+		if ( this.checked ) {
+			$( 'body' ).addClass( 'content-title-hidden' );
+		} else {
+			$( 'body' ).removeClass( 'content-title-hidden' );
+		}
+	} );
 } );
