@@ -33,6 +33,10 @@ jQuery( document ).ready( function( $ ) {
 				calc = 'max-width: calc(' + container_width + 'px - ' + both_sidebars_width + '%);';
 			}
 
+			if ( 'no-sidebar' === this.value && generate_block_editor.content_width ) {
+				calc = 'max-width: ' + generate_block_editor.content_width + 'px';
+			}
+
 			$( 'style#sidebar_width' ).remove();
 			$( 'head' ).append( '<style id="sidebar_width">' + container_width_elements + '{' + calc + '}</style>' );
 		}
