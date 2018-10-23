@@ -90,6 +90,41 @@ MIT License: https://github.com/woocommerce/selectWoo/blob/master/LICENSE.md
 
 == Changelog ==
 
+= 2.2 =
+
+Release date: TBD
+
+* New: Sub-menu direction option
+* New: Floated navigation drop point option
+* New: Logo width option
+* New: Content width option (when no sidebars set)
+* New: Content title color option
+* New: Blog post title color option
+* New: H1-H3 typography options
+* New: generate_comment_form_title filter
+* New: Header Preset control inside the Customizer
+* New: JSON-LD option (replaces microdata in the theme)
+* New: generate_entry_meta_post_types filter
+* New: generate_footer_meta_posts_types filter
+* New: Add paragraph bottom margin to Gutenberg blocks
+* New: Add .alignwide and .alignfull class for Gutenberg blocks
+* New: Styling for Gutenberg gallery block
+* New: Add frontend styling to Gutenberg editor
+* New: Add defaults for H1-H3 bottom margin options
+* Tweak: Improve accessibility of dropdown menu arrows
+* Tweak: Replace individual element class functions with generate_do_element_classes()
+* Tweak: Major PHP code cleanup
+* Tweak: Replace generate_get_setting() with generate_get_option()
+* Tweak: Remove default text-align: left from site header
+* Tweak: Only add navigation alignment class to body if necessary
+* Tweak: Major style.css cleanup
+* Tweak: Remove different sub-menu width if in sidebar
+* Tweak: Set navigation search height (fixes full height nav search on mobile/in sidebars)
+* Tweak: Change Delete Customizer Settings button text to Reset
+* Tweak: Add quick Customize links to GP Dashboard
+* Tweak: Give H4-H6 elements the paragraph bottom margin
+* Fix: screen-reader-text class conflicts with some plugins
+
 = 2.1.4 =
 
 Release date: August 21, 2018
