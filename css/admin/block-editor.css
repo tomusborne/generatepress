@@ -97,7 +97,7 @@ body .wp-block-separator:not(.is-style-wide):not(.is-style-dots) {
 # Content Title
 --------------------------------------------------------------*/
 
-button.disable-content-title {
+button.content-title-visibility {
 	position: absolute;
 	right: 0;
 	font-size: 30px;
@@ -110,20 +110,21 @@ button.disable-content-title {
 	display: none;
 }
 
-.editor-post-title__block:hover button.disable-content-title {
-	display: block;
-}
-
 button.disable-content-title:before {
-	font-family: dashicons;
-}
-
-body:not(.content-title-hidden) button.disable-content-title:before {
 	content: "\f530";
 }
 
-.content-title-hidden button.disable-content-title:before {
+button.show-content-title:before {
 	content: "\f177";
+}
+
+body:not(.content-title-hidden) .editor-post-title__block:hover button.disable-content-title,
+.content-title-hidden .editor-post-title__block:hover button.show-content-title {
+	display: block;
+}
+
+button.content-title-visibility:before {
+	font-family: dashicons;
 }
 
 .content-title-hidden .editor-post-title textarea {

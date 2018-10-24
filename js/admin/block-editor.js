@@ -43,7 +43,7 @@ jQuery( document ).ready( function( $ ) {
 	} );
 
 	var disable_content_title_input = $( '#meta-generate-disable-headline' );
-	var disable_content_title_button = $( 'button.disable-content-title' );
+	var disable_content_title_button = $( 'button.content-title-visibility' );
 	var body = $( 'body' );
 
 	if ( 'false' === generate_block_editor.content_title ) {
@@ -58,30 +58,24 @@ jQuery( document ).ready( function( $ ) {
 		}
 	} );
 
-	$( document ).on( 'click', 'button.disable-content-title', function() {
+	$( document ).on( 'click', 'button.content-title-visibility', function() {
 		var _this = $( this );
-		
+
 		if ( disable_content_title_input.prop( 'checked' ) ) {
 			disable_content_title_input.prop( 'checked', false );
 			body.removeClass( 'content-title-hidden' );
-			_this.prop( 'title', generate_block_editor.disable_content_title );
 		} else {
 			disable_content_title_input.prop( 'checked', true );
 			body.addClass( 'content-title-hidden' );
-			_this.prop( 'title', generate_block_editor.show_content_title );
 		}
 	} );
 } );
 
 jQuery( window ).load( function() {
-	var button_title = generate_block_editor.disable_content_title,
-		post_title_block = jQuery( '.editor-post-title__block' );
-
-	if ( 'false' === generate_block_editor.content_title ) {
-		button_title = generate_block_editor.show_content_title;
-	}
+	var post_title_block = jQuery( '.editor-post-title__block' );
 
 	if ( post_title_block ) {
-		post_title_block.append( '<button class="disable-content-title" title="' + button_title + '" aria-hidden="true"></button>' );
+		post_title_block.append( '<button class="content-title-visibility disable-content-title" title="' + generate_block_editor.disable_content_title + '" aria-hidden="true"></button>' );
+		post_title_block.append( '<button class="content-title-visibility show-content-title" title="' + generate_block_editor.show_content_title + '" aria-hidden="true"></button>' );
 	}
 } );
