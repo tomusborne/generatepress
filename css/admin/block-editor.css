@@ -130,3 +130,11 @@ button.content-title-visibility:before {
 .content-title-hidden .editor-post-title textarea {
 	opacity: 0.4;
 }
+
+/*--------------------------------------------------------------
+# Columns
+--------------------------------------------------------------*/
+
+.editor-block-list__block .wp-block-columns .wp-block-column {
+	margin-bottom: 0;
+}
