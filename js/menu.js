@@ -207,14 +207,6 @@
 								subMenu.classList.toggle( 'toggled-on' );
 							}
 						}
-
-						// Close the mobile menu if our link does something - good for one page sites.
-						if ( '#' !== url && '' !== url && ! navigator.userAgent.match( /iemobile/i ) ) {
-							setTimeout( function() {
-								closest_nav.classList.remove( 'toggled' );
-								htmlEl.classList.remove( 'mobile-menu-open' );
-							}, 200 );
-						}
 					}
 				}, false );
 			}
