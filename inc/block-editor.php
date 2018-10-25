@@ -133,6 +133,7 @@ function generate_do_inline_block_editor_css() {
 
 	$css->set_selector( 'body.gutenberg-editor-page .editor-block-list__block' );
 	$css->add_property( 'font-family', $body_family );
+	$css->add_property( 'font-size', absint( $font_settings['body_font_size'] ), $og_defaults['body_font_size'], 'px' );
 
 	$css->set_selector( '.wp-block-heading h1, .wp-block-heading h1.editor-rich-text__tinymce, .editor-post-title__block .editor-post-title__input' );
 	$css->add_property( 'font-family', 'inherit' === $h1_family ? $body_family : $h1_family );
@@ -159,6 +160,8 @@ function generate_do_inline_block_editor_css() {
 
 	if ( '' !== $font_settings['heading_4_font_size'] ) {
 		$css->add_property( 'font-size', absint( $font_settings['heading_4_font_size'] ), false, 'px' );
+	} else {
+		$css->add_property( 'font-size', 'inherit' );
 	}
 
 	$css->set_selector( '.wp-block-heading h5, .wp-block-heading h5.editor-rich-text__tinymce' );
@@ -168,6 +171,8 @@ function generate_do_inline_block_editor_css() {
 
 	if ( '' !== $font_settings['heading_5_font_size'] ) {
 		$css->add_property( 'font-size', absint( $font_settings['heading_5_font_size'] ), $og_defaults['heading_5_font_size'], 'px' );
+	} else {
+		$css->add_property( 'font-size', 'inherit' );
 	}
 
 	$css->set_selector( '.wp-block-heading h6, .wp-block-heading h6.editor-rich-text__tinymce' );
@@ -177,6 +182,8 @@ function generate_do_inline_block_editor_css() {
 
 	if ( '' !== $font_settings['heading_6_font_size'] ) {
 		$css->add_property( 'font-size', absint( $font_settings['heading_6_font_size'] ), false, 'px' );
+	} else {
+		$css->add_property( 'font-size', 'inherit' );
 	}
 
 	return $css->css_output();
