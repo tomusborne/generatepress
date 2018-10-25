@@ -1722,6 +1722,28 @@ ol.comment-list {
 }
 
 /*--------------------------------------------------------------
+## Columns
+--------------------------------------------------------------*/
+
+.wp-block-columns {
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin-left: -30px;
+}
+
+.wp-block-column:not(:first-child),
+.wp-block-column:not(:last-child) {
+	padding: 0;
+}
+
+.wp-block-columns .wp-block-column {
+	-webkit-box-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+	margin: 0 0 0 30px;
+}
+
+/*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
 
