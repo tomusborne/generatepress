@@ -75,7 +75,19 @@ function generate_enqueue_backend_block_editor_assets() {
 	wp_enqueue_style( 'generate-block-editor-styles', get_template_directory_uri() . "/css/admin/block-editor.css", false, GENERATE_VERSION, 'all' );
 	wp_add_inline_style( 'generate-block-editor-styles', generate_do_inline_block_editor_css() );
 
-	wp_enqueue_script( 'generate-block-editor-scripts', get_template_directory_uri() . "/js/admin/block-editor.js", array( 'jquery' ), GENERATE_VERSION, true );
+	wp_enqueue_script( 'generate-block-editor-tinycolor', get_template_directory_uri() . "/js/admin/tinycolor.js", false, GENERATE_VERSION, true );
+	wp_enqueue_script( 'generate-block-editor-scripts', get_template_directory_uri() . "/js/admin/block-editor.js", array( 'jquery', 'generate-block-editor-tinycolor' ), GENERATE_VERSION, true );
+
+	$color_settings = wp_parse_args(
+		get_option( 'generate_settings', array() ),
+		generate_get_color_defaults()
+	);
+
+	$background_color = generate_get_option( 'background_color' );
+
+	if ( $color_settings['content_background_color'] ) {
+		$background_color = $color_settings['content_background_color'];
+	}
 
 	wp_localize_script( 'generate-block-editor-scripts', 'generate_block_editor', array(
 		'content_width' => generate_get_option( 'content_width' ),
@@ -86,6 +98,7 @@ function generate_enqueue_backend_block_editor_assets() {
 		'content_title' => generate_show_title() ? 'true' : 'false',
 		'disable_content_title' => esc_html( 'Disable Content Title', 'generatepress' ),
 		'show_content_title' => esc_html( 'Show Content Title', 'generatepress' ),
+		'background_color' => $background_color,
 	) );
 }
 
@@ -135,11 +148,33 @@ function generate_do_inline_block_editor_css() {
 	$css->add_property( 'font-family', $body_family );
 	$css->add_property( 'font-size', absint( $font_settings['body_font_size'] ), false, 'px' );
 
+	if ( $color_settings['content_text_color'] ) {
+		$css->add_property( 'color', esc_attr( $color_settings['content_text_color'] ) );
+	} else {
+		$css->add_property( 'color', esc_attr( generate_get_option( 'text_color' ) ) );
+	}
+
+	$css->set_selector( '.content-title-visibility' );
+
+	if ( $color_settings['content_text_color'] ) {
+		$css->add_property( 'color', esc_attr( $color_settings['content_text_color'] ) );
+	} else {
+		$css->add_property( 'color', esc_attr( generate_get_option( 'text_color' ) ) );
+	}
+
 	$css->set_selector( '.wp-block-heading h1, .wp-block-heading h1.editor-rich-text__tinymce, .editor-post-title__block .editor-post-title__input' );
 	$css->add_property( 'font-family', 'inherit' === $h1_family ? $body_family : $h1_family );
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_1_weight'] ) );
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_1_transform'] ) );
 	$css->add_property( 'font-size', absint( $font_settings['heading_1_font_size'] ), false, 'px' );
+
+	if ( $color_settings['h1_color'] ) {
+		$css->add_property( 'color', esc_attr( $color_settings['h1_color'] ) );
+	} elseif ( $color_settings['content_text_color'] ) {
+		$css->add_property( 'color', esc_attr( $color_settings['content_text_color'] ) );
+	} else {
+		$css->add_property( 'color', esc_attr( generate_get_option( 'text_color' ) ) );
+	}
 
 	$css->set_selector( '.wp-block-heading h2, .wp-block-heading h2.editor-rich-text__tinymce' );
 	$css->add_property( 'font-family', $h2_family );
@@ -147,11 +182,27 @@ function generate_do_inline_block_editor_css() {
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_2_transform'] ) );
 	$css->add_property( 'font-size', absint( $font_settings['heading_2_font_size'] ), false, 'px' );
 
+	if ( $color_settings['h2_color'] ) {
+		$css->add_property( 'color', esc_attr( $color_settings['h2_color'] ) );
+	} elseif ( $color_settings['content_text_color'] ) {
+		$css->add_property( 'color', esc_attr( $color_settings['content_text_color'] ) );
+	} else {
+		$css->add_property( 'color', esc_attr( generate_get_option( 'text_color' ) ) );
+	}
+
 	$css->set_selector( '.wp-block-heading h3, .wp-block-heading h3.editor-rich-text__tinymce' );
 	$css->add_property( 'font-family', $h3_family );
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_3_weight'] ) );
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_3_transform'] ) );
 	$css->add_property( 'font-size', absint( $font_settings['heading_3_font_size'] ), false, 'px' );
+
+	if ( $color_settings['h3_color'] ) {
+		$css->add_property( 'color', esc_attr( $color_settings['h3_color'] ) );
+	} elseif ( $color_settings['content_text_color'] ) {
+		$css->add_property( 'color', esc_attr( $color_settings['content_text_color'] ) );
+	} else {
+		$css->add_property( 'color', esc_attr( generate_get_option( 'text_color' ) ) );
+	}
 
 	$css->set_selector( '.wp-block-heading h4, .wp-block-heading h4.editor-rich-text__tinymce' );
 	$css->add_property( 'font-family', $h4_family );
@@ -162,6 +213,14 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'font-size', absint( $font_settings['heading_4_font_size'] ), false, 'px' );
 	} else {
 		$css->add_property( 'font-size', 'inherit' );
+	}
+
+	if ( $color_settings['h4_color'] ) {
+		$css->add_property( 'color', esc_attr( $color_settings['h4_color'] ) );
+	} elseif ( $color_settings['content_text_color'] ) {
+		$css->add_property( 'color', esc_attr( $color_settings['content_text_color'] ) );
+	} else {
+		$css->add_property( 'color', esc_attr( generate_get_option( 'text_color' ) ) );
 	}
 
 	$css->set_selector( '.wp-block-heading h5, .wp-block-heading h5.editor-rich-text__tinymce' );
@@ -175,6 +234,14 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'font-size', 'inherit' );
 	}
 
+	if ( $color_settings['h5_color'] ) {
+		$css->add_property( 'color', esc_attr( $color_settings['h5_color'] ) );
+	} elseif ( $color_settings['content_text_color'] ) {
+		$css->add_property( 'color', esc_attr( $color_settings['content_text_color'] ) );
+	} else {
+		$css->add_property( 'color', esc_attr( generate_get_option( 'text_color' ) ) );
+	}
+
 	$css->set_selector( '.wp-block-heading h6, .wp-block-heading h6.editor-rich-text__tinymce' );
 	$css->add_property( 'font-family', $h6_family );
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_6_weight'] ) );
@@ -184,6 +251,38 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'font-size', absint( $font_settings['heading_6_font_size'] ), false, 'px' );
 	} else {
 		$css->add_property( 'font-size', 'inherit' );
+	}
+
+	if ( $color_settings['h6_color'] ) {
+		$css->add_property( 'color', esc_attr( $color_settings['h6_color'] ) );
+	} elseif ( $color_settings['content_text_color'] ) {
+		$css->add_property( 'color', esc_attr( $color_settings['content_text_color'] ) );
+	} else {
+		$css->add_property( 'color', esc_attr( generate_get_option( 'text_color' ) ) );
+	}
+
+	$css->set_selector( 'body .edit-post-layout__content' );
+
+	if ( $color_settings['content_background_color'] ) {
+		$css->add_property( 'background-color', esc_attr( $color_settings['content_background_color'] ) );
+	} else {
+		$css->add_property( 'background-color', esc_attr( generate_get_option( 'background_color' ) ) );
+	}
+
+	$css->set_selector( '.editor-block-list__block a, .editor-block-list__block a:visited' );
+
+	if ( $color_settings['content_link_color'] ) {
+		$css->add_property( 'color', esc_attr( $color_settings['content_link_color'] ) );
+	} else {
+		$css->add_property( 'color', esc_attr( generate_get_option( 'link_color' ) ) );
+	}
+
+	$css->set_selector( '.editor-block-list__block a:hover, .editor-block-list__block a:focus, .editor-block-list__block a:active' );
+
+	if ( $color_settings['content_link_hover_color'] ) {
+		$css->add_property( 'color', esc_attr( $color_settings['content_link_hover_color'] ) );
+	} else {
+		$css->add_property( 'color', esc_attr( generate_get_option( 'link_color_hover' ) ) );
 	}
 
 	return $css->css_output();

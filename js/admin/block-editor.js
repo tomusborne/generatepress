@@ -69,6 +69,13 @@ jQuery( document ).ready( function( $ ) {
 			body.addClass( 'content-title-hidden' );
 		}
 	} );
+
+	var background_color = tinycolor( generate_block_editor.background_color ).toHex8(),
+		isDarkMode = tinycolor( background_color ).isDark();
+
+	if ( isDarkMode ) {
+		$( 'body' ).addClass( 'is-dark-theme' );
+	}
 } );
 
 jQuery( window ).load( function() {
