@@ -41,6 +41,7 @@
 	width: calc( 100% - 180px );
 	margin-left: -1px;
 	border-left: 1px solid #eee;
+	background-color: #fff;
 }
 
 #generate-meta-box-container {
@@ -74,4 +75,6 @@
 #side-sortables #generate-meta-box-container .generate-meta-box-content  {
     float: none;
     width: 100%;
+	margin: 0;
+	border: 0;
 }
