@@ -691,6 +691,7 @@ li.search-item.active {
 }
 
 .navigation-search input {
+	outline: 0;
 	border: 0;
 	vertical-align: bottom;
 	line-height: 0;
