@@ -110,11 +110,11 @@ button.content-title-visibility {
 	display: none;
 }
 
-button.disable-content-title:before {
+button.show-content-title:before {
 	content: "\f530";
 }
 
-button.show-content-title:before {
+button.disable-content-title:before {
 	content: "\f177";
 }
 
