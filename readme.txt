@@ -88,6 +88,11 @@ See https://github.com/eligrey/classList.js/blob/master/LICENSE.md
 
 MIT License: https://github.com/woocommerce/selectWoo/blob/master/LICENSE.md
 
+= TinyColor =
+
+By Brian Grinstead, http://briangrinstead.com
+MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
+
 == Changelog ==
 
 = 2.2 =
@@ -123,6 +128,9 @@ Release date: TBD
 * Tweak: Change Delete Customizer Settings button text to Reset
 * Tweak: Add quick Customize links to GP Dashboard
 * Tweak: Give H4-H6 elements the paragraph bottom margin
+* Tweak: Don't close mobile menu when item is tapped
+* Tweak: Simplify a11y outline script
+* Tweak: Keep mobile sub-menus open if mobile toggle is closed
 * Fix: screen-reader-text class conflicts with some plugins
 
 = 2.1.4 =
