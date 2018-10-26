@@ -61,28 +61,11 @@
 				htmlEl.classList.remove( 'mobile-menu-open' );
 				nav.setAttribute( 'aria-hidden', 'true' );
 				_this.setAttribute( 'aria-expanded', 'false' );
-
-				if ( body.classList.contains( 'dropdown-hover' ) ) {
-					var dropdownItems = nav.querySelectorAll( 'li.menu-item-has-children' );
-					for ( var i = 0; i < dropdownItems.length; i++ ) {
-						dropdownItems[i].querySelector( 'button.dropdown-menu-toggle' ).setAttribute( 'tabindex', '-1' );
-						dropdownItems[i].querySelector( 'button.dropdown-menu-toggle' ).setAttribute( 'aria-expanded', 'false' );
-						dropdownItems[i].classList.remove( 'sfHover' );
-						dropdownItems[i].querySelector( 'ul' ).classList.remove( 'toggled-on' );
-					}
-				}
 			} else {
 				parentContainer.classList.add( 'toggled' );
 				htmlEl.classList.add( 'mobile-menu-open' );
 				nav.setAttribute( 'aria-hidden', 'false' );
 				_this.setAttribute( 'aria-expanded', 'true' );
-
-				if ( body.classList.contains( 'dropdown-hover' ) ) {
-					var dropdownItems = nav.querySelectorAll( 'li.menu-item-has-children' );
-					for ( var i = 0; i < dropdownItems.length; i++ ) {
-						dropdownItems[i].querySelector( 'button.dropdown-menu-toggle' ).setAttribute( 'tabindex', '0' );
-					}
-				}
 			}
 		}
 
@@ -165,14 +148,6 @@
 
 						if ( closestNav ) {
 							closestNav.removeAttribute( 'aria-hidden' );
-						}
-
-						if ( body.classList.contains( 'dropdown-hover' ) ) {
-							var dropdownItems = closestParent.querySelectorAll( 'li.menu-item-has-children' );
-							for ( var d = 0; d < dropdownItems.length; d++ ) {
-								dropdownItems[d].querySelector( 'button.dropdown-menu-toggle' ).setAttribute( 'tabindex', '-1' );
-								dropdownItems[d].querySelector( 'button.dropdown-menu-toggle' ).setAttribute( 'aria-expanded', 'false' );
-							}
 						}
 					}
 				}
