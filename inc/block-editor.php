@@ -61,7 +61,7 @@ function generate_get_block_editor_content_width() {
 		$content_width = generate_get_option( 'content_width' );
 	}
 
-	return $content_width;
+	return apply_filters( 'generate_block_editor_content_width', $content_width );
 }
 
 add_action( 'enqueue_block_editor_assets', 'generate_enqueue_google_fonts' );
