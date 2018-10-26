@@ -1,3 +1,10 @@
+.editor-block-list__block a,
+.editor-block-list__block a:visited,
+.editor-block-list__block a:hover,
+.editor-block-list__block a:focus {
+	text-decoration: none;
+}
+
 .editor-block-list__layout pre {
 	background: rgba(0, 0, 0, 0.05);
 	font-family: inherit;
