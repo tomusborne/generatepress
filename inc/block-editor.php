@@ -28,6 +28,30 @@ function generate_get_block_editor_sidebar_layout() {
 	return apply_filters( 'generate_block_editor_sidebar_layout', $layout );
 }
 
+/**
+ * Check whether we're disabling the content title or not.
+ * We need this function as the post meta in generate_show_title() only runs
+ * on is_singular()
+ *
+ * @since 2.2
+ */
+function generate_get_block_editor_show_content_title() {
+	$title = generate_show_title();
+
+	$disable_title = get_post_meta( get_the_ID(), '_generate-disable-headline', true );
+
+	if ( $disable_title ) {
+		$title = false;
+	}
+
+	return apply_filters( 'generate_block_editor_show_content_title', $title );
+}
+
+/**
+ * Get the content width for this post.
+ *
+ * @since 2.2
+ */
 function generate_get_block_editor_content_width() {
 	$container_width = generate_get_option( 'container_width' );
 
@@ -87,7 +111,7 @@ function generate_enqueue_backend_block_editor_assets() {
 		'container_width' => generate_get_option( 'container_width' ),
 		'right_sidebar_width' => apply_filters( 'generate_right_sidebar_width', '25' ),
 		'left_sidebar_width' => apply_filters( 'generate_left_sidebar_width', '25' ),
-		'content_title' => generate_show_title() ? 'true' : 'false',
+		'content_title' => generate_get_block_editor_show_content_title() ? 'true' : 'false',
 		'disable_content_title' => esc_html( 'Disable Content Title', 'generatepress' ),
 		'show_content_title' => esc_html( 'Show Content Title', 'generatepress' ),
 		'background_color' => $background_color,
