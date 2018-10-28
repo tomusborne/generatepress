@@ -15,17 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 2.2
  */
 function generate_get_block_editor_sidebar_layout() {
-	$screen = get_current_screen();
-
-	if ( ! is_object( $screen ) ) {
-		return 'right-sidebar';
-	}
-
-	$layout = generate_get_option( 'layout_setting' );
-
-	if ( 'post' === $screen->post_type ) {
-		$layout = generate_get_option( 'single_layout_setting' );
-	}
+	$layout = generate_get_layout();
 
 	$layout_meta = get_post_meta( get_the_ID(), '_generate-sidebar-layout-meta', true );
 
