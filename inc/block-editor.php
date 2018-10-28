@@ -10,7 +10,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Sidebar layout metabox options are only returned on single posts.
+ * Check what sidebar layout we're using.
+ * We need this function as the post meta in generate_get_layout() only runs
+ * on is_singular()
  *
  * @since 2.2
  */
@@ -92,6 +94,11 @@ function generate_enqueue_backend_block_editor_assets() {
 	) );
 }
 
+/**
+ * Write our CSS for the block editor.
+ *
+ * @since 2.2
+ */
 function generate_do_inline_block_editor_css() {
 	$color_settings = wp_parse_args(
 		get_option( 'generate_settings', array() ),

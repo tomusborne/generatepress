@@ -127,6 +127,7 @@ if ( ! function_exists( 'generate_page_menu_args' ) ) {
 	 */
 	function generate_page_menu_args( $args ) {
 		$args['show_home'] = true;
+
 		return $args;
 	}
 }
@@ -175,6 +176,7 @@ if ( ! function_exists( 'generate_resource_hints' ) ) {
 				$urls[] = 'https://fonts.gstatic.com';
 			}
 		}
+
 		return $urls;
 	}
 }
