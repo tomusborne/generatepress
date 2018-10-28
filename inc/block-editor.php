@@ -184,7 +184,7 @@ function generate_do_inline_block_editor_css() {
 	}
 
 	$css->set_selector( '.wp-block-heading h1, .wp-block-heading h1.editor-rich-text__tinymce, .editor-post-title__block .editor-post-title__input' );
-	$css->add_property( 'font-family', 'inherit' === $h1_family ? $body_family : $h1_family );
+	$css->add_property( 'font-family', 'inherit' === $h1_family || '' === $h1_family ? $body_family : $h1_family );
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_1_weight'] ) );
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_1_transform'] ) );
 	$css->add_property( 'font-size', absint( $font_settings['heading_1_font_size'] ), false, 'px' );
