@@ -139,18 +139,19 @@ if ( ! function_exists( 'generate_disable_title' ) ) {
 	 *
 	 * @since 1.3.18
 	 *
+	 * @param bool $title Whether the title is displayed or not.
 	 * @return bool Whether to display the content title.
 	 */
-	function generate_disable_title() {
-		global $post;
+	function generate_disable_title( $title ) {
+		if ( is_singular() ) {
+			$disable_title = get_post_meta( get_the_ID(), '_generate-disable-headline', true );
 
-		$disable_headline = ( isset( $post ) ) ? get_post_meta( $post->ID, '_generate-disable-headline', true ) : '';
-
-		if ( ! empty( $disable_headline ) && false !== $disable_headline ) {
-			return false;
+			if ( $disable_title ) {
+				$title = false;
+			}
 		}
 
-		return true;
+		return $title;
 	}
 }
 
