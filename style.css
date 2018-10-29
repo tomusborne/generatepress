@@ -1738,7 +1738,7 @@ ol.comment-list {
 .wp-block-columns {
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
-	margin-left: -30px;
+	margin-left: -40px;
 }
 
 .wp-block-column:not(:first-child),
@@ -1750,7 +1750,7 @@ ol.comment-list {
 	-webkit-box-flex: 1;
 	-ms-flex: 1;
 	flex: 1;
-	margin: 0 0 0 30px;
+	margin: 0 0 0 40px;
 }
 
 /*--------------------------------------------------------------
