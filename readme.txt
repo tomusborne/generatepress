@@ -115,6 +115,7 @@ Release date: TBD
 * New: Styling for Gutenberg gallery block
 * New: Add frontend styling to Gutenberg editor
 * New: Add defaults for H1-H3 bottom margin options
+* New: generate_show_default_sidebar_widgets filter
 * Tweak: Improve accessibility of dropdown menu arrows
 * Tweak: Replace individual element class functions with generate_do_element_classes()
 * Tweak: Major PHP code cleanup
@@ -130,6 +131,7 @@ Release date: TBD
 * Tweak: Don't close mobile menu when item is tapped
 * Tweak: Simplify a11y outline script
 * Tweak: Keep mobile sub-menus open if mobile toggle is closed
+* Tweak: Replace default sidebar widget content in template files with generate_do_default_sidebar_widgets()
 * Fix: screen-reader-text class conflicts with some plugins
 
 = 2.1.4 =
