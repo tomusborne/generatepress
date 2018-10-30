@@ -178,6 +178,9 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', esc_attr( generate_get_option( 'text_color' ) ) );
 	}
 
+	$css->set_selector( 'body .editor-styles-wrapper, body .editor-styles-wrapper p, body .editor-styles-wrapper .mce-content-body' );
+	$css->add_property( 'line-height', floatval( $font_settings['body_line_height'] ) );
+
 	$css->set_selector( '.wp-block-heading h1, .wp-block-heading h1.editor-rich-text__tinymce, .editor-post-title__block .editor-post-title__input' );
 	$css->add_property( 'font-family', 'inherit' === $h1_family || '' === $h1_family ? $body_family : $h1_family );
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_1_weight'] ) );
