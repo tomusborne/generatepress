@@ -673,16 +673,6 @@ function generate_no_cache_dynamic_css() {
 		$css->add_property( 'margin-top', '-' . absint( $spacing_settings['content_top'] ), false, 'px' );
 	}
 
-	if ( 'no-sidebar' === generate_get_layout() && generate_get_option( 'content_width' ) ) {
-		$css->set_selector( '.no-sidebar .inside-article > *, .no-sidebar #comments, .no-sidebar .paging-navigation' );
-		$css->add_property( 'max-width', absint( generate_get_option( 'content_width' ) ), false, 'px' );
-		$css->add_property( 'margin-left', 'auto' );
-		$css->add_property( 'margin-right', 'auto' );
-
-		$css->set_selector( '.full-width-content.no-sidebar .inside-article > *,.full-width-content.no-sidebar #comments,.full-width-content.no-sidebar .paging-navigation,.contained-content.no-sidebar .inside-article > *,.contained-content.no-sidebar #comments,.contained-content.no-sidebar .paging-navigation' );
-		$css->add_property( 'max-width', 'none' );
-	}
-
 	return $css->css_output();
 }
 

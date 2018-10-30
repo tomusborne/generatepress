@@ -102,7 +102,6 @@ Release date: TBD
 * New: Sub-menu direction option
 * New: Floated navigation drop point option
 * New: Logo width option
-* New: Content width option (when no sidebars set)
 * New: Content title color option
 * New: Blog post title color option
 * New: H1-H3 typography options

@@ -449,40 +449,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			)
 		);
 
-		$wp_customize->add_setting(
-			'generate_settings[content_width]',
-			array(
-				'default' => $defaults['content_width'],
-				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_empty_absint',
-				'transport' => 'postMessage',
-			)
-		);
-
-		$wp_customize->add_control(
-			new Generate_Range_Slider_Control(
-				$wp_customize,
-				'generate_settings[content_width]',
-				array(
-					'label' => __( 'Content Width', 'generatepress' ),
-					'sub_description' => __( 'This width will apply to the content when no sidebars exist on the page.', 'generatepress' ),
-					'section' => 'generate_layout_container',
-					'settings' => array(
-						'desktop' => 'generate_settings[content_width]',
-					),
-					'choices' => array(
-						'desktop' => array(
-							'min' => 300,
-							'max' => 2000,
-							'step' => 10,
-							'edit' => true,
-							'unit' => 'px',
-						),
-					),
-				)
-			)
-		);
-
 		$wp_customize->add_section(
 			'generate_top_bar',
 			array(
