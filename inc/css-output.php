@@ -394,7 +394,6 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->add_property( 'line-height', floatval( $generate_settings['heading_1_line_height'] ), $og_defaults['heading_1_line_height'], 'em' );
 		$css->add_property( 'margin-bottom', floatval( $generate_settings['heading_1_margin_bottom'] ), $og_defaults['heading_1_margin_bottom'], 'px' );
 
-
 		$css->set_selector( 'h2' );
 		$css->add_property( 'font-family', $og_defaults['font_heading_2'] !== $generate_settings['font_heading_2'] ? $h2_family : null );
 		$css->add_property( 'font-weight', esc_attr( $generate_settings['heading_2_weight'] ), $og_defaults['heading_2_weight'] );
