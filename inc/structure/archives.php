@@ -23,7 +23,7 @@ if ( ! function_exists( 'generate_archive_title' ) ) {
 
 		$clearfix = is_author() ? ' clearfix' : '';
 		?>
-		<header class="page-header<?php echo $clearfix; ?>">
+		<header class="page-header<?php echo $clearfix; // WPCS: XSS ok, sanitization ok. ?>">
 			<?php
 			/**
 			 * generate_before_archive_title hook.

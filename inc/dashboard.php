@@ -239,8 +239,8 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 											?>
 										</ul>
 
-										<p><?php _e( 'Want to learn more about the theme? Check out our extensive documentation.', 'generatepress' ); ?></p>
-										<a href="https://docs.generatepress.com"><?php _e( 'Visit documentation &rarr;', 'generatepress' ); ?></a>
+										<p><?php esc_html_e( 'Want to learn more about the theme? Check out our extensive documentation.', 'generatepress' ); ?></p>
+										<a href="https://docs.generatepress.com"><?php esc_html_e( 'Visit documentation &rarr;', 'generatepress' ); ?></a>
 									</div>
 								</div>
 
