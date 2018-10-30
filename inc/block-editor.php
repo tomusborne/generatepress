@@ -133,7 +133,7 @@ function generate_do_inline_block_editor_css() {
 
 	$content_width = generate_get_block_editor_content_width();
 
-	$css->set_selector( 'html body.gutenberg-editor-page .editor-post-title__block, html body.gutenberg-editor-page .editor-default-block-appender, html body.gutenberg-editor-page .editor-block-list__block' );
+	$css->set_selector( 'body .wp-block, html body.gutenberg-editor-page .editor-post-title__block, html body.gutenberg-editor-page .editor-default-block-appender, html body.gutenberg-editor-page .editor-block-list__block' );
 
 	if ( 'true' === get_post_meta( get_the_ID(), '_generate-full-width-content', true ) ) {
 		$css->add_property( 'max-width', '100%' );
@@ -160,7 +160,7 @@ function generate_do_inline_block_editor_css() {
 	$h5_family = generate_get_font_family_css( 'font_heading_5', 'generate_settings', generate_get_default_fonts() );
 	$h6_family = generate_get_font_family_css( 'font_heading_6', 'generate_settings', generate_get_default_fonts() );
 
-	$css->set_selector( 'body.gutenberg-editor-page .editor-block-list__block' );
+	$css->set_selector( 'body.gutenberg-editor-page .editor-block-list__block, body .editor-styles-wrapper' );
 	$css->add_property( 'font-family', $body_family );
 	$css->add_property( 'font-size', absint( $font_settings['body_font_size'] ), false, 'px' );
 

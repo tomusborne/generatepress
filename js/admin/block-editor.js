@@ -1,5 +1,6 @@
 jQuery( document ).ready( function( $ ) {
-	var container_width_elements = 'html body.gutenberg-editor-page .editor-post-title__block,\
+	var container_width_elements = 'body .wp-block,\
+									html body.gutenberg-editor-page .editor-post-title__block,\
 	 								html body.gutenberg-editor-page .editor-default-block-appender,\
 									html body.gutenberg-editor-page .editor-block-list__block,\
 									.edit-post-visual-editor .editor-block-list__block[data-align=wide]';
