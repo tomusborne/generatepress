@@ -100,7 +100,6 @@ body .editor-block-list__block p {
 .editor-block-list__layout .wp-block-button .wp-block-button__link {
 	font-size: inherit;
 	padding: 10px 15px;
-	border-radius: 0;
 }
 
 /*--------------------------------------------------------------

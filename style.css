@@ -483,7 +483,6 @@ a:focus {
 .wp-block-button .wp-block-button__link {
 	font-size: inherit;
 	line-height: inherit;
-	border-radius: 0;
 }
 
 .using-mouse :focus {
