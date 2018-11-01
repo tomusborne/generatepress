@@ -15,14 +15,30 @@ if ( ! defined( 'ABSPATH' ) ) {
  * on is_singular()
  *
  * @since 2.2
+ *
+ * @param bool $meta Check for post meta.
+ * @return string The saved sidebar layout.
  */
-function generate_get_block_editor_sidebar_layout() {
-	$layout = generate_get_layout();
+function generate_get_block_editor_sidebar_layout( $meta = true ) {
+	$layout = generate_get_option( 'layout_setting' );
 
-	$layout_meta = get_post_meta( get_the_ID(), '_generate-sidebar-layout-meta', true );
+	if ( function_exists( 'get_current_screen' ) ) {
+		$screen = get_current_screen();
 
-	if ( $layout_meta ) {
-		$layout = $layout_meta;
+		if ( is_object( $screen ) && 'post' === $screen->post_type ) {
+			$layout = generate_get_option( 'single_layout_setting' );
+		}
+	}
+
+	// Add in our default filter in case people have adjusted it.
+	$layout = apply_filters( 'generate_sidebar_layout', $layout );
+
+	if ( $meta ) {
+		$layout_meta = get_post_meta( get_the_ID(), '_generate-sidebar-layout-meta', true );
+
+		if ( $layout_meta ) {
+			$layout = $layout_meta;
+		}
 	}
 
 	return apply_filters( 'generate_block_editor_sidebar_layout', $layout );
@@ -107,6 +123,7 @@ function generate_enqueue_backend_block_editor_assets() {
 	}
 
 	wp_localize_script( 'generate-block-editor-scripts', 'generate_block_editor', array(
+		'global_sidebar_layout' => generate_get_block_editor_sidebar_layout( false ),
 		'container_width' => generate_get_option( 'container_width' ),
 		'right_sidebar_width' => apply_filters( 'generate_right_sidebar_width', '25' ),
 		'left_sidebar_width' => apply_filters( 'generate_left_sidebar_width', '25' ),

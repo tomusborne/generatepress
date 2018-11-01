@@ -25,6 +25,10 @@ jQuery( document ).ready( function( $ ) {
 				left_content_padding = generate_block_editor.content_padding_left;
 
 			if ( '' === this.value ) {
+				this.value = generate_block_editor.global_sidebar_layout;
+			}
+
+			if ( 'left-sidebar' == this.value ) {
 				content_width = container_width * ( ( 100 - left_sidebar_width ) / 100 );
 			} else if ( 'right-sidebar' == this.value ) {
 				content_width = container_width * ( ( 100 - right_sidebar_width ) / 100 );
