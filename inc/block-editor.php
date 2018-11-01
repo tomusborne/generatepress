@@ -159,6 +159,7 @@ function generate_do_inline_block_editor_css() {
 	$h4_family = generate_get_font_family_css( 'font_heading_4', 'generate_settings', generate_get_default_fonts() );
 	$h5_family = generate_get_font_family_css( 'font_heading_5', 'generate_settings', generate_get_default_fonts() );
 	$h6_family = generate_get_font_family_css( 'font_heading_6', 'generate_settings', generate_get_default_fonts() );
+	$buttons_family = generate_get_font_family_css( 'font_buttons', 'generate_settings', generate_get_default_fonts() );
 
 	$css->set_selector( 'body.gutenberg-editor-page .editor-block-list__block, body .editor-styles-wrapper' );
 	$css->add_property( 'font-family', $body_family );
@@ -283,6 +284,15 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', esc_attr( $color_settings['content_text_color'] ) );
 	} else {
 		$css->add_property( 'color', esc_attr( generate_get_option( 'text_color' ) ) );
+	}
+
+	$css->set_selector( '.editor-block-list__layout .wp-block-button .wp-block-button__link' );
+	$css->add_property( 'font-family', $buttons_family );
+	$css->add_property( 'font-weight', esc_attr( $font_settings['buttons_font_weight'] ) );
+	$css->add_property( 'text-transform', esc_attr( $font_settings['buttons_font_transform'] ) );
+
+	if ( '' !== $font_settings['buttons_font_size'] ) {
+		$css->add_property( 'font-size', absint( $font_settings['buttons_font_size'] ), false, 'px' );
 	}
 
 	$css->set_selector( 'body .edit-post-layout__content' );
