@@ -72,10 +72,6 @@ body .editor-block-list__block hr {
 	width: auto;
 }
 
-body .wp-block-separator:not(.is-style-wide):not(.is-style-dots) {
-    max-width: none;
-}
-
 body .editor-block-list__block,
 body .editor-block-list__block p {
 	font-size: inherit;
