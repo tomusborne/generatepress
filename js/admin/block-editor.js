@@ -16,26 +16,31 @@ jQuery( document ).ready( function( $ ) {
 
 	$( 'input[name="_generate-sidebar-layout-meta"]' ).on( 'change', function() {
 		if ( 'true' !== $( 'input[name="_generate-full-width-content"]:checked' ).val() ) {
-			var calc = '',
+			var content_width = '',
+				calc = '',
 				container_width = generate_block_editor.container_width,
 				right_sidebar_width = generate_block_editor.right_sidebar_width,
 				left_sidebar_width = generate_block_editor.left_sidebar_width,
-				both_sidebars_width = Number( right_sidebar_width ) + Number( left_sidebar_width );
+				right_content_padding = generate_block_editor.content_padding_right,
+				left_content_padding = generate_block_editor.content_padding_left;
 
-			if ( 'right-sidebar' === this.value ) {
-				calc = 'max-width: calc(' + container_width + 'px - ' + right_sidebar_width + '%);';
-			} else if ( 'left-sidebar' === this.value ) {
-				calc = 'max-width: calc(' + container_width + 'px - ' + left_sidebar_width + '%);';
-			} else if ( 'no-sidebar' === this.value ) {
-				calc = 'max-width: ' + container_width + 'px;';
-			} else if ( '' === this.value ) {
-				calc = 'max-width: ' + generate_block_editor.saved_content_width + 'px;';
+			if ( '' === this.value ) {
+				content_width = container_width * ( ( 100 - left_sidebar_width ) / 100 );
+			} else if ( 'right-sidebar' == this.value ) {
+				content_width = container_width * ( ( 100 - right_sidebar_width ) / 100 );
+			} else if ( 'no-sidebar' == this.value ) {
+				content_width = container_width;
 			} else {
-				calc = 'max-width: calc(' + container_width + 'px - ' + both_sidebars_width + '%);';
+				content_width = container_width * ( ( 100 - ( Number( left_sidebar_width ) + Number( right_sidebar_width ) ) ) / 100 );
 			}
 
-			$( 'style#sidebar_width' ).remove();
-			$( 'head' ).append( '<style id="sidebar_width">' + container_width_elements + '{' + calc + '}</style>' );
+			calc = 'max-width: calc(' + content_width + 'px - ' + right_content_padding + ' - ' + left_content_padding + ')';
+
+			$( 'style#content-width' ).remove();
+			$( 'head' ).append( '<style id="content-width">' + container_width_elements + '{' + calc + '}</style>' );
+
+			$( 'style#wide-width' ).remove();
+			$( 'head' ).append( '<style id="wide-width">.edit-post-visual-editor .editor-block-list__block[data-align=wide]{max-width:' + content_width + 'px}' );
 		}
 	} );
 

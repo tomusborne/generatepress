@@ -95,6 +95,11 @@ function generate_enqueue_backend_block_editor_assets() {
 		generate_get_color_defaults()
 	);
 
+	$spacing_settings = wp_parse_args(
+		get_option( 'generate_spacing_settings', array() ),
+		generate_spacing_get_defaults()
+	);
+
 	$background_color = generate_get_option( 'background_color' );
 
 	if ( $color_settings['content_background_color'] ) {
@@ -102,10 +107,11 @@ function generate_enqueue_backend_block_editor_assets() {
 	}
 
 	wp_localize_script( 'generate-block-editor-scripts', 'generate_block_editor', array(
-		'saved_content_width' => generate_get_block_editor_content_width(),
 		'container_width' => generate_get_option( 'container_width' ),
 		'right_sidebar_width' => apply_filters( 'generate_right_sidebar_width', '25' ),
 		'left_sidebar_width' => apply_filters( 'generate_left_sidebar_width', '25' ),
+		'content_padding_right' => absint( $spacing_settings['content_right'] ) . 'px',
+		'content_padding_left' => absint( $spacing_settings['content_left'] ) . 'px',
 		'content_title' => generate_get_block_editor_show_content_title() ? 'true' : 'false',
 		'disable_content_title' => esc_html( 'Disable Content Title', 'generatepress' ),
 		'show_content_title' => esc_html( 'Show Content Title', 'generatepress' ),
@@ -133,16 +139,28 @@ function generate_do_inline_block_editor_css() {
 
 	$content_width = generate_get_block_editor_content_width();
 
+	$spacing_settings = wp_parse_args(
+		get_option( 'generate_spacing_settings', array() ),
+		generate_spacing_get_defaults()
+	);
+
+	$content_width_calc = sprintf(
+		'calc(%1$s - %2$s - %3$s)',
+		absint( $content_width ) . 'px',
+		absint( $spacing_settings['content_left'] ) . 'px',
+		absint( $spacing_settings['content_right'] ) . 'px'
+	);
+
 	$css->set_selector( 'body .wp-block, html body.gutenberg-editor-page .editor-post-title__block, html body.gutenberg-editor-page .editor-default-block-appender, html body.gutenberg-editor-page .editor-block-list__block' );
 
 	if ( 'true' === get_post_meta( get_the_ID(), '_generate-full-width-content', true ) ) {
 		$css->add_property( 'max-width', '100%' );
 	} else {
-		$css->add_property( 'max-width', absint( $content_width ), false, 'px' );
+		$css->add_property( 'max-width', $content_width_calc );
 	}
 
 	$css->set_selector( '.edit-post-visual-editor .editor-block-list__block[data-align=wide]' );
-	$css->add_property( 'max-width', absint( $content_width + 40 ), false, 'px' );
+	$css->add_property( 'max-width', absint( $content_width ), false, 'px' );
 
 	$css->set_selector( '.wp-block-button__link:not(.has-background)' );
 	$css->add_property( 'color', esc_attr( $color_settings['form_button_text_color'] ) );
