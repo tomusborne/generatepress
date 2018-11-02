@@ -106,7 +106,8 @@ Release date: TBD
 * New: Blog post title color option
 * New: H1-H3 typography options
 * New: generate_comment_form_title filter
-* New: Header Preset control inside the Customizer
+* New: Header Presets control inside the Customizer
+* New: Navigation Color Presets control inside the Customizer
 * New: JSON-LD option (replaces microdata in the theme)
 * New: generate_entry_meta_post_types filter
 * New: generate_footer_meta_posts_types filter
