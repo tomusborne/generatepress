@@ -236,19 +236,19 @@
 				textColorSetting.set( '#000000' );
 
 				backgroundColorHoverSetting.set( '#ffffff' );
-				textColorHoverSetting.set( '#8c8c8c' );
+				textColorHoverSetting.set( '#8f919e' );
 
 				currentBackgroundColorSetting.set( '#ffffff' );
-				currentTextColorSetting.set( '#8c8c8c' );
+				currentTextColorSetting.set( '#8f919e' );
 
-				subMenuBackgroundColorSetting.set( '#eeeeee' );
+				subMenuBackgroundColorSetting.set( '#f6f9fc' );
 				subMenuTextColorSetting.set( '#000000' );
 
-				subMenuBackgroundColorHoverSetting.set( '#eeeeee' );
-				subMenuTextColorHoverSetting.set( '#8c8c8c' );
+				subMenuBackgroundColorHoverSetting.set( '#f6f9fc' );
+				subMenuTextColorHoverSetting.set( '#8f919e' );
 
-				subMenuCurrentBackgroundColorSetting.set( '#eeeeee' );
-				subMenuCurrentTextColorSetting.set( '#8c8c8c' );
+				subMenuCurrentBackgroundColorSetting.set( '#f6f9fc' );
+				subMenuCurrentTextColorSetting.set( '#8f919e' );
 			}
 
 			if ( 'dark' === newval ) {
@@ -292,22 +292,22 @@
 			}
 
 			if ( 'red' === newval ) {
-				backgroundColorSetting.set( '#ED2939' );
+				backgroundColorSetting.set( '#ed4250' );
 				textColorSetting.set( '#ffffff' );
 
-				backgroundColorHoverSetting.set( '#f53e4d' );
+				backgroundColorHoverSetting.set( '#f44b59' );
 				textColorHoverSetting.set( '#ffffff' );
 
-				currentBackgroundColorSetting.set( '#f53e4d' );
+				currentBackgroundColorSetting.set( '#f44b59' );
 				currentTextColorSetting.set( '#ffffff' );
 
-				subMenuBackgroundColorSetting.set( '#f53e4d' );
+				subMenuBackgroundColorSetting.set( '#f44b59' );
 				subMenuTextColorSetting.set( '#ffffff' );
 
-				subMenuBackgroundColorHoverSetting.set( '#f53e4d' );
+				subMenuBackgroundColorHoverSetting.set( '#f44b59' );
 				subMenuTextColorHoverSetting.set( '#eeeeee' );
 
-				subMenuCurrentBackgroundColorSetting.set( '#f53e4d' );
+				subMenuCurrentBackgroundColorSetting.set( '#f44b59' );
 				subMenuCurrentTextColorSetting.set( '#eeeeee' );
 			}
 
