@@ -340,7 +340,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					'red' => __( 'Red', 'generatepress' ),
 					'green' => __( 'Green', 'generatepress' ),
 					'blue' => __( 'Blue', 'generatepress' ),
-					'purple' => __( 'Purple', 'generatepress' ),
 				),
 				'settings' => 'nav_color_presets',
 			)
