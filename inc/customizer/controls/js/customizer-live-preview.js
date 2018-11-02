@@ -151,6 +151,35 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 	generatepress_colors_live_update( 'blog_post_title_color', '.entry-title a,.entry-title a:visited', 'color', '', 'link_color' );
 	generatepress_colors_live_update( 'blog_post_title_hover_color', '.entry-title a:hover', 'color', '', 'link_color_hover' );
 
+	generatepress_colors_live_update( 'navigation_background_color', '.main-navigation', 'background-color', 'transparent' );
+	generatepress_colors_live_update( 'navigation_text_color', '.main-navigation .main-nav ul li a, .menu-toggle, button.menu-toggle:hover, button.menu-toggle:focus, .main-navigation .mobile-bar-items a, .main-navigation .mobile-bar-items a:hover, .main-navigation .mobile-bar-items a:focus', 'color' );
+
+	var navigation_current = '.main-navigation .main-nav ul li[class*="current-menu-"] > a, \
+	.main-navigation .main-nav ul li[class*="current-menu-"] > a:hover, \
+	.main-navigation .main-nav ul li[class*="current-menu-"].sfHover > a';
+
+	generatepress_colors_live_update( 'navigation_background_current_color', navigation_current, 'background-color' );
+	generatepress_colors_live_update( 'navigation_text_current_color', navigation_current, 'color' );
+
+	generatepress_colors_live_update( 'navigation_text_hover_color',
+		'.navigation-search input[type="search"],\
+		.navigation-search input[type="search"]:active,\
+		.navigation-search input[type="search"]:focus,\
+		.main-navigation .main-nav ul li:hover > a,\
+		.main-navigation .main-nav ul li:focus > a,\
+		.main-navigation .main-nav ul li.sfHover > a',
+		'color'
+	);
+
+	generatepress_colors_live_update( 'navigation_background_hover_color',
+		'.navigation-search input[type="search"],\
+		.navigation-search input[type="search"]:focus,\
+		.main-navigation .main-nav ul li:hover > a,\
+		.main-navigation .main-nav ul li:focus > a,\
+		.main-navigation .main-nav ul li.sfHover > a',
+		'background-color',
+		'transparent'
+	);
 	/**
 	 * Container width
 	 */
