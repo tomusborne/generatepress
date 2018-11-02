@@ -152,137 +152,143 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 	generatepress_colors_live_update( 'link_color_hover', 'a:hover', 'color', 'initial' );
 
 	/**
-	 * Blog post title color
-	 * Empty: Body link color
+	 * Live update for content & navigation colors thanks to our preset option.
+	 * We only want to run this if GP Premium isn't already doing it.
 	 */
-	generatepress_colors_live_update( 'blog_post_title_color', '.entry-title a, .entry-title a:visited', 'color', '', 'link_color' );
+	if ( 'undefined' == typeof generate_colors_live_update ) {
+		/**
+		 * Blog post title color
+		 * Empty: Body link color
+		 */
+		generatepress_colors_live_update( 'blog_post_title_color', '.entry-title a, .entry-title a:visited', 'color', '', 'link_color' );
 
-	/**
-	 * Blog post title color on hover
-	 * Empty: Body link color on hover
-	 */
-	generatepress_colors_live_update( 'blog_post_title_hover_color', '.entry-title a:hover', 'color', '', 'link_color_hover' );
+		/**
+		 * Blog post title color on hover
+		 * Empty: Body link color on hover
+		 */
+		generatepress_colors_live_update( 'blog_post_title_hover_color', '.entry-title a:hover', 'color', '', 'link_color_hover' );
 
-	/**
-	 * Navigation background color
-	 * Empty: Transparent
-	 */
-	generatepress_colors_live_update( 'navigation_background_color', '.main-navigation', 'background-color', 'transparent' );
+		/**
+		 * Navigation background color
+		 * Empty: Transparent
+		 */
+		generatepress_colors_live_update( 'navigation_background_color', '.main-navigation', 'background-color', 'transparent' );
 
-	/**
-	 * Primary navigation text color
-	 * Empty:  link_color
-	 */
-	generatepress_colors_live_update( 'navigation_text_color',
-		'.main-navigation .main-nav ul li a,\
-		.menu-toggle,button.menu-toggle:hover,\
-		button.menu-toggle:focus,\
-		.main-navigation .mobile-bar-items a,\
-		.main-navigation .mobile-bar-items a:hover,\
-		.main-navigation .mobile-bar-items a:focus',
-		'color',
-		'',
-		'link_color'
-	);
+		/**
+		 * Primary navigation text color
+		 * Empty:  link_color
+		 */
+		generatepress_colors_live_update( 'navigation_text_color',
+			'.main-navigation .main-nav ul li a,\
+			.menu-toggle,button.menu-toggle:hover,\
+			button.menu-toggle:focus,\
+			.main-navigation .mobile-bar-items a,\
+			.main-navigation .mobile-bar-items a:hover,\
+			.main-navigation .mobile-bar-items a:focus',
+			'color',
+			'',
+			'link_color'
+		);
 
-	/**
-	 * Primary navigation text color hover
-	 * Empty: link_color_hover
-	 */
-	generatepress_colors_live_update( 'navigation_text_hover_color',
-		'.navigation-search input[type="search"],\
-		.navigation-search input[type="search"]:active,\
-		.navigation-search input[type="search"]:focus,\
-		.main-navigation .main-nav ul li:hover > a,\
-		.main-navigation .main-nav ul li:focus > a,\
-		.main-navigation .main-nav ul li.sfHover > a',
-		'color',
-		'',
-		'link_color_hover'
-	);
+		/**
+		 * Primary navigation text color hover
+		 * Empty: link_color_hover
+		 */
+		generatepress_colors_live_update( 'navigation_text_hover_color',
+			'.navigation-search input[type="search"],\
+			.navigation-search input[type="search"]:active,\
+			.navigation-search input[type="search"]:focus,\
+			.main-navigation .main-nav ul li:hover > a,\
+			.main-navigation .main-nav ul li:focus > a,\
+			.main-navigation .main-nav ul li.sfHover > a',
+			'color',
+			'',
+			'link_color_hover'
+		);
 
-	/**
-	 * Primary navigation menu item hover
-	 * Empty: transparent
-	 */
-	generatepress_colors_live_update( 'navigation_background_hover_color',
-		'.navigation-search input[type="search"],\
-		.navigation-search input[type="search"]:focus,\
-		.main-navigation .main-nav ul li:hover > a,\
-		.main-navigation .main-nav ul li:focus > a,\
-		.main-navigation .main-nav ul li.sfHover > a',
-		'background-color',
-		'transparent'
-	);
+		/**
+		 * Primary navigation menu item hover
+		 * Empty: transparent
+		 */
+		generatepress_colors_live_update( 'navigation_background_hover_color',
+			'.navigation-search input[type="search"],\
+			.navigation-search input[type="search"]:focus,\
+			.main-navigation .main-nav ul li:hover > a,\
+			.main-navigation .main-nav ul li:focus > a,\
+			.main-navigation .main-nav ul li.sfHover > a',
+			'background-color',
+			'transparent'
+		);
 
-	/**
-	 * Primary sub-navigation color
-	 * Empty:  transparent
-	 */
-	generatepress_colors_live_update( 'subnavigation_background_color', '.main-navigation ul ul', 'background-color', 'transparent' );
+		/**
+		 * Primary sub-navigation color
+		 * Empty:  transparent
+		 */
+		generatepress_colors_live_update( 'subnavigation_background_color', '.main-navigation ul ul', 'background-color', 'transparent' );
 
-	/**
-	 * Primary sub-navigation text color
-	 * Empty:  link_color
-	 */
-	generatepress_colors_live_update( 'subnavigation_text_color', '.main-navigation .main-nav ul ul li a', 'color', 'link_color' );
+		/**
+		 * Primary sub-navigation text color
+		 * Empty:  link_color
+		 */
+		generatepress_colors_live_update( 'subnavigation_text_color', '.main-navigation .main-nav ul ul li a', 'color', 'link_color' );
 
-	/**
-	 * Primary sub-navigation hover
-	 */
-	var subnavigation_hover = '.main-navigation .main-nav ul ul li:hover > a, \
-		.main-navigation .main-nav ul ul li:focus > a, \
-		.main-navigation .main-nav ul ul li.sfHover > a';
+		/**
+		 * Primary sub-navigation hover
+		 */
+		var subnavigation_hover = '.main-navigation .main-nav ul ul li:hover > a, \
+			.main-navigation .main-nav ul ul li:focus > a, \
+			.main-navigation .main-nav ul ul li.sfHover > a';
 
-	/**
-	 * Primary sub-navigation text hover
-	 * Empty: link_color_hover
-	 */
-	generatepress_colors_live_update( 'subnavigation_text_hover_color', subnavigation_hover, 'color', '', 'link_color_hover' );
+		/**
+		 * Primary sub-navigation text hover
+		 * Empty: link_color_hover
+		 */
+		generatepress_colors_live_update( 'subnavigation_text_hover_color', subnavigation_hover, 'color', '', 'link_color_hover' );
 
-	/**
-	 * Primary sub-navigation background hover
-	 * Empty: transparent
-	 */
-	generatepress_colors_live_update( 'subnavigation_background_hover_color', subnavigation_hover, 'background-color', 'transparent' );
+		/**
+		 * Primary sub-navigation background hover
+		 * Empty: transparent
+		 */
+		generatepress_colors_live_update( 'subnavigation_background_hover_color', subnavigation_hover, 'background-color', 'transparent' );
 
-	/**
-	 * Navigation current selectors
-	 */
-	var navigation_current = '.main-navigation .main-nav ul li[class*="current-menu-"] > a, \
-	.main-navigation .main-nav ul li[class*="current-menu-"]:hover > a, \
-	.main-navigation .main-nav ul li[class*="current-menu-"].sfHover > a';
+		/**
+		 * Navigation current selectors
+		 */
+		var navigation_current = '.main-navigation .main-nav ul li[class*="current-menu-"] > a, \
+		.main-navigation .main-nav ul li[class*="current-menu-"]:hover > a, \
+		.main-navigation .main-nav ul li[class*="current-menu-"].sfHover > a';
 
-	/**
-	 * Primary navigation current text
-	 * Empty: link_color
-	 */
-	generatepress_colors_live_update( 'navigation_text_current_color', navigation_current, 'color', '', 'link_color' );
+		/**
+		 * Primary navigation current text
+		 * Empty: link_color
+		 */
+		generatepress_colors_live_update( 'navigation_text_current_color', navigation_current, 'color', '', 'link_color' );
 
-	/**
-	 * Primary navigation current background
-	 * Empty: transparent
-	 */
-	generatepress_colors_live_update( 'navigation_background_current_color', navigation_current, 'background-color', 'transparent' );
+		/**
+		 * Primary navigation current background
+		 * Empty: transparent
+		 */
+		generatepress_colors_live_update( 'navigation_background_current_color', navigation_current, 'background-color', 'transparent' );
 
-	/**
-	 * Primary sub-navigation current selectors
-	 */
-	var subnavigation_current = '.main-navigation .main-nav ul ul li[class*="current-menu-"] > a,\
-		.main-navigation .main-nav ul ul li[class*="current-menu-"]:hover > a, \
-		.main-navigation .main-nav ul ul li[class*="current-menu-"].sfHover > a';
+		/**
+		 * Primary sub-navigation current selectors
+		 */
+		var subnavigation_current = '.main-navigation .main-nav ul ul li[class*="current-menu-"] > a,\
+			.main-navigation .main-nav ul ul li[class*="current-menu-"]:hover > a, \
+			.main-navigation .main-nav ul ul li[class*="current-menu-"].sfHover > a';
 
-	/**
-	 * Primary sub-navigation current text
-	 * Empty: link_color
-	 */
-	generatepress_colors_live_update( 'subnavigation_text_current_color', subnavigation_current, 'color', '', 'link_color' );
+		/**
+		 * Primary sub-navigation current text
+		 * Empty: link_color
+		 */
+		generatepress_colors_live_update( 'subnavigation_text_current_color', subnavigation_current, 'color', '', 'link_color' );
 
-	/**
-	 * Primary navigation current item background
-	 * Empty: transparent
-	 */
-	generatepress_colors_live_update( 'subnavigation_background_current_color', subnavigation_current, 'background-color', 'transparent' );
+		/**
+		 * Primary navigation current item background
+		 * Empty: transparent
+		 */
+		generatepress_colors_live_update( 'subnavigation_background_current_color', subnavigation_current, 'background-color', 'transparent' );
+	}
 
 	/**
 	 * Container width
@@ -302,43 +308,45 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 	} );
 
 	/**
-	 * Body font size, weight and transform
+	 * Live update for typography options.
+	 * We only want to run this if GP Premium isn't already doing it.
 	 */
-	generatepress_typography_live_update( 'body_font_size', 'body, button, input, select, textarea', 'font-size', 'px' );
-	generatepress_typography_live_update( 'body_line_height', 'body', 'line-height', '' );
-	generatepress_typography_live_update( 'paragraph_margin', 'p, .entry-content > [class*="wp-block-"]:not(:last-child)', 'margin-bottom', 'em' );
-	generatepress_typography_live_update( 'body_font_weight', 'body, button, input, select, textarea', 'font-weight' );
-	generatepress_typography_live_update( 'body_font_transform', 'body, button, input, select, textarea', 'text-transform' );
+	if ( 'undefined' == typeof gp_premium_typography_live_update ) {
+		/**
+		 * Body font size, weight and transform
+		 */
+		generatepress_typography_live_update( 'body_font_size', 'body, button, input, select, textarea', 'font-size', 'px' );
+		generatepress_typography_live_update( 'body_line_height', 'body', 'line-height', '' );
+		generatepress_typography_live_update( 'paragraph_margin', 'p, .entry-content > [class*="wp-block-"]:not(:last-child)', 'margin-bottom', 'em' );
+		generatepress_typography_live_update( 'body_font_weight', 'body, button, input, select, textarea', 'font-weight' );
+		generatepress_typography_live_update( 'body_font_transform', 'body, button, input, select, textarea', 'text-transform' );
 
-	/**
-	 * H1 font size, weight and transform
-	 */
-	generatepress_typography_live_update( 'heading_1_font_size', 'h1', 'font-size', 'px', generatepress_live_preview.desktop );
-	generatepress_typography_live_update( 'mobile_heading_1_font_size', 'h1', 'font-size', 'px', generatepress_live_preview.mobile );
-	generatepress_typography_live_update( 'heading_1_weight', 'h1', 'font-weight' );
-	generatepress_typography_live_update( 'heading_1_transform', 'h1', 'text-transform' );
-	generatepress_typography_live_update( 'heading_1_line_height', 'h1', 'line-height', 'em' );
+		/**
+		 * H1 font size, weight and transform
+		 */
+		generatepress_typography_live_update( 'heading_1_font_size', 'h1', 'font-size', 'px', generatepress_live_preview.desktop );
+		generatepress_typography_live_update( 'mobile_heading_1_font_size', 'h1', 'font-size', 'px', generatepress_live_preview.mobile );
+		generatepress_typography_live_update( 'heading_1_weight', 'h1', 'font-weight' );
+		generatepress_typography_live_update( 'heading_1_transform', 'h1', 'text-transform' );
+		generatepress_typography_live_update( 'heading_1_line_height', 'h1', 'line-height', 'em' );
 
-	/**
-	 * H2 font size, weight and transform
-	 */
-	generatepress_typography_live_update( 'heading_2_font_size', 'h2', 'font-size', 'px', generatepress_live_preview.desktop );
-	generatepress_typography_live_update( 'mobile_heading_2_font_size', 'h2', 'font-size', 'px', generatepress_live_preview.mobile );
-	generatepress_typography_live_update( 'heading_2_weight', 'h2', 'font-weight' );
-	generatepress_typography_live_update( 'heading_2_transform', 'h2', 'text-transform' );
-	generatepress_typography_live_update( 'heading_2_line_height', 'h2', 'line-height', 'em' );
+		/**
+		 * H2 font size, weight and transform
+		 */
+		generatepress_typography_live_update( 'heading_2_font_size', 'h2', 'font-size', 'px', generatepress_live_preview.desktop );
+		generatepress_typography_live_update( 'mobile_heading_2_font_size', 'h2', 'font-size', 'px', generatepress_live_preview.mobile );
+		generatepress_typography_live_update( 'heading_2_weight', 'h2', 'font-weight' );
+		generatepress_typography_live_update( 'heading_2_transform', 'h2', 'text-transform' );
+		generatepress_typography_live_update( 'heading_2_line_height', 'h2', 'line-height', 'em' );
 
-	/**
-	 * H3 font size, weight and transform
-	 */
-	generatepress_typography_live_update( 'heading_3_font_size', 'h3', 'font-size', 'px' );
-	generatepress_typography_live_update( 'heading_3_weight', 'h3', 'font-weight' );
-	generatepress_typography_live_update( 'heading_3_transform', 'h3', 'text-transform' );
-	generatepress_typography_live_update( 'heading_3_line_height', 'h3', 'line-height', 'em' );
-
-	// if ( typeof gp_premium_typography_live_update !== 'undefined' && $.isFunction( gp_premium_typography_live_update ) ) {
-	// 	return; // Let GP Premium handle this.
-	// }
+		/**
+		 * H3 font size, weight and transform
+		 */
+		generatepress_typography_live_update( 'heading_3_font_size', 'h3', 'font-size', 'px' );
+		generatepress_typography_live_update( 'heading_3_weight', 'h3', 'font-weight' );
+		generatepress_typography_live_update( 'heading_3_transform', 'h3', 'text-transform' );
+		generatepress_typography_live_update( 'heading_3_line_height', 'h3', 'line-height', 'em' );
+	}
 
 	/**
 	 * Content layout
