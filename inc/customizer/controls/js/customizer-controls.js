@@ -291,6 +291,26 @@
 				subMenuCurrentTextColorSetting.set( '#eeeeee' );
 			}
 
+			if ( 'red' === newval ) {
+				backgroundColorSetting.set( '#ED2939' );
+				textColorSetting.set( '#ffffff' );
+
+				backgroundColorHoverSetting.set( '#f53e4d' );
+				textColorHoverSetting.set( '#ffffff' );
+
+				currentBackgroundColorSetting.set( '#f53e4d' );
+				currentTextColorSetting.set( '#ffffff' );
+
+				subMenuBackgroundColorSetting.set( '#f53e4d' );
+				subMenuTextColorSetting.set( '#ffffff' );
+
+				subMenuBackgroundColorHoverSetting.set( '#f53e4d' );
+				subMenuTextColorHoverSetting.set( '#eeeeee' );
+
+				subMenuCurrentBackgroundColorSetting.set( '#f53e4d' );
+				subMenuCurrentTextColorSetting.set( '#eeeeee' );
+			}
+
 			jQuery('.wp-color-picker').wpColorPicker().change();
 		} );
 	} );
