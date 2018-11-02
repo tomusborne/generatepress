@@ -311,6 +311,26 @@
 				subMenuCurrentTextColorSetting.set( '#eeeeee' );
 			}
 
+			if ( 'green' === newval ) {
+				backgroundColorSetting.set( '#16aa74' );
+				textColorSetting.set( '#ffffff' );
+
+				backgroundColorHoverSetting.set( '#119b6d' );
+				textColorHoverSetting.set( '#ffffff' );
+
+				currentBackgroundColorSetting.set( '#119b6d' );
+				currentTextColorSetting.set( '#ffffff' );
+
+				subMenuBackgroundColorSetting.set( '#119b6d' );
+				subMenuTextColorSetting.set( '#ffffff' );
+
+				subMenuBackgroundColorHoverSetting.set( '#119b6d' );
+				subMenuTextColorHoverSetting.set( '#eeeeee' );
+
+				subMenuCurrentBackgroundColorSetting.set( '#119b6d' );
+				subMenuCurrentTextColorSetting.set( '#eeeeee' );
+			}
+
 			if ( 'purple' === newval ) {
 				backgroundColorSetting.set( '#7b3da5' );
 				textColorSetting.set( '#ffffff' );
