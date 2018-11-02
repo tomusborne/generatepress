@@ -121,7 +121,13 @@
 			backgroundColorHover = false,
 			textColorHover = false,
 			currentBackgroundColor = false,
-			currentTextColor = false;
+			currentTextColor = false,
+			subMenuBackgroundColor = false,
+			subMenuTextColor = false,
+			subMenuBackgroundColorHover = false,
+			subMenuTextColorHover = false,
+			subMenuCurrentBackgroundColor = false,
+			subMenuCurrentTextColor = false;
 
 		value.bind( function( newval ) {
 			var backgroundColorSetting = api.instance( 'generate_settings[navigation_background_color]' ),
@@ -129,7 +135,13 @@
 				backgroundColorHoverSetting = api.instance( 'generate_settings[navigation_background_hover_color]' ),
 				textColorHoverSetting = api.instance( 'generate_settings[navigation_text_hover_color]' ),
 				currentBackgroundColorSetting = api.instance( 'generate_settings[navigation_background_current_color]' ),
-				currentTextColorSetting = api.instance( 'generate_settings[navigation_text_current_color]' );
+				currentTextColorSetting = api.instance( 'generate_settings[navigation_text_current_color]' ),
+				subMenuBackgroundColorSetting = api.instance( 'generate_settings[subnavigation_background_color]' ),
+				subMenuTextColorSetting = api.instance( 'generate_settings[subnavigation_text_color]' ),
+				subMenuBackgroundColorHoverSetting = api.instance( 'generate_settings[subnavigation_background_hover_color]' ),
+				subMenuTextColorHoverSetting = api.instance( 'generate_settings[subnavigation_text_hover_color]' ),
+				subMenuCurrentBackgroundColorSetting = api.instance( 'generate_settings[subnavigation_background_current_color]' ),
+				subMenuCurrentTextColorSetting = api.instance( 'generate_settings[subnavigation_text_current_color]' );
 
 			if ( ! backgroundColorSetting._dirty ) {
 				backgroundColor = backgroundColorSetting.get();
@@ -155,6 +167,30 @@
 				currentTextColor = currentTextColorSetting.get();
 			}
 
+			if ( ! subMenuBackgroundColorSetting._dirty ) {
+				subMenuBackgroundColor = subMenuBackgroundColorSetting.get();
+			}
+
+			if ( ! subMenuTextColorSetting._dirty ) {
+				subMenuTextColor = subMenuTextColorSetting.get();
+			}
+
+			if ( ! subMenuBackgroundColorHoverSetting._dirty ) {
+				subMenuBackgroundColorHover = subMenuBackgroundColorHoverSetting.get();
+			}
+
+			if ( ! subMenuTextColorHoverSetting._dirty ) {
+				subMenuTextColorHover = subMenuTextColorHoverSetting.get();
+			}
+
+			if ( ! subMenuCurrentBackgroundColorSetting._dirty ) {
+				subMenuCurrentBackgroundColor = subMenuCurrentBackgroundColorSetting.get();
+			}
+
+			if ( ! subMenuCurrentTextColorSetting._dirty ) {
+				subMenuCurrentTextColor = subMenuCurrentTextColorSetting.get();
+			}
+
 			if ( 'current' === newval ) {
 				backgroundColorSetting.set( backgroundColor );
 				textColorSetting.set( textColor );
@@ -164,6 +200,15 @@
 
 				currentBackgroundColorSetting.set( currentBackgroundColor );
 				currentTextColorSetting.set( currentTextColorSetting );
+
+				subMenuBackgroundColorSetting.set( subMenuBackgroundColor );
+				subMenuTextColorSetting.set( subMenuTextColor );
+
+				subMenuBackgroundColorHoverSetting.set( subMenuBackgroundColorHover );
+				subMenuTextColorHoverSetting.set( subMenuTextColorHover );
+
+				subMenuCurrentBackgroundColorSetting.set( subMenuCurrentBackgroundColor );
+				subMenuCurrentTextColorSetting.set( subMenuCurrentTextColorSetting );
 			}
 
 			if ( 'default' === newval ) {
@@ -175,6 +220,15 @@
 
 				currentBackgroundColorSetting.set( generatepress_color_defaults.navigation_background_current_color );
 				currentTextColorSetting.set( generatepress_color_defaults.navigation_text_current_color );
+
+				subMenuBackgroundColorSetting.set( generatepress_color_defaults.subnavigation_background_color );
+				subMenuTextColorSetting.set( generatepress_color_defaults.subnavigation_text_color );
+
+				subMenuBackgroundColorHoverSetting.set( generatepress_color_defaults.subnavigation_background_hover_color );
+				subMenuTextColorHoverSetting.set( generatepress_color_defaults.subnavigation_text_hover_color );
+
+				subMenuCurrentBackgroundColorSetting.set( generatepress_color_defaults.subnavigation_background_current_color );
+				subMenuCurrentTextColorSetting.set( generatepress_color_defaults.subnavigation_text_current_color );
 			}
 
 			if ( 'light' === newval ) {
@@ -186,6 +240,15 @@
 
 				currentBackgroundColorSetting.set( '#ffffff' );
 				currentTextColorSetting.set( '#8c8c8c' );
+
+				subMenuBackgroundColorSetting.set( '#eeeeee' );
+				subMenuTextColorSetting.set( '#000000' );
+
+				subMenuBackgroundColorHoverSetting.set( '#eeeeee' );
+				subMenuTextColorHoverSetting.set( '#8c8c8c' );
+
+				subMenuCurrentBackgroundColorSetting.set( '#eeeeee' );
+				subMenuCurrentTextColorSetting.set( '#8c8c8c' );
 			}
 
 			if ( 'dark' === newval ) {
@@ -197,6 +260,15 @@
 
 				currentBackgroundColorSetting.set( '#222222' );
 				currentTextColorSetting.set( '#ffffff' );
+
+				subMenuBackgroundColorSetting.set( '#222222' );
+				subMenuTextColorSetting.set( '#ffffff' );
+
+				subMenuBackgroundColorHoverSetting.set( '#111111' );
+				subMenuTextColorHoverSetting.set( '#ffffff' );
+
+				subMenuCurrentBackgroundColorSetting.set( '#111111' );
+				subMenuCurrentTextColorSetting.set( '#ffffff' );
 			}
 
 			if ( 'blue' === newval ) {
@@ -208,6 +280,15 @@
 
 				currentBackgroundColorSetting.set( '#0769bf' );
 				currentTextColorSetting.set( '#ffffff' );
+
+				subMenuBackgroundColorSetting.set( '#0769bf' );
+				subMenuTextColorSetting.set( '#ffffff' );
+
+				subMenuBackgroundColorHoverSetting.set( '#0769bf' );
+				subMenuTextColorHoverSetting.set( '#eeeeee' );
+
+				subMenuCurrentBackgroundColorSetting.set( '#0769bf' );
+				subMenuCurrentTextColorSetting.set( '#eeeeee' );
 			}
 
 			jQuery('.wp-color-picker').wpColorPicker().change();

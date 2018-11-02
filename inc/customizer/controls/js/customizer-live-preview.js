@@ -3,11 +3,15 @@
  *
  * Contains handlers to make Theme Customizer preview reload changes asynchronously.
  */
-function generatepress_colors_live_update( id, selector, property, default_value ) {
+function generatepress_colors_live_update( id, selector, property, default_value, get_value ) {
 	default_value = typeof default_value !== 'undefined' ? default_value : 'initial';
+	get_value = typeof get_value !== 'undefined' ? get_value : '';
+
 	wp.customize( 'generate_settings[' + id + ']', function( value ) {
 		value.bind( function( newval ) {
+			default_value = ( '' !== get_value ) ? wp.customize.value('generate_settings[' + get_value + ']')() : default_value;
 			newval = ( '' !== newval ) ? newval : default_value;
+
 			if ( jQuery( 'style#' + id ).length ) {
 				jQuery( 'style#' + id ).html( selector + '{' + property + ':' + newval + ';}' );
 			} else {
@@ -147,20 +151,44 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 	 */
 	generatepress_colors_live_update( 'link_color_hover', 'a:hover', 'color', 'initial' );
 
-	generatepress_colors_live_update( 'content_title_color', '.entry-header h1,.page-header h1', 'color', 'inherit', 'text_color' );
-	generatepress_colors_live_update( 'blog_post_title_color', '.entry-title a,.entry-title a:visited', 'color', '', 'link_color' );
+	/**
+	 * Blog post title color
+	 * Empty: Body link color
+	 */
+	generatepress_colors_live_update( 'blog_post_title_color', '.entry-title a, .entry-title a:visited', 'color', '', 'link_color' );
+
+	/**
+	 * Blog post title color on hover
+	 * Empty: Body link color on hover
+	 */
 	generatepress_colors_live_update( 'blog_post_title_hover_color', '.entry-title a:hover', 'color', '', 'link_color_hover' );
 
+	/**
+	 * Navigation background color
+	 * Empty: Transparent
+	 */
 	generatepress_colors_live_update( 'navigation_background_color', '.main-navigation', 'background-color', 'transparent' );
-	generatepress_colors_live_update( 'navigation_text_color', '.main-navigation .main-nav ul li a, .menu-toggle, button.menu-toggle:hover, button.menu-toggle:focus, .main-navigation .mobile-bar-items a, .main-navigation .mobile-bar-items a:hover, .main-navigation .mobile-bar-items a:focus', 'color' );
 
-	var navigation_current = '.main-navigation .main-nav ul li[class*="current-menu-"] > a, \
-	.main-navigation .main-nav ul li[class*="current-menu-"] > a:hover, \
-	.main-navigation .main-nav ul li[class*="current-menu-"].sfHover > a';
+	/**
+	 * Primary navigation text color
+	 * Empty:  link_color
+	 */
+	generatepress_colors_live_update( 'navigation_text_color',
+		'.main-navigation .main-nav ul li a,\
+		.menu-toggle,button.menu-toggle:hover,\
+		button.menu-toggle:focus,\
+		.main-navigation .mobile-bar-items a,\
+		.main-navigation .mobile-bar-items a:hover,\
+		.main-navigation .mobile-bar-items a:focus',
+		'color',
+		'',
+		'link_color'
+	);
 
-	generatepress_colors_live_update( 'navigation_background_current_color', navigation_current, 'background-color' );
-	generatepress_colors_live_update( 'navigation_text_current_color', navigation_current, 'color' );
-
+	/**
+	 * Primary navigation text color hover
+	 * Empty: link_color_hover
+	 */
 	generatepress_colors_live_update( 'navigation_text_hover_color',
 		'.navigation-search input[type="search"],\
 		.navigation-search input[type="search"]:active,\
@@ -168,9 +196,15 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 		.main-navigation .main-nav ul li:hover > a,\
 		.main-navigation .main-nav ul li:focus > a,\
 		.main-navigation .main-nav ul li.sfHover > a',
-		'color'
+		'color',
+		'',
+		'link_color_hover'
 	);
 
+	/**
+	 * Primary navigation menu item hover
+	 * Empty: transparent
+	 */
 	generatepress_colors_live_update( 'navigation_background_hover_color',
 		'.navigation-search input[type="search"],\
 		.navigation-search input[type="search"]:focus,\
@@ -180,6 +214,76 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 		'background-color',
 		'transparent'
 	);
+
+	/**
+	 * Primary sub-navigation color
+	 * Empty:  transparent
+	 */
+	generatepress_colors_live_update( 'subnavigation_background_color', '.main-navigation ul ul', 'background-color', 'transparent' );
+
+	/**
+	 * Primary sub-navigation text color
+	 * Empty:  link_color
+	 */
+	generatepress_colors_live_update( 'subnavigation_text_color', '.main-navigation .main-nav ul ul li a', 'color', 'link_color' );
+
+	/**
+	 * Primary sub-navigation hover
+	 */
+	var subnavigation_hover = '.main-navigation .main-nav ul ul li:hover > a, \
+		.main-navigation .main-nav ul ul li:focus > a, \
+		.main-navigation .main-nav ul ul li.sfHover > a';
+
+	/**
+	 * Primary sub-navigation text hover
+	 * Empty: link_color_hover
+	 */
+	generatepress_colors_live_update( 'subnavigation_text_hover_color', subnavigation_hover, 'color', '', 'link_color_hover' );
+
+	/**
+	 * Primary sub-navigation background hover
+	 * Empty: transparent
+	 */
+	generatepress_colors_live_update( 'subnavigation_background_hover_color', subnavigation_hover, 'background-color', 'transparent' );
+
+	/**
+	 * Navigation current selectors
+	 */
+	var navigation_current = '.main-navigation .main-nav ul li[class*="current-menu-"] > a, \
+	.main-navigation .main-nav ul li[class*="current-menu-"]:hover > a, \
+	.main-navigation .main-nav ul li[class*="current-menu-"].sfHover > a';
+
+	/**
+	 * Primary navigation current text
+	 * Empty: link_color
+	 */
+	generatepress_colors_live_update( 'navigation_text_current_color', navigation_current, 'color', '', 'link_color' );
+
+	/**
+	 * Primary navigation current background
+	 * Empty: transparent
+	 */
+	generatepress_colors_live_update( 'navigation_background_current_color', navigation_current, 'background-color', 'transparent' );
+
+	/**
+	 * Primary sub-navigation current selectors
+	 */
+	var subnavigation_current = '.main-navigation .main-nav ul ul li[class*="current-menu-"] > a,\
+		.main-navigation .main-nav ul ul li[class*="current-menu-"]:hover > a, \
+		.main-navigation .main-nav ul ul li[class*="current-menu-"].sfHover > a';
+
+	/**
+	 * Primary sub-navigation current text
+	 * Empty: link_color
+	 */
+	generatepress_colors_live_update( 'subnavigation_text_current_color', subnavigation_current, 'color', '', 'link_color' );
+
+	/**
+	 * Primary navigation current item background
+	 * Empty: transparent
+	 */
+	generatepress_colors_live_update( 'subnavigation_background_current_color', subnavigation_current, 'background-color', 'transparent' );
+
 	/**
 	 * Container width
 	 */
