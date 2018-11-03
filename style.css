@@ -27,6 +27,7 @@ GeneratePress is based on Underscores http://underscores.me/, (C) 2012-2018 Auto
 # Accessibility
 # Clearings
 # Navigation
+	# Mobile Menu
 	# Navigation Search
 	# Dropdown Menus
 	# Sidebar Navigation
@@ -630,6 +631,32 @@ a:focus {
 	padding-left: 20px;
 	padding-right: 20px;
 	line-height: 60px;
+}
+
+/*--------------------------------------------------------------
+## Mobile Menu
+--------------------------------------------------------------*/
+
+.menu-toggle,
+.mobile-bar-items,
+.sidebar-nav-mobile {
+	display: none;
+}
+
+.menu-toggle {
+	padding: 0 20px;
+	line-height: 60px;
+	margin: 0;
+	font-weight: normal;
+	text-transform: none;
+	font-size: 15px;
+	cursor: pointer;
+}
+
+.main-navigation .mobile-bar-items a {
+    padding-left: 20px;
+    padding-right: 20px;
+    line-height: 60px;
 }
 
 /*--------------------------------------------------------------
