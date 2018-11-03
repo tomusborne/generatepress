@@ -350,7 +350,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'generate_settings[navigation_background_color]', array(
 					'default' => $color_defaults['navigation_background_color'],
 					'type' => 'option',
-					'sanitize_callback' => 'generate_sanitize_hex_color',
+					'sanitize_callback' => 'generate_sanitize_rgba_color',
 					'transport' => 'postMessage',
 				)
 			);
@@ -370,7 +370,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					'default'     => $color_defaults['navigation_background_hover_color'],
 					'type'        => 'option',
 					'transport'   => 'postMessage',
-					'sanitize_callback' => 'generate_sanitize_hex_color',
+					'sanitize_callback' => 'generate_sanitize_rgba_color',
 				)
 			);
 
@@ -389,7 +389,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				array(
 					'default' => $color_defaults['navigation_background_current_color'],
 					'type' => 'option',
-					'sanitize_callback' => 'generate_sanitize_hex_color',
+					'sanitize_callback' => 'generate_sanitize_rgba_color',
 					'transport' => 'postMessage',
 				)
 			);
@@ -410,7 +410,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					'default'     => $color_defaults['subnavigation_background_color'],
 					'type'        => 'option',
 					'transport'   => 'postMessage',
-					'sanitize_callback' => 'generate_sanitize_hex_color',
+					'sanitize_callback' => 'generate_sanitize_rgba_color',
 				)
 			);
 
@@ -429,7 +429,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					'default'     => $color_defaults['subnavigation_background_hover_color'],
 					'type'        => 'option',
 					'transport'   => 'postMessage',
-					'sanitize_callback' => 'generate_sanitize_hex_color',
+					'sanitize_callback' => 'generate_sanitize_rgba_color',
 				)
 			);
 
@@ -448,7 +448,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					'default'     => $color_defaults['subnavigation_background_current_color'],
 					'type'        => 'option',
 					'transport'   => 'postMessage',
-					'sanitize_callback' => 'generate_sanitize_hex_color',
+					'sanitize_callback' => 'generate_sanitize_rgba_color',
 				)
 			);
 

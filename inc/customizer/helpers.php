@@ -194,6 +194,26 @@ if ( ! function_exists( 'generate_sanitize_hex_color' ) ) {
 	 }
 }
 
+/**
+ * Sanitize RGBA colors.
+ *
+ * @since 2.2
+ */
+function generate_sanitize_rgba_color( $color ) {
+    if ( '' === $color ) {
+        return '';
+	}
+
+	if ( false === strpos( $color, 'rgba' ) ) {
+		return generate_sanitize_hex_color( $color );
+	}
+
+	$color = str_replace( ' ', '', $color );
+	sscanf( $color, 'rgba(%d,%d,%d,%f)', $red, $green, $blue, $alpha );
+
+	return 'rgba('.$red.','.$green.','.$blue.','.$alpha.')';
+}
+
 if ( ! function_exists( 'generate_sanitize_choices' ) ) {
 	/**
 	 * Sanitize choices.
