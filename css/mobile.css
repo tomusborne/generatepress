@@ -304,6 +304,7 @@ nav.toggled ul ul.sub-menu {
 		-ms-flex-preferred-size: 100%;
 		flex-basis: 100%;
 		margin-left: 0;
+		margin-bottom: 40px;
 	}
 
 	/*--------------------------------------------------------------
