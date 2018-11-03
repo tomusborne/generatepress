@@ -200,8 +200,8 @@ if ( ! function_exists( 'generate_sanitize_hex_color' ) ) {
  * @since 2.2
  */
 function generate_sanitize_rgba_color( $color ) {
-    if ( '' === $color ) {
-        return '';
+	if ( '' === $color ) {
+		return '';
 	}
 
 	if ( false === strpos( $color, 'rgba' ) ) {
