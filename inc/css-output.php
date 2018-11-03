@@ -77,7 +77,7 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 		}
 
 		if ( generate_get_option( 'logo_width' ) ) {
-			$css->set_selector( '.site-logo img' );
+			$css->set_selector( '.site-header .header-image' );
 			$css->add_property( 'width', absint( generate_get_option( 'logo_width' ) ), false, 'px' );
 		}
 
