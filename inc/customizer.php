@@ -477,7 +477,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					$wp_customize,
 					'blog_post_title_color',
 					array(
-						'label' => __( 'Blog Post Titlee', 'generatepress' ),
+						'label' => __( 'Blog Post Title', 'generatepress' ),
 						'section' => $wp_customize->get_section( 'content_color_section' ) ? 'content_color_section' : 'body_section',
 						'settings' => 'generate_settings[blog_post_title_color]',
 					)
