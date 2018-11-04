@@ -335,8 +335,8 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'choices' => array(
 					'current' => __( 'Current', 'generatepress' ),
 					'default' => __( 'Default', 'generatepress' ),
-					'dark' => __( 'Dark', 'generatepress' ),
-					'light' => __( 'Light', 'generatepress' ),
+					'white' => __( 'White', 'generatepress' ),
+					'grey' => __( 'Grey', 'generatepress' ),
 					'red' => __( 'Red', 'generatepress' ),
 					'green' => __( 'Green', 'generatepress' ),
 					'blue' => __( 'Blue', 'generatepress' ),

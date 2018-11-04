@@ -231,7 +231,7 @@
 				subMenuCurrentTextColorSetting.set( generatepress_color_defaults.subnavigation_text_current_color );
 			}
 
-			if ( 'light' === newval ) {
+			if ( 'white' === newval ) {
 				backgroundColorSetting.set( '#ffffff' );
 				textColorSetting.set( '#000000' );
 
@@ -251,64 +251,64 @@
 				subMenuCurrentTextColorSetting.set( '#8f919e' );
 			}
 
-			if ( 'dark' === newval ) {
-				backgroundColorSetting.set( '#000000' );
+			if ( 'grey' === newval ) {
+				backgroundColorSetting.set( '#595959' );
 				textColorSetting.set( '#ffffff' );
 
-				backgroundColorHoverSetting.set( '#222222' );
+				backgroundColorHoverSetting.set( '#424242' );
 				textColorHoverSetting.set( '#ffffff' );
 
-				currentBackgroundColorSetting.set( '#222222' );
+				currentBackgroundColorSetting.set( '#424242' );
 				currentTextColorSetting.set( '#ffffff' );
 
-				subMenuBackgroundColorSetting.set( '#222222' );
+				subMenuBackgroundColorSetting.set( '#424242' );
 				subMenuTextColorSetting.set( '#ffffff' );
 
-				subMenuBackgroundColorHoverSetting.set( '#111111' );
-				subMenuTextColorHoverSetting.set( '#ffffff' );
+				subMenuBackgroundColorHoverSetting.set( '#424242' );
+				subMenuTextColorHoverSetting.set( '#dbdbdb' );
 
-				subMenuCurrentBackgroundColorSetting.set( '#111111' );
-				subMenuCurrentTextColorSetting.set( '#ffffff' );
+				subMenuCurrentBackgroundColorSetting.set( '#424242' );
+				subMenuCurrentTextColorSetting.set( '#dbdbdb' );
 			}
 
 			if ( 'blue' === newval ) {
 				backgroundColorSetting.set( '#1e73be' );
 				textColorSetting.set( '#ffffff' );
 
-				backgroundColorHoverSetting.set( '#0769bf' );
+				backgroundColorHoverSetting.set( '#035a9e' );
 				textColorHoverSetting.set( '#ffffff' );
 
-				currentBackgroundColorSetting.set( '#0769bf' );
+				currentBackgroundColorSetting.set( '#035a9e' );
 				currentTextColorSetting.set( '#ffffff' );
 
-				subMenuBackgroundColorSetting.set( '#0769bf' );
+				subMenuBackgroundColorSetting.set( '#035a9e' );
 				subMenuTextColorSetting.set( '#ffffff' );
 
-				subMenuBackgroundColorHoverSetting.set( '#0769bf' );
-				subMenuTextColorHoverSetting.set( '#eeeeee' );
+				subMenuBackgroundColorHoverSetting.set( '#035a9e' );
+				subMenuTextColorHoverSetting.set( '#bbd2e8' );
 
-				subMenuCurrentBackgroundColorSetting.set( '#0769bf' );
-				subMenuCurrentTextColorSetting.set( '#eeeeee' );
+				subMenuCurrentBackgroundColorSetting.set( '#035a9e' );
+				subMenuCurrentTextColorSetting.set( '#bbd2e8' );
 			}
 
 			if ( 'red' === newval ) {
 				backgroundColorSetting.set( '#ed4250' );
 				textColorSetting.set( '#ffffff' );
 
-				backgroundColorHoverSetting.set( '#f44b59' );
+				backgroundColorHoverSetting.set( '#c42f2f' );
 				textColorHoverSetting.set( '#ffffff' );
 
-				currentBackgroundColorSetting.set( '#f44b59' );
+				currentBackgroundColorSetting.set( '#c42f2f' );
 				currentTextColorSetting.set( '#ffffff' );
 
-				subMenuBackgroundColorSetting.set( '#f44b59' );
+				subMenuBackgroundColorSetting.set( '#c42f2f' );
 				subMenuTextColorSetting.set( '#ffffff' );
 
-				subMenuBackgroundColorHoverSetting.set( '#f44b59' );
-				subMenuTextColorHoverSetting.set( '#eeeeee' );
+				subMenuBackgroundColorHoverSetting.set( '#c42f2f' );
+				subMenuTextColorHoverSetting.set( '#fcd9d6' );
 
-				subMenuCurrentBackgroundColorSetting.set( '#f44b59' );
-				subMenuCurrentTextColorSetting.set( '#eeeeee' );
+				subMenuCurrentBackgroundColorSetting.set( '#c42f2f' );
+				subMenuCurrentTextColorSetting.set( '#fcd9d6' );
 			}
 
 			if ( 'green' === newval ) {
@@ -325,10 +325,10 @@
 				subMenuTextColorSetting.set( '#ffffff' );
 
 				subMenuBackgroundColorHoverSetting.set( '#119b6d' );
-				subMenuTextColorHoverSetting.set( '#eeeeee' );
+				subMenuTextColorHoverSetting.set( '#c2e8de' );
 
 				subMenuCurrentBackgroundColorSetting.set( '#119b6d' );
-				subMenuCurrentTextColorSetting.set( '#eeeeee' );
+				subMenuCurrentTextColorSetting.set( '#c2e8de' );
 			}
 
 			jQuery('.wp-color-picker').wpColorPicker().change();
