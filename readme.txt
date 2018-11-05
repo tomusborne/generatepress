@@ -12,17 +12,17 @@ GeneratePress is a fast, lightweight (less than 1MB zipped), mobile responsive W
 
 == Description ==
 
-GeneratePress is a fast, lightweight (less than 1MB zipped), mobile responsive WordPress theme built with speed, SEO and usability in mind.
+GeneratePress is a lightweight WordPress theme built with a focus on speed and usability. Performance is important to us, which is why a fresh GeneratePress install adds less than 15kb (gzipped) to your page size.
 
-GP can serve as a solid base for any website, and works great with any of your favorite page builders.
+We take full advantage of the new block editor (Gutenberg), which gives you more control over creating your content.
 
-With an emphasis on WordPress coding standards, we ensure GeneratePress is compatible with all well-coded plugins, including major ones like WooCommerce, WPML, BuddyPress and bbPress.
+If you use page builders, GeneratePress is the right theme for you. It is completely compatible with all major page builders, including Beaver Builder and Elementor.
 
-GeneratePress is device friendly (mobile and tablet), uses 100% valid HTML, is fully schema microdata integrated, is translated into over 20 languages by our amazing community and is cross browser compatible (IE9+).
+Thanks to our emphasis on WordPress coding standards, we can boast full compatibility with all well-coded plugins, including WooCommerce.
 
-Some of our features include 9 widget areas, 5 navigation positions, 5 sidebar layouts, dropdown menus (click or hover) and a back to top button.
+GeneratePress is fully responsive, uses valid HTML/CSS and is translated into over 25 languages by our amazing community of users.
 
-All our options use the native WordPress Customizer, meaning you can see every change you make instantly before pressing the publish button.
+A few of our many features include JSON-LD integration, 9 widget areas, 5 navigation locations, 5 sidebar layouts, dropdown menus (click or hover) and navigation color presets.
 
 Learn more and check out our [powerful premium version](https://generatepress.com).
 
