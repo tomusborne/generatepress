@@ -77,6 +77,11 @@ body .editor-block-list__block p {
 	font-size: inherit;
 }
 
+body .editor-default-block-appender input[type=text].editor-default-block-appender__content {
+	font-family: inherit;
+	font-size: inherit;
+}
+
 /*--------------------------------------------------------------
 ## Gallery
 --------------------------------------------------------------*/
