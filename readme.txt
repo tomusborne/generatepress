@@ -109,6 +109,8 @@ Release date: TBD
 * New: Header Presets control inside the Customizer
 * New: Navigation Color Presets control inside the Customizer
 * New: JSON-LD option (replaces microdata in the theme)
+* New: generate_singular_json_ld filter
+* New: generate_front_page_json_ld filter
 * New: generate_entry_meta_post_types filter
 * New: generate_footer_meta_posts_types filter
 * New: Add paragraph bottom margin to Gutenberg blocks
