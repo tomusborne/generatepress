@@ -211,22 +211,12 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 	 * @return string The menu item.
 	 */
 	function generate_dropdown_icon_to_menu_link( $title, $item, $args, $depth ) {
-		$tabindex = ' tabindex="-1"';
-		$aria = ' aria-hidden="true"';
-		$dropdown_type = generate_get_option( 'nav_dropdown_type' );
-
-		if ( 'click-arrow' === $dropdown_type || ( 'hover' === $dropdown_type && 'slideout' === $args->theme_location ) ) {
-			$tabindex = ' tabindex="0"';
-			$aria = ' aria-expanded="false" aria-label="' . esc_attr__( 'Open Sub-Menu', 'generatepress' ) . '"';
-		}
-
 		$button = sprintf(
 			'<span class="dropdown-menu-toggle" aria-hidden="true"></span>
 			<button class="dropdown-menu-toggle" aria-expanded="false" aria-label="%s"></button>',
 			esc_attr__( 'Open Sub-Menu', 'generatepress' )
 		);
 
-		// Loop through our menu items and add our dropdown icons.
 		if ( 'main-nav' === $args->container_class ) {
 			foreach ( $item->classes as $value ) {
 				if ( 'menu-item-has-children' === $value ) {
@@ -235,7 +225,6 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 			}
 		}
 
-		// Return our title.
 		return $title;
 	}
 }
