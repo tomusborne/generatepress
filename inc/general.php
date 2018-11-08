@@ -354,34 +354,34 @@ function generate_do_json_ld() {
 	}
 
 	if ( is_singular() ) {
-		$data = array(
-			'@context'		=> 'http://schema.org/',
-			'@type'			=> 'CreativeWork',
+		$singular_data = array(
+			'@context'	=> 'http://schema.org/',
+			'@type'		=> 'CreativeWork',
 			'mainEntityOfPage' => array(
 				'@type' => 'WebPage',
-				'@id'	=> get_the_permalink(),
+				'@id'	=> esc_url( get_the_permalink() ),
 			),
 			'headline'		=> get_the_title(),
 			'datePublished' => esc_html( get_the_date( 'c' ) ),
 		);
 
 		if ( function_exists( 'get_the_post_thumbnail_url' ) && get_the_post_thumbnail_url() ) {
-			$data['image'] = array(
+			$singular_data['image'] = array(
 				'@type'	=> 'ImageObject',
 				'url'	=> esc_url( get_the_post_thumbnail_url() ),
 			);
 		}
 
 		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
-			$data['dateModified'] = esc_html( get_the_modified_date( 'c' ) );
+			$singular_data['dateModified'] = esc_html( get_the_modified_date( 'c' ) );
 		}
 
 		if ( has_excerpt() ) {
-			$data['text'] = wp_strip_all_tags( get_the_excerpt(), true );
+			$singular_data['text'] = wp_strip_all_tags( get_the_excerpt(), true );
 		}
 
 		if ( ! is_page() ) {
-			$data['author']	= array(
+			$singular_data['author'] = array(
 				'@type' => 'Person',
 				'name'  => get_the_author_meta( 'display_name' ),
 				'url'	=> get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) ),
@@ -390,7 +390,7 @@ function generate_do_json_ld() {
 			$avatar_url = get_avatar_url( get_the_author_meta( 'ID' ) );
 
 			if ( $avatar_url ) {
-				$data['author']['image'] = array(
+				$singular_data['author']['image'] = array(
 					'@type' 	=> 'ImageObject',
 					'url'		=> esc_url( $avatar_url ),
 					'width'		=> 96,
@@ -399,9 +399,13 @@ function generate_do_json_ld() {
 			}
 		}
 
-		printf(
-			'<script type="application/ld+json">%s</script>',
-			json_encode( apply_filters( 'generate_json_ld', $data ) )
-		);
+		$singular_data = apply_filters( 'generate_singular_json_ld', $singular_data );
+
+		if ( $singular_data ) {
+			printf(
+				'<script type="application/ld+json">%s</script>',
+				json_encode( $singular_data )
+			);
+		}
 	}
 }
