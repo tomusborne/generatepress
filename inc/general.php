@@ -330,29 +330,6 @@ function generate_do_json_ld() {
 		return;
 	}
 
-	if ( is_front_page() ) {
-		$front_page_data = array(
-			'@context' 	=> 'http://schema.org/',
-			'@type' 	=> 'WebSite',
-			'url' 		=> esc_url( site_url() ),
-			'name' 		=> esc_html( get_bloginfo( 'name' ) ),
-			'potentialAction' => array(
-				'@type' 		=> 'SearchAction',
-				'target' 		=> esc_url( site_url() ) . '?s={search_term_string}',
-				'query-input'	=> 'required name=search_term_string',
-			),
-		);
-
-		$front_page_data = apply_filters( 'generate_front_page_json_ld', $front_page_data );
-
-		if ( $front_page_data ) {
-			printf(
-				'<script type="application/ld+json">%s</script>',
-				json_encode( $front_page_data )
-			);
-		}
-	}
-
 	if ( is_singular() ) {
 		$singular_data = array(
 			'@context'	=> 'http://schema.org/',
