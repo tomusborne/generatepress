@@ -330,6 +330,8 @@ function generate_do_json_ld() {
 		return;
 	}
 
+	$data = array();
+
 	if ( is_singular() ) {
 		$data = array(
 			'@context'		=> 'http://schema.org/',
@@ -375,10 +377,14 @@ function generate_do_json_ld() {
 				);
 			}
 		}
+	}
 
+	$data = apply_filters( 'generate_json_ld', $data );
+
+	if ( $data ) {
 		printf(
 			'<script type="application/ld+json">%s</script>',
-			json_encode( apply_filters( 'generate_json_ld', $data ) )
+			json_encode( $data )
 		);
 	}
 }
