@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php generate_article_schema( 'CreativeWork' ); ?>>
 	<div class="inside-article">
 		<?php
 		/**
@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			 */
 			do_action( 'generate_before_entry_title' );
 
-			the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' );
+			the_title( sprintf( '<h2 class="entry-title" itemprop="headline"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' );
 
 			/**
 			 * generate_after_entry_title hook.
@@ -56,13 +56,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		if ( generate_show_excerpt() ) : ?>
 
-			<div class="entry-summary">
+			<div class="entry-summary" itemprop="text">
 				<?php the_excerpt(); ?>
 			</div><!-- .entry-summary -->
 
 		<?php else : ?>
 
-			<div class="entry-content">
+			<div class="entry-content" itemprop="text">
 				<?php
 				the_content();
 
