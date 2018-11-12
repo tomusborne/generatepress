@@ -158,7 +158,7 @@ if ( ! function_exists( 'generate_construct_site_title' ) ) {
 
 		// Build our site title.
 		$site_title = apply_filters( 'generate_site_title_output', sprintf(
-			'<%1$s class="main-title">
+			'<%1$s class="main-title" itemprop="headline">
 				<a href="%2$s" rel="home">
 					%3$s
 				</a>
