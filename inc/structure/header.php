@@ -170,7 +170,7 @@ if ( ! function_exists( 'generate_construct_site_title' ) ) {
 
 		// Build our tagline.
 		$site_tagline = apply_filters( 'generate_site_description_output', sprintf(
-			'<p class="site-description">
+			'<p class="site-description" itemprop="description">
 				%1$s
 			</p>',
 			html_entity_decode( get_bloginfo( 'description', 'display' ) )
