@@ -211,16 +211,18 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 	 * @return string The menu item.
 	 */
 	function generate_dropdown_icon_to_menu_link( $title, $item, $args, $depth ) {
-		$button = sprintf(
-			'<span class="dropdown-menu-toggle" aria-hidden="true"></span>
-			<button class="dropdown-menu-toggle" aria-expanded="false" aria-label="%s"></button>',
-			esc_attr__( 'Open Sub-Menu', 'generatepress' )
-		);
+		$role = 'presentation';
+		$tabindex = '';
+
+		if ( 'click-arrow' === generate_get_setting( 'nav_dropdown_type' ) ) {
+			$role = 'button';
+			$tabindex = ' tabindex="0"';
+		}
 
 		if ( 'main-nav' === $args->container_class ) {
 			foreach ( $item->classes as $value ) {
 				if ( 'menu-item-has-children' === $value ) {
-					$title = $title . $button;
+					$title = $title . '<span role="' . $role . '" class="dropdown-menu-toggle"' . $tabindex . '></span>';
 				}
 			}
 		}

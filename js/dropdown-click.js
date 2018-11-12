@@ -32,7 +32,7 @@
 			closestLi.classList.toggle( 'sfHover' );
 
 			// Set aria-expanded on arrow
-			var dropdownToggle = closestLi.querySelector( 'button.dropdown-menu-toggle' );
+			var dropdownToggle = closestLi.querySelector( '.dropdown-menu-toggle' );
 			if ( 'false' === dropdownToggle.getAttribute( 'aria-expanded' ) || ! dropdownToggle.getAttribute( 'aria-expanded' ) ) {
 				dropdownToggle.setAttribute( 'aria-expanded', 'true' );
 			} else {
@@ -66,7 +66,7 @@
 				}
 			}
 
-			var dropdownToggleLinks = document.querySelectorAll( '.main-nav .menu-item-has-children > a button.dropdown-menu-toggle' );
+			var dropdownToggleLinks = document.querySelectorAll( '.main-nav .menu-item-has-children > a .dropdown-menu-toggle' );
 			for ( var i = 0; i < dropdownToggleLinks.length; i++ ) {
 				dropdownToggleLinks[i].addEventListener( 'click', dropdownClick, false );
 
@@ -87,7 +87,7 @@
 		var closeSubMenus = function() {
 			if ( document.querySelector( 'nav ul .toggled-on' ) ) {
 				var activeSubMenus = document.querySelectorAll( 'nav ul .toggled-on' );
-				var activeDropdownToggles = document.querySelectorAll( 'nav button.dropdown-menu-toggle' );
+				var activeDropdownToggles = document.querySelectorAll( 'nav .dropdown-menu-toggle' );
 				for ( var i = 0; i < activeSubMenus.length; i++ ) {
 					activeSubMenus[i].classList.remove( 'toggled-on' );
 					activeSubMenus[i].closest( '.sfHover' ).classList.remove( 'sfHover' );
