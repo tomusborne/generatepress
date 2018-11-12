@@ -135,7 +135,7 @@ function generate_get_microdata( $context ) {
  * @return string The microdata.
  */
 function generate_do_microdata( $context ) {
-	echo generate_get_microdata( $context );
+	echo generate_get_microdata( $context ); // WPCS: XSS ok, sanitization ok.
 }
 
 if ( ! function_exists( 'generate_body_classes' ) ) {
