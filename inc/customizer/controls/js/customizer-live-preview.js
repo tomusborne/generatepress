@@ -488,6 +488,12 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 				wp.customize.preview.send( 'refresh' );
 				return false;
 			}
+
+			if ( '' !== wp.customize.value('generate_settings[nav_drop_point]')() ) {
+				wp.customize.preview.send( 'refresh' );
+				return false;
+			}
+
 			var classes = [ 'nav-below-header', 'nav-above-header', 'nav-float-right', 'nav-float-left', 'nav-left-sidebar', 'nav-right-sidebar' ];
 			if ( 'nav-left-sidebar' !== newval && 'nav-right-sidebar' !== newval ) {
 				$.each( classes, function( i, v ) {
