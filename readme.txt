@@ -116,7 +116,6 @@ Release date: TBD
 * New: Add frontend styling to Gutenberg editor
 * New: Add defaults for H1-H3 bottom margin options
 * New: generate_show_default_sidebar_widgets filter
-* Tweak: Improve accessibility of dropdown menu arrows
 * Tweak: Replace individual element class functions with generate_do_element_classes()
 * Tweak: Major PHP code cleanup
 * Tweak: Replace generate_get_setting() with generate_get_option()
