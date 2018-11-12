@@ -510,8 +510,10 @@ if ( ! function_exists( 'generate_footer_classes' ) ) {
 			$classes[] = 'grid-parent';
 		}
 
-		$classes[] = ( is_active_sidebar( 'footer-bar' ) ) ? 'footer-bar-active' : '';
-		$classes[] = ( is_active_sidebar( 'footer-bar' ) ) ? 'footer-bar-align-' . esc_attr( generate_get_option( 'footer_bar_alignment' ) ) : '';
+		if ( is_active_sidebar( 'footer-bar' ) ) {
+			$classes[] = 'footer-bar-active';
+			$classes[] = 'footer-bar-align-' . esc_attr( generate_get_option( 'footer_bar_alignment' ) );
+		}
 
 		return $classes;
 	}
