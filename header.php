@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php wp_head(); ?>
 </head>
 
-<body <?php generate_body_schema();?> <?php body_class(); ?>>
+<body <?php body_class(); ?> <?php generate_do_microdata( 'body' ); ?>>
 	<?php
 	/**
 	 * generate_before_header hook.

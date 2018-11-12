@@ -28,7 +28,7 @@ if ( ! function_exists( 'generate_comment' ) ) {
 		<?php else : ?>
 
 		<li id="comment-<?php comment_ID(); ?>" <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?>>
-			<article id="div-comment-<?php comment_ID(); ?>" class="comment-body" itemscope itemtype="https://schema.org/Comment">
+			<article id="div-comment-<?php comment_ID(); ?>" class="comment-body" <?php generate_do_microdata( 'comment-body' ); ?>>
 				<footer class="comment-meta">
 					<?php
 					if ( 0 != $args['avatar_size'] ) {
@@ -36,7 +36,7 @@ if ( ! function_exists( 'generate_comment' ) ) {
 					}
 					?>
 					<div class="comment-author-info">
-						<div class="comment-author vcard" itemprop="author" itemscope itemtype="https://schema.org/Person">
+						<div class="comment-author vcard" <?php generate_do_microdata( 'comment-author' ); ?>>
 							<?php printf( '<cite itemprop="name" class="fn">%s</cite>', get_comment_author_link() ); ?>
 						</div><!-- .comment-author -->
 

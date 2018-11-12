@@ -22,7 +22,7 @@ Thanks to our emphasis on WordPress coding standards, we can boast full compatib
 
 GeneratePress is fully responsive, uses valid HTML/CSS and is translated into over 25 languages by our amazing community of users.
 
-A few of our many features include JSON-LD integration, 9 widget areas, 5 navigation locations, 5 sidebar layouts, dropdown menus (click or hover) and navigation color presets.
+A few of our many features include microdata integration, 9 widget areas, 5 navigation locations, 5 sidebar layouts, dropdown menus (click or hover) and navigation color presets.
 
 Learn more and check out our [powerful premium version](https://generatepress.com).
 
@@ -108,7 +108,6 @@ Release date: TBD
 * New: generate_comment_form_title filter
 * New: Header Presets control inside the Customizer
 * New: Navigation Color Presets control inside the Customizer
-* New: JSON-LD option (replaces microdata in the theme)
 * New: generate_entry_meta_post_types filter
 * New: generate_footer_meta_posts_types filter
 * New: Add paragraph bottom margin to Gutenberg blocks

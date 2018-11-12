@@ -9,48 +9,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( ! function_exists( 'generate_body_schema' ) ) {
-	/**
-	 * Figure out which schema tags to apply to the <body> element.
-	 *
-	 * @since 1.3.15
-	 */
-	function generate_body_schema() {
-		// Set up blog variable
-		$blog = ( is_home() || is_archive() || is_attachment() || is_tax() || is_single() ) ? true : false;
-
-		// Set up default itemtype
-		$itemtype = 'WebPage';
-
-		// Get itemtype for the blog
-		$itemtype = ( $blog ) ? 'Blog' : $itemtype;
-
-		// Get itemtype for search results
-		$itemtype = ( is_search() ) ? 'SearchResultsPage' : $itemtype;
-
-		// Get the result
-		$result = esc_html( apply_filters( 'generate_body_itemtype', $itemtype ) );
-
-		// Return our HTML
-		echo "itemtype='https://schema.org/$result' itemscope='itemscope'"; // WPCS: XSS ok, sanitization ok.
-	}
-}
-
-if ( ! function_exists( 'generate_article_schema' ) ) {
-	/**
-	 * Figure out which schema tags to apply to the <article> element
-	 * The function determines the itemtype: generate_article_schema( 'BlogPosting' )
-	 * @since 1.3.15
-	 */
-	function generate_article_schema( $type = 'CreativeWork' ) {
-		// Get the itemtype
-		$itemtype = esc_html( apply_filters( 'generate_article_itemtype', $type ) );
-
-		// Print the results
-		echo "itemtype='https://schema.org/$itemtype' itemscope='itemscope'"; // WPCS: XSS ok, sanitization ok.
-	}
-}
-
 /**
  * Display HTML classes for an element.
  *
@@ -86,6 +44,98 @@ function generate_get_element_classes( $context, $class = '' ) {
 	$classes = array_map( 'esc_attr', $classes );
 
 	return apply_filters( "generate_{$context}_class", $classes, $class );
+}
+
+/**
+ * Get any necessary microdata.
+ *
+ * @since 2.2
+ *
+ * @param string $context The element to target.
+ * @return string Our final attribute to add to the element.
+ */
+function generate_get_microdata( $context ) {
+	$data = false;
+
+	if ( 'microdata' !== apply_filters( 'generate_schema_type', 'microdata' ) ) {
+		return false;
+	}
+
+	if ( 'body' === $context ) {
+		$type = 'WebPage';
+
+		if ( is_home() || is_archive() || is_attachment() || is_tax() || is_single() ) {
+			$type = 'Blog';
+		}
+
+		if ( is_search() ) {
+			$type = 'SearchResultsPage';
+		}
+
+		$type = apply_filters( 'generate_body_itemtype', $type );
+
+		$data = sprintf(
+			'itemtype="https://schema.org/%s" itemscope',
+			esc_html( $type )
+		);
+	}
+
+	if ( 'header' === $context ) {
+		$data = 'itemtype="https://schema.org/WPHeader" itemscope';
+	}
+
+	if ( 'navigation' === $context ) {
+		$data = 'itemtype="https://schema.org/SiteNavigationElement" itemscope';
+	}
+
+	if ( 'article' === $context ) {
+		$type = apply_filters( 'generate_article_itemtype', 'CreativeWork' );
+
+		$data = sprintf(
+			'itemtype="https://schema.org/%s" itemscope',
+			esc_html( $type )
+		);
+	}
+
+	if ( 'featured-image' === $context ) {
+		$data = 'itemprop="image" itemtype="https://schema.org/ImageObject" itemscope';
+	}
+
+	if ( 'post-author' === $context ) {
+		$data = 'itemprop="author" itemtype="https://schema.org/Person" itemscope';
+	}
+
+	if ( 'comment-body' === $context ) {
+		$data = 'itemtype="https://schema.org/Comment" itemscope';
+	}
+
+	if ( 'comment-author' === $context ) {
+		$data = 'itemprop="author" itemtype="https://schema.org/Person" itemscope';
+	}
+
+	if ( 'sidebar' === $context ) {
+		$data = 'itemtype="https://schema.org/WPSidebar" itemscope';
+	}
+
+	if ( 'footer' === $context ) {
+		$data = 'itemtype="https://schema.org/WPFooter" itemscope';
+	}
+
+	if ( $data ) {
+		return apply_filters( "generate_{$context}_microdata", $data );
+	}
+}
+
+/**
+ * Output our microdata for an element.
+ *
+ * @since 2.2
+ *
+ * @param $context The element to target.
+ * @return string The microdata.
+ */
+function generate_do_microdata( $context ) {
+	echo generate_get_microdata( $context );
 }
 
 if ( ! function_exists( 'generate_body_classes' ) ) {

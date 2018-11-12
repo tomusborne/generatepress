@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 ?>
-<div id="right-sidebar" itemtype="https://schema.org/WPSideBar" itemscope="itemscope" <?php generate_do_element_classes( 'right_sidebar' ); ?>>
+<div id="right-sidebar" <?php generate_do_element_classes( 'right_sidebar' ); ?> <?php generate_do_microdata( 'sidebar' ); ?>>
 	<div class="inside-right-sidebar">
 		<?php
 		/**
