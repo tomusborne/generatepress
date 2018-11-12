@@ -5,7 +5,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options
 Requires at least: 4.5
-Tested up to: 4.9
+Tested up to: 5.0
 Stable tag: 2.1.4
 
 GeneratePress is a fast, lightweight (less than 1MB zipped), mobile responsive WordPress theme built with speed, SEO and usability in mind.
@@ -116,6 +116,9 @@ Release date: TBD
 * New: Add frontend styling to Gutenberg editor
 * New: Add defaults for H1-H3 bottom margin options
 * New: generate_show_default_sidebar_widgets filter
+* New: generate_schema_type filter
+* New: generate_{context}_microdata filters
+* Tweak: Output theme microdata using generate_do_microdata()
 * Tweak: Replace individual element class functions with generate_do_element_classes()
 * Tweak: Major PHP code cleanup
 * Tweak: Replace generate_get_setting() with generate_get_option()
@@ -131,7 +134,34 @@ Release date: TBD
 * Tweak: Simplify a11y outline script
 * Tweak: Keep mobile sub-menus open if mobile toggle is closed
 * Tweak: Replace default sidebar widget content in template files with generate_do_default_sidebar_widgets()
+* Tweak: Clean up extra spaces in footer class attribute
 * Fix: screen-reader-text class conflicts with some plugins
+* Deprecated: generate_get_setting()
+* Deprecated: generate_right_sidebar_class()
+* Deprecated: generate_get_right_sidebar_class()
+* Deprecated: generate_left_sidebar_class()
+* Deprecated: generate_get_left_sidebar_class()
+* Deprecated: generate_content_class()
+* Deprecated: generate_get_content_class()
+* Deprecated: generate_header_class()
+* Deprecated: generate_get_header_class()
+* Deprecated: generate_inside_header_class()
+* Deprecated: generate_get_inside_header_class()
+* Deprecated: generate_container_class()
+* Deprecated: generate_get_container_class()
+* Deprecated: generate_navigation_class()
+* Deprecated: generate_get_navigation_class()
+* Deprecated: generate_inside_navigation_class()
+* Deprecated: generate_menu_class()
+* Deprecated: generate_get_menu_class()
+* Deprecated: generate_main_class()
+* Deprecated: generate_get_main_class()
+* Deprecated: generate_footer_class()
+* Deprecated: generate_get_footer_class()
+* Deprecated: generate_inside_footer_class()
+* Deprecated: generate_top_bar_class()
+* Deprecated: generate_body_schema()
+* Deprecated: generate_article_schema()
 
 = 2.1.4 =
 
