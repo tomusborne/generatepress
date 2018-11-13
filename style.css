@@ -752,7 +752,6 @@ li.search-item.active {
 	float: right;
 }
 
-.navigation-search,
 .navigation-search input {
 	height: 60px;
 }
