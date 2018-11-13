@@ -46,7 +46,7 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 			wp_enqueue_script( 'generate-navigation-search', $dir_uri . "/js/navigation-search{$suffix}.js", array( 'generate-menu' ), GENERATE_VERSION, true );
 		}
 
-		if ( 'enable' == generate_get_option( 'back_to_top' ) ) {
+		if ( 'enable' === generate_get_option( 'back_to_top' ) ) {
 			wp_enqueue_script( 'generate-back-to-top', $dir_uri . "/js/back-to-top{$suffix}.js", array(), GENERATE_VERSION, true );
 		}
 
