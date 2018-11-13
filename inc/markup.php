@@ -97,10 +97,6 @@ function generate_get_microdata( $context ) {
 		);
 	}
 
-	if ( 'featured-image' === $context ) {
-		$data = 'itemprop="image" itemtype="https://schema.org/ImageObject" itemscope';
-	}
-
 	if ( 'post-author' === $context ) {
 		$data = 'itemprop="author" itemtype="https://schema.org/Person" itemscope';
 	}
