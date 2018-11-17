@@ -2113,6 +2113,7 @@ h3 {
  */
 @font-face {
 	font-family: 'GeneratePress';
+	font-display: fallback;
 	src:  url('fonts/generatepress.eot');
 	src:  url('fonts/generatepress.eot#iefix') format('embedded-opentype'),
 		  url('fonts/generatepress.woff2') format('woff2'),
