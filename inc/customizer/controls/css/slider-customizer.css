@@ -4,10 +4,10 @@
 	width: calc(100% - 60px);
 	height: 6px;
 	margin-top: 12px;
-	background-color: rgba(0,0,0,.10); 
-	cursor: pointer; 
-	-webkit-transition: background .5s; 
-	-moz-transition: background .5s; 
+	background-color: rgba(0,0,0,.10);
+	cursor: pointer;
+	-webkit-transition: background .5s;
+	-moz-transition: background .5s;
 	transition: background .5s;
 }
 
@@ -23,7 +23,7 @@
 	width: 100%;
 }
 
-.customize-control-generatepress-range-slider .generatepress-slider .ui-slider-handle { 
+.customize-control-generatepress-range-slider .generatepress-slider .ui-slider-handle {
 	height: 16px;
 	width: 16px;
 	background-color: #3498D9;
@@ -53,7 +53,7 @@
 .customize-control-generatepress-range-slider .has-unit .gp_range_value {
 	width: 80px;
 }
- 
+
 .customize-control-generatepress-range-slider .gp_range_value span.value {
     font-size: 12px;
     width: calc(100% - 2px);
@@ -89,7 +89,7 @@
     font-size: 16px;
     line-height: 22px;
 }
-	
+
 .customize-control-generatepress-range-slider .gp_range_value input {
     font-size: 12px;
     padding: 0px;
@@ -133,4 +133,8 @@
 
 .customize-control-generatepress-range-slider .gp-device-controls > span:first-child:last-child {
 	display: none;
+}
+
+.customize-control-generatepress-range-slider .sub-description {
+	margin-top: 10px;
 }

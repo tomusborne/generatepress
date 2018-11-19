@@ -140,7 +140,6 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 			array(
 				'title' => __( 'Typography', 'generatepress' ),
 				'capability' => 'edit_theme_options',
-				'description' => '',
 				'priority' => 30,
 			)
 		);
@@ -196,6 +195,7 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 				$wp_customize,
 				'body_typography',
 				array(
+					'label' => __( 'Body', 'generatepress' ),
 					'section' => 'font_section',
 					'priority' => 1,
 					'settings' => array(
@@ -239,7 +239,6 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 							'unit' => 'px',
 						),
 					),
-					'priority' => 40,
 				)
 			)
 		);
@@ -274,7 +273,6 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 							'unit' => '',
 						),
 					),
-					'priority' => 45,
 				)
 			)
 		);
@@ -309,7 +307,429 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 							'unit' => 'em',
 						),
 					),
-					'priority' => 47,
+				)
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[font_heading_1]',
+			array(
+				'default' => $defaults['font_heading_1'],
+				'type' => 'option',
+				'sanitize_callback' => 'sanitize_text_field'
+			)
+		);
+
+		$wp_customize->add_setting(
+			'font_heading_1_category',
+			array(
+				'default' => '',
+				'sanitize_callback' => 'sanitize_text_field'
+			)
+		);
+
+		$wp_customize->add_setting(
+			'font_heading_1_variants',
+			array(
+				'default' => '',
+				'sanitize_callback' => 'generate_sanitize_variants'
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[heading_1_weight]',
+			array(
+				'default' => $defaults['heading_1_weight'],
+				'type' => 'option',
+				'sanitize_callback' => 'sanitize_key',
+				'transport' => 'postMessage'
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[heading_1_transform]',
+			array(
+				'default' => $defaults['heading_1_transform'],
+				'type' => 'option',
+				'sanitize_callback' => 'sanitize_key',
+				'transport' => 'postMessage'
+			)
+		);
+
+		$wp_customize->add_control(
+			new Generate_Typography_Customize_Control(
+				$wp_customize,
+				'font_heading_1_control',
+				array(
+					'label' => __( 'Heading 1 (H1)', 'generatepress' ),
+					'section' => 'font_section',
+					'settings' => array(
+						'family' => 'generate_settings[font_heading_1]',
+						'variant' => 'font_heading_1_variants',
+						'category' => 'font_heading_1_category',
+						'weight' => 'generate_settings[heading_1_weight]',
+						'transform' => 'generate_settings[heading_1_transform]',
+					),
+				)
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[heading_1_font_size]',
+			array(
+				'default' => $defaults['heading_1_font_size'],
+				'type' => 'option',
+				'sanitize_callback' => 'absint',
+				'transport' => 'postMessage'
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[mobile_heading_1_font_size]',
+			array(
+				'default' => $defaults['mobile_heading_1_font_size'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_empty_absint',
+				'transport' => 'postMessage'
+			)
+		);
+
+		$wp_customize->add_control(
+			new Generate_Range_Slider_Control(
+				$wp_customize,
+				'h1_font_sizes',
+				array(
+					'description' => __( 'Font size', 'generatepress' ),
+					'section' => 'font_section',
+					'settings' => array(
+						'desktop' => 'generate_settings[heading_1_font_size]',
+						'mobile' => 'generate_settings[mobile_heading_1_font_size]',
+					),
+					'choices' => array(
+						'desktop' => array(
+							'min' => 15,
+							'max' => 100,
+							'step' => 1,
+							'edit' => true,
+							'unit' => 'px',
+						),
+						'mobile' => array(
+							'min' => 15,
+							'max' => 100,
+							'step' => 1,
+							'edit' => true,
+							'unit' => 'px',
+						),
+					),
+				)
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[heading_1_line_height]',
+			array(
+				'default' => $defaults['heading_1_line_height'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_decimal_integer',
+				'transport' => 'postMessage'
+			)
+		);
+
+		$wp_customize->add_control(
+			new Generate_Range_Slider_Control(
+				$wp_customize,
+				'generate_settings[heading_1_line_height]',
+				array(
+					'description' => __( 'Line height', 'generatepress' ),
+					'section' => 'font_section',
+					'settings' => array(
+						'desktop' => 'generate_settings[heading_1_line_height]',
+					),
+					'choices' => array(
+						'desktop' => array(
+							'min' => 0,
+							'max' => 5,
+							'step' => .1,
+							'edit' => true,
+							'unit' => 'em',
+						),
+					),
+				)
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[font_heading_2]',
+			array(
+				'default' => $defaults['font_heading_2'],
+				'type' => 'option',
+				'sanitize_callback' => 'sanitize_text_field'
+			)
+		);
+
+		$wp_customize->add_setting(
+			'font_heading_2_category',
+			array(
+				'default' => '',
+				'sanitize_callback' => 'sanitize_text_field'
+			)
+		);
+
+		$wp_customize->add_setting(
+			'font_heading_2_variants',
+			array(
+				'default' => '',
+				'sanitize_callback' => 'generate_sanitize_variants'
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[heading_2_weight]',
+			array(
+				'default' => $defaults['heading_2_weight'],
+				'type' => 'option',
+				'sanitize_callback' => 'sanitize_key',
+				'transport' => 'postMessage'
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[heading_2_transform]',
+			array(
+				'default' => $defaults['heading_2_transform'],
+				'type' => 'option',
+				'sanitize_callback' => 'sanitize_key',
+				'transport' => 'postMessage'
+			)
+		);
+
+		$wp_customize->add_control(
+			new Generate_Typography_Customize_Control(
+				$wp_customize,
+				'font_heading_2_control',
+				array(
+					'label' => __( 'Heading 2 (H2)', 'generatepress' ),
+					'section' => 'font_section',
+					'settings' => array(
+						'family' => 'generate_settings[font_heading_2]',
+						'variant' => 'font_heading_2_variants',
+						'category' => 'font_heading_2_category',
+						'weight' => 'generate_settings[heading_2_weight]',
+						'transform' => 'generate_settings[heading_2_transform]',
+					),
+				)
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[heading_2_font_size]',
+			array(
+				'default' => $defaults['heading_2_font_size'],
+				'type' => 'option',
+				'sanitize_callback' => 'absint',
+				'transport' => 'postMessage'
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[mobile_heading_2_font_size]',
+			array(
+				'default' => $defaults['mobile_heading_2_font_size'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_empty_absint',
+				'transport' => 'postMessage'
+			)
+		);
+
+		$wp_customize->add_control(
+			new Generate_Range_Slider_Control(
+				$wp_customize,
+				'h2_font_sizes',
+				array(
+					'description' => __( 'Font size', 'generatepress' ),
+					'section' => 'font_section',
+					'settings' => array(
+						'desktop' => 'generate_settings[heading_2_font_size]',
+						'mobile' => 'generate_settings[mobile_heading_2_font_size]',
+					),
+					'choices' => array(
+						'desktop' => array(
+							'min' => 10,
+							'max' => 80,
+							'step' => 1,
+							'edit' => true,
+							'unit' => 'px',
+						),
+						'mobile' => array(
+							'min' => 10,
+							'max' => 80,
+							'step' => 1,
+							'edit' => true,
+							'unit' => 'px',
+						),
+					),
+				)
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[heading_2_line_height]',
+			array(
+				'default' => $defaults['heading_2_line_height'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_decimal_integer',
+				'transport' => 'postMessage'
+			)
+		);
+
+		$wp_customize->add_control(
+			new Generate_Range_Slider_Control(
+				$wp_customize,
+				'generate_settings[heading_2_line_height]',
+				array(
+					'description' => __( 'Line height', 'generatepress' ),
+					'section' => 'font_section',
+					'settings' => array(
+						'desktop' => 'generate_settings[heading_2_line_height]',
+					),
+					'choices' => array(
+						'desktop' => array(
+							'min' => 0,
+							'max' => 5,
+							'step' => .1,
+							'edit' => true,
+							'unit' => 'em',
+						),
+					),
+				)
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[font_heading_3]',
+			array(
+				'default' => $defaults['font_heading_3'],
+				'type' => 'option',
+				'sanitize_callback' => 'sanitize_text_field'
+			)
+		);
+
+		$wp_customize->add_setting(
+			'font_heading_3_category',
+			array(
+				'default' => '',
+				'sanitize_callback' => 'sanitize_text_field'
+			)
+		);
+
+		$wp_customize->add_setting(
+			'font_heading_3_variants',
+			array(
+				'default' => '',
+				'sanitize_callback' => 'generate_sanitize_variants'
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[heading_3_weight]',
+			array(
+				'default' => $defaults['heading_3_weight'],
+				'type' => 'option',
+				'sanitize_callback' => 'sanitize_key',
+				'transport' => 'postMessage'
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[heading_3_transform]',
+			array(
+				'default' => $defaults['heading_3_transform'],
+				'type' => 'option',
+				'sanitize_callback' => 'sanitize_key',
+				'transport' => 'postMessage'
+			)
+		);
+
+		$wp_customize->add_control(
+			new Generate_Typography_Customize_Control(
+				$wp_customize,
+				'font_heading_3_control',
+				array(
+					'label' => __( 'Heading 3 (H3)', 'generatepress' ),
+					'section' => 'font_section',
+					'settings' => array(
+						'family' => 'generate_settings[font_heading_3]',
+						'variant' => 'font_heading_3_variants',
+						'category' => 'font_heading_3_category',
+						'weight' => 'generate_settings[heading_3_weight]',
+						'transform' => 'generate_settings[heading_3_transform]',
+					),
+				)
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[heading_3_font_size]',
+			array(
+				'default' => $defaults['heading_3_font_size'],
+				'type' => 'option',
+				'sanitize_callback' => 'absint',
+				'transport' => 'postMessage'
+			)
+		);
+
+		$wp_customize->add_control(
+			new Generate_Range_Slider_Control(
+				$wp_customize,
+				'h3_font_sizes',
+				array(
+					'description' => __( 'Font size', 'generatepress' ),
+					'section' => 'font_section',
+					'settings' => array(
+						'desktop' => 'generate_settings[heading_3_font_size]'
+					),
+					'choices' => array(
+						'desktop' => array(
+							'min' => 10,
+							'max' => 80,
+							'step' => 1,
+							'edit' => true,
+							'unit' => 'px',
+						),
+					),
+				)
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[heading_3_line_height]',
+			array(
+				'default' => $defaults['heading_3_line_height'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_decimal_integer',
+				'transport' => 'postMessage'
+			)
+		);
+
+		$wp_customize->add_control(
+			new Generate_Range_Slider_Control(
+				$wp_customize,
+				'generate_settings[heading_3_line_height]',
+				array(
+					'description' => __( 'Line height', 'generatepress' ),
+					'section' => 'font_section',
+					'settings' => array(
+						'desktop' => 'generate_settings[heading_3_line_height]',
+					),
+					'choices' => array(
+						'desktop' => array(
+							'min' => 0,
+							'max' => 5,
+							'step' => .1,
+							'edit' => true,
+							'unit' => 'em',
+						),
+					),
 				)
 			)
 		);
@@ -324,7 +744,7 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 						'type' => 'addon',
 						'label' => __( 'Learn more','generatepress' ),
 						'description' => __( 'More options are available for this section in our premium version.', 'generatepress' ),
-						'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-typography/' ),
+						'url' => generate_get_premium_url( 'https://generatepress.com/premium/#typography', false ),
 						'priority' => 50,
 						'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
 					)

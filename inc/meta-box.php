@@ -45,9 +45,10 @@ function generate_register_layout_meta_box() {
 	}
 
 	$post_types = get_post_types( array( 'public' => true ) );
-	foreach ($post_types as $type) {
+
+	foreach ( $post_types as $type ) {
 		if ( 'attachment' !== $type ) {
-			add_meta_box (
+			add_meta_box(
 				'generate_layout_options_meta_box',
 				esc_html__( 'Layout', 'generatepress' ),
 				'generate_do_layout_meta_box',

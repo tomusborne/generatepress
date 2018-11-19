@@ -15,11 +15,6 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 	 * Enqueue scripts and styles
 	 */
 	function generate_scripts() {
-		$generate_settings = wp_parse_args(
-			get_option( 'generate_settings', array() ),
-			generate_get_defaults()
-		);
-
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 		$dir_uri = get_template_directory_uri();
 
@@ -43,15 +38,15 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 		wp_enqueue_script( 'generate-menu', $dir_uri . "/js/menu{$suffix}.js", array(), GENERATE_VERSION, true );
 		wp_enqueue_script( 'generate-a11y', $dir_uri . "/js/a11y{$suffix}.js", array(), GENERATE_VERSION, true );
 
-		if ( 'click' == $generate_settings['nav_dropdown_type'] || 'click-arrow' == $generate_settings['nav_dropdown_type'] ) {
+		if ( 'click' === generate_get_option( 'nav_dropdown_type' ) || 'click-arrow' === generate_get_option( 'nav_dropdown_type' ) ) {
 			wp_enqueue_script( 'generate-dropdown-click', $dir_uri . "/js/dropdown-click{$suffix}.js", array( 'generate-menu' ), GENERATE_VERSION, true );
 		}
 
-		if ( 'enable' == $generate_settings['nav_search'] ) {
+		if ( 'enable' === generate_get_option( 'nav_search' ) ) {
 			wp_enqueue_script( 'generate-navigation-search', $dir_uri . "/js/navigation-search{$suffix}.js", array( 'generate-menu' ), GENERATE_VERSION, true );
 		}
 
-		if ( 'enable' == $generate_settings['back_to_top'] ) {
+		if ( 'enable' === generate_get_option( 'back_to_top' ) ) {
 			wp_enqueue_script( 'generate-back-to-top', $dir_uri . "/js/back-to-top{$suffix}.js", array(), GENERATE_VERSION, true );
 		}
 
@@ -103,7 +98,7 @@ if ( ! function_exists( 'generate_smart_content_width' ) ) {
 	function generate_smart_content_width() {
 		global $content_width;
 
-		$container_width = generate_get_setting( 'container_width' );
+		$container_width = generate_get_option( 'container_width' );
 		$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '25' );
 		$left_sidebar_width = apply_filters( 'generate_left_sidebar_width', '25' );
 		$layout = generate_get_layout();
@@ -132,6 +127,7 @@ if ( ! function_exists( 'generate_page_menu_args' ) ) {
 	 */
 	function generate_page_menu_args( $args ) {
 		$args['show_home'] = true;
+
 		return $args;
 	}
 }
@@ -143,18 +139,19 @@ if ( ! function_exists( 'generate_disable_title' ) ) {
 	 *
 	 * @since 1.3.18
 	 *
+	 * @param bool $title Whether the title is displayed or not.
 	 * @return bool Whether to display the content title.
 	 */
-	function generate_disable_title() {
-		global $post;
+	function generate_disable_title( $title ) {
+		if ( is_singular() ) {
+			$disable_title = get_post_meta( get_the_ID(), '_generate-disable-headline', true );
 
-		$disable_headline = ( isset( $post ) ) ? get_post_meta( $post->ID, '_generate-disable-headline', true ) : '';
-
-		if ( ! empty( $disable_headline ) && false !== $disable_headline ) {
-			return false;
+			if ( $disable_title ) {
+				$title = false;
+			}
 		}
 
-		return true;
+		return $title;
 	}
 }
 
@@ -180,6 +177,7 @@ if ( ! function_exists( 'generate_resource_hints' ) ) {
 				$urls[] = 'https://fonts.gstatic.com';
 			}
 		}
+
 		return $urls;
 	}
 }
@@ -297,7 +295,7 @@ add_filter( 'generate_fontawesome_essentials', 'generate_set_font_awesome_essent
  * @return bool
  */
 function generate_set_font_awesome_essentials( $essentials ) {
-	if ( generate_get_setting( 'font_awesome_essentials' ) ) {
+	if ( generate_get_option( 'font_awesome_essentials' ) ) {
 		return true;
 	}
 
@@ -314,7 +312,7 @@ add_filter( 'generate_dynamic_css_skip_cache', 'generate_skip_dynamic_css_cache'
  * @return bool
  */
 function generate_skip_dynamic_css_cache( $cache ) {
-	if ( ! generate_get_setting( 'dynamic_css_cache' ) ) {
+	if ( ! generate_get_option( 'dynamic_css_cache' ) ) {
 		return true;
 	}
 

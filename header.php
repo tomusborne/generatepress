@@ -14,11 +14,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
 	<?php wp_head(); ?>
 </head>
 
-<body <?php generate_body_schema();?> <?php body_class(); ?>>
+<body <?php body_class(); ?> <?php generate_do_microdata( 'body' ); ?>>
 	<?php
 	/**
 	 * generate_before_header hook.

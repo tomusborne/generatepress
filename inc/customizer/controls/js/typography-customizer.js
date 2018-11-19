@@ -129,16 +129,19 @@
 
 } )( wp.customize );
 
-jQuery( document ).ready( function($) {
+jQuery( document ).ready( function( $ ) {
 
-	jQuery( '.generatepress-font-family select' ).selectWoo();
-	jQuery( '.generatepress-font-variant' ).each( function( key, value ) {
+	$( '.generatepress-font-family select' ).select2();
+
+	$( '.generatepress-font-variant' ).each( function( key, value ) {
 		var _this = $( this );
 		var value = _this.data( 'saved-value' );
+
 		if ( value ) {
 			value = value.toString().split( ',' );
 		}
-		_this.find( 'select' ).selectWoo().val( value ).trigger( 'change.select2' );
+
+		_this.find( 'select' ).select2().val( value ).trigger( 'change.select2' );
 	} );
 
 	$( ".generatepress-font-family" ).each( function( key, value ) {
@@ -146,6 +149,6 @@ jQuery( document ).ready( function($) {
 		if ( $.inArray( _this.find( 'select' ).val(), typography_defaults ) !== -1 ) {
 			_this.next( '.generatepress-font-variant' ).hide();
 		}
-	});
+	} );
 
 } );

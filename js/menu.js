@@ -108,7 +108,7 @@
 				var closestLi = _this.closest( 'li' );
 
 				var dropdownToggle = closestLi.querySelector( '.dropdown-menu-toggle' );
-				if ( 'false' == dropdownToggle.getAttribute( 'aria-expanded' ) ) {
+				if ( 'false' === dropdownToggle.getAttribute( 'aria-expanded' ) || ! dropdownToggle.getAttribute( 'aria-expanded' ) ) {
 					dropdownToggle.setAttribute( 'aria-expanded', 'true' );
 				} else {
 					dropdownToggle.setAttribute( 'aria-expanded', 'false' );
@@ -208,14 +208,6 @@
 							if ( subMenu ) {
 								subMenu.classList.toggle( 'toggled-on' );
 							}
-						}
-
-						// Close the mobile menu if our link does something - good for one page sites.
-						if ( '#' !== url && '' !== url && ! navigator.userAgent.match( /iemobile/i ) ) {
-							setTimeout( function() {
-								closest_nav.classList.remove( 'toggled' );
-								htmlEl.classList.remove( 'mobile-menu-open' );
-							}, 200 );
 						}
 					}
 				}, false );

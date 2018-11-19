@@ -128,6 +128,19 @@ if ( ! function_exists( 'generate_sanitize_decimal_integer' ) ) {
 	}
 }
 
+/**
+ * Sanitize a positive number, but allow an empty value.
+ *
+ * @since 2.2
+ */
+function generate_sanitize_empty_absint( $input ) {
+	if ( '' == $input ) {
+		return '';
+	}
+
+	return absint( $input );
+}
+
 if ( ! function_exists( 'generate_sanitize_checkbox' ) ) {
 	/**
 	 * Sanitize checkbox values.
@@ -181,6 +194,26 @@ if ( ! function_exists( 'generate_sanitize_hex_color' ) ) {
 	 }
 }
 
+/**
+ * Sanitize RGBA colors.
+ *
+ * @since 2.2
+ */
+function generate_sanitize_rgba_color( $color ) {
+	if ( '' === $color ) {
+		return '';
+	}
+
+	if ( false === strpos( $color, 'rgba' ) ) {
+		return generate_sanitize_hex_color( $color );
+	}
+
+	$color = str_replace( ' ', '', $color );
+	sscanf( $color, 'rgba(%d,%d,%d,%f)', $red, $green, $blue, $alpha );
+
+	return 'rgba('.$red.','.$green.','.$blue.','.$alpha.')';
+}
+
 if ( ! function_exists( 'generate_sanitize_choices' ) ) {
 	/**
 	 * Sanitize choices.
@@ -228,7 +261,30 @@ function generate_do_control_inline_scripts() {
 			'nonce' => wp_create_nonce( 'gp_customize_nonce' )
 		)
 	);
+
 	wp_localize_script( 'generatepress-typography-customizer', 'typography_defaults', generate_typography_default_fonts() );
+
+	wp_enqueue_script( 'generatepress-customizer-controls', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/js/customizer-controls.js', array( 'customize-controls', 'jquery' ), GENERATE_VERSION, true );
+	wp_localize_script( 'generatepress-customizer-controls', 'generatepress_defaults', generate_get_defaults() );
+	wp_localize_script( 'generatepress-customizer-controls', 'generatepress_color_defaults', generate_get_color_defaults() );
+}
+
+if ( ! function_exists( 'generate_customizer_live_preview' ) ) {
+	add_action( 'customize_preview_init', 'generate_customizer_live_preview', 100 );
+	/**
+	 * Add our live preview scripts
+	 *
+	 * @since 0.1
+	 */
+	function generate_customizer_live_preview() {
+		wp_enqueue_script( 'generate-themecustomizer', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/js/customizer-live-preview.js', array( 'customize-preview' ), GENERATE_VERSION, true );
+
+		wp_localize_script( 'generate-themecustomizer', 'generatepress_live_preview', array(
+			'mobile' => apply_filters( 'generate_mobile_media_query', '(max-width:768px)' ),
+			'tablet' => apply_filters( 'generate_tablet_media_query', '(min-width: 769px) and (max-width: 1024px)' ),
+			'desktop' => apply_filters( 'generate_desktop_media_query', '(min-width:1025px)' ),
+		) );
+	}
 }
 
 /**
@@ -245,4 +301,13 @@ function generate_has_custom_logo_callback() {
 	}
 
 	return false;
+}
+
+/**
+ * Save our preset layout controls. These should always save to be "current".
+ *
+ * @since 2.2
+ */
+function generate_sanitize_preset_layout( $input ) {
+	return 'current';
 }

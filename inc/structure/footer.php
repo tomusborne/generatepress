@@ -18,8 +18,8 @@ if ( ! function_exists( 'generate_construct_footer' ) ) {
 	 */
 	function generate_construct_footer() {
 		?>
-		<footer class="site-info" itemtype="https://schema.org/WPFooter" itemscope="itemscope">
-			<div class="inside-site-info <?php if ( 'full-width' !== generate_get_setting( 'footer_inner_width' ) ) : ?>grid-container grid-parent<?php endif; ?>">
+		<footer class="site-info" <?php generate_do_microdata( 'footer' ); ?>>
+			<div class="inside-site-info <?php if ( 'full-width' !== generate_get_option( 'footer_inner_width' ) ) : ?>grid-container grid-parent<?php endif; ?>">
 				<?php
 				/**
 				 * generate_before_copyright hook.
@@ -166,7 +166,7 @@ if ( ! function_exists( 'generate_construct_footer_widgets' ) ) {
 			}
 			?>
 			<div id="footer-widgets" class="site footer-widgets">
-				<div <?php generate_inside_footer_class(); ?>>
+				<div <?php generate_do_element_classes( 'inside_footer' ); ?>>
 					<div class="inside-footer-widgets">
 						<?php
 						if ( $widgets >= 1 ) {

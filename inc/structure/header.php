@@ -18,8 +18,8 @@ if ( ! function_exists( 'generate_construct_header' ) ) {
 	 */
 	function generate_construct_header() {
 		?>
-		<header itemtype="https://schema.org/WPHeader" itemscope="itemscope" id="masthead" <?php generate_header_class(); ?>>
-			<div <?php generate_inside_header_class(); ?>>
+		<header id="masthead" <?php generate_do_element_classes( 'header' ); ?> <?php generate_do_microdata( 'header' ); ?>>
+			<div <?php generate_do_element_classes( 'inside_header' ); ?>>
 				<?php
 				/**
 				 * generate_before_header_content hook.
@@ -68,10 +68,10 @@ if ( ! function_exists( 'generate_construct_logo' ) ) {
 	 */
 	function generate_construct_logo() {
 		$logo_url = ( function_exists( 'the_custom_logo' ) && get_theme_mod( 'custom_logo' ) ) ? wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ), 'full' ) : false;
-		$logo_url = ( $logo_url ) ? $logo_url[0] : generate_get_setting( 'logo' );
+		$logo_url = ( $logo_url ) ? $logo_url[0] : generate_get_option( 'logo' );
 
 		$logo_url = esc_url( apply_filters( 'generate_logo', $logo_url ) );
-		$retina_logo_url = esc_url( apply_filters( 'generate_retina_logo', generate_get_setting( 'retina_logo' ) ) );
+		$retina_logo_url = esc_url( apply_filters( 'generate_retina_logo', generate_get_option( 'retina_logo' ) ) );
 
 		// If we don't have a logo, bail.
 		if ( empty( $logo_url ) ) {
@@ -170,7 +170,7 @@ if ( ! function_exists( 'generate_construct_site_title' ) ) {
 
 		// Build our tagline.
 		$site_tagline = apply_filters( 'generate_site_description_output', sprintf(
-			'<p class="site-description">
+			'<p class="site-description" itemprop="description">
 				%1$s
 			</p>',
 			html_entity_decode( get_bloginfo( 'description', 'display' ) )
@@ -217,8 +217,8 @@ if ( ! function_exists( 'generate_top_bar' ) ) {
 			return;
 		}
 		?>
-		<div <?php generate_top_bar_class(); ?>>
-			<div class="inside-top-bar<?php if ( 'contained' == generate_get_setting( 'top_bar_inner_width' ) ) echo ' grid-container grid-parent'; ?>">
+		<div <?php generate_do_element_classes( 'top_bar' ); ?>>
+			<div class="inside-top-bar<?php if ( 'contained' == generate_get_option( 'top_bar_inner_width' ) ) echo ' grid-container grid-parent'; ?>">
 				<?php dynamic_sidebar( 'top-bar' ); ?>
 			</div>
 		</div>

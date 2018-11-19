@@ -138,12 +138,13 @@ if ( ! function_exists( 'generate_posted_on' ) ) {
 		// If our author is enabled, show it.
 		if ( $author ) {
 			echo apply_filters( 'generate_post_author_output', sprintf( ' <span class="byline">%1$s</span>', // WPCS: XSS ok, sanitization ok.
-				sprintf( '<span class="author vcard" itemtype="https://schema.org/Person" itemscope="itemscope" itemprop="author">%1$s <a class="url fn n" href="%2$s" title="%3$s" rel="author" itemprop="url"><span class="author-name" itemprop="name">%4$s</span></a></span>',
+				sprintf( '<span class="author vcard" %5$s>%1$s <a class="url fn n" href="%2$s" title="%3$s" rel="author" itemprop="url"><span class="author-name" itemprop="name">%4$s</span></a></span>',
 					__( 'by', 'generatepress' ),
 					esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 					/* translators: 1: Author name */
 					esc_attr( sprintf( __( 'View all posts by %s', 'generatepress' ), get_the_author() ) ),
-					esc_html( get_the_author() )
+					esc_html( get_the_author() ),
+					generate_get_microdata( 'post-author' )
 				)
 			) );
 		}
@@ -233,7 +234,11 @@ if ( ! function_exists( 'generate_post_meta' ) ) {
 	 * @since 1.3.29
 	 */
 	function generate_post_meta() {
-		if ( 'post' == get_post_type() ) : ?>
+		$post_types = apply_filters( 'generate_entry_meta_post_types', array(
+			'post',
+		) );
+
+		if ( in_array( get_post_type(), $post_types ) ) : ?>
 			<div class="entry-meta">
 				<?php generate_posted_on(); ?>
 			</div><!-- .entry-meta -->
@@ -249,7 +254,11 @@ if ( ! function_exists( 'generate_footer_meta' ) ) {
 	 * @since 1.3.30
 	 */
 	function generate_footer_meta() {
-		if ( 'post' == get_post_type() ) : ?>
+		$post_types = apply_filters( 'generate_footer_meta_post_types', array(
+			'post',
+		) );
+
+		if ( in_array( get_post_type(), $post_types ) ) : ?>
 			<footer class="entry-meta">
 				<?php
 				generate_entry_meta();

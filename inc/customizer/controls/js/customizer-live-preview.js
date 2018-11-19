@@ -3,11 +3,15 @@
  *
  * Contains handlers to make Theme Customizer preview reload changes asynchronously.
  */
-function generatepress_colors_live_update( id, selector, property, default_value ) {
+function generatepress_colors_live_update( id, selector, property, default_value, get_value ) {
 	default_value = typeof default_value !== 'undefined' ? default_value : 'initial';
+	get_value = typeof get_value !== 'undefined' ? get_value : '';
+
 	wp.customize( 'generate_settings[' + id + ']', function( value ) {
 		value.bind( function( newval ) {
+			default_value = ( '' !== get_value ) ? wp.customize.value('generate_settings[' + get_value + ']')() : default_value;
 			newval = ( '' !== newval ) ? newval : default_value;
+
 			if ( jQuery( 'style#' + id ).length ) {
 				jQuery( 'style#' + id ).html( selector + '{' + property + ':' + newval + ';}' );
 			} else {
@@ -33,6 +37,70 @@ function generatepress_classes_live_update( id, classes, selector, prefix ) {
 	} );
 }
 
+function generatepress_typography_live_update( id, selector, property, unit, media, settings ) {
+	settings = typeof settings !== 'undefined' ? settings : 'generate_settings';
+	wp.customize( settings + '[' + id + ']', function( value ) {
+		value.bind( function( newval ) {
+			// Get our unit if applicable
+			unit = typeof unit !== 'undefined' ? unit : '';
+
+			var isTablet = ( 'tablet' == id.substring( 0, 6 ) ) ? true : false,
+				isMobile = ( 'mobile' == id.substring( 0, 6 ) ) ? true : false;
+
+			if ( isTablet ) {
+				if ( '' == wp.customize(settings + '[' + id + ']').get() ) {
+					var desktopID = id.replace( 'tablet_', '' );
+					newval = wp.customize(settings + '[' + desktopID + ']').get();
+				}
+			}
+
+			if ( isMobile ) {
+				if ( '' == wp.customize(settings + '[' + id + ']').get() ) {
+					var desktopID = id.replace( 'mobile_', '' );
+					newval = wp.customize(settings + '[' + desktopID + ']').get();
+				}
+			}
+
+			if ( 'buttons_font_size' == id && '' == wp.customize('generate_settings[buttons_font_size]').get() ) {
+				newval = wp.customize('generate_settings[body_font_size]').get();
+			}
+
+			// We're using a desktop value
+			if ( ! isTablet && ! isMobile ) {
+
+				var tabletValue = ( typeof wp.customize(settings + '[tablet_' + id + ']') !== 'undefined' ) ? wp.customize(settings + '[tablet_' + id + ']').get() : '',
+					mobileValue = ( typeof wp.customize(settings + '[mobile_' + id + ']') !== 'undefined' ) ? wp.customize(settings + '[mobile_' + id + ']').get() : '';
+
+				// The tablet setting exists, mobile doesn't
+				if ( '' !== tabletValue && '' == mobileValue ) {
+					media = generatepress_live_preview.desktop + ', ' + generatepress_live_preview.mobile;
+				}
+
+				// The tablet setting doesn't exist, mobile does
+				if ( '' == tabletValue && '' !== mobileValue ) {
+					media = generatepress_live_preview.desktop + ', ' + generatepress_live_preview.tablet;
+				}
+
+				// The tablet setting doesn't exist, neither does mobile
+				if ( '' == tabletValue && '' == mobileValue ) {
+					media = generatepress_live_preview.desktop + ', ' + generatepress_live_preview.tablet + ', ' + generatepress_live_preview.mobile;
+				}
+
+			}
+
+			// Check if media query
+			media_query = typeof media !== 'undefined' ? 'media="' + media + '"' : '';
+
+			jQuery( 'head' ).append( '<style id="' + id + '" ' + media_query + '>' + selector + '{' + property + ':' + newval + unit + ';}</style>' );
+			setTimeout(function() {
+				jQuery( 'style#' + id ).not( ':last' ).remove();
+			}, 1000);
+
+			setTimeout("jQuery('body').trigger('generate_spacing_updated');", 1000);
+		} );
+	} );
+}
+
 ( function( $ ) {
 
 	// Update the site title in real time...
@@ -46,6 +114,16 @@ function generatepress_classes_live_update( id, classes, selector, prefix ) {
 	wp.customize( 'blogdescription', function( value ) {
 		value.bind( function( newval ) {
 			$( '.site-description' ).html( newval );
+		} );
+	} );
+
+	wp.customize( 'generate_settings[logo_width]', function( value ) {
+		value.bind( function( newval ) {
+			$( '.site-header .header-image' ).css( 'width', newval + 'px' );
+
+			if ( '' == newval ) {
+				$( '.site-header .header-image' ).css( 'width', '' );
+			}
 		} );
 	} );
 
@@ -74,6 +152,145 @@ function generatepress_classes_live_update( id, classes, selector, prefix ) {
 	generatepress_colors_live_update( 'link_color_hover', 'a:hover', 'color', 'initial' );
 
 	/**
+	 * Live update for content & navigation colors thanks to our preset option.
+	 * We only want to run this if GP Premium isn't already doing it.
+	 */
+	if ( 'undefined' == typeof generate_colors_live_update ) {
+		/**
+		 * Blog post title color
+		 * Empty: Body link color
+		 */
+		generatepress_colors_live_update( 'blog_post_title_color', '.entry-title a, .entry-title a:visited', 'color', '', 'link_color' );
+
+		/**
+		 * Blog post title color on hover
+		 * Empty: Body link color on hover
+		 */
+		generatepress_colors_live_update( 'blog_post_title_hover_color', '.entry-title a:hover', 'color', '', 'link_color_hover' );
+
+		/**
+		 * Navigation background color
+		 * Empty: Transparent
+		 */
+		generatepress_colors_live_update( 'navigation_background_color', '.main-navigation', 'background-color', 'transparent' );
+
+		/**
+		 * Primary navigation text color
+		 * Empty:  link_color
+		 */
+		generatepress_colors_live_update( 'navigation_text_color',
+			'.main-navigation .main-nav ul li a,\
+			.menu-toggle,button.menu-toggle:hover,\
+			button.menu-toggle:focus,\
+			.main-navigation .mobile-bar-items a,\
+			.main-navigation .mobile-bar-items a:hover,\
+			.main-navigation .mobile-bar-items a:focus',
+			'color',
+			'',
+			'link_color'
+		);
+
+		/**
+		 * Primary navigation text color hover
+		 * Empty: link_color_hover
+		 */
+		generatepress_colors_live_update( 'navigation_text_hover_color',
+			'.navigation-search input[type="search"],\
+			.navigation-search input[type="search"]:active,\
+			.navigation-search input[type="search"]:focus,\
+			.main-navigation .main-nav ul li:hover > a,\
+			.main-navigation .main-nav ul li:focus > a,\
+			.main-navigation .main-nav ul li.sfHover > a',
+			'color',
+			'',
+			'link_color_hover'
+		);
+
+		/**
+		 * Primary navigation menu item hover
+		 * Empty: transparent
+		 */
+		generatepress_colors_live_update( 'navigation_background_hover_color',
+			'.navigation-search input[type="search"],\
+			.navigation-search input[type="search"]:focus,\
+			.main-navigation .main-nav ul li:hover > a,\
+			.main-navigation .main-nav ul li:focus > a,\
+			.main-navigation .main-nav ul li.sfHover > a',
+			'background-color',
+			'transparent'
+		);
+
+		/**
+		 * Primary sub-navigation color
+		 * Empty:  transparent
+		 */
+		generatepress_colors_live_update( 'subnavigation_background_color', '.main-navigation ul ul', 'background-color', 'transparent' );
+
+		/**
+		 * Primary sub-navigation text color
+		 * Empty:  link_color
+		 */
+		generatepress_colors_live_update( 'subnavigation_text_color', '.main-navigation .main-nav ul ul li a', 'color', 'link_color' );
+
+		/**
+		 * Primary sub-navigation hover
+		 */
+		var subnavigation_hover = '.main-navigation .main-nav ul ul li:hover > a, \
+			.main-navigation .main-nav ul ul li:focus > a, \
+			.main-navigation .main-nav ul ul li.sfHover > a';
+
+		/**
+		 * Primary sub-navigation text hover
+		 * Empty: link_color_hover
+		 */
+		generatepress_colors_live_update( 'subnavigation_text_hover_color', subnavigation_hover, 'color', '', 'link_color_hover' );
+
+		/**
+		 * Primary sub-navigation background hover
+		 * Empty: transparent
+		 */
+		generatepress_colors_live_update( 'subnavigation_background_hover_color', subnavigation_hover, 'background-color', 'transparent' );
+
+		/**
+		 * Navigation current selectors
+		 */
+		var navigation_current = '.main-navigation .main-nav ul li[class*="current-menu-"] > a, \
+		.main-navigation .main-nav ul li[class*="current-menu-"]:hover > a, \
+		.main-navigation .main-nav ul li[class*="current-menu-"].sfHover > a';
+
+		/**
+		 * Primary navigation current text
+		 * Empty: link_color
+		 */
+		generatepress_colors_live_update( 'navigation_text_current_color', navigation_current, 'color', '', 'link_color' );
+
+		/**
+		 * Primary navigation current background
+		 * Empty: transparent
+		 */
+		generatepress_colors_live_update( 'navigation_background_current_color', navigation_current, 'background-color', 'transparent' );
+
+		/**
+		 * Primary sub-navigation current selectors
+		 */
+		var subnavigation_current = '.main-navigation .main-nav ul ul li[class*="current-menu-"] > a,\
+			.main-navigation .main-nav ul ul li[class*="current-menu-"]:hover > a, \
+			.main-navigation .main-nav ul ul li[class*="current-menu-"].sfHover > a';
+
+		/**
+		 * Primary sub-navigation current text
+		 * Empty: link_color
+		 */
+		generatepress_colors_live_update( 'subnavigation_text_current_color', subnavigation_current, 'color', '', 'link_color' );
+
+		/**
+		 * Primary navigation current item background
+		 * Empty: transparent
+		 */
+		generatepress_colors_live_update( 'subnavigation_background_current_color', subnavigation_current, 'background-color', 'transparent' );
+	}
+
+	/**
 	 * Container width
 	 */
 	wp.customize( 'generate_settings[container_width]', function( value ) {
@@ -91,79 +308,45 @@ function generatepress_classes_live_update( id, classes, selector, prefix ) {
 	} );
 
 	/**
-	 * Body font size
+	 * Live update for typography options.
+	 * We only want to run this if GP Premium isn't already doing it.
 	 */
-	wp.customize( 'generate_settings[body_font_size]', function( value ) {
-		value.bind( function( newval ) {
-			if ( jQuery( 'style#body_font_size' ).length ) {
-				jQuery( 'style#body_font_size' ).html( 'body, button, input, select, textarea{font-size:' + newval + 'px;}' );
-			} else {
-				jQuery( 'head' ).append( '<style id="body_font_size">body, button, input, select, textarea{font-size:' + newval + 'px;}</style>' );
-				setTimeout(function() {
-					jQuery( 'style#body_font_size' ).not( ':last' ).remove();
-				}, 100);
-			}
-			setTimeout("jQuery('body').trigger('generate_spacing_updated');", 1000);
-		} );
-	} );
+	if ( 'undefined' == typeof gp_premium_typography_live_update ) {
+		/**
+		 * Body font size, weight and transform
+		 */
+		generatepress_typography_live_update( 'body_font_size', 'body, button, input, select, textarea', 'font-size', 'px' );
+		generatepress_typography_live_update( 'body_line_height', 'body', 'line-height', '' );
+		generatepress_typography_live_update( 'paragraph_margin', 'p, .entry-content > [class*="wp-block-"]:not(:last-child)', 'margin-bottom', 'em' );
+		generatepress_typography_live_update( 'body_font_weight', 'body, button, input, select, textarea', 'font-weight' );
+		generatepress_typography_live_update( 'body_font_transform', 'body, button, input, select, textarea', 'text-transform' );
 
-	/**
-	 * Body line height
-	 */
-	wp.customize( 'generate_settings[body_line_height]', function( value ) {
-		value.bind( function( newval ) {
-			if ( jQuery( 'style#body_line_height' ).length ) {
-				jQuery( 'style#body_line_height' ).html( 'body{line-height:' + newval + ';}' );
-			} else {
-				jQuery( 'head' ).append( '<style id="body_line_height">body{line-height:' + newval + ';}</style>' );
-				setTimeout(function() {
-					jQuery( 'style#body_line_height' ).not( ':last' ).remove();
-				}, 100);
-			}
-			setTimeout("jQuery('body').trigger('generate_spacing_updated');", 1000);
-		} );
-	} );
+		/**
+		 * H1 font size, weight and transform
+		 */
+		generatepress_typography_live_update( 'heading_1_font_size', 'h1', 'font-size', 'px', generatepress_live_preview.desktop );
+		generatepress_typography_live_update( 'mobile_heading_1_font_size', 'h1', 'font-size', 'px', generatepress_live_preview.mobile );
+		generatepress_typography_live_update( 'heading_1_weight', 'h1', 'font-weight' );
+		generatepress_typography_live_update( 'heading_1_transform', 'h1', 'text-transform' );
+		generatepress_typography_live_update( 'heading_1_line_height', 'h1', 'line-height', 'em' );
 
-	/**
-	 * Paragraph margin
-	 */
-	wp.customize( 'generate_settings[paragraph_margin]', function( value ) {
-		value.bind( function( newval ) {
-			if ( jQuery( 'style#paragraph_margin' ).length ) {
-				jQuery( 'style#paragraph_margin' ).html( 'p{margin-bottom:' + newval + 'em;}' );
-			} else {
-				jQuery( 'head' ).append( '<style id="paragraph_margin">p{margin-bottom:' + newval + 'em;}</style>' );
-				setTimeout(function() {
-					jQuery( 'style#paragraph_margin' ).not( ':last' ).remove();
-				}, 100);
-			}
-			setTimeout("jQuery('body').trigger('generate_spacing_updated');", 1000);
-		} );
-	} );
+		/**
+		 * H2 font size, weight and transform
+		 */
+		generatepress_typography_live_update( 'heading_2_font_size', 'h2', 'font-size', 'px', generatepress_live_preview.desktop );
+		generatepress_typography_live_update( 'mobile_heading_2_font_size', 'h2', 'font-size', 'px', generatepress_live_preview.mobile );
+		generatepress_typography_live_update( 'heading_2_weight', 'h2', 'font-weight' );
+		generatepress_typography_live_update( 'heading_2_transform', 'h2', 'text-transform' );
+		generatepress_typography_live_update( 'heading_2_line_height', 'h2', 'line-height', 'em' );
 
-	/**
-	 * Body font weight
-	 */
-	wp.customize( 'generate_settings[body_font_weight]', function( value ) {
-		value.bind( function( newval ) {
-			jQuery( 'head' ).append( '<style id="body_font_weight">body, button, input, select, textarea{font-weight:' + newval + ';}</style>' );
-			setTimeout(function() {
-				jQuery( 'style#body_font_weight' ).not( ':last' ).remove();
-			}, 100);
-		} );
-	} );
-
-	/**
-	 * Body text transform
-	 */
-	wp.customize( 'generate_settings[body_font_transform]', function( value ) {
-		value.bind( function( newval ) {
-			jQuery( 'head' ).append( '<style id="body_font_transform">body, button, input, select, textarea{text-transform:' + newval + ';}</style>' );
-			setTimeout(function() {
-				jQuery( 'style#body_font_transform' ).not( ':last' ).remove();
-			}, 100);
-		} );
-	} );
+		/**
+		 * H3 font size, weight and transform
+		 */
+		generatepress_typography_live_update( 'heading_3_font_size', 'h3', 'font-size', 'px' );
+		generatepress_typography_live_update( 'heading_3_weight', 'h3', 'font-weight' );
+		generatepress_typography_live_update( 'heading_3_transform', 'h3', 'text-transform' );
+		generatepress_typography_live_update( 'heading_3_line_height', 'h3', 'line-height', 'em' );
+	}
 
 	/**
 	 * Content layout
@@ -285,7 +468,14 @@ function generatepress_classes_live_update( id, classes, selector, prefix ) {
 	 */
 	wp.customize( 'generate_settings[nav_position_setting]', function( value ) {
 		value.bind( function( newval ) {
-			jQuery('body').trigger('generate_navigation_location_updated');
+			$( 'body' ).trigger( 'generate_navigation_location_updated' );
+
+			// Update navigation alignment settings.
+			$( 'body' ).removeClass( 'nav-aligned-center' );
+			$( 'body' ).removeClass( 'nav-aligned-left' );
+			$( 'body' ).removeClass( 'nav-aligned-right' );
+			$( 'body' ).addClass( 'nav-aligned-' + wp.customize.value('generate_settings[nav_alignment_setting]')() );
+
 			if ( $( '.gen-sidebar-nav' ).length ) {
 				wp.customize.preview.send( 'refresh' );
 				return false;
@@ -298,6 +488,12 @@ function generatepress_classes_live_update( id, classes, selector, prefix ) {
 				wp.customize.preview.send( 'refresh' );
 				return false;
 			}
+
+			if ( '' !== wp.customize.value('generate_settings[nav_drop_point]')() ) {
+				wp.customize.preview.send( 'refresh' );
+				return false;
+			}
+
 			var classes = [ 'nav-below-header', 'nav-above-header', 'nav-float-right', 'nav-float-left', 'nav-left-sidebar', 'nav-right-sidebar' ];
 			if ( 'nav-left-sidebar' !== newval && 'nav-right-sidebar' !== newval ) {
 				$.each( classes, function( i, v ) {
@@ -316,7 +512,11 @@ function generatepress_classes_live_update( id, classes, selector, prefix ) {
 				}
 			}
 			if ( 'nav-float-right' == newval ) {
-				$( '#site-navigation:first' ).appendTo( '.inside-header' ).show();
+				if ( ! $( 'body' ).hasClass( 'using-floats' ) && $( '.header-widget' ).length ) {
+					$( '#site-navigation:first' ).insertBefore( '.header-widget' ).show();
+				} else {
+					$( '#site-navigation:first' ).appendTo( '.inside-header' ).show();
+				}
 			}
 			if ( 'nav-float-left' == newval ) {
 				$( '#site-navigation:first' ).appendTo( '.inside-header' ).show();
@@ -378,5 +578,4 @@ function generatepress_classes_live_update( id, classes, selector, prefix ) {
 	 * Footer bar alignment
 	 */
 	generatepress_classes_live_update( 'footer_bar_alignment', [ 'left', 'center', 'right' ], '.site-footer', 'footer-bar-align-' );
-
 } )( jQuery );

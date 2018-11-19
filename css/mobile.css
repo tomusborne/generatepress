@@ -1,8 +1,47 @@
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Mobile Menu
+# Breakpoint (768px)
+	# Links
+	# Top Bar
+	# Content Area
+	# Columns
+	# Header
+	# Menu
+	# Footer
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+## Mobile Menu
+--------------------------------------------------------------*/
+
 button.menu-toggle {
 	background-color: transparent;
 	width: 100%;
 	border: 0;
 	text-align: center;
+}
+
+.menu-toggle:before {
+	content: "\f0c9";
+	font-family: GeneratePress;
+
+	width: 1.28571429em;
+	text-align: center;
+	display: inline-block;
+}
+
+.toggled .menu-toggle:before {
+	content: "\f00d";
+}
+
+.menu-toggle .mobile-menu {
+	padding-left: 3px;
+}
+
+.menu-toggle .mobile-menu:empty {
+	display: none;
 }
 
 .nav-search-enabled .main-navigation .menu-toggle {
@@ -22,14 +61,6 @@ button.menu-toggle {
 	display: inline-block;
 }
 
-.mobile-bar-items .search-item.active {
-	transition: opacity 300ms ease-in-out;
-}
-
-.main-navigation.toggled ul ul {
-	transition: 0s;
-}
-
 nav.toggled ul ul.sub-menu {
 	width: 100%;
 }
@@ -44,11 +75,8 @@ nav.toggled ul ul.sub-menu {
 }
 
 .main-navigation.toggled ul ul {
+	transition: 0s;
 	visibility: hidden;
-}
-
-.main-navigation.toggled ul ul.toggled-on {
-	visibility: visible;
 }
 
 .main-navigation.toggled .main-nav > ul {
@@ -65,6 +93,7 @@ nav.toggled ul ul.sub-menu {
 	height: auto;
 	opacity: 1;
 	display: block;
+	visibility: visible;
 }
 
 .main-navigation.toggled .main-nav li {
@@ -99,7 +128,26 @@ nav.toggled ul ul.sub-menu {
 	display: inline-block !important;
 }
 
+/*--------------------------------------------------------------
+# Breakpoint (768px)
+--------------------------------------------------------------*/
+
 @media (max-width: 768px) {
+	/*--------------------------------------------------------------
+	## Links
+	--------------------------------------------------------------*/
+
+	a, body, button, input, select, textarea {
+		-webkit-transition: all 0s ease-in-out;
+		-moz-transition: all 0s ease-in-out;
+		-o-transition: all 0s ease-in-out;
+		transition: all 0s ease-in-out;
+	}
+
+	/*--------------------------------------------------------------
+	## Top Bar
+	--------------------------------------------------------------*/
+
 	.top-bar.top-bar-align-left,
 	.top-bar.top-bar-align-right {
 		text-align: center;
@@ -116,39 +164,28 @@ nav.toggled ul ul.sub-menu {
 		padding: 5px 0;
 	}
 
-	.sidebar,
-	.content-area,
-	.inside-footer-widgets > div {
-		float: none;
-		width: 100%;
-		left: 0;
-		right: 0;
-	}
-
-	.inside-footer-widgets > div:not(:last-child) {
-		margin-bottom: 40px;
-	}
-
-	.one-container .sidebar {
-		margin-top: 40px;
-	}
-
-	.separate-containers #left-sidebar + #right-sidebar .inside-right-sidebar {
-		margin-top: 0;
-	}
-
-	a, body, button, input, select, textarea {
-		-webkit-transition: all 0s ease-in-out;
-		-moz-transition: all 0s ease-in-out;
-		-o-transition: all 0s ease-in-out;
-		transition: all 0s ease-in-out;
-	}
+	/*--------------------------------------------------------------
+	## Header
+	--------------------------------------------------------------*/
 
 	.inside-header > *:not(:last-child):not(.main-navigation) {
 		margin-bottom: 20px;
 	}
 
-	/* Start mobile navigation */
+	.site-header {
+		text-align: center;
+	}
+
+	.header-widget {
+		float: none;
+		max-width: 100%;
+		text-align: center;
+	}
+
+	/*--------------------------------------------------------------
+	## Menu
+	--------------------------------------------------------------*/
+
 	.main-navigation .menu-toggle,
 	.main-navigation .mobile-bar-items,
 	.sidebar-nav-mobile:not(#sticky-placeholder) {
@@ -164,14 +201,18 @@ nav.toggled ul ul.sub-menu {
 		float: none;
 		clear: both;
 	}
-	/* End mobile navigation */
 
-	.both-right.separate-containers .inside-left-sidebar,
-	.both-left.separate-containers .inside-left-sidebar,
-	.both-right.separate-containers .inside-right-sidebar,
-	.both-left.separate-containers .inside-right-sidebar {
-		margin-right: 0;
-		margin-left: 0;
+	/*--------------------------------------------------------------
+	## Content Area
+	--------------------------------------------------------------*/
+
+	.sidebar,
+	.content-area,
+	.inside-footer-widgets > div {
+		float: none;
+		width: 100%;
+		left: 0;
+		right: 0;
 	}
 
 	.site-main {
@@ -183,14 +224,20 @@ nav.toggled ul ul.sub-menu {
 		margin-bottom: 0 !important;
 	}
 
-	.fluid-header .inside-header {
-		text-align: center;
+	.one-container .sidebar {
+		margin-top: 40px;
 	}
 
-	.header-widget {
-		float: none;
-		max-width: 100%;
-		text-align: center;
+	.separate-containers #left-sidebar + #right-sidebar .inside-right-sidebar {
+		margin-top: 0;
+	}
+
+	.both-right.separate-containers .inside-left-sidebar,
+	.both-left.separate-containers .inside-left-sidebar,
+	.both-right.separate-containers .inside-right-sidebar,
+	.both-left.separate-containers .inside-right-sidebar {
+		margin-right: 0;
+		margin-left: 0;
 	}
 
 	.alignleft,
@@ -207,6 +254,43 @@ nav.toggled ul ul.sub-menu {
 		margin: 2em 0;
 		text-align: center;
 	}
+
+	.comment .children {
+		padding-left: 10px;
+		margin-left: 0;
+	}
+
+	.edd_download {
+		display: block;
+		float: none !important;
+		margin-bottom: 1.5em;
+		width: 100% !important;
+	}
+
+	.entry-meta {
+		font-size: inherit;
+	}
+
+	/*--------------------------------------------------------------
+	## Columns
+	--------------------------------------------------------------*/
+
+	.wp-block-columns {
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		margin-left: 0;
+	}
+
+	.wp-block-columns .wp-block-column {
+		-ms-flex-preferred-size: 100%;
+		flex-basis: 100%;
+		margin-left: 0;
+		margin-bottom: 40px;
+	}
+
+	/*--------------------------------------------------------------
+	## Footer
+	--------------------------------------------------------------*/
 
 	.site-info {
 		padding-left: 10px;
@@ -234,27 +318,15 @@ nav.toggled ul ul.sub-menu {
 		padding: 5px 0;
 	}
 
+	.inside-footer-widgets > div:not(:last-child) {
+		margin-bottom: 40px;
+	}
+
 	.site-footer .footer-widgets .footer-widgets-container .inside-footer-widgets {
 		margin: 0;
 	}
 
 	.site-footer .footer-widgets .footer-widgets-container .inner-padding {
 		padding: 0;
-	}
-
-	.comment .children {
-		padding-left: 10px;
-		margin-left: 0;
-	}
-
-	.edd_download {
-		display: block;
-		float: none !important;
-		margin-bottom: 1.5em;
-		width: 100% !important;
-	}
-
-	.entry-meta {
-		font-size: inherit;
 	}
 }

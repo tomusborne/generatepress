@@ -107,43 +107,46 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 								<?php
 								$modules = array(
 									'Backgrounds' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-backgrounds/' ),
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#backgrounds', false ),
 									),
 									'Blog' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-blog/' ),
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#blog', false ),
 									),
 									'Colors' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-colors/' ),
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#colors', false ),
 									),
 									'Copyright' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-copyright/' ),
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#copyright', false ),
 									),
 									'Disable Elements' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-disable-elements/' ),
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#disable-elements', false ),
 									),
-									'Hooks' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-hooks/' ),
+									'Elements' => array(
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#elements', false ),
 									),
 									'Import / Export' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-import-export/' ),
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#import-export', false ),
 									),
 									'Menu Plus' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-menu-plus/' ),
-									),
-									'Page Header' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-page-header/' ),
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#menu-plus', false ),
 									),
 									'Secondary Nav' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-secondary-nav/' ),
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#secondary-nav', false ),
 									),
 									'Sections' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-sections/' ),
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#sections', false ),
+									),
+									'Site Library' => array(
+											'url' => generate_get_premium_url( 'https://generatepress.com/site-library', false ),
 									),
 									'Spacing' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-spacing/' ),
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#spacing', false ),
 									),
 									'Typography' => array(
-											'url' => generate_get_premium_url( 'https://generatepress.com/downloads/generate-typography/' ),
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#typography', false ),
+									),
+									'WooCommerce' => array(
+											'url' => generate_get_premium_url( 'https://generatepress.com/premium/#woocommerce', false ),
 									),
 								);
 
@@ -175,17 +178,70 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 								 * @since 0.1
 								 */
 								do_action( 'generate_options_items' );
+
+								$typography_section = 'customize.php?autofocus[section]=font_section';
+								$colors_section = 'customize.php?autofocus[section]=body_section';
+
+								if ( function_exists( 'generatepress_is_module_active' ) ) {
+									if ( generatepress_is_module_active( 'generate_package_typography', 'GENERATE_TYPOGRAPHY' ) ) {
+										$typography_section = 'customize.php?autofocus[panel]=generate_typography_panel';
+									}
+
+									if ( generatepress_is_module_active( 'generate_package_colors', 'GENERATE_COLORS' ) ) {
+										$colors_section = 'customize.php?autofocus[panel]=generate_colors_panel';
+									}
+								}
+
+								$quick_settings = array(
+									'logo' => array(
+										'title' => __( 'Upload Logo', 'generatepress' ),
+										'icon' => 'dashicons-format-image',
+										'url' => admin_url( 'customize.php?autofocus[control]=custom_logo' ),
+									),
+									'typography' => array(
+										'title' => __( 'Customize Fonts', 'generatepress' ),
+										'icon' => 'dashicons-editor-textcolor',
+										'url' => admin_url( $typography_section ),
+									),
+									'colors' => array(
+										'title' => __( 'Customize Colors', 'generatepress' ),
+										'icon' => 'dashicons-admin-customizer',
+										'url' => admin_url( $colors_section ),
+									),
+									'layout' => array(
+										'title' => __( 'Layout Options', 'generatepress' ),
+										'icon' => 'dashicons-layout',
+										'url' => admin_url( 'customize.php?autofocus[panel]=generate_layout_panel' ),
+									),
+									'all' => array(
+										'title' => __( 'All Options', 'generatepress' ),
+										'icon' => 'dashicons-admin-generic',
+										'url' => admin_url( 'customize.php' ),
+									),
+								);
 								?>
 							</div>
 
 							<div class="generate-right-sidebar grid-30" style="padding-right: 0;">
-								<div class="customize-button hide-on-mobile">
-									<?php
-									printf( '<a id="generate_customize_button" class="button button-primary" href="%1$s">%2$s</a>',
-										esc_url( admin_url( 'customize.php' ) ),
-										esc_html__( 'Customize', 'generatepress' )
-									);
-									?>
+								<div class="postbox generate-metabox start-customizing">
+									<h3 class="hndle"><?php esc_html_e( 'Start Customizing', 'generatepress' ); ?></h3>
+									<div class="inside">
+										<ul>
+											<?php
+											foreach ( $quick_settings as $key => $data ) {
+												printf(
+													'<li><span class="dashicons %1$s"></span> <a href="%2$s">%3$s</a></li>',
+													esc_attr( $data['icon'] ),
+													esc_url( $data['url'] ),
+													esc_html( $data['title'] )
+												);
+											}
+											?>
+										</ul>
+
+										<p><?php esc_html_e( 'Want to learn more about the theme? Check out our extensive documentation.', 'generatepress' ); ?></p>
+										<a href="https://docs.generatepress.com"><?php esc_html_e( 'Visit documentation &rarr;', 'generatepress' ); ?></a>
+									</div>
 								</div>
 
 								<?php
@@ -195,24 +251,10 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 								 * @since 0.1
 								 */
 								do_action( 'generate_admin_right_panel' );
-
-								if ( ! defined( 'GP_PREMIUM_VERSION' ) ) : ?>
-									<div class="postbox generate-metabox popular-articles">
-										<h3 class="hndle"><a href="https://docs.generatepress.com" target="_blank"><?php esc_html_e( 'View all', 'generatepress' ); ?></a><?php esc_html_e( 'Documentation', 'generatepress' ); ?></h3>
-										<div class="inside">
-											<ul>
-												<li><a href="https://docs.generatepress.com/article/adding-header-logo/" target="_blank"><?php esc_html_e( 'Adding a Logo', 'generatepress' ); ?></a></li>
-												<li><a href="https://docs.generatepress.com/article/sidebar-layout/" target="_blank"><?php esc_html_e( 'Sidebar Layout', 'generatepress' ); ?></a></li>
-												<li><a href="https://docs.generatepress.com/article/container-width/" target="_blank"><?php esc_html_e( 'Container Width', 'generatepress' ); ?></a></li>
-												<li><a href="https://docs.generatepress.com/article/navigation-location/" target="_blank"><?php esc_html_e( 'Navigation Location', 'generatepress' ); ?></a></li>
-												<li><a href="https://docs.generatepress.com/article/footer-widgets/" target="_blank"><?php esc_html_e( 'Footer Widgets', 'generatepress' ); ?></a></li>
-											</ul>
-										</div>
-									</div>
-								<?php endif; ?>
+								?>
 
 								<div class="postbox generate-metabox" id="gen-delete">
-									<h3 class="hndle"><?php esc_html_e( 'Delete Customizer Settings', 'generatepress' );?></h3>
+									<h3 class="hndle"><?php esc_html_e( 'Reset Settings', 'generatepress' );?></h3>
 									<div class="inside">
 										<p><?php esc_html_e( 'Deleting your settings can not be undone.', 'generatepress' ); ?></p>
 										<form method="post">
@@ -221,7 +263,7 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 												<?php
 												$warning = 'return confirm("' . esc_html__( 'Warning: This will delete your settings.', 'generatepress' ) . '")';
 												wp_nonce_field( 'generate_reset_customizer_nonce', 'generate_reset_customizer_nonce' );
-												submit_button( esc_attr__( 'Delete Default Settings', 'generatepress' ), 'button', 'submit', false,
+												submit_button( esc_attr__( 'Reset', 'generatepress' ), 'button-primary', 'submit', false,
 													array(
 														'onclick' => esc_js( $warning )
 													)

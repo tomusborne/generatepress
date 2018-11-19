@@ -15,31 +15,31 @@
 }
 
 .grid-container:before, .grid-5:before, .grid-10:before, .grid-15:before, .grid-20:before, .grid-25:before, .grid-30:before, .grid-35:before, .grid-40:before, .grid-45:before, .grid-50:before, .grid-55:before, .grid-60:before, .grid-65:before, .grid-70:before, .grid-75:before, .grid-80:before, .grid-85:before, .grid-90:before, .grid-95:before, .grid-100:before, .grid-33:before, .grid-66:before, [class*="mobile-grid-"]:before,[class*="tablet-grid-"]:before, .clearfix:before,
-.grid-container:after, 
-.grid-5:after, 
-.grid-10:after, 
-.grid-15:after, 
-.grid-20:after, 
-.grid-25:after, 
-.grid-30:after, 
-.grid-35:after, 
-.grid-40:after, 
-.grid-45:after, 
-.grid-50:after, 
-.grid-55:after, 
+.grid-container:after,
+.grid-5:after,
+.grid-10:after,
+.grid-15:after,
+.grid-20:after,
+.grid-25:after,
+.grid-30:after,
+.grid-35:after,
+.grid-40:after,
+.grid-45:after,
+.grid-50:after,
+.grid-55:after,
 .grid-60:after,
-.grid-65:after, 
-.grid-70:after, 
-.grid-75:after, 
-.grid-80:after, 
-.grid-85:after, 
-.grid-90:after, 
-.grid-95:after, 
-.grid-100:after, 
-.grid-33:after, 
-.grid-66:after, 
-[class*="mobile-grid-"]:after, 
-[class*="tablet-grid-"]:after, 
+.grid-65:after,
+.grid-70:after,
+.grid-75:after,
+.grid-80:after,
+.grid-85:after,
+.grid-90:after,
+.grid-95:after,
+.grid-100:after,
+.grid-33:after,
+.grid-66:after,
+[class*="mobile-grid-"]:after,
+[class*="tablet-grid-"]:after,
 .clearfix:after {
   content: ".";
   display: block;
@@ -987,23 +987,23 @@
     clear: both;
     width: 100%;
   }
-  
+
   /* GP specific grid */
   .inside-footer-widgets > div {
     margin-bottom: 50px;
   }
-	
+
   .inside-footer-widgets > div:nth-child(odd) {
     clear: both;
   }
-	
+
   .active-footer-widgets-1 .footer-widget-1,
   .active-footer-widgets-3 .footer-widget-3,
   .active-footer-widgets-5 .footer-widget-5 {
     width: 100%;
     margin-bottom: 0;
   }
-	
+
   .active-footer-widgets-2 .inside-footer-widgets > div,
   .active-footer-widgets-4 .footer-widget-3,
   .active-footer-widgets-4 .footer-widget-4 {

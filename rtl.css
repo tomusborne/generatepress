@@ -47,7 +47,8 @@ th {
 .main-navigation li {
     float: right;
 }
-.main-navigation li.search-item {
+.main-navigation li.search-item,
+.nav-aligned-right.nav-below-header .main-navigation .menu > li.search-item {
     float: left;
 }
 .nav-left-sidebar .main-navigation li.search-item.current-menu-item,
@@ -148,10 +149,9 @@ li>ul {
 .comments-link:before,
 .nav-next .next:before,
 .nav-previous .prev:before,
-.tags-links:before,
-footer.entry-meta .author:before,
-footer.entry-meta .posted-on:before {
-    margin-left: 5px;
+.tags-links:before {
+    margin-left: 0.6em;
+	margin-right: 0;
 }
 
 .menu-toggle,

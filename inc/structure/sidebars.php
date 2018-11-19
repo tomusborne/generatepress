@@ -41,3 +41,43 @@ if ( ! function_exists( 'generate_construct_sidebars' ) ) {
 	 */
 	 add_action( 'generate_sidebars', 'generate_construct_sidebars' );
 }
+
+/**
+ * Show sidebar widgets if no widgets are added to the sidebar area.
+ *
+ * @since 2.2
+ *
+ * @param string $area Left or right sidebar.
+ */
+function generate_do_default_sidebar_widgets( $area ) {
+	if ( 'nav-' . $area === generate_get_navigation_location() ) {
+		return;
+	}
+
+	if ( function_exists( 'generate_secondary_nav_get_defaults' ) ) {
+		$secondary_nav = wp_parse_args(
+			get_option( 'generate_secondary_nav_settings', array() ),
+			generate_secondary_nav_get_defaults()
+		);
+
+		if ( 'secondary-nav-' . $area === $secondary_nav['secondary_nav_position_setting'] ) {
+			return;
+		}
+	}
+
+	if ( ! apply_filters( 'generate_show_default_sidebar_widgets', true ) ) {
+		return;
+	}
+	?>
+	<aside id="search" class="widget widget_search">
+		<?php get_search_form(); ?>
+	</aside>
+
+	<aside id="archives" class="widget">
+		<h2 class="widget-title"><?php esc_html_e( 'Archives', 'generatepress' ); ?></h2>
+		<ul>
+			<?php wp_get_archives( array( 'type' => 'monthly' ) ); ?>
+		</ul>
+	</aside>
+	<?php
+}

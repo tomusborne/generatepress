@@ -5,24 +5,24 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options
 Requires at least: 4.5
-Tested up to: 4.9
-Stable tag: 2.1.4
+Tested up to: 5.0
+Stable tag: 2.2
 
-GeneratePress is a fast, lightweight (less than 1MB zipped), mobile responsive WordPress theme built with speed, SEO and usability in mind.
+GeneratePress is a lightweight WordPress theme built with a focus on speed and usability.
 
 == Description ==
 
-GeneratePress is a fast, lightweight (less than 1MB zipped), mobile responsive WordPress theme built with speed, SEO and usability in mind.
+GeneratePress is a lightweight WordPress theme built with a focus on speed and usability. Performance is important to us, which is why a fresh GeneratePress install adds less than 15kb (gzipped) to your page size.
 
-GP can serve as a solid base for any website, and works great with any of your favorite page builders.
+We take full advantage of the new block editor (Gutenberg), which gives you more control over creating your content.
 
-With an emphasis on WordPress coding standards, we ensure GeneratePress is compatible with all well-coded plugins, including major ones like WooCommerce, WPML, BuddyPress and bbPress.
+If you use page builders, GeneratePress is the right theme for you. It is completely compatible with all major page builders, including Beaver Builder and Elementor.
 
-GeneratePress is device friendly (mobile and tablet), uses 100% valid HTML, is fully schema microdata integrated, is translated into over 20 languages by our amazing community and is cross browser compatible (IE9+).
+Thanks to our emphasis on WordPress coding standards, we can boast full compatibility with all well-coded plugins, including WooCommerce.
 
-Some of our features include 9 widget areas, 5 navigation positions, 5 sidebar layouts, dropdown menus (click or hover) and a back to top button.
+GeneratePress is fully responsive, uses valid HTML/CSS and is translated into over 25 languages by our amazing community of users.
 
-All our options use the native WordPress Customizer, meaning you can see every change you make instantly before pressing the publish button.
+A few of our many features include microdata integration, 9 widget areas, 5 navigation locations, 5 sidebar layouts, dropdown menus (click or hover) and navigation color presets.
 
 Learn more and check out our [powerful premium version](https://generatepress.com).
 
@@ -88,7 +88,80 @@ See https://github.com/eligrey/classList.js/blob/master/LICENSE.md
 
 MIT License: https://github.com/woocommerce/selectWoo/blob/master/LICENSE.md
 
+= TinyColor =
+
+By Brian Grinstead, http://briangrinstead.com
+MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
+
 == Changelog ==
+
+= 2.2 =
+
+Release date: November 19, 2018
+
+* New: Sub-menu direction option
+* New: Floated navigation drop point option
+* New: Logo width option
+* New: Content title color option
+* New: Blog post title color option
+* New: H1-H3 typography options
+* New: generate_comment_form_title filter
+* New: Header Presets control inside the Customizer
+* New: Navigation Color Presets control inside the Customizer
+* New: generate_entry_meta_post_types filter
+* New: generate_footer_meta_posts_types filter
+* New: Add paragraph bottom margin to Gutenberg blocks
+* New: Add .alignwide and .alignfull class for Gutenberg blocks
+* New: Styling for Gutenberg gallery block
+* New: Add frontend styling to Gutenberg editor
+* New: Add defaults for H1-H3 bottom margin options
+* New: generate_show_default_sidebar_widgets filter
+* New: generate_schema_type filter
+* New: generate_{context}_microdata filters
+* Tweak: Output theme microdata using generate_do_microdata()
+* Tweak: Replace individual element class functions with generate_do_element_classes()
+* Tweak: Major PHP code cleanup
+* Tweak: Replace generate_get_setting() with generate_get_option()
+* Tweak: Remove default text-align: left from site header
+* Tweak: Only add navigation alignment class to body if necessary
+* Tweak: Major style.css cleanup
+* Tweak: Remove different sub-menu width if in sidebar
+* Tweak: Set navigation search height (fixes full height nav search on mobile/in sidebars)
+* Tweak: Change Delete Customizer Settings button text to Reset
+* Tweak: Add quick Customize links to GP Dashboard
+* Tweak: Give H4-H6 elements the paragraph bottom margin
+* Tweak: Don't close mobile menu when item is tapped
+* Tweak: Simplify a11y outline script
+* Tweak: Keep mobile sub-menus open if mobile toggle is closed
+* Tweak: Replace default sidebar widget content in template files with generate_do_default_sidebar_widgets()
+* Tweak: Clean up extra spaces in footer class attribute
+* Fix: screen-reader-text class conflicts with some plugins
+* Deprecated: generate_get_setting()
+* Deprecated: generate_right_sidebar_class()
+* Deprecated: generate_get_right_sidebar_class()
+* Deprecated: generate_left_sidebar_class()
+* Deprecated: generate_get_left_sidebar_class()
+* Deprecated: generate_content_class()
+* Deprecated: generate_get_content_class()
+* Deprecated: generate_header_class()
+* Deprecated: generate_get_header_class()
+* Deprecated: generate_inside_header_class()
+* Deprecated: generate_get_inside_header_class()
+* Deprecated: generate_container_class()
+* Deprecated: generate_get_container_class()
+* Deprecated: generate_navigation_class()
+* Deprecated: generate_get_navigation_class()
+* Deprecated: generate_inside_navigation_class()
+* Deprecated: generate_menu_class()
+* Deprecated: generate_get_menu_class()
+* Deprecated: generate_main_class()
+* Deprecated: generate_get_main_class()
+* Deprecated: generate_footer_class()
+* Deprecated: generate_get_footer_class()
+* Deprecated: generate_inside_footer_class()
+* Deprecated: generate_top_bar_class()
+* Deprecated: generate_body_schema()
+* Deprecated: generate_article_schema()
 
 = 2.1.4 =
 
