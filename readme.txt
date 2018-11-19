@@ -6,9 +6,9 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options
 Requires at least: 4.5
 Tested up to: 5.0
-Stable tag: 2.1.4
+Stable tag: 2.2
 
-GeneratePress is a fast, lightweight (less than 1MB zipped), mobile responsive WordPress theme built with speed, SEO and usability in mind.
+GeneratePress is a lightweight WordPress theme built with a focus on speed and usability.
 
 == Description ==
 
@@ -97,7 +97,7 @@ MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
 
 = 2.2 =
 
-Release date: TBD
+Release date: November 19, 2018
 
 * New: Sub-menu direction option
 * New: Floated navigation drop point option
