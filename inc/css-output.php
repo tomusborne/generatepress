@@ -269,11 +269,11 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->add_property( 'background-color', esc_attr( $generate_settings['form_background_color_focus'] ) );
 		$css->add_property( 'border-color', esc_attr( $generate_settings['form_border_color_focus'] ) );
 
-		$css->set_selector( 'button,html input[type="button"],input[type="reset"],input[type="submit"],a.button,a.button:visited,.wp-block-button__link:not(.has-background)' );
+		$css->set_selector( 'button,html input[type="button"],input[type="reset"],input[type="submit"],a.button,a.button:visited,a.wp-block-button__link:not(.has-background)' );
 		$css->add_property( 'color', esc_attr( $generate_settings['form_button_text_color'] ) );
 		$css->add_property( 'background-color', esc_attr( $generate_settings['form_button_background_color'] ) );
 
-		$css->set_selector( 'button:hover,html input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover,a.button:hover,button:focus,html input[type="button"]:focus,input[type="reset"]:focus,input[type="submit"]:focus,a.button:focus,.wp-block-button__link:not(.has-background):active,.wp-block-button__link:not(.has-background):focus,.wp-block-button__link:not(.has-background):hover' );
+		$css->set_selector( 'button:hover,html input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover,a.button:hover,button:focus,html input[type="button"]:focus,input[type="reset"]:focus,input[type="submit"]:focus,a.button:focus,a.wp-block-button__link:not(.has-background):active,a.wp-block-button__link:not(.has-background):focus,a.wp-block-button__link:not(.has-background):hover' );
 		$css->add_property( 'color', esc_attr( $generate_settings['form_button_text_color_hover'] ) );
 		$css->add_property( 'background-color', esc_attr( $generate_settings['form_button_background_color_hover'] ) );
 
