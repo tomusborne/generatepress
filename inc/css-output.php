@@ -449,9 +449,6 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 			$css->add_property( 'line-height', floatval( $generate_settings['heading_6_line_height'] ), $og_defaults['heading_6_line_height'], 'em' );
 		}
 
-		$css->set_selector( 'h4, h5, h6' );
-		$css->add_property( 'margin-bottom', floatval( $generate_settings['paragraph_margin'] ), $og_defaults['paragraph_margin'], 'em' );
-
 		$css->set_selector( '.site-info' );
 		$css->add_property( 'font-family', $og_defaults['font_footer'] !== $generate_settings['font_footer'] ? $footer_family : null );
 		$css->add_property( 'font-weight', esc_attr( $generate_settings['footer_weight'] ), $og_defaults['footer_weight'] );
