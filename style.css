@@ -4,7 +4,7 @@ Theme URI: https://generatepress.com
 Author: Tom Usborne
 Author URI: https://tomusborne.com
 Description: GeneratePress is a lightweight WordPress theme built with a focus on speed and usability. Performance is important to us, which is why a fresh GeneratePress install adds less than 15kb (gzipped) to your page size. We take full advantage of the new block editor (Gutenberg), which gives you more control over creating your content. If you use page builders, GeneratePress is the right theme for you. It is completely compatible with all major page builders, including Beaver Builder and Elementor. Thanks to our emphasis on WordPress coding standards, we can boast full compatibility with all well-coded plugins, including WooCommerce. GeneratePress is fully responsive, uses valid HTML/CSS and is translated into over 25 languages by our amazing community of users. A few of our many features include microdata integration, 9 widget areas, 5 navigation locations, 5 sidebar layouts, dropdown menus (click or hover) and navigation color presets. Learn more and check out our powerful premium version at https://generatepress.com
-Version: 2.2
+Version: 2.2.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: generatepress
@@ -272,7 +272,7 @@ h3 {
 h4,
 h5,
 h6 {
-	margin-bottom: 1.5em;
+	margin-bottom: 20px;
 }
 
 ul,
@@ -1305,7 +1305,7 @@ footer.entry-meta {
 
 .wp-block-gallery .blocks-gallery-image figcaption,
 .wp-block-gallery .blocks-gallery-item figcaption {
-	background: rgba(255, 255, 255, 0.4);
+	background: rgba(255, 255, 255, 0.7);
 	color: #000;
 	padding: 10px;
 	box-sizing: border-box;

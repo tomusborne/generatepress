@@ -162,7 +162,7 @@ if ( ! class_exists( 'Generate_Page_Walker' ) && class_exists( 'Walker_Page' ) )
 
 			if ( isset( $args['pages_with_children'][ $page->ID ] ) ) {
 				$css_class[] = 'menu-item-has-children';
-				$button = '<span role="button" class="dropdown-menu-toggle" aria-expanded="false"></span>';
+				$button = '<span role="presentation" class="dropdown-menu-toggle" aria-expanded="false"></span>';
 			}
 
 			if ( ! empty( $current_page ) ) {
@@ -214,7 +214,7 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 		$role = 'presentation';
 		$tabindex = '';
 
-		if ( 'click-arrow' === generate_get_setting( 'nav_dropdown_type' ) ) {
+		if ( 'click-arrow' === generate_get_option( 'nav_dropdown_type' ) ) {
 			$role = 'button';
 			$tabindex = ' tabindex="0"';
 		}
