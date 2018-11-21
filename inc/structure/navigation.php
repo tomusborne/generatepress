@@ -214,7 +214,7 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 		$role = 'presentation';
 		$tabindex = '';
 
-		if ( 'click-arrow' === generate_get_setting( 'nav_dropdown_type' ) ) {
+		if ( 'click-arrow' === generate_get_option( 'nav_dropdown_type' ) ) {
 			$role = 'button';
 			$tabindex = ' tabindex="0"';
 		}
