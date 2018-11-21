@@ -162,7 +162,7 @@ if ( ! class_exists( 'Generate_Page_Walker' ) && class_exists( 'Walker_Page' ) )
 
 			if ( isset( $args['pages_with_children'][ $page->ID ] ) ) {
 				$css_class[] = 'menu-item-has-children';
-				$button = '<span role="button" class="dropdown-menu-toggle" aria-expanded="false"></span>';
+				$button = '<span role="presentation" class="dropdown-menu-toggle" aria-expanded="false"></span>';
 			}
 
 			if ( ! empty( $current_page ) ) {
