@@ -1305,7 +1305,7 @@ footer.entry-meta {
 
 .wp-block-gallery .blocks-gallery-image figcaption,
 .wp-block-gallery .blocks-gallery-item figcaption {
-	background: rgba(255, 255, 255, 0.4);
+	background: rgba(255, 255, 255, 0.7);
 	color: #000;
 	padding: 10px;
 	box-sizing: border-box;
