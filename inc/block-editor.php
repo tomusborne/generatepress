@@ -116,10 +116,10 @@ function generate_enqueue_backend_block_editor_assets() {
 		generate_spacing_get_defaults()
 	);
 
-	$background_color = generate_get_option( 'background_color' );
+	$text_color = generate_get_option( 'text_color' );
 
-	if ( $color_settings['content_background_color'] ) {
-		$background_color = $color_settings['content_background_color'];
+	if ( $color_settings['content_text_color'] ) {
+		$text_color = $color_settings['content_text_color'];
 	}
 
 	wp_localize_script( 'generate-block-editor-scripts', 'generate_block_editor', array(
@@ -132,7 +132,7 @@ function generate_enqueue_backend_block_editor_assets() {
 		'content_title' => generate_get_block_editor_show_content_title() ? 'true' : 'false',
 		'disable_content_title' => esc_html( 'Disable Content Title', 'generatepress' ),
 		'show_content_title' => esc_html( 'Show Content Title', 'generatepress' ),
-		'background_color' => $background_color,
+		'text_color' => $text_color,
 	) );
 }
 
@@ -331,11 +331,11 @@ function generate_do_inline_block_editor_css() {
 	}
 
 	$css->set_selector( 'body .edit-post-layout__content' );
+	$css->add_property( 'background-color', esc_attr( generate_get_option( 'background_color' ) ) );
 
 	if ( $color_settings['content_background_color'] ) {
+		$css->set_selector( 'body .editor-styles-wrapper' );
 		$css->add_property( 'background-color', esc_attr( $color_settings['content_background_color'] ) );
-	} else {
-		$css->add_property( 'background-color', esc_attr( generate_get_option( 'background_color' ) ) );
 	}
 
 	$css->set_selector( '.editor-block-list__block a, .editor-block-list__block a:visited' );

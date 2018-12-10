@@ -76,10 +76,10 @@ jQuery( document ).ready( function( $ ) {
 		}
 	} );
 
-	var background_color = tinycolor( generate_block_editor.background_color ).toHex8(),
-		isDarkMode = tinycolor( background_color ).isDark();
+	var text_color = tinycolor( generate_block_editor.text_color ).toHex8(),
+		isTextDark = tinycolor( text_color ).isDark();
 
-	if ( isDarkMode ) {
+	if ( ! isTextDark ) {
 		$( 'body' ).addClass( 'is-dark-theme' );
 	}
 } );
