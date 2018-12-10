@@ -35,6 +35,7 @@ if ( ! function_exists( 'generate_setup' ) ) {
 		add_theme_support( 'customize-selective-refresh-widgets' );
 		add_theme_support( 'align-wide' );
 		add_theme_support( 'editor-color-palette', array() );
+		add_theme_support( 'responsive-embeds' );
 
 		add_theme_support( 'custom-logo', array(
 			'height' => 70,
