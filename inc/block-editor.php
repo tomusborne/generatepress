@@ -330,12 +330,13 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'font-size', absint( $font_settings['buttons_font_size'] ), false, 'px' );
 	}
 
-	$css->set_selector( 'body .edit-post-layout__content' );
+	$css->set_selector( 'body .editor-styles-wrapper' );
 	$css->add_property( 'background-color', esc_attr( generate_get_option( 'background_color' ) ) );
 
 	if ( $color_settings['content_background_color'] ) {
-		$css->set_selector( 'body .editor-styles-wrapper' );
-		$css->add_property( 'background-color', esc_attr( $color_settings['content_background_color'] ) );
+		$body_background = esc_attr( generate_get_option( 'background_color' ) );
+		$content_background = esc_attr( $color_settings['content_background_color'] );
+		$css->add_property( 'background', 'linear-gradient(' . $content_background . ',' . $content_background . '), linear-gradient(' . $body_background . ',' . $body_background . ')' );
 	}
 
 	$css->set_selector( '.editor-block-list__block a, .editor-block-list__block a:visited' );
