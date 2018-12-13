@@ -289,7 +289,7 @@ function generate_do_inline_block_editor_css() {
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_5_transform'] ) );
 
 	if ( '' !== $font_settings['heading_5_font_size'] ) {
-		$css->add_property( 'font-size', absint( $font_settings['heading_5_font_size'] ), $og_defaults['heading_5_font_size'], 'px' );
+		$css->add_property( 'font-size', absint( $font_settings['heading_5_font_size'] ), false, 'px' );
 	} else {
 		$css->add_property( 'font-size', 'inherit' );
 	}
