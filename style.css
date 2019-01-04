@@ -1126,14 +1126,25 @@ nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
 	margin: 0 0 2em;
 }
 
-.posted-on .updated {
+.posted-on .updated,
+.entry-header .cat-links:before,
+.entry-header .tags-links:before,
+.entry-header .comments-link:before {
 	display: none;
 }
 
 .byline,
 .single .byline,
-.group-blog .byline {
+.group-blog .byline,
+.entry-header .cat-links,
+.entry-header .tags-links,
+.entry-header .comments-link {
 	display: inline;
+}
+
+footer.entry-meta .byline,
+footer.entry-meta .posted-on {
+    display: block;
 }
 
 .page-content,
