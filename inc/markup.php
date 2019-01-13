@@ -110,7 +110,7 @@ function generate_get_microdata( $context ) {
 	}
 
 	if ( 'sidebar' === $context ) {
-		$data = 'itemtype="https://schema.org/WPSidebar" itemscope';
+		$data = 'itemtype="https://schema.org/WPSideBar" itemscope';
 	}
 
 	if ( 'footer' === $context ) {
