@@ -176,6 +176,9 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'max-width', $content_width_calc );
 	}
 
+	$css->set_selector( 'html body.gutenberg-editor-page .editor-block-list__block[data-align="full"]' );
+	$css->add_property( 'max-width', 'none' );
+
 	$css->set_selector( '.edit-post-visual-editor .editor-block-list__block[data-align=wide]' );
 	$css->add_property( 'max-width', absint( $content_width ), false, 'px' );
 
