@@ -95,6 +95,17 @@ MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
 
 == Changelog ==
 
+= 2.2.2 =
+
+Release date: TBA
+
+* Fix: Background/text color conflict in block editor if content background is using rgba
+* Fix: Remove aria-expanded attribute from menu dropdown arrows when no menu is set
+* Fix: Notice in block editor when h5 font size is set
+* Fix: Notice if right/left content padding values are non-numeric
+* Fix: Microdata spelling of WPSideBar
+* Fix: Align-full alignment issue in block editor when Gutenberg plugin is active
+
 = 2.2.1 =
 
 Release date: November 21, 2018
