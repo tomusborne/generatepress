@@ -99,6 +99,7 @@ MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
 
 Release date: TBA
 
+* New: Add support for responsive embeds (videos etc..)
 * Fix: Background/text color conflict in block editor if content background is using rgba
 * Fix: Remove aria-expanded attribute from menu dropdown arrows when no menu is set
 * Fix: Notice in block editor when h5 font size is set
