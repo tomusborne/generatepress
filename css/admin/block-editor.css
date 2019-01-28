@@ -159,3 +159,11 @@ button.content-title-visibility:before {
 .editor-block-list__block .wp-block-columns .wp-block-column {
 	margin-bottom: 0;
 }
+
+/*--------------------------------------------------------------
+# Fix shortcode block label color
+--------------------------------------------------------------*/
+
+.wp-block-shortcode label {
+	color: initial;
+}
