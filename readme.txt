@@ -106,6 +106,8 @@ Release date: TBA
 * Fix: Notice if right/left content padding values are non-numeric
 * Fix: Microdata spelling of WPSideBar
 * Fix: Align-full alignment issue in block editor when Gutenberg plugin is active
+* Fix: Shortcode block label text color when using light text
+* Fix: Content title color in Gutenberg while in code editor
 
 = 2.2.1 =
 
