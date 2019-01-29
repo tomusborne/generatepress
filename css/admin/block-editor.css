@@ -164,6 +164,7 @@ button.content-title-visibility:before {
 # Fix shortcode block label color
 --------------------------------------------------------------*/
 
-.wp-block-shortcode label {
+.wp-block-shortcode label,
+.wp-block-shortcode .editor-plain-text {
 	color: initial;
 }
