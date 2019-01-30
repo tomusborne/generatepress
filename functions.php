@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Set our theme version.
-define( 'GENERATE_VERSION', '2.2.1' );
+define( 'GENERATE_VERSION', '2.2.2' );
 
 if ( ! function_exists( 'generate_setup' ) ) {
 	add_action( 'after_setup_theme', 'generate_setup' );
@@ -35,6 +35,7 @@ if ( ! function_exists( 'generate_setup' ) ) {
 		add_theme_support( 'customize-selective-refresh-widgets' );
 		add_theme_support( 'align-wide' );
 		add_theme_support( 'editor-color-palette', array() );
+		add_theme_support( 'responsive-embeds' );
 
 		add_theme_support( 'custom-logo', array(
 			'height' => 70,

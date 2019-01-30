@@ -116,10 +116,10 @@ function generate_enqueue_backend_block_editor_assets() {
 		generate_spacing_get_defaults()
 	);
 
-	$background_color = generate_get_option( 'background_color' );
+	$text_color = generate_get_option( 'text_color' );
 
-	if ( $color_settings['content_background_color'] ) {
-		$background_color = $color_settings['content_background_color'];
+	if ( $color_settings['content_text_color'] ) {
+		$text_color = $color_settings['content_text_color'];
 	}
 
 	wp_localize_script( 'generate-block-editor-scripts', 'generate_block_editor', array(
@@ -132,7 +132,7 @@ function generate_enqueue_backend_block_editor_assets() {
 		'content_title' => generate_get_block_editor_show_content_title() ? 'true' : 'false',
 		'disable_content_title' => esc_html( 'Disable Content Title', 'generatepress' ),
 		'show_content_title' => esc_html( 'Show Content Title', 'generatepress' ),
-		'background_color' => $background_color,
+		'text_color' => $text_color,
 	) );
 }
 
@@ -175,6 +175,9 @@ function generate_do_inline_block_editor_css() {
 	} else {
 		$css->add_property( 'max-width', $content_width_calc );
 	}
+
+	$css->set_selector( 'html body.gutenberg-editor-page .editor-block-list__block[data-align="full"]' );
+	$css->add_property( 'max-width', 'none' );
 
 	$css->set_selector( '.edit-post-visual-editor .editor-block-list__block[data-align=wide]' );
 	$css->add_property( 'max-width', absint( $content_width ), false, 'px' );
@@ -289,7 +292,7 @@ function generate_do_inline_block_editor_css() {
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_5_transform'] ) );
 
 	if ( '' !== $font_settings['heading_5_font_size'] ) {
-		$css->add_property( 'font-size', absint( $font_settings['heading_5_font_size'] ), $og_defaults['heading_5_font_size'], 'px' );
+		$css->add_property( 'font-size', absint( $font_settings['heading_5_font_size'] ), false, 'px' );
 	} else {
 		$css->add_property( 'font-size', 'inherit' );
 	}
@@ -330,12 +333,13 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'font-size', absint( $font_settings['buttons_font_size'] ), false, 'px' );
 	}
 
-	$css->set_selector( 'body .edit-post-layout__content' );
+	$css->set_selector( 'body .editor-styles-wrapper' );
+	$css->add_property( 'background-color', esc_attr( generate_get_option( 'background_color' ) ) );
 
 	if ( $color_settings['content_background_color'] ) {
-		$css->add_property( 'background-color', esc_attr( $color_settings['content_background_color'] ) );
-	} else {
-		$css->add_property( 'background-color', esc_attr( generate_get_option( 'background_color' ) ) );
+		$body_background = esc_attr( generate_get_option( 'background_color' ) );
+		$content_background = esc_attr( $color_settings['content_background_color'] );
+		$css->add_property( 'background', 'linear-gradient(' . $content_background . ',' . $content_background . '), linear-gradient(' . $body_background . ',' . $body_background . ')' );
 	}
 
 	$css->set_selector( '.editor-block-list__block a, .editor-block-list__block a:visited' );
