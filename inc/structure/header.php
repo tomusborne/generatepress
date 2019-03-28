@@ -54,9 +54,27 @@ if ( ! function_exists( 'generate_header_items' ) ) {
 	 * @since 1.2.9.7
 	 */
 	function generate_header_items() {
-		generate_construct_header_widget();
-		generate_construct_site_title();
-		generate_construct_logo();
+		$order = apply_filters( 'generate_header_items_order',
+			array(
+				'header-widget',
+				'site-branding',
+				'logo',
+			)
+		);
+
+		foreach ( $order as $item ) {
+			if ( 'header-widget' === $item ) {
+				generate_construct_header_widget();
+			}
+
+			if ( 'site-branding' === $item ) {
+				generate_construct_site_title();
+			}
+
+			if ( 'logo' === $item ) {
+				generate_construct_logo();
+			}
+		}
 	}
 }
 
