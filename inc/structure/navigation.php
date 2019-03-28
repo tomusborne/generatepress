@@ -219,7 +219,7 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 			$tabindex = ' tabindex="0"';
 		}
 
-		if ( 'main-nav' === $args->container_class ) {
+		if ( isset( $args->container_class ) && 'main-nav' === $args->container_class ) {
 			foreach ( $item->classes as $value ) {
 				if ( 'menu-item-has-children' === $value ) {
 					$title = $title . '<span role="' . $role . '" class="dropdown-menu-toggle"' . $tabindex . '></span>';
