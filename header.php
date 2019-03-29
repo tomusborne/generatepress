@@ -21,6 +21,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 <body <?php body_class(); ?> <?php generate_do_microdata( 'body' ); ?>>
 	<?php
 	/**
+	 * wp_body_open hook.
+	 *
+	 * @since 2.3
+	 */
+	do_action( 'wp_body_open' );
+
+	/**
 	 * generate_before_header hook.
 	 *
 	 * @since 0.1
