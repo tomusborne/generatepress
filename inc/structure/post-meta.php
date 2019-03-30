@@ -180,7 +180,7 @@ function generate_do_post_meta_item( $item ) {
 		}
 	}
 
-	if ( 'comments_link' === $item ) {
+	if ( 'comments-link' === $item ) {
 		$comments = apply_filters( 'generate_show_comments', true );
 
 		if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) && $comments ) {
@@ -220,8 +220,8 @@ if ( ! function_exists( 'generate_posted_on' ) ) {
 				generate_do_post_meta_item( 'tags' );
 			}
 
-			if ( 'comments_link' === $item ) {
-				generate_do_post_meta_item( 'comments_link' );
+			if ( 'comments-link' === $item ) {
+				generate_do_post_meta_item( 'comments-link' );
 			}
 		}
 	}
@@ -237,7 +237,7 @@ if ( ! function_exists( 'generate_entry_meta' ) ) {
 		$items = apply_filters( 'generate_footer_entry_meta_items', array(
 			'categories',
 			'tags',
-			'comments',
+			'comments-link',
 		) );
 
 		foreach ( $items as $item ) {
@@ -257,8 +257,8 @@ if ( ! function_exists( 'generate_entry_meta' ) ) {
 				generate_do_post_meta_item( 'tags' );
 			}
 
-			if ( 'comments_link' === $item ) {
-				generate_do_post_meta_item( 'comments_link' );
+			if ( 'comments-link' === $item ) {
+				generate_do_post_meta_item( 'comments-link' );
 			}
 		}
 	}
