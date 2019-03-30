@@ -913,6 +913,8 @@ nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
 	margin: 0;
 }
 
+.dropdown-hover.both-left .widget-area .inside-right-sidebar .main-navigation ul li:hover ul,
+.dropdown-hover.both-left .widget-area .inside-right-sidebar .main-navigation ul li.sfHover ul,
 .dropdown-hover .widget-area .main-navigation ul li:hover ul,
 .dropdown-hover .widget-area .main-navigation ul li.sfHover > ul {
 	top: 0;
