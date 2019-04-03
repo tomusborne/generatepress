@@ -107,12 +107,8 @@ nav.toggled ul ul.sub-menu {
 	display: none !important;
 }
 
-.main-navigation.toggled .dropdown-menu-toggle:before {
-	content: "\f107" !important;
-}
-
 .main-navigation.toggled .sfHover > a .dropdown-menu-toggle:before {
-	content: "\f106" !important;
+	content: "\f106";
 }
 
 .main-navigation.toggled .menu-item-has-children .dropdown-menu-toggle {

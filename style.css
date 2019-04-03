@@ -52,7 +52,8 @@ GeneratePress is based on Underscores http://underscores.me/, (C) 2012-2018 Auto
 # Featured Images
 # Top Bar
 # Back to Top Button
-# Icons
+# Font Icons
+# SVG Icons
 # Compatibility
 --------------------------------------------------------------*/
 
@@ -881,17 +882,16 @@ nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
 	text-align: right;
 }
 
-.dropdown-hover .sub-menu-left ul ul .dropdown-menu-toggle {
-	-webkit-transform: rotateY(180deg);
-	transform: rotateY(180deg);
+.dropdown-hover .sub-menu-left ul ul .dropdown-menu-toggle:before {
+	-webkit-transform: rotate(180deg);
+	transform: rotate(180deg);
 }
 
 .dropdown-click .menu-item-has-children.sfHover > a .dropdown-menu-toggle:before {
 	content: "\f106";
 }
 
-.dropdown-hover .sub-menu .dropdown-menu-toggle:before,
-.dropdown-hover .children .dropdown-menu-toggle:before {
+.dropdown-hover .main-navigation:not(.toggled) ul ul .dropdown-menu-toggle:before {
 	content: "\f105";
 }
 
@@ -990,18 +990,6 @@ nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
 
 .nav-aligned-right .main-navigation {
 	text-align: right;
-}
-
-/*--------------------------------------------------------------
-## Slideout Navigation (backward compatibility)
---------------------------------------------------------------*/
-
-.slideout-navigation .dropdown-menu-toggle:before {
-	content: "\f107" !important;
-}
-
-.slideout-navigation .sfHover > a .dropdown-menu-toggle:before {
-	content: "\f106" !important;
 }
 
 /*--------------------------------------------------------------
@@ -1988,20 +1976,8 @@ ol.comment-list {
 }
 
 /*--------------------------------------------------------------
-# Icons
+# Font Icons
 --------------------------------------------------------------*/
-
-@font-face {
-	font-family: 'GeneratePress';
-	src:  url('fonts/generatepress.eot');
-	src:  url('fonts/generatepress.eot#iefix') format('embedded-opentype'),
-		  url('fonts/generatepress.woff2') format('woff2'),
-		  url('fonts/generatepress.woff') format('woff'),
-		  url('fonts/generatepress.ttf') format('truetype'),
-		  url('fonts/generatepress.svg#GeneratePress') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
 
 .menu-toggle:before,
 .search-item a:before,
@@ -2027,6 +2003,67 @@ ol.comment-list {
 .nav-previous .prev:before,
 .nav-next .next:before {
 	opacity: 0.7;
+}
+
+/*--------------------------------------------------------------
+# SVG Icons
+--------------------------------------------------------------*/
+
+.gp-icon {
+	display: inline-flex;
+	align-self: center;
+}
+
+.gp-icon svg {
+	height: 1em;
+	width: 1em;
+	top: .125em;
+	position: relative;
+	fill: currentColor;
+}
+
+.icon-menu-bars svg:nth-child(2),
+.toggled .icon-menu-bars svg:nth-child(1),
+.icon-search svg:nth-child(2),
+.close-search .icon-search svg:nth-child(1) {
+	display: none;
+}
+
+.toggled .icon-menu-bars svg:nth-child(2),
+.close-search .icon-search svg:nth-child(2) {
+	display: block;
+}
+
+.entry-meta .gp-icon {
+	margin-right: 0.6em;
+	opacity: 0.7;
+}
+
+.dropdown-hover .sub-menu .dropdown-menu-toggle .gp-icon svg,
+.dropdown-hover .children .dropdown-menu-toggle .gp-icon svg,
+.dropdown-hover.both-left .inside-right-sidebar .dropdown-menu-toggle .gp-icon svg,
+.dropdown-hover .inside-left-sidebar .dropdown-menu-toggle .gp-icon svg,
+.nav-next .gp-icon svg {
+	transform: rotate(-90deg);
+	transform-origin: center;
+}
+
+.dropdown-hover .sub-menu-left:not(.toggled) ul ul .dropdown-menu-toggle .gp-icon svg,
+.dropdown-hover.both-right .inside-left-sidebar .dropdown-menu-toggle .gp-icon svg,
+.dropdown-hover .inside-right-sidebar .dropdown-menu-toggle .gp-icon svg,
+.nav-previous .gp-icon svg {
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
+.dropdown-click .sfHover > a > .dropdown-menu-toggle > .gp-icon svg,
+nav.toggled .sfHover > a > .dropdown-menu-toggle > .gp-icon svg,
+.generate-back-to-top .gp-icon svg {
+	transform: rotate(180deg);
+}
+
+nav.toggled .sub-menu .dropdown-menu-toggle .gp-icon svg {
+    transform: rotate(0deg);
 }
 
 /*--------------------------------------------------------------
@@ -2060,13 +2097,4 @@ ol.comment-list {
 /* Bootstrap fix */
 .container.grid-container {
 	width: auto;
-}
-
-/*
- * Backwards compatibility until Slideout is updated
- * GP Premium 1.6
- */
-.main-navigation .slideout-toggle a:before,
-.slide-opened .slideout-overlay .slideout-exit:before {
-	font-family: GeneratePress;
 }

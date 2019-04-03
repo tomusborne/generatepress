@@ -1339,6 +1339,29 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 		}
 
 		$wp_customize->add_setting(
+			'generate_settings[icons]',
+			array(
+				'default' => $defaults['icons'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_choices',
+			)
+		);
+
+		$wp_customize->add_control(
+			'generate_settings[icons]',
+			array(
+				'type' => 'select',
+				'label' => __( 'Icon Type', 'generatepress' ),
+				'section' => 'generate_general_section',
+				'choices' => array(
+					'svg' => __( 'SVG', 'generatepress' ),
+					'font' => __( 'Font', 'generatepress' ),
+				),
+				'settings' => 'generate_settings[icons]',
+			)
+		);
+
+		$wp_customize->add_setting(
 			'generate_settings[dynamic_css_cache]',
 			array(
 				'default' => $defaults['dynamic_css_cache'],

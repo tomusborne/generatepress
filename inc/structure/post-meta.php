@@ -47,17 +47,32 @@ if ( ! function_exists( 'generate_content_nav' ) ) {
 
 			<?php if ( is_single() ) : // navigation links for single posts.
 
-				previous_post_link( '<div class="nav-previous"><span class="prev" title="' . esc_attr__( 'Previous', 'generatepress' ) . '">%link</span></div>', '%title', $category_specific );
-				next_post_link( '<div class="nav-next"><span class="next" title="' . esc_attr__( 'Next', 'generatepress' ) . '">%link</span></div>', '%title', $category_specific );
+				previous_post_link(
+					'<div class="nav-previous">' . generate_get_svg_icon( 'arrow' ) . '<span class="prev" title="' . esc_attr__( 'Previous', 'generatepress' ) . '">%link</span></div>',
+					'%title',
+					$category_specific
+				);
+
+				next_post_link(
+					'<div class="nav-next">' . generate_get_svg_icon( 'arrow' ) . '<span class="next" title="' . esc_attr__( 'Next', 'generatepress' ) . '">%link</span></div>', 
+					'%title',
+					$category_specific
+				);
 
 			elseif ( is_home() || is_archive() || is_search() ) : // navigation links for home, archive, and search pages.
 
 				if ( get_next_posts_link() ) : ?>
-					<div class="nav-previous"><span class="prev" title="<?php esc_attr_e( 'Previous', 'generatepress' );?>"><?php next_posts_link( __( 'Older posts', 'generatepress' ) ); ?></span></div>
+					<div class="nav-previous">
+						<?php generate_do_svg_icon( 'arrow' ); ?>
+						<span class="prev" title="<?php esc_attr_e( 'Previous', 'generatepress' );?>"><?php next_posts_link( __( 'Older posts', 'generatepress' ) ); ?></span>
+					</div>
 				<?php endif;
 
 				if ( get_previous_posts_link() ) : ?>
-					<div class="nav-next"><span class="next" title="<?php esc_attr_e( 'Next', 'generatepress' );?>"><?php previous_posts_link( __( 'Newer posts', 'generatepress' ) ); ?></span></div>
+					<div class="nav-next">
+						<?php generate_do_svg_icon( 'arrow' ); ?>
+						<span class="next" title="<?php esc_attr_e( 'Next', 'generatepress' );?>"><?php previous_posts_link( __( 'Newer posts', 'generatepress' ) ); ?></span>
+					</div>
 				<?php endif;
 
 				if ( function_exists( 'the_posts_pagination' ) ) {
@@ -161,9 +176,10 @@ function generate_do_post_meta_item( $item ) {
 
 		$categories_list = get_the_category_list( _x( ', ', 'Used between list items, there is a space after the comma.', 'generatepress' ) );
 		if ( $categories_list && $categories ) {
-			echo apply_filters( 'generate_category_list_output', sprintf( '<span class="cat-links"><span class="screen-reader-text">%1$s </span>%2$s</span> ', // WPCS: XSS ok, sanitization ok.
+			echo apply_filters( 'generate_category_list_output', sprintf( '<span class="cat-links">%3$s<span class="screen-reader-text">%1$s </span>%2$s</span> ', // WPCS: XSS ok, sanitization ok.
 				esc_html_x( 'Categories', 'Used before category names.', 'generatepress' ),
-				$categories_list
+				$categories_list,
+				generate_get_svg_icon( 'categories' )
 			) );
 		}
 	}
@@ -173,9 +189,10 @@ function generate_do_post_meta_item( $item ) {
 
 		$tags_list = get_the_tag_list( '', _x( ', ', 'Used between list items, there is a space after the comma.', 'generatepress' ) );
 		if ( $tags_list && $tags ) {
-			echo apply_filters( 'generate_tag_list_output', sprintf( '<span class="tags-links"><span class="screen-reader-text">%1$s </span>%2$s</span> ', // WPCS: XSS ok, sanitization ok.
+			echo apply_filters( 'generate_tag_list_output', sprintf( '<span class="tags-links">%3$s<span class="screen-reader-text">%1$s </span>%2$s</span> ', // WPCS: XSS ok, sanitization ok.
 				esc_html_x( 'Tags', 'Used before tag names.', 'generatepress' ),
-				$tags_list
+				$tags_list,
+				generate_get_svg_icon( 'tags' )
 			) );
 		}
 	}
@@ -185,6 +202,7 @@ function generate_do_post_meta_item( $item ) {
 
 		if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) && $comments ) {
 			echo '<span class="comments-link">';
+				generate_do_svg_icon( 'comments' );
 				comments_popup_link( __( 'Leave a comment', 'generatepress' ), __( '1 Comment', 'generatepress' ), __( '% Comments', 'generatepress' ) );
 			echo '</span> ';
 		}
