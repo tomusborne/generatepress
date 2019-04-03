@@ -530,17 +530,8 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->set_selector( '.separate-containers .widget, .separate-containers .site-main > *, .separate-containers .page-header, .widget-area .main-navigation' );
 		$css->add_property( 'margin-bottom', absint( $spacing_settings['separator'] ), absint( $og_defaults['separator'] ), 'px' );
 
-		$css->set_selector( '.right-sidebar.separate-containers .site-main' );
-		$css->add_property( 'margin', generate_padding_css( $spacing_settings['separator'], $spacing_settings['separator'], $spacing_settings['separator'], '0' ), generate_padding_css( $og_defaults['separator'], $og_defaults['separator'], $og_defaults['separator'], '0' ) );
-
-		$css->set_selector( '.left-sidebar.separate-containers .site-main' );
-		$css->add_property( 'margin', generate_padding_css( $spacing_settings['separator'], '0', $spacing_settings['separator'], $spacing_settings['separator'] ), generate_padding_css( $og_defaults['separator'], '0', $og_defaults['separator'], $og_defaults['separator'] ) );
-
-		$css->set_selector( '.both-sidebars.separate-containers .site-main' );
-		$css->add_property( 'margin', absint( $spacing_settings['separator'] ), absint( $og_defaults['separator'] ), 'px' );
-
-		$css->set_selector( '.both-right.separate-containers .site-main' );
-		$css->add_property( 'margin', generate_padding_css( $spacing_settings['separator'], $spacing_settings['separator'], $spacing_settings['separator'], '0' ), generate_padding_css( $og_defaults['separator'], $og_defaults['separator'], $og_defaults['separator'], '0' ) );
+		$css->set_selector( '.separate-containers .site-main' );
+		$css->add_property( 'margin', absint( $spacing_settings['separator'] ), $og_defaults['separator'], 'px' );
 
 		$css->set_selector( '.both-right.separate-containers .inside-left-sidebar' );
 		$css->add_property( 'margin-right', absint( $spacing_settings['separator'] / 2 ), absint( $og_defaults['separator'] / 2 ), 'px' );
@@ -548,18 +539,11 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->set_selector( '.both-right.separate-containers .inside-right-sidebar' );
 		$css->add_property( 'margin-left', absint( $spacing_settings['separator'] / 2 ), absint( $og_defaults['separator'] / 2 ), 'px' );
 
-		$css->set_selector( '.both-left.separate-containers .site-main' );
-		$css->add_property( 'margin', generate_padding_css( $spacing_settings['separator'], '0', $spacing_settings['separator'], $spacing_settings['separator'] ), generate_padding_css( $og_defaults['separator'], '0', $og_defaults['separator'], $og_defaults['separator'] ) );
-
 		$css->set_selector( '.both-left.separate-containers .inside-left-sidebar' );
 		$css->add_property( 'margin-right', absint( $spacing_settings['separator'] / 2 ), absint( $og_defaults['separator'] / 2 ), 'px' );
 
 		$css->set_selector( '.both-left.separate-containers .inside-right-sidebar' );
 		$css->add_property( 'margin-left', absint( $spacing_settings['separator'] / 2 ), absint( $og_defaults['separator'] / 2 ), 'px' );
-
-		$css->set_selector( '.separate-containers .site-main' );
-		$css->add_property( 'margin-top', absint( $spacing_settings['separator'] ), absint( $og_defaults['separator'] ), 'px' );
-		$css->add_property( 'margin-bottom', absint( $spacing_settings['separator'] ), absint( $og_defaults['separator'] ), 'px' );
 
 		$css->set_selector( '.separate-containers .page-header-image, .separate-containers .page-header-contained, .separate-containers .page-header-image-single, .separate-containers .page-header-content-single' );
 		$css->add_property( 'margin-top', absint( $spacing_settings['separator'] ), absint( $og_defaults['separator'] ), 'px' );

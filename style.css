@@ -1636,21 +1636,8 @@ ol.comment-list {
 	margin-bottom: 0;
 }
 
-.one-container .site-main {
-	margin: 0;
-}
-
-.one-container .inside-right-sidebar,
-.one-container .inside-left-sidebar {
-	margin-top: 0;
-}
-
-.one-container .inside-article {
+.one-container:not(.page) .inside-article {
 	padding: 0 0 30px 0;
-}
-
-.one-container.page .inside-article {
-	padding-bottom: 0;
 }
 
 .one-container.right-sidebar .site-main,
@@ -1687,20 +1674,18 @@ ol.comment-list {
 	margin-bottom: 20px;
 }
 
-.right-sidebar.separate-containers .site-main {
-	margin: 20px 20px 20px 0px;
-}
-
-.left-sidebar.separate-containers .site-main {
-	margin: 20px 0px 20px 20px;
-}
-
-.both-sidebars.separate-containers .site-main {
+.separate-containers .site-main {
 	margin: 20px;
 }
 
+.right-sidebar.separate-containers .site-main,
 .both-right.separate-containers .site-main {
-	margin: 20px 20px 20px 0px;
+	margin-left: 0;
+}
+
+.left-sidebar.separate-containers .site-main,
+.both-left.separate-containers .site-main {
+	margin-right: 0;
 }
 
 .both-right.separate-containers .inside-left-sidebar,
@@ -1713,11 +1698,6 @@ ol.comment-list {
 	margin-left: 10px;
 }
 
-.both-left.separate-containers .site-main {
-	margin: 20px 0px 20px 20px;
-}
-
-.separate-containers .site-main,
 .separate-containers .inside-right-sidebar,
 .separate-containers .inside-left-sidebar {
 	margin-top: 20px;
