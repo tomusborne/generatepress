@@ -198,6 +198,25 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			)
 		);
 
+		$wp_customize->add_setting(
+			'generate_settings[inline_logo_site_branding]',
+			array(
+				'default' => $defaults['inline_logo_site_branding'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_checkbox',
+			)
+		);
+
+		$wp_customize->add_control(
+			'generate_settings[inline_logo_site_branding]',
+			array(
+				'type' => 'checkbox',
+				'label' => esc_html__( 'Place logo next to title', 'generatepress' ),
+				'section' => 'title_tagline',
+				'active_callback' => 'generate_has_logo_site_branding',
+			)
+		);
+
 		$wp_customize->add_section(
 			'body_section',
 			array(

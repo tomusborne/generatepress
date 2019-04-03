@@ -21,6 +21,7 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 				'hide_title' => '',
 				'hide_tagline' => '',
 				'logo' => '',
+				'inline_logo_site_branding' => false,
 				'retina_logo' => '',
 				'logo_width' => '',
 				'top_bar_width' => 'full',

@@ -207,6 +207,20 @@ if ( ! function_exists( 'generate_get_navigation_location' ) ) {
 		return apply_filters( 'generate_navigation_location', generate_get_option( 'nav_position_setting' ) );
 	}
 }
+
+/**
+ * Check if the logo and site branding are active.
+ *
+ * @since 2.3
+ */
+function generate_has_logo_site_branding() {
+	if ( get_theme_mod( 'custom_logo' ) && ( ! generate_get_option( 'hide_title' ) || ! generate_get_option( 'hide_tagline' ) ) ) {
+		return true;
+	}
+
+	return false;
+}
+
 /**
  * Create SVG icons.
  *

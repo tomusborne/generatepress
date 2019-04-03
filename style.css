@@ -1106,6 +1106,32 @@ nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
 	margin-bottom: 15px;
 }
 
+.site-branding-container {
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	text-align: left;
+}
+
+.site-branding-container .site-logo {
+	margin-right: 1.5em;
+}
+
+.header-aligned-right .site-branding-container {
+	text-align: right;
+}
+
+.header-aligned-right .site-branding-container .site-logo {
+	-webkit-box-ordinal-group: 11;
+	-ms-flex-order: 10;
+	order: 10;
+	margin-right: 0;
+	margin-left: 1.5em;
+}
+
 /*--------------------------------------------------------------
 # Content
 --------------------------------------------------------------*/
