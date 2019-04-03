@@ -172,7 +172,8 @@ nav.toggled ul ul.sub-menu {
 		margin-bottom: 20px;
 	}
 
-	.site-header {
+	.site-header,
+	.header-aligned-right .site-header {
 		text-align: center;
 	}
 
