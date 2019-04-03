@@ -147,10 +147,24 @@ button.content-title-visibility:before {
 	opacity: 0.4;
 }
 
+.edit-post-text-editor .editor-post-title__block .editor-post-title__input {
+	color: initial;
+	opacity: 1;
+}
+
 /*--------------------------------------------------------------
 # Columns
 --------------------------------------------------------------*/
 
 .editor-block-list__block .wp-block-columns .wp-block-column {
 	margin-bottom: 0;
+}
+
+/*--------------------------------------------------------------
+# Fix shortcode block label color
+--------------------------------------------------------------*/
+
+.wp-block-shortcode label,
+.wp-block-shortcode .editor-plain-text {
+	color: initial;
 }

@@ -6,7 +6,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options
 Requires at least: 4.5
 Tested up to: 5.0
-Stable tag: 2.2.1
+Stable tag: 2.2.2
 
 GeneratePress is a lightweight WordPress theme built with a focus on speed and usability.
 
@@ -94,6 +94,20 @@ By Brian Grinstead, http://briangrinstead.com
 MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
 
 == Changelog ==
+
+= 2.2.2 =
+
+Release date: January 30, 2019
+
+* New: Add support for responsive embeds (videos etc..)
+* Fix: Background/text color conflict in block editor if content background is using rgba
+* Fix: Remove aria-expanded attribute from menu dropdown arrows when no menu is set
+* Fix: Notice in block editor when h5 font size is set
+* Fix: Notice if right/left content padding values are non-numeric
+* Fix: Microdata spelling of WPSideBar
+* Fix: Align-full alignment issue in block editor when Gutenberg plugin is active
+* Fix: Shortcode block label text color when using light text
+* Fix: Content title color in Gutenberg while in code editor
 
 = 2.2.1 =
 
