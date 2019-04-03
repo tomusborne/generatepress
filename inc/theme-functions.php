@@ -18,9 +18,15 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return string The option value.
  */
 function generate_get_option( $option ) {
+	$defaults = generate_get_defaults();
+
+	if ( ! isset( $defaults[ $option ] ) ) {
+		return;
+	}
+
 	$options = wp_parse_args(
 		get_option( 'generate_settings', array() ),
-		generate_get_defaults()
+		$defaults
 	);
 
 	return $options[ $option ];
