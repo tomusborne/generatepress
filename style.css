@@ -882,7 +882,7 @@ nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
 	text-align: right;
 }
 
-.dropdown-hover .sub-menu-left ul ul .dropdown-menu-toggle:before {
+.dropdown-hover .sub-menu-left:not(.toggled) ul ul .dropdown-menu-toggle:before {
 	-webkit-transform: rotate(180deg);
 	transform: rotate(180deg);
 }
