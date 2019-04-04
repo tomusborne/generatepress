@@ -891,7 +891,7 @@ nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
 	content: "\f106";
 }
 
-.dropdown-hover .main-navigation:not(.toggled) ul ul .dropdown-menu-toggle:before {
+.dropdown-hover nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
 	content: "\f105";
 }
 
