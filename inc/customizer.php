@@ -1381,6 +1381,25 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 		);
 
 		$wp_customize->add_setting(
+			'generate_settings[combine_css]',
+			array(
+				'default' => $defaults['combine_css'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_checkbox',
+			)
+		);
+
+		$wp_customize->add_control(
+			'generate_settings[combine_css]',
+			array(
+				'type' => 'checkbox',
+				'label' => __( 'Combine CSS', 'generatepress' ),
+				'description' => __( 'Reduce the number of CSS file requests.', 'generatepress' ),
+				'section' => 'generate_general_section',
+			)
+		);
+
+		$wp_customize->add_setting(
 			'generate_settings[dynamic_css_cache]',
 			array(
 				'default' => $defaults['dynamic_css_cache'],

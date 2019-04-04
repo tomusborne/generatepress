@@ -56,6 +56,7 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 				'link_color_visited' => '',
 				'font_awesome_essentials' => true,
 				'icons' => 'font',
+				'combine_css' => true,
 				'dynamic_css_cache' => true,
 			)
 		);

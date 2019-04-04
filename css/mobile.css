@@ -23,6 +23,12 @@ button.menu-toggle {
 	text-align: center;
 }
 
+button.menu-toggle:hover,
+button.menu-toggle:active,
+button.menu-toggle:focus {
+	background-color: transparent;
+}
+
 .menu-toggle:before {
 	content: "\f0c9";
 	font-family: GeneratePress;
