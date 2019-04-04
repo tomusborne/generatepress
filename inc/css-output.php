@@ -736,7 +736,7 @@ function generate_do_icon_font_css() {
 			font-style: normal;
 		}';
 
-		if ( function_exists( 'generate_menu_plus_setup' ) ) {
+		if ( defined( 'GENERATE_MENU_PLUS_VERSION' ) ) {
 			$output .= '.main-navigation .slideout-toggle a:before,
 			.slide-opened .slideout-overlay .slideout-exit:before {
 				font-family: GeneratePress;
