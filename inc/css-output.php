@@ -664,7 +664,7 @@ add_action( 'wp_enqueue_scripts', 'generate_enqueue_dynamic_css', 50 );
  */
 function generate_enqueue_dynamic_css() {
 	if ( ! get_option( 'generate_dynamic_css_output', false ) || is_customize_preview() || apply_filters( 'generate_dynamic_css_skip_cache', false ) ) {
-		$css = generate_base_css() . generate_font_css() . generate_advanced_css() . generate_spacing_css() . generate_do_icon_font_css();
+		$css = generate_base_css() . generate_font_css() . generate_advanced_css() . generate_spacing_css() . generate_do_icon_css();
 	} else {
 		$css = get_option( 'generate_dynamic_css_output' ) . '/* End cached CSS */';
 	}
@@ -691,7 +691,7 @@ function generate_set_dynamic_css_cache() {
 	$cached_version = get_option( 'generate_dynamic_css_cached_version', '' );
 
 	if ( ! $cached_css || $cached_version !== GENERATE_VERSION ) {
-		$css = generate_base_css() . generate_font_css() . generate_advanced_css() . generate_spacing_css() . generate_do_icon_font_css();
+		$css = generate_base_css() . generate_font_css() . generate_advanced_css() . generate_spacing_css() . generate_do_icon_css();
 
 		update_option( 'generate_dynamic_css_output', $css );
 		update_option( 'generate_dynamic_css_cached_version', GENERATE_VERSION );
@@ -709,7 +709,7 @@ function generate_update_dynamic_css_cache() {
 		return;
 	}
 
-	$css = generate_base_css() . generate_font_css() . generate_advanced_css() . generate_spacing_css() . generate_do_icon_font_css();
+	$css = generate_base_css() . generate_font_css() . generate_advanced_css() . generate_spacing_css() . generate_do_icon_css();
 	update_option( 'generate_dynamic_css_output', $css );
 }
 
@@ -718,7 +718,7 @@ function generate_update_dynamic_css_cache() {
  *
  * @since 2.3
  */
-function generate_do_icon_font_css() {
+function generate_do_icon_css() {
 	$output = false;
 
 	if ( 'font' === generate_get_option( 'icons' ) ) {
