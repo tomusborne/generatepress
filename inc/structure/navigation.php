@@ -55,6 +55,13 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 						'items_wrap' => '<ul id="%1$s" class="%2$s ' . join( ' ', generate_get_element_classes( 'menu' ) ) . '">%3$s</ul>',
 					)
 				);
+
+				/**
+				 * generate_after_primary_menu hook.
+				 *
+				 * @since 2.3
+				 */
+				do_action( 'generate_after_primary_menu' );
 				?>
 			</div><!-- .inside-navigation -->
 		</nav><!-- #site-navigation -->
