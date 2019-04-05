@@ -50,7 +50,7 @@
 	'use strict';
 
 	if ( 'querySelector' in document && 'addEventListener' in window && document.body.classList.contains( 'dropdown-hover' ) ) {
-		var navLinks = document.querySelectorAll( 'nav ul a' ),
+		var navLinks = document.querySelectorAll( 'nav .main-nav ul a' ),
 			parentElements = document.querySelectorAll( '.sf-menu .menu-item-has-children' );
 
 		/**
