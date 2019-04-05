@@ -18,7 +18,7 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 		$dir_uri = get_template_directory_uri();
 
-		if ( generate_get_option( 'combine_css' ) ) {
+		if ( generate_get_option( 'combine_css' ) && $suffix ) {
 			wp_enqueue_style( 'generate-style', $dir_uri . "/css/all.min.css", array(), GENERATE_VERSION, 'all' );
 		} else {
 			wp_enqueue_style( 'generate-style-grid', $dir_uri . "/css/unsemantic-grid{$suffix}.css", false, GENERATE_VERSION, 'all' );
