@@ -1394,7 +1394,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			array(
 				'type' => 'checkbox',
 				'label' => __( 'Combine CSS', 'generatepress' ),
-				'description' => __( 'Reduce the number of CSS file requests.', 'generatepress' ),
+				'description' => __( 'Reduce the number of CSS file requests and use a lite version of Unsemantic Grid.', 'generatepress' ),
 				'section' => 'generate_general_section',
 			)
 		);

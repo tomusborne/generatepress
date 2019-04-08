@@ -37,8 +37,7 @@ add_action( 'init', 'generate_do_db_updates', 5 );
 function generate_do_db_updates() {
 	$flags = get_option( 'generate_migration_settings', array() );
 
-	// Process stuff on existing sites.
-	if ( ! isset( $flags['combine_css'] ) || 'true' !== $flags['combine_css'] ) {
+	if ( ! isset( $flags['combine_css'] ) || 'done' !== $flags['combine_css'] ) {
 		if ( ! get_option( 'fresh_site' ) ) {
 			$settings = get_option( 'generate_settings', array() );
 
@@ -46,7 +45,7 @@ function generate_do_db_updates() {
 			update_option( 'generate_settings', $settings );
 		}
 
-		$flags['combine_css'] = 'true';
+		$flags['combine_css'] = 'done';
 		update_option( 'generate_migration_settings', $flags );
 	}
 }
