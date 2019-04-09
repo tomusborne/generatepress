@@ -578,4 +578,32 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 	 * Footer bar alignment
 	 */
 	generatepress_classes_live_update( 'footer_bar_alignment', [ 'left', 'center', 'right' ], '.site-footer', 'footer-bar-align-' );
+
+	jQuery( 'body' ).on( 'generate_spacing_updated', function() {
+		var containerAlignment = wp.customize( 'generate_settings[container_alignment]' ).get(),
+			containerWidth = wp.customize( 'generate_settings[container_width]' ).get(),
+			contentLeft = generatepress_live_preview.contentLeft,
+			contentRight = generatepress_live_preview.contentRight;
+
+		if ( 'text' === containerAlignment ) {
+			if ( typeof wp.customize( 'generate_spacing_settings[content_left]' ) !== 'undefined' ) {
+				contentLeft = wp.customize( 'generate_spacing_settings[content_left]' ).get();
+			}
+
+			if ( typeof wp.customize( 'generate_spacing_settings[content_right]' ) !== 'undefined' ) {
+				contentRight = wp.customize( 'generate_spacing_settings[content_right]' ).get();
+			}
+
+			var newContainerWidth = Number( containerWidth ) + Number( contentLeft ) + Number( contentRight );
+
+			if ( jQuery( 'style#wide_container_width' ).length ) {
+				jQuery( 'style#wide_container_width' ).html( '#page{max-width:' + newContainerWidth + 'px;}' );
+			} else {
+				jQuery( 'head' ).append( '<style id="wide_container_width">#page{max-width:' + newContainerWidth + 'px;}</style>' );
+				setTimeout(function() {
+					jQuery( 'style#wide_container_width' ).not( ':last' ).remove();
+				}, 100);
+			}
+		}
+	} );
 } )( jQuery );

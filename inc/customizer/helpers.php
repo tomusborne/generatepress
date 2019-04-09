@@ -277,12 +277,19 @@ if ( ! function_exists( 'generate_customizer_live_preview' ) ) {
 	 * @since 0.1
 	 */
 	function generate_customizer_live_preview() {
+		$spacing_settings = wp_parse_args(
+			get_option( 'generate_spacing_settings', array() ),
+			generate_spacing_get_defaults()
+		);
+
 		wp_enqueue_script( 'generate-themecustomizer', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/js/customizer-live-preview.js', array( 'customize-preview' ), GENERATE_VERSION, true );
 
 		wp_localize_script( 'generate-themecustomizer', 'generatepress_live_preview', array(
 			'mobile' => apply_filters( 'generate_mobile_media_query', '(max-width:768px)' ),
 			'tablet' => apply_filters( 'generate_tablet_media_query', '(min-width: 769px) and (max-width: 1024px)' ),
 			'desktop' => apply_filters( 'generate_desktop_media_query', '(min-width:1025px)' ),
+			'contentLeft' => absint( $spacing_settings['content_left'] ),
+			'contentRight' => absint( $spacing_settings['content_right'] ),
 		) );
 	}
 }

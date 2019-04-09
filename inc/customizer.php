@@ -1045,6 +1045,30 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			)
 		);
 
+		$wp_customize->add_setting(
+			'generate_settings[container_alignment]',
+			array(
+				'default' => $defaults['container_alignment'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_choices',
+			)
+		);
+
+		$wp_customize->add_control(
+			'generate_settings[container_alignment]',
+			array(
+				'type' => 'select',
+				'label' => __( 'Container Alignment', 'generatepress' ),
+				'section' => 'generate_layout_container',
+				'choices' => array(
+					'boxes' => __( 'Boxes', 'generatepress' ),
+					'text' => __( 'Text', 'generatepress' ),
+				),
+				'settings' => 'generate_settings[container_alignment]',
+				'priority' => 30,
+			)
+		);
+
 		$wp_customize->add_section(
 			'generate_layout_sidebars',
 			array(

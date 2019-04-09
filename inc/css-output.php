@@ -507,6 +507,11 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->add_property( 'width', 'calc(100% + ' . absint( $content_padding ) . 'px)' );
 		$css->add_property( 'max-width', 'calc(100% + ' . absint( $content_padding ) . 'px)' );
 
+		if ( 'text' === generate_get_option( 'container_alignment' ) ) {
+			$css->set_selector( '#page' );
+			$css->add_property( 'max-width', generate_get_option( 'container_width' ) + $content_padding, false, 'px' );
+		}
+
 		$css->start_media_query( apply_filters( 'generate_mobile_media_query', '(max-width:768px)' ) );
 			$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header' );
 			$css->add_property( 'padding', generate_padding_css( $spacing_settings['mobile_content_top'], $spacing_settings['mobile_content_right'], $spacing_settings['mobile_content_bottom'], $spacing_settings['mobile_content_left'] ) );
