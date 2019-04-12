@@ -8,7 +8,6 @@
 	# Content Area
 	# Columns
 	# Header
-	# Menu
 	# Footer
 --------------------------------------------------------------*/
 
@@ -183,26 +182,6 @@ nav.toggled ul ul.sub-menu {
 		float: none;
 		max-width: 100%;
 		text-align: center;
-	}
-
-	/*--------------------------------------------------------------
-	## Menu
-	--------------------------------------------------------------*/
-
-	.main-navigation .menu-toggle,
-	.main-navigation .mobile-bar-items,
-	.sidebar-nav-mobile:not(#sticky-placeholder) {
-		display: block;
-	}
-
-	.main-navigation ul,
-	.gen-sidebar-nav {
-		display: none;
-	}
-
-	[class*="nav-float-"] .site-header .inside-header > * {
-		float: none;
-		clear: both;
 	}
 
 	/*--------------------------------------------------------------
