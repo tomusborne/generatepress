@@ -42,25 +42,11 @@ if ( ! function_exists( 'generate_archive_title' ) ) {
 			 * generate_after_archive_title hook.
 			 *
 			 * @since 0.1
+			 *
+			 * @hooked generate_do_archive_description - 10
 			 */
 			do_action( 'generate_after_archive_title' );
-
-			// Show an optional term description.
-			$term_description = term_description();
-			if ( ! empty( $term_description ) ) {
-				printf( '<div class="taxonomy-description">%s</div>', $term_description ); // WPCS: XSS ok, sanitization ok.
-			}
-
-			if ( get_the_author_meta( 'description' ) && is_author() ) {
-				echo '<div class="author-info">' . get_the_author_meta( 'description' ) . '</div>'; // WPCS: XSS ok, sanitization ok.
-			}
-
-			/**
-			 * generate_after_archive_description hook.
-			 *
-			 * @since 0.1
-			 */
-			do_action( 'generate_after_archive_description' ); ?>
+			?>
 		</header><!-- .page-header -->
 		<?php
 	}
@@ -102,4 +88,29 @@ if ( ! function_exists( 'generate_filter_the_archive_title' ) ) {
 		return $title;
 
 	}
+}
+
+add_action( 'generate_after_archive_title', 'generate_do_archive_description' );
+/**
+ * Output the archive description.
+ *
+ * @since 2.3
+ */
+function generate_do_archive_description() {
+	$term_description = term_description();
+
+	if ( ! empty( $term_description ) ) {
+		printf( '<div class="taxonomy-description">%s</div>', $term_description ); // WPCS: XSS ok, sanitization ok.
+	}
+
+	if ( get_the_author_meta( 'description' ) && is_author() ) {
+		echo '<div class="author-info">' . get_the_author_meta( 'description' ) . '</div>'; // WPCS: XSS ok, sanitization ok.
+	}
+
+	/**
+	 * generate_after_archive_description hook.
+	 *
+	 * @since 0.1
+	 */
+	do_action( 'generate_after_archive_description' );
 }
