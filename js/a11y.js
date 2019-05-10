@@ -86,11 +86,11 @@
 	/**
 	 * Make hover dropdown touch-friendly.
 	 */
-	if ( 'touchend' in document.documentElement ) {
+	if ( 'ontouchstart' in document.documentElement ) {
 		for ( var i = 0; i < parentElements.length; i++ ) {
-			parentElements[i].addEventListener( 'touchend', function( e ) {
+			parentElements[i].addEventListener( 'touchstart', function( e ) {
 				// Bail on mobile
-				if ( parentElements[i].closest( 'nav' ).classList.contains( 'toggled' ) ) {
+				if ( this.closest( 'nav' ).classList.contains( 'toggled' ) ) {
 					return;
 				}
 
@@ -106,7 +106,7 @@
 						}
 
 						// Close other sub-menus
-						var openedSubMenus = parentElements[i].closest( 'nav' ).querySelectorAll( 'ul.toggled-on' );
+						var openedSubMenus = this.closest( 'nav' ).querySelectorAll( 'ul.toggled-on' );
 						if ( openedSubMenus && ! this.closest( 'ul' ).classList.contains( 'toggled-on' ) && ! this.closest( 'li' ).classList.contains( 'sfHover' ) ) {
 							for ( var o = 0; o < openedSubMenus.length; o++ ) {
 								openedSubMenus[o].classList.remove( 'toggled-on' );
