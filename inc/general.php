@@ -327,3 +327,15 @@ function generate_skip_dynamic_css_cache( $cache ) {
 
 	return $cache;
 }
+
+add_filter( 'wp_headers', 'generate_set_wp_headers' );
+/**
+ * Set any necessary headers.
+ *
+ * @since 2.3
+ */
+function generate_set_wp_headers( $headers ) {
+	$headers['X-UA-Compatible'] = 'IE=edge';
+
+	return $headers;
+}
