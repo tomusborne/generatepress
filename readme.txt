@@ -123,6 +123,7 @@ Release date: TBA
 * Fix: Sub-menu direction in right sidebar
 * Fix: Heading selector in block editor
 * Fix: Sub-menu dropdown on tablets/touch screens
+* Fix: Sub-menu dropdown click issue when no menu location is set
 
 = 2.2.2 =
 
