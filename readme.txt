@@ -95,6 +95,35 @@ MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
 
 == Changelog ==
 
+= 2.3 =
+
+Release date: TBA
+
+* New: Add SVG icon option
+* New: Add option to inline the logo and site branding
+* New: Add combine CSS option
+* New: Add container alignment option
+* New: Add generate_header_entry_meta_items filter for defining/ordering header entry meta
+* New: Add generate_footer_entry_meta_items filter for defining/ordering footer entry meta
+* New: Add generate_header_items_order filter to order header elements
+* New: Add wp_body_open hook
+* New: Add generate_after_primary_menu hook
+* New: Add generate_mobile_menu_media_query filter
+* New: Add generate_after_loop hook
+* Tweak: Remove footer widget placeholders
+* Tweak: Properly filter comment_form() defaults
+* Tweak: Check for container_class variable existence
+* Tweak: Align header to center on mobile even if aligned right
+* Tweak: Check for option existence in generate_get_option()
+* Tweak: Simplify separate container margin CSS
+* Tweak: Make navLinks a11y selector more specific
+* Tweak: Hook archive description in so it can be moved
+* Tweak: Set X-UA-Compatible in wp_headers filter
+* Fix: generate_search_label filter
+* Fix: Sub-menu direction in right sidebar
+* Fix: Heading selector in block editor
+* Fix: Sub-menu dropdown on tablets/touch screens
+
 = 2.2.2 =
 
 Release date: January 30, 2019
