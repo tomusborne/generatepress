@@ -39,11 +39,17 @@
 				dropdownToggle.setAttribute( 'aria-expanded', 'false' );
 			}
 
+			if ( closestLi.querySelector( '.sub-menu' ) ) {
+				var subMenuSelector = '.sub-menu';
+			} else {
+				var subMenuSelector = '.children';
+			}
+
 			// Open the sub-menu
 			if ( body.classList.contains( 'dropdown-click-menu-item' ) ) {
-				_this.parentNode.querySelector( '.sub-menu' ).classList.toggle( 'toggled-on' );
+				_this.parentNode.querySelector( subMenuSelector ).classList.toggle( 'toggled-on' );
 			} else if ( body.classList.contains( 'dropdown-click-arrow' ) ) {
-				closestLi.querySelector( '.sub-menu' ).classList.toggle( 'toggled-on' );
+				closestLi.querySelector( subMenuSelector ).classList.toggle( 'toggled-on' );
 			}
 		}
 
