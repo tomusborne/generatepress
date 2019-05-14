@@ -44,7 +44,7 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$media_query = sprintf(
 				'(max-width: %1$s) and %2$s',
 				absint( $nav_drop_point ) . 'px',
-				apply_filters( 'generate_not_mobile_media_query', '(min-width: 769px)' )
+				apply_filters( 'generate_not_mobile_menu_media_query', '(min-width: 769px)' )
 			);
 
 			$css->start_media_query( $media_query );
