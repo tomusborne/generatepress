@@ -101,7 +101,7 @@
 					// Toggle hover
 					if ( ! this.classList.contains( 'sfHover' ) ) {
 						// Prevent link on first touch
-						if ( e.target === this || e.target.parentNode === this ) {
+						if ( e.target === this || e.target.parentNode === this || e.target.parentNode.parentNode ) {
 							e.preventDefault();
 						}
 
