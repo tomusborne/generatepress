@@ -110,6 +110,7 @@ Release date: TBA
 * New: Add generate_after_primary_menu hook
 * New: Add generate_mobile_menu_media_query filter
 * New: Add generate_after_loop hook
+* New: Add generate_show_block_editor_styles filter
 * Tweak: Remove footer widget placeholders
 * Tweak: Properly filter comment_form() defaults
 * Tweak: Check for container_class variable existence
@@ -119,6 +120,7 @@ Release date: TBA
 * Tweak: Make navLinks a11y selector more specific
 * Tweak: Hook archive description in so it can be moved
 * Tweak: Set X-UA-Compatible in wp_headers filter
+* Tweak: Move Layout metabox to the sidebar by default
 * Fix: generate_search_label filter
 * Fix: Sub-menu direction in right sidebar
 * Fix: Heading selector in block editor
