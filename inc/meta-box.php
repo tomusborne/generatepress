@@ -53,8 +53,7 @@ function generate_register_layout_meta_box() {
 				esc_html__( 'Layout', 'generatepress' ),
 				'generate_do_layout_meta_box',
 				$type,
-				'normal',
-				'high'
+				'side'
 			);
 		}
 	}
