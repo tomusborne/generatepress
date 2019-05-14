@@ -101,10 +101,14 @@ add_action( 'enqueue_block_editor_assets', 'generate_enqueue_backend_block_edito
  */
 function generate_enqueue_backend_block_editor_assets() {
 	wp_enqueue_style( 'generate-block-editor-styles', get_template_directory_uri() . "/css/admin/block-editor.css", false, GENERATE_VERSION, 'all' );
-	wp_add_inline_style( 'generate-block-editor-styles', generate_do_inline_block_editor_css() );
-
 	wp_enqueue_script( 'generate-block-editor-tinycolor', get_template_directory_uri() . "/js/admin/tinycolor.js", false, GENERATE_VERSION, true );
 	wp_enqueue_script( 'generate-block-editor-scripts', get_template_directory_uri() . "/js/admin/block-editor.js", array( 'jquery', 'generate-block-editor-tinycolor' ), GENERATE_VERSION, true );
+
+	$show_editor_styles = apply_filters( 'generate_show_block_editor_styles', true );
+
+	if ( $show_editor_styles ) {
+		wp_add_inline_style( 'generate-block-editor-styles', generate_do_inline_block_editor_css() );
+	}
 
 	$color_settings = wp_parse_args(
 		get_option( 'generate_settings', array() ),
@@ -133,6 +137,7 @@ function generate_enqueue_backend_block_editor_assets() {
 		'disable_content_title' => esc_html( 'Disable Content Title', 'generatepress' ),
 		'show_content_title' => esc_html( 'Show Content Title', 'generatepress' ),
 		'text_color' => $text_color,
+		'show_editor_styles' => $show_editor_styles,
 	) );
 }
 

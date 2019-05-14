@@ -76,11 +76,13 @@ jQuery( document ).ready( function( $ ) {
 		}
 	} );
 
-	var text_color = tinycolor( generate_block_editor.text_color ).toHex8(),
-		isTextDark = tinycolor( text_color ).isDark();
+	if ( generate_block_editor.show_editor_styles ) {
+		var text_color = tinycolor( generate_block_editor.text_color ).toHex8(),
+			isTextDark = tinycolor( text_color ).isDark();
 
-	if ( ! isTextDark ) {
-		$( 'body' ).addClass( 'is-dark-theme' );
+		if ( ! isTextDark ) {
+			$( 'body' ).addClass( 'is-dark-theme' );
+		}
 	}
 } );
 
