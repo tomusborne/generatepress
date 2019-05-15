@@ -524,17 +524,6 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 			$css->add_property( 'max-width', generate_get_option( 'container_width' ) + $content_padding, false, 'px' );
 		}
 
-		$css->start_media_query( apply_filters( 'generate_mobile_media_query', '(max-width:768px)' ) );
-			$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header' );
-			$css->add_property( 'padding', generate_padding_css( $spacing_settings['mobile_content_top'], $spacing_settings['mobile_content_right'], $spacing_settings['mobile_content_bottom'], $spacing_settings['mobile_content_left'] ) );
-
-			$mobile_content_padding = absint( $spacing_settings['mobile_content_right'] ) + absint( $spacing_settings['mobile_content_left'] );
-			$css->set_selector( '.entry-content .alignwide, body:not(.no-sidebar) .entry-content .alignfull' );
-			$css->add_property( 'margin-left', '-' . absint( $spacing_settings['mobile_content_left'] ) . 'px' );
-			$css->add_property( 'width', 'calc(100% + ' . absint( $mobile_content_padding ) . 'px)' );
-			$css->add_property( 'max-width', 'calc(100% + ' . absint( $mobile_content_padding ) . 'px)' );
-		$css->stop_media_query();
-
 		$css->set_selector( '.one-container.right-sidebar .site-main,.one-container.both-right .site-main' );
 		$css->add_property( 'margin-right', absint( $spacing_settings['content_right'] ), absint( $og_defaults['content_right'] ), 'px' );
 
@@ -611,6 +600,17 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 
 		$css->set_selector( '.site-info' );
 		$css->add_property( 'padding', generate_padding_css( $spacing_settings['footer_top'], $spacing_settings['footer_right'], $spacing_settings['footer_bottom'], $spacing_settings['footer_left'] ), generate_padding_css( $og_defaults['footer_top'], $og_defaults['footer_right'], $og_defaults['footer_bottom'], $og_defaults['footer_left'] ) );
+
+		$css->start_media_query( apply_filters( 'generate_mobile_media_query', '(max-width:768px)' ) );
+			$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header' );
+			$css->add_property( 'padding', generate_padding_css( $spacing_settings['mobile_content_top'], $spacing_settings['mobile_content_right'], $spacing_settings['mobile_content_bottom'], $spacing_settings['mobile_content_left'] ) );
+
+			$mobile_content_padding = absint( $spacing_settings['mobile_content_right'] ) + absint( $spacing_settings['mobile_content_left'] );
+			$css->set_selector( '.entry-content .alignwide, body:not(.no-sidebar) .entry-content .alignfull' );
+			$css->add_property( 'margin-left', '-' . absint( $spacing_settings['mobile_content_left'] ) . 'px' );
+			$css->add_property( 'width', 'calc(100% + ' . absint( $mobile_content_padding ) . 'px)' );
+			$css->add_property( 'max-width', 'calc(100% + ' . absint( $mobile_content_padding ) . 'px)' );
+		$css->stop_media_query();
 
 		// Add spacing back where dropdown arrow should be.
 		// Old versions of WP don't get nice things.
