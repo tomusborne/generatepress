@@ -6,7 +6,6 @@
 	# Links
 	# Top Bar
 	# Content Area
-	# Columns
 	# Header
 	# Footer
 --------------------------------------------------------------*/
@@ -251,23 +250,6 @@ nav.toggled ul ul.sub-menu {
 
 	.entry-meta {
 		font-size: inherit;
-	}
-
-	/*--------------------------------------------------------------
-	## Columns
-	--------------------------------------------------------------*/
-
-	.wp-block-columns {
-		-ms-flex-wrap: wrap;
-		flex-wrap: wrap;
-		margin-left: 0;
-	}
-
-	.wp-block-columns .wp-block-column {
-		-ms-flex-preferred-size: 100%;
-		flex-basis: 100%;
-		margin-left: 0;
-		margin-bottom: 40px;
 	}
 
 	/*--------------------------------------------------------------
