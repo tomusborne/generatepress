@@ -610,6 +610,21 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 			$css->add_property( 'margin-left', '-' . absint( $spacing_settings['mobile_content_left'] ) . 'px' );
 			$css->add_property( 'width', 'calc(100% + ' . absint( $mobile_content_padding ) . 'px)' );
 			$css->add_property( 'max-width', 'calc(100% + ' . absint( $mobile_content_padding ) . 'px)' );
+
+			if ( '' !== $spacing_settings['mobile_separator'] ) {
+				$css->set_selector( '.separate-containers .widget, .separate-containers .site-main > *, .separate-containers .page-header' );
+				$css->add_property( 'margin-bottom', absint( $spacing_settings['mobile_separator'] ), false, 'px' );
+
+				$css->set_selector( '.separate-containers .site-main' );
+				$css->add_property( 'margin', absint( $spacing_settings['mobile_separator'] ), false, 'px' );
+
+				$css->set_selector( '.separate-containers .page-header-image, .separate-containers .page-header-image-single' );
+				$css->add_property( 'margin-top', absint( $spacing_settings['mobile_separator'] ), false, 'px' );
+
+				$css->set_selector( '.separate-containers .inside-right-sidebar, .separate-containers .inside-left-sidebar' );
+				$css->add_property( 'margin-top', absint( $spacing_settings['mobile_separator'] ), false, 'px' );
+				$css->add_property( 'margin-bottom', absint( $spacing_settings['mobile_separator'] ), false, 'px' );
+			}
 		$css->stop_media_query();
 
 		// Add spacing back where dropdown arrow should be.

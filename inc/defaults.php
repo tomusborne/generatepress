@@ -295,6 +295,7 @@ if ( ! function_exists( 'generate_spacing_get_defaults' ) ) {
 			'mobile_content_bottom' => '30',
 			'mobile_content_left' => '30',
 			'separator' => '20',
+			'mobile_separator' => '',
 			'left_sidebar_width' => '25',
 			'right_sidebar_width' => '25',
 			'widget_top' => '40',
