@@ -111,6 +111,7 @@ Release date: TBA
 * New: Add generate_mobile_menu_media_query filter
 * New: Add generate_after_loop hook
 * New: Add generate_show_block_editor_styles filter
+* New: Add generate_google_font_display filter
 * New: Add support for future mobile separating space option
 * Tweak: Remove footer widget placeholders
 * Tweak: Properly filter comment_form() defaults
