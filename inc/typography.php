@@ -102,6 +102,12 @@ if ( ! function_exists( 'generate_enqueue_google_fonts' ) ) {
 			$font_args['subset'] = urlencode( $subset );
 		}
 
+		$display = apply_filters( 'generate_google_font_display', '' );
+
+		if ( $display ) {
+			$font_args['display'] = $display;
+		}
+
 		// Create our URL using the arguments
 		$fonts_url = add_query_arg( $font_args, '//fonts.googleapis.com/css' );
 
