@@ -1144,7 +1144,8 @@ nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
 .posted-on .updated,
 .entry-header .cat-links:before,
 .entry-header .tags-links:before,
-.entry-header .comments-link:before {
+.entry-header .comments-link:before,
+.entry-header .gp-icon {
 	display: none;
 }
 
