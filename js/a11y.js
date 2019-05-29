@@ -50,8 +50,7 @@
 	'use strict';
 
 	if ( 'querySelector' in document && 'addEventListener' in window && document.body.classList.contains( 'dropdown-hover' ) ) {
-		var navLinks = document.querySelectorAll( 'nav .main-nav ul a' ),
-			parentElements = document.querySelectorAll( '.sf-menu .menu-item-has-children' );
+		var navLinks = document.querySelectorAll( 'nav .main-nav ul a' );
 
 		/**
 		 * Make menu items tab accessible when using the hover dropdown type
@@ -87,6 +86,8 @@
 	 * Make hover dropdown touch-friendly.
 	 */
 	if ( 'ontouchstart' in document.documentElement ) {
+		var parentElements = document.querySelectorAll( '.sf-menu .menu-item-has-children' );
+
 		for ( var i = 0; i < parentElements.length; i++ ) {
 			parentElements[i].addEventListener( 'touchstart', function( e ) {
 				// Bail on mobile
