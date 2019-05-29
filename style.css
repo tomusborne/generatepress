@@ -1678,6 +1678,11 @@ ol.comment-list {
 	margin: 20px;
 }
 
+.no-sidebar.separate-containers .site-main {
+	margin-left: 0;
+	margin-right: 0;
+}
+
 .right-sidebar.separate-containers .site-main,
 .both-right.separate-containers .site-main {
 	margin-left: 0;
