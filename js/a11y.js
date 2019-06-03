@@ -85,17 +85,18 @@
 	/**
 	 * Make hover dropdown touch-friendly.
 	 */
-	if ( 'ontouchstart' in document.documentElement ) {
+	if ( 'ontouchend' in document.documentElement ) {
 		var parentElements = document.querySelectorAll( '.sf-menu .menu-item-has-children' );
 
 		for ( var i = 0; i < parentElements.length; i++ ) {
-			parentElements[i].addEventListener( 'touchstart', function( e ) {
+			parentElements[i].addEventListener( 'touchend', function( e ) {
+
 				// Bail on mobile
 				if ( this.closest( 'nav' ).classList.contains( 'toggled' ) ) {
 					return;
 				}
 
-				if ( e.touches.length === 1 ) {
+				if ( e.touches.length === 1 || e.touches.length === 0 ) {
 					// Prevent touch events within dropdown bubbling down to document
 					e.stopPropagation();
 
