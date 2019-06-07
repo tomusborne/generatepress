@@ -124,6 +124,7 @@ Release date: TBA
 * Tweak: Set X-UA-Compatible in wp_headers filter
 * Tweak: Move Layout metabox to the sidebar by default
 * Tweak: Use generate_not_mobile_menu_media_query filter in nav drop point
+* Tweak: Target headings in blocks not necessarily in core heading block
 * Fix: generate_search_label filter
 * Fix: Sub-menu direction in right sidebar
 * Fix: Heading selector in block editor
