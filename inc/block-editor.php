@@ -225,7 +225,7 @@ function generate_do_inline_block_editor_css() {
 	$css->set_selector( 'body .editor-styles-wrapper, body .editor-styles-wrapper p, body .editor-styles-wrapper .mce-content-body' );
 	$css->add_property( 'line-height', floatval( $font_settings['body_line_height'] ) );
 
-	$css->set_selector( '.editor-styles-wrapper .wp-block-heading h1, .wp-block-heading h1.editor-rich-text__tinymce, .editor-post-title__block .editor-post-title__input' );
+	$css->set_selector( '.editor-styles-wrapper h1, .wp-block-heading h1.editor-rich-text__tinymce, .editor-post-title__block .editor-post-title__input' );
 	$css->add_property( 'font-family', 'inherit' === $h1_family || '' === $h1_family ? $body_family : $h1_family );
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_1_weight'] ) );
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_1_transform'] ) );
@@ -244,7 +244,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', esc_attr( $color_settings['content_title_color'] ) );
 	}
 
-	$css->set_selector( '.editor-styles-wrapper .wp-block-heading h2, .wp-block-heading h2.editor-rich-text__tinymce' );
+	$css->set_selector( '.editor-styles-wrapper h2, .wp-block-heading h2.editor-rich-text__tinymce' );
 	$css->add_property( 'font-family', $h2_family );
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_2_weight'] ) );
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_2_transform'] ) );
@@ -258,7 +258,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', esc_attr( generate_get_option( 'text_color' ) ) );
 	}
 
-	$css->set_selector( '.editor-styles-wrapper .wp-block-heading h3, .wp-block-heading h3.editor-rich-text__tinymce' );
+	$css->set_selector( '.editor-styles-wrapper h3, .wp-block-heading h3.editor-rich-text__tinymce' );
 	$css->add_property( 'font-family', $h3_family );
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_3_weight'] ) );
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_3_transform'] ) );
@@ -272,7 +272,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', esc_attr( generate_get_option( 'text_color' ) ) );
 	}
 
-	$css->set_selector( '.editor-styles-wrapper .wp-block-heading h4, .wp-block-heading h4.editor-rich-text__tinymce' );
+	$css->set_selector( '.editor-styles-wrapper h4, .wp-block-heading h4.editor-rich-text__tinymce' );
 	$css->add_property( 'font-family', $h4_family );
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_4_weight'] ) );
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_4_transform'] ) );
@@ -291,7 +291,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', esc_attr( generate_get_option( 'text_color' ) ) );
 	}
 
-	$css->set_selector( '.editor-styles-wrapper .wp-block-heading h5, .wp-block-heading h5.editor-rich-text__tinymce' );
+	$css->set_selector( '.editor-styles-wrapper h5, .wp-block-heading h5.editor-rich-text__tinymce' );
 	$css->add_property( 'font-family', $h5_family );
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_5_weight'] ) );
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_5_transform'] ) );
@@ -310,7 +310,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', esc_attr( generate_get_option( 'text_color' ) ) );
 	}
 
-	$css->set_selector( '.editor-styles-wrapper .wp-block-heading h6, .wp-block-heading h6.editor-rich-text__tinymce' );
+	$css->set_selector( '.editor-styles-wrapper h6, .wp-block-heading h6.editor-rich-text__tinymce' );
 	$css->add_property( 'font-family', $h6_family );
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_6_weight'] ) );
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_6_transform'] ) );
