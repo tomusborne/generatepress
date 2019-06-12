@@ -81,18 +81,6 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$css->add_property( 'width', absint( generate_get_option( 'logo_width' ) ), false, 'px' );
 		}
 
-		$css->start_media_query( apply_filters( 'generate_mobile_menu_media_query', '(max-width: 768px)' ) );
-			$css->set_selector( '.main-navigation .menu-toggle,.main-navigation .mobile-bar-items,.sidebar-nav-mobile:not(#sticky-placeholder)' );
-			$css->add_property( 'display', 'block' );
-
-			$css->set_selector( '.main-navigation ul,.gen-sidebar-nav' );
-			$css->add_property( 'display', 'none' );
-
-			$css->set_selector( '[class*="nav-float-"] .site-header .inside-header > *' );
-			$css->add_property( 'float', 'none' );
-			$css->add_property( 'clear', 'both' );
-		$css->stop_media_query();
-
 		do_action( 'generate_base_css', $css );
 
 		return apply_filters( 'generate_base_css_output', $css->css_output() );
@@ -684,6 +672,18 @@ function generate_no_cache_dynamic_css() {
 		$css->set_selector( '.entry-content > .alignwide:first-child, .entry-content > .alignfull:first-child' );
 		$css->add_property( 'margin-top', '-' . absint( $spacing_settings['content_top'] ), false, 'px' );
 	}
+
+	$css->start_media_query( apply_filters( 'generate_mobile_menu_media_query', '(max-width: 768px)' ) );
+		$css->set_selector( '.main-navigation .menu-toggle,.main-navigation .mobile-bar-items,.sidebar-nav-mobile:not(#sticky-placeholder)' );
+		$css->add_property( 'display', 'block' );
+
+		$css->set_selector( '.main-navigation ul,.gen-sidebar-nav' );
+		$css->add_property( 'display', 'none' );
+
+		$css->set_selector( '[class*="nav-float-"] .site-header .inside-header > *' );
+		$css->add_property( 'float', 'none' );
+		$css->add_property( 'clear', 'both' );
+	$css->stop_media_query();
 
 	return $css->css_output();
 }
