@@ -126,6 +126,7 @@ Release date: TBA
 * Tweak: Use generate_not_mobile_menu_media_query filter in nav drop point
 * Tweak: Target headings in blocks not necessarily in core heading block
 * Tweak: Increase tap targets of entry meta on mobile
+* Tweak: Remove negative margin from align-wide/full items when they're first block
 * Fix: generate_search_label filter
 * Fix: Sub-menu direction in right sidebar
 * Fix: Heading selector in block editor
