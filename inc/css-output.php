@@ -663,14 +663,6 @@ function generate_no_cache_dynamic_css() {
 				$css->set_selector( '.single .entry-content' )->add_property( 'margin-top', '0px' );
 			}
 		}
-
-		$spacing_settings = wp_parse_args(
-			get_option( 'generate_spacing_settings', array() ),
-			generate_spacing_get_defaults()
-		);
-
-		$css->set_selector( '.entry-content > .alignwide:first-child, .entry-content > .alignfull:first-child' );
-		$css->add_property( 'margin-top', '-' . absint( $spacing_settings['content_top'] ), false, 'px' );
 	}
 
 	$css->start_media_query( apply_filters( 'generate_mobile_menu_media_query', '(max-width: 768px)' ) );
