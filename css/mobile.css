@@ -6,9 +6,7 @@
 	# Links
 	# Top Bar
 	# Content Area
-	# Columns
 	# Header
-	# Menu
 	# Footer
 --------------------------------------------------------------*/
 
@@ -21,6 +19,12 @@ button.menu-toggle {
 	width: 100%;
 	border: 0;
 	text-align: center;
+}
+
+button.menu-toggle:hover,
+button.menu-toggle:active,
+button.menu-toggle:focus {
+	background-color: transparent;
 }
 
 .menu-toggle:before {
@@ -107,12 +111,8 @@ nav.toggled ul ul.sub-menu {
 	display: none !important;
 }
 
-.main-navigation.toggled .dropdown-menu-toggle:before {
-	content: "\f107" !important;
-}
-
 .main-navigation.toggled .sfHover > a .dropdown-menu-toggle:before {
-	content: "\f106" !important;
+	content: "\f106";
 }
 
 .main-navigation.toggled .menu-item-has-children .dropdown-menu-toggle {
@@ -172,7 +172,8 @@ nav.toggled ul ul.sub-menu {
 		margin-bottom: 20px;
 	}
 
-	.site-header {
+	.site-header,
+	.header-aligned-right .site-header {
 		text-align: center;
 	}
 
@@ -180,26 +181,6 @@ nav.toggled ul ul.sub-menu {
 		float: none;
 		max-width: 100%;
 		text-align: center;
-	}
-
-	/*--------------------------------------------------------------
-	## Menu
-	--------------------------------------------------------------*/
-
-	.main-navigation .menu-toggle,
-	.main-navigation .mobile-bar-items,
-	.sidebar-nav-mobile:not(#sticky-placeholder) {
-		display: block;
-	}
-
-	.main-navigation ul,
-	.gen-sidebar-nav {
-		display: none;
-	}
-
-	[class*="nav-float-"] .site-header .inside-header > * {
-		float: none;
-		clear: both;
 	}
 
 	/*--------------------------------------------------------------
@@ -271,21 +252,8 @@ nav.toggled ul ul.sub-menu {
 		font-size: inherit;
 	}
 
-	/*--------------------------------------------------------------
-	## Columns
-	--------------------------------------------------------------*/
-
-	.wp-block-columns {
-		-ms-flex-wrap: wrap;
-		flex-wrap: wrap;
-		margin-left: 0;
-	}
-
-	.wp-block-columns .wp-block-column {
-		-ms-flex-preferred-size: 100%;
-		flex-basis: 100%;
-		margin-left: 0;
-		margin-bottom: 40px;
+	.entry-meta a {
+		line-height: 1.8em;
 	}
 
 	/*--------------------------------------------------------------

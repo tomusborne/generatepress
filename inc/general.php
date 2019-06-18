@@ -18,9 +18,18 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 		$dir_uri = get_template_directory_uri();
 
-		wp_enqueue_style( 'generate-style-grid', $dir_uri . "/css/unsemantic-grid{$suffix}.css", false, GENERATE_VERSION, 'all' );
-		wp_enqueue_style( 'generate-style', $dir_uri . "/style{$suffix}.css", array( 'generate-style-grid' ), GENERATE_VERSION, 'all' );
-		wp_enqueue_style( 'generate-mobile-style', $dir_uri . "/css/mobile{$suffix}.css", array( 'generate-style' ), GENERATE_VERSION, 'all' );
+		if ( generate_get_option( 'combine_css' ) && $suffix ) {
+			wp_enqueue_style( 'generate-style', $dir_uri . "/css/all.min.css", array(), GENERATE_VERSION, 'all' );
+		} else {
+			$lite = '';
+			if ( apply_filters( 'generate_unsemantic_grid_lite', false ) ) {
+				$lite = '-lite';
+			}
+
+			wp_enqueue_style( 'generate-style-grid', $dir_uri . "/css/unsemantic-grid{$lite}{$suffix}.css", false, GENERATE_VERSION, 'all' );
+			wp_enqueue_style( 'generate-style', $dir_uri . "/style{$suffix}.css", array(), GENERATE_VERSION, 'all' );
+			wp_enqueue_style( 'generate-mobile-style', $dir_uri . "/css/mobile{$suffix}.css", array( 'generate-style' ), GENERATE_VERSION, 'all' );
+		}
 
 		if ( is_child_theme() ) {
 			wp_enqueue_style( 'generate-child', get_stylesheet_uri(), array( 'generate-style' ), filemtime( get_stylesheet_directory() . '/style.css' ), 'all' );
@@ -317,4 +326,16 @@ function generate_skip_dynamic_css_cache( $cache ) {
 	}
 
 	return $cache;
+}
+
+add_filter( 'wp_headers', 'generate_set_wp_headers' );
+/**
+ * Set any necessary headers.
+ *
+ * @since 2.3
+ */
+function generate_set_wp_headers( $headers ) {
+	$headers['X-UA-Compatible'] = 'IE=edge';
+
+	return $headers;
 }

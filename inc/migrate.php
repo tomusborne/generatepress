@@ -9,14 +9,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-add_action( 'admin_init', 'generate_do_db_updates' );
+add_action( 'admin_init', 'generate_do_admin_db_updates' );
 /**
  * Process database updates if necessary.
  * There's nothing in here yet, but we're setting the version to use later.
  *
  * @since 2.1
  */
-function generate_do_db_updates() {
+function generate_do_admin_db_updates() {
 	// Get the current version.
 	$current_version = get_option( 'generate_db_version', false );
 
@@ -25,6 +25,28 @@ function generate_do_db_updates() {
 	// Set the new database version.
 	if ( version_compare( $current_version, GENERATE_VERSION, '<' ) ) {
 		update_option( 'generate_db_version', GENERATE_VERSION, false );
+	}
+}
+
+add_action( 'init', 'generate_do_db_updates', 5 );
+/**
+ * Process important database updates when someone visits the front or backend.
+ *
+ * @since 2.3
+ */
+function generate_do_db_updates() {
+	$flags = get_option( 'generate_migration_settings', array() );
+
+	if ( ! isset( $flags['combine_css'] ) || 'done' !== $flags['combine_css'] ) {
+		if ( ! get_option( 'fresh_site' ) ) {
+			$settings = get_option( 'generate_settings', array() );
+
+			$settings['combine_css'] = false;
+			update_option( 'generate_settings', $settings );
+		}
+
+		$flags['combine_css'] = 'done';
+		update_option( 'generate_migration_settings', $flags );
 	}
 }
 

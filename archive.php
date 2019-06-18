@@ -43,6 +43,13 @@ get_header(); ?>
 
 				endwhile;
 
+				/**
+				 * generate_after_loop hook.
+				 *
+				 * @since 2.3
+				 */
+				do_action( 'generate_after_loop' );
+
 				generate_content_nav( 'nav-below' );
 
 			else :

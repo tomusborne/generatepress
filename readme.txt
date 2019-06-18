@@ -5,8 +5,8 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options
 Requires at least: 4.5
-Tested up to: 5.0
-Stable tag: 2.2.2
+Tested up to: 5.2
+Stable tag: 2.3
 
 GeneratePress is a lightweight WordPress theme built with a focus on speed and usability.
 
@@ -94,6 +94,44 @@ By Brian Grinstead, http://briangrinstead.com
 MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
 
 == Changelog ==
+
+= 2.3 =
+
+Release date: June 18, 2019
+
+* New: Add SVG icon option
+* New: Add option to inline the logo and site branding
+* New: Add combine CSS option
+* New: Add container alignment option
+* New: Add generate_header_entry_meta_items filter for defining/ordering header entry meta
+* New: Add generate_footer_entry_meta_items filter for defining/ordering footer entry meta
+* New: Add generate_header_items_order filter to order header elements
+* New: Add wp_body_open hook
+* New: Add generate_after_primary_menu hook
+* New: Add generate_mobile_menu_media_query filter
+* New: Add generate_after_loop hook
+* New: Add generate_show_block_editor_styles filter
+* New: Add generate_google_font_display filter
+* New: Add support for future mobile separating space option
+* Tweak: Remove footer widget placeholders
+* Tweak: Properly filter comment_form() defaults
+* Tweak: Check for container_class variable existence
+* Tweak: Align header to center on mobile even if aligned right
+* Tweak: Check for option existence in generate_get_option()
+* Tweak: Simplify separate container margin CSS
+* Tweak: Make navLinks a11y selector more specific
+* Tweak: Hook archive description in so it can be moved
+* Tweak: Set X-UA-Compatible in wp_headers filter
+* Tweak: Move Layout metabox to the sidebar by default
+* Tweak: Use generate_not_mobile_menu_media_query filter in nav drop point
+* Tweak: Target headings in blocks not necessarily in core heading block
+* Tweak: Increase tap targets of entry meta on mobile
+* Tweak: Remove negative margin from align-wide/full items when they're first block
+* Fix: generate_search_label filter
+* Fix: Sub-menu direction in right sidebar
+* Fix: Heading selector in block editor
+* Fix: Sub-menu dropdown on tablets/touch screens
+* Fix: Sub-menu dropdown click issue when no menu location is set
 
 = 2.2.2 =
 

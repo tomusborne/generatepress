@@ -101,10 +101,14 @@ add_action( 'enqueue_block_editor_assets', 'generate_enqueue_backend_block_edito
  */
 function generate_enqueue_backend_block_editor_assets() {
 	wp_enqueue_style( 'generate-block-editor-styles', get_template_directory_uri() . "/css/admin/block-editor.css", false, GENERATE_VERSION, 'all' );
-	wp_add_inline_style( 'generate-block-editor-styles', generate_do_inline_block_editor_css() );
-
 	wp_enqueue_script( 'generate-block-editor-tinycolor', get_template_directory_uri() . "/js/admin/tinycolor.js", false, GENERATE_VERSION, true );
 	wp_enqueue_script( 'generate-block-editor-scripts', get_template_directory_uri() . "/js/admin/block-editor.js", array( 'jquery', 'generate-block-editor-tinycolor' ), GENERATE_VERSION, true );
+
+	$show_editor_styles = apply_filters( 'generate_show_block_editor_styles', true );
+
+	if ( $show_editor_styles ) {
+		wp_add_inline_style( 'generate-block-editor-styles', generate_do_inline_block_editor_css() );
+	}
 
 	$color_settings = wp_parse_args(
 		get_option( 'generate_settings', array() ),
@@ -133,6 +137,7 @@ function generate_enqueue_backend_block_editor_assets() {
 		'disable_content_title' => esc_html( 'Disable Content Title', 'generatepress' ),
 		'show_content_title' => esc_html( 'Show Content Title', 'generatepress' ),
 		'text_color' => $text_color,
+		'show_editor_styles' => $show_editor_styles,
 	) );
 }
 
@@ -220,7 +225,7 @@ function generate_do_inline_block_editor_css() {
 	$css->set_selector( 'body .editor-styles-wrapper, body .editor-styles-wrapper p, body .editor-styles-wrapper .mce-content-body' );
 	$css->add_property( 'line-height', floatval( $font_settings['body_line_height'] ) );
 
-	$css->set_selector( '.wp-block-heading h1, .wp-block-heading h1.editor-rich-text__tinymce, .editor-post-title__block .editor-post-title__input' );
+	$css->set_selector( '.editor-styles-wrapper h1, .wp-block-heading h1.editor-rich-text__tinymce, .editor-post-title__block .editor-post-title__input' );
 	$css->add_property( 'font-family', 'inherit' === $h1_family || '' === $h1_family ? $body_family : $h1_family );
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_1_weight'] ) );
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_1_transform'] ) );
@@ -239,7 +244,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', esc_attr( $color_settings['content_title_color'] ) );
 	}
 
-	$css->set_selector( '.wp-block-heading h2, .wp-block-heading h2.editor-rich-text__tinymce' );
+	$css->set_selector( '.editor-styles-wrapper h2, .wp-block-heading h2.editor-rich-text__tinymce' );
 	$css->add_property( 'font-family', $h2_family );
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_2_weight'] ) );
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_2_transform'] ) );
@@ -253,7 +258,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', esc_attr( generate_get_option( 'text_color' ) ) );
 	}
 
-	$css->set_selector( '.wp-block-heading h3, .wp-block-heading h3.editor-rich-text__tinymce' );
+	$css->set_selector( '.editor-styles-wrapper h3, .wp-block-heading h3.editor-rich-text__tinymce' );
 	$css->add_property( 'font-family', $h3_family );
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_3_weight'] ) );
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_3_transform'] ) );
@@ -267,7 +272,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', esc_attr( generate_get_option( 'text_color' ) ) );
 	}
 
-	$css->set_selector( '.wp-block-heading h4, .wp-block-heading h4.editor-rich-text__tinymce' );
+	$css->set_selector( '.editor-styles-wrapper h4, .wp-block-heading h4.editor-rich-text__tinymce' );
 	$css->add_property( 'font-family', $h4_family );
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_4_weight'] ) );
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_4_transform'] ) );
@@ -286,7 +291,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', esc_attr( generate_get_option( 'text_color' ) ) );
 	}
 
-	$css->set_selector( '.wp-block-heading h5, .wp-block-heading h5.editor-rich-text__tinymce' );
+	$css->set_selector( '.editor-styles-wrapper h5, .wp-block-heading h5.editor-rich-text__tinymce' );
 	$css->add_property( 'font-family', $h5_family );
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_5_weight'] ) );
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_5_transform'] ) );
@@ -305,7 +310,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', esc_attr( generate_get_option( 'text_color' ) ) );
 	}
 
-	$css->set_selector( '.wp-block-heading h6, .wp-block-heading h6.editor-rich-text__tinymce' );
+	$css->set_selector( '.editor-styles-wrapper h6, .wp-block-heading h6.editor-rich-text__tinymce' );
 	$css->add_property( 'font-family', $h6_family );
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_6_weight'] ) );
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_6_transform'] ) );

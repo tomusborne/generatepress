@@ -50,8 +50,7 @@
 	'use strict';
 
 	if ( 'querySelector' in document && 'addEventListener' in window && document.body.classList.contains( 'dropdown-hover' ) ) {
-		var navLinks = document.querySelectorAll( 'nav ul a' ),
-			parentElements = document.querySelectorAll( '.sf-menu .menu-item-has-children' );
+		var navLinks = document.querySelectorAll( 'nav .main-nav ul a' );
 
 		/**
 		 * Make menu items tab accessible when using the hover dropdown type
@@ -86,27 +85,30 @@
 	/**
 	 * Make hover dropdown touch-friendly.
 	 */
-	if ( 'touchend' in document.documentElement ) {
+	if ( 'ontouchend' in document.documentElement ) {
+		var parentElements = document.querySelectorAll( '.sf-menu .menu-item-has-children' );
+
 		for ( var i = 0; i < parentElements.length; i++ ) {
 			parentElements[i].addEventListener( 'touchend', function( e ) {
+
 				// Bail on mobile
-				if ( parentElements[i].closest( 'nav' ).classList.contains( 'toggled' ) ) {
+				if ( this.closest( 'nav' ).classList.contains( 'toggled' ) ) {
 					return;
 				}
 
-				if ( e.touches.length === 1 ) {
+				if ( e.touches.length === 1 || e.touches.length === 0 ) {
 					// Prevent touch events within dropdown bubbling down to document
 					e.stopPropagation();
 
 					// Toggle hover
 					if ( ! this.classList.contains( 'sfHover' ) ) {
 						// Prevent link on first touch
-						if ( e.target === this || e.target.parentNode === this ) {
+						if ( e.target === this || e.target.parentNode === this || e.target.parentNode.parentNode ) {
 							e.preventDefault();
 						}
 
 						// Close other sub-menus
-						var openedSubMenus = parentElements[i].closest( 'nav' ).querySelectorAll( 'ul.toggled-on' );
+						var openedSubMenus = this.closest( 'nav' ).querySelectorAll( 'ul.toggled-on' );
 						if ( openedSubMenus && ! this.closest( 'ul' ).classList.contains( 'toggled-on' ) && ! this.closest( 'li' ).classList.contains( 'sfHover' ) ) {
 							for ( var o = 0; o < openedSubMenus.length; o++ ) {
 								openedSubMenus[o].classList.remove( 'toggled-on' );

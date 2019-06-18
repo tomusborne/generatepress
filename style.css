@@ -4,7 +4,7 @@ Theme URI: https://generatepress.com
 Author: Tom Usborne
 Author URI: https://tomusborne.com
 Description: GeneratePress is a lightweight WordPress theme built with a focus on speed and usability. Performance is important to us, which is why a fresh GeneratePress install adds less than 15kb (gzipped) to your page size. We take full advantage of the new block editor (Gutenberg), which gives you more control over creating your content. If you use page builders, GeneratePress is the right theme for you. It is completely compatible with all major page builders, including Beaver Builder and Elementor. Thanks to our emphasis on WordPress coding standards, we can boast full compatibility with all well-coded plugins, including WooCommerce. GeneratePress is fully responsive, uses valid HTML/CSS and is translated into over 25 languages by our amazing community of users. A few of our many features include microdata integration, 9 widget areas, 5 navigation locations, 5 sidebar layouts, dropdown menus (click or hover) and navigation color presets. Learn more and check out our powerful premium version at https://generatepress.com
-Version: 2.2.2
+Version: 2.3
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: generatepress
@@ -46,13 +46,13 @@ GeneratePress is based on Underscores http://underscores.me/, (C) 2012-2019 Auto
 	# Separate Containers
 	# Full Width Content
 	# Contained Content
-	# Columns
 # Footer
 	# Footer Bar
 # Featured Images
 # Top Bar
 # Back to Top Button
-# Icons
+# Font Icons
+# SVG Icons
 # Compatibility
 --------------------------------------------------------------*/
 
@@ -881,17 +881,16 @@ nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
 	text-align: right;
 }
 
-.dropdown-hover .sub-menu-left ul ul .dropdown-menu-toggle {
-	-webkit-transform: rotateY(180deg);
-	transform: rotateY(180deg);
+.dropdown-hover .sub-menu-left:not(.toggled) ul ul .dropdown-menu-toggle:before {
+	-webkit-transform: rotate(180deg);
+	transform: rotate(180deg);
 }
 
 .dropdown-click .menu-item-has-children.sfHover > a .dropdown-menu-toggle:before {
 	content: "\f106";
 }
 
-.dropdown-hover .sub-menu .dropdown-menu-toggle:before,
-.dropdown-hover .children .dropdown-menu-toggle:before {
+.dropdown-hover nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
 	content: "\f105";
 }
 
@@ -913,6 +912,8 @@ nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
 	margin: 0;
 }
 
+.dropdown-hover.both-left .widget-area .inside-right-sidebar .main-navigation ul li:hover ul,
+.dropdown-hover.both-left .widget-area .inside-right-sidebar .main-navigation ul li.sfHover ul,
 .dropdown-hover .widget-area .main-navigation ul li:hover ul,
 .dropdown-hover .widget-area .main-navigation ul li.sfHover > ul {
 	top: 0;
@@ -988,18 +989,6 @@ nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
 
 .nav-aligned-right .main-navigation {
 	text-align: right;
-}
-
-/*--------------------------------------------------------------
-## Slideout Navigation (backward compatibility)
---------------------------------------------------------------*/
-
-.slideout-navigation .dropdown-menu-toggle:before {
-	content: "\f107" !important;
-}
-
-.slideout-navigation .sfHover > a .dropdown-menu-toggle:before {
-	content: "\f106" !important;
 }
 
 /*--------------------------------------------------------------
@@ -1116,6 +1105,32 @@ nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
 	margin-bottom: 15px;
 }
 
+.site-branding-container {
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	text-align: left;
+}
+
+.site-branding-container .site-logo {
+	margin-right: 1.5em;
+}
+
+.header-aligned-right .site-branding-container {
+	text-align: right;
+}
+
+.header-aligned-right .site-branding-container .site-logo {
+	-webkit-box-ordinal-group: 11;
+	-ms-flex-order: 10;
+	order: 10;
+	margin-right: 0;
+	margin-left: 1.5em;
+}
+
 /*--------------------------------------------------------------
 # Content
 --------------------------------------------------------------*/
@@ -1126,14 +1141,26 @@ nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
 	margin: 0 0 2em;
 }
 
-.posted-on .updated {
+.posted-on .updated,
+.entry-header .cat-links:before,
+.entry-header .tags-links:before,
+.entry-header .comments-link:before,
+.entry-header .gp-icon {
 	display: none;
 }
 
 .byline,
 .single .byline,
-.group-blog .byline {
+.group-blog .byline,
+.entry-header .cat-links,
+.entry-header .tags-links,
+.entry-header .comments-link {
 	display: inline;
+}
+
+footer.entry-meta .byline,
+footer.entry-meta .posted-on {
+    display: block;
 }
 
 .page-content,
@@ -1609,21 +1636,8 @@ ol.comment-list {
 	margin-bottom: 0;
 }
 
-.one-container .site-main {
-	margin: 0;
-}
-
-.one-container .inside-right-sidebar,
-.one-container .inside-left-sidebar {
-	margin-top: 0;
-}
-
-.one-container .inside-article {
+.one-container:not(.page) .inside-article {
 	padding: 0 0 30px 0;
-}
-
-.one-container.page .inside-article {
-	padding-bottom: 0;
 }
 
 .one-container.right-sidebar .site-main,
@@ -1660,20 +1674,23 @@ ol.comment-list {
 	margin-bottom: 20px;
 }
 
-.right-sidebar.separate-containers .site-main {
-	margin: 20px 20px 20px 0px;
-}
-
-.left-sidebar.separate-containers .site-main {
-	margin: 20px 0px 20px 20px;
-}
-
-.both-sidebars.separate-containers .site-main {
+.separate-containers .site-main {
 	margin: 20px;
 }
 
+.no-sidebar.separate-containers .site-main {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.right-sidebar.separate-containers .site-main,
 .both-right.separate-containers .site-main {
-	margin: 20px 20px 20px 0px;
+	margin-left: 0;
+}
+
+.left-sidebar.separate-containers .site-main,
+.both-left.separate-containers .site-main {
+	margin-right: 0;
 }
 
 .both-right.separate-containers .inside-left-sidebar,
@@ -1686,11 +1703,6 @@ ol.comment-list {
 	margin-left: 10px;
 }
 
-.both-left.separate-containers .site-main {
-	margin: 20px 0px 20px 20px;
-}
-
-.separate-containers .site-main,
 .separate-containers .inside-right-sidebar,
 .separate-containers .inside-left-sidebar {
 	margin-top: 20px;
@@ -1728,28 +1740,6 @@ ol.comment-list {
 .contained-content.separate-containers .inside-article,
 .contained-content.one-container .site-content {
 	padding: 0;
-}
-
-/*--------------------------------------------------------------
-## Columns
---------------------------------------------------------------*/
-
-.wp-block-columns {
-	-ms-flex-wrap: wrap;
-	flex-wrap: wrap;
-	margin-left: -40px;
-}
-
-.wp-block-column:not(:first-child),
-.wp-block-column:not(:last-child) {
-	padding: 0;
-}
-
-.wp-block-columns .wp-block-column {
-	-webkit-box-flex: 1;
-	-ms-flex: 1;
-	flex: 1;
-	margin: 0 0 0 40px;
 }
 
 /*--------------------------------------------------------------
@@ -1975,20 +1965,8 @@ ol.comment-list {
 }
 
 /*--------------------------------------------------------------
-# Icons
+# Font Icons
 --------------------------------------------------------------*/
-
-@font-face {
-	font-family: 'GeneratePress';
-	src:  url('fonts/generatepress.eot');
-	src:  url('fonts/generatepress.eot#iefix') format('embedded-opentype'),
-		  url('fonts/generatepress.woff2') format('woff2'),
-		  url('fonts/generatepress.woff') format('woff'),
-		  url('fonts/generatepress.ttf') format('truetype'),
-		  url('fonts/generatepress.svg#GeneratePress') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
 
 .menu-toggle:before,
 .search-item a:before,
@@ -2014,6 +1992,67 @@ ol.comment-list {
 .nav-previous .prev:before,
 .nav-next .next:before {
 	opacity: 0.7;
+}
+
+/*--------------------------------------------------------------
+# SVG Icons
+--------------------------------------------------------------*/
+
+.gp-icon {
+	display: inline-flex;
+	align-self: center;
+}
+
+.gp-icon svg {
+	height: 1em;
+	width: 1em;
+	top: .125em;
+	position: relative;
+	fill: currentColor;
+}
+
+.icon-menu-bars svg:nth-child(2),
+.toggled .icon-menu-bars svg:nth-child(1),
+.icon-search svg:nth-child(2),
+.close-search .icon-search svg:nth-child(1) {
+	display: none;
+}
+
+.toggled .icon-menu-bars svg:nth-child(2),
+.close-search .icon-search svg:nth-child(2) {
+	display: block;
+}
+
+.entry-meta .gp-icon {
+	margin-right: 0.6em;
+	opacity: 0.7;
+}
+
+.dropdown-hover .sub-menu .dropdown-menu-toggle .gp-icon svg,
+.dropdown-hover .children .dropdown-menu-toggle .gp-icon svg,
+.dropdown-hover.both-left .inside-right-sidebar .dropdown-menu-toggle .gp-icon svg,
+.dropdown-hover .inside-left-sidebar .dropdown-menu-toggle .gp-icon svg,
+.nav-next .gp-icon svg {
+	transform: rotate(-90deg);
+	transform-origin: center;
+}
+
+.dropdown-hover .sub-menu-left:not(.toggled) ul ul .dropdown-menu-toggle .gp-icon svg,
+.dropdown-hover.both-right .inside-left-sidebar .dropdown-menu-toggle .gp-icon svg,
+.dropdown-hover .inside-right-sidebar .dropdown-menu-toggle .gp-icon svg,
+.nav-previous .gp-icon svg {
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
+.dropdown-click .sfHover > a > .dropdown-menu-toggle > .gp-icon svg,
+nav.toggled .sfHover > a > .dropdown-menu-toggle > .gp-icon svg,
+.generate-back-to-top .gp-icon svg {
+	transform: rotate(180deg);
+}
+
+nav.toggled .sub-menu .dropdown-menu-toggle .gp-icon svg {
+    transform: rotate(0deg);
 }
 
 /*--------------------------------------------------------------
@@ -2047,13 +2086,4 @@ ol.comment-list {
 /* Bootstrap fix */
 .container.grid-container {
 	width: auto;
-}
-
-/*
- * Backwards compatibility until Slideout is updated
- * GP Premium 1.6
- */
-.main-navigation .slideout-toggle a:before,
-.slide-opened .slideout-overlay .slideout-exit:before {
-	font-family: GeneratePress;
 }

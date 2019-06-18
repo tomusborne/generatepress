@@ -47,17 +47,32 @@ if ( ! function_exists( 'generate_content_nav' ) ) {
 
 			<?php if ( is_single() ) : // navigation links for single posts.
 
-				previous_post_link( '<div class="nav-previous"><span class="prev" title="' . esc_attr__( 'Previous', 'generatepress' ) . '">%link</span></div>', '%title', $category_specific );
-				next_post_link( '<div class="nav-next"><span class="next" title="' . esc_attr__( 'Next', 'generatepress' ) . '">%link</span></div>', '%title', $category_specific );
+				previous_post_link(
+					'<div class="nav-previous">' . generate_get_svg_icon( 'arrow' ) . '<span class="prev" title="' . esc_attr__( 'Previous', 'generatepress' ) . '">%link</span></div>',
+					'%title',
+					$category_specific
+				);
+
+				next_post_link(
+					'<div class="nav-next">' . generate_get_svg_icon( 'arrow' ) . '<span class="next" title="' . esc_attr__( 'Next', 'generatepress' ) . '">%link</span></div>', 
+					'%title',
+					$category_specific
+				);
 
 			elseif ( is_home() || is_archive() || is_search() ) : // navigation links for home, archive, and search pages.
 
 				if ( get_next_posts_link() ) : ?>
-					<div class="nav-previous"><span class="prev" title="<?php esc_attr_e( 'Previous', 'generatepress' );?>"><?php next_posts_link( __( 'Older posts', 'generatepress' ) ); ?></span></div>
+					<div class="nav-previous">
+						<?php generate_do_svg_icon( 'arrow' ); ?>
+						<span class="prev" title="<?php esc_attr_e( 'Previous', 'generatepress' );?>"><?php next_posts_link( __( 'Older posts', 'generatepress' ) ); ?></span>
+					</div>
 				<?php endif;
 
 				if ( get_previous_posts_link() ) : ?>
-					<div class="nav-next"><span class="next" title="<?php esc_attr_e( 'Next', 'generatepress' );?>"><?php previous_posts_link( __( 'Newer posts', 'generatepress' ) ); ?></span></div>
+					<div class="nav-next">
+						<?php generate_do_svg_icon( 'arrow' ); ?>
+						<span class="next" title="<?php esc_attr_e( 'Next', 'generatepress' );?>"><?php previous_posts_link( __( 'Newer posts', 'generatepress' ) ); ?></span>
+					</div>
 				<?php endif;
 
 				if ( function_exists( 'the_posts_pagination' ) ) {
@@ -102,17 +117,20 @@ if ( ! function_exists( 'generate_modify_posts_pagination_template' ) ) {
 	}
 }
 
-if ( ! function_exists( 'generate_posted_on' ) ) {
-	/**
-	 * Prints HTML with meta information for the current post-date/time and author.
-	 *
-	 * @since 0.1
-	 */
-	function generate_posted_on() {
+/**
+ * Output requested post meta.
+ *
+ * @since 2.3
+ *
+ * @param string $item The post meta item we're requesting
+ * @return The requested HTML.
+ */
+function generate_do_post_meta_item( $item ) {
+	if ( 'date' === $item ) {
 		$date = apply_filters( 'generate_post_date', true );
-		$author = apply_filters( 'generate_post_author', true );
 
 		$time_string = '<time class="entry-date published" datetime="%1$s" itemprop="datePublished">%2$s</time>';
+
 		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 			$time_string = '<time class="updated" datetime="%3$s" itemprop="dateModified">%4$s</time>' . $time_string;
 		}
@@ -126,7 +144,7 @@ if ( ! function_exists( 'generate_posted_on' ) ) {
 
 		// If our date is enabled, show it.
 		if ( $date ) {
-			echo apply_filters( 'generate_post_date_output', sprintf( '<span class="posted-on">%1$s</span>', // WPCS: XSS ok, sanitization ok.
+			echo apply_filters( 'generate_post_date_output', sprintf( '<span class="posted-on">%1$s</span> ', // WPCS: XSS ok, sanitization ok.
 				sprintf( '<a href="%1$s" title="%2$s" rel="bookmark">%3$s</a>',
 					esc_url( get_permalink() ),
 					esc_attr( get_the_time() ),
@@ -134,10 +152,13 @@ if ( ! function_exists( 'generate_posted_on' ) ) {
 				)
 			), $time_string );
 		}
+	}
 
-		// If our author is enabled, show it.
+	if ( 'author' === $item ) {
+		$author = apply_filters( 'generate_post_author', true );
+
 		if ( $author ) {
-			echo apply_filters( 'generate_post_author_output', sprintf( ' <span class="byline">%1$s</span>', // WPCS: XSS ok, sanitization ok.
+			echo apply_filters( 'generate_post_author_output', sprintf( '<span class="byline">%1$s</span> ', // WPCS: XSS ok, sanitization ok.
 				sprintf( '<span class="author vcard" %5$s>%1$s <a class="url fn n" href="%2$s" title="%3$s" rel="author" itemprop="url"><span class="author-name" itemprop="name">%4$s</span></a></span>',
 					__( 'by', 'generatepress' ),
 					esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
@@ -149,6 +170,79 @@ if ( ! function_exists( 'generate_posted_on' ) ) {
 			) );
 		}
 	}
+
+	if ( 'categories' === $item ) {
+		$categories = apply_filters( 'generate_show_categories', true );
+
+		$categories_list = get_the_category_list( _x( ', ', 'Used between list items, there is a space after the comma.', 'generatepress' ) );
+		if ( $categories_list && $categories ) {
+			echo apply_filters( 'generate_category_list_output', sprintf( '<span class="cat-links">%3$s<span class="screen-reader-text">%1$s </span>%2$s</span> ', // WPCS: XSS ok, sanitization ok.
+				esc_html_x( 'Categories', 'Used before category names.', 'generatepress' ),
+				$categories_list,
+				generate_get_svg_icon( 'categories' )
+			) );
+		}
+	}
+
+	if ( 'tags' === $item ) {
+		$tags = apply_filters( 'generate_show_tags', true );
+
+		$tags_list = get_the_tag_list( '', _x( ', ', 'Used between list items, there is a space after the comma.', 'generatepress' ) );
+		if ( $tags_list && $tags ) {
+			echo apply_filters( 'generate_tag_list_output', sprintf( '<span class="tags-links">%3$s<span class="screen-reader-text">%1$s </span>%2$s</span> ', // WPCS: XSS ok, sanitization ok.
+				esc_html_x( 'Tags', 'Used before tag names.', 'generatepress' ),
+				$tags_list,
+				generate_get_svg_icon( 'tags' )
+			) );
+		}
+	}
+
+	if ( 'comments-link' === $item ) {
+		$comments = apply_filters( 'generate_show_comments', true );
+
+		if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) && $comments ) {
+			echo '<span class="comments-link">';
+				generate_do_svg_icon( 'comments' );
+				comments_popup_link( __( 'Leave a comment', 'generatepress' ), __( '1 Comment', 'generatepress' ), __( '% Comments', 'generatepress' ) );
+			echo '</span> ';
+		}
+	}
+}
+
+if ( ! function_exists( 'generate_posted_on' ) ) {
+	/**
+	 * Prints HTML with meta information for the current post-date/time and author.
+	 *
+	 * @since 0.1
+	 */
+	function generate_posted_on() {
+		$items = apply_filters( 'generate_header_entry_meta_items', array(
+			'date',
+			'author',
+		) );
+
+		foreach ( $items as $item ) {
+			if ( 'date' === $item ) {
+				generate_do_post_meta_item( 'date' );
+			}
+
+			if ( 'author' === $item ) {
+				generate_do_post_meta_item( 'author' );
+			}
+
+			if ( 'categories' === $item ) {
+				generate_do_post_meta_item( 'categories' );
+			}
+
+			if ( 'tags' === $item ) {
+				generate_do_post_meta_item( 'tags' );
+			}
+
+			if ( 'comments-link' === $item ) {
+				generate_do_post_meta_item( 'comments-link' );
+			}
+		}
+	}
 }
 
 if ( ! function_exists( 'generate_entry_meta' ) ) {
@@ -158,30 +252,32 @@ if ( ! function_exists( 'generate_entry_meta' ) ) {
 	 * @since 1.2.5
 	 */
 	function generate_entry_meta() {
-		$categories = apply_filters( 'generate_show_categories', true );
-		$tags = apply_filters( 'generate_show_tags', true );
-		$comments = apply_filters( 'generate_show_comments', true );
+		$items = apply_filters( 'generate_footer_entry_meta_items', array(
+			'categories',
+			'tags',
+			'comments-link',
+		) );
 
-		$categories_list = get_the_category_list( _x( ', ', 'Used between list items, there is a space after the comma.', 'generatepress' ) );
-		if ( $categories_list && $categories ) {
-			echo apply_filters( 'generate_category_list_output', sprintf( '<span class="cat-links"><span class="screen-reader-text">%1$s </span>%2$s</span>', // WPCS: XSS ok, sanitization ok.
-				esc_html_x( 'Categories', 'Used before category names.', 'generatepress' ),
-				$categories_list
-			) );
-		}
+		foreach ( $items as $item ) {
+			if ( 'date' === $item ) {
+				generate_do_post_meta_item( 'date' );
+			}
 
-		$tags_list = get_the_tag_list( '', _x( ', ', 'Used between list items, there is a space after the comma.', 'generatepress' ) );
-		if ( $tags_list && $tags ) {
-			echo apply_filters( 'generate_tag_list_output', sprintf( '<span class="tags-links"><span class="screen-reader-text">%1$s </span>%2$s</span>', // WPCS: XSS ok, sanitization ok.
-				esc_html_x( 'Tags', 'Used before tag names.', 'generatepress' ),
-				$tags_list
-			) );
-		}
+			if ( 'author' === $item ) {
+				generate_do_post_meta_item( 'author' );
+			}
 
-		if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) && $comments ) {
-			echo '<span class="comments-link">';
-				comments_popup_link( __( 'Leave a comment', 'generatepress' ), __( '1 Comment', 'generatepress' ), __( '% Comments', 'generatepress' ) );
-			echo '</span>';
+			if ( 'categories' === $item ) {
+				generate_do_post_meta_item( 'categories' );
+			}
+
+			if ( 'tags' === $item ) {
+				generate_do_post_meta_item( 'tags' );
+			}
+
+			if ( 'comments-link' === $item ) {
+				generate_do_post_meta_item( 'comments-link' );
+			}
 		}
 	}
 }

@@ -101,31 +101,7 @@ function generate_do_footer_widget( $widget_width, $widget ) {
 	$tablet_widget_width = apply_filters( "generate_footer_widget_{$widget}_tablet_width", '50' );
 	?>
 	<div class="footer-widget-<?php echo absint( $widget ); ?> grid-parent grid-<?php echo absint( $widget_width ); ?> tablet-grid-<?php echo absint( $tablet_widget_width ); ?> mobile-grid-100">
-		<?php if ( ! dynamic_sidebar( 'footer-' . absint( $widget ) ) ) : ?>
-			<aside class="widget inner-padding widget_text">
-				<h4 class="widget-title"><?php esc_html_e( 'Footer Widget', 'generatepress' );?></h4>
-				<div class="textwidget">
-					<p>
-						<?php
-						printf( // WPCS: XSS ok.
-							/* translators: 1: admin URL */
-							__( 'Replace this widget content by going to <a href="%1$s"><strong>Appearance / Widgets</strong></a> and dragging widgets into this widget area.', 'generatepress' ),
-							esc_url( admin_url( 'widgets.php' ) )
-						);
-						?>
-					</p>
-					<p>
-						<?php
-						printf( // WPCS: XSS ok.
-							/* translators: 1: admin URL */
-							__( 'To remove or choose the number of footer widgets, go to <a href="%1$s"><strong>Appearance / Customize / Layout / Footer Widgets</strong></a>.', 'generatepress' ),
-							esc_url( admin_url( 'customize.php' ) )
-						);
-						?>
-					</p>
-				</div>
-			</aside>
-		<?php endif; ?>
+		<?php dynamic_sidebar( 'footer-' . absint( $widget ) ); ?>
 	</div>
 	<?php
 }
@@ -142,6 +118,17 @@ if ( ! function_exists( 'generate_construct_footer_widgets' ) ) {
 		$widgets = generate_get_footer_widgets();
 
 		if ( ! empty( $widgets ) && 0 !== $widgets ) :
+
+			// If no footer widgets exist, we don't need to continue.
+			if (
+				! is_active_sidebar( 'footer-1' ) &&
+				! is_active_sidebar( 'footer-2' ) &&
+				! is_active_sidebar( 'footer-3' ) &&
+				! is_active_sidebar( 'footer-4' ) &&
+				! is_active_sidebar( 'footer-5' ) )
+			{
+				return;
+			}
 
 			// Set up the widget width.
 			$widget_width = '';
@@ -224,12 +211,14 @@ if ( ! function_exists( 'generate_back_to_top' ) ) {
 		echo apply_filters( 'generate_back_to_top_output', sprintf( // WPCS: XSS ok.
 			'<a title="%1$s" rel="nofollow" href="#" class="generate-back-to-top" style="opacity:0;visibility:hidden;" data-scroll-speed="%2$s" data-start-scroll="%3$s">
 				<span class="screen-reader-text">%5$s</span>
+				%6$s
 			</a>',
 			esc_attr__( 'Scroll back to top', 'generatepress' ),
 			absint( apply_filters( 'generate_back_to_top_scroll_speed', 400 ) ),
 			absint( apply_filters( 'generate_back_to_top_start_scroll', 300 ) ),
 			esc_attr( apply_filters( 'generate_back_to_top_icon', 'fa-angle-up' ) ),
-			esc_html__( 'Scroll back to top', 'generatepress' )
+			esc_html__( 'Scroll back to top', 'generatepress' ),
+			generate_get_svg_icon( 'arrow' )
 		) );
 	}
 }

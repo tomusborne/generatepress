@@ -78,6 +78,31 @@ if ( ! function_exists( 'generate_comment' ) ) {
 	}
 }
 
+add_filter( 'comment_form_defaults', 'generate_set_comment_form_defaults' );
+/**
+ * Set the default settings for our comments.
+ *
+ * @since 2.3
+ *
+ * @param array $defaults
+ * @return array
+ */
+function generate_set_comment_form_defaults( $defaults ) {
+	$defaults['comment_field'] = sprintf(
+		'<p class="comment-form-comment"><label for="comment" class="screen-reader-text">%1$s</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>',
+		esc_html__( 'Comment', 'generatepress' )
+	);
+
+	$defaults['comment_notes_before']	= null;
+	$defaults['comment_notes_after']	= null;
+	$defaults['id_form'] 				= 'commentform';
+	$defaults['id_submit'] 				= 'submit';
+	$defaults['title_reply'] 			= apply_filters( 'generate_leave_comment', __( 'Leave a Comment', 'generatepress' ) );
+	$defaults['label_submit'] 			= apply_filters( 'generate_post_comment', __( 'Post Comment', 'generatepress' ) );
+
+	return $defaults;
+}
+
 add_filter( 'comment_form_default_fields', 'generate_filter_comment_fields' );
 /**
  * Customizes the existing comment fields.
@@ -89,9 +114,23 @@ add_filter( 'comment_form_default_fields', 'generate_filter_comment_fields' );
 function generate_filter_comment_fields( $fields ) {
 	$commenter = wp_get_current_commenter();
 
-	$fields['author'] = '<label for="author" class="screen-reader-text">' . esc_html__( 'Name', 'generatepress' ) . '</label><input placeholder="' . esc_attr__( 'Name', 'generatepress' ) . ' *" id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" />';
-	$fields['email'] = '<label for="email" class="screen-reader-text">' . esc_html__( 'Email', 'generatepress' ) . '</label><input placeholder="' . esc_attr__( 'Email', 'generatepress' ) . ' *" id="email" name="email" type="email" value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" />';
-	$fields['url'] = '<label for="url" class="screen-reader-text">' . esc_html__( 'Website', 'generatepress' ) . '</label><input placeholder="' . esc_attr__( 'Website', 'generatepress' ) . '" id="url" name="url" type="url" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" />';
+	$fields['author'] = sprintf(
+		'<label for="author" class="screen-reader-text">%1$s</label><input placeholder="%1$s *" id="author" name="author" type="text" value="%2$s" size="30" />',
+		esc_html__( 'Name', 'generatepress' ),
+		esc_attr( $commenter['comment_author'] )
+	);
+
+	$fields['email'] = sprintf(
+		'<label for="email" class="screen-reader-text">%1$s</label><input placeholder="%1$s *" id="email" name="email" type="email" value="%2$s" size="30" />',
+		esc_html__( 'Email', 'generatepress' ),
+		esc_attr( $commenter['comment_author_email'] )
+	);
+
+	$fields['url'] = sprintf(
+		'<label for="url" class="screen-reader-text">%1$s</label><input placeholder="%1$s" id="url" name="url" type="url" value="%2$s" size="30" />',
+		esc_html__( 'Website', 'generatepress' ),
+		esc_attr( $commenter['comment_author_url'] )
+	);
 
 	return $fields;
 }

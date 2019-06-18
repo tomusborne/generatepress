@@ -54,9 +54,27 @@ if ( ! function_exists( 'generate_header_items' ) ) {
 	 * @since 1.2.9.7
 	 */
 	function generate_header_items() {
-		generate_construct_header_widget();
-		generate_construct_site_title();
-		generate_construct_logo();
+		$order = apply_filters( 'generate_header_items_order',
+			array(
+				'header-widget',
+				'site-branding',
+				'logo',
+			)
+		);
+
+		foreach ( $order as $item ) {
+			if ( 'header-widget' === $item ) {
+				generate_construct_header_widget();
+			}
+
+			if ( 'site-branding' === $item ) {
+				generate_construct_site_title();
+			}
+
+			if ( 'logo' === $item ) {
+				generate_construct_logo();
+			}
+		}
 	}
 }
 
@@ -178,6 +196,11 @@ if ( ! function_exists( 'generate_construct_site_title' ) ) {
 
 		// Site title and tagline.
 		if ( false == $disable_title || false == $disable_tagline ) {
+			if ( generate_get_option( 'inline_logo_site_branding' ) && generate_has_logo_site_branding() ) {
+				echo '<div class="site-branding-container">';
+				generate_construct_logo();
+			}
+
 			echo apply_filters( 'generate_site_branding_output', sprintf( // WPCS: XSS ok, sanitization ok.
 				'<div class="site-branding">
 					%1$s
@@ -186,8 +209,29 @@ if ( ! function_exists( 'generate_construct_site_title' ) ) {
 				( ! $disable_title ) ? $site_title : '',
 				( ! $disable_tagline ) ? $site_tagline : ''
 			) );
+
+			if ( generate_get_option( 'inline_logo_site_branding' ) && generate_has_logo_site_branding() ) {
+				echo '</div><!-- .site-branding-container -->';
+			}
 		}
 	}
+}
+
+add_filter( 'generate_header_items_order', 'generate_reorder_inline_site_branding' );
+/**
+ * Remove the logo from it's usual position.
+ *
+ * @since 2.3
+ */
+function generate_reorder_inline_site_branding( $order ) {
+	if ( ! generate_get_option( 'inline_logo_site_branding' ) || ! generate_has_logo_site_branding() ) {
+		return $order;
+	}
+
+	return array(
+		'header-widget',
+		'site-branding',
+	);
 }
 
 if ( ! function_exists( 'generate_construct_header_widget' ) ) {

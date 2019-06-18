@@ -44,7 +44,7 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$media_query = sprintf(
 				'(max-width: %1$s) and %2$s',
 				absint( $nav_drop_point ) . 'px',
-				apply_filters( 'generate_not_mobile_media_query', '(min-width: 769px)' )
+				apply_filters( 'generate_not_mobile_menu_media_query', '(min-width: 769px)' )
 			);
 
 			$css->start_media_query( $media_query );
@@ -507,16 +507,10 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->add_property( 'width', 'calc(100% + ' . absint( $content_padding ) . 'px)' );
 		$css->add_property( 'max-width', 'calc(100% + ' . absint( $content_padding ) . 'px)' );
 
-		$css->start_media_query( apply_filters( 'generate_mobile_media_query', '(max-width:768px)' ) );
-			$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header' );
-			$css->add_property( 'padding', generate_padding_css( $spacing_settings['mobile_content_top'], $spacing_settings['mobile_content_right'], $spacing_settings['mobile_content_bottom'], $spacing_settings['mobile_content_left'] ) );
-
-			$mobile_content_padding = absint( $spacing_settings['mobile_content_right'] ) + absint( $spacing_settings['mobile_content_left'] );
-			$css->set_selector( '.entry-content .alignwide, body:not(.no-sidebar) .entry-content .alignfull' );
-			$css->add_property( 'margin-left', '-' . absint( $spacing_settings['mobile_content_left'] ) . 'px' );
-			$css->add_property( 'width', 'calc(100% + ' . absint( $mobile_content_padding ) . 'px)' );
-			$css->add_property( 'max-width', 'calc(100% + ' . absint( $mobile_content_padding ) . 'px)' );
-		$css->stop_media_query();
+		if ( 'text' === generate_get_option( 'container_alignment' ) ) {
+			$css->set_selector( '.container.grid-container' );
+			$css->add_property( 'max-width', generate_get_option( 'container_width' ) + $content_padding, false, 'px' );
+		}
 
 		$css->set_selector( '.one-container.right-sidebar .site-main,.one-container.both-right .site-main' );
 		$css->add_property( 'margin-right', absint( $spacing_settings['content_right'] ), absint( $og_defaults['content_right'] ), 'px' );
@@ -530,17 +524,8 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->set_selector( '.separate-containers .widget, .separate-containers .site-main > *, .separate-containers .page-header, .widget-area .main-navigation' );
 		$css->add_property( 'margin-bottom', absint( $spacing_settings['separator'] ), absint( $og_defaults['separator'] ), 'px' );
 
-		$css->set_selector( '.right-sidebar.separate-containers .site-main' );
-		$css->add_property( 'margin', generate_padding_css( $spacing_settings['separator'], $spacing_settings['separator'], $spacing_settings['separator'], '0' ), generate_padding_css( $og_defaults['separator'], $og_defaults['separator'], $og_defaults['separator'], '0' ) );
-
-		$css->set_selector( '.left-sidebar.separate-containers .site-main' );
-		$css->add_property( 'margin', generate_padding_css( $spacing_settings['separator'], '0', $spacing_settings['separator'], $spacing_settings['separator'] ), generate_padding_css( $og_defaults['separator'], '0', $og_defaults['separator'], $og_defaults['separator'] ) );
-
-		$css->set_selector( '.both-sidebars.separate-containers .site-main' );
-		$css->add_property( 'margin', absint( $spacing_settings['separator'] ), absint( $og_defaults['separator'] ), 'px' );
-
-		$css->set_selector( '.both-right.separate-containers .site-main' );
-		$css->add_property( 'margin', generate_padding_css( $spacing_settings['separator'], $spacing_settings['separator'], $spacing_settings['separator'], '0' ), generate_padding_css( $og_defaults['separator'], $og_defaults['separator'], $og_defaults['separator'], '0' ) );
+		$css->set_selector( '.separate-containers .site-main' );
+		$css->add_property( 'margin', absint( $spacing_settings['separator'] ), $og_defaults['separator'], 'px' );
 
 		$css->set_selector( '.both-right.separate-containers .inside-left-sidebar' );
 		$css->add_property( 'margin-right', absint( $spacing_settings['separator'] / 2 ), absint( $og_defaults['separator'] / 2 ), 'px' );
@@ -548,18 +533,11 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->set_selector( '.both-right.separate-containers .inside-right-sidebar' );
 		$css->add_property( 'margin-left', absint( $spacing_settings['separator'] / 2 ), absint( $og_defaults['separator'] / 2 ), 'px' );
 
-		$css->set_selector( '.both-left.separate-containers .site-main' );
-		$css->add_property( 'margin', generate_padding_css( $spacing_settings['separator'], '0', $spacing_settings['separator'], $spacing_settings['separator'] ), generate_padding_css( $og_defaults['separator'], '0', $og_defaults['separator'], $og_defaults['separator'] ) );
-
 		$css->set_selector( '.both-left.separate-containers .inside-left-sidebar' );
 		$css->add_property( 'margin-right', absint( $spacing_settings['separator'] / 2 ), absint( $og_defaults['separator'] / 2 ), 'px' );
 
 		$css->set_selector( '.both-left.separate-containers .inside-right-sidebar' );
 		$css->add_property( 'margin-left', absint( $spacing_settings['separator'] / 2 ), absint( $og_defaults['separator'] / 2 ), 'px' );
-
-		$css->set_selector( '.separate-containers .site-main' );
-		$css->add_property( 'margin-top', absint( $spacing_settings['separator'] ), absint( $og_defaults['separator'] ), 'px' );
-		$css->add_property( 'margin-bottom', absint( $spacing_settings['separator'] ), absint( $og_defaults['separator'] ), 'px' );
 
 		$css->set_selector( '.separate-containers .page-header-image, .separate-containers .page-header-contained, .separate-containers .page-header-image-single, .separate-containers .page-header-content-single' );
 		$css->add_property( 'margin-top', absint( $spacing_settings['separator'] ), absint( $og_defaults['separator'] ), 'px' );
@@ -611,6 +589,32 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->set_selector( '.site-info' );
 		$css->add_property( 'padding', generate_padding_css( $spacing_settings['footer_top'], $spacing_settings['footer_right'], $spacing_settings['footer_bottom'], $spacing_settings['footer_left'] ), generate_padding_css( $og_defaults['footer_top'], $og_defaults['footer_right'], $og_defaults['footer_bottom'], $og_defaults['footer_left'] ) );
 
+		$css->start_media_query( apply_filters( 'generate_mobile_media_query', '(max-width:768px)' ) );
+			$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header' );
+			$css->add_property( 'padding', generate_padding_css( $spacing_settings['mobile_content_top'], $spacing_settings['mobile_content_right'], $spacing_settings['mobile_content_bottom'], $spacing_settings['mobile_content_left'] ) );
+
+			$mobile_content_padding = absint( $spacing_settings['mobile_content_right'] ) + absint( $spacing_settings['mobile_content_left'] );
+			$css->set_selector( '.entry-content .alignwide, body:not(.no-sidebar) .entry-content .alignfull' );
+			$css->add_property( 'margin-left', '-' . absint( $spacing_settings['mobile_content_left'] ) . 'px' );
+			$css->add_property( 'width', 'calc(100% + ' . absint( $mobile_content_padding ) . 'px)' );
+			$css->add_property( 'max-width', 'calc(100% + ' . absint( $mobile_content_padding ) . 'px)' );
+
+			if ( '' !== $spacing_settings['mobile_separator'] ) {
+				$css->set_selector( '.separate-containers .widget, .separate-containers .site-main > *, .separate-containers .page-header' );
+				$css->add_property( 'margin-bottom', absint( $spacing_settings['mobile_separator'] ), false, 'px' );
+
+				$css->set_selector( '.separate-containers .site-main' );
+				$css->add_property( 'margin', absint( $spacing_settings['mobile_separator'] ), false, 'px' );
+
+				$css->set_selector( '.separate-containers .page-header-image, .separate-containers .page-header-image-single' );
+				$css->add_property( 'margin-top', absint( $spacing_settings['mobile_separator'] ), false, 'px' );
+
+				$css->set_selector( '.separate-containers .inside-right-sidebar, .separate-containers .inside-left-sidebar' );
+				$css->add_property( 'margin-top', absint( $spacing_settings['mobile_separator'] ), false, 'px' );
+				$css->add_property( 'margin-bottom', absint( $spacing_settings['mobile_separator'] ), false, 'px' );
+			}
+		$css->stop_media_query();
+
 		// Add spacing back where dropdown arrow should be.
 		// Old versions of WP don't get nice things.
 		if ( version_compare( $GLOBALS['wp_version'], '4.4', '<' ) ) {
@@ -659,15 +663,19 @@ function generate_no_cache_dynamic_css() {
 				$css->set_selector( '.single .entry-content' )->add_property( 'margin-top', '0px' );
 			}
 		}
-
-		$spacing_settings = wp_parse_args(
-			get_option( 'generate_spacing_settings', array() ),
-			generate_spacing_get_defaults()
-		);
-
-		$css->set_selector( '.entry-content > .alignwide:first-child, .entry-content > .alignfull:first-child' );
-		$css->add_property( 'margin-top', '-' . absint( $spacing_settings['content_top'] ), false, 'px' );
 	}
+
+	$css->start_media_query( apply_filters( 'generate_mobile_menu_media_query', '(max-width: 768px)' ) );
+		$css->set_selector( '.main-navigation .menu-toggle,.main-navigation .mobile-bar-items,.sidebar-nav-mobile:not(#sticky-placeholder)' );
+		$css->add_property( 'display', 'block' );
+
+		$css->set_selector( '.main-navigation ul,.gen-sidebar-nav' );
+		$css->add_property( 'display', 'none' );
+
+		$css->set_selector( '[class*="nav-float-"] .site-header .inside-header > *' );
+		$css->add_property( 'float', 'none' );
+		$css->add_property( 'clear', 'both' );
+	$css->stop_media_query();
 
 	return $css->css_output();
 }
@@ -680,7 +688,7 @@ add_action( 'wp_enqueue_scripts', 'generate_enqueue_dynamic_css', 50 );
  */
 function generate_enqueue_dynamic_css() {
 	if ( ! get_option( 'generate_dynamic_css_output', false ) || is_customize_preview() || apply_filters( 'generate_dynamic_css_skip_cache', false ) ) {
-		$css = generate_base_css() . generate_font_css() . generate_advanced_css() . generate_spacing_css();
+		$css = generate_base_css() . generate_font_css() . generate_advanced_css() . generate_spacing_css() . generate_do_icon_css();
 	} else {
 		$css = get_option( 'generate_dynamic_css_output' ) . '/* End cached CSS */';
 	}
@@ -707,7 +715,7 @@ function generate_set_dynamic_css_cache() {
 	$cached_version = get_option( 'generate_dynamic_css_cached_version', '' );
 
 	if ( ! $cached_css || $cached_version !== GENERATE_VERSION ) {
-		$css = generate_base_css() . generate_font_css() . generate_advanced_css() . generate_spacing_css();
+		$css = generate_base_css() . generate_font_css() . generate_advanced_css() . generate_spacing_css() . generate_do_icon_css();
 
 		update_option( 'generate_dynamic_css_output', $css );
 		update_option( 'generate_dynamic_css_cached_version', GENERATE_VERSION );
@@ -725,6 +733,64 @@ function generate_update_dynamic_css_cache() {
 		return;
 	}
 
-	$css = generate_base_css() . generate_font_css() . generate_advanced_css() . generate_spacing_css();
+	$css = generate_base_css() . generate_font_css() . generate_advanced_css() . generate_spacing_css() . generate_do_icon_css();
 	update_option( 'generate_dynamic_css_output', $css );
+}
+
+/**
+ * Output CSS for the icon fonts.
+ *
+ * @since 2.3
+ */
+function generate_do_icon_css() {
+	$output = false;
+
+	if ( 'font' === generate_get_option( 'icons' ) ) {
+		$url = trailingslashit( get_template_directory_uri() );
+
+		$output = '@font-face {
+			font-family: "GeneratePress";
+			src:  url("' . $url . 'fonts/generatepress.eot");
+			src:  url("' . $url . 'fonts/generatepress.eot#iefix") format("embedded-opentype"),
+				  url("' . $url . 'fonts/generatepress.woff2") format("woff2"),
+				  url("' . $url . 'fonts/generatepress.woff") format("woff"),
+				  url("' . $url . 'fonts/generatepress.ttf") format("truetype"),
+				  url("' . $url . 'fonts/generatepress.svg#GeneratePress") format("svg");
+			font-weight: normal;
+			font-style: normal;
+		}';
+
+		if ( defined( 'GENERATE_MENU_PLUS_VERSION' ) ) {
+			$output .= '.main-navigation .slideout-toggle a:before,
+			.slide-opened .slideout-overlay .slideout-exit:before {
+				font-family: GeneratePress;
+			}
+
+			.slideout-navigation .dropdown-menu-toggle:before {
+				content: "\f107" !important;
+			}
+
+			.slideout-navigation .sfHover > a .dropdown-menu-toggle:before {
+				content: "\f106" !important;
+			}';
+		}
+	}
+
+	if ( 'svg' === generate_get_option( 'icons' ) ) {
+		$output = 'button.menu-toggle:before,
+		.search-item a:before,
+		.dropdown-menu-toggle:before,
+		.cat-links:before,
+		.tags-links:before,
+		.comments-link:before,
+		.nav-previous .prev:before,
+		.nav-next .next:before,
+		.generate-back-to-top:before {
+			display: none;
+		}';
+	}
+
+	if ( $output ) {
+		return str_replace( array( "\r", "\n", "\t" ), '', $output );
+	}
 }

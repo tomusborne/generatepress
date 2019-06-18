@@ -31,7 +31,16 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 				do_action( 'generate_inside_navigation' );
 				?>
 				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-					<?php do_action( 'generate_inside_mobile_menu' ); ?>
+					<?php
+					/**
+					 * generate_inside_mobile_menu hook.
+					 *
+					 * @since 0.1
+					 */
+					do_action( 'generate_inside_mobile_menu' );
+
+					generate_do_svg_icon( 'menu-bars', true );
+					?>
 					<span class="mobile-menu"><?php echo apply_filters( 'generate_mobile_menu_label', __( 'Menu', 'generatepress' ) ); // WPCS: XSS ok. ?></span>
 				</button>
 				<?php
@@ -46,6 +55,13 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 						'items_wrap' => '<ul id="%1$s" class="%2$s ' . join( ' ', generate_get_element_classes( 'menu' ) ) . '">%3$s</ul>',
 					)
 				);
+
+				/**
+				 * generate_after_primary_menu hook.
+				 *
+				 * @since 2.3
+				 */
+				do_action( 'generate_after_primary_menu' );
 				?>
 			</div><!-- .inside-navigation -->
 		</nav><!-- #site-navigation -->
@@ -80,7 +96,8 @@ if ( ! function_exists( 'generate_menu_fallback' ) ) {
 				wp_list_pages( $args );
 
 				if ( 'enable' == $generate_settings['nav_search'] ) {
-					echo '<li class="search-item" title="' . esc_attr_x( 'Search', 'submit button', 'generatepress' ) . '"><a href="#"><span class="screen-reader-text">' . esc_html_x( 'Search', 'submit button', 'generatepress' ) . '</span></a></li>';
+					$icon = generate_get_svg_icon( 'search', true );
+					echo '<li class="search-item" title="' . esc_attr_x( 'Search', 'submit button', 'generatepress' ) . '"><a href="#">' . $icon . '<span class="screen-reader-text">' . esc_html_x( 'Search', 'submit button', 'generatepress' ) . '</span></a></li>';
 				}
 				?>
 			</ul>
@@ -162,7 +179,8 @@ if ( ! class_exists( 'Generate_Page_Walker' ) && class_exists( 'Walker_Page' ) )
 
 			if ( isset( $args['pages_with_children'][ $page->ID ] ) ) {
 				$css_class[] = 'menu-item-has-children';
-				$button = '<span role="presentation" class="dropdown-menu-toggle"></span>';
+				$icon = generate_get_svg_icon( 'arrow' );
+				$button = '<span role="presentation" class="dropdown-menu-toggle">' . $icon . '</span>';
 			}
 
 			if ( ! empty( $current_page ) ) {
@@ -219,10 +237,11 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 			$tabindex = ' tabindex="0"';
 		}
 
-		if ( 'main-nav' === $args->container_class ) {
+		if ( isset( $args->container_class ) && 'main-nav' === $args->container_class ) {
 			foreach ( $item->classes as $value ) {
 				if ( 'menu-item-has-children' === $value ) {
-					$title = $title . '<span role="' . $role . '" class="dropdown-menu-toggle"' . $tabindex . '></span>';
+					$icon = generate_get_svg_icon( 'arrow' );
+					$title = $title . '<span role="' . $role . '" class="dropdown-menu-toggle"' . $tabindex . '>' . $icon . '</span>';
 				}
 			}
 		}
@@ -283,7 +302,8 @@ if ( ! function_exists( 'generate_menu_search_icon' ) ) {
 
 		// If our primary menu is set, add the search icon.
 		if ( $args->theme_location == 'primary' ) {
-			return $nav . '<li class="search-item" title="' . esc_attr_x( 'Search', 'submit button', 'generatepress' ) . '"><a href="#"><span class="screen-reader-text">' . _x( 'Search', 'submit button', 'generatepress' ) . '</span></a></li>';
+			$icon = generate_get_svg_icon( 'search', true );
+			return $nav . '<li class="search-item" title="' . esc_attr_x( 'Search', 'submit button', 'generatepress' ) . '"><a href="#">' . $icon . '<span class="screen-reader-text">' . _x( 'Search', 'submit button', 'generatepress' ) . '</span></a></li>';
 		}
 
 		// Our primary menu isn't set, return the regular nav.
@@ -315,6 +335,7 @@ if ( ! function_exists( 'generate_mobile_menu_search_icon' ) ) {
 			<?php do_action( 'generate_inside_mobile_menu_bar' ); ?>
 			<span class="search-item" title="<?php echo esc_attr_x( 'Search', 'submit button', 'generatepress' ); ?>">
 				<a href="#">
+					<?php generate_do_svg_icon( 'search', true ); ?>
 					<span class="screen-reader-text"><?php echo esc_attr_x( 'Search', 'submit button', 'generatepress' ); ?></span>
 				</a>
 			</span>
