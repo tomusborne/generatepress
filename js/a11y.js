@@ -85,7 +85,7 @@
 	/**
 	 * Make hover dropdown touch-friendly.
 	 */
-	if ( 'ontouchend' in document.documentElement ) {
+	if ( 'ontouchend' in document.documentElement && document.body.classList.contains( 'dropdown-hover' ) ) {
 		var parentElements = document.querySelectorAll( '.sf-menu .menu-item-has-children' );
 
 		for ( var i = 0; i < parentElements.length; i++ ) {
@@ -119,15 +119,18 @@
 						this.classList.add( 'sfHover' );
 
 						// Hide dropdown on touch outside
+						var closeDropdown,
+							thisItem = this;
+
 						document.addEventListener( 'touchend', closeDropdown = function(e) {
 							e.stopPropagation();
 
-							this.classList.remove( 'sfHover' );
+							thisItem.classList.remove( 'sfHover' );
 							document.removeEventListener( 'touchend', closeDropdown );
 						} );
 					}
 				}
-			}, true );
+			} );
 		}
 	}
 
