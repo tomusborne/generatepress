@@ -69,6 +69,16 @@ if ( ! function_exists( 'generate_comment' ) ) {
 					<?php endif; ?>
 				</footer><!-- .comment-meta -->
 
+				<?php
+				/**
+				 * generate_before_comment_content hook.
+				 *
+				 * @since 2.4
+				 *
+				 */
+				do_action( 'generate_before_comment_content' );
+				?>
+
 				<div class="comment-content" itemprop="text">
 					<?php comment_text(); ?>
 				</div><!-- .comment-content -->
