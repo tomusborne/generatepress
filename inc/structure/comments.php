@@ -82,6 +82,16 @@ if ( ! function_exists( 'generate_comment' ) ) {
 				<div class="comment-content" itemprop="text">
 					<?php comment_text(); ?>
 				</div><!-- .comment-content -->
+
+				<?php
+				/**
+				 * generate_after_comment_content hook.
+				 *
+				 * @since 2.4
+				 *
+				 */
+				do_action( 'generate_after_comment_content' );
+				?>
 			</article><!-- .comment-body -->
 		<?php
 		endif;
