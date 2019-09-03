@@ -262,6 +262,14 @@ function generate_do_control_inline_scripts() {
 		)
 	);
 
+	wp_localize_script(
+		'generatepress-typography-customizer',
+		'generatePressTypography',
+		array(
+			'googleFonts' => apply_filters( 'generate_typography_customize_list', generate_get_all_google_fonts( $number_of_fonts ) )
+		)
+	);
+
 	wp_localize_script( 'generatepress-typography-customizer', 'typography_defaults', generate_typography_default_fonts() );
 
 	wp_enqueue_script( 'generatepress-customizer-controls', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/js/customizer-controls.js', array( 'customize-controls', 'jquery' ), GENERATE_VERSION, true );
