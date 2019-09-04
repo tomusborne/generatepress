@@ -54,7 +54,7 @@ if ( ! function_exists( 'generate_content_nav' ) ) {
 				);
 
 				next_post_link(
-					'<div class="nav-next">' . generate_get_svg_icon( 'arrow' ) . '<span class="next" title="' . esc_attr__( 'Next', 'generatepress' ) . '">%link</span></div>', 
+					'<div class="nav-next">' . generate_get_svg_icon( 'arrow' ) . '<span class="next" title="' . esc_attr__( 'Next', 'generatepress' ) . '">%link</span></div>',
 					'%title',
 					$category_specific
 				);
