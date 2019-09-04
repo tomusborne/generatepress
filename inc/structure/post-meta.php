@@ -207,6 +207,13 @@ function generate_do_post_meta_item( $item ) {
 			echo '</span> ';
 		}
 	}
+
+	/**
+	 * generate_post_meta_items hook.
+	 *
+	 * @since 2.4
+	 */
+	do_action( 'generate_post_meta_items', $item );
 }
 
 if ( ! function_exists( 'generate_posted_on' ) ) {
@@ -222,25 +229,7 @@ if ( ! function_exists( 'generate_posted_on' ) ) {
 		) );
 
 		foreach ( $items as $item ) {
-			if ( 'date' === $item ) {
-				generate_do_post_meta_item( 'date' );
-			}
-
-			if ( 'author' === $item ) {
-				generate_do_post_meta_item( 'author' );
-			}
-
-			if ( 'categories' === $item ) {
-				generate_do_post_meta_item( 'categories' );
-			}
-
-			if ( 'tags' === $item ) {
-				generate_do_post_meta_item( 'tags' );
-			}
-
-			if ( 'comments-link' === $item ) {
-				generate_do_post_meta_item( 'comments-link' );
-			}
+			generate_do_post_meta_item( $item );
 		}
 	}
 }
@@ -259,25 +248,7 @@ if ( ! function_exists( 'generate_entry_meta' ) ) {
 		) );
 
 		foreach ( $items as $item ) {
-			if ( 'date' === $item ) {
-				generate_do_post_meta_item( 'date' );
-			}
-
-			if ( 'author' === $item ) {
-				generate_do_post_meta_item( 'author' );
-			}
-
-			if ( 'categories' === $item ) {
-				generate_do_post_meta_item( 'categories' );
-			}
-
-			if ( 'tags' === $item ) {
-				generate_do_post_meta_item( 'tags' );
-			}
-
-			if ( 'comments-link' === $item ) {
-				generate_do_post_meta_item( 'comments-link' );
-			}
+			generate_do_post_meta_item( $item );
 		}
 	}
 }
