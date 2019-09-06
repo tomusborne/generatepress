@@ -289,6 +289,8 @@ function generate_get_svg_icon( $icon, $replace = false ) {
 					</svg>';
 	}
 
+	$output = apply_filters( 'generate_svg_icon_element', $output, $icon );
+
 	$classes = array(
 		'gp-icon',
 		'icon-' . $icon,
