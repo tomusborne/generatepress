@@ -40,8 +40,21 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 					do_action( 'generate_inside_mobile_menu' );
 
 					generate_do_svg_icon( 'menu-bars', true );
+
+					$mobile_menu_label = apply_filters( 'generate_mobile_menu_label', __( 'Menu', 'generatepress' ) );
+
+					if ( $mobile_menu_label ) {
+						printf(
+							'<span class="mobile-menu">%s</span>',
+							$mobile_menu_label
+						);
+					} else {
+						printf(
+							'<span class="screen-reader-text">%s</span>',
+							__( 'Menu', 'generatepress' )
+						);
+					}
 					?>
-					<span class="mobile-menu"><?php echo apply_filters( 'generate_mobile_menu_label', __( 'Menu', 'generatepress' ) ); // WPCS: XSS ok. ?></span>
 				</button>
 				<?php
 				wp_nav_menu(
