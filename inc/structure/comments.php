@@ -52,15 +52,6 @@ if ( ! function_exists( 'generate_comment' ) ) {
 								</time>
 							</a>
 							<?php edit_comment_link( __( 'Edit', 'generatepress' ), '<span class="edit-link">| ', '</span>' ); ?>
-							<?php
-							comment_reply_link( array_merge( $args, array(
-								'add_below' => 'div-comment',
-								'depth'     => $depth,
-								'max_depth' => $args['max_depth'],
-								'before'    => '<span class="reply">| ',
-								'after'     => '</span>',
-							) ) );
-							?>
 						</div><!-- .comment-metadata -->
 					</div><!-- .comment-author-info -->
 
@@ -94,6 +85,22 @@ if ( ! function_exists( 'generate_comment' ) ) {
 		<?php
 		endif;
 	}
+}
+
+add_action( 'generate_after_comment_text', 'generate_do_comment_reply_link', 10, 3 );
+/**
+ * Add our comment reply link after the comment text.
+ *
+ * @since 2.4
+ */
+function generate_do_comment_reply_link( $comment, $args, $depth ) {
+	comment_reply_link( array_merge( $args, array(
+		'add_below' => 'div-comment',
+		'depth'     => $depth,
+		'max_depth' => $args['max_depth'],
+		'before'    => '<span class="reply">',
+		'after'     => '</span>',
+	) ) );
 }
 
 add_filter( 'comment_form_defaults', 'generate_set_comment_form_defaults' );
