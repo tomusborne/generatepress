@@ -1326,7 +1326,8 @@ footer.entry-meta {
 ## Galleries
 --------------------------------------------------------------*/
 
-.wp-block-gallery {
+.wp-block-gallery,
+ul.blocks-gallery-grid {
     margin-left: 0;
 }
 
