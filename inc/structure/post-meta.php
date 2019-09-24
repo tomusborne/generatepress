@@ -161,8 +161,8 @@ function generate_do_post_meta_item( $item ) {
 
 		if ( $author ) {
 			echo apply_filters( 'generate_post_author_output',
-				sprintf( '<span class="byline"><span class="author vcard" %5$s>%1$s <a class="url fn n" href="%2$s" title="%3$s" rel="author" itemprop="url"><span class="author-name" itemprop="name">%4$s</span></a></span></span> ',
-					apply_filters( 'generate_inside_post_meta_item_output', __( 'by', 'generatepress' ), 'author' ),
+				sprintf( '<span class="byline">%1$s<span class="author vcard" %5$s><a class="url fn n" href="%2$s" title="%3$s" rel="author" itemprop="url"><span class="author-name" itemprop="name">%4$s</span></a></span></span> ',
+					apply_filters( 'generate_inside_post_meta_item_output', '', 'author' ),
 					esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 					/* translators: 1: Author name */
 					esc_attr( sprintf( __( 'View all posts by %s', 'generatepress' ), get_the_author() ) ),
@@ -181,10 +181,9 @@ function generate_do_post_meta_item( $item ) {
 
 		if ( $categories_list && $categories ) {
 			echo apply_filters( 'generate_category_list_output',
-				sprintf( '<span class="cat-links">%4$s%3$s<span class="screen-reader-text">%1$s </span>%2$s</span> ', // WPCS: XSS ok, sanitization ok.
+				sprintf( '<span class="cat-links">%3$s<span class="screen-reader-text">%1$s </span>%2$s</span> ', // WPCS: XSS ok, sanitization ok.
 					esc_html_x( 'Categories', 'Used before category names.', 'generatepress' ),
 					$categories_list,
-					generate_get_svg_icon( 'categories' ),
 					apply_filters( 'generate_inside_post_meta_item_output', '', 'categories' )
 				)
 			);
@@ -199,10 +198,9 @@ function generate_do_post_meta_item( $item ) {
 
 		if ( $tags_list && $tags ) {
 			echo apply_filters( 'generate_tag_list_output',
-				sprintf( '<span class="tags-links">%4$s%3$s<span class="screen-reader-text">%1$s </span>%2$s</span> ', // WPCS: XSS ok, sanitization ok.
+				sprintf( '<span class="tags-links">%3$s<span class="screen-reader-text">%1$s </span>%2$s</span> ', // WPCS: XSS ok, sanitization ok.
 					esc_html_x( 'Tags', 'Used before tag names.', 'generatepress' ),
 					$tags_list,
-					generate_get_svg_icon( 'tags' ),
 					apply_filters( 'generate_inside_post_meta_item_output', '', 'tags' )
 				)
 			);
@@ -215,7 +213,6 @@ function generate_do_post_meta_item( $item ) {
 		if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) && $comments ) {
 			echo '<span class="comments-link">';
 				echo apply_filters( 'generate_inside_post_meta_item_output', '', 'comments-link' );
-				generate_do_svg_icon( 'comments' );
 				comments_popup_link( __( 'Leave a comment', 'generatepress' ), __( '1 Comment', 'generatepress' ), __( '% Comments', 'generatepress' ) );
 			echo '</span> ';
 		}
@@ -227,6 +224,32 @@ function generate_do_post_meta_item( $item ) {
 	 * @since 2.4
 	 */
 	do_action( 'generate_post_meta_items', $item );
+}
+
+add_filter( 'generate_inside_post_meta_item_output', 'generate_do_post_meta_prefix', 10, 2 );
+/**
+ * Add svg icons or text to our post meta output.
+ *
+ * @since 2.4
+ */
+function generate_do_post_meta_prefix( $output, $item ) {
+	if ( 'author' === $item ) {
+		$output = __( 'by', 'generatepress' ) . ' ';
+	}
+
+	if ( 'categories' === $item ) {
+		$output = generate_get_svg_icon( 'categories' );
+	}
+
+	if ( 'tags' === $item ) {
+		$output = generate_get_svg_icon( 'tags' );
+	}
+
+	if ( 'comments-link' === $item ) {
+		$output = generate_get_svg_icon( 'comments' );
+	}
+
+	return $output;
 }
 
 if ( ! function_exists( 'generate_posted_on' ) ) {
