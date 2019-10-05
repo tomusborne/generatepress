@@ -209,8 +209,18 @@ function generate_do_post_meta_item( $item ) {
 
 	if ( 'comments-link' === $item ) {
 		$comments = apply_filters( 'generate_show_comments', true );
+		$show_comments_link = false;
 
-		if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) && $comments ) {
+		if ( ! post_password_required() && ( comments_open() || get_comments_number() ) && $comments ) {
+			$show_comments_link = true;
+		}
+
+		// Disable the link on single posts by default.
+		if ( is_single() && ! apply_filters( 'generate_comments_link_on_single', false ) ) {
+			$show_comments_link = false;
+		}
+
+		if ( $show_comments_link ) {
 			echo '<span class="comments-link">';
 				echo apply_filters( 'generate_inside_post_meta_item_output', '', 'comments-link' );
 				comments_popup_link( __( 'Leave a comment', 'generatepress' ), __( '1 Comment', 'generatepress' ), __( '% Comments', 'generatepress' ) );
