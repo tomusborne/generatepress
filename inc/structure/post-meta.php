@@ -310,7 +310,7 @@ if ( ! function_exists( 'generate_excerpt_more' ) ) {
 	 * @return string The HTML for the more link.
 	 */
 	function generate_excerpt_more( $more ) {
-		return apply_filters( 'generate_excerpt_more_output', sprintf( ' ... <a title="%1$s" class="read-more" href="%2$s">%3$s%4$s</a>',
+		return apply_filters( 'generate_excerpt_more_output', sprintf( ' ... <a title="%1$s" class="read-more" href="%2$s">%3$s %4$s</a>',
 			the_title_attribute( 'echo=0' ),
 			esc_url( get_permalink( get_the_ID() ) ),
 			__( 'Read more', 'generatepress' ),
