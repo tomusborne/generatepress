@@ -455,7 +455,7 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->add_property( 'text-transform', esc_attr( $generate_settings['footer_transform'] ), $og_defaults['footer_transform'] );
 		$css->add_property( 'font-size', absint( $generate_settings['footer_font_size'] ), $og_defaults['footer_font_size'], 'px' );
 
-		$css->start_media_query( apply_filters( 'generate_mobile_media_query', '(max-width:768px)' ) );
+		$css->start_media_query( generate_get_media_query( 'mobile' ) );
 			$mobile_site_title = ( isset( $generate_settings['mobile_site_title_font_size'] ) ) ? $generate_settings['mobile_site_title_font_size'] : '30';
 			$css->set_selector( '.main-title' );
 			$css->add_property( 'font-size', absint( $mobile_site_title ), false, 'px' );
@@ -589,7 +589,7 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->set_selector( '.site-info' );
 		$css->add_property( 'padding', generate_padding_css( $spacing_settings['footer_top'], $spacing_settings['footer_right'], $spacing_settings['footer_bottom'], $spacing_settings['footer_left'] ), generate_padding_css( $og_defaults['footer_top'], $og_defaults['footer_right'], $og_defaults['footer_bottom'], $og_defaults['footer_left'] ) );
 
-		$css->start_media_query( apply_filters( 'generate_mobile_media_query', '(max-width:768px)' ) );
+		$css->start_media_query( generate_get_media_query( 'mobile' ) );
 			$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header' );
 			$css->add_property( 'padding', generate_padding_css( $spacing_settings['mobile_content_top'], $spacing_settings['mobile_content_right'], $spacing_settings['mobile_content_bottom'], $spacing_settings['mobile_content_left'] ) );
 
@@ -665,7 +665,7 @@ function generate_no_cache_dynamic_css() {
 		}
 	}
 
-	$css->start_media_query( apply_filters( 'generate_mobile_menu_media_query', '(max-width: 768px)' ) );
+	$css->start_media_query( generate_get_media_query( 'mobile-menu' ) );
 		$css->set_selector( '.main-navigation .menu-toggle,.main-navigation .mobile-bar-items,.sidebar-nav-mobile:not(#sticky-placeholder)' );
 		$css->add_property( 'display', 'block' );
 
