@@ -40,23 +40,35 @@ if ( ! function_exists( 'generate_content_nav' ) ) {
 		}
 
 		$nav_class = ( is_single() ) ? 'post-navigation' : 'paging-navigation';
-		$category_specific = apply_filters( 'generate_category_post_navigation', false );
 		?>
 		<nav id="<?php echo esc_attr( $nav_id ); ?>" class="<?php echo esc_attr( $nav_class ); ?>">
 			<span class="screen-reader-text"><?php esc_html_e( 'Post navigation', 'generatepress' ); ?></span>
 
 			<?php if ( is_single() ) : // navigation links for single posts.
 
+				$post_navigation_args = apply_filters( 'generate_post_navigation_args', array(
+					'previous_format' => '<div class="nav-previous">' . generate_get_svg_icon( 'arrow' ) . '<span class="prev" title="' . esc_attr__( 'Previous', 'generatepress' ) . '">%link</span></div>',
+					'next_format' => '<div class="nav-next">' . generate_get_svg_icon( 'arrow' ) . '<span class="next" title="' . esc_attr__( 'Next', 'generatepress' ) . '">%link</span></div>',
+					'link' => '%title',
+					'in_same_term' => apply_filters( 'generate_category_post_navigation', false ),
+					'excluded_terms' => '',
+					'taxonomy' => 'category',
+				) );
+
 				previous_post_link(
-					'<div class="nav-previous">' . generate_get_svg_icon( 'arrow' ) . '<span class="prev" title="' . esc_attr__( 'Previous', 'generatepress' ) . '">%link</span></div>',
-					'%title',
-					$category_specific
+					$post_navigation_args['previous_format'],
+					$post_navigation_args['link'],
+					$post_navigation_args['in_same_term'],
+					$post_navigation_args['excluded_terms'],
+					$post_navigation_args['taxonomy']
 				);
 
 				next_post_link(
-					'<div class="nav-next">' . generate_get_svg_icon( 'arrow' ) . '<span class="next" title="' . esc_attr__( 'Next', 'generatepress' ) . '">%link</span></div>',
-					'%title',
-					$category_specific
+					$post_navigation_args['next_format'],
+					$post_navigation_args['link'],
+					$post_navigation_args['in_same_term'],
+					$post_navigation_args['excluded_terms'],
+					$post_navigation_args['taxonomy']
 				);
 
 			elseif ( is_home() || is_archive() || is_search() ) : // navigation links for home, archive, and search pages.
