@@ -262,6 +262,8 @@ function generate_do_control_inline_scripts() {
 		)
 	);
 
+	$number_of_fonts = apply_filters( 'generate_number_of_fonts', 200 );
+
 	wp_localize_script(
 		'generatepress-typography-customizer',
 		'generatePressTypography',

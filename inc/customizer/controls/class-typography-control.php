@@ -29,7 +29,6 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 		public function to_json() {
 			parent::to_json();
 
-			$number_of_fonts = apply_filters( 'generate_number_of_fonts', 200 );
 			$this->json['default_fonts_title'] = __( 'System fonts', 'generatepress' );
 			$this->json['google_fonts_title'] = __( 'Google fonts', 'generatepress' );
 			$this->json['default_fonts'] = generate_typography_default_fonts();
