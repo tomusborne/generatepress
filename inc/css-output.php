@@ -148,13 +148,24 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->add_property( 'color', esc_attr( $generate_settings['navigation_text_current_color'] ) );
 		$css->add_property( 'background-color', esc_attr( $generate_settings['navigation_background_current_color'] ) );
 
-		$css->set_selector( '.navigation-search input[type="search"],.navigation-search input[type="search"]:active' );
-		$css->add_property( 'color', esc_attr( $generate_settings['navigation_background_hover_color'] ) );
-		$css->add_property( 'background-color', esc_attr( $generate_settings['navigation_background_hover_color'] ) );
+		$navigation_search_background = $generate_settings['navigation_background_hover_color'];
+		$navigation_search_text = $generate_settings['navigation_text_hover_color'];
 
-		$css->set_selector( '.navigation-search input[type="search"]:focus' );
-		$css->add_property( 'color', esc_attr( $generate_settings['navigation_text_hover_color'] ) );
-		$css->add_property( 'background-color', esc_attr( $generate_settings['navigation_background_hover_color'] ) );
+		if ( '' !== $generate_settings['navigation_search_background_color'] ) {
+			$navigation_search_background = $generate_settings['navigation_search_background_color'];
+		}
+
+		if ( '' !== $generate_settings['navigation_search_text_color'] ) {
+			$navigation_search_text = $generate_settings['navigation_search_text_color'];
+		}
+
+		$css->set_selector( '.navigation-search input[type="search"],.navigation-search input[type="search"]:active, .navigation-search input[type="search"]:focus, .main-navigation .main-nav ul li.search-item.active > a' );
+		$css->add_property( 'color', esc_attr( $navigation_search_text ) );
+		$css->add_property( 'background-color', esc_attr( $navigation_search_background ) );
+
+		if ( '' !== $generate_settings['navigation_search_background_color'] ) {
+			$css->add_property( 'opacity', '1' );
+		}
 
 		$css->set_selector( '.main-navigation ul ul' );
 		$css->add_property( 'background-color', esc_attr( $generate_settings['subnavigation_background_color'] ) );
