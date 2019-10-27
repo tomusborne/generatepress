@@ -123,43 +123,45 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 				</div>
 			<# } #>
 
-			<# if ( 'undefined' !== typeof ( data.weight ) ) { #>
-				<div class="generatepress-font-weight">
-					<label>
-						<select {{{ data.weight.link }}}>
+			<div class="generatepress-weight-transform-wrapper">
+				<# if ( 'undefined' !== typeof ( data.weight ) ) { #>
+					<div class="generatepress-font-weight">
+						<label>
+							<select {{{ data.weight.link }}}>
 
-							<# _.each( data.weight.choices, function( label, choice ) { #>
+								<# _.each( data.weight.choices, function( label, choice ) { #>
 
-								<option value="{{ choice }}" <# if ( choice === data.weight.value ) { #> selected="selected" <# } #>>{{ label }}</option>
+									<option value="{{ choice }}" <# if ( choice === data.weight.value ) { #> selected="selected" <# } #>>{{ label }}</option>
 
-							<# } ) #>
+								<# } ) #>
 
-						</select>
-						<# if ( '' !== data.weight_title ) { #>
-							<p class="description">{{ data.weight_title }}</p>
-						<# } #>
-					</label>
-				</div>
-			<# } #>
+							</select>
+							<# if ( '' !== data.weight_title ) { #>
+								<p class="description">{{ data.weight_title }}</p>
+							<# } #>
+						</label>
+					</div>
+				<# } #>
 
-			<# if ( 'undefined' !== typeof ( data.transform ) ) { #>
-				<div class="generatepress-font-transform">
-					<label>
-						<select {{{ data.transform.link }}}>
+				<# if ( 'undefined' !== typeof ( data.transform ) ) { #>
+					<div class="generatepress-font-transform">
+						<label>
+							<select {{{ data.transform.link }}}>
 
-							<# _.each( data.transform.choices, function( label, choice ) { #>
+								<# _.each( data.transform.choices, function( label, choice ) { #>
 
-								<option value="{{ choice }}" <# if ( choice === data.transform.value ) { #> selected="selected" <# } #>>{{ label }}</option>
+									<option value="{{ choice }}" <# if ( choice === data.transform.value ) { #> selected="selected" <# } #>>{{ label }}</option>
 
-							<# } ) #>
+								<# } ) #>
 
-						</select>
-						<# if ( '' !== data.transform_title ) { #>
-							<p class="description">{{ data.transform_title }}</p>
-						<# } #>
-					</label>
-				</div>
-			<# } #>
+							</select>
+							<# if ( '' !== data.transform_title ) { #>
+								<p class="description">{{ data.transform_title }}</p>
+							<# } #>
+						</label>
+					</div>
+				<# } #>
+			</div>
 			<?php
 		}
 
