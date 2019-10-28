@@ -16,7 +16,8 @@ jQuery( document ).ready( function( $ ) {
 
 	$( 'input[name="_generate-sidebar-layout-meta"]' ).on( 'change', function() {
 		if ( 'true' !== $( 'input[name="_generate-full-width-content"]:checked' ).val() ) {
-			var content_width = '',
+			var this_value = this.value,
+				content_width = '',
 				calc = '',
 				container_width = generate_block_editor.container_width,
 				right_sidebar_width = generate_block_editor.right_sidebar_width,
@@ -24,15 +25,15 @@ jQuery( document ).ready( function( $ ) {
 				right_content_padding = generate_block_editor.content_padding_right,
 				left_content_padding = generate_block_editor.content_padding_left;
 
-			if ( '' === this.value ) {
-				this.value = generate_block_editor.global_sidebar_layout;
+			if ( '' === this_value ) {
+				this_value = generate_block_editor.global_sidebar_layout;
 			}
 
-			if ( 'left-sidebar' == this.value ) {
+			if ( 'left-sidebar' == this_value ) {
 				content_width = container_width * ( ( 100 - left_sidebar_width ) / 100 );
-			} else if ( 'right-sidebar' == this.value ) {
+			} else if ( 'right-sidebar' == this_value ) {
 				content_width = container_width * ( ( 100 - right_sidebar_width ) / 100 );
-			} else if ( 'no-sidebar' == this.value ) {
+			} else if ( 'no-sidebar' == this_value ) {
 				content_width = container_width;
 			} else {
 				content_width = container_width * ( ( 100 - ( Number( left_sidebar_width ) + Number( right_sidebar_width ) ) ) / 100 );
