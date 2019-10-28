@@ -39,8 +39,7 @@
 }
 
 .gp-range-slider-controls {
-	margin-top: 2px;
-	margin-left: 5px;
+	margin-left: auto;
 }
 
 .customize-control-generatepress-range-slider .wrapper {
@@ -89,6 +88,9 @@
     text-align: center;
     font-size: 12px;
     line-height: 30px;
+	background: #fff;
+	border: 1px solid #ddd;
+	margin-left: 1px;
 }
 
 .customize-control-generatepress-range-slider .generatepress-range-slider-reset span {
@@ -101,6 +103,9 @@
     padding: 0px;
     text-align: center;
     min-height: 30px;
+	height: auto;
+	border-radius: 0;
+	border-color: #ddd;
 }
 
 .customize-control-generatepress-range-slider .has-unit .gp_range_value input {
