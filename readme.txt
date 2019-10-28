@@ -95,6 +95,40 @@ MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
 
 == Changelog ==
 
+= 2.4.0 =
+
+Release date: TBA
+
+* New: Add generate_before_comments_container hook to pages
+* New: generate_after_comment_text hook
+* New: generate_after_comment_text hook
+* New: generate_inside_featured_image_output filter
+* New: generate_inside_post_meta_item_output filter
+* New: generate_term_separator filter
+* New: generate_svg_icon_element filter
+* New: generate_before_page_title hook
+* New: generate_after_page_title hook
+* New: generate_media_queries filter
+* New: generate_post_navigation_args filter
+* New: aria-label added to navigation search button (a11y)
+* New: Add support for navigation search colors
+* Tweak: Allow for custom post meta items
+* Tweak: Add screen reader text to mobile menu button if no text exists (a11y)
+* Tweak: Move comment reply link to below comment text
+* Tweak: Remove margin from .blocks-gallery-grid class
+* Tweak: Clean up rtl.css
+* Tweak: Get all Google fonts only once in Customizer
+* Tweak: Set variable with get_template_directory() in functions.php
+* Tweak: Remove comments link on single posts using CSS only
+* Tweak: Add line-height to headings in block editor
+* Tweak: Use featured image alt instead of post title (a11y)
+* Tweak: Add space between read more and screen reader text (a11y)
+* Tweak: Improve Customizer control styling
+* Tweak: Hide comments link on single posts using CSS only
+* Tweak: Increase space between mobile menu icon + text when using SVG
+* Fix: Sidebar spacing in rtl.css
+* Fix: Inability to set "Default" as sidebar layout in Gutenberg
+
 = 2.3.2 =
 
 Release date: June 25, 2019
