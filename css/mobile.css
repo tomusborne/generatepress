@@ -45,7 +45,7 @@ button.menu-toggle:focus {
 }
 
 .menu-toggle .gp-icon + .mobile-menu {
-    padding-left: 10px;
+    padding-left: 9px;
 }
 
 .menu-toggle .mobile-menu:empty {
