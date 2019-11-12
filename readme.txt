@@ -99,6 +99,7 @@ MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
 
 Release date: TBA
 
+* New: generate_inside_site_container hook
 * New: generate_before_comments_container hook to pages
 * New: generate_after_comment_text hook
 * New: generate_after_comment_text hook

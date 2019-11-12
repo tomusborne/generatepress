@@ -57,6 +57,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	?>
 
 	<div id="page" class="hfeed site grid-container container grid-parent">
+		<?php
+		/**
+		 * generate_inside_site_container hook.
+		 *
+		 * @since 2.4
+		 */
+		do_action( 'generate_inside_site_container' );
+		?>
 		<div id="content" class="site-content">
 			<?php
 			/**
