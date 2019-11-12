@@ -187,6 +187,14 @@ function generate_do_inline_block_editor_css() {
 	$css->set_selector( '.edit-post-visual-editor .editor-block-list__block[data-align=wide]' );
 	$css->add_property( 'max-width', absint( $content_width ), false, 'px' );
 
+	if ( apply_filters( 'generate_do_group_inner_container_style', true ) ) {
+		$css->set_selector( '.wp-block-group__inner-container' );
+		$css->add_property( 'max-width', absint( $content_width ), false, 'px' );
+		$css->add_property( 'margin-left', 'auto' );
+		$css->add_property( 'margin-right', 'auto' );
+		$css->add_property( 'padding', generate_padding_css( $spacing_settings['content_top'], $spacing_settings['content_right'], $spacing_settings['content_bottom'], $spacing_settings['content_left'] ) );
+	}
+
 	$css->set_selector( '.wp-block-button__link:not(.has-background)' );
 	$css->add_property( 'color', esc_attr( $color_settings['form_button_text_color'] ) );
 	$css->add_property( 'background-color', esc_attr( $color_settings['form_button_background_color'] ) );
