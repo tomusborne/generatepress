@@ -127,6 +127,7 @@ Release date: TBA
 * Tweak: Improve Customizer control styling
 * Tweak: Hide comments link on single posts using CSS only
 * Tweak: Increase space between mobile menu icon + text when using SVG
+* Tweak: Use default block editor color palette
 * Fix: Sidebar spacing in rtl.css
 * Fix: Inability to set "Default" as sidebar layout in Gutenberg
 
