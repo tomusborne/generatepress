@@ -113,6 +113,7 @@ Release date: TBA
 * New: generate_post_navigation_args filter
 * New: aria-label added to navigation search button (a11y)
 * New: Add support for navigation search colors
+* New: Apply container width to group block inner container
 * Tweak: Allow for custom post meta items
 * Tweak: Add screen reader text to mobile menu button if no text exists (a11y)
 * Tweak: Move comment reply link to below comment text
