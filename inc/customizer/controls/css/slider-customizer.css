@@ -1,9 +1,7 @@
 .customize-control-generatepress-range-slider .generatepress-slider {
-	display: inline-block;
 	position: relative;
 	width: calc(100% - 60px);
 	height: 6px;
-	margin-top: 12px;
 	background-color: rgba(0,0,0,.10);
 	cursor: pointer;
 	-webkit-transition: background .5s;
@@ -36,18 +34,34 @@
 	cursor: pointer;
 }
 
-.customize-control-generatepress-range-slider .gp_range_value .unit {
-	width: 30px;
-	display:inline-block;
+.gp-range-title-area {
+	display: flex;
+}
+
+.gp-range-slider-controls {
+	margin-left: auto;
+}
+
+.customize-control-generatepress-range-slider .wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
 }
 
 .customize-control-generatepress-range-slider .gp_range_value {
-	display: inline-block;
 	font-size: 14px;
 	padding: 0;
 	font-weight: 400;
-	float: right;
 	width: 50px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
 }
 
 .customize-control-generatepress-range-slider .has-unit .gp_range_value {
@@ -58,31 +72,25 @@
     font-size: 12px;
     width: calc(100% - 2px);
     text-align: center;
-    height: 22px;
+    min-height: 30px;
     background: #FFF;
-    line-height: 22px;
+    line-height: 30px;
     border: 1px solid #DDD;
 }
 
 .customize-control-generatepress-range-slider .has-unit .gp_range_value span.value {
 	width: calc(100% - 32px);
-	float: left;
 	display: block;
 }
 
 .customize-control-generatepress-range-slider .gp_range_value .unit {
     width: 29px;
-    display: block;
-    float: left;
-    background: #FFF;
-    height: 22px;
-    border-top: 1px solid #DDD;
-    border-bottom: 1px solid #DDD;
-    border-right: 1px solid #DDD;
     text-align: center;
-    text-transform: uppercase;
-    font-size: 10px;
-    line-height: 22px;
+    font-size: 12px;
+    line-height: 30px;
+	background: #fff;
+	border: 1px solid #ddd;
+	margin-left: 1px;
 }
 
 .customize-control-generatepress-range-slider .generatepress-range-slider-reset span {
@@ -94,16 +102,14 @@
     font-size: 12px;
     padding: 0px;
     text-align: center;
-    height: 24px;
+    min-height: 30px;
+	height: auto;
+	border-radius: 0;
+	border-color: #ddd;
 }
 
 .customize-control-generatepress-range-slider .has-unit .gp_range_value input {
     width: calc(100% - 30px);
-    float: left;
-}
-
-.customize-control-generatepress-range-slider .gp-range-title-info {
-    display: inline-block;
 }
 
 .customize-control-generatepress-range-slider .gp-range-title-area .dashicons {
@@ -125,10 +131,6 @@
 .customize-control-generatepress-range-slider .gp-range-title-area .dashicons.selected {
 	background: #fff;
 	color: #222;
-}
-
-.customize-control-generatepress-range-slider .gp-range-slider-controls {
-	float:right;
 }
 
 .customize-control-generatepress-range-slider .gp-device-controls > span:first-child:last-child {

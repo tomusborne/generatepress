@@ -121,6 +121,8 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 					<# if ( 'undefined' !== typeof ( data.desktop ) ) { #>
 						<label class="range-option-area" data-option="desktop" style="display: none;">
 							<div class="wrapper <# if ( '' !== data.choices['desktop']['unit'] ) { #>has-unit<# } #>">
+								<div class="generatepress-slider" data-step="{{ data.choices['desktop']['step'] }}" data-min="{{ data.choices['desktop']['min'] }}" data-max="{{ data.choices['desktop']['max'] }}"></div>
+
 								<div class="gp_range_value <# if ( '' == data.choices['desktop']['unit'] && ! data.choices['desktop']['edit'] ) { #>hide-value<# } #>">
 									<input <# if ( data.choices['desktop']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> type="number" step="{{ data.choices['desktop']['step'] }}" class="desktop-range value" value="{{ data.desktop.value }}" min="{{ data.choices['desktop']['min'] }}" max="{{ data.choices['desktop']['max'] }}" {{{ data.desktop.link }}} data-reset_value="{{ data.desktop.default }}" />
 									<span <# if ( ! data.choices['desktop']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> class="value">{{ data.desktop.value }}</span>
@@ -129,7 +131,6 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 										<span class="unit">{{ data.choices['desktop']['unit'] }}</span>
 									<# } #>
 								</div>
-								<div class="generatepress-slider" data-step="{{ data.choices['desktop']['step'] }}" data-min="{{ data.choices['desktop']['min'] }}" data-max="{{ data.choices['desktop']['max'] }}"></div>
 							</div>
 						</label>
 					<# } #>
@@ -137,6 +138,8 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 					<# if ( 'undefined' !== typeof ( data.tablet ) ) { #>
 						<label class="range-option-area" data-option="tablet" style="display:none">
 							<div class="wrapper <# if ( '' !== data.choices['tablet']['unit'] ) { #>has-unit<# } #>">
+								<div class="generatepress-slider" data-step="{{ data.choices['tablet']['step'] }}" data-min="{{ data.choices['tablet']['min'] }}" data-max="{{ data.choices['tablet']['max'] }}"></div>
+
 								<div class="gp_range_value <# if ( '' == data.choices['tablet']['unit'] && ! data.choices['desktop']['edit'] ) { #>hide-value<# } #>">
 									<input <# if ( data.choices['tablet']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> type="number" step="{{ data.choices['tablet']['step'] }}" class="tablet-range value" value="{{ data.tablet.value }}" min="{{ data.choices['tablet']['min'] }}" max="{{ data.choices['tablet']['max'] }}" {{{ data.tablet.link }}} data-reset_value="{{ data.tablet.default }}" />
 									<span <# if ( ! data.choices['tablet']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> class="value">{{ data.tablet.value }}</span>
@@ -145,7 +148,6 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 										<span class="unit">{{ data.choices['tablet']['unit'] }}</span>
 									<# } #>
 								</div>
-								<div class="generatepress-slider" data-step="{{ data.choices['tablet']['step'] }}" data-min="{{ data.choices['tablet']['min'] }}" data-max="{{ data.choices['tablet']['max'] }}"></div>
 							</div>
 						</label>
 					<# } #>
@@ -153,6 +155,8 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 					<# if ( 'undefined' !== typeof ( data.mobile ) ) { #>
 						<label class="range-option-area" data-option="mobile" style="display:none;">
 							<div class="wrapper <# if ( '' !== data.choices['mobile']['unit'] ) { #>has-unit<# } #>">
+								<div class="generatepress-slider" data-step="{{ data.choices['mobile']['step'] }}" data-min="{{ data.choices['mobile']['min'] }}" data-max="{{ data.choices['mobile']['max'] }}"></div>
+
 								<div class="gp_range_value <# if ( '' == data.choices['mobile']['unit'] && ! data.choices['desktop']['edit'] ) { #>hide-value<# } #>">
 									<input <# if ( data.choices['mobile']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> type="number" step="{{ data.choices['mobile']['step'] }}" class="mobile-range value" value="{{ data.mobile.value }}" min="{{ data.choices['mobile']['min'] }}" max="{{ data.choices['mobile']['max'] }}" {{{ data.mobile.link }}} data-reset_value="{{ data.mobile.default }}" />
 									<span <# if ( ! data.choices['mobile']['edit'] ) { #>style="display:inline-block;"<# } else { #>style="display:none;"<# } #> class="value">{{ data.mobile.value }}</span>
@@ -161,7 +165,6 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 										<span class="unit">{{ data.choices['mobile']['unit'] }}</span>
 									<# } #>
 								</div>
-								<div class="generatepress-slider" data-step="{{ data.choices['mobile']['step'] }}" data-min="{{ data.choices['mobile']['min'] }}" data-max="{{ data.choices['mobile']['max'] }}"></div>
 							</div>
 						</label>
 					<# } #>

@@ -53,6 +53,15 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 
 		if ( 'enable' === generate_get_option( 'nav_search' ) ) {
 			wp_enqueue_script( 'generate-navigation-search', $dir_uri . "/js/navigation-search{$suffix}.js", array( 'generate-menu' ), GENERATE_VERSION, true );
+
+			wp_localize_script(
+				'generate-navigation-search',
+				'generatepressNavSearch',
+				array(
+					'open' => esc_attr__( 'Open Search Bar', 'generatepress' ),
+					'close' => esc_attr__( 'Close Search Bar', 'generatepress' ),
+				)
+			);
 		}
 
 		if ( 'enable' === generate_get_option( 'back_to_top' ) ) {

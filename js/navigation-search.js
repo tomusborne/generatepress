@@ -15,7 +15,8 @@
 				var item = this;
 			}
 
-			var nav = item.closest( 'nav' );
+			var nav = item.closest( 'nav' ),
+				link = item.querySelector( 'a' );
 
 			if ( item.getAttribute( 'data-nav' ) ) {
 				nav = document.querySelector( this.getAttribute( 'data-nav' ) );
@@ -31,6 +32,7 @@
 				document.activeElement.blur();
 				item.classList.remove( 'sfHover' );
 				form.classList.remove( 'nav-search-active' );
+				link.setAttribute( 'aria-label', generatepressNavSearch.open );
 				item.style.float = '';
 
 				// Allow tabindex on items again.
@@ -42,6 +44,7 @@
 			} else {
 				item.classList.add( 'active' );
 				form.classList.add( 'nav-search-active' );
+				link.setAttribute( 'aria-label', generatepressNavSearch.close );
 				form.querySelector( '.search-field' ).focus();
 
 				// Trap tabindex within the search element

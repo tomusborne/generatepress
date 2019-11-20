@@ -25,7 +25,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 		if ( generate_show_title() ) : ?>
 
 			<header class="entry-header">
-				<?php the_title( '<h1 class="entry-title" itemprop="headline">', '</h1>' ); ?>
+				<?php
+				/**
+				 * generate_before_page_title hook.
+				 *
+				 * @since 2.4
+				 */
+				do_action( 'generate_before_page_title' );
+
+				the_title( '<h1 class="entry-title" itemprop="headline">', '</h1>' );
+
+				/**
+				 * generate_after_page_title hook.
+				 *
+				 * @since 2.4
+				 */
+				do_action( 'generate_after_page_title' );
+				?>
 			</header><!-- .entry-header -->
 
 		<?php endif;

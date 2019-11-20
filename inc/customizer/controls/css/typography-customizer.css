@@ -1,11 +1,19 @@
-.generatepress-font-weight,
-.generatepress-font-transform {
-    float: left;
-    width: 50%
+.generatepress-font-family {
+	margin-bottom: 12px;
 }
 
-.generatepress-font-weight select {
-    border-right: 0;
+.generatepress-weight-transform-wrapper {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+}
+
+.generatepress-font-weight,
+.generatepress-font-transform {
+    width: calc(50% - 5px);
 }
 
 span.select2-container.select2-container--default.select2-container--open li.select2-results__option {

@@ -296,9 +296,9 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 	wp.customize( 'generate_settings[container_width]', function( value ) {
 		value.bind( function( newval ) {
 			if ( jQuery( 'style#container_width' ).length ) {
-				jQuery( 'style#container_width' ).html( 'body .grid-container{max-width:' + newval + 'px;}' );
+				jQuery( 'style#container_width' ).html( 'body .grid-container, .wp-block-group__inner-container{max-width:' + newval + 'px;}' );
 			} else {
-				jQuery( 'head' ).append( '<style id="container_width">body .grid-container{max-width:' + newval + 'px;}</style>' );
+				jQuery( 'head' ).append( '<style id="container_width">body .grid-container, .wp-block-group__inner-container{max-width:' + newval + 'px;}</style>' );
 				setTimeout(function() {
 					jQuery( 'style#container_width' ).not( ':last' ).remove();
 				}, 100);

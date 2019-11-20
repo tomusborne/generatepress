@@ -187,6 +187,14 @@ function generate_do_inline_block_editor_css() {
 	$css->set_selector( '.edit-post-visual-editor .editor-block-list__block[data-align=wide]' );
 	$css->add_property( 'max-width', absint( $content_width ), false, 'px' );
 
+	if ( apply_filters( 'generate_do_group_inner_container_style', true ) ) {
+		$css->set_selector( '.wp-block-group__inner-container' );
+		$css->add_property( 'max-width', absint( $content_width ), false, 'px' );
+		$css->add_property( 'margin-left', 'auto' );
+		$css->add_property( 'margin-right', 'auto' );
+		$css->add_property( 'padding', generate_padding_css( $spacing_settings['content_top'], $spacing_settings['content_right'], $spacing_settings['content_bottom'], $spacing_settings['content_left'] ) );
+	}
+
 	$css->set_selector( '.wp-block-button__link:not(.has-background)' );
 	$css->add_property( 'color', esc_attr( $color_settings['form_button_text_color'] ) );
 	$css->add_property( 'background-color', esc_attr( $color_settings['form_button_background_color'] ) );
@@ -230,6 +238,7 @@ function generate_do_inline_block_editor_css() {
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_1_weight'] ) );
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_1_transform'] ) );
 	$css->add_property( 'font-size', absint( $font_settings['heading_1_font_size'] ), false, 'px' );
+	$css->add_property( 'line-height', floatval( $font_settings['heading_1_line_height'] ), false, 'em' );
 
 	if ( $color_settings['h1_color'] ) {
 		$css->add_property( 'color', esc_attr( $color_settings['h1_color'] ) );
@@ -249,6 +258,7 @@ function generate_do_inline_block_editor_css() {
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_2_weight'] ) );
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_2_transform'] ) );
 	$css->add_property( 'font-size', absint( $font_settings['heading_2_font_size'] ), false, 'px' );
+	$css->add_property( 'line-height', floatval( $font_settings['heading_2_line_height'] ), false, 'em' );
 
 	if ( $color_settings['h2_color'] ) {
 		$css->add_property( 'color', esc_attr( $color_settings['h2_color'] ) );
@@ -263,6 +273,7 @@ function generate_do_inline_block_editor_css() {
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_3_weight'] ) );
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_3_transform'] ) );
 	$css->add_property( 'font-size', absint( $font_settings['heading_3_font_size'] ), false, 'px' );
+	$css->add_property( 'line-height', floatval( $font_settings['heading_3_line_height'] ), false, 'em' );
 
 	if ( $color_settings['h3_color'] ) {
 		$css->add_property( 'color', esc_attr( $color_settings['h3_color'] ) );
@@ -281,6 +292,10 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'font-size', absint( $font_settings['heading_4_font_size'] ), false, 'px' );
 	} else {
 		$css->add_property( 'font-size', 'inherit' );
+	}
+
+	if ( '' !== $font_settings['heading_4_line_height'] ) {
+		$css->add_property( 'line-height', floatval( $font_settings['heading_4_line_height'] ), false, 'em' );
 	}
 
 	if ( $color_settings['h4_color'] ) {
@@ -302,6 +317,10 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'font-size', 'inherit' );
 	}
 
+	if ( '' !== $font_settings['heading_5_line_height'] ) {
+		$css->add_property( 'line-height', floatval( $font_settings['heading_5_line_height'] ), false, 'em' );
+	}
+
 	if ( $color_settings['h5_color'] ) {
 		$css->add_property( 'color', esc_attr( $color_settings['h5_color'] ) );
 	} elseif ( $color_settings['content_text_color'] ) {
@@ -319,6 +338,10 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'font-size', absint( $font_settings['heading_6_font_size'] ), false, 'px' );
 	} else {
 		$css->add_property( 'font-size', 'inherit' );
+	}
+
+	if ( '' !== $font_settings['heading_6_line_height'] ) {
+		$css->add_property( 'line-height', floatval( $font_settings['heading_6_line_height'] ), false, 'em' );
 	}
 
 	if ( $color_settings['h6_color'] ) {

@@ -37,6 +37,13 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 
 		$css->set_selector( 'body .grid-container' )->add_property( 'max-width', absint( $generate_settings['container_width'] ), false, 'px' );
 
+		if ( apply_filters( 'generate_do_group_inner_container_style', true ) ) {
+			$css->set_selector( '.wp-block-group__inner-container' );
+			$css->add_property( 'max-width', absint( $generate_settings['container_width'] ), false, 'px' );
+			$css->add_property( 'margin-left', 'auto' );
+			$css->add_property( 'margin-right', 'auto' );
+		}
+
 		$nav_drop_point = generate_get_option( 'nav_drop_point' );
 		$nav_location = generate_get_navigation_location();
 
@@ -148,13 +155,24 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->add_property( 'color', esc_attr( $generate_settings['navigation_text_current_color'] ) );
 		$css->add_property( 'background-color', esc_attr( $generate_settings['navigation_background_current_color'] ) );
 
-		$css->set_selector( '.navigation-search input[type="search"],.navigation-search input[type="search"]:active' );
-		$css->add_property( 'color', esc_attr( $generate_settings['navigation_background_hover_color'] ) );
-		$css->add_property( 'background-color', esc_attr( $generate_settings['navigation_background_hover_color'] ) );
+		$navigation_search_background = $generate_settings['navigation_background_hover_color'];
+		$navigation_search_text = $generate_settings['navigation_text_hover_color'];
 
-		$css->set_selector( '.navigation-search input[type="search"]:focus' );
-		$css->add_property( 'color', esc_attr( $generate_settings['navigation_text_hover_color'] ) );
-		$css->add_property( 'background-color', esc_attr( $generate_settings['navigation_background_hover_color'] ) );
+		if ( '' !== $generate_settings['navigation_search_background_color'] ) {
+			$navigation_search_background = $generate_settings['navigation_search_background_color'];
+		}
+
+		if ( '' !== $generate_settings['navigation_search_text_color'] ) {
+			$navigation_search_text = $generate_settings['navigation_search_text_color'];
+		}
+
+		$css->set_selector( '.navigation-search input[type="search"],.navigation-search input[type="search"]:active, .navigation-search input[type="search"]:focus, .main-navigation .main-nav ul li.search-item.active > a' );
+		$css->add_property( 'color', esc_attr( $navigation_search_text ) );
+		$css->add_property( 'background-color', esc_attr( $navigation_search_background ) );
+
+		if ( '' !== $generate_settings['navigation_search_background_color'] ) {
+			$css->add_property( 'opacity', '1' );
+		}
 
 		$css->set_selector( '.main-navigation ul ul' );
 		$css->add_property( 'background-color', esc_attr( $generate_settings['subnavigation_background_color'] ) );
@@ -455,7 +473,7 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->add_property( 'text-transform', esc_attr( $generate_settings['footer_transform'] ), $og_defaults['footer_transform'] );
 		$css->add_property( 'font-size', absint( $generate_settings['footer_font_size'] ), $og_defaults['footer_font_size'], 'px' );
 
-		$css->start_media_query( apply_filters( 'generate_mobile_media_query', '(max-width:768px)' ) );
+		$css->start_media_query( generate_get_media_query( 'mobile' ) );
 			$mobile_site_title = ( isset( $generate_settings['mobile_site_title_font_size'] ) ) ? $generate_settings['mobile_site_title_font_size'] : '30';
 			$css->set_selector( '.main-title' );
 			$css->add_property( 'font-size', absint( $mobile_site_title ), false, 'px' );
@@ -500,6 +518,11 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 
 		$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header' );
 		$css->add_property( 'padding', generate_padding_css( $spacing_settings['content_top'], $spacing_settings['content_right'], $spacing_settings['content_bottom'], $spacing_settings['content_left'] ), generate_padding_css( $og_defaults['content_top'], $og_defaults['content_right'], $og_defaults['content_bottom'], $og_defaults['content_left'] ) );
+
+		if ( apply_filters( 'generate_do_group_inner_container_style', true ) ) {
+			$css->set_selector( '.wp-block-group__inner-container' );
+			$css->add_property( 'padding', generate_padding_css( $spacing_settings['content_top'], $spacing_settings['content_right'], $spacing_settings['content_bottom'], $spacing_settings['content_left'] ) );
+		}
 
 		$content_padding = absint( $spacing_settings['content_right'] ) + absint( $spacing_settings['content_left'] );
 		$css->set_selector( '.entry-content .alignwide, body:not(.no-sidebar) .entry-content .alignfull' );
@@ -589,7 +612,7 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->set_selector( '.site-info' );
 		$css->add_property( 'padding', generate_padding_css( $spacing_settings['footer_top'], $spacing_settings['footer_right'], $spacing_settings['footer_bottom'], $spacing_settings['footer_left'] ), generate_padding_css( $og_defaults['footer_top'], $og_defaults['footer_right'], $og_defaults['footer_bottom'], $og_defaults['footer_left'] ) );
 
-		$css->start_media_query( apply_filters( 'generate_mobile_media_query', '(max-width:768px)' ) );
+		$css->start_media_query( generate_get_media_query( 'mobile' ) );
 			$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header' );
 			$css->add_property( 'padding', generate_padding_css( $spacing_settings['mobile_content_top'], $spacing_settings['mobile_content_right'], $spacing_settings['mobile_content_bottom'], $spacing_settings['mobile_content_left'] ) );
 
@@ -665,7 +688,7 @@ function generate_no_cache_dynamic_css() {
 		}
 	}
 
-	$css->start_media_query( apply_filters( 'generate_mobile_menu_media_query', '(max-width: 768px)' ) );
+	$css->start_media_query( generate_get_media_query( 'mobile-menu' ) );
 		$css->set_selector( '.main-navigation .menu-toggle,.main-navigation .mobile-bar-items,.sidebar-nav-mobile:not(#sticky-placeholder)' );
 		$css->add_property( 'display', 'block' );
 

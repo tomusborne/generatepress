@@ -29,10 +29,8 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 		public function to_json() {
 			parent::to_json();
 
-			$number_of_fonts = apply_filters( 'generate_number_of_fonts', 200 );
 			$this->json['default_fonts_title'] = __( 'System fonts', 'generatepress' );
 			$this->json['google_fonts_title'] = __( 'Google fonts', 'generatepress' );
-			$this->json['google_fonts'] = apply_filters( 'generate_typography_customize_list', generate_get_all_google_fonts( $number_of_fonts ) );
 			$this->json['default_fonts'] = generate_typography_default_fonts();
 			$this->json['family_title'] = esc_html__( 'Font family', 'generatepress' );
 			$this->json['weight_title'] = esc_html__( 'Font weight', 'generatepress' );
@@ -74,8 +72,8 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 								<# } #>
 							</optgroup>
 							<optgroup label="{{ data.google_fonts_title }}">
-								<# for ( var key in data.google_fonts ) { #>
-									<option value="{{ data.google_fonts[ key ].name }}"  <# if ( data.google_fonts[ key ].name === data.family.value ) { #>selected="selected"<# } #>>{{ data.google_fonts[ key ].name }}</option>
+								<# for ( var key in generatePressTypography.googleFonts ) { #>
+									<option value="{{ generatePressTypography.googleFonts[ key ].name }}"  <# if ( generatePressTypography.googleFonts[ key ].name === data.family.value ) { #>selected="selected"<# } #>>{{ generatePressTypography.googleFonts[ key ].name }}</option>
 								<# } #>
 							</optgroup>
 						</select>
@@ -89,7 +87,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 			<# if ( 'undefined' !== typeof ( data.variant ) ) { #>
 				<#
 				var id = data.family.value.split(' ').join('_').toLowerCase();
-				var font_data = data.google_fonts[id];
+				var font_data = generatePressTypography.googleFonts[id];
 				var variants = '';
 				if ( typeof font_data !== 'undefined' ) {
 					variants = font_data.variants;
@@ -125,43 +123,45 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 				</div>
 			<# } #>
 
-			<# if ( 'undefined' !== typeof ( data.weight ) ) { #>
-				<div class="generatepress-font-weight">
-					<label>
-						<select {{{ data.weight.link }}}>
+			<div class="generatepress-weight-transform-wrapper">
+				<# if ( 'undefined' !== typeof ( data.weight ) ) { #>
+					<div class="generatepress-font-weight">
+						<label>
+							<select {{{ data.weight.link }}}>
 
-							<# _.each( data.weight.choices, function( label, choice ) { #>
+								<# _.each( data.weight.choices, function( label, choice ) { #>
 
-								<option value="{{ choice }}" <# if ( choice === data.weight.value ) { #> selected="selected" <# } #>>{{ label }}</option>
+									<option value="{{ choice }}" <# if ( choice === data.weight.value ) { #> selected="selected" <# } #>>{{ label }}</option>
 
-							<# } ) #>
+								<# } ) #>
 
-						</select>
-						<# if ( '' !== data.weight_title ) { #>
-							<p class="description">{{ data.weight_title }}</p>
-						<# } #>
-					</label>
-				</div>
-			<# } #>
+							</select>
+							<# if ( '' !== data.weight_title ) { #>
+								<p class="description">{{ data.weight_title }}</p>
+							<# } #>
+						</label>
+					</div>
+				<# } #>
 
-			<# if ( 'undefined' !== typeof ( data.transform ) ) { #>
-				<div class="generatepress-font-transform">
-					<label>
-						<select {{{ data.transform.link }}}>
+				<# if ( 'undefined' !== typeof ( data.transform ) ) { #>
+					<div class="generatepress-font-transform">
+						<label>
+							<select {{{ data.transform.link }}}>
 
-							<# _.each( data.transform.choices, function( label, choice ) { #>
+								<# _.each( data.transform.choices, function( label, choice ) { #>
 
-								<option value="{{ choice }}" <# if ( choice === data.transform.value ) { #> selected="selected" <# } #>>{{ label }}</option>
+									<option value="{{ choice }}" <# if ( choice === data.transform.value ) { #> selected="selected" <# } #>>{{ label }}</option>
 
-							<# } ) #>
+								<# } ) #>
 
-						</select>
-						<# if ( '' !== data.transform_title ) { #>
-							<p class="description">{{ data.transform_title }}</p>
-						<# } #>
-					</label>
-				</div>
-			<# } #>
+							</select>
+							<# if ( '' !== data.transform_title ) { #>
+								<p class="description">{{ data.transform_title }}</p>
+							<# } #>
+						</label>
+					</div>
+				<# } #>
+			</div>
 			<?php
 		}
 

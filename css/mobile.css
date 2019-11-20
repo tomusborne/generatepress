@@ -44,6 +44,10 @@ button.menu-toggle:focus {
 	padding-left: 3px;
 }
 
+.menu-toggle .gp-icon + .mobile-menu {
+    padding-left: 9px;
+}
+
 .menu-toggle .mobile-menu:empty {
 	display: none;
 }

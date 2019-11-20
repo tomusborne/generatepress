@@ -24,6 +24,7 @@ if ( ! function_exists( 'generate_post_image' ) ) {
 		if ( ! is_singular() && ! is_404() ) {
 			echo apply_filters( 'generate_featured_image_output', sprintf( // WPCS: XSS ok.
 				'<div class="post-image">
+					%3$s
 					<a href="%1$s">
 						%2$s
 					</a>
@@ -35,7 +36,8 @@ if ( ! function_exists( 'generate_post_image' ) ) {
 					array(
 						'itemprop' => 'image',
 					)
-				)
+				),
+				apply_filters( 'generate_inside_featured_image_output', '' )
 			) );
 		}
 	}
@@ -65,7 +67,6 @@ if ( ! function_exists( 'generate_featured_page_header_area' ) ) {
 				apply_filters( 'generate_page_header_default_size', 'full' ),
 				array(
 					'itemprop' => 'image',
-					'alt' => the_title_attribute( 'echo=0' ),
 				)
 			); ?>
 		</div>

@@ -114,7 +114,8 @@ if ( ! function_exists( 'generate_woocommerce_css' ) ) {
 			return;
 		}
 
-		$mobile = apply_filters( 'generate_mobile_media_query', '(max-width:768px)' );
+		$mobile = generate_get_media_query( 'mobile' );
+
 		$css = '.woocommerce .page-header-image-single {
 			display: none;
 		}

@@ -40,8 +40,21 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 					do_action( 'generate_inside_mobile_menu' );
 
 					generate_do_svg_icon( 'menu-bars', true );
+
+					$mobile_menu_label = apply_filters( 'generate_mobile_menu_label', __( 'Menu', 'generatepress' ) );
+
+					if ( $mobile_menu_label ) {
+						printf(
+							'<span class="mobile-menu">%s</span>',
+							$mobile_menu_label
+						);
+					} else {
+						printf(
+							'<span class="screen-reader-text">%s</span>',
+							__( 'Menu', 'generatepress' )
+						);
+					}
 					?>
-					<span class="mobile-menu"><?php echo apply_filters( 'generate_mobile_menu_label', __( 'Menu', 'generatepress' ) ); // WPCS: XSS ok. ?></span>
 				</button>
 				<?php
 				wp_nav_menu(
@@ -95,9 +108,12 @@ if ( ! function_exists( 'generate_menu_fallback' ) ) {
 
 				wp_list_pages( $args );
 
-				if ( 'enable' == $generate_settings['nav_search'] ) {
-					$icon = generate_get_svg_icon( 'search', true );
-					echo '<li class="search-item" title="' . esc_attr_x( 'Search', 'submit button', 'generatepress' ) . '"><a href="#">' . $icon . '<span class="screen-reader-text">' . esc_html_x( 'Search', 'submit button', 'generatepress' ) . '</span></a></li>';
+				if ( 'enable' === $generate_settings['nav_search'] ) {
+					printf(
+						'<li class="search-item"><a aria-label="%1$s" href="#">%2$s</a></li>',
+						esc_attr__( 'Open Search Bar', 'generatepress' ),
+						generate_get_svg_icon( 'search', true )
+					);
 				}
 				?>
 			</ul>
@@ -301,9 +317,13 @@ if ( ! function_exists( 'generate_menu_search_icon' ) ) {
 		}
 
 		// If our primary menu is set, add the search icon.
-		if ( $args->theme_location == 'primary' ) {
-			$icon = generate_get_svg_icon( 'search', true );
-			return $nav . '<li class="search-item" title="' . esc_attr_x( 'Search', 'submit button', 'generatepress' ) . '"><a href="#">' . $icon . '<span class="screen-reader-text">' . _x( 'Search', 'submit button', 'generatepress' ) . '</span></a></li>';
+		if ( isset( $args->theme_location ) && 'primary' === $args->theme_location ) {
+			return sprintf(
+				'%1$s<li class="search-item"><a aria-label="%2$s" href="#">%3$s</a></li>',
+				$nav,
+				esc_attr__( 'Open Search Bar', 'generatepress' ),
+				generate_get_svg_icon( 'search', true )
+			);
 		}
 
 		// Our primary menu isn't set, return the regular nav.
@@ -333,10 +353,9 @@ if ( ! function_exists( 'generate_mobile_menu_search_icon' ) ) {
 		?>
 		<div class="mobile-bar-items">
 			<?php do_action( 'generate_inside_mobile_menu_bar' ); ?>
-			<span class="search-item" title="<?php echo esc_attr_x( 'Search', 'submit button', 'generatepress' ); ?>">
-				<a href="#">
+			<span class="search-item">
+				<a aria-label="<?php _e( 'Open Search Bar', 'generatepress' ); ?>" href="#">
 					<?php generate_do_svg_icon( 'search', true ); ?>
-					<span class="screen-reader-text"><?php echo esc_attr_x( 'Search', 'submit button', 'generatepress' ); ?></span>
 				</a>
 			</span>
 		</div><!-- .mobile-bar-items -->
