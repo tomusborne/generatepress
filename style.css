@@ -1672,7 +1672,8 @@ ol.comment-list {
 .separate-containers .page-header,
 .separate-containers .paging-navigation,
 .one-container .site-content,
-.inside-page-header {
+.inside-page-header,
+.wp-block-group__inner-container {
 	padding: 40px;
 }
 
