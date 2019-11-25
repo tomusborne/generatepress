@@ -95,6 +95,13 @@ MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
 
 == Changelog ==
 
+= 2.4.1 =
+
+Release date: November 25, 2019
+
+* Tweak: Use mobile content padding in Group block on mobile
+* Fix: Captions in the block editor
+
 = 2.4.0 =
 
 Release date: November 20, 2019
