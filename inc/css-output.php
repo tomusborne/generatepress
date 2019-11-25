@@ -613,7 +613,7 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->add_property( 'padding', generate_padding_css( $spacing_settings['footer_top'], $spacing_settings['footer_right'], $spacing_settings['footer_bottom'], $spacing_settings['footer_left'] ), generate_padding_css( $og_defaults['footer_top'], $og_defaults['footer_right'], $og_defaults['footer_bottom'], $og_defaults['footer_left'] ) );
 
 		$css->start_media_query( generate_get_media_query( 'mobile' ) );
-			$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header' );
+			$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header, .wp-block-group__inner-container' );
 			$css->add_property( 'padding', generate_padding_css( $spacing_settings['mobile_content_top'], $spacing_settings['mobile_content_right'], $spacing_settings['mobile_content_bottom'], $spacing_settings['mobile_content_left'] ) );
 
 			$mobile_content_padding = absint( $spacing_settings['mobile_content_right'] ) + absint( $spacing_settings['mobile_content_left'] );
