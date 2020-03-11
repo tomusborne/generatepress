@@ -107,12 +107,16 @@
 							e.preventDefault();
 						}
 
-						// Close other sub-menus
-						var openedSubMenus = this.closest( 'nav' ).querySelectorAll( 'ul.toggled-on' );
-						if ( openedSubMenus && ! this.closest( 'ul' ).classList.contains( 'toggled-on' ) && ! this.closest( 'li' ).classList.contains( 'sfHover' ) ) {
+						// Close other sub-menus.
+						var openedSubMenus = this.closest( 'nav' ).querySelectorAll( '.sfHover' );
+
+						if ( openedSubMenus ) {
 							for ( var o = 0; o < openedSubMenus.length; o++ ) {
-								openedSubMenus[o].classList.remove( 'toggled-on' );
-								openedSubMenus[o].closest( 'li' ).classList.remove( 'sfHover' );
+								var hasParentOpen = this.closest( '.sfHover' );
+
+								if ( ! hasParentOpen ) {
+									openedSubMenus[o].classList.remove( 'sfHover' );
+								}
 							}
 						}
 
