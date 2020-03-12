@@ -168,6 +168,14 @@ nav.toggled ul ul.sub-menu {
 		padding: 5px 0;
 	}
 
+	.footer-bar .widget_nav_menu li:first-child {
+        margin-left: 10px;
+    }
+
+    .footer-bar .widget_nav_menu li:last-child {
+        margin-right: 10px;
+    }
+
 	/*--------------------------------------------------------------
 	## Header
 	--------------------------------------------------------------*/
