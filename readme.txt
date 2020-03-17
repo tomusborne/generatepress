@@ -5,8 +5,8 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options
 Requires at least: 4.5
-Tested up to: 5.3
-Stable tag: 2.4.1
+Tested up to: 5.4
+Stable tag: 2.4.2
 
 GeneratePress is a lightweight WordPress theme built with a focus on speed and usability.
 
@@ -94,6 +94,13 @@ By Brian Grinstead, http://briangrinstead.com
 MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
 
 == Changelog ==
+
+= 2.4.2 =
+
+Release date: March 17, 2020
+
+* Fix: Block editor classes changed in WordPress 5.4
+* Fix: More specific heading selectors in block editor
 
 = 2.4.1 =
 

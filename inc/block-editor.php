@@ -181,10 +181,10 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'max-width', $content_width_calc );
 	}
 
-	$css->set_selector( 'html body.gutenberg-editor-page .editor-block-list__block[data-align="full"]' );
+	$css->set_selector( 'html body.gutenberg-editor-page .block-editor-block-list__block[data-align="full"]' );
 	$css->add_property( 'max-width', 'none' );
 
-	$css->set_selector( '.edit-post-visual-editor .editor-block-list__block[data-align=wide]' );
+	$css->set_selector( '.edit-post-visual-editor .block-editor-block-list__block[data-align=wide]' );
 	$css->add_property( 'max-width', absint( $content_width ), false, 'px' );
 
 	if ( apply_filters( 'generate_do_group_inner_container_style', true ) ) {
@@ -212,7 +212,7 @@ function generate_do_inline_block_editor_css() {
 	$h6_family = generate_get_font_family_css( 'font_heading_6', 'generate_settings', generate_get_default_fonts() );
 	$buttons_family = generate_get_font_family_css( 'font_buttons', 'generate_settings', generate_get_default_fonts() );
 
-	$css->set_selector( 'body.gutenberg-editor-page .editor-block-list__block, body .editor-styles-wrapper' );
+	$css->set_selector( 'body.gutenberg-editor-page .block-editor-block-list__block, body .editor-styles-wrapper' );
 	$css->add_property( 'font-family', $body_family );
 	$css->add_property( 'font-size', absint( $font_settings['body_font_size'] ), false, 'px' );
 
@@ -233,7 +233,7 @@ function generate_do_inline_block_editor_css() {
 	$css->set_selector( 'body .editor-styles-wrapper, body .editor-styles-wrapper p, body .editor-styles-wrapper .mce-content-body' );
 	$css->add_property( 'line-height', floatval( $font_settings['body_line_height'] ) );
 
-	$css->set_selector( '.editor-styles-wrapper h1, .wp-block-heading h1.editor-rich-text__tinymce, .editor-post-title__block .editor-post-title__input' );
+	$css->set_selector( 'body .editor-styles-wrapper h1, .wp-block-heading h1.editor-rich-text__tinymce, .editor-post-title__block .editor-post-title__input' );
 	$css->add_property( 'font-family', 'inherit' === $h1_family || '' === $h1_family ? $body_family : $h1_family );
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_1_weight'] ) );
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_1_transform'] ) );
@@ -253,7 +253,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', esc_attr( $color_settings['content_title_color'] ) );
 	}
 
-	$css->set_selector( '.editor-styles-wrapper h2, .wp-block-heading h2.editor-rich-text__tinymce' );
+	$css->set_selector( 'body .editor-styles-wrapper h2, .wp-block-heading h2.editor-rich-text__tinymce' );
 	$css->add_property( 'font-family', $h2_family );
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_2_weight'] ) );
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_2_transform'] ) );
@@ -268,7 +268,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', esc_attr( generate_get_option( 'text_color' ) ) );
 	}
 
-	$css->set_selector( '.editor-styles-wrapper h3, .wp-block-heading h3.editor-rich-text__tinymce' );
+	$css->set_selector( 'body .editor-styles-wrapper h3, .wp-block-heading h3.editor-rich-text__tinymce' );
 	$css->add_property( 'font-family', $h3_family );
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_3_weight'] ) );
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_3_transform'] ) );
@@ -283,7 +283,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', esc_attr( generate_get_option( 'text_color' ) ) );
 	}
 
-	$css->set_selector( '.editor-styles-wrapper h4, .wp-block-heading h4.editor-rich-text__tinymce' );
+	$css->set_selector( 'body .editor-styles-wrapper h4, .wp-block-heading h4.editor-rich-text__tinymce' );
 	$css->add_property( 'font-family', $h4_family );
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_4_weight'] ) );
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_4_transform'] ) );
@@ -306,7 +306,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', esc_attr( generate_get_option( 'text_color' ) ) );
 	}
 
-	$css->set_selector( '.editor-styles-wrapper h5, .wp-block-heading h5.editor-rich-text__tinymce' );
+	$css->set_selector( 'body .editor-styles-wrapper h5, .wp-block-heading h5.editor-rich-text__tinymce' );
 	$css->add_property( 'font-family', $h5_family );
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_5_weight'] ) );
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_5_transform'] ) );
@@ -329,7 +329,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', esc_attr( generate_get_option( 'text_color' ) ) );
 	}
 
-	$css->set_selector( '.editor-styles-wrapper h6, .wp-block-heading h6.editor-rich-text__tinymce' );
+	$css->set_selector( 'body .editor-styles-wrapper h6, .wp-block-heading h6.editor-rich-text__tinymce' );
 	$css->add_property( 'font-family', $h6_family );
 	$css->add_property( 'font-weight', esc_attr( $font_settings['heading_6_weight'] ) );
 	$css->add_property( 'text-transform', esc_attr( $font_settings['heading_6_transform'] ) );
@@ -352,7 +352,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', esc_attr( generate_get_option( 'text_color' ) ) );
 	}
 
-	$css->set_selector( '.editor-block-list__layout .wp-block-button .wp-block-button__link' );
+	$css->set_selector( '.block-editor-block-list__layout .wp-block-button .wp-block-button__link' );
 	$css->add_property( 'font-family', $buttons_family );
 	$css->add_property( 'font-weight', esc_attr( $font_settings['buttons_font_weight'] ) );
 	$css->add_property( 'text-transform', esc_attr( $font_settings['buttons_font_transform'] ) );
@@ -370,7 +370,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'background', 'linear-gradient(' . $content_background . ',' . $content_background . '), linear-gradient(' . $body_background . ',' . $body_background . ')' );
 	}
 
-	$css->set_selector( '.editor-block-list__block a, .editor-block-list__block a:visited' );
+	$css->set_selector( '.block-editor-block-list__block a, .block-editor-block-list__block a:visited' );
 
 	if ( $color_settings['content_link_color'] ) {
 		$css->add_property( 'color', esc_attr( $color_settings['content_link_color'] ) );
@@ -378,7 +378,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', esc_attr( generate_get_option( 'link_color' ) ) );
 	}
 
-	$css->set_selector( '.editor-block-list__block a:hover, .editor-block-list__block a:focus, .editor-block-list__block a:active' );
+	$css->set_selector( '.block-editor-block-list__block a:hover, .block-editor-block-list__block a:focus, .block-editor-block-list__block a:active' );
 
 	if ( $color_settings['content_link_hover_color'] ) {
 		$css->add_property( 'color', esc_attr( $color_settings['content_link_hover_color'] ) );
