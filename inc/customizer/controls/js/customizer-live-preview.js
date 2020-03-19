@@ -597,9 +597,9 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 			var newContainerWidth = Number( containerWidth ) + Number( contentLeft ) + Number( contentRight );
 
 			if ( jQuery( 'style#wide_container_width' ).length ) {
-				jQuery( 'style#wide_container_width' ).html( '#page{max-width:' + newContainerWidth + 'px;}' );
+				jQuery( 'style#wide_container_width' ).html( 'body:not(.full-width-content) #page{max-width:' + newContainerWidth + 'px;}' );
 			} else {
-				jQuery( 'head' ).append( '<style id="wide_container_width">#page{max-width:' + newContainerWidth + 'px;}</style>' );
+				jQuery( 'head' ).append( '<style id="wide_container_width">body:not(.full-width-content) #page{max-width:' + newContainerWidth + 'px;}</style>' );
 				setTimeout(function() {
 					jQuery( 'style#wide_container_width' ).not( ':last' ).remove();
 				}, 100);
