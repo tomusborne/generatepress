@@ -44,7 +44,7 @@ li#accordion-section-generatepress_upsell_section {
 	border: none;
 	background: none;
 	font: normal 20px/1 dashicons;
-	speak: none;
+	speak: never;
 	display: block;
 	padding: 0;
 	text-indent: 0;

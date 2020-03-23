@@ -1993,7 +1993,7 @@ ol.comment-list {
 	font-variant: normal;
 	text-rendering: auto;
 	line-height: 1;
-	speak: none;
+	speak: never;
 }
 
 .cat-links:before,
