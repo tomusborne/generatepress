@@ -88,9 +88,10 @@ jQuery( document ).ready( function( $ ) {
 } );
 
 jQuery( window ).load( function() {
-	var post_title_block = jQuery( '.editor-post-title__block' );
+	var post_title_block = jQuery( '.editor-post-title__block' ),
+		disable_title_option = jQuery( '#meta-generate-disable-headline' );
 
-	if ( post_title_block ) {
+	if ( post_title_block && disable_title_option.length > 0 ) {
 		post_title_block.append( '<button class="content-title-visibility disable-content-title" title="' + generate_block_editor.disable_content_title + '" aria-hidden="true"></button>' );
 		post_title_block.append( '<button class="content-title-visibility show-content-title" title="' + generate_block_editor.show_content_title + '" aria-hidden="true"></button>' );
 	}
