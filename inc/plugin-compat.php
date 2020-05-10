@@ -41,7 +41,7 @@ if ( ! function_exists( 'generate_woocommerce_start' ) ) {
 	 */
 	function generate_woocommerce_start() {
 		?>
-		<div id="primary" <?php generate_do_element_classes( 'content' );?>>
+		<div id="primary" <?php generate_do_element_classes( 'content' ); ?>>
 			<main id="main" <?php generate_do_element_classes( 'main' ); ?>>
 				<?php
 				/**
@@ -64,7 +64,7 @@ if ( ! function_exists( 'generate_woocommerce_start' ) ) {
 						do_action( 'generate_before_content' );
 						?>
 						<div class="entry-content" itemprop="text">
-	<?php
+		<?php
 	}
 }
 
@@ -98,7 +98,7 @@ if ( ! function_exists( 'generate_woocommerce_end' ) ) {
 				?>
 			</main><!-- #main -->
 		</div><!-- #primary -->
-	<?php
+		<?php
 	}
 }
 
@@ -242,7 +242,7 @@ if ( ! function_exists( 'generate_beaver_builder_css' ) ) {
 	 */
 	function generate_beaver_builder_css() {
 		// Check is Beaver Builder is active
-		// If we have the full-width-content class, we don't need to do anything else
+		// If we have the full-width-content class, we don't need to do anything else.
 		if ( in_array( 'fl-builder', get_body_class() ) && ! in_array( 'full-width-content', get_body_class() ) && ! in_array( 'contained-content', get_body_class() ) ) {
 			global $post;
 

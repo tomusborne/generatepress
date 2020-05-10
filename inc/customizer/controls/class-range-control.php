@@ -25,9 +25,22 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 		 */
 		public $type = 'generatepress-range-slider';
 
+		/**
+		 * The control description.
+		 *
+		 * @access public
+		 * @var string
+		 */
 		public $description = '';
 
+		/**
+		 * The control sub-description.
+		 *
+		 * @access public
+		 * @var string
+		 */
 		public $sub_description = '';
+
 		/**
 		 * Refresh the parameters passed to the JavaScript via JSON.
 		 *
@@ -36,7 +49,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 		public function to_json() {
 			parent::to_json();
 
-			$devices = array( 'desktop','tablet','mobile' );
+			$devices = array( 'desktop', 'tablet', 'mobile' );
 			foreach ( $devices as $device ) {
 				$this->json['choices'][ $device ]['min']  = ( isset( $this->choices[ $device ]['min'] ) ) ? $this->choices[ $device ]['min'] : '0';
 				$this->json['choices'][ $device ]['max']  = ( isset( $this->choices[ $device ]['max'] ) ) ? $this->choices[ $device ]['max'] : '100';
@@ -53,10 +66,10 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 				);
 			}
 
-			$this->json['desktop_label'] = __( 'Desktop','generatepress' );
-			$this->json['tablet_label'] = __( 'Tablet','generatepress' );
-			$this->json['mobile_label'] = __( 'Mobile','generatepress' );
-			$this->json['reset_label'] = __( 'Reset','generatepress' );
+			$this->json['desktop_label'] = __( 'Desktop', 'generatepress' );
+			$this->json['tablet_label'] = __( 'Tablet', 'generatepress' );
+			$this->json['mobile_label'] = __( 'Mobile', 'generatepress' );
+			$this->json['reset_label'] = __( 'Reset', 'generatepress' );
 
 			$this->json['description'] = $this->description;
 			$this->json['sub_description'] = $this->sub_description;
@@ -68,8 +81,24 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Range_S
 		 * @access public
 		 */
 		public function enqueue() {
-			wp_enqueue_script( 'generatepress-range-slider', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/js/slider-control.js', array( 'jquery', 'customize-base', 'jquery-ui-slider' ), false, true );
-			wp_enqueue_style( 'generatepress-range-slider-css', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/css/slider-customizer.css', null );
+			wp_enqueue_script(
+				'generatepress-range-slider',
+				trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/js/slider-control.js',
+				array(
+					'jquery',
+					'customize-base',
+					'jquery-ui-slider',
+				),
+				GENERATE_VERSION,
+				true
+			);
+
+			wp_enqueue_style(
+				'generatepress-range-slider-css',
+				trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/css/slider-customizer.css',
+				array(),
+				GENERATE_VERSION
+			);
 		}
 
 		/**

@@ -16,7 +16,8 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 	 * @since 0.1
 	 */
 	function generate_get_defaults() {
-		return apply_filters( 'generate_option_defaults',
+		return apply_filters(
+			'generate_option_defaults',
 			array(
 				'hide_title' => '',
 				'hide_tagline' => '',
@@ -69,7 +70,8 @@ if ( ! function_exists( 'generate_get_color_defaults' ) ) {
 	 * Set default options
 	 */
 	function generate_get_color_defaults() {
-		return apply_filters( 'generate_color_option_defaults',
+		return apply_filters(
+			'generate_color_option_defaults',
 			array(
 				'top_bar_background_color' => '#636363',
 				'top_bar_text_color' => '#ffffff',
@@ -161,8 +163,8 @@ if ( ! function_exists( 'generate_get_default_fonts' ) ) {
 			'body_font_weight' => 'normal',
 			'body_font_transform' => 'none',
 			'body_font_size' => '17',
-			'body_line_height' => '1.5', // no unit
-			'paragraph_margin' => '1.5', // em
+			'body_line_height' => '1.5', // no unit.
+			'paragraph_margin' => '1.5', // em.
 			'font_top_bar' => 'inherit',
 			'font_top_bar_category' => '',
 			'font_top_bar_variants' => '',
@@ -208,7 +210,7 @@ if ( ! function_exists( 'generate_get_default_fonts' ) ) {
 			'heading_1_weight' => '300',
 			'heading_1_transform' => 'none',
 			'heading_1_font_size' => '40',
-			'heading_1_line_height' => '1.2', // em
+			'heading_1_line_height' => '1.2', // em.
 			'heading_1_margin_bottom' => '20',
 			'mobile_heading_1_font_size' => '30',
 			'font_heading_2' => 'inherit',
@@ -217,7 +219,7 @@ if ( ! function_exists( 'generate_get_default_fonts' ) ) {
 			'heading_2_weight' => '300',
 			'heading_2_transform' => 'none',
 			'heading_2_font_size' => '30',
-			'heading_2_line_height' => '1.2', // em
+			'heading_2_line_height' => '1.2', // em.
 			'heading_2_margin_bottom' => '20',
 			'mobile_heading_2_font_size' => '25',
 			'font_heading_3' => 'inherit',
@@ -226,7 +228,7 @@ if ( ! function_exists( 'generate_get_default_fonts' ) ) {
 			'heading_3_weight' => 'normal',
 			'heading_3_transform' => 'none',
 			'heading_3_font_size' => '20',
-			'heading_3_line_height' => '1.2', // em
+			'heading_3_line_height' => '1.2', // em.
 			'heading_3_margin_bottom' => '20',
 			'font_heading_4' => 'inherit',
 			'font_heading_4_category' => '',
@@ -234,21 +236,21 @@ if ( ! function_exists( 'generate_get_default_fonts' ) ) {
 			'heading_4_weight' => 'normal',
 			'heading_4_transform' => 'none',
 			'heading_4_font_size' => '',
-			'heading_4_line_height' => '', // em
+			'heading_4_line_height' => '', // em.
 			'font_heading_5' => 'inherit',
 			'font_heading_5_category' => '',
 			'font_heading_5_variants' => '',
 			'heading_5_weight' => 'normal',
 			'heading_5_transform' => 'none',
 			'heading_5_font_size' => '',
-			'heading_5_line_height' => '', // em
+			'heading_5_line_height' => '', // em.
 			'font_heading_6' => 'inherit',
 			'font_heading_6_category' => '',
 			'font_heading_6_variants' => '',
 			'heading_6_weight' => 'normal',
 			'heading_6_transform' => 'none',
 			'heading_6_font_size' => '',
-			'heading_6_line_height' => '', // em
+			'heading_6_line_height' => '', // em.
 			'font_footer' => 'inherit',
 			'font_footer_category' => '',
 			'font_footer_variants' => '',

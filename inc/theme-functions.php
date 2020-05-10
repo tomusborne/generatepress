@@ -89,6 +89,7 @@ if ( ! function_exists( 'generate_get_footer_widgets' ) ) {
 if ( ! function_exists( 'generate_show_excerpt' ) ) {
 	/**
 	 * Figure out if we should show the blog excerpts or full posts
+	 *
 	 * @since 1.3.15
 	 */
 	function generate_show_excerpt() {
@@ -132,7 +133,7 @@ if ( ! function_exists( 'generate_get_premium_url' ) ) {
 	 * @since 1.3.42
 	 *
 	 * @param string $url URL to premium page.
-	 * @param bool $trailing_slash Whether we want to include a trailing slash.
+	 * @param bool   $trailing_slash Whether we want to include a trailing slash.
 	 * @return string The URL to generatepress.com.
 	 */
 	function generate_get_premium_url( $url = 'https://generatepress.com/premium', $trailing_slash = true ) {
@@ -140,10 +141,13 @@ if ( ! function_exists( 'generate_get_premium_url' ) ) {
 			$url = trailingslashit( $url );
 		}
 
-		$args = apply_filters( 'generate_premium_url_args', array(
-			'ref' => null,
-			'campaign' => null,
-		) );
+		$args = apply_filters(
+			'generate_premium_url_args',
+			array(
+				'ref' => null,
+				'campaign' => null,
+			)
+		);
 
 		if ( isset( $args['ref'] ) ) {
 			$url = add_query_arg( 'ref', absint( $args['ref'] ), $url );
@@ -197,7 +201,7 @@ if ( ! function_exists( 'generate_get_link_url' ) ) {
 	function generate_get_link_url() {
 		$has_url = get_url_in_content( get_the_content() );
 
-		return $has_url ? $has_url : apply_filters( 'the_permalink', get_permalink() );
+		return $has_url ? $has_url : apply_filters( 'the_permalink', get_permalink() ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 	}
 }
 
@@ -231,6 +235,9 @@ function generate_has_logo_site_branding() {
  * Create SVG icons.
  *
  * @since 2.3
+ *
+ * @param string $icon The icon to get.
+ * @param bool   $replace Whether we're replacing an icon on action (click).
  */
 function generate_get_svg_icon( $icon, $replace = false ) {
 	if ( 'svg' !== generate_get_option( 'icons' ) ) {
@@ -310,12 +317,11 @@ function generate_get_svg_icon( $icon, $replace = false ) {
  *
  * @since 2.3
  *
- * @param string $icon
- * @param bool $replace Whether to include the close icon to be shown using JS.
- * @return string
+ * @param string $icon The icon to print.
+ * @param bool   $replace Whether to include the close icon to be shown using JS.
  */
 function generate_do_svg_icon( $icon, $replace = false ) {
-	echo generate_get_svg_icon( $icon, $replace );
+	echo generate_get_svg_icon( $icon, $replace ); // phpcs:ignore
 }
 
 /**
@@ -323,7 +329,7 @@ function generate_do_svg_icon( $icon, $replace = false ) {
  *
  * @since 2.4
  *
- * @param string $name
+ * @param string $name Name of the media query.
  * @return string The full media query.
  */
 function generate_get_media_query( $name ) {
@@ -332,12 +338,15 @@ function generate_get_media_query( $name ) {
 	$mobile = apply_filters( 'generate_mobile_media_query', '(max-width:768px)' );
 	$mobile_menu = apply_filters( 'generate_mobile_menu_media_query', $mobile );
 
-	$queries = apply_filters( 'generate_media_queries', array(
-		'desktop' 		=> $desktop,
-		'tablet' 		=> $tablet,
-		'mobile' 		=> $mobile,
-		'mobile-menu' 	=> $mobile_menu,
-	) );
+	$queries = apply_filters(
+		'generate_media_queries',
+		array(
+			'desktop' => $desktop,
+			'tablet' => $tablet,
+			'mobile' => $mobile,
+			'mobile-menu' => $mobile_menu,
+		)
+	);
 
 	return $queries[ $name ];
 }

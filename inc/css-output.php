@@ -21,7 +21,7 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			generate_get_defaults()
 		);
 
-		$css = new GeneratePress_CSS;
+		$css = new GeneratePress_CSS();
 
 		$css->set_selector( 'body' );
 		$css->add_property( 'background-color', esc_attr( $generate_settings['background_color'] ) );
@@ -74,12 +74,12 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 				$css->set_selector( '.header-widget' );
 				$css->add_property( 'margin-top', '1.5em' );
 
-				if ( 'nav-float-left' === generate_get_option( 'nav_position_setting' ) ) {
+				if ( 'nav-float-left' === generate_get_option( 'nav_position_setting' ) ) { // phpcs:ignore Generic.WhiteSpace.ScopeIndent.IncorrectExact
 					$css->set_selector( '.nav-float-left .site-logo,.nav-float-left .site-branding,.nav-float-left .header-widget' );
 					$css->add_property( '-webkit-box-ordinal-group', 'initial' );
 					$css->add_property( '-ms-flex-order', 'initial' );
 					$css->add_property( 'order', 'initial' );
-				}
+				} // phpcs:ignore Generic.WhiteSpace.ScopeIndent.IncorrectExact
 			$css->stop_media_query();
 		}
 
@@ -324,7 +324,7 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 
 		$og_defaults = generate_get_default_fonts( false );
 
-		$css = new GeneratePress_CSS;
+		$css = new GeneratePress_CSS();
 
 		$subnav_font_size = $generate_settings['navigation_font_size'] >= 17 ? $generate_settings['navigation_font_size'] - 3 : $generate_settings['navigation_font_size'] - 1;
 
@@ -508,7 +508,7 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$og_defaults = generate_spacing_get_defaults( false );
 		$sidebar_layout = generate_get_layout();
 
-		$css = new GeneratePress_CSS;
+		$css = new GeneratePress_CSS();
 
 		$css->set_selector( '.inside-top-bar' );
 		$css->add_property( 'padding', generate_padding_css( $spacing_settings['top_bar_top'], $spacing_settings['top_bar_right'], $spacing_settings['top_bar_bottom'], $spacing_settings['top_bar_left'] ), generate_padding_css( $og_defaults['top_bar_top'], $og_defaults['top_bar_right'], $og_defaults['top_bar_bottom'], $og_defaults['top_bar_left'] ) );
@@ -671,7 +671,7 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
  * @since 2.0
  */
 function generate_no_cache_dynamic_css() {
-	$css = new GeneratePress_CSS;
+	$css = new GeneratePress_CSS();
 
 	if ( ! generate_show_title() ) {
 		$css->set_selector( '.page .entry-content' )->add_property( 'margin-top', '0px' );
@@ -732,7 +732,7 @@ function generate_set_dynamic_css_cache() {
 	$cached_css = get_option( 'generate_dynamic_css_output', false );
 	$cached_version = get_option( 'generate_dynamic_css_cached_version', '' );
 
-	if ( ! $cached_css || $cached_version !== GENERATE_VERSION ) {
+	if ( ! $cached_css || GENERATE_VERSION !== $cached_version ) {
 		$css = generate_base_css() . generate_font_css() . generate_advanced_css() . generate_spacing_css();
 
 		update_option( 'generate_dynamic_css_output', $css );

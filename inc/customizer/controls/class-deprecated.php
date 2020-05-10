@@ -12,9 +12,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Customize_Width_Slider_Control' ) ) {
 	/**
 	 * Create our container width slider control
+	 *
 	 * @deprecated 1.3.47
 	 */
 	class Generate_Customize_Width_Slider_Control extends WP_Customize_Control {
+		/**
+		 * Render content.
+		 */
 		public function render_content() {}
 	}
 }
@@ -22,10 +26,14 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Customi
 if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'GenerateLabelControl' ) ) {
 	/**
 	 * Heading area
+	 *
 	 * @since 0.1
 	 * @depreceted 1.3.41
 	 **/
-	class GenerateLabelControl extends WP_Customize_Control {
+	class GenerateLabelControl extends WP_Customize_Control { // phpcs:ignore
+		/**
+		 * Render content.
+		 */
 		public function render_content() {}
 	}
 }
@@ -34,14 +42,25 @@ if ( ! class_exists( 'Generate_Google_Font_Dropdown_Custom_Control' ) ) {
 	/**
 	 * A class to create a dropdown for all google fonts
 	 */
-	class Generate_Google_Font_Dropdown_Custom_Control extends WP_Customize_Control {
+	class Generate_Google_Font_Dropdown_Custom_Control extends WP_Customize_Control { // phpcs:ignore
+		/**
+		 * Set type.
+		 *
+		 * @var $type
+		 */
 		public $type = 'gp-customizer-fonts';
 
+		/**
+		 * Enqueue scripts.
+		 */
 		public function enqueue() {
 			wp_enqueue_script( 'generatepress-customizer-fonts', trailingslashit( get_template_directory_uri() ) . 'inc/js/typography-controls.js', array( 'customize-controls' ), GENERATE_VERSION, true );
 			wp_localize_script( 'generatepress-customizer-fonts', 'gp_customize', array( 'nonce' => wp_create_nonce( 'gp_customize_nonce' ) ) );
 		}
 
+		/**
+		 * Send variables to json.
+		 */
 		public function to_json() {
 			parent::to_json();
 
@@ -50,11 +69,14 @@ if ( ! class_exists( 'Generate_Google_Font_Dropdown_Custom_Control' ) ) {
 			$this->json['value'] = $this->value();
 			$this->json['default_fonts_title'] = __( 'Default fonts', 'generatepress' );
 			$this->json['google_fonts_title'] = __( 'Google fonts', 'generatepress' );
-			$this->json['description'] = __( 'Font family','generatepress' );
+			$this->json['description'] = __( 'Font family', 'generatepress' );
 			$this->json['google_fonts'] = apply_filters( 'generate_typography_customize_list', generate_get_all_google_fonts( $number_of_fonts ) );
 			$this->json['default_fonts'] = generate_typography_default_fonts();
 		}
 
+		/**
+		 * Render content.
+		 */
 		public function content_template() {
 			?>
 			<label>
@@ -83,10 +105,24 @@ if ( ! class_exists( 'Generate_Select_Control' ) ) {
 	/**
 	 * A class to create a dropdown for font weight
 	 */
-	class Generate_Select_Control extends WP_Customize_Control {
+	class Generate_Select_Control extends WP_Customize_Control { // phpcs:ignore
+		/**
+		 * Set type.
+		 *
+		 * @var $type
+		 */
 		public $type = 'gp-typography-select';
+
+		/**
+		 * Set choices.
+		 *
+		 * @var $choices
+		 */
 		public $choices = array();
 
+		/**
+		 * Send variables to json.
+		 */
 		public function to_json() {
 			parent::to_json();
 
@@ -100,6 +136,9 @@ if ( ! class_exists( 'Generate_Select_Control' ) ) {
 
 		}
 
+		/**
+		 * Render content.
+		 */
 		public function content_template() {
 			?>
 			<# if ( ! data.choices )
@@ -122,13 +161,26 @@ if ( ! class_exists( 'Generate_Select_Control' ) ) {
 
 if ( ! class_exists( 'Generate_Hidden_Input_Control' ) ) {
 	/**
-	 *	Create our hidden input control
+	 * Create our hidden input control
 	 */
-	class Generate_Hidden_Input_Control extends WP_Customize_Control {
-		// Setup control type
+	class Generate_Hidden_Input_Control extends WP_Customize_Control { // phpcs:ignore
+		/**
+		 * Set type.
+		 *
+		 * @var $type
+		 */
 		public $type = 'gp-hidden-input';
+
+		/**
+		 * Set ID
+		 *
+		 * @var $id
+		 */
 		public $id = '';
 
+		/**
+		 * Send variables to json.
+		 */
 		public function to_json() {
 			parent::to_json();
 			$this->json['link'] = $this->get_link();
@@ -136,6 +188,9 @@ if ( ! class_exists( 'Generate_Hidden_Input_Control' ) ) {
 			$this->json['id'] = $this->id;
 		}
 
+		/**
+		 * Render content.
+		 */
 		public function content_template() {
 			?>
 			<input name="{{ data.id }}" type="text" {{{ data.link }}} value="{{{ data.value }}}" class="gp-hidden-input" />
@@ -147,84 +202,102 @@ if ( ! class_exists( 'Generate_Hidden_Input_Control' ) ) {
 if ( ! class_exists( 'Generate_Font_Weight_Custom_Control' ) ) {
 	/**
 	 * A class to create a dropdown for font weight
+	 *
 	 * @deprecated since 1.3.40
 	 */
-	class Generate_Font_Weight_Custom_Control extends WP_Customize_Control {
-
-		public function __construct( $manager, $id, $args = array(), $options = array() ) {
-			parent::__construct( $manager, $id, $args );
-	    }
+	class Generate_Font_Weight_Custom_Control extends WP_Customize_Control { // phpcs:ignore
 
 		/**
-		 * Render the content of the category dropdown
+		 * Construct.
 		 *
-		 * @return HTML
+		 * @param object $manager The manager.
+		 * @param int    $id The ID.
+		 * @param array  $args The args.
+		 * @param array  $options The options.
 		 */
-		 public function render_content() {
-			 ?>
-			 <label>
-				 <select <?php $this->link(); ?>>
-					 <?php
-					 printf('<option value="%s" %s>%s</option>', 'normal', selected($this->value(), 'normal', false), 'normal');
-					 printf('<option value="%s" %s>%s</option>', 'bold', selected($this->value(), 'bold', false), 'bold');
-					 printf('<option value="%s" %s>%s</option>', '100', selected($this->value(), '100', false), '100');
-					 printf('<option value="%s" %s>%s</option>', '200', selected($this->value(), '200', false), '200');
-					 printf('<option value="%s" %s>%s</option>', '300', selected($this->value(), '300', false), '300');
-					 printf('<option value="%s" %s>%s</option>', '400', selected($this->value(), '400', false), '400');
-					 printf('<option value="%s" %s>%s</option>', '500', selected($this->value(), '500', false), '500');
-					 printf('<option value="%s" %s>%s</option>', '600', selected($this->value(), '600', false), '600');
-					 printf('<option value="%s" %s>%s</option>', '700', selected($this->value(), '700', false), '700');
-					 printf('<option value="%s" %s>%s</option>', '800', selected($this->value(), '800', false), '800');
-					 printf('<option value="%s" %s>%s</option>', '900', selected($this->value(), '900', false), '900');
-					 ?>
-				 </select>
-				 <p class="description"><?php echo esc_html( $this->label ); ?></p>
-			 </label>
-			 <?php
-		 }
-	 }
-}
-
-if ( ! class_exists( 'Generate_Text_Transform_Custom_Control' ) ) {
-	/**
-	 * A class to create a dropdown for text-transform
-	 * @deprecated since 1.3.40
-	 */
-	class Generate_Text_Transform_Custom_Control extends WP_Customize_Control {
-
 		public function __construct( $manager, $id, $args = array(), $options = array() ) {
 			parent::__construct( $manager, $id, $args );
 		}
 
 		/**
 		 * Render the content of the category dropdown
-		 *
-		 * @return HTML
 		 */
-		 public function render_content() {
-			 ?>
-			 <label>
-				 <select <?php $this->link(); ?>>
-					 <?php
-					 printf('<option value="%s" %s>%s</option>', 'none', selected($this->value(), 'none', false), 'none');
-					 printf('<option value="%s" %s>%s</option>', 'capitalize', selected($this->value(), 'capitalize', false), 'capitalize');
-					 printf('<option value="%s" %s>%s</option>', 'uppercase', selected($this->value(), 'uppercase', false), 'uppercase');
-					 printf('<option value="%s" %s>%s</option>', 'lowercase', selected($this->value(), 'lowercase', false), 'lowercase');
-					 ?>
-				 </select>
-				 <p class="description"><?php echo esc_html( $this->label ); ?></p>
-			 </label>
-			 <?php
-		 }
-	 }
+		public function render_content() {
+			?>
+			<label>
+				<select <?php $this->link(); ?>>
+					<?php
+					printf( '<option value="%s" %s>%s</option>', 'normal', selected( $this->value(), 'normal', false ), 'normal' );
+					printf( '<option value="%s" %s>%s</option>', 'bold', selected( $this->value(), 'bold', false ), 'bold' );
+					printf( '<option value="%s" %s>%s</option>', '100', selected( $this->value(), '100', false ), '100' );
+					printf( '<option value="%s" %s>%s</option>', '200', selected( $this->value(), '200', false ), '200' );
+					printf( '<option value="%s" %s>%s</option>', '300', selected( $this->value(), '300', false ), '300' );
+					printf( '<option value="%s" %s>%s</option>', '400', selected( $this->value(), '400', false ), '400' );
+					printf( '<option value="%s" %s>%s</option>', '500', selected( $this->value(), '500', false ), '500' );
+					printf( '<option value="%s" %s>%s</option>', '600', selected( $this->value(), '600', false ), '600' );
+					printf( '<option value="%s" %s>%s</option>', '700', selected( $this->value(), '700', false ), '700' );
+					printf( '<option value="%s" %s>%s</option>', '800', selected( $this->value(), '800', false ), '800' );
+					printf( '<option value="%s" %s>%s</option>', '900', selected( $this->value(), '900', false ), '900' );
+					?>
+				</select>
+				<p class="description"><?php echo esc_html( $this->label ); ?></p>
+			</label>
+			<?php
+		}
+	}
+}
+
+if ( ! class_exists( 'Generate_Text_Transform_Custom_Control' ) ) {
+	/**
+	 * A class to create a dropdown for text-transform
+	 *
+	 * @deprecated since 1.3.40
+	 */
+	class Generate_Text_Transform_Custom_Control extends WP_Customize_Control { // phpcs:ignore
+
+		/**
+		 * Construct.
+		 *
+		 * @param object $manager The manager.
+		 * @param int    $id The ID.
+		 * @param array  $args The args.
+		 * @param array  $options The options.
+		 */
+		public function __construct( $manager, $id, $args = array(), $options = array() ) {
+			parent::__construct( $manager, $id, $args );
+		}
+
+		/**
+		 * Render the content of the category dropdown
+		 */
+		public function render_content() {
+			?>
+			<label>
+				<select <?php $this->link(); ?>>
+					<?php
+					printf( '<option value="%s" %s>%s</option>', 'none', selected( $this->value(), 'none', false ), 'none' );
+					printf( '<option value="%s" %s>%s</option>', 'capitalize', selected( $this->value(), 'capitalize', false ), 'capitalize' );
+					printf( '<option value="%s" %s>%s</option>', 'uppercase', selected( $this->value(), 'uppercase', false ), 'uppercase' );
+					printf( '<option value="%s" %s>%s</option>', 'lowercase', selected( $this->value(), 'lowercase', false ), 'lowercase' );
+					?>
+				</select>
+				<p class="description"><?php echo esc_html( $this->label ); ?></p>
+			</label>
+			<?php
+		}
+	}
 }
 
 if ( ! class_exists( 'Generate_Customize_Slider_Control' ) ) {
 	/**
 	 * Create our container width slider control
+	 *
 	 * @deprecated 1.3.47
 	 */
-	class Generate_Customize_Slider_Control extends WP_Customize_Control {
+	class Generate_Customize_Slider_Control extends WP_Customize_Control { // phpcs:ignore
+		/**
+		 * Render content.
+		 */
 		public function render_content() {}
 	}
 }

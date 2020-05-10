@@ -22,23 +22,26 @@ if ( ! function_exists( 'generate_post_image' ) ) {
 
 		// If we're not on any single post/page or the 404 template, we must be showing excerpts.
 		if ( ! is_singular() && ! is_404() ) {
-			echo apply_filters( 'generate_featured_image_output', sprintf( // WPCS: XSS ok.
-				'<div class="post-image">
-					%3$s
-					<a href="%1$s">
-						%2$s
-					</a>
-				</div>',
-				esc_url( get_permalink() ),
-				get_the_post_thumbnail(
-					get_the_ID(),
-					apply_filters( 'generate_page_header_default_size', 'full' ),
-					array(
-						'itemprop' => 'image',
-					)
-				),
-				apply_filters( 'generate_inside_featured_image_output', '' )
-			) );
+			echo apply_filters( // phpcs:ignore
+				'generate_featured_image_output',
+				sprintf(
+					'<div class="post-image">
+						%3$s
+						<a href="%1$s">
+							%2$s
+						</a>
+					</div>',
+					esc_url( get_permalink() ),
+					get_the_post_thumbnail(
+						get_the_ID(),
+						apply_filters( 'generate_page_header_default_size', 'full' ),
+						array(
+							'itemprop' => 'image',
+						)
+					),
+					apply_filters( 'generate_inside_featured_image_output', '' )
+				)
+			);
 		}
 	}
 }
@@ -49,7 +52,7 @@ if ( ! function_exists( 'generate_featured_page_header_area' ) ) {
 	 *
 	 * @since 1.0.7
 	 *
-	 * @param string The featured image container class
+	 * @param string $class The featured image container class.
 	 */
 	function generate_featured_page_header_area( $class ) {
 		// Don't run the function unless we're on a page it applies to.
@@ -63,12 +66,14 @@ if ( ! function_exists( 'generate_featured_page_header_area' ) ) {
 		}
 		?>
 		<div class="<?php echo esc_attr( $class ); ?> grid-container grid-parent">
-			<?php the_post_thumbnail(
-				apply_filters( 'generate_page_header_default_size', 'full' ),
-				array(
-					'itemprop' => 'image',
-				)
-			); ?>
+			<?php
+				the_post_thumbnail(
+					apply_filters( 'generate_page_header_default_size', 'full' ),
+					array(
+						'itemprop' => 'image',
+					)
+				);
+			?>
 		</div>
 		<?php
 	}

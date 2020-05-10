@@ -22,7 +22,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 */
 		do_action( 'generate_before_content' );
 
-		if ( generate_show_title() ) : ?>
+		if ( generate_show_title() ) :
+			?>
 
 			<header class="entry-header">
 				<?php
@@ -44,7 +45,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 				?>
 			</header><!-- .entry-header -->
 
-		<?php endif;
+			<?php
+		endif;
 
 		/**
 		 * generate_after_entry_header hook.
@@ -60,10 +62,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php
 			the_content();
 
-			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'generatepress' ),
-				'after'  => '</div>',
-			) );
+			wp_link_pages(
+				array(
+					'before' => '<div class="page-links">' . __( 'Pages:', 'generatepress' ),
+					'after'  => '</div>',
+				)
+			);
 			?>
 		</div><!-- .entry-content -->
 

@@ -54,7 +54,8 @@ if ( ! function_exists( 'generate_header_items' ) ) {
 	 * @since 1.2.9.7
 	 */
 	function generate_header_items() {
-		$order = apply_filters( 'generate_header_items_order',
+		$order = apply_filters(
+			'generate_header_items_order',
 			array(
 				'header-widget',
 				'site-branding',
@@ -103,12 +104,15 @@ if ( ! function_exists( 'generate_construct_logo' ) ) {
 		 */
 		do_action( 'generate_before_logo' );
 
-		$attr = apply_filters( 'generate_logo_attributes', array(
-			'class' => 'header-image',
-			'alt'	=> esc_attr( apply_filters( 'generate_logo_title', get_bloginfo( 'name', 'display' ) ) ),
-			'src'	=> $logo_url,
-			'title'	=> esc_attr( apply_filters( 'generate_logo_title', get_bloginfo( 'name', 'display' ) ) ),
-		) );
+		$attr = apply_filters(
+			'generate_logo_attributes',
+			array(
+				'class' => 'header-image',
+				'alt'   => esc_attr( apply_filters( 'generate_logo_title', get_bloginfo( 'name', 'display' ) ) ),
+				'src'   => $logo_url,
+				'title' => esc_attr( apply_filters( 'generate_logo_title', get_bloginfo( 'name', 'display' ) ) ),
+			)
+		);
 
 		if ( '' !== $retina_logo_url ) {
 			$attr['srcset'] = $logo_url . ' 1x, ' . $retina_logo_url . ' 2x';
@@ -132,16 +136,21 @@ if ( ! function_exists( 'generate_construct_logo' ) ) {
 		}
 
 		// Print our HTML.
-		echo apply_filters( 'generate_logo_output', sprintf( // WPCS: XSS ok, sanitization ok.
-			'<div class="site-logo">
-				<a href="%1$s" title="%2$s" rel="home">
-					<img %3$s />
-				</a>
-			</div>',
-			esc_url( apply_filters( 'generate_logo_href' , home_url( '/' ) ) ),
-			esc_attr( apply_filters( 'generate_logo_title', get_bloginfo( 'name', 'display' ) ) ),
+		echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			'generate_logo_output',
+			sprintf(
+				'<div class="site-logo">
+					<a href="%1$s" title="%2$s" rel="home">
+						<img %3$s />
+					</a>
+				</div>',
+				esc_url( apply_filters( 'generate_logo_href', home_url( '/' ) ) ),
+				esc_attr( apply_filters( 'generate_logo_title', get_bloginfo( 'name', 'display' ) ) ),
+				$html_attr
+			),
+			$logo_url,
 			$html_attr
-		), $logo_url, $html_attr );
+		);
 
 		/**
 		 * generate_after_logo hook.
@@ -169,46 +178,55 @@ if ( ! function_exists( 'generate_construct_site_title' ) ) {
 		$tagline = get_bloginfo( 'description' );
 
 		// If the disable title checkbox is checked, or the title field is empty, return true.
-		$disable_title = ( '1' == $generate_settings['hide_title'] || '' == $title ) ? true : false;
+		$disable_title = ( '1' == $generate_settings['hide_title'] || '' == $title ) ? true : false; // phpcs:ignore
 
 		// If the disable tagline checkbox is checked, or the tagline field is empty, return true.
-		$disable_tagline = ( '1' == $generate_settings['hide_tagline'] || '' == $tagline ) ? true : false;
+		$disable_tagline = ( '1' == $generate_settings['hide_tagline'] || '' == $tagline ) ? true : false;  // phpcs:ignore
 
 		// Build our site title.
-		$site_title = apply_filters( 'generate_site_title_output', sprintf(
-			'<%1$s class="main-title" itemprop="headline">
-				<a href="%2$s" rel="home">
-					%3$s
-				</a>
-			</%1$s>',
-			( is_front_page() && is_home() ) ? 'h1' : 'p',
-			esc_url( apply_filters( 'generate_site_title_href', home_url( '/' ) ) ),
-			get_bloginfo( 'name' )
-		) );
+		$site_title = apply_filters(
+			'generate_site_title_output',
+			sprintf(
+				'<%1$s class="main-title" itemprop="headline">
+					<a href="%2$s" rel="home">
+						%3$s
+					</a>
+				</%1$s>',
+				( is_front_page() && is_home() ) ? 'h1' : 'p',
+				esc_url( apply_filters( 'generate_site_title_href', home_url( '/' ) ) ),
+				get_bloginfo( 'name' )
+			)
+		);
 
 		// Build our tagline.
-		$site_tagline = apply_filters( 'generate_site_description_output', sprintf(
-			'<p class="site-description" itemprop="description">
-				%1$s
-			</p>',
-			html_entity_decode( get_bloginfo( 'description', 'display' ) )
-		) );
+		$site_tagline = apply_filters(
+			'generate_site_description_output',
+			sprintf(
+				'<p class="site-description" itemprop="description">
+					%1$s
+				</p>',
+				html_entity_decode( get_bloginfo( 'description', 'display' ) ) // phpcs:ignore
+			)
+		);
 
 		// Site title and tagline.
-		if ( false == $disable_title || false == $disable_tagline ) {
+		if ( false === $disable_title || false === $disable_tagline ) {
 			if ( generate_get_option( 'inline_logo_site_branding' ) && generate_has_logo_site_branding() ) {
 				echo '<div class="site-branding-container">';
 				generate_construct_logo();
 			}
 
-			echo apply_filters( 'generate_site_branding_output', sprintf( // WPCS: XSS ok, sanitization ok.
-				'<div class="site-branding">
-					%1$s
-					%2$s
-				</div>',
-				( ! $disable_title ) ? $site_title : '',
-				( ! $disable_tagline ) ? $site_tagline : ''
-			) );
+			echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				'generate_site_branding_output',
+				sprintf(
+					'<div class="site-branding">
+						%1$s
+						%2$s
+					</div>',
+					( ! $disable_title ) ? $site_title : '',
+					( ! $disable_tagline ) ? $site_tagline : ''
+				)
+			);
 
 			if ( generate_get_option( 'inline_logo_site_branding' ) && generate_has_logo_site_branding() ) {
 				echo '</div><!-- .site-branding-container -->';
@@ -222,6 +240,7 @@ add_filter( 'generate_header_items_order', 'generate_reorder_inline_site_brandin
  * Remove the logo from it's usual position.
  *
  * @since 2.3
+ * @param array $order Order of the header items.
  */
 function generate_reorder_inline_site_branding( $order ) {
 	if ( ! generate_get_option( 'inline_logo_site_branding' ) || ! generate_has_logo_site_branding() ) {
@@ -241,11 +260,13 @@ if ( ! function_exists( 'generate_construct_header_widget' ) ) {
 	 * @since 1.3.28
 	 */
 	function generate_construct_header_widget() {
-		if ( is_active_sidebar( 'header' ) ) : ?>
+		if ( is_active_sidebar( 'header' ) ) :
+			?>
 			<div class="header-widget">
 				<?php dynamic_sidebar( 'header' ); ?>
 			</div>
-		<?php endif;
+			<?php
+		endif;
 	}
 }
 
@@ -260,9 +281,11 @@ if ( ! function_exists( 'generate_top_bar' ) ) {
 		if ( ! is_active_sidebar( 'top-bar' ) ) {
 			return;
 		}
+
+		$inside_top_bar_class = 'contained' === generate_get_option( 'top_bar_inner_width' ) ? ' grid-container grid-parent' : '';
 		?>
 		<div <?php generate_do_element_classes( 'top_bar' ); ?>>
-			<div class="inside-top-bar<?php if ( 'contained' == generate_get_option( 'top_bar_inner_width' ) ) echo ' grid-container grid-parent'; ?>">
+			<div class="inside-top-bar<?php echo $inside_top_bar_class; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
 				<?php dynamic_sidebar( 'top-bar' ); ?>
 			</div>
 		</div>
@@ -292,7 +315,7 @@ if ( ! function_exists( 'generate_add_viewport' ) ) {
 	 * @since 1.1.0
 	 */
 	function generate_add_viewport() {
-		echo apply_filters( 'generate_meta_viewport', '<meta name="viewport" content="width=device-width, initial-scale=1">' ); // WPCS: XSS ok.
+		echo apply_filters( 'generate_meta_viewport', '<meta name="viewport" content="width=device-width, initial-scale=1">' );  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 }
 
@@ -303,7 +326,8 @@ add_action( 'generate_before_header', 'generate_do_skip_to_content_link', 2 );
  * @since 2.0
  */
 function generate_do_skip_to_content_link() {
-	printf( '<a class="screen-reader-text skip-link" href="#content" title="%1$s">%2$s</a>',
+	printf(
+		'<a class="screen-reader-text skip-link" href="#content" title="%1$s">%2$s</a>',
 		esc_attr__( 'Skip to content', 'generatepress' ),
 		esc_html__( 'Skip to content', 'generatepress' )
 	);

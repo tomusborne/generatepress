@@ -21,12 +21,13 @@ get_header(); ?>
 			 */
 			do_action( 'generate_before_main_content' );
 
-			if ( have_posts() ) : ?>
+			if ( have_posts() ) :
+				?>
 
 				<header class="page-header">
 					<h1 class="page-title">
 						<?php
-						printf( // WPCS: XSS ok.
+						printf(
 							/* translators: 1: Search query name */
 							__( 'Search Results for: %s', 'generatepress' ),
 							'<span>' . get_search_query() . '</span>'
@@ -35,7 +36,10 @@ get_header(); ?>
 					</h1>
 				</header><!-- .page-header -->
 
-				<?php while ( have_posts() ) : the_post();
+				<?php
+				while ( have_posts() ) :
+
+					the_post();
 
 					get_template_part( 'content', 'search' );
 
@@ -76,4 +80,4 @@ get_header(); ?>
 
 	generate_construct_sidebars();
 
-get_footer();
+	get_footer();

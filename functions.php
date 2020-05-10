@@ -36,17 +36,22 @@ if ( ! function_exists( 'generate_setup' ) ) {
 		add_theme_support( 'align-wide' );
 		add_theme_support( 'responsive-embeds' );
 
-		add_theme_support( 'custom-logo', array(
-			'height' => 70,
-			'width' => 350,
-			'flex-height' => true,
-			'flex-width' => true,
-		) );
+		add_theme_support(
+			'custom-logo',
+			array(
+				'height' => 70,
+				'width' => 350,
+				'flex-height' => true,
+				'flex-width' => true,
+			)
+		);
 
 		// Register primary menu.
-		register_nav_menus( array(
-			'primary' => __( 'Primary Menu', 'generatepress' ),
-		) );
+		register_nav_menus(
+			array(
+				'primary' => __( 'Primary Menu', 'generatepress' ),
+			)
+		);
 
 		/**
 		 * Set the content width to something large

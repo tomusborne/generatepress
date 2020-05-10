@@ -39,7 +39,7 @@ if ( ! function_exists( 'generate_construct_sidebars' ) ) {
 	 * The below hook was removed in 2.0, but we'll keep the call here so child themes
 	 * don't lose their sidebar when they update the theme.
 	 */
-	 add_action( 'generate_sidebars', 'generate_construct_sidebars' );
+	add_action( 'generate_sidebars', 'generate_construct_sidebars' );
 }
 
 /**
@@ -50,7 +50,7 @@ if ( ! function_exists( 'generate_construct_sidebars' ) ) {
  * @param string $area Left or right sidebar.
  */
 function generate_do_default_sidebar_widgets( $area ) {
-	if ( 'nav-' . $area === generate_get_navigation_location() ) {
+	if ( 'nav-' . $area === generate_get_navigation_location() ) { // phpcs:ignore
 		return;
 	}
 

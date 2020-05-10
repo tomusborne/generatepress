@@ -14,11 +14,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 2.2
  *
- * @param string $context The element we're targeting.
+ * @param string       $context The element we're targeting.
  * @param string|array $class One or more classes to add to the class list.
  */
 function generate_do_element_classes( $context, $class = '' ) {
-	echo 'class="' . join( ' ', generate_get_element_classes( $context, $class ) ) . '"'; // WPCS: XSS ok, sanitization ok.
+	echo 'class="' . join( ' ', generate_get_element_classes( $context, $class ) ) . '"'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 
 /**
@@ -26,7 +26,7 @@ function generate_do_element_classes( $context, $class = '' ) {
  *
  * @since 2.2
  *
- * @param string $context The element we're targeting.
+ * @param string       $context The element we're targeting.
  * @param string|array $class One or more classes to add to the class list.
  * @return array Array of classes.
  */
@@ -127,28 +127,29 @@ function generate_get_microdata( $context ) {
  *
  * @since 2.2
  *
- * @param $context The element to target.
- * @return string The microdata.
+ * @param string $context The element to target.
  */
 function generate_do_microdata( $context ) {
-	echo generate_get_microdata( $context ); // WPCS: XSS ok, sanitization ok.
+	echo generate_get_microdata( $context ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 
 if ( ! function_exists( 'generate_body_classes' ) ) {
 	add_filter( 'body_class', 'generate_body_classes' );
 	/**
 	 * Adds custom classes to the array of body classes.
+	 *
+	 * @param array $classes The existing classes.
 	 * @since 0.1
 	 */
 	function generate_body_classes( $classes ) {
-		$sidebar_layout 		= generate_get_layout();
-		$navigation_location 	= generate_get_navigation_location();
-		$navigation_alignment	= generate_get_option( 'nav_alignment_setting' );
-		$navigation_dropdown	= generate_get_option( 'nav_dropdown_type' );
-		$header_layout 			= generate_get_option( 'header_layout_setting' );
-		$header_alignment		= generate_get_option( 'header_alignment_setting' );
-		$content_layout 		= generate_get_option( 'content_layout_setting' );
-		$footer_widgets 		= generate_get_footer_widgets();
+		$sidebar_layout       = generate_get_layout();
+		$navigation_location  = generate_get_navigation_location();
+		$navigation_alignment = generate_get_option( 'nav_alignment_setting' );
+		$navigation_dropdown  = generate_get_option( 'nav_dropdown_type' );
+		$header_layout        = generate_get_option( 'header_layout_setting' );
+		$header_alignment     = generate_get_option( 'header_alignment_setting' );
+		$content_layout       = generate_get_option( 'content_layout_setting' );
+		$footer_widgets       = generate_get_footer_widgets();
 
 		// These values all have defaults, but we like to be extra careful.
 		$classes[] = ( $sidebar_layout ) ? $sidebar_layout : 'right-sidebar';
@@ -219,6 +220,7 @@ if ( ! function_exists( 'generate_top_bar_classes' ) ) {
 	/**
 	 * Adds custom classes to the header.
 	 *
+	 * @param array $classes The existing classes.
 	 * @since 0.1
 	 */
 	function generate_top_bar_classes( $classes ) {
@@ -240,6 +242,7 @@ if ( ! function_exists( 'generate_right_sidebar_classes' ) ) {
 	/**
 	 * Adds custom classes to the right sidebar.
 	 *
+	 * @param array $classes The existing classes.
 	 * @since 0.1
 	 */
 	function generate_right_sidebar_classes( $classes ) {
@@ -255,18 +258,18 @@ if ( ! function_exists( 'generate_right_sidebar_classes' ) ) {
 		$classes[] = 'grid-parent';
 		$classes[] = 'sidebar';
 
-		// Get the layout
+		// Get the layout.
 		$layout = generate_get_layout();
 
 		if ( '' !== $layout ) {
 			switch ( $layout ) {
-				case 'both-left' :
+				case 'both-left':
 					$total_sidebar_width = $left_sidebar_width + $right_sidebar_width;
 					$classes[] = 'pull-' . ( 100 - $total_sidebar_width );
 
 					$total_sidebar_tablet_width = $left_sidebar_tablet_width + $right_sidebar_tablet_width;
 					$classes[] = 'tablet-pull-' . ( 100 - $total_sidebar_tablet_width );
-				break;
+					break;
 			}
 		}
 
@@ -279,6 +282,7 @@ if ( ! function_exists( 'generate_left_sidebar_classes' ) ) {
 	/**
 	 * Adds custom classes to the left sidebar.
 	 *
+	 * @param array $classes The existing classes.
 	 * @since 0.1
 	 */
 	function generate_left_sidebar_classes( $classes ) {
@@ -297,21 +301,21 @@ if ( ! function_exists( 'generate_left_sidebar_classes' ) ) {
 		$classes[] = 'grid-parent';
 		$classes[] = 'sidebar';
 
-		// Get the layout
+		// Get the layout.
 		$layout = generate_get_layout();
 
 		if ( '' !== $layout ) {
 			switch ( $layout ) {
-				case 'left-sidebar' :
+				case 'left-sidebar':
 					$classes[] = 'pull-' . ( 100 - $left_sidebar_width );
 					$classes[] = 'tablet-pull-' . ( 100 - $left_sidebar_tablet_width );
-				break;
+					break;
 
-				case 'both-sidebars' :
-				case 'both-left' :
+				case 'both-sidebars':
+				case 'both-left':
 					$classes[] = 'pull-' . ( 100 - $total_sidebar_width );
 					$classes[] = 'tablet-pull-' . ( 100 - $total_sidebar_tablet_width );
-				break;
+					break;
 			}
 		}
 
@@ -324,6 +328,7 @@ if ( ! function_exists( 'generate_content_classes' ) ) {
 	/**
 	 * Adds custom classes to the content container.
 	 *
+	 * @param array $classes The existing classes.
 	 * @since 0.1
 	 */
 	function generate_content_classes( $classes ) {
@@ -339,47 +344,47 @@ if ( ! function_exists( 'generate_content_classes' ) ) {
 		$classes[] = 'grid-parent';
 		$classes[] = 'mobile-grid-100';
 
-		// Get the layout
+		// Get the layout.
 		$layout = generate_get_layout();
 
 		if ( '' !== $layout ) {
 			switch ( $layout ) {
 
-				case 'right-sidebar' :
+				case 'right-sidebar':
 					$classes[] = 'grid-' . ( 100 - $right_sidebar_width );
 					$classes[] = 'tablet-grid-' . ( 100 - $right_sidebar_tablet_width );
-				break;
+					break;
 
-				case 'left-sidebar' :
+				case 'left-sidebar':
 					$classes[] = 'push-' . $left_sidebar_width;
 					$classes[] = 'grid-' . ( 100 - $left_sidebar_width );
 					$classes[] = 'tablet-push-' . $left_sidebar_tablet_width;
 					$classes[] = 'tablet-grid-' . ( 100 - $left_sidebar_tablet_width );
-				break;
+					break;
 
-				case 'no-sidebar' :
+				case 'no-sidebar':
 					$classes[] = 'grid-100';
 					$classes[] = 'tablet-grid-100';
-				break;
+					break;
 
-				case 'both-sidebars' :
+				case 'both-sidebars':
 					$classes[] = 'push-' . $left_sidebar_width;
 					$classes[] = 'grid-' . ( 100 - $total_sidebar_width );
 					$classes[] = 'tablet-push-' . $left_sidebar_tablet_width;
 					$classes[] = 'tablet-grid-' . ( 100 - $total_sidebar_tablet_width );
-				break;
+					break;
 
-				case 'both-right' :
+				case 'both-right':
 					$classes[] = 'grid-' . ( 100 - $total_sidebar_width );
 					$classes[] = 'tablet-grid-' . ( 100 - $total_sidebar_tablet_width );
-				break;
+					break;
 
-				case 'both-left' :
+				case 'both-left':
 					$classes[] = 'push-' . $total_sidebar_width;
 					$classes[] = 'grid-' . ( 100 - $total_sidebar_width );
 					$classes[] = 'tablet-push-' . $total_sidebar_tablet_width;
 					$classes[] = 'tablet-grid-' . ( 100 - $total_sidebar_tablet_width );
-				break;
+					break;
 			}
 		}
 
@@ -392,6 +397,7 @@ if ( ! function_exists( 'generate_header_classes' ) ) {
 	/**
 	 * Adds custom classes to the header.
 	 *
+	 * @param array $classes The existing classes.
 	 * @since 0.1
 	 */
 	function generate_header_classes( $classes ) {
@@ -411,6 +417,7 @@ if ( ! function_exists( 'generate_inside_header_classes' ) ) {
 	/**
 	 * Adds custom classes to inside the header.
 	 *
+	 * @param array $classes The existing classes.
 	 * @since 0.1
 	 */
 	function generate_inside_header_classes( $classes ) {
@@ -430,6 +437,7 @@ if ( ! function_exists( 'generate_navigation_classes' ) ) {
 	/**
 	 * Adds custom classes to the navigation.
 	 *
+	 * @param array $classes The existing classes.
 	 * @since 0.1
 	 */
 	function generate_navigation_classes( $classes ) {
@@ -449,7 +457,7 @@ if ( ! function_exists( 'generate_navigation_classes' ) ) {
 				case 'nav-float-right':
 				case 'nav-float-left':
 					$classes[] = 'sub-menu-left';
-				break;
+					break;
 			}
 		}
 
@@ -462,6 +470,7 @@ if ( ! function_exists( 'generate_inside_navigation_classes' ) ) {
 	/**
 	 * Adds custom classes to the inner navigation.
 	 *
+	 * @param array $classes The existing classes.
 	 * @since 1.3.41
 	 */
 	function generate_inside_navigation_classes( $classes ) {
@@ -481,6 +490,7 @@ if ( ! function_exists( 'generate_menu_classes' ) ) {
 	/**
 	 * Adds custom classes to the menu.
 	 *
+	 * @param array $classes The existing classes.
 	 * @since 0.1
 	 */
 	function generate_menu_classes( $classes ) {
@@ -496,6 +506,7 @@ if ( ! function_exists( 'generate_footer_classes' ) ) {
 	/**
 	 * Adds custom classes to the footer.
 	 *
+	 * @param array $classes The existing classes.
 	 * @since 0.1
 	 */
 	function generate_footer_classes( $classes ) {
@@ -520,6 +531,7 @@ if ( ! function_exists( 'generate_inside_footer_classes' ) ) {
 	/**
 	 * Adds custom classes to the footer.
 	 *
+	 * @param array $classes The existing classes.
 	 * @since 0.1
 	 */
 	function generate_inside_footer_classes( $classes ) {
@@ -538,6 +550,8 @@ if ( ! function_exists( 'generate_main_classes' ) ) {
 	add_filter( 'generate_main_class', 'generate_main_classes' );
 	/**
 	 * Adds custom classes to the <main> element
+	 *
+	 * @param array $classes The existing classes.
 	 * @since 1.1.0
 	 */
 	function generate_main_classes( $classes ) {
@@ -553,10 +567,11 @@ if ( ! function_exists( 'generate_post_classes' ) ) {
 	 * Adds custom classes to the <article> element.
 	 * Remove .hentry class from pages to comply with structural data guidelines.
 	 *
+	 * @param array $classes The existing classes.
 	 * @since 1.3.39
 	 */
 	function generate_post_classes( $classes ) {
-		if ( 'page' == get_post_type() ) {
+		if ( 'page' === get_post_type() ) {
 			$classes = array_diff( $classes, array( 'hentry' ) );
 		}
 

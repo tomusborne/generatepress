@@ -55,7 +55,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 */
 		do_action( 'generate_after_entry_header' );
 
-		if ( generate_show_excerpt() ) : ?>
+		if ( generate_show_excerpt() ) :
+			?>
 
 			<div class="entry-summary" itemprop="text">
 				<?php the_excerpt(); ?>
@@ -67,14 +68,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php
 				the_content();
 
-				wp_link_pages( array(
-					'before' => '<div class="page-links">' . __( 'Pages:', 'generatepress' ),
-					'after'  => '</div>',
-				) );
+				wp_link_pages(
+					array(
+						'before' => '<div class="page-links">' . __( 'Pages:', 'generatepress' ),
+						'after'  => '</div>',
+					)
+				);
 				?>
 			</div><!-- .entry-content -->
 
-		<?php endif;
+			<?php
+		endif;
 
 		/**
 		 * generate_after_entry_content hook.

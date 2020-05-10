@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	 *
 	 * @since 2.3
 	 */
-	do_action( 'wp_body_open' );
+	do_action( 'wp_body_open' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 
 	/**
 	 * generate_before_header hook.

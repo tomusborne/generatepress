@@ -44,16 +44,20 @@ if ( ! function_exists( 'generate_content_nav' ) ) {
 		<nav id="<?php echo esc_attr( $nav_id ); ?>" class="<?php echo esc_attr( $nav_class ); ?>">
 			<span class="screen-reader-text"><?php esc_html_e( 'Post navigation', 'generatepress' ); ?></span>
 
-			<?php if ( is_single() ) : // navigation links for single posts.
+			<?php
+			if ( is_single() ) : // navigation links for single posts.
 
-				$post_navigation_args = apply_filters( 'generate_post_navigation_args', array(
-					'previous_format' => '<div class="nav-previous">' . generate_get_svg_icon( 'arrow' ) . '<span class="prev" title="' . esc_attr__( 'Previous', 'generatepress' ) . '">%link</span></div>',
-					'next_format' => '<div class="nav-next">' . generate_get_svg_icon( 'arrow' ) . '<span class="next" title="' . esc_attr__( 'Next', 'generatepress' ) . '">%link</span></div>',
-					'link' => '%title',
-					'in_same_term' => apply_filters( 'generate_category_post_navigation', false ),
-					'excluded_terms' => '',
-					'taxonomy' => 'category',
-				) );
+				$post_navigation_args = apply_filters(
+					'generate_post_navigation_args',
+					array(
+						'previous_format' => '<div class="nav-previous">' . generate_get_svg_icon( 'arrow' ) . '<span class="prev" title="' . esc_attr__( 'Previous', 'generatepress' ) . '">%link</span></div>',
+						'next_format' => '<div class="nav-next">' . generate_get_svg_icon( 'arrow' ) . '<span class="next" title="' . esc_attr__( 'Next', 'generatepress' ) . '">%link</span></div>',
+						'link' => '%title',
+						'in_same_term' => apply_filters( 'generate_category_post_navigation', false ),
+						'excluded_terms' => '',
+						'taxonomy' => 'category',
+					)
+				);
 
 				previous_post_link(
 					$post_navigation_args['previous_format'],
@@ -73,26 +77,32 @@ if ( ! function_exists( 'generate_content_nav' ) ) {
 
 			elseif ( is_home() || is_archive() || is_search() ) : // navigation links for home, archive, and search pages.
 
-				if ( get_next_posts_link() ) : ?>
+				if ( get_next_posts_link() ) :
+					?>
 					<div class="nav-previous">
 						<?php generate_do_svg_icon( 'arrow' ); ?>
-						<span class="prev" title="<?php esc_attr_e( 'Previous', 'generatepress' );?>"><?php next_posts_link( __( 'Older posts', 'generatepress' ) ); ?></span>
+						<span class="prev" title="<?php esc_attr_e( 'Previous', 'generatepress' ); ?>"><?php next_posts_link( __( 'Older posts', 'generatepress' ) ); ?></span>
 					</div>
-				<?php endif;
+					<?php
+				endif;
 
-				if ( get_previous_posts_link() ) : ?>
+				if ( get_previous_posts_link() ) :
+					?>
 					<div class="nav-next">
 						<?php generate_do_svg_icon( 'arrow' ); ?>
-						<span class="next" title="<?php esc_attr_e( 'Next', 'generatepress' );?>"><?php previous_posts_link( __( 'Newer posts', 'generatepress' ) ); ?></span>
+						<span class="next" title="<?php esc_attr_e( 'Next', 'generatepress' ); ?>"><?php previous_posts_link( __( 'Newer posts', 'generatepress' ) ); ?></span>
 					</div>
-				<?php endif;
+					<?php
+				endif;
 
 				if ( function_exists( 'the_posts_pagination' ) ) {
-					the_posts_pagination( array(
-						'mid_size' => apply_filters( 'generate_pagination_mid_size', 1 ),
-						'prev_text' => apply_filters( 'generate_previous_link_text', __( '&larr; Previous', 'generatepress' ) ),
-						'next_text' => apply_filters( 'generate_next_link_text', __( 'Next &rarr;', 'generatepress' ) ),
-					) );
+					the_posts_pagination(
+						array(
+							'mid_size' => apply_filters( 'generate_pagination_mid_size', 1 ),
+							'prev_text' => apply_filters( 'generate_previous_link_text', __( '&larr; Previous', 'generatepress' ) ),
+							'next_text' => apply_filters( 'generate_next_link_text', __( 'Next &rarr;', 'generatepress' ) ),
+						)
+					);
 				}
 
 				/**
@@ -102,7 +112,8 @@ if ( ! function_exists( 'generate_content_nav' ) ) {
 				 */
 				do_action( 'generate_paging_navigation' );
 
-			endif; ?>
+			endif;
+			?>
 		</nav><!-- #<?php echo esc_html( $nav_id ); ?> -->
 		<?php
 	}
@@ -134,8 +145,7 @@ if ( ! function_exists( 'generate_modify_posts_pagination_template' ) ) {
  *
  * @since 2.3
  *
- * @param string $item The post meta item we're requesting
- * @return The requested HTML.
+ * @param string $item The post meta item we're requesting.
  */
 function generate_do_post_meta_item( $item ) {
 	if ( 'date' === $item ) {
@@ -147,7 +157,8 @@ function generate_do_post_meta_item( $item ) {
 			$time_string = '<time class="updated" datetime="%3$s" itemprop="dateModified">%4$s</time>' . $time_string;
 		}
 
-		$time_string = sprintf( $time_string,
+		$time_string = sprintf(
+			$time_string,
 			esc_attr( get_the_date( 'c' ) ),
 			esc_html( get_the_date() ),
 			esc_attr( get_the_modified_date( 'c' ) ),
@@ -156,15 +167,17 @@ function generate_do_post_meta_item( $item ) {
 
 		// If our date is enabled, show it.
 		if ( $date ) {
-			echo apply_filters( 'generate_post_date_output',
-				sprintf( // WPCS: XSS ok, sanitization ok.
+			echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				'generate_post_date_output',
+				sprintf(
 					'<span class="posted-on">%1$s<a href="%2$s" title="%3$s" rel="bookmark">%4$s</a></span> ',
-						apply_filters( 'generate_inside_post_meta_item_output', '', 'date' ),
-						esc_url( get_permalink() ),
-						esc_attr( get_the_time() ),
-						$time_string
+					apply_filters( 'generate_inside_post_meta_item_output', '', 'date' ),
+					esc_url( get_permalink() ),
+					esc_attr( get_the_time() ),
+					$time_string
 				),
-			$time_string );
+				$time_string
+			);
 		}
 	}
 
@@ -172,8 +185,10 @@ function generate_do_post_meta_item( $item ) {
 		$author = apply_filters( 'generate_post_author', true );
 
 		if ( $author ) {
-			echo apply_filters( 'generate_post_author_output',
-				sprintf( '<span class="byline">%1$s<span class="author vcard" %5$s><a class="url fn n" href="%2$s" title="%3$s" rel="author" itemprop="url"><span class="author-name" itemprop="name">%4$s</span></a></span></span> ',
+			echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				'generate_post_author_output',
+				sprintf(
+					'<span class="byline">%1$s<span class="author vcard" %5$s><a class="url fn n" href="%2$s" title="%3$s" rel="author" itemprop="url"><span class="author-name" itemprop="name">%4$s</span></a></span></span> ',
 					apply_filters( 'generate_inside_post_meta_item_output', '', 'author' ),
 					esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 					/* translators: 1: Author name */
@@ -192,8 +207,10 @@ function generate_do_post_meta_item( $item ) {
 		$categories_list = get_the_category_list( $term_separator );
 
 		if ( $categories_list && $categories ) {
-			echo apply_filters( 'generate_category_list_output',
-				sprintf( '<span class="cat-links">%3$s<span class="screen-reader-text">%1$s </span>%2$s</span> ', // WPCS: XSS ok, sanitization ok.
+			echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				'generate_category_list_output',
+				sprintf(
+					'<span class="cat-links">%3$s<span class="screen-reader-text">%1$s </span>%2$s</span> ',
 					esc_html_x( 'Categories', 'Used before category names.', 'generatepress' ),
 					$categories_list,
 					apply_filters( 'generate_inside_post_meta_item_output', '', 'categories' )
@@ -209,8 +226,10 @@ function generate_do_post_meta_item( $item ) {
 		$tags_list = get_the_tag_list( '', $term_separator );
 
 		if ( $tags_list && $tags ) {
-			echo apply_filters( 'generate_tag_list_output',
-				sprintf( '<span class="tags-links">%3$s<span class="screen-reader-text">%1$s </span>%2$s</span> ', // WPCS: XSS ok, sanitization ok.
+			echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				'generate_tag_list_output',
+				sprintf(
+					'<span class="tags-links">%3$s<span class="screen-reader-text">%1$s </span>%2$s</span> ',
 					esc_html_x( 'Tags', 'Used before tag names.', 'generatepress' ),
 					$tags_list,
 					apply_filters( 'generate_inside_post_meta_item_output', '', 'tags' )
@@ -224,7 +243,11 @@ function generate_do_post_meta_item( $item ) {
 
 		if ( $comments && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
 			echo '<span class="comments-link">';
-				echo apply_filters( 'generate_inside_post_meta_item_output', '', 'comments-link' );
+				echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					'generate_inside_post_meta_item_output',
+					'',
+					'comments-link'
+				);
 				comments_popup_link( __( 'Leave a comment', 'generatepress' ), __( '1 Comment', 'generatepress' ), __( '% Comments', 'generatepress' ) );
 			echo '</span> ';
 		}
@@ -243,6 +266,8 @@ add_filter( 'generate_inside_post_meta_item_output', 'generate_do_post_meta_pref
  * Add svg icons or text to our post meta output.
  *
  * @since 2.4
+ * @param string $output The existing output.
+ * @param string $item The item to target.
  */
 function generate_do_post_meta_prefix( $output, $item ) {
 	if ( 'author' === $item ) {
@@ -271,10 +296,13 @@ if ( ! function_exists( 'generate_posted_on' ) ) {
 	 * @since 0.1
 	 */
 	function generate_posted_on() {
-		$items = apply_filters( 'generate_header_entry_meta_items', array(
-			'date',
-			'author',
-		) );
+		$items = apply_filters(
+			'generate_header_entry_meta_items',
+			array(
+				'date',
+				'author',
+			)
+		);
 
 		foreach ( $items as $item ) {
 			generate_do_post_meta_item( $item );
@@ -289,11 +317,14 @@ if ( ! function_exists( 'generate_entry_meta' ) ) {
 	 * @since 1.2.5
 	 */
 	function generate_entry_meta() {
-		$items = apply_filters( 'generate_footer_entry_meta_items', array(
-			'categories',
-			'tags',
-			'comments-link',
-		) );
+		$items = apply_filters(
+			'generate_footer_entry_meta_items',
+			array(
+				'categories',
+				'tags',
+				'comments-link',
+			)
+		);
 
 		foreach ( $items as $item ) {
 			generate_do_post_meta_item( $item );
@@ -312,12 +343,16 @@ if ( ! function_exists( 'generate_excerpt_more' ) ) {
 	 * @return string The HTML for the more link.
 	 */
 	function generate_excerpt_more( $more ) {
-		return apply_filters( 'generate_excerpt_more_output', sprintf( ' ... <a title="%1$s" class="read-more" href="%2$s">%3$s %4$s</a>',
-			the_title_attribute( 'echo=0' ),
-			esc_url( get_permalink( get_the_ID() ) ),
-			__( 'Read more', 'generatepress' ),
-			'<span class="screen-reader-text">' . get_the_title() . '</span>'
-		) );
+		return apply_filters(
+			'generate_excerpt_more_output',
+			sprintf(
+				' ... <a title="%1$s" class="read-more" href="%2$s">%3$s %4$s</a>',
+				the_title_attribute( 'echo=0' ),
+				esc_url( get_permalink( get_the_ID() ) ),
+				__( 'Read more', 'generatepress' ),
+				'<span class="screen-reader-text">' . get_the_title() . '</span>'
+			)
+		);
 	}
 }
 
@@ -332,12 +367,16 @@ if ( ! function_exists( 'generate_content_more' ) ) {
 	 * @return string The HTML for the more link
 	 */
 	function generate_content_more( $more ) {
-		return apply_filters( 'generate_content_more_link_output', sprintf( '<p class="read-more-container"><a title="%1$s" class="read-more content-read-more" href="%2$s">%3$s%4$s</a></p>',
-			the_title_attribute( 'echo=0' ),
-			esc_url( get_permalink( get_the_ID() ) . apply_filters( 'generate_more_jump','#more-' . get_the_ID() ) ),
-			__( 'Read more', 'generatepress' ),
-			'<span class="screen-reader-text">' . get_the_title() . '</span>'
-		) );
+		return apply_filters(
+			'generate_content_more_link_output',
+			sprintf(
+				'<p class="read-more-container"><a title="%1$s" class="read-more content-read-more" href="%2$s">%3$s%4$s</a></p>',
+				the_title_attribute( 'echo=0' ),
+				esc_url( get_permalink( get_the_ID() ) . apply_filters( 'generate_more_jump', '#more-' . get_the_ID() ) ),
+				__( 'Read more', 'generatepress' ),
+				'<span class="screen-reader-text">' . get_the_title() . '</span>'
+			)
+		);
 	}
 }
 
@@ -349,15 +388,20 @@ if ( ! function_exists( 'generate_post_meta' ) ) {
 	 * @since 1.3.29
 	 */
 	function generate_post_meta() {
-		$post_types = apply_filters( 'generate_entry_meta_post_types', array(
-			'post',
-		) );
+		$post_types = apply_filters(
+			'generate_entry_meta_post_types',
+			array(
+				'post',
+			)
+		);
 
-		if ( in_array( get_post_type(), $post_types ) ) : ?>
+		if ( in_array( get_post_type(), $post_types ) ) :
+			?>
 			<div class="entry-meta">
 				<?php generate_posted_on(); ?>
 			</div><!-- .entry-meta -->
-		<?php endif;
+			<?php
+		endif;
 	}
 }
 
@@ -369,11 +413,15 @@ if ( ! function_exists( 'generate_footer_meta' ) ) {
 	 * @since 1.3.30
 	 */
 	function generate_footer_meta() {
-		$post_types = apply_filters( 'generate_footer_meta_post_types', array(
-			'post',
-		) );
+		$post_types = apply_filters(
+			'generate_footer_meta_post_types',
+			array(
+				'post',
+			)
+		);
 
-		if ( in_array( get_post_type(), $post_types ) ) : ?>
+		if ( in_array( get_post_type(), $post_types ) ) :
+			?>
 			<footer class="entry-meta">
 				<?php
 				generate_entry_meta();
@@ -383,6 +431,7 @@ if ( ! function_exists( 'generate_footer_meta' ) ) {
 				}
 				?>
 			</footer><!-- .entry-meta -->
-		<?php endif;
+			<?php
+		endif;
 	}
 }

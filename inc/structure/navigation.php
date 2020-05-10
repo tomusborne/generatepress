@@ -46,12 +46,12 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 					if ( $mobile_menu_label ) {
 						printf(
 							'<span class="mobile-menu">%s</span>',
-							$mobile_menu_label
+							$mobile_menu_label // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						);
 					} else {
 						printf(
 							'<span class="screen-reader-text">%s</span>',
-							__( 'Menu', 'generatepress' )
+							esc_html__( 'Menu', 'generatepress' )
 						);
 					}
 					?>
@@ -88,8 +88,7 @@ if ( ! function_exists( 'generate_menu_fallback' ) ) {
 	 *
 	 * @since 1.1.4
 	 *
-	 * @param  array $args
-	 * @return string
+	 * @param array $args Existing menu args.
 	 */
 	function generate_menu_fallback( $args ) {
 		$generate_settings = wp_parse_args(
@@ -112,7 +111,7 @@ if ( ! function_exists( 'generate_menu_fallback' ) ) {
 					printf(
 						'<li class="search-item"><a aria-label="%1$s" href="#">%2$s</a></li>',
 						esc_attr__( 'Open Search Bar', 'generatepress' ),
-						generate_get_svg_icon( 'search', true )
+						generate_get_svg_icon( 'search', true ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					);
 				}
 				?>
@@ -122,20 +121,19 @@ if ( ! function_exists( 'generate_menu_fallback' ) ) {
 	}
 }
 
-/**
- * Generate the navigation based on settings
- *
- * It would be better to have all of these inside one action, but these
- * are kept this way to maintain backward compatibility for people
- * un-hooking and moving the navigation/changing the priority.
- *
- * @since 0.1
- */
-
 if ( ! function_exists( 'generate_add_navigation_after_header' ) ) {
 	add_action( 'generate_after_header', 'generate_add_navigation_after_header', 5 );
+	/**
+	 * Generate the navigation based on settings
+	 *
+	 * It would be better to have all of these inside one action, but these
+	 * are kept this way to maintain backward compatibility for people
+	 * un-hooking and moving the navigation/changing the priority.
+	 *
+	 * @since 0.1
+	 */
 	function generate_add_navigation_after_header() {
-		if ( 'nav-below-header' == generate_get_navigation_location() ) {
+		if ( 'nav-below-header' === generate_get_navigation_location() ) {
 			generate_navigation_position();
 		}
 	}
@@ -143,8 +141,17 @@ if ( ! function_exists( 'generate_add_navigation_after_header' ) ) {
 
 if ( ! function_exists( 'generate_add_navigation_before_header' ) ) {
 	add_action( 'generate_before_header', 'generate_add_navigation_before_header', 5 );
+	/**
+	 * Generate the navigation based on settings
+	 *
+	 * It would be better to have all of these inside one action, but these
+	 * are kept this way to maintain backward compatibility for people
+	 * un-hooking and moving the navigation/changing the priority.
+	 *
+	 * @since 0.1
+	 */
 	function generate_add_navigation_before_header() {
-		if ( 'nav-above-header' == generate_get_navigation_location() ) {
+		if ( 'nav-above-header' === generate_get_navigation_location() ) {
 			generate_navigation_position();
 		}
 	}
@@ -152,8 +159,17 @@ if ( ! function_exists( 'generate_add_navigation_before_header' ) ) {
 
 if ( ! function_exists( 'generate_add_navigation_float_right' ) ) {
 	add_action( 'generate_after_header_content', 'generate_add_navigation_float_right', 5 );
+	/**
+	 * Generate the navigation based on settings
+	 *
+	 * It would be better to have all of these inside one action, but these
+	 * are kept this way to maintain backward compatibility for people
+	 * un-hooking and moving the navigation/changing the priority.
+	 *
+	 * @since 0.1
+	 */
 	function generate_add_navigation_float_right() {
-		if ( 'nav-float-right' == generate_get_navigation_location() || 'nav-float-left' == generate_get_navigation_location() ) {
+		if ( 'nav-float-right' === generate_get_navigation_location() || 'nav-float-left' === generate_get_navigation_location() ) {
 			generate_navigation_position();
 		}
 	}
@@ -161,8 +177,17 @@ if ( ! function_exists( 'generate_add_navigation_float_right' ) ) {
 
 if ( ! function_exists( 'generate_add_navigation_before_right_sidebar' ) ) {
 	add_action( 'generate_before_right_sidebar_content', 'generate_add_navigation_before_right_sidebar', 5 );
+	/**
+	 * Generate the navigation based on settings
+	 *
+	 * It would be better to have all of these inside one action, but these
+	 * are kept this way to maintain backward compatibility for people
+	 * un-hooking and moving the navigation/changing the priority.
+	 *
+	 * @since 0.1
+	 */
 	function generate_add_navigation_before_right_sidebar() {
-		if ( 'nav-right-sidebar' == generate_get_navigation_location() ) {
+		if ( 'nav-right-sidebar' === generate_get_navigation_location() ) {
 			echo '<div class="gen-sidebar-nav">';
 				generate_navigation_position();
 			echo '</div>';
@@ -172,8 +197,17 @@ if ( ! function_exists( 'generate_add_navigation_before_right_sidebar' ) ) {
 
 if ( ! function_exists( 'generate_add_navigation_before_left_sidebar' ) ) {
 	add_action( 'generate_before_left_sidebar_content', 'generate_add_navigation_before_left_sidebar', 5 );
+	/**
+	 * Generate the navigation based on settings
+	 *
+	 * It would be better to have all of these inside one action, but these
+	 * are kept this way to maintain backward compatibility for people
+	 * un-hooking and moving the navigation/changing the priority.
+	 *
+	 * @since 0.1
+	 */
 	function generate_add_navigation_before_left_sidebar() {
-		if ( 'nav-left-sidebar' == generate_get_navigation_location() ) {
+		if ( 'nav-left-sidebar' === generate_get_navigation_location() ) {
 			echo '<div class="gen-sidebar-nav">';
 				generate_navigation_position();
 			echo '</div>';
@@ -189,7 +223,7 @@ if ( ! class_exists( 'Generate_Page_Walker' ) && class_exists( 'Walker_Page' ) )
 	 * @since 1.3.21
 	 */
 	class Generate_Page_Walker extends Walker_Page {
-		function start_el( &$output, $page, $depth = 0, $args = array(), $current_page = 0 ) {
+		function start_el( &$output, $page, $depth = 0, $args = array(), $current_page = 0 ) { // phpcs:ignore
 			$css_class = array( 'page_item', 'page-item-' . $page->ID );
 			$button = '';
 
@@ -204,16 +238,17 @@ if ( ! class_exists( 'Generate_Page_Walker' ) && class_exists( 'Walker_Page' ) )
 				if ( $_current_page && in_array( $page->ID, $_current_page->ancestors ) ) {
 					$css_class[] = 'current-menu-ancestor';
 				}
-				if ( $page->ID == $current_page ) {
+
+				if ( $page->ID == $current_page ) { // phpcs:ignore
 					$css_class[] = 'current-menu-item';
-				} elseif ( $_current_page && $page->ID == $_current_page->post_parent ) {
+				} elseif ( $_current_page && $page->ID == $_current_page->post_parent ) { // phpcs:ignore
 					$css_class[] = 'current-menu-parent';
 				}
-			} elseif ( $page->ID == get_option( 'page_for_posts' ) ) {
+			} elseif ( $page->ID == get_option( 'page_for_posts' ) ) { // phpcs:ignore
 				$css_class[] = 'current-menu-parent';
 			}
 
-			$css_classes = implode( ' ', apply_filters( 'page_css_class', $css_class, $page, $depth, $args, $current_page ) );
+			$css_classes = implode( ' ', apply_filters( 'page_css_class', $css_class, $page, $depth, $args, $current_page ) ); // phpcs:ignore
 
 			$args['link_before'] = empty( $args['link_before'] ) ? '' : $args['link_before'];
 			$args['link_after'] = empty( $args['link_after'] ) ? '' : $args['link_after'];
@@ -223,7 +258,7 @@ if ( ! class_exists( 'Generate_Page_Walker' ) && class_exists( 'Walker_Page' ) )
 				$css_classes,
 				get_permalink( $page->ID ),
 				$args['link_before'],
-				apply_filters( 'the_title', $page->post_title, $page->ID ),
+				apply_filters( 'the_title', $page->post_title, $page->ID ), // phpcs:ignore
 				$args['link_after'],
 				$button
 			);
@@ -238,10 +273,10 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 	 *
 	 * @since 1.3.42
 	 *
-	 * @param string $title The menu item title.
-	 * @param WP_Post $item All of our menu item data.
+	 * @param string   $title The menu item title.
+	 * @param WP_Post  $item All of our menu item data.
 	 * @param stdClass $args All of our menu item args.
-	 * @param int $dept Depth of menu item.
+	 * @param int      $depth Depth of menu item.
 	 * @return string The menu item.
 	 */
 	function generate_dropdown_icon_to_menu_link( $title, $item, $args, $depth ) {
@@ -283,14 +318,17 @@ if ( ! function_exists( 'generate_navigation_search' ) ) {
 			return;
 		}
 
-		echo apply_filters( 'generate_navigation_search_output', sprintf( // WPCS: XSS ok, sanitization ok.
-			'<form method="get" class="search-form navigation-search" action="%1$s">
-				<input type="search" class="search-field" value="%2$s" name="s" title="%3$s" />
-			</form>',
-			esc_url( home_url( '/' ) ),
-			esc_attr( get_search_query() ),
-			esc_attr_x( 'Search', 'label', 'generatepress' )
-		));
+		echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			'generate_navigation_search_output',
+			sprintf(
+				'<form method="get" class="search-form navigation-search" action="%1$s">
+					<input type="search" class="search-field" value="%2$s" name="s" title="%3$s" />
+				</form>',
+				esc_url( home_url( '/' ) ),
+				esc_attr( get_search_query() ),
+				esc_attr_x( 'Search', 'label', 'generatepress' )
+			)
+		);
 	}
 }
 
@@ -301,7 +339,7 @@ if ( ! function_exists( 'generate_menu_search_icon' ) ) {
 	 *
 	 * @since 1.2.9.7
 	 *
-	 * @param string $nav The HTML list content for the menu items.
+	 * @param string   $nav The HTML list content for the menu items.
 	 * @param stdClass $args An object containing wp_nav_menu() arguments.
 	 * @return string The search icon menu item.
 	 */
@@ -354,7 +392,7 @@ if ( ! function_exists( 'generate_mobile_menu_search_icon' ) ) {
 		<div class="mobile-bar-items">
 			<?php do_action( 'generate_inside_mobile_menu_bar' ); ?>
 			<span class="search-item">
-				<a aria-label="<?php _e( 'Open Search Bar', 'generatepress' ); ?>" href="#">
+				<a aria-label="<?php esc_attr_e( 'Open Search Bar', 'generatepress' ); ?>" href="#">
 					<?php generate_do_svg_icon( 'search', true ); ?>
 				</a>
 			</span>

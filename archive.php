@@ -32,7 +32,9 @@ get_header(); ?>
 				 */
 				do_action( 'generate_archive_title' );
 
-				while ( have_posts() ) : the_post();
+				while ( have_posts() ) :
+
+					the_post();
 
 					/*
 					 * Include the Post-Format-specific template for the content.
@@ -78,4 +80,4 @@ get_header(); ?>
 
 	generate_construct_sidebars();
 
-get_footer();
+	get_footer();

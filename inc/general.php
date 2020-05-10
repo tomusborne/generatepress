@@ -19,7 +19,7 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 		$dir_uri = get_template_directory_uri();
 
 		if ( generate_get_option( 'combine_css' ) && $suffix ) {
-			wp_enqueue_style( 'generate-style', $dir_uri . "/css/all.min.css", array(), GENERATE_VERSION, 'all' );
+			wp_enqueue_style( 'generate-style', $dir_uri . '/css/all.min.css', array(), GENERATE_VERSION, 'all' );
 		} else {
 			$lite = '';
 			if ( apply_filters( 'generate_unsemantic_grid_lite', false ) ) {
@@ -89,19 +89,21 @@ if ( ! function_exists( 'generate_widgets_init' ) ) {
 			'footer-3' => __( 'Footer Widget 3', 'generatepress' ),
 			'footer-4' => __( 'Footer Widget 4', 'generatepress' ),
 			'footer-5' => __( 'Footer Widget 5', 'generatepress' ),
-			'footer-bar' => __( 'Footer Bar','generatepress' ),
-			'top-bar' => __( 'Top Bar','generatepress' ),
+			'footer-bar' => __( 'Footer Bar', 'generatepress' ),
+			'top-bar' => __( 'Top Bar', 'generatepress' ),
 		);
 
 		foreach ( $widgets as $id => $name ) {
-			register_sidebar( array(
-				'name'          => $name,
-				'id'            => $id,
-				'before_widget' => '<aside id="%1$s" class="widget inner-padding %2$s">',
-				'after_widget'  => '</aside>',
-				'before_title'  => apply_filters( 'generate_start_widget_title', '<h2 class="widget-title">' ),
-				'after_title'   => apply_filters( 'generate_end_widget_title', '</h2>' ),
-			) );
+			register_sidebar(
+				array(
+					'name'          => $name,
+					'id'            => $id,
+					'before_widget' => '<aside id="%1$s" class="widget inner-padding %2$s">',
+					'after_widget'  => '</aside>',
+					'before_title'  => apply_filters( 'generate_start_widget_title', '<h2 class="widget-title">' ),
+					'after_title'   => apply_filters( 'generate_end_widget_title', '</h2>' ),
+				)
+			);
 		}
 	}
 }
@@ -121,11 +123,11 @@ if ( ! function_exists( 'generate_smart_content_width' ) ) {
 		$left_sidebar_width = apply_filters( 'generate_left_sidebar_width', '25' );
 		$layout = generate_get_layout();
 
-		if ( 'left-sidebar' == $layout ) {
+		if ( 'left-sidebar' === $layout ) {
 			$content_width = $container_width * ( ( 100 - $left_sidebar_width ) / 100 );
-		} elseif ( 'right-sidebar' == $layout ) {
+		} elseif ( 'right-sidebar' === $layout ) {
 			$content_width = $container_width * ( ( 100 - $right_sidebar_width ) / 100 );
-		} elseif ( 'no-sidebar' == $layout ) {
+		} elseif ( 'no-sidebar' === $layout ) {
 			$content_width = $container_width;
 		} else {
 			$content_width = $container_width * ( ( 100 - ( $left_sidebar_width + $right_sidebar_width ) ) / 100 );
@@ -205,8 +207,8 @@ if ( ! function_exists( 'generate_remove_caption_padding' ) ) {
 	/**
 	 * Remove WordPress's default padding on images with captions
 	 *
-	 * @param int $width Default WP .wp-caption width (image width + 10px)
-	 * @return int Updated width to remove 10px padding
+	 * @param int $width Default WP .wp-caption width (image width + 10px).
+	 * @return int Updated width to remove 10px padding.
 	 */
 	function generate_remove_caption_padding( $width ) {
 		return $width - 10;
@@ -216,7 +218,10 @@ if ( ! function_exists( 'generate_remove_caption_padding' ) ) {
 if ( ! function_exists( 'generate_enhanced_image_navigation' ) ) {
 	add_filter( 'attachment_link', 'generate_enhanced_image_navigation', 10, 2 );
 	/**
-	 * Filter in a link to a content ID attribute for the next/previous image links on image attachment pages
+	 * Filter in a link to a content ID attribute for the next/previous image links on image attachment pages.
+	 *
+	 * @param string $url The input URL.
+	 * @param int    $id The ID of the post.
 	 */
 	function generate_enhanced_image_navigation( $url, $id ) {
 		if ( ! is_attachment() && ! wp_attachment_is_image( $id ) ) {
@@ -224,7 +229,7 @@ if ( ! function_exists( 'generate_enhanced_image_navigation' ) ) {
 		}
 
 		$image = get_post( $id );
-		if ( ! empty( $image->post_parent ) && $image->post_parent != $id ) {
+		if ( ! empty( $image->post_parent ) && $image->post_parent != $id ) { // phpcs:ignore
 			$url .= '#main';
 		}
 
@@ -241,15 +246,17 @@ if ( ! function_exists( 'generate_categorized_blog' ) ) {
 	 * @return bool True of there is more than one category, false otherwise.
 	 */
 	function generate_categorized_blog() {
-		if ( false === ( $all_the_cool_cats = get_transient( 'generate_categories' ) ) ) {
+		if ( false === ( $all_the_cool_cats = get_transient( 'generate_categories' ) ) ) { // phpcs:ignore
 			// Create an array of all the categories that are attached to posts.
-			$all_the_cool_cats = get_categories( array(
-				'fields'     => 'ids',
-				'hide_empty' => 1,
+			$all_the_cool_cats = get_categories(
+				array(
+					'fields'     => 'ids',
+					'hide_empty' => 1,
 
-				// We only need to know if there is more than one category.
-				'number'     => 2,
-			) );
+					// We only need to know if there is more than one category.
+					'number'     => 2,
+				)
+			);
 
 			// Count the number of categories that are attached to the posts.
 			$all_the_cool_cats = count( $all_the_cool_cats );
@@ -269,7 +276,7 @@ if ( ! function_exists( 'generate_categorized_blog' ) ) {
 
 if ( ! function_exists( 'generate_category_transient_flusher' ) ) {
 	add_action( 'edit_category', 'generate_category_transient_flusher' );
-	add_action( 'save_post',     'generate_category_transient_flusher' );
+	add_action( 'save_post', 'generate_category_transient_flusher' );
 	/**
 	 * Flush out the transients used in {@see generate_categorized_blog()}.
 	 *
@@ -309,7 +316,7 @@ add_filter( 'generate_fontawesome_essentials', 'generate_set_font_awesome_essent
  *
  * @since 2.0
  *
- * @param bool $essentials
+ * @param bool $essentials The existing value.
  * @return bool
  */
 function generate_set_font_awesome_essentials( $essentials ) {
@@ -326,7 +333,7 @@ add_filter( 'generate_dynamic_css_skip_cache', 'generate_skip_dynamic_css_cache'
  *
  * @since 2.0
  *
- * @param bool $cache
+ * @param bool $cache The existing value.
  * @return bool
  */
 function generate_skip_dynamic_css_cache( $cache ) {
@@ -340,6 +347,8 @@ function generate_skip_dynamic_css_cache( $cache ) {
 add_filter( 'wp_headers', 'generate_set_wp_headers' );
 /**
  * Set any necessary headers.
+ *
+ * @param array $headers The existing headers.
  *
  * @since 2.3
  */

@@ -17,11 +17,37 @@ if ( class_exists( 'WP_Customize_Section' ) && ! class_exists( 'GeneratePress_Up
 	 * @since unknown
 	 */
 	class GeneratePress_Upsell_Section extends WP_Customize_Section {
+		/**
+		 * Set type.
+		 *
+		 * @var public $type
+		 */
 		public $type = 'gp-upsell-section';
+
+		/**
+		 * Set pro URL.
+		 *
+		 * @var public $pro_url
+		 */
 		public $pro_url = '';
+
+		/**
+		 * Set pro text.
+		 *
+		 * @var public $pro_text
+		 */
 		public $pro_text = '';
+
+		/**
+		 * Set ID.
+		 *
+		 * @var public $id
+		 */
 		public $id = '';
 
+		/**
+		 * Send variables to json.
+		 */
 		public function json() {
 			$json = parent::json();
 			$json['pro_text'] = $this->pro_text;
@@ -30,6 +56,9 @@ if ( class_exists( 'WP_Customize_Section' ) && ! class_exists( 'GeneratePress_Up
 			return $json;
 		}
 
+		/**
+		 * Render content.
+		 */
 		protected function render_template() {
 			?>
 			<li id="accordion-section-{{ data.id }}" class="generate-upsell-accordion-section control-section-{{ data.type }} cannot-expand accordion-section">
@@ -48,7 +77,19 @@ if ( ! function_exists( 'generate_customizer_controls_css' ) ) {
 	 * @since 1.3.41
 	 */
 	function generate_customizer_controls_css() {
-		wp_enqueue_style( 'generate-customizer-controls-css', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/css/upsell-customizer.css', array(), GENERATE_VERSION );
-		wp_enqueue_script( 'generatepress-upsell', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/js/upsell-control.js', array( 'customize-controls' ), false, true );
+		wp_enqueue_style(
+			'generate-customizer-controls-css',
+			trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/css/upsell-customizer.css',
+			array(),
+			GENERATE_VERSION
+		);
+
+		wp_enqueue_script(
+			'generatepress-upsell',
+			trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/js/upsell-control.js',
+			array( 'customize-controls' ),
+			GENERATE_VERSION,
+			true
+		);
 	}
 }
