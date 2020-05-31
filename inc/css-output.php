@@ -74,12 +74,13 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 				$css->set_selector( '.header-widget' );
 				$css->add_property( 'margin-top', '1.5em' );
 
-				if ( 'nav-float-left' === generate_get_option( 'nav_position_setting' ) ) { // phpcs:ignore Generic.WhiteSpace.ScopeIndent.IncorrectExact
+				// phpcs:ignore Generic.WhiteSpace.ScopeIndent.IncorrectExact -- Indented inside media query.
+				if ( 'nav-float-left' === generate_get_option( 'nav_position_setting' ) ) {
 					$css->set_selector( '.nav-float-left .site-logo,.nav-float-left .site-branding,.nav-float-left .header-widget' );
 					$css->add_property( '-webkit-box-ordinal-group', 'initial' );
 					$css->add_property( '-ms-flex-order', 'initial' );
 					$css->add_property( 'order', 'initial' );
-				} // phpcs:ignore Generic.WhiteSpace.ScopeIndent.IncorrectExact
+				} // phpcs:ignore Generic.WhiteSpace.ScopeIndent.IncorrectExact -- Indented inside media query.
 			$css->stop_media_query();
 		}
 
@@ -617,7 +618,8 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 			$css->add_property( 'width', 'calc(100% + ' . absint( $mobile_content_padding ) . 'px)' );
 			$css->add_property( 'max-width', 'calc(100% + ' . absint( $mobile_content_padding ) . 'px)' );
 
-			if ( '' !== $settings['mobile_separator'] ) { // phpcs:ignore Generic.WhiteSpace.ScopeIndent.IncorrectExact
+			// phpcs:ignore Generic.WhiteSpace.ScopeIndent.IncorrectExact -- Indented inside media query.
+			if ( '' !== $settings['mobile_separator'] ) {
 				$css->set_selector( '.separate-containers .widget, .separate-containers .site-main > *, .separate-containers .page-header' );
 				$css->add_property( 'margin-bottom', absint( $settings['mobile_separator'] ), false, 'px' );
 
@@ -630,7 +632,7 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 				$css->set_selector( '.separate-containers .inside-right-sidebar, .separate-containers .inside-left-sidebar' );
 				$css->add_property( 'margin-top', absint( $settings['mobile_separator'] ), false, 'px' );
 				$css->add_property( 'margin-bottom', absint( $settings['mobile_separator'] ), false, 'px' );
-			} // phpcs:ignore Generic.WhiteSpace.ScopeIndent.IncorrectExact
+			} // phpcs:ignore Generic.WhiteSpace.ScopeIndent.IncorrectExact -- Indented inside media query.
 		$css->stop_media_query();
 
 		// Add spacing back where dropdown arrow should be.
@@ -650,12 +652,15 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		// Find out if the content background color and sidebar widget background color is the same.
 		$sidebar = strtoupper( $generate_settings['sidebar_widget_background_color'] );
 		$content = strtoupper( $generate_settings['content_background_color'] );
-		$colors_match = ( ( $sidebar == $content ) || '' == $sidebar ) ? true : false; // phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
+
+		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
+		$colors_match = ( ( $sidebar == $content ) || '' == $sidebar ) ? true : false;
 
 		// If they're all 40 (default), remove the padding when one container is set.
 		// This way, the user can still adjust the padding and it will work (unless they want 40px padding).
 		// We'll also remove the padding if there's no color difference between the widgets and content background color.
-		if ( ( '40' == $settings['widget_top'] && '40' == $settings['widget_right'] && '40' == $settings['widget_bottom'] && '40' == $settings['widget_left'] ) && $colors_match ) {  // phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
+		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
+		if ( ( '40' == $settings['widget_top'] && '40' == $settings['widget_right'] && '40' == $settings['widget_bottom'] && '40' == $settings['widget_left'] ) && $colors_match ) {
 			$output .= '.one-container .sidebar .widget{padding:0px;}';
 		}
 

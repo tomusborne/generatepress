@@ -33,7 +33,8 @@ get_header(); ?>
 				get_template_part( 'content', 'page' );
 
 				// If comments are open or we have at least one comment, load up the comment template.
-				if ( comments_open() || '0' != get_comments_number() ) : // phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
+				// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- Intentially loose.
+				if ( comments_open() || '0' != get_comments_number() ) :
 					/**
 					 * generate_before_comments_container hook.
 					 *

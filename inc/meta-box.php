@@ -237,7 +237,7 @@ function generate_do_layout_meta_box( $post ) {
 
 						<?php if ( ! defined( 'GP_PREMIUM_VERSION' ) ) : ?>
 							<span style="display:block;padding-top:1em;border-top:1px solid #EFEFEF;">
-								<a href="<?php echo generate_get_premium_url( 'https://generatepress.com/downloads/generate-disable-elements' ); // phpcs:ignore ?>" target="_blank"><?php esc_html_e( 'Premium module available', 'generatepress' ); ?></a>
+								<a href="<?php echo generate_get_premium_url( 'https://generatepress.com/downloads/generate-disable-elements' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in function. ?>" target="_blank"><?php esc_html_e( 'Premium module available', 'generatepress' ); ?></a>
 							</span>
 						<?php endif; ?>
 					</div>

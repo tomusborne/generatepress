@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		?>
 
 		<header class="entry-header">
-			<h1 class="entry-title"><?php _e( 'Nothing Found', 'generatepress' ); // phpcs:ignore WordPress.Security.EscapeOutput.UnsafePrintingFunction ?></h1>
+			<h1 class="entry-title"><?php _e( 'Nothing Found', 'generatepress' ); ?></h1>
 		</header><!-- .entry-header -->
 
 		<?php

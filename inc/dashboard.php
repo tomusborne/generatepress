@@ -46,11 +46,11 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 				<div class="gp-masthead clearfix">
 					<div class="gp-container">
 						<div class="gp-title">
-							<a href="<?php echo generate_get_premium_url( 'https://generatepress.com' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>" target="_blank">GeneratePress</a> <span class="gp-version"><?php echo esc_html( GENERATE_VERSION ); ?></span>
+							<a href="<?php echo generate_get_premium_url( 'https://generatepress.com' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in function. ?>" target="_blank">GeneratePress</a> <span class="gp-version"><?php echo esc_html( GENERATE_VERSION ); ?></span>
 						</div>
 						<div class="gp-masthead-links">
 							<?php if ( ! defined( 'GP_PREMIUM_VERSION' ) ) : ?>
-								<a style="font-weight: bold;" href="<?php echo generate_get_premium_url( 'https://generatepress.com/premium/' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>" target="_blank"><?php esc_html_e( 'Premium', 'generatepress' ); ?></a>
+								<a style="font-weight: bold;" href="<?php echo generate_get_premium_url( 'https://generatepress.com/premium/' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in function. ?>" target="_blank"><?php esc_html_e( 'Premium', 'generatepress' ); ?></a>
 							<?php endif; ?>
 							<a href="<?php echo esc_url( 'https://generatepress.com/support' ); ?>" target="_blank"><?php esc_html_e( 'Support', 'generatepress' ); ?></a>
 							<a href="<?php echo esc_url( 'https://docs.generatepress.com' ); ?>" target="_blank"><?php esc_html_e( 'Documentation', 'generatepress' ); ?></a>
@@ -359,15 +359,17 @@ if ( ! function_exists( 'generate_admin_errors' ) ) {
 			return;
 		}
 
-		if ( isset( $_GET['settings-updated'] ) && 'true' == $_GET['settings-updated'] ) { // phpcs:ignore
+		if ( isset( $_GET['settings-updated'] ) && 'true' === $_GET['settings-updated'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Only checking. False positive.
 			add_settings_error( 'generate-notices', 'true', esc_html__( 'Settings saved.', 'generatepress' ), 'updated' );
 		}
 
-		if ( isset( $_GET['status'] ) && 'imported' === $_GET['status'] ) { // phpcs:ignore
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Only checking. False positive.
+		if ( isset( $_GET['status'] ) && 'imported' === $_GET['status'] ) {
 			add_settings_error( 'generate-notices', 'imported', esc_html__( 'Import successful.', 'generatepress' ), 'updated' );
 		}
 
-		if ( isset( $_GET['status'] ) && 'reset' === $_GET['status'] ) { // phpcs:ignore
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Only checking. False positive.
+		if ( isset( $_GET['status'] ) && 'reset' === $_GET['status'] ) {
 			add_settings_error( 'generate-notices', 'reset', esc_html__( 'Settings removed.', 'generatepress' ), 'updated' );
 		}
 

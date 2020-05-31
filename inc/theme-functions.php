@@ -201,7 +201,8 @@ if ( ! function_exists( 'generate_get_link_url' ) ) {
 	function generate_get_link_url() {
 		$has_url = get_url_in_content( get_the_content() );
 
-		return $has_url ? $has_url : apply_filters( 'the_permalink', get_permalink() ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Core filter name.
+		return $has_url ? $has_url : apply_filters( 'the_permalink', get_permalink() );
 	}
 }
 
@@ -321,7 +322,7 @@ function generate_get_svg_icon( $icon, $replace = false ) {
  * @param bool   $replace Whether to include the close icon to be shown using JS.
  */
 function generate_do_svg_icon( $icon, $replace = false ) {
-	echo generate_get_svg_icon( $icon, $replace ); // phpcs:ignore
+	echo generate_get_svg_icon( $icon, $replace ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in function.
 }
 
 /**

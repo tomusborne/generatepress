@@ -216,7 +216,8 @@ if ( ! function_exists( 'generate_construct_site_title' ) ) {
 				generate_construct_logo();
 			}
 
-			echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- outputting site title and tagline. False positive.
+			echo apply_filters(
 				'generate_site_branding_output',
 				sprintf(
 					'<div class="site-branding">
@@ -285,7 +286,7 @@ if ( ! function_exists( 'generate_top_bar' ) ) {
 		$inside_top_bar_class = 'contained' === generate_get_option( 'top_bar_inner_width' ) ? ' grid-container grid-parent' : '';
 		?>
 		<div <?php generate_do_element_classes( 'top_bar' ); ?>>
-			<div class="inside-top-bar<?php echo $inside_top_bar_class; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
+			<div class="inside-top-bar<?php echo $inside_top_bar_class; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- False positive. ?>">
 				<?php dynamic_sidebar( 'top-bar' ); ?>
 			</div>
 		</div>

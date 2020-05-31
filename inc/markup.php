@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param string|array $class One or more classes to add to the class list.
  */
 function generate_do_element_classes( $context, $class = '' ) {
-	echo 'class="' . join( ' ', generate_get_element_classes( $context, $class ) ) . '"'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo 'class="' . join( ' ', generate_get_element_classes( $context, $class ) ) . '"'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in function.
 }
 
 /**
@@ -130,7 +130,7 @@ function generate_get_microdata( $context ) {
  * @param string $context The element to target.
  */
 function generate_do_microdata( $context ) {
-	echo generate_get_microdata( $context ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo generate_get_microdata( $context ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in function.
 }
 
 if ( ! function_exists( 'generate_body_classes' ) ) {

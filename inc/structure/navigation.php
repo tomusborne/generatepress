@@ -46,7 +46,7 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 					if ( $mobile_menu_label ) {
 						printf(
 							'<span class="mobile-menu">%s</span>',
-							$mobile_menu_label // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							$mobile_menu_label // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- HTML allowed in filter.
 						);
 					} else {
 						printf(
@@ -111,7 +111,7 @@ if ( ! function_exists( 'generate_menu_fallback' ) ) {
 					printf(
 						'<li class="search-item"><a aria-label="%1$s" href="#">%2$s</a></li>',
 						esc_attr__( 'Open Search Bar', 'generatepress' ),
-						generate_get_svg_icon( 'search', true ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						generate_get_svg_icon( 'search', true ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in function.
 					);
 				}
 				?>
@@ -248,7 +248,8 @@ if ( ! class_exists( 'Generate_Page_Walker' ) && class_exists( 'Walker_Page' ) )
 				$css_class[] = 'current-menu-parent';
 			}
 
-			$css_classes = implode( ' ', apply_filters( 'page_css_class', $css_class, $page, $depth, $args, $current_page ) ); // phpcs:ignore
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Core filter name.
+			$css_classes = implode( ' ', apply_filters( 'page_css_class', $css_class, $page, $depth, $args, $current_page ) );
 
 			$args['link_before'] = empty( $args['link_before'] ) ? '' : $args['link_before'];
 			$args['link_after'] = empty( $args['link_after'] ) ? '' : $args['link_after'];
@@ -258,7 +259,7 @@ if ( ! class_exists( 'Generate_Page_Walker' ) && class_exists( 'Walker_Page' ) )
 				$css_classes,
 				get_permalink( $page->ID ),
 				$args['link_before'],
-				apply_filters( 'the_title', $page->post_title, $page->ID ), // phpcs:ignore
+				apply_filters( 'the_title', $page->post_title, $page->ID ), // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Core filter name.
 				$args['link_after'],
 				$button
 			);

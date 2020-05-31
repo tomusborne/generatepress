@@ -114,8 +114,8 @@ do_action( 'generate_before_comments' );
 
 	endif;
 
-	// If comments are closed and there are comments, let's leave a little note, shall we?
-	if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) : // phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
+	// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
+	if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
 		?>
 		<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'generatepress' ); ?></p>
 		<?php

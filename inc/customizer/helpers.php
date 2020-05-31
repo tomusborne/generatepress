@@ -137,7 +137,8 @@ if ( ! function_exists( 'generate_sanitize_decimal_integer' ) ) {
  * @param string $input The value to check.
  */
 function generate_sanitize_empty_absint( $input ) {
-	if ( '' == $input ) { // phpcs:ignore
+	// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- Intentially loose.
+	if ( '' == $input ) {
 		return '';
 	}
 
@@ -152,7 +153,8 @@ if ( ! function_exists( 'generate_sanitize_checkbox' ) ) {
 	 * @param string $checked The value to check.
 	 */
 	function generate_sanitize_checkbox( $checked ) {
-		return ( ( isset( $checked ) && true == $checked ) ? true : false ); // phpcs:ignore
+		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- Intentially loose.
+		return ( ( isset( $checked ) && true == $checked ) ? true : false );
 	}
 }
 
@@ -187,7 +189,8 @@ if ( ! function_exists( 'generate_sanitize_hex_color' ) ) {
 	 * @param string $color The color to check.
 	 */
 	function generate_sanitize_hex_color( $color ) {
-		if ( '' === $color ) { // phpcs:ignore
+		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- Intentially loose.
+		if ( '' === $color ) {
 			return '';
 		}
 

@@ -229,7 +229,8 @@ if ( ! function_exists( 'generate_enhanced_image_navigation' ) ) {
 		}
 
 		$image = get_post( $id );
-		if ( ! empty( $image->post_parent ) && $image->post_parent != $id ) { // phpcs:ignore
+		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- Intentially loose.
+		if ( ! empty( $image->post_parent ) && $image->post_parent != $id ) {
 			$url .= '#main';
 		}
 
