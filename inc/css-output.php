@@ -773,12 +773,12 @@ function generate_do_icon_css() {
 
 		$output = '@font-face {
 			font-family: "GeneratePress";
-			src:  url("' . $url . 'fonts/generatepress.eot");
-			src:  url("' . $url . 'fonts/generatepress.eot#iefix") format("embedded-opentype"),
-				  url("' . $url . 'fonts/generatepress.woff2") format("woff2"),
-				  url("' . $url . 'fonts/generatepress.woff") format("woff"),
-				  url("' . $url . 'fonts/generatepress.ttf") format("truetype"),
-				  url("' . $url . 'fonts/generatepress.svg#GeneratePress") format("svg");
+			src:  url("' . $url . 'assets/fonts/generatepress.eot");
+			src:  url("' . $url . 'assets/fonts/generatepress.eot#iefix") format("embedded-opentype"),
+				  url("' . $url . 'assets/fonts/generatepress.woff2") format("woff2"),
+				  url("' . $url . 'assets/fonts/generatepress.woff") format("woff"),
+				  url("' . $url . 'assets/fonts/generatepress.ttf") format("truetype"),
+				  url("' . $url . 'assets/fonts/generatepress.svg#GeneratePress") format("svg");
 			font-weight: normal;
 			font-style: normal;
 		}';

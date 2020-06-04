@@ -29,7 +29,7 @@ if ( ! function_exists( 'generate_options_styles' ) ) {
 	 * @since 0.1
 	 */
 	function generate_options_styles() {
-		wp_enqueue_style( 'generate-options', get_template_directory_uri() . '/css/admin/style.css', array(), GENERATE_VERSION );
+		wp_enqueue_style( 'generate-options', get_template_directory_uri() . '/assets/css/admin/style.css', array(), GENERATE_VERSION );
 	}
 }
 

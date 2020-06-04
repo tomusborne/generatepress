@@ -24,7 +24,7 @@ function generate_enqueue_meta_box_scripts( $hook ) {
 		$post_type = $screen->id;
 
 		if ( in_array( $post_type, (array) $post_types ) ) {
-			wp_enqueue_style( 'generate-layout-metabox', get_template_directory_uri() . '/css/admin/meta-box.css', array(), GENERATE_VERSION );
+			wp_enqueue_style( 'generate-layout-metabox', get_template_directory_uri() . '/assets/css/admin/meta-box.css', array(), GENERATE_VERSION );
 		}
 	}
 }
