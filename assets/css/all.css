@@ -2156,12 +2156,12 @@ ol.comment-list {
 --------------------------------------------------------------*/
 .one-container.both-left .inside-left-sidebar,
 .one-container.both-right .inside-left-sidebar {
-	margin-right: 15px;
+	margin-right: 20px;
 }
 
 .one-container.both-left .inside-right-sidebar,
 .one-container.both-right .inside-right-sidebar {
-	margin-left: 15px;
+	margin-left: 20px;
 }
 
 .separate-containers .site-main > *:last-child,
