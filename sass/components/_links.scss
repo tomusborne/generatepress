@@ -1,0 +1,31 @@
+a,
+button,
+input {
+	transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+}
+
+a,
+a:visited,
+a:hover,
+a:focus {
+	text-decoration: none;
+}
+
+.button,
+.wp-block-button .wp-block-button__link {
+	padding: 10px 20px;
+	display: inline-block;
+}
+
+.wp-block-button .wp-block-button__link {
+	font-size: inherit;
+	line-height: inherit;
+}
+
+.using-mouse :focus {
+	outline: 0;
+}
+
+.using-mouse ::-moz-focus-inner {
+	border: 0;
+}

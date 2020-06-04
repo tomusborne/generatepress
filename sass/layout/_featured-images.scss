@@ -1,0 +1,23 @@
+.post-image {
+	margin: 2em 0 0;
+}
+
+.page-header-image,
+.page-header-image-single {
+	line-height: 0; /* no more weird spacing */
+}
+
+.separate-containers .page-header-image,
+.separate-containers .page-header-content {
+	margin-top: 30px;
+}
+
+.separate-containers .inside-article > [class*="page-header-"],
+.one-container .inside-article > [class*="page-header-"] {
+	margin-bottom: 2em;
+	margin-top: 0;
+}
+
+.inside-article .page-header-image-single.page-header-below-title {
+	margin-top: 2em;
+}

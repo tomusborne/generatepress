@@ -1,0 +1,90 @@
+/*--------------------------------------------------------------
+## Font
+--------------------------------------------------------------*/
+
+.menu-toggle:before,
+.search-item a:before,
+.dropdown-menu-toggle:before,
+.cat-links:before,
+.tags-links:before,
+.comments-link:before,
+.nav-previous .prev:before,
+.nav-next .next:before,
+.generate-back-to-top:before {
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	line-height: 1;
+	speak: never;
+}
+
+.cat-links:before,
+.tags-links:before,
+.comments-link:before,
+.nav-previous .prev:before,
+.nav-next .next:before {
+	opacity: 0.7;
+}
+
+/*--------------------------------------------------------------
+## SVG
+--------------------------------------------------------------*/
+
+.gp-icon {
+	display: inline-flex;
+	align-self: center;
+}
+
+.gp-icon svg {
+	height: 1em;
+	width: 1em;
+	top: .125em;
+	position: relative;
+	fill: currentColor;
+}
+
+.icon-menu-bars svg:nth-child(2),
+.toggled .icon-menu-bars svg:nth-child(1),
+.icon-search svg:nth-child(2),
+.close-search .icon-search svg:nth-child(1) {
+	display: none;
+}
+
+.toggled .icon-menu-bars svg:nth-child(2),
+.close-search .icon-search svg:nth-child(2) {
+	display: block;
+}
+
+.entry-meta .gp-icon {
+	margin-right: 0.6em;
+	opacity: 0.7;
+}
+
+.dropdown-hover .sub-menu .dropdown-menu-toggle .gp-icon svg,
+.dropdown-hover .children .dropdown-menu-toggle .gp-icon svg,
+.dropdown-hover.both-left .inside-right-sidebar .dropdown-menu-toggle .gp-icon svg,
+.dropdown-hover .inside-left-sidebar .dropdown-menu-toggle .gp-icon svg,
+.nav-next .gp-icon svg {
+	transform: rotate(-90deg);
+	transform-origin: center;
+}
+
+.dropdown-hover .sub-menu-left:not(.toggled) ul ul .dropdown-menu-toggle .gp-icon svg,
+.dropdown-hover.both-right .inside-left-sidebar .dropdown-menu-toggle .gp-icon svg,
+.dropdown-hover .inside-right-sidebar .dropdown-menu-toggle .gp-icon svg,
+.nav-previous .gp-icon svg {
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
+.dropdown-click .sfHover > a > .dropdown-menu-toggle > .gp-icon svg,
+nav.toggled .sfHover > a > .dropdown-menu-toggle > .gp-icon svg,
+.generate-back-to-top .gp-icon svg {
+	transform: rotate(180deg);
+}
+
+nav.toggled .sub-menu .dropdown-menu-toggle .gp-icon svg {
+    transform: rotate(0deg);
+}

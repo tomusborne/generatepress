@@ -1,0 +1,19 @@
+.site-main .comment-navigation,
+.site-main .posts-navigation,
+.site-main .post-navigation {
+	margin: 0 0 2em;
+	overflow: hidden;
+}
+
+.paging-navigation .nav-previous,
+.paging-navigation .nav-next {
+	display: none;
+}
+
+.site-main .paging-navigation .navigation {
+	margin: 0; /* Only for WordPress < 4.4 */
+}
+
+.site-main .post-navigation {
+	margin-bottom: 0;
+}

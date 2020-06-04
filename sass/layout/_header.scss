@@ -1,0 +1,111 @@
+.site-header {
+	position: relative;
+}
+
+.inside-header {
+	padding: 40px;
+}
+
+.main-title {
+	margin: 0;
+	font-size: 45px;
+	line-height: 1.2em;
+	word-wrap: break-word;
+	font-weight: bold;
+	text-transform: none;
+}
+
+.site-description {
+	margin: 0;
+	line-height: 1.5;
+	font-weight: normal;
+	text-transform: none;
+	font-size: 15px;
+}
+
+.site-logo {
+	display: inline-block;
+	max-width: 100%;
+}
+
+.header-aligned-center .site-header {
+	text-align: center;
+}
+
+.header-aligned-right .site-header {
+	text-align: right;
+}
+
+.site-header .header-image {
+	vertical-align: middle;
+}
+
+.header-widget {
+	float: right;
+	overflow: hidden;
+	max-width: 50%;
+}
+
+.header-widget .widget {
+	padding: 0 0 20px;
+	margin-bottom: 0;
+}
+
+.header-widget .widget:last-child {
+	padding-bottom: 0;
+}
+
+.nav-float-right .header-widget .widget {
+	padding: 0 0 10px;
+}
+
+.nav-float-right .header-widget {
+	position: relative;
+	top: -10px;
+}
+
+.nav-float-left .inside-header .site-branding,
+.nav-float-left .inside-header .site-logo {
+	float: right;
+	clear: right;
+}
+
+.nav-float-left .inside-header:after {
+	clear: both;
+	content: '';
+	display: table;
+}
+
+.nav-float-right .inside-header .site-branding {
+	display: inline-block;
+}
+
+.header-widget .widget-title {
+	margin-bottom: 15px;
+}
+
+.site-branding-container {
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	text-align: left;
+}
+
+.site-branding-container .site-logo {
+	margin-right: 1.5em;
+}
+
+.header-aligned-right .site-branding-container {
+	text-align: right;
+}
+
+.header-aligned-right .site-branding-container .site-logo {
+	-webkit-box-ordinal-group: 11;
+	-ms-flex-order: 10;
+	order: 10;
+	margin-right: 0;
+	margin-left: 1.5em;
+}

@@ -1,0 +1,74 @@
+.top-bar {
+	font-weight: normal;
+	text-transform: none;
+	font-size: 13px;
+}
+
+.inside-top-bar {
+	padding: 10px;
+}
+
+.top-bar .inside-top-bar .widget {
+	padding: 0;
+	display: inline-block;
+	margin: 0;
+}
+
+.top-bar .inside-top-bar .textwidget p:last-child {
+	margin: 0;
+}
+
+.top-bar-align-center {
+	text-align: center;
+}
+
+.top-bar-align-right {
+	text-align: right;
+}
+
+.top-bar-align-right .inside-top-bar >.widget:nth-child(even),
+.top-bar-align-left .inside-top-bar > .widget:nth-child(odd) {
+	float: left;
+	margin-right: 10px;
+}
+
+.top-bar-align-right .inside-top-bar >.widget:nth-child(odd),
+.top-bar-align-center .inside-top-bar .widget:not(:first-child) {
+	margin-left: 10px;
+}
+
+.top-bar-align-left .inside-top-bar >.widget:nth-child(even) {
+	margin-left: 10px;
+	float: right;
+}
+
+.top-bar-align-center .inside-top-bar .widget:first-child:last-child {
+	display: block
+}
+
+.top-bar .widget-title {
+	display: none;
+}
+
+.top-bar .widget_nav_menu li {
+	margin: 0 10px;
+	float: left;
+	padding: 0;
+}
+
+.top-bar .widget_nav_menu li:first-child {
+	margin-left: 0;
+}
+
+.top-bar .widget_nav_menu li:last-child {
+	margin-right: 0;
+}
+
+.top-bar .widget_nav_menu li ul {
+	display: none;
+}
+
+.top-bar .widget_nav_menu > div > ul {
+	display: inline-block;
+	vertical-align: top;
+}

@@ -1,0 +1,231 @@
+body,
+button,
+input,
+select,
+textarea {
+	font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	font-weight: normal;
+	text-transform: none;
+	font-size: 17px;
+	line-height: 1.5;
+}
+
+p {
+	margin-bottom: 1.5em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: inherit;
+	font-size: 100%;
+	font-style: inherit;
+	font-weight: inherit;
+}
+
+pre {
+	background: rgba(0, 0, 0, 0.05);
+	font-family: inherit;
+	font-size: inherit;
+	line-height: normal;
+	margin-bottom: 1.5em;
+	padding: 20px;
+	overflow: auto;
+	max-width: 100%;
+}
+
+blockquote {
+	border-left: 5px solid rgba(0, 0, 0, 0.05);
+	padding: 20px;
+	font-size: 1.2em;
+	font-style:italic;
+	margin: 0 0 1.5em;
+	position: relative;
+}
+
+blockquote p:last-child {
+	margin: 0;
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+	border-width: 1px 0 0 1px;
+	margin: 0 0 1.5em;
+	width: 100%;
+}
+
+th,
+td {
+	padding: 8px;
+}
+
+th {
+	border-width: 0 1px 1px 0;
+}
+
+td {
+	border-width: 0 1px 1px 0;
+}
+
+hr {
+	background-color: rgba(0, 0, 0, 0.1);
+	border: 0;
+	height: 1px;
+	margin-bottom: 40px;
+	margin-top: 40px;
+}
+
+fieldset {
+	padding: 0;
+	border: 0;
+	min-width: inherit;
+}
+
+fieldset legend {
+	padding: 0;
+	margin-bottom: 1.5em;
+}
+
+h1 {
+	font-size: 40px;
+	margin-bottom: 20px;
+	line-height: 1.2em;
+	font-weight: 300;
+	text-transform: none;
+}
+
+h2 {
+	font-size: 30px;
+	margin-bottom: 20px;
+	line-height: 1.2em;
+	font-weight: 300;
+	text-transform: none;
+}
+
+h3 {
+	font-size: 20px;
+	margin-bottom: 20px;
+	line-height: 1.2em;
+	font-weight: normal;
+	text-transform: none;
+}
+
+h4,
+h5,
+h6 {
+	margin-bottom: 20px;
+}
+
+ul,
+ol {
+	margin: 0 0 1.5em 3em;
+}
+
+ul {
+	list-style: disc;
+}
+
+ol {
+	list-style: decimal;
+}
+
+li > ul,
+li > ol {
+	margin-bottom: 0;
+	margin-left: 1.5em;
+}
+
+dt {
+	font-weight: bold;
+}
+
+dd {
+	margin: 0 1.5em 1.5em;
+}
+
+b,
+strong {
+	font-weight: bold;
+}
+
+dfn,
+cite,
+em,
+i {
+	font-style: italic;
+}
+
+address {
+	margin: 0 0 1.5em;
+}
+
+code,
+kbd,
+tt,
+var {
+	font: 15px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+}
+
+abbr,
+acronym {
+	border-bottom: 1px dotted #666;
+	cursor: help;
+}
+
+mark,
+ins {
+	text-decoration: none;
+}
+
+sup,
+sub {
+	font-size: 75%;
+	height: 0;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+
+sup {
+	bottom: 1ex;
+}
+
+sub {
+	top: .5ex;
+}
+
+small {
+	font-size: 75%;
+}
+
+big {
+	font-size: 125%;
+}
+
+figure {
+	margin: 0;
+}
+
+table {
+	margin: 0 0 1.5em;
+	width: 100%;
+}
+
+th {
+	font-weight: bold;
+}
+
+img {
+	height: auto; /* Make sure images are scaled correctly. */
+	max-width: 100%; /* Adhere to container width. */
+}
