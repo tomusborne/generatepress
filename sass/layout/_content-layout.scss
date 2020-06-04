@@ -4,12 +4,12 @@
 
 .one-container.both-left .inside-left-sidebar,
 .one-container.both-right .inside-left-sidebar {
-	margin-right: 15px;
+	margin-right: $element-padding / 2;
 }
 
 .one-container.both-left .inside-right-sidebar,
 .one-container.both-right .inside-right-sidebar {
-	margin-left: 15px;
+	margin-left: $element-padding / 2;
 }
 
 .separate-containers .site-main > *:last-child,
@@ -23,16 +23,16 @@
 
 .one-container.right-sidebar .site-main,
 .one-container.both-right .site-main {
-	margin-right: 40px;
+	margin-right: $element-padding;
 }
 
 .one-container.left-sidebar .site-main,
 .one-container.both-left .site-main {
-	margin-left: 40px;
+	margin-left: $element-padding;
 }
 
 .one-container.both-sidebars .site-main {
-	margin: 0px 40px 0px 40px;
+	margin: 0px $element-padding 0px $element-padding;
 }
 
 /*--------------------------------------------------------------
@@ -46,18 +46,18 @@
 .one-container .site-content,
 .inside-page-header,
 .wp-block-group__inner-container {
-	padding: 40px;
+	padding: $element-padding;
 }
 
 .separate-containers .widget,
 .separate-containers .site-main > *,
 .separate-containers .page-header,
 .widget-area .main-navigation {
-	margin-bottom: 20px;
+	margin-bottom: $separating-space;
 }
 
 .separate-containers .site-main {
-	margin: 20px;
+	margin: $separating-space;
 }
 
 .no-sidebar.separate-containers .site-main {
@@ -77,25 +77,25 @@
 
 .both-right.separate-containers .inside-left-sidebar,
 .both-left.separate-containers .inside-left-sidebar {
-	margin-right: 10px;
+	margin-right: $separating-space / 2;
 }
 
 .both-right.separate-containers .inside-right-sidebar,
 .both-left.separate-containers .inside-right-sidebar {
-	margin-left: 10px;
+	margin-left: $separating-space / 2;
 }
 
 .separate-containers .inside-right-sidebar,
 .separate-containers .inside-left-sidebar {
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-top: $separating-space;
+	margin-bottom: $separating-space;
 }
 
 .separate-containers .page-header-image,
 .separate-containers .page-header-contained,
 .separate-containers .page-header-image-single,
 .separate-containers .page-header-content-single {
-	margin-top: 20px;
+	margin-top: $separating-space;
 }
 
 /*--------------------------------------------------------------
