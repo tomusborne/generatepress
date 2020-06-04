@@ -142,9 +142,6 @@ nav.toggled ul ul.sub-menu {
 	--------------------------------------------------------------*/
 
 	a, body, button, input, select, textarea {
-		-webkit-transition: all 0s ease-in-out;
-		-moz-transition: all 0s ease-in-out;
-		-o-transition: all 0s ease-in-out;
 		transition: all 0s ease-in-out;
 	}
 
