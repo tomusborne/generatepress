@@ -35,6 +35,10 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 			wp_enqueue_style( 'generate-font-icons', $dir_uri . "/assets/css/font-icons{$suffix}.css", array(), GENERATE_VERSION, 'all' );
 		}
 
+		if ( is_singular() && comments_open() ) {
+			wp_enqueue_style( 'generate-comments', $dir_uri . "/assets/css/comments{$suffix}.css", array(), GENERATE_VERSION, 'all' );
+		}
+
 		if ( is_child_theme() ) {
 			wp_enqueue_style( 'generate-child', get_stylesheet_uri(), array( 'generate-style' ), filemtime( get_stylesheet_directory() . '/style.css' ), 'all' );
 		}
