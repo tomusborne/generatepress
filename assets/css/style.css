@@ -609,31 +609,6 @@ a:focus {
 }
 
 /*--------------------------------------------------------------
-## Mobile Menu
---------------------------------------------------------------*/
-.menu-toggle,
-.mobile-bar-items,
-.sidebar-nav-mobile {
-	display: none;
-}
-
-.menu-toggle {
-	padding: 0 20px;
-	line-height: 60px;
-	margin: 0;
-	font-weight: normal;
-	text-transform: none;
-	font-size: 15px;
-	cursor: pointer;
-}
-
-.main-navigation .mobile-bar-items a {
-	padding-left: 20px;
-	padding-right: 20px;
-	line-height: 60px;
-}
-
-/*--------------------------------------------------------------
 ## Navigation Search
 --------------------------------------------------------------*/
 .search-item .screen-reader-text {
