@@ -1163,9 +1163,6 @@ a:focus {
 	line-height: 60px;
 }
 
-/*--------------------------------------------------------------
-# Navigation (float)
---------------------------------------------------------------*/
 .main-navigation li {
 	float: left;
 	position: relative;
@@ -1523,9 +1520,6 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 	vertical-align: middle;
 }
 
-/*--------------------------------------------------------------
-# Header (float)
---------------------------------------------------------------*/
 .header-widget {
 	float: right;
 	overflow: hidden;
@@ -2073,9 +2067,6 @@ object {
 	margin: 0;
 }
 
-/*--------------------------------------------------------------
-# Footer (float)
---------------------------------------------------------------*/
 .footer-widgets {
 	padding: 40px;
 }

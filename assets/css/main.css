@@ -576,9 +576,6 @@ a:focus {
 	line-height: 60px;
 }
 
-/*--------------------------------------------------------------
-# Navigation (flexbox)
---------------------------------------------------------------*/
 .main-navigation .main-nav > ul {
 	display: flex;
 	flex-wrap: wrap;
@@ -930,9 +927,6 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 	vertical-align: middle;
 }
 
-/*--------------------------------------------------------------
-# Header (flexbox)
---------------------------------------------------------------*/
 .inside-header {
 	display: flex;
 	align-items: center;
@@ -1333,7 +1327,7 @@ object {
 }
 
 /*--------------------------------------------------------------
-# Content
+# Content Layout
 --------------------------------------------------------------*/
 /*--------------------------------------------------------------
 # Content
@@ -1355,39 +1349,6 @@ object {
 	max-width: 1300px;
 }
 
-/*--------------------------------------------------------------
-# Sidebars
---------------------------------------------------------------*/
-/*--------------------------------------------------------------
-# Sidebars
---------------------------------------------------------------*/
-.sidebar .grid-container {
-	max-width: 100%;
-	width: 100%;
-}
-
-.left-sidebar .sidebar,
-.both-left #left-sidebar,
-.both-sidebars #left-sidebar {
-	order: -10;
-}
-
-.both-left #right-sidebar {
-	order: -5;
-}
-
-.both-right #left-sidebar {
-	order: 5;
-}
-
-.both-right #right-sidebar,
-.both-sidebars #right-sidebar {
-	order: 10;
-}
-
-/*--------------------------------------------------------------
-# Content Layout
---------------------------------------------------------------*/
 /*--------------------------------------------------------------
 ## One Container
 --------------------------------------------------------------*/
@@ -1511,16 +1472,40 @@ object {
 }
 
 /*--------------------------------------------------------------
-# Footer (Flexbox)
+# Sidebars
+--------------------------------------------------------------*/
+.sidebar .grid-container {
+	max-width: 100%;
+	width: 100%;
+}
+
+.left-sidebar .sidebar,
+.both-left #left-sidebar,
+.both-sidebars #left-sidebar {
+	order: -10;
+}
+
+.both-left #right-sidebar {
+	order: -5;
+}
+
+.both-right #left-sidebar {
+	order: 5;
+}
+
+.both-right #right-sidebar,
+.both-sidebars #right-sidebar {
+	order: 10;
+}
+
+/*--------------------------------------------------------------
+# Footer
 --------------------------------------------------------------*/
 .inside-site-info {
 	display: flex;
 	align-items: center;
 }
 
-/*--------------------------------------------------------------
-# Footer
---------------------------------------------------------------*/
 .site-info {
 	text-align: center;
 	padding: 20px;
