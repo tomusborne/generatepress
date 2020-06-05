@@ -32,3 +32,12 @@
 .nav-aligned-right .main-navigation {
 	text-align: right;
 }
+
+.main-navigation li {
+	float: left;
+	position: relative;
+}
+
+.sf-menu > li.menu-item-float-right {
+	float: right !important;
+}
