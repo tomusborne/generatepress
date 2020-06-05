@@ -637,18 +637,6 @@ a:focus {
 /*--------------------------------------------------------------
 ## Navigation Search
 --------------------------------------------------------------*/
-.search-item a:before {
-	content: "\f002";
-	font-family: GeneratePress;
-	width: 1.28571429em;
-	text-align: center;
-	display: inline-block;
-}
-
-.search-item.close-search a:before {
-	content: "\f00d";
-}
-
 .search-item .screen-reader-text {
 	top: 0;
 	right: 0;
@@ -843,30 +831,6 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 	float: right;
 }
 
-.dropdown-menu-toggle:before {
-	content: "\f107";
-	font-family: GeneratePress;
-	display: inline-block;
-	width: 0.8em;
-	text-align: left;
-}
-
-nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
-	text-align: right;
-}
-
-.dropdown-hover .sub-menu-left:not(.toggled) ul ul .dropdown-menu-toggle:before {
-	transform: rotate(180deg);
-}
-
-.dropdown-click .menu-item-has-children.sfHover > a .dropdown-menu-toggle:before {
-	content: "\f106";
-}
-
-.dropdown-hover nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
-	content: "\f105";
-}
-
 .dropdown-click .main-navigation ul ul ul.toggled-on {
 	left: 0;
 	top: auto;
@@ -898,16 +862,6 @@ nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
 .dropdown-hover .widget-area .inside-right-sidebar .main-navigation ul li.sfHover ul {
 	right: 100%;
 	left: auto;
-}
-
-.dropdown-hover.both-right .inside-left-sidebar .dropdown-menu-toggle:before,
-.dropdown-hover .inside-right-sidebar .dropdown-menu-toggle:before {
-	content: "\f104";
-}
-
-.dropdown-hover.both-left .inside-right-sidebar .dropdown-menu-toggle:before,
-.dropdown-hover .inside-left-sidebar .dropdown-menu-toggle:before {
-	content: "\f105";
 }
 
 .dropdown-click .widget-area .main-navigation ul ul {
@@ -1107,9 +1061,6 @@ nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
 }
 
 .posted-on .updated,
-.entry-header .cat-links:before,
-.entry-header .tags-links:before,
-.entry-header .comments-link:before,
 .entry-header .gp-icon {
 	display: none;
 }
@@ -1197,40 +1148,6 @@ footer.entry-meta .posted-on {
 
 footer.entry-meta {
 	margin-top: 2em;
-}
-
-.cat-links:before,
-.tags-links:before,
-.comments-link:before,
-.nav-previous .prev:before,
-.nav-next .next:before {
-	font-family: GeneratePress;
-	text-decoration: inherit;
-	position: relative;
-	margin-right: 0.6em;
-	width: 13px;
-	text-align: center;
-	display: inline-block;
-}
-
-.cat-links:before {
-	content: "\f07b";
-}
-
-.tags-links:before {
-	content: "\f02c";
-}
-
-.comments-link:before {
-	content: "\f086";
-}
-
-.nav-previous .prev:before {
-	content: "\f104";
-}
-
-.nav-next .next:before {
-	content: "\f105";
 }
 
 .cat-links,
@@ -1795,11 +1712,6 @@ ol.comment-list {
 /*--------------------------------------------------------------
 ## Back to Top Button
 --------------------------------------------------------------*/
-.generate-back-to-top:before {
-	content: "\f106";
-	font-family: GeneratePress;
-}
-
 .generate-back-to-top,
 .generate-back-to-top:visited {
 	font-size: 20px;
@@ -1927,38 +1839,6 @@ ol.comment-list {
 
 /*--------------------------------------------------------------
 # Icons
---------------------------------------------------------------*/
-/*--------------------------------------------------------------
-## Font
---------------------------------------------------------------*/
-.menu-toggle:before,
-.search-item a:before,
-.dropdown-menu-toggle:before,
-.cat-links:before,
-.tags-links:before,
-.comments-link:before,
-.nav-previous .prev:before,
-.nav-next .next:before,
-.generate-back-to-top:before {
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-font-smoothing: antialiased;
-	font-style: normal;
-	font-variant: normal;
-	text-rendering: auto;
-	line-height: 1;
-	speak: never;
-}
-
-.cat-links:before,
-.tags-links:before,
-.comments-link:before,
-.nav-previous .prev:before,
-.nav-next .next:before {
-	opacity: 0.7;
-}
-
-/*--------------------------------------------------------------
-## SVG
 --------------------------------------------------------------*/
 .gp-icon {
 	display: inline-flex;

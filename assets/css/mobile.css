@@ -27,19 +27,6 @@ button.menu-toggle:focus {
 	background-color: transparent;
 }
 
-.menu-toggle:before {
-	content: "\f0c9";
-	font-family: GeneratePress;
-
-	width: 1.28571429em;
-	text-align: center;
-	display: inline-block;
-}
-
-.toggled .menu-toggle:before {
-	content: "\f00d";
-}
-
 .menu-toggle .mobile-menu {
 	padding-left: 3px;
 }
@@ -113,10 +100,6 @@ nav.toggled ul ul.sub-menu {
 
 .main-navigation.toggled .main-nav li.hide-on-mobile {
 	display: none !important;
-}
-
-.main-navigation.toggled .sfHover > a .dropdown-menu-toggle:before {
-	content: "\f106";
 }
 
 .main-navigation.toggled .menu-item-has-children .dropdown-menu-toggle {

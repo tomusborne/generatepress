@@ -771,18 +771,6 @@ function generate_do_icon_css() {
 	if ( 'font' === generate_get_option( 'icons' ) ) {
 		$url = trailingslashit( get_template_directory_uri() );
 
-		$output = '@font-face {
-			font-family: "GeneratePress";
-			src:  url("' . $url . 'assets/fonts/generatepress.eot");
-			src:  url("' . $url . 'assets/fonts/generatepress.eot#iefix") format("embedded-opentype"),
-				  url("' . $url . 'assets/fonts/generatepress.woff2") format("woff2"),
-				  url("' . $url . 'assets/fonts/generatepress.woff") format("woff"),
-				  url("' . $url . 'assets/fonts/generatepress.ttf") format("truetype"),
-				  url("' . $url . 'assets/fonts/generatepress.svg#GeneratePress") format("svg");
-			font-weight: normal;
-			font-style: normal;
-		}';
-
 		if ( defined( 'GENERATE_MENU_PLUS_VERSION' ) ) {
 			$output .= '.main-navigation .slideout-toggle a:before,
 			.slide-opened .slideout-overlay .slideout-exit:before {
@@ -797,20 +785,6 @@ function generate_do_icon_css() {
 				content: "\f106" !important;
 			}';
 		}
-	}
-
-	if ( 'svg' === generate_get_option( 'icons' ) ) {
-		$output = 'button.menu-toggle:before,
-		.search-item a:before,
-		.dropdown-menu-toggle:before,
-		.cat-links:before,
-		.tags-links:before,
-		.comments-link:before,
-		.nav-previous .prev:before,
-		.nav-next .next:before,
-		.generate-back-to-top:before {
-			display: none;
-		}';
 	}
 
 	if ( $output ) {

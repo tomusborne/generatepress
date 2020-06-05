@@ -22,16 +22,6 @@
 	left: auto;
 }
 
-.dropdown-hover.both-right .inside-left-sidebar .dropdown-menu-toggle:before,
-.dropdown-hover .inside-right-sidebar .dropdown-menu-toggle:before {
-	content: "\f104";
-}
-
-.dropdown-hover.both-left .inside-right-sidebar .dropdown-menu-toggle:before,
-.dropdown-hover .inside-left-sidebar .dropdown-menu-toggle:before {
-	content: "\f105";
-}
-
 .dropdown-click .widget-area .main-navigation ul ul {
 	top: auto;
 	position: absolute;

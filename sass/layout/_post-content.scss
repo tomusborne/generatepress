@@ -7,9 +7,6 @@
 }
 
 .posted-on .updated,
-.entry-header .cat-links:before,
-.entry-header .tags-links:before,
-.entry-header .comments-link:before,
 .entry-header .gp-icon {
 	display: none;
 }
@@ -97,40 +94,6 @@ footer.entry-meta .posted-on {
 
 footer.entry-meta {
 	margin-top: 2em;
-}
-
-.cat-links:before,
-.tags-links:before,
-.comments-link:before,
-.nav-previous .prev:before,
-.nav-next .next:before {
-	font-family: GeneratePress;
-	text-decoration: inherit;
-	position: relative;
-	margin-right: 0.6em;
-	width: 13px;
-	text-align: center;
-	display: inline-block;
-}
-
-.cat-links:before {
-	content: "\f07b";
-}
-
-.tags-links:before {
-	content: "\f02c";
-}
-
-.comments-link:before {
-	content: "\f086";
-}
-
-.nav-previous .prev:before {
-	content: "\f104";
-}
-
-.nav-next .next:before {
-	content: "\f105";
 }
 
 .cat-links,

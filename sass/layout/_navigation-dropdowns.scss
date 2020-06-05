@@ -106,32 +106,6 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 	float: right;
 }
 
-.dropdown-menu-toggle:before {
-	content: "\f107";
-	font-family: GeneratePress;
-
-	display: inline-block;
-	width: 0.8em;
-	text-align: left;
-}
-
-nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
-	text-align: right;
-}
-
-.dropdown-hover .sub-menu-left:not(.toggled) ul ul .dropdown-menu-toggle:before {
-	-webkit-transform: rotate(180deg);
-	transform: rotate(180deg);
-}
-
-.dropdown-click .menu-item-has-children.sfHover > a .dropdown-menu-toggle:before {
-	content: "\f106";
-}
-
-.dropdown-hover nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
-	content: "\f105";
-}
-
 .dropdown-click .main-navigation ul ul ul.toggled-on {
 	left: 0;
 	top: auto;

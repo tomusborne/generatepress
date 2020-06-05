@@ -1,16 +1,3 @@
-.search-item a:before {
-	content: "\f002";
-	font-family: GeneratePress;
-
-	width: 1.28571429em;
-	text-align: center;
-	display: inline-block;
-}
-
-.search-item.close-search a:before {
-	content: "\f00d";
-}
-
 .search-item .screen-reader-text {
 	top: 0;
 	right: 0;
