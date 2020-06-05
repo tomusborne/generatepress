@@ -139,34 +139,6 @@ nav.toggled ul ul.sub-menu {
 	}
 
 	/*--------------------------------------------------------------
-	## Top Bar
-	--------------------------------------------------------------*/
-
-	.top-bar.top-bar-align-left,
-	.top-bar.top-bar-align-right {
-		text-align: center;
-	}
-
-	.top-bar .widget {
-		float: none !important;
-		margin: 0 10px !important;
-	}
-
-	.top-bar .widget_nav_menu li {
-		float: none;
-		display: inline-block;
-		padding: 5px 0;
-	}
-
-	.footer-bar .widget_nav_menu li:first-child {
-        margin-left: 10px;
-    }
-
-    .footer-bar .widget_nav_menu li:last-child {
-        margin-right: 10px;
-    }
-
-	/*--------------------------------------------------------------
 	## Header
 	--------------------------------------------------------------*/
 
@@ -264,39 +236,12 @@ nav.toggled ul ul.sub-menu {
 
 	.site-info {
 		padding-left: 10px;
-		padding-right: 10px;
-	}
-
-	.site-info {
-		text-align: center;
+        padding-right: 10px;
+        text-align: center;
 	}
 
 	.copyright-bar {
 		float: none !important;
 		text-align: center !important;
-	}
-
-	.footer-bar {
-		float: none !important;
-		text-align: center !important;
-		margin-bottom: 20px;
-	}
-
-	.footer-bar .widget_nav_menu li {
-		float: none;
-		display: inline-block;
-		padding: 5px 0;
-	}
-
-	.inside-footer-widgets > div:not(:last-child) {
-		margin-bottom: 40px;
-	}
-
-	.site-footer .footer-widgets .footer-widgets-container .inside-footer-widgets {
-		margin: 0;
-	}
-
-	.site-footer .footer-widgets .footer-widgets-container .inner-padding {
-		padding: 0;
 	}
 }

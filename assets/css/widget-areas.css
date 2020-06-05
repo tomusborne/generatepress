@@ -1,0 +1,206 @@
+/*--------------------------------------------------------------
+## Top Bar
+--------------------------------------------------------------*/
+.top-bar {
+	font-weight: normal;
+	text-transform: none;
+	font-size: 13px;
+}
+
+.inside-top-bar {
+	padding: 10px;
+}
+
+.top-bar .inside-top-bar .widget {
+	padding: 0;
+	display: inline-block;
+	margin: 0;
+}
+
+.top-bar .inside-top-bar .textwidget p:last-child {
+	margin: 0;
+}
+
+.top-bar-align-center {
+	text-align: center;
+}
+
+.top-bar-align-right {
+	text-align: right;
+}
+
+.top-bar-align-right .inside-top-bar > .widget:nth-child(even),
+.top-bar-align-left .inside-top-bar > .widget:nth-child(odd) {
+	float: left;
+	margin-right: 10px;
+}
+
+.top-bar-align-right .inside-top-bar > .widget:nth-child(odd),
+.top-bar-align-center .inside-top-bar .widget:not(:first-child) {
+	margin-left: 10px;
+}
+
+.top-bar-align-left .inside-top-bar > .widget:nth-child(even) {
+	margin-left: 10px;
+	float: right;
+}
+
+.top-bar-align-center .inside-top-bar .widget:first-child:last-child {
+	display: block;
+}
+
+.top-bar .widget-title {
+	display: none;
+}
+
+.top-bar .widget_nav_menu li {
+	margin: 0 10px;
+	float: left;
+	padding: 0;
+}
+
+.top-bar .widget_nav_menu li:first-child {
+	margin-left: 0;
+}
+
+.top-bar .widget_nav_menu li:last-child {
+	margin-right: 0;
+}
+
+.top-bar .widget_nav_menu li ul {
+	display: none;
+}
+
+.top-bar .widget_nav_menu > div > ul {
+	display: inline-block;
+	vertical-align: top;
+}
+
+/*--------------------------------------------------------------
+# Footer Widgets
+--------------------------------------------------------------*/
+.footer-widgets {
+	padding: 40px;
+}
+
+.site-footer .footer-widgets-container .inner-padding {
+	padding: 0px 0px 0px 40px;
+}
+
+.site-footer .footer-widgets-container .inside-footer-widgets {
+	margin-left: -40px;
+}
+
+/*--------------------------------------------------------------
+## Footer Bar
+--------------------------------------------------------------*/
+.footer-bar-active .footer-bar .widget {
+	padding: 0;
+}
+
+.footer-bar .widget_nav_menu > div > ul {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.footer-bar .textwidget p:last-child {
+	margin: 0;
+}
+
+.footer-bar-align-right .copyright-bar {
+	float: left;
+}
+
+.footer-bar-align-right .footer-bar,
+.footer-bar-align-left .copyright-bar {
+	float: right;
+	text-align: right;
+}
+
+.footer-bar-align-left .footer-bar {
+	float: left;
+	text-align: left;
+}
+
+.footer-bar-align-center .copyright-bar {
+	float: none;
+	text-align: center;
+}
+
+.footer-bar-align-center .footer-bar {
+	float: none;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.footer-bar .widget-title {
+	display: none;
+}
+
+.footer-bar .widget_nav_menu li {
+	margin: 0 10px;
+	float: left;
+	padding: 0;
+}
+
+.footer-bar .widget_nav_menu li:first-child {
+	margin-left: 0;
+}
+
+.footer-bar .widget_nav_menu li:last-child {
+	margin-right: 0;
+}
+
+.footer-bar .widget_nav_menu li ul {
+	display: none;
+}
+
+/*--------------------------------------------------------------
+# Mobile
+--------------------------------------------------------------*/
+@media (max-width: 768px) {
+	/*--------------------------------------------------------------
+	## Top Bar
+	--------------------------------------------------------------*/
+	.top-bar.top-bar-align-left,
+	.top-bar.top-bar-align-right {
+		text-align: center;
+	}
+	.top-bar .widget {
+		float: none !important;
+		margin: 0 10px !important;
+	}
+	.top-bar .widget_nav_menu li {
+		float: none;
+		display: inline-block;
+		padding: 5px 0;
+	}
+	/*--------------------------------------------------------------
+	## Footer
+	--------------------------------------------------------------*/
+	.footer-bar {
+		float: none !important;
+		text-align: center !important;
+		margin-bottom: 20px;
+	}
+	.footer-bar .widget_nav_menu li {
+		float: none;
+		display: inline-block;
+		padding: 5px 0;
+	}
+	.footer-bar .widget_nav_menu li:first-child {
+		margin-left: 10px;
+	}
+	.footer-bar .widget_nav_menu li:last-child {
+		margin-right: 10px;
+	}
+	.inside-footer-widgets > div:not(:last-child) {
+		margin-bottom: 40px;
+	}
+	.site-footer .footer-widgets .footer-widgets-container .inside-footer-widgets {
+		margin: 0;
+	}
+	.site-footer .footer-widgets .footer-widgets-container .inner-padding {
+		padding: 0;
+	}
+}
