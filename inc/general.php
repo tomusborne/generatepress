@@ -28,7 +28,7 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 
 			wp_enqueue_style( 'generate-style-grid', $dir_uri . "/assets/css/unsemantic-grid{$lite}{$suffix}.css", false, GENERATE_VERSION, 'all' );
 			wp_enqueue_style( 'generate-style', $dir_uri . "/assets/css/style{$suffix}.css", array(), GENERATE_VERSION, 'all' );
-			wp_enqueue_style( 'generate-mobile-style', $dir_uri . "/assets/css/mobile{$suffix}.css", array( 'generate-style' ), GENERATE_VERSION, 'all' );
+			wp_enqueue_style( 'generate-mobile-style', $dir_uri . "/assets/css/mobile{$suffix}.css", array(), GENERATE_VERSION, 'all' );
 		}
 
 		if ( 'font' === generate_get_option( 'icons' ) ) {
@@ -52,7 +52,7 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 		}
 
 		if ( is_child_theme() ) {
-			wp_enqueue_style( 'generate-child', get_stylesheet_uri(), array( 'generate-style' ), filemtime( get_stylesheet_directory() . '/style.css' ), 'all' );
+			wp_enqueue_style( 'generate-child', get_stylesheet_uri(), array(), filemtime( get_stylesheet_directory() . '/style.css' ), 'all' );
 		}
 
 		if ( ! apply_filters( 'generate_fontawesome_essentials', false ) ) {
