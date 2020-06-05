@@ -1,0 +1,71 @@
+.inside-header {
+	display: flex;
+	align-items: center;
+}
+
+.header-widget {
+	margin-left: auto;
+}
+
+.nav-float-right .header-widget {
+	margin-left: 20px;
+}
+
+.nav-float-right #site-navigation {
+	margin-left: auto;
+}
+
+.nav-float-left #site-navigation {
+	margin-right: auto;
+}
+
+.nav-float-left .site-logo {
+	order: 10;
+}
+
+.nav-float-left .site-branding {
+	order: 5;
+}
+
+.nav-float-left .header-widget {
+	margin-left: 0;
+	margin-right: 20px;
+	order: -10;
+}
+
+.header-widget p:last-child {
+	margin-bottom: 0;
+}
+
+.header-aligned-center:not([class*="nav-float-"]) .inside-header {
+	justify-content: center;
+	flex-direction: column;
+}
+
+.header-aligned-center:not([class*="nav-float-"]) .header-widget {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.header-aligned-center:not([class*="nav-float-"]) .inside-header > *:not(:first-child) {
+	margin-top: 1em;
+}
+
+.header-aligned-right:not([class*="nav-float-"]) .inside-header {
+	justify-content: flex-end;
+}
+
+.header-aligned-right:not([class*="nav-float-"]) .header-widget {
+	margin-right: auto;
+	margin-left: 0;
+	order: -10;
+}
+
+.header-aligned-right .site-logo {
+	order: 2;
+}
+
+.site-logo + .site-branding {
+	margin-left: 20px;
+	margin-right: 20px;
+}

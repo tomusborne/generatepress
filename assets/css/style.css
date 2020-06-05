@@ -585,25 +585,63 @@ a:focus {
 	display: block;
 }
 
-.main-navigation li {
-	float: left;
-	position: relative;
-}
-
 .main-navigation ul {
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
 }
 
-.sf-menu > li.menu-item-float-right {
-	float: right !important;
-}
-
 .main-navigation .main-nav ul li a {
 	padding-left: 20px;
 	padding-right: 20px;
 	line-height: 60px;
+}
+
+/*--------------------------------------------------------------
+# Navigation (float)
+--------------------------------------------------------------*/
+.main-navigation li {
+	float: left;
+	position: relative;
+}
+
+.sf-menu > li.menu-item-float-right {
+	float: right !important;
+}
+
+.nav-float-right .inside-header .main-navigation {
+	float: right;
+	clear: right;
+}
+
+.nav-float-left .inside-header .main-navigation {
+	float: left;
+	clear: left;
+}
+
+.nav-aligned-right .main-navigation .menu > li,
+.nav-aligned-center .main-navigation .menu > li {
+	float: none;
+	display: inline-block;
+}
+
+.nav-aligned-right .main-navigation ul,
+.nav-aligned-center .main-navigation ul {
+	letter-spacing: -0.31em;
+	font-size: 1em;
+}
+
+.nav-aligned-right .main-navigation ul li,
+.nav-aligned-center .main-navigation ul li {
+	letter-spacing: normal;
+}
+
+.nav-aligned-center .main-navigation {
+	text-align: center;
+}
+
+.nav-aligned-right .main-navigation {
+	text-align: right;
 }
 
 /*--------------------------------------------------------------
@@ -851,44 +889,6 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 }
 
 /*--------------------------------------------------------------
-## Navigation Layout
---------------------------------------------------------------*/
-.nav-float-right .inside-header .main-navigation {
-	float: right;
-	clear: right;
-}
-
-.nav-float-left .inside-header .main-navigation {
-	float: left;
-	clear: left;
-}
-
-.nav-aligned-right .main-navigation .menu > li,
-.nav-aligned-center .main-navigation .menu > li {
-	float: none;
-	display: inline-block;
-}
-
-.nav-aligned-right .main-navigation ul,
-.nav-aligned-center .main-navigation ul {
-	letter-spacing: -0.31em;
-	font-size: 1em;
-}
-
-.nav-aligned-right .main-navigation ul li,
-.nav-aligned-center .main-navigation ul li {
-	letter-spacing: normal;
-}
-
-.nav-aligned-center .main-navigation {
-	text-align: center;
-}
-
-.nav-aligned-right .main-navigation {
-	text-align: right;
-}
-
-/*--------------------------------------------------------------
 # Post Navigation
 --------------------------------------------------------------*/
 .site-main .comment-navigation,
@@ -957,6 +957,9 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 	vertical-align: middle;
 }
 
+/*--------------------------------------------------------------
+# Header (float)
+--------------------------------------------------------------*/
 .header-widget {
 	float: right;
 	overflow: hidden;

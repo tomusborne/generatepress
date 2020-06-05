@@ -18,17 +18,21 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 		$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 		$dir_uri = get_template_directory_uri();
 
-		if ( generate_get_option( 'combine_css' ) && $suffix ) {
-			wp_enqueue_style( 'generate-style', $dir_uri . '/assets/css/all.min.css', array(), GENERATE_VERSION, 'all' );
+		if ( 'flexbox' === generate_get_option( 'structure' ) ) {
+			wp_enqueue_style( 'generate-style', $dir_uri . "/assets/css/main{$suffix}.css", array(), GENERATE_VERSION, 'all' );
 		} else {
-			$lite = '';
-			if ( apply_filters( 'generate_unsemantic_grid_lite', false ) ) {
-				$lite = '-lite';
-			}
+			if ( generate_get_option( 'combine_css' ) && $suffix ) {
+				wp_enqueue_style( 'generate-style', $dir_uri . "/assets/css/all{$suffix}.css", array(), GENERATE_VERSION, 'all' );
+			} else {
+				$lite = '';
+				if ( apply_filters( 'generate_unsemantic_grid_lite', false ) ) {
+					$lite = '-lite';
+				}
 
-			wp_enqueue_style( 'generate-style-grid', $dir_uri . "/assets/css/unsemantic-grid{$lite}{$suffix}.css", false, GENERATE_VERSION, 'all' );
-			wp_enqueue_style( 'generate-style', $dir_uri . "/assets/css/style{$suffix}.css", array(), GENERATE_VERSION, 'all' );
-			wp_enqueue_style( 'generate-mobile-style', $dir_uri . "/assets/css/mobile{$suffix}.css", array(), GENERATE_VERSION, 'all' );
+				wp_enqueue_style( 'generate-style-grid', $dir_uri . "/assets/css/unsemantic-grid{$lite}{$suffix}.css", false, GENERATE_VERSION, 'all' );
+				wp_enqueue_style( 'generate-style', $dir_uri . "/assets/css/style{$suffix}.css", array(), GENERATE_VERSION, 'all' );
+				wp_enqueue_style( 'generate-mobile-style', $dir_uri . "/assets/css/mobile{$suffix}.css", array(), GENERATE_VERSION, 'all' );
+			}
 		}
 
 		if ( 'font' === generate_get_option( 'icons' ) ) {
@@ -40,6 +44,7 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 		}
 
 		if (
+			( 'flexbox' === generate_get_option( 'structure' ) ) &&
 			is_active_sidebar( 'top-bar' ) ||
 			is_active_sidebar( 'footer-bar' ) ||
 			is_active_sidebar( 'footer-1' ) ||

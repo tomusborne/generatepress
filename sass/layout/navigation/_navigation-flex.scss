@@ -1,0 +1,37 @@
+.main-navigation .main-nav > ul {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.sidebar .main-navigation .main-nav > ul {
+	flex-direction: column;
+}
+
+.nav-align-center .main-nav > ul {
+	justify-content: center;
+}
+
+.nav-align-right .main-nav > ul {
+	justify-content: flex-end;
+}
+
+.nav-align-center .main-nav > ul > li.close-search {
+	margin-left: auto;
+	margin-right: 0;
+}
+
+.main-navigation:not([class*="nav-align-"]) .menu-item-align-right {
+	margin-left: auto;
+}
+
+.main-navigation:not([class*="nav-align-"]) .menu-item-align-right + .menu-item-align-right {
+	margin-left: 0;
+}
+
+.main-navigation ul li a {
+	display: block;
+}
+
+.main-navigation li {
+	position: relative;
+}

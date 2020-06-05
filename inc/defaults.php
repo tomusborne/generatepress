@@ -60,6 +60,7 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 				'icons' => 'font',
 				'combine_css' => true,
 				'dynamic_css_cache' => true,
+				'structure' => 'flexbox',
 			)
 		);
 	}
