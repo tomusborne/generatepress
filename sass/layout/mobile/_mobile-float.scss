@@ -252,10 +252,10 @@ nav.toggled ul ul.sub-menu {
 
 	.entry-meta {
 		font-size: inherit;
-	}
 
-	.entry-meta a {
-		line-height: 1.8em;
+		a {
+			line-height: 1.8em;
+		}
 	}
 
 	/*--------------------------------------------------------------
@@ -289,11 +289,13 @@ nav.toggled ul ul.sub-menu {
 		margin-bottom: 40px;
 	}
 
-	.site-footer .footer-widgets .footer-widgets-container .inside-footer-widgets {
-		margin: 0;
-	}
+	.site-footer .footer-widgets .footer-widgets-container {
+		.inside-footer-widgets {
+			margin: 0;
+		}
 
-	.site-footer .footer-widgets .footer-widgets-container .inner-padding {
-		padding: 0;
+		.inner-padding {
+			padding: 0;
+		}
 	}
 }
