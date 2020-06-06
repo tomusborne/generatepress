@@ -228,7 +228,10 @@ if ( ! function_exists( 'generate_top_bar_classes' ) ) {
 
 		if ( 'contained' === generate_get_option( 'top_bar_width' ) ) {
 			$classes[] = 'grid-container';
-			$classes[] = 'grid-parent';
+
+			if ( ! generate_is_using_flexbox() ) {
+				$classes[] = 'grid-parent';
+			}
 		}
 
 		$classes[] = 'top-bar-align-' . esc_attr( generate_get_option( 'top_bar_alignment' ) );
@@ -246,30 +249,33 @@ if ( ! function_exists( 'generate_right_sidebar_classes' ) ) {
 	 * @since 0.1
 	 */
 	function generate_right_sidebar_classes( $classes ) {
-		$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '25' );
-		$left_sidebar_width = apply_filters( 'generate_left_sidebar_width', '25' );
-
-		$right_sidebar_tablet_width = apply_filters( 'generate_right_sidebar_tablet_width', $right_sidebar_width );
-		$left_sidebar_tablet_width = apply_filters( 'generate_left_sidebar_tablet_width', $left_sidebar_width );
-
 		$classes[] = 'widget-area';
-		$classes[] = 'grid-' . $right_sidebar_width;
-		$classes[] = 'tablet-grid-' . $right_sidebar_tablet_width;
-		$classes[] = 'grid-parent';
 		$classes[] = 'sidebar';
 
-		// Get the layout.
-		$layout = generate_get_layout();
+		if ( ! generate_is_using_flexbox() ) {
+			$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '25' );
+			$left_sidebar_width = apply_filters( 'generate_left_sidebar_width', '25' );
 
-		if ( '' !== $layout ) {
-			switch ( $layout ) {
-				case 'both-left':
-					$total_sidebar_width = $left_sidebar_width + $right_sidebar_width;
-					$classes[] = 'pull-' . ( 100 - $total_sidebar_width );
+			$right_sidebar_tablet_width = apply_filters( 'generate_right_sidebar_tablet_width', $right_sidebar_width );
+			$left_sidebar_tablet_width = apply_filters( 'generate_left_sidebar_tablet_width', $left_sidebar_width );
 
-					$total_sidebar_tablet_width = $left_sidebar_tablet_width + $right_sidebar_tablet_width;
-					$classes[] = 'tablet-pull-' . ( 100 - $total_sidebar_tablet_width );
-					break;
+			$classes[] = 'grid-' . $right_sidebar_width;
+			$classes[] = 'tablet-grid-' . $right_sidebar_tablet_width;
+			$classes[] = 'grid-parent';
+
+			// Get the layout.
+			$layout = generate_get_layout();
+
+			if ( '' !== $layout ) {
+				switch ( $layout ) {
+					case 'both-left':
+						$total_sidebar_width = $left_sidebar_width + $right_sidebar_width;
+						$classes[] = 'pull-' . ( 100 - $total_sidebar_width );
+
+						$total_sidebar_tablet_width = $left_sidebar_tablet_width + $right_sidebar_tablet_width;
+						$classes[] = 'tablet-pull-' . ( 100 - $total_sidebar_tablet_width );
+						break;
+				}
 			}
 		}
 
@@ -286,36 +292,39 @@ if ( ! function_exists( 'generate_left_sidebar_classes' ) ) {
 	 * @since 0.1
 	 */
 	function generate_left_sidebar_classes( $classes ) {
-		$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '25' );
-		$left_sidebar_width = apply_filters( 'generate_left_sidebar_width', '25' );
-		$total_sidebar_width = $left_sidebar_width + $right_sidebar_width;
-
-		$right_sidebar_tablet_width = apply_filters( 'generate_right_sidebar_tablet_width', $right_sidebar_width );
-		$left_sidebar_tablet_width = apply_filters( 'generate_left_sidebar_tablet_width', $left_sidebar_width );
-		$total_sidebar_tablet_width = $left_sidebar_tablet_width + $right_sidebar_tablet_width;
-
 		$classes[] = 'widget-area';
-		$classes[] = 'grid-' . $left_sidebar_width;
-		$classes[] = 'tablet-grid-' . $left_sidebar_tablet_width;
-		$classes[] = 'mobile-grid-100';
-		$classes[] = 'grid-parent';
 		$classes[] = 'sidebar';
 
-		// Get the layout.
-		$layout = generate_get_layout();
+		if ( ! generate_is_using_flexbox() ) {
+			$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '25' );
+			$left_sidebar_width = apply_filters( 'generate_left_sidebar_width', '25' );
+			$total_sidebar_width = $left_sidebar_width + $right_sidebar_width;
 
-		if ( '' !== $layout ) {
-			switch ( $layout ) {
-				case 'left-sidebar':
-					$classes[] = 'pull-' . ( 100 - $left_sidebar_width );
-					$classes[] = 'tablet-pull-' . ( 100 - $left_sidebar_tablet_width );
-					break;
+			$right_sidebar_tablet_width = apply_filters( 'generate_right_sidebar_tablet_width', $right_sidebar_width );
+			$left_sidebar_tablet_width = apply_filters( 'generate_left_sidebar_tablet_width', $left_sidebar_width );
+			$total_sidebar_tablet_width = $left_sidebar_tablet_width + $right_sidebar_tablet_width;
 
-				case 'both-sidebars':
-				case 'both-left':
-					$classes[] = 'pull-' . ( 100 - $total_sidebar_width );
-					$classes[] = 'tablet-pull-' . ( 100 - $total_sidebar_tablet_width );
-					break;
+			$classes[] = 'grid-' . $left_sidebar_width;
+			$classes[] = 'tablet-grid-' . $left_sidebar_tablet_width;
+			$classes[] = 'mobile-grid-100';
+			$classes[] = 'grid-parent';
+
+			// Get the layout.
+			$layout = generate_get_layout();
+
+			if ( '' !== $layout ) {
+				switch ( $layout ) {
+					case 'left-sidebar':
+						$classes[] = 'pull-' . ( 100 - $left_sidebar_width );
+						$classes[] = 'tablet-pull-' . ( 100 - $left_sidebar_tablet_width );
+						break;
+
+					case 'both-sidebars':
+					case 'both-left':
+						$classes[] = 'pull-' . ( 100 - $total_sidebar_width );
+						$classes[] = 'tablet-pull-' . ( 100 - $total_sidebar_tablet_width );
+						break;
+				}
 			}
 		}
 
@@ -332,59 +341,62 @@ if ( ! function_exists( 'generate_content_classes' ) ) {
 	 * @since 0.1
 	 */
 	function generate_content_classes( $classes ) {
-		$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '25' );
-		$left_sidebar_width = apply_filters( 'generate_left_sidebar_width', '25' );
-		$total_sidebar_width = $left_sidebar_width + $right_sidebar_width;
-
-		$right_sidebar_tablet_width = apply_filters( 'generate_right_sidebar_tablet_width', $right_sidebar_width );
-		$left_sidebar_tablet_width = apply_filters( 'generate_left_sidebar_tablet_width', $left_sidebar_width );
-		$total_sidebar_tablet_width = $left_sidebar_tablet_width + $right_sidebar_tablet_width;
-
 		$classes[] = 'content-area';
-		$classes[] = 'grid-parent';
-		$classes[] = 'mobile-grid-100';
 
-		// Get the layout.
-		$layout = generate_get_layout();
+		if ( ! generate_is_using_flexbox() ) {
+			$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '25' );
+			$left_sidebar_width = apply_filters( 'generate_left_sidebar_width', '25' );
+			$total_sidebar_width = $left_sidebar_width + $right_sidebar_width;
 
-		if ( '' !== $layout ) {
-			switch ( $layout ) {
+			$right_sidebar_tablet_width = apply_filters( 'generate_right_sidebar_tablet_width', $right_sidebar_width );
+			$left_sidebar_tablet_width = apply_filters( 'generate_left_sidebar_tablet_width', $left_sidebar_width );
+			$total_sidebar_tablet_width = $left_sidebar_tablet_width + $right_sidebar_tablet_width;
 
-				case 'right-sidebar':
-					$classes[] = 'grid-' . ( 100 - $right_sidebar_width );
-					$classes[] = 'tablet-grid-' . ( 100 - $right_sidebar_tablet_width );
-					break;
+			$classes[] = 'grid-parent';
+			$classes[] = 'mobile-grid-100';
 
-				case 'left-sidebar':
-					$classes[] = 'push-' . $left_sidebar_width;
-					$classes[] = 'grid-' . ( 100 - $left_sidebar_width );
-					$classes[] = 'tablet-push-' . $left_sidebar_tablet_width;
-					$classes[] = 'tablet-grid-' . ( 100 - $left_sidebar_tablet_width );
-					break;
+			// Get the layout.
+			$layout = generate_get_layout();
 
-				case 'no-sidebar':
-					$classes[] = 'grid-100';
-					$classes[] = 'tablet-grid-100';
-					break;
+			if ( '' !== $layout ) {
+				switch ( $layout ) {
 
-				case 'both-sidebars':
-					$classes[] = 'push-' . $left_sidebar_width;
-					$classes[] = 'grid-' . ( 100 - $total_sidebar_width );
-					$classes[] = 'tablet-push-' . $left_sidebar_tablet_width;
-					$classes[] = 'tablet-grid-' . ( 100 - $total_sidebar_tablet_width );
-					break;
+					case 'right-sidebar':
+						$classes[] = 'grid-' . ( 100 - $right_sidebar_width );
+						$classes[] = 'tablet-grid-' . ( 100 - $right_sidebar_tablet_width );
+						break;
 
-				case 'both-right':
-					$classes[] = 'grid-' . ( 100 - $total_sidebar_width );
-					$classes[] = 'tablet-grid-' . ( 100 - $total_sidebar_tablet_width );
-					break;
+					case 'left-sidebar':
+						$classes[] = 'push-' . $left_sidebar_width;
+						$classes[] = 'grid-' . ( 100 - $left_sidebar_width );
+						$classes[] = 'tablet-push-' . $left_sidebar_tablet_width;
+						$classes[] = 'tablet-grid-' . ( 100 - $left_sidebar_tablet_width );
+						break;
 
-				case 'both-left':
-					$classes[] = 'push-' . $total_sidebar_width;
-					$classes[] = 'grid-' . ( 100 - $total_sidebar_width );
-					$classes[] = 'tablet-push-' . $total_sidebar_tablet_width;
-					$classes[] = 'tablet-grid-' . ( 100 - $total_sidebar_tablet_width );
-					break;
+					case 'no-sidebar':
+						$classes[] = 'grid-100';
+						$classes[] = 'tablet-grid-100';
+						break;
+
+					case 'both-sidebars':
+						$classes[] = 'push-' . $left_sidebar_width;
+						$classes[] = 'grid-' . ( 100 - $total_sidebar_width );
+						$classes[] = 'tablet-push-' . $left_sidebar_tablet_width;
+						$classes[] = 'tablet-grid-' . ( 100 - $total_sidebar_tablet_width );
+						break;
+
+					case 'both-right':
+						$classes[] = 'grid-' . ( 100 - $total_sidebar_width );
+						$classes[] = 'tablet-grid-' . ( 100 - $total_sidebar_tablet_width );
+						break;
+
+					case 'both-left':
+						$classes[] = 'push-' . $total_sidebar_width;
+						$classes[] = 'grid-' . ( 100 - $total_sidebar_width );
+						$classes[] = 'tablet-push-' . $total_sidebar_tablet_width;
+						$classes[] = 'tablet-grid-' . ( 100 - $total_sidebar_tablet_width );
+						break;
+				}
 			}
 		}
 
@@ -405,7 +417,10 @@ if ( ! function_exists( 'generate_header_classes' ) ) {
 
 		if ( 'contained-header' === generate_get_option( 'header_layout_setting' ) ) {
 			$classes[] = 'grid-container';
-			$classes[] = 'grid-parent';
+
+			if ( ! generate_is_using_flexbox() ) {
+				$classes[] = 'grid-parent';
+			}
 		}
 
 		return $classes;
@@ -425,7 +440,10 @@ if ( ! function_exists( 'generate_inside_header_classes' ) ) {
 
 		if ( 'full-width' !== generate_get_option( 'header_inner_width' ) ) {
 			$classes[] = 'grid-container';
-			$classes[] = 'grid-parent';
+
+			if ( ! generate_is_using_flexbox() ) {
+				$classes[] = 'grid-parent';
+			}
 		}
 
 		return $classes;
@@ -445,7 +463,10 @@ if ( ! function_exists( 'generate_navigation_classes' ) ) {
 
 		if ( 'contained-nav' === generate_get_option( 'nav_layout_setting' ) ) {
 			$classes[] = 'grid-container';
-			$classes[] = 'grid-parent';
+
+			if ( ! generate_is_using_flexbox() ) {
+				$classes[] = 'grid-parent';
+			}
 		}
 
 		if ( 'left' === generate_get_option( 'nav_dropdown_direction' ) ) {
@@ -478,7 +499,10 @@ if ( ! function_exists( 'generate_inside_navigation_classes' ) ) {
 
 		if ( 'full-width' !== generate_get_option( 'nav_inner_width' ) ) {
 			$classes[] = 'grid-container';
-			$classes[] = 'grid-parent';
+
+			if ( ! generate_is_using_flexbox() ) {
+				$classes[] = 'grid-parent';
+			}
 		}
 
 		return $classes;
@@ -514,7 +538,10 @@ if ( ! function_exists( 'generate_footer_classes' ) ) {
 
 		if ( 'contained-footer' === generate_get_option( 'footer_layout_setting' ) ) {
 			$classes[] = 'grid-container';
-			$classes[] = 'grid-parent';
+
+			if ( ! generate_is_using_flexbox() ) {
+				$classes[] = 'grid-parent';
+			}
 		}
 
 		if ( is_active_sidebar( 'footer-bar' ) ) {
@@ -539,7 +566,10 @@ if ( ! function_exists( 'generate_inside_footer_classes' ) ) {
 
 		if ( 'full-width' !== generate_get_option( 'footer_inner_width' ) ) {
 			$classes[] = 'grid-container';
-			$classes[] = 'grid-parent';
+
+			if ( ! generate_is_using_flexbox() ) {
+				$classes[] = 'grid-parent';
+			}
 		}
 
 		return $classes;

@@ -655,24 +655,26 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 
 		$output = '';
 
-		$generate_settings = wp_parse_args(
-			get_option( 'generate_settings', array() ),
-			generate_get_color_defaults()
-		);
+		if ( ! generate_is_using_flexbox() ) {
+			$generate_settings = wp_parse_args(
+				get_option( 'generate_settings', array() ),
+				generate_get_color_defaults()
+			);
 
-		// Find out if the content background color and sidebar widget background color is the same.
-		$sidebar = strtoupper( $generate_settings['sidebar_widget_background_color'] );
-		$content = strtoupper( $generate_settings['content_background_color'] );
+			// Find out if the content background color and sidebar widget background color is the same.
+			$sidebar = strtoupper( $generate_settings['sidebar_widget_background_color'] );
+			$content = strtoupper( $generate_settings['content_background_color'] );
 
-		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
-		$colors_match = ( ( $sidebar == $content ) || '' == $sidebar ) ? true : false;
+			// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
+			$colors_match = ( ( $sidebar == $content ) || '' == $sidebar ) ? true : false;
 
-		// If they're all 40 (default), remove the padding when one container is set.
-		// This way, the user can still adjust the padding and it will work (unless they want 40px padding).
-		// We'll also remove the padding if there's no color difference between the widgets and content background color.
-		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
-		if ( ( '40' == $settings['widget_top'] && '40' == $settings['widget_right'] && '40' == $settings['widget_bottom'] && '40' == $settings['widget_left'] ) && $colors_match ) {
-			$output .= '.one-container .sidebar .widget{padding:0px;}';
+			// If they're all 40 (default), remove the padding when one container is set.
+			// This way, the user can still adjust the padding and it will work (unless they want 40px padding).
+			// We'll also remove the padding if there's no color difference between the widgets and content background color.
+			// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
+			if ( ( '40' == $settings['widget_top'] && '40' == $settings['widget_right'] && '40' == $settings['widget_bottom'] && '40' == $settings['widget_left'] ) && $colors_match ) {
+				$output .= '.one-container .sidebar .widget{padding:0px;}';
+			}
 		}
 
 		do_action( 'generate_spacing_css', $css );
