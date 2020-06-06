@@ -28,8 +28,10 @@ if ( ! function_exists( 'generate_construct_header' ) ) {
 				 */
 				do_action( 'generate_before_header_content' );
 
-				// Add our main header items.
-				generate_header_items();
+				if ( ! generate_is_using_flexbox() ) {
+					// Add our main header items.
+					generate_header_items();
+				}
 
 				/**
 				 * generate_after_header_content hook.
@@ -269,6 +271,51 @@ if ( ! function_exists( 'generate_construct_header_widget' ) ) {
 			<?php
 		endif;
 	}
+}
+
+add_action( 'generate_before_header_content', 'generate_do_site_logo', 5 );
+/**
+ * Add the site logo to our header.
+ * Only added if we aren't using floats to preserve backwards compatibility.
+ *
+ * @since x.x.x
+ */
+function generate_do_site_logo() {
+	if ( ! generate_is_using_flexbox() ) {
+		return;
+	}
+
+	generate_construct_logo();
+}
+
+add_action( 'generate_before_header_content', 'generate_do_site_branding' );
+/**
+ * Add the site branding to our header.
+ * Only added if we aren't using floats to preserve backwards compatibility.
+ *
+ * @since x.x.x
+ */
+function generate_do_site_branding() {
+	if ( ! generate_is_using_flexbox() ) {
+		return;
+	}
+
+	generate_construct_site_title();
+}
+
+add_action( 'generate_after_header_content', 'generate_do_header_widget' );
+/**
+ * Add the header widget to our header.
+ * Only used when grid isn't using floats to preserve backwards compatibility.
+ *
+ * @since x.x.x
+ */
+function generate_do_header_widget() {
+	if ( ! generate_is_using_flexbox() ) {
+		return;
+	}
+
+	generate_construct_header_widget();
 }
 
 if ( ! function_exists( 'generate_top_bar' ) ) {
