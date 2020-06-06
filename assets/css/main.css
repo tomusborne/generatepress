@@ -1700,7 +1700,7 @@ nav.toggled .sub-menu .dropdown-menu-toggle .gp-icon svg {
 
 button.menu-toggle {
 	background-color: transparent;
-	width: 100%;
+	flex-grow: 1;
 	border: 0;
 	text-align: center;
 }
@@ -1715,11 +1715,8 @@ button.menu-toggle:hover, button.menu-toggle:active, button.menu-toggle:focus {
 
 .mobile-bar-items {
 	display: none;
-	position: absolute;
-	right: 0;
-	top: 0;
-	z-index: 21;
-	list-style-type: none;
+	order: 2;
+	z-index: 20;
 }
 
 .mobile-bar-items a {
