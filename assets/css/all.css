@@ -1927,11 +1927,6 @@ object {
 	margin-left: 20px;
 }
 
-.separate-containers .site-main > *:last-child,
-.one-container .site-main > *:last-child {
-	margin-bottom: 0;
-}
-
 .one-container:not(.page) .inside-article {
 	padding: 0 0 30px 0;
 }
@@ -1950,23 +1945,28 @@ object {
 	margin: 0px 40px 0px 40px;
 }
 
+.one-container .site-content {
+	padding: 40px;
+}
+
+.separate-containers .site-main > *:last-child,
+.one-container .site-main > *:last-child {
+	margin-bottom: 0;
+}
+
 /*--------------------------------------------------------------
 ## Separate Containers
 --------------------------------------------------------------*/
 .separate-containers .inside-article,
 .separate-containers .comments-area,
 .separate-containers .page-header,
-.separate-containers .paging-navigation,
-.one-container .site-content,
-.inside-page-header,
-.wp-block-group__inner-container {
+.separate-containers .paging-navigation {
 	padding: 40px;
 }
 
 .separate-containers .widget,
 .separate-containers .site-main > *,
-.separate-containers .page-header,
-.widget-area .main-navigation {
+.separate-containers .page-header {
 	margin-bottom: 20px;
 }
 
@@ -1974,28 +1974,28 @@ object {
 	margin: 20px;
 }
 
-.no-sidebar.separate-containers .site-main {
+.separate-containers.no-sidebar .site-main {
 	margin-left: 0;
 	margin-right: 0;
 }
 
-.right-sidebar.separate-containers .site-main,
-.both-right.separate-containers .site-main {
+.separate-containers.right-sidebar .site-main,
+.separate-containers.both-right .site-main {
 	margin-left: 0;
 }
 
-.left-sidebar.separate-containers .site-main,
-.both-left.separate-containers .site-main {
+.separate-containers.left-sidebar .site-main,
+.separate-containers.both-left .site-main {
 	margin-right: 0;
 }
 
-.both-right.separate-containers .inside-left-sidebar,
-.both-left.separate-containers .inside-left-sidebar {
+.separate-containers.both-right .inside-left-sidebar,
+.separate-containers.both-left .inside-left-sidebar {
 	margin-right: 10px;
 }
 
-.both-right.separate-containers .inside-right-sidebar,
-.both-left.separate-containers .inside-right-sidebar {
+.separate-containers.both-right .inside-right-sidebar,
+.separate-containers.both-left .inside-right-sidebar {
 	margin-left: 10px;
 }
 
@@ -2010,6 +2010,15 @@ object {
 .separate-containers .page-header-image-single,
 .separate-containers .page-header-content-single {
 	margin-top: 20px;
+}
+
+.inside-page-header,
+.wp-block-group__inner-container {
+	padding: 40px;
+}
+
+.widget-area .main-navigation {
+	margin-bottom: 20px;
 }
 
 /*--------------------------------------------------------------
@@ -2285,7 +2294,11 @@ object {
 .dropdown-hover .sub-menu .dropdown-menu-toggle .gp-icon svg,
 .dropdown-hover .children .dropdown-menu-toggle .gp-icon svg,
 .dropdown-hover.both-left .inside-right-sidebar .dropdown-menu-toggle .gp-icon svg,
-.dropdown-hover .inside-left-sidebar .dropdown-menu-toggle .gp-icon svg,
+.dropdown-hover .inside-left-sidebar .dropdown-menu-toggle .gp-icon svg {
+	transform: rotate(-90deg);
+	transform-origin: center;
+}
+
 .nav-next .gp-icon svg {
 	transform: rotate(-90deg);
 	transform-origin: center;
@@ -2293,7 +2306,10 @@ object {
 
 .dropdown-hover .sub-menu-left:not(.toggled) ul ul .dropdown-menu-toggle .gp-icon svg,
 .dropdown-hover.both-right .inside-left-sidebar .dropdown-menu-toggle .gp-icon svg,
-.dropdown-hover .inside-right-sidebar .dropdown-menu-toggle .gp-icon svg,
+.dropdown-hover .inside-right-sidebar .dropdown-menu-toggle .gp-icon svg {
+	transform: rotate(90deg);
+}
+
 .nav-previous .gp-icon svg {
 	transform: rotate(90deg);
 }
