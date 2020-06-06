@@ -969,13 +969,13 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 	padding-bottom: 0;
 }
 
-.nav-float-right .header-widget .widget {
-	padding: 0 0 10px;
-}
-
 .nav-float-right .header-widget {
 	position: relative;
 	top: -10px;
+}
+
+.nav-float-right .header-widget .widget {
+	padding: 0 0 10px;
 }
 
 .nav-float-left .inside-header .site-branding,

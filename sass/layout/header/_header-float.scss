@@ -10,36 +10,38 @@
 	float: right;
 	overflow: hidden;
 	max-width: 50%;
-}
 
-.header-widget .widget {
-	padding: 0 0 20px;
-	margin-bottom: 0;
-}
+	.widget {
+		padding: 0 0 20px;
+		margin-bottom: 0;
 
-.header-widget .widget:last-child {
-	padding-bottom: 0;
-}
-
-.nav-float-right .header-widget .widget {
-	padding: 0 0 10px;
+		&:last-child {
+			padding-bottom: 0;
+		}
+	}
 }
 
 .nav-float-right .header-widget {
 	position: relative;
 	top: -10px;
+
+	.widget {
+		padding: 0 0 10px;
+	}
 }
 
-.nav-float-left .inside-header .site-branding,
-.nav-float-left .inside-header .site-logo {
-	float: right;
-	clear: right;
-}
+.nav-float-left .inside-header {
+	.site-branding,
+	.site-logo {
+		float: right;
+		clear: right;
+	}
 
-.nav-float-left .inside-header:after {
-	clear: both;
-	content: '';
-	display: table;
+	&:after {
+		clear: both;
+		content: '';
+		display: table;
+	}
 }
 
 .nav-float-right .inside-header .site-branding {
