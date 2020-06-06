@@ -1,4 +1,4 @@
-.sticky{
+.sticky {
 	display: block;
 }
 
@@ -130,24 +130,24 @@ footer.entry-meta {
 .wp-caption {
 	margin-bottom: 1.5em;
 	max-width: 100%;
-	position:relative;
-}
-
-.wp-caption img[class*="wp-image-"] {
-	display: block;
-	margin: 0 auto 0;
-	max-width: 100%;
-}
-
-.wp-caption .wp-caption-text {
-	font-size: 75%;
-	padding-top: 5px;
-	opacity: 0.8;
-}
-
-.wp-caption img {
 	position: relative;
-	vertical-align: bottom;
+
+	img[class*="wp-image-"] {
+		display: block;
+		margin: 0 auto 0;
+		max-width: 100%;
+	}
+
+	.wp-caption-text {
+		font-size: 75%;
+		padding-top: 5px;
+		opacity: 0.8;
+	}
+
+	img {
+		position: relative;
+		vertical-align: bottom;
+	}
 }
 
 /*--------------------------------------------------------------

@@ -14,14 +14,14 @@
 	pointer-events: none;
 	height: 0;
 	overflow: hidden;
-}
 
-.main-navigation ul ul a {
-	display: block;
-}
+	a {
+		display: block;
+	}
 
-.main-navigation ul ul li {
-	width: 100%;
+	li {
+		width: 100%;
+	}
 }
 
 .main-navigation .main-nav ul ul li a {

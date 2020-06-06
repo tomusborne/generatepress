@@ -1,14 +1,14 @@
 .gp-icon {
 	display: inline-flex;
 	align-self: center;
-}
 
-.gp-icon svg {
-	height: 1em;
-	width: 1em;
-	top: .125em;
-	position: relative;
-	fill: currentColor;
+	svg {
+		height: 1em;
+		width: 1em;
+		top: .125em;
+		position: relative;
+		fill: currentColor;
+	}
 }
 
 .icon-menu-bars svg:nth-child(2),

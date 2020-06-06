@@ -22,10 +22,12 @@ a:focus {
 	line-height: inherit;
 }
 
-.using-mouse :focus {
-	outline: 0;
-}
+.using-mouse {
+	:focus {
+		outline: 0;
+	}
 
-.using-mouse ::-moz-focus-inner {
-	border: 0;
+	::-moz-focus-inner {
+		border: 0;
+	}
 }

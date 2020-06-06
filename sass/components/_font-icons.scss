@@ -59,16 +59,18 @@
 # Navigation Search
 --------------------------------------------------------------*/
 
-.search-item a:before {
-	content: "\f002";
-	font-family: GeneratePress;
-	width: 1.28571429em;
-	text-align: center;
-	display: inline-block;
-}
+.search-item {
+	a:before {
+		content: "\f002";
+		font-family: GeneratePress;
+		width: 1.28571429em;
+		text-align: center;
+		display: inline-block;
+	}
 
-.search-item.close-search a:before {
-	content: "\f00d";
+	&.close-search a:before {
+		content: "\f00d";
+	}
 }
 
 /*--------------------------------------------------------------
@@ -105,10 +107,12 @@ nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
 # Post Content
 --------------------------------------------------------------*/
 
-.entry-header .cat-links:before,
-.entry-header .tags-links:before,
-.entry-header .comments-link:before {
-	display: none;
+.entry-header {
+	.cat-links:before,
+	.tags-links:before,
+	.comments-link:before {
+		display: none;
+	}
 }
 
 .cat-links:before,

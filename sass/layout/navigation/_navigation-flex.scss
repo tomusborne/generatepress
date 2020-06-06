@@ -22,10 +22,10 @@
 
 .main-navigation:not([class*="nav-align-"]) .menu-item-align-right {
 	margin-left: auto;
-}
 
-.main-navigation:not([class*="nav-align-"]) .menu-item-align-right + .menu-item-align-right {
-	margin-left: 0;
+	& + .menu-item-align-right {
+		margin-left: 0;
+	}
 }
 
 .main-navigation ul li a {

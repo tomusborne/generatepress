@@ -3,32 +3,32 @@
 	padding: 0;
 	clear: both;
 	display: block;
+
+	a {
+		display: block;
+		text-decoration: none;
+		font-weight: normal;
+		text-transform: none;
+		font-size: 15px;
+	}
+
+	ul {
+		list-style: none;
+		margin: 0;
+		padding-left: 0;
+	}
+
+	ul li a {
+		display: block;
+	}
+
+	.main-nav ul li a {
+		padding-left: 20px;
+		padding-right: 20px;
+		line-height: 60px;
+	}
 }
 
 .inside-navigation {
 	position: relative;
-}
-
-.main-navigation a {
-	display: block;
-	text-decoration: none;
-	font-weight: normal;
-	text-transform: none;
-	font-size: 15px;
-}
-
-.main-navigation ul li a {
-	display: block;
-}
-
-.main-navigation ul {
-	list-style: none;
-	margin: 0;
-	padding-left: 0;
-}
-
-.main-navigation .main-nav ul li a {
-	padding-left: 20px;
-	padding-right: 20px;
-	line-height: 60px;
 }
