@@ -351,3 +351,10 @@ function generate_get_media_query( $name ) {
 
 	return $queries[ $name ];
 }
+
+/**
+ * Check whether we're using the Flexbox structure.
+ */
+function generate_is_using_flexbox() {
+	return 'flexbox' === generate_get_option( 'structure' );
+}
