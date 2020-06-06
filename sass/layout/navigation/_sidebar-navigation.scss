@@ -6,32 +6,36 @@
 	margin: 0;
 }
 
-.dropdown-hover.both-left .widget-area .inside-right-sidebar .main-navigation ul li:hover ul,
-.dropdown-hover.both-left .widget-area .inside-right-sidebar .main-navigation ul li.sfHover ul,
-.dropdown-hover .widget-area .main-navigation ul li:hover ul,
-.dropdown-hover .widget-area .main-navigation ul li.sfHover > ul {
-	top: 0;
-	left: 100%;
+.dropdown-hover {
+	&.both-left .widget-area .inside-right-sidebar .main-navigation ul li:hover ul,
+	&.both-left .widget-area .inside-right-sidebar .main-navigation ul li.sfHover ul,
+	.widget-area .main-navigation ul li:hover ul,
+	.widget-area .main-navigation ul li.sfHover > ul {
+		top: 0;
+		left: 100%;
+	}
+
+	&.both-right .widget-area .main-navigation ul li:hover ul,
+	&.both-right .widget-area .main-navigation ul li.sfHover ul,
+	.widget-area .inside-right-sidebar .main-navigation ul li:hover ul,
+	.widget-area .inside-right-sidebar .main-navigation ul li.sfHover ul {
+		right: 100%;
+		left: auto;
+	}
 }
 
-.dropdown-hover.both-right .widget-area .main-navigation ul li:hover ul,
-.dropdown-hover.both-right .widget-area .main-navigation ul li.sfHover ul,
-.dropdown-hover .widget-area .inside-right-sidebar .main-navigation ul li:hover ul,
-.dropdown-hover .widget-area .inside-right-sidebar .main-navigation ul li.sfHover ul {
-	right: 100%;
-	left: auto;
-}
+.dropdown-click .widget-area .main-navigation {
+	ul ul {
+		top: auto;
+		position: absolute;
+		float: none;
+		width: 100%;
+		left: -99999px;
 
-.dropdown-click .widget-area .main-navigation ul ul {
-	top: auto;
-	position: absolute;
-	float: none;
-	width: 100%;
-	left: -99999px;
-}
-
-.dropdown-click .widget-area .main-navigation ul ul.toggled-on {
-	position: relative;
-	left: 0;
-	right: 0;
+		&.toggled-on {
+			position: relative;
+			left: 0;
+			right: 0;
+		}
+	}
 }
