@@ -1512,14 +1512,6 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 	vertical-align: middle;
 }
 
-.header-aligned-center .site-header {
-	text-align: center;
-}
-
-.header-aligned-right .site-header {
-	text-align: right;
-}
-
 .header-widget {
 	float: right;
 	overflow: hidden;
@@ -1533,6 +1525,10 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 
 .header-widget .widget:last-child {
 	padding-bottom: 0;
+}
+
+.header-widget .widget-title {
+	margin-bottom: 15px;
 }
 
 .nav-float-right .header-widget {
@@ -1560,10 +1556,6 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 	display: inline-block;
 }
 
-.header-widget .widget-title {
-	margin-bottom: 15px;
-}
-
 .site-branding-container {
 	display: inline-flex;
 	align-items: center;
@@ -1572,6 +1564,14 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 
 .site-branding-container .site-logo {
 	margin-right: 1.5em;
+}
+
+.header-aligned-center .site-header {
+	text-align: center;
+}
+
+.header-aligned-right .site-header {
+	text-align: right;
 }
 
 .header-aligned-right .site-branding-container {
