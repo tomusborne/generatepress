@@ -1377,10 +1377,6 @@ li.search-item.active {
 	background-color: transparent;
 }
 
-.main-navigation .main-nav ul ul li a {
-	line-height: normal;
-}
-
 .nav-float-right .main-navigation ul ul ul {
 	top: 0;
 }
