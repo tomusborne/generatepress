@@ -1210,22 +1210,6 @@ a:focus {
 /*--------------------------------------------------------------
 ## Navigation Search
 --------------------------------------------------------------*/
-.search-item .screen-reader-text {
-	top: 0;
-	right: 0;
-	left: auto;
-	margin: 0;
-}
-
-.main-navigation li.search-item {
-	float: right;
-	z-index: 21;
-}
-
-li.search-item.active {
-	transition: opacity 100ms ease-in-out;
-}
-
 .navigation-search {
 	position: absolute;
 	left: -99999px;
@@ -1246,11 +1230,6 @@ li.search-item.active {
 	opacity: 1;
 }
 
-.gen-sidebar-nav .navigation-search {
-	top: auto;
-	bottom: 0;
-}
-
 .navigation-search input {
 	outline: 0;
 	border: 0;
@@ -1261,6 +1240,7 @@ li.search-item.active {
 	z-index: 20;
 	border-radius: 0;
 	-webkit-appearance: none;
+	height: 60px;
 }
 
 .navigation-search input::-ms-clear {
@@ -1275,11 +1255,29 @@ li.search-item.active {
 	height: 0;
 }
 
-.navigation-search input::-webkit-search-decoration,
-.navigation-search input::-webkit-search-cancel-button,
-.navigation-search input::-webkit-search-results-button,
-.navigation-search input::-webkit-search-results-decoration {
+.navigation-search input::-webkit-search-decoration, .navigation-search input::-webkit-search-cancel-button, .navigation-search input::-webkit-search-results-button, .navigation-search input::-webkit-search-results-decoration {
 	display: none;
+}
+
+.search-item .screen-reader-text {
+	top: 0;
+	right: 0;
+	left: auto;
+	margin: 0;
+}
+
+.main-navigation li.search-item {
+	float: right;
+	z-index: 21;
+}
+
+li.search-item.active {
+	transition: opacity 100ms ease-in-out;
+}
+
+.gen-sidebar-nav .navigation-search {
+	top: auto;
+	bottom: 0;
 }
 
 .nav-left-sidebar .main-navigation li.search-item.active,
@@ -1287,10 +1285,6 @@ li.search-item.active {
 	width: auto;
 	display: inline-block;
 	float: right;
-}
-
-.navigation-search input {
-	height: 60px;
 }
 
 /*--------------------------------------------------------------
@@ -2167,7 +2161,7 @@ object {
 
 .separate-containers .page-header-image,
 .separate-containers .page-header-content {
-	margin-top: 30px;
+	margin-top: 20px;
 }
 
 .separate-containers .inside-article > [class*="page-header-"],

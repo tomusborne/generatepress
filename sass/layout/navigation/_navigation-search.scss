@@ -1,3 +1,55 @@
+.navigation-search {
+	position: absolute;
+	left: -99999px;
+	pointer-events: none;
+	visibility: hidden;
+	z-index: 20;
+	width: 100%;
+	top: 0;
+	transition: opacity 100ms ease-in-out;
+	opacity: 0;
+
+	&.nav-search-active {
+		left: 0;
+		right: 0;
+		pointer-events: auto;
+		visibility: visible;
+		opacity: 1;
+	}
+
+	input {
+		outline: 0;
+		border: 0;
+		vertical-align: bottom;
+		line-height: 0;
+		opacity: 0.9;
+		width: 100%;
+		z-index: 20;
+		border-radius: 0;
+		-webkit-appearance: none;
+		height: 60px;
+
+		&::-ms-clear {
+			display: none;
+			width: 0;
+			height: 0;
+		}
+
+		&::-ms-reveal {
+			display: none;
+			width: 0;
+			height: 0;
+		}
+
+		&::-webkit-search-decoration,
+		&::-webkit-search-cancel-button,
+		&::-webkit-search-results-button,
+		&::-webkit-search-results-decoration {
+			display: none;
+		}
+	}
+}
+
 .search-item .screen-reader-text {
 	top: 0;
 	right: 0;
@@ -14,60 +66,9 @@ li.search-item.active {
 	transition: opacity 100ms ease-in-out;
 }
 
-.navigation-search {
-	position: absolute;
-	left: -99999px;
-	pointer-events: none;
-	visibility: hidden;
-	z-index: 20;
-	width: 100%;
-	top: 0;
-	transition: opacity 100ms ease-in-out;
-	opacity: 0;
-}
-
-.navigation-search.nav-search-active {
-	left: 0;
-	right: 0;
-	pointer-events: auto;
-	visibility: visible;
-	opacity: 1;
-}
-
 .gen-sidebar-nav .navigation-search {
 	top: auto;
 	bottom: 0;
-}
-
-.navigation-search input {
-	outline: 0;
-	border: 0;
-	vertical-align: bottom;
-	line-height: 0;
-	opacity: 0.9;
-	width: 100%;
-	z-index: 20;
-	border-radius: 0;
-	-webkit-appearance: none;
-}
-
-.navigation-search input::-ms-clear {
-	display: none;
-	width: 0;
-	height: 0;
-}
-
-.navigation-search input::-ms-reveal {
-	display: none;
-	width: 0;
-	height: 0;
-}
-
-.navigation-search input::-webkit-search-decoration,
-.navigation-search input::-webkit-search-cancel-button,
-.navigation-search input::-webkit-search-results-button,
-.navigation-search input::-webkit-search-results-decoration {
-	display: none;
 }
 
 .nav-left-sidebar .main-navigation li.search-item.active,
@@ -75,8 +76,4 @@ li.search-item.active {
 	width: auto;
 	display: inline-block;
 	float: right;
-}
-
-.navigation-search input {
-	height: 60px;
 }
