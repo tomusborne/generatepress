@@ -942,16 +942,16 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 	max-width: 100%;
 }
 
+.site-header .header-image {
+	vertical-align: middle;
+}
+
 .header-aligned-center .site-header {
 	text-align: center;
 }
 
 .header-aligned-right .site-header {
 	text-align: right;
-}
-
-.site-header .header-image {
-	vertical-align: middle;
 }
 
 .header-widget {
