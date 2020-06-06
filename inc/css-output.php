@@ -89,7 +89,7 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$css->add_property( 'width', absint( generate_get_option( 'logo_width' ) ), false, 'px' );
 		}
 
-		if ( 'flexbox' === generate_get_option( 'structure' ) ) {
+		if ( generate_is_using_flexbox() ) {
 			$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '25' );
 			$left_sidebar_width = apply_filters( 'generate_left_sidebar_width', '25' );
 

@@ -44,7 +44,7 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 		}
 
 		if (
-			( 'flexbox' === generate_get_option( 'structure' ) ) &&
+			( generate_is_using_flexbox() ) &&
 			is_active_sidebar( 'top-bar' ) ||
 			is_active_sidebar( 'footer-bar' ) ||
 			is_active_sidebar( 'footer-1' ) ||
