@@ -581,21 +581,12 @@ a:focus {
 	flex-wrap: wrap;
 }
 
-.sidebar .main-navigation .main-nav > ul {
-	flex-direction: column;
+.main-navigation li {
+	position: relative;
 }
 
-.nav-align-center .main-nav > ul {
-	justify-content: center;
-}
-
-.nav-align-right .main-nav > ul {
-	justify-content: flex-end;
-}
-
-.nav-align-center .main-nav > ul > li.close-search {
-	margin-left: auto;
-	margin-right: 0;
+.main-navigation ul li a {
+	display: block;
 }
 
 .main-navigation:not([class*="nav-align-"]) .menu-item-align-right {
@@ -606,12 +597,21 @@ a:focus {
 	margin-left: 0;
 }
 
-.main-navigation ul li a {
-	display: block;
+.sidebar .main-navigation .main-nav > ul {
+	flex-direction: column;
 }
 
-.main-navigation li {
-	position: relative;
+.nav-align-center .main-nav > ul {
+	justify-content: center;
+}
+
+.nav-align-center .main-nav > ul > li.close-search {
+	margin-left: auto;
+	margin-right: 0;
+}
+
+.nav-align-right .main-nav > ul {
+	justify-content: flex-end;
 }
 
 /*--------------------------------------------------------------
