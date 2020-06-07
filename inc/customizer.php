@@ -1405,6 +1405,29 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 		}
 
 		$wp_customize->add_setting(
+			'generate_settings[structure]',
+			array(
+				'default' => $defaults['structure'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_choices',
+			)
+		);
+
+		$wp_customize->add_control(
+			'generate_settings[structure]',
+			array(
+				'type' => 'select',
+				'label' => __( 'Structure', 'generatepress' ),
+				'section' => 'generate_general_section',
+				'choices' => array(
+					'flexbox' => __( 'Flexbox', 'generatepress' ),
+					'floats' => __( 'Floats', 'generatepress' ),
+				),
+				'settings' => 'generate_settings[structure]',
+			)
+		);
+
+		$wp_customize->add_setting(
 			'generate_settings[icons]',
 			array(
 				'default' => $defaults['icons'],
