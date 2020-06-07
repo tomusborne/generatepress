@@ -37,6 +37,7 @@
 		padding: 10px;
 		display: flex;
 		align-items: center;
+		flex-wrap: wrap;
 
 		.widget {
 			padding: 0;
@@ -149,8 +150,9 @@ div.top-bar .widget {
 .footer-bar {
 	.widget_nav_menu {
 		& > div > ul {
-			display: flex;;
+			display: flex;
 			align-items: center;
+			flex-wrap: wrap;
 		}
 
 		li {
@@ -215,6 +217,8 @@ div.top-bar .widget {
 
 	.top-bar {
 		.inside-top-bar {
+			justify-content: center;
+
 			& > .widget {
 				order: 1;
 				margin: 0 10px;
@@ -266,15 +270,23 @@ div.top-bar .widget {
 		}
 	}
 
-   .footer-bar .widget_nav_menu li {
-		padding: 5px 0;
+	.footer-bar {
+		.widget_nav_menu {
+			& > div > ul {
+				justify-content: center;
+			}
 
-		&:first-child {
-			margin-left: 10px;
-		}
+			li {
+				padding: 5px 0;
 
-		&:last-child {
-			margin-right: 10px;
+				&:first-child {
+					margin-left: 10px;
+				}
+
+				&:last-child {
+					margin-right: 10px;
+				}
+		   }
 		}
-   }
+	}
 }
