@@ -347,3 +347,17 @@ function generate_has_custom_logo_callback() {
 function generate_sanitize_preset_layout() {
 	return 'current';
 }
+
+/**
+ * Display options if we're using the Floats structure.
+ */
+function generate_is_using_floats_callback() {
+	return 'floats' === generate_get_option( 'structure' );
+}
+
+/**
+ * Callback to determine whether to show the inline logo option.
+ */
+function generate_show_inline_logo_callback() {
+	return 'floats' === generate_get_option( 'structure' ) && generate_has_logo_site_branding();
+}

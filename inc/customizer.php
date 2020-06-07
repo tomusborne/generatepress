@@ -221,7 +221,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'type' => 'checkbox',
 				'label' => esc_html__( 'Place logo next to title', 'generatepress' ),
 				'section' => 'title_tagline',
-				'active_callback' => 'generate_has_logo_site_branding',
+				'active_callback' => 'generate_show_inline_logo_callback',
 			)
 		);
 
@@ -1466,6 +1466,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'label' => __( 'Combine CSS', 'generatepress' ),
 				'description' => __( 'Reduce the number of CSS file requests and use a lite version of our grid system.', 'generatepress' ),
 				'section' => 'generate_general_section',
+				'active_callback' => 'generate_is_using_floats_callback',
 			)
 		);
 
