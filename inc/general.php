@@ -44,14 +44,14 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 		}
 
 		if (
-			( generate_is_using_flexbox() ) &&
-			is_active_sidebar( 'top-bar' ) ||
+			generate_is_using_flexbox() &&
+			( is_active_sidebar( 'top-bar' ) ||
 			is_active_sidebar( 'footer-bar' ) ||
 			is_active_sidebar( 'footer-1' ) ||
 			is_active_sidebar( 'footer-2' ) ||
 			is_active_sidebar( 'footer-3' ) ||
 			is_active_sidebar( 'footer-4' ) ||
-			is_active_sidebar( 'footer-5' )
+			is_active_sidebar( 'footer-5' ) )
 		) {
 			wp_enqueue_style( 'generate-widget-areas', $dir_uri . "/assets/css/widget-areas{$suffix}.css", array(), GENERATE_VERSION, 'all' );
 		}
