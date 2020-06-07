@@ -3,7 +3,7 @@
 --------------------------------------------------------------*/
 
 .footer-widgets {
-    padding: 50px;
+    padding: 40px;
 }
 
 .inside-footer-widgets {
@@ -16,11 +16,11 @@
 
 .site-footer .footer-widgets-container {
 	.inner-padding {
-		padding: 0px 0px 0px 50px;
+		padding: 0px 0px 0px 40px;
 	}
 
 	.inside-footer-widgets {
-		margin-left: -50px;
+		margin-left: -40px;
 	}
 }
 
@@ -240,6 +240,10 @@ div.top-bar .widget {
 
 	.inside-footer-widgets {
 		flex-direction: column;
+
+		& > div:not(:last-child) {
+			margin-bottom: 40px;
+		}
 	}
 
 	.site-footer .footer-widgets .footer-widgets-container {
