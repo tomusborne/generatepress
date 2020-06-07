@@ -330,7 +330,15 @@ if ( ! function_exists( 'generate_top_bar' ) ) {
 			return;
 		}
 
-		$inside_top_bar_class = 'contained' === generate_get_option( 'top_bar_inner_width' ) ? ' grid-container grid-parent' : '';
+		$inside_top_bar_class = '';
+
+		if ( 'contained' === generate_get_option( 'top_bar_inner_width' ) ) {
+			$inside_top_bar_class = ' grid-container grid-parent';
+
+			if ( generate_is_using_flexbox() ) {
+				$inside_top_bar_class = ' grid-container';
+			}
+		}
 		?>
 		<div <?php generate_do_element_classes( 'top_bar' ); ?>>
 			<div class="inside-top-bar<?php echo $inside_top_bar_class; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- False positive. ?>">

@@ -20,15 +20,15 @@ if ( ! function_exists( 'generate_construct_footer' ) ) {
 		$inside_site_info_class = '';
 
 		if ( 'full-width' !== generate_get_option( 'footer_inner_width' ) ) {
-			$inside_site_info_class = 'grid-container grid-parent';
+			$inside_site_info_class = ' grid-container grid-parent';
 
 			if ( generate_is_using_flexbox() ) {
-				$inside_site_info_class = 'grid-container';
+				$inside_site_info_class = ' grid-container';
 			}
 		}
 		?>
 		<footer class="site-info" <?php generate_do_microdata( 'footer' ); ?>>
-			<div class="inside-site-info <?php echo $inside_site_info_class; // phpcs:ignore ?>">
+			<div class="inside-site-info<?php echo $inside_site_info_class; // phpcs:ignore ?>">
 				<?php
 				/**
 				 * generate_before_copyright hook.
