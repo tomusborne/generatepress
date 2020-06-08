@@ -47,7 +47,7 @@ if ( ! function_exists( 'generate_archive_title' ) ) {
 			 */
 			do_action( 'generate_after_archive_title' );
 			?>
-		</header><!-- .page-header -->
+		</header>
 		<?php
 	}
 }

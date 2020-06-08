@@ -54,8 +54,8 @@ get_header(); ?>
 			 */
 			do_action( 'generate_after_main_content' );
 			?>
-		</main><!-- #main -->
-	</div><!-- #primary -->
+		</main>
+	</div>
 
 	<?php
 	/**

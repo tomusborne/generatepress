@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<header class="entry-header">
 			<h1 class="entry-title"><?php _e( 'Nothing Found', 'generatepress' ); ?></h1>
-		</header><!-- .entry-header -->
+		</header>
 
 		<?php
 		/**
@@ -64,7 +64,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 				<?php endif; ?>
 
-		</div><!-- .entry-content -->
+		</div>
 
 		<?php
 		/**
@@ -74,5 +74,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 */
 		do_action( 'generate_after_content' );
 		?>
-	</div><!-- .inside-article -->
-</div><!-- .no-results -->
+	</div>
+</div>

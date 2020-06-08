@@ -114,7 +114,7 @@ if ( ! function_exists( 'generate_content_nav' ) ) {
 
 			endif;
 			?>
-		</nav><!-- #<?php echo esc_html( $nav_id ); ?> -->
+		</nav>
 		<?php
 	}
 }
@@ -399,7 +399,7 @@ if ( ! function_exists( 'generate_post_meta' ) ) {
 			?>
 			<div class="entry-meta">
 				<?php generate_posted_on(); ?>
-			</div><!-- .entry-meta -->
+			</div>
 			<?php
 		endif;
 	}
@@ -430,7 +430,7 @@ if ( ! function_exists( 'generate_footer_meta' ) ) {
 					generate_content_nav( 'nav-below' );
 				}
 				?>
-			</footer><!-- .entry-meta -->
+			</footer>
 			<?php
 		endif;
 	}

@@ -30,5 +30,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 */
 		do_action( 'generate_after_right_sidebar_content' );
 		?>
-	</div><!-- .inside-right-sidebar -->
-</div><!-- #secondary -->
+	</div>
+</div>

@@ -52,7 +52,7 @@ if ( ! function_exists( 'generate_construct_footer' ) ) {
 					?>
 				</div>
 			</div>
-		</footer><!-- .site-info -->
+		</footer>
 		<?php
 	}
 }

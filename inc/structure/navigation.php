@@ -76,8 +76,8 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 				 */
 				do_action( 'generate_after_primary_menu' );
 				?>
-			</div><!-- .inside-navigation -->
-		</nav><!-- #site-navigation -->
+			</div>
+		</nav>
 		<?php
 	}
 }
@@ -116,7 +116,7 @@ if ( ! function_exists( 'generate_menu_fallback' ) ) {
 				}
 				?>
 			</ul>
-		</div><!-- .main-nav -->
+		</div>
 		<?php
 	}
 }
@@ -397,7 +397,7 @@ if ( ! function_exists( 'generate_mobile_menu_search_icon' ) ) {
 					<?php generate_do_svg_icon( 'search', true ); ?>
 				</a>
 			</span>
-		</div><!-- .mobile-bar-items -->
+		</div>
 		<?php
 	}
 }

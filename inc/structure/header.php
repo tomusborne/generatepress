@@ -42,8 +42,8 @@ if ( ! function_exists( 'generate_construct_header' ) ) {
 				 */
 				do_action( 'generate_after_header_content' );
 				?>
-			</div><!-- .inside-header -->
-		</header><!-- #masthead -->
+			</div>
+		</header>
 		<?php
 	}
 }

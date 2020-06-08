@@ -42,7 +42,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			 */
 			do_action( 'generate_after_entry_title' );
 			?>
-		</header><!-- .entry-header -->
+		</header>
 
 		<?php
 		/**
@@ -59,7 +59,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			<div class="entry-summary" itemprop="text">
 				<?php the_excerpt(); ?>
-			</div><!-- .entry-summary -->
+			</div>
 
 		<?php else : ?>
 
@@ -74,7 +74,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					)
 				);
 				?>
-			</div><!-- .entry-content -->
+			</div>
 
 			<?php
 		endif;
@@ -95,5 +95,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 */
 		do_action( 'generate_after_content' );
 		?>
-	</div><!-- .inside-article -->
-</article><!-- #post-## -->
+	</div>
+</article>

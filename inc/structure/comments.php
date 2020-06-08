@@ -41,7 +41,7 @@ if ( ! function_exists( 'generate_comment' ) ) {
 					<div class="comment-author-info">
 						<div class="comment-author vcard" <?php generate_do_microdata( 'comment-author' ); ?>>
 							<?php printf( '<cite itemprop="name" class="fn">%s</cite>', get_comment_author_link() ); ?>
-						</div><!-- .comment-author -->
+						</div>
 
 						<div class="entry-meta comment-metadata">
 							<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
@@ -57,13 +57,13 @@ if ( ! function_exists( 'generate_comment' ) ) {
 								</time>
 							</a>
 							<?php edit_comment_link( __( 'Edit', 'generatepress' ), '<span class="edit-link">| ', '</span>' ); ?>
-						</div><!-- .comment-metadata -->
-					</div><!-- .comment-author-info -->
+						</div>
+					</div>
 
 					<?php if ( '0' == $comment->comment_approved ) : // phpcs:ignore ?>
 						<p class="comment-awaiting-moderation"><?php esc_html_e( 'Your comment is awaiting moderation.', 'generatepress' ); ?></p>
 					<?php endif; ?>
-				</footer><!-- .comment-meta -->
+				</footer>
 
 				<div class="comment-content" itemprop="text">
 					<?php
@@ -83,8 +83,8 @@ if ( ! function_exists( 'generate_comment' ) ) {
 					 */
 					do_action( 'generate_after_comment_text', $comment, $args, $depth );
 					?>
-				</div><!-- .comment-content -->
-			</article><!-- .comment-body -->
+				</div>
+			</article>
 			<?php
 		endif;
 	}

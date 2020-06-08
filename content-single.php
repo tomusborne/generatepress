@@ -45,7 +45,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			 */
 			do_action( 'generate_after_entry_title' );
 			?>
-		</header><!-- .entry-header -->
+		</header>
 
 		<?php
 		/**
@@ -69,7 +69,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				)
 			);
 			?>
-		</div><!-- .entry-content -->
+		</div>
 
 		<?php
 		/**
@@ -88,5 +88,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 */
 		do_action( 'generate_after_content' );
 		?>
-	</div><!-- .inside-article -->
-</article><!-- #post-## -->
+	</div>
+</article>

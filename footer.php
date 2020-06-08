@@ -10,8 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-	</div><!-- #content -->
-</div><!-- #page -->
+	</div>
+</div>
 
 <?php
 /**
@@ -48,7 +48,7 @@ do_action( 'generate_before_footer' );
 	 */
 	do_action( 'generate_after_footer_content' );
 	?>
-</div><!-- .site-footer -->
+</div>
 
 <?php
 /**

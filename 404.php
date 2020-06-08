@@ -38,7 +38,7 @@ get_header(); ?>
 				<header class="entry-header">
 					<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- HTML is allowed in filter here. ?>
 					<h1 class="entry-title" itemprop="headline"><?php echo apply_filters( 'generate_404_title', __( 'Oops! That page can&rsquo;t be found.', 'generatepress' ) ); ?></h1>
-				</header><!-- .entry-header -->
+				</header>
 
 				<?php
 				/**
@@ -60,7 +60,7 @@ get_header(); ?>
 
 					get_search_form();
 					?>
-				</div><!-- .entry-content -->
+				</div>
 
 				<?php
 				/**
@@ -71,7 +71,7 @@ get_header(); ?>
 				do_action( 'generate_after_content' );
 				?>
 
-			</div><!-- .inside-article -->
+			</div>
 
 			<?php
 			/**
@@ -81,8 +81,8 @@ get_header(); ?>
 			 */
 			do_action( 'generate_after_main_content' );
 			?>
-		</main><!-- #main -->
-	</div><!-- #primary -->
+		</main>
+	</div>
 
 	<?php
 	/**
