@@ -9,6 +9,36 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+/**
+ * Try to determine whether this is a new theme install or not.
+ */
+function generate_is_existing_install() {
+	$existing_install = true;
+	$current_version = get_option( 'generate_db_version', false );
+
+	// No version exists in the DB, so it's not an existing install.
+	if ( ! $current_version ) {
+		$existing_install = false;
+	}
+
+	// Or it could be a very old install that's been updated, we haven't always had a version in the DB (unfortunately).
+	if ( ! $existing_install ) {
+		$existing_settings = get_option( 'generate_settings' );
+
+		// Can't count this as a user-set option since a previous migration script set it.
+		if ( isset( $existing_settings['combine_css'] ) ) {
+			unset( $existing_settings['combine_css'] );
+		}
+
+		// Settings exist, must be an existing install.
+		if ( ! empty( $existing_settings ) ) {
+			$existing_install = true;
+		}
+	}
+
+	return $existing_install;
+}
+
 add_action( 'admin_init', 'generate_do_admin_db_updates' );
 /**
  * Process database updates if necessary.
@@ -38,7 +68,7 @@ function generate_do_db_updates() {
 	$flags = get_option( 'generate_migration_settings', array() );
 
 	if ( ! isset( $flags['combine_css'] ) || 'done' !== $flags['combine_css'] ) {
-		if ( ! get_option( 'fresh_site' ) ) {
+		if ( generate_is_existing_install() ) {
 			$settings = get_option( 'generate_settings', array() );
 
 			$settings['combine_css'] = false;
@@ -46,6 +76,31 @@ function generate_do_db_updates() {
 		}
 
 		$flags['combine_css'] = 'done';
+		update_option( 'generate_migration_settings', $flags );
+	}
+
+	if ( ! isset( $flags['structure'] ) || 'done' !== $flags['structure'] ) {
+		if ( generate_is_existing_install() ) {
+			$settings = get_option( 'generate_settings', array() );
+			$spacing_settings = get_option( 'generate_spacing_settings', array() );
+
+			$old_defaults = array(
+				'icons' => 'font',
+				'structure' => 'floats',
+			);
+
+			foreach ( $old_defaults as $key => $value ) {
+				if ( ! isset( $settings[ $key ] ) ) {
+					$settings[ $key ] = $value;
+				}
+			}
+
+			update_option( 'generate_settings', $settings );
+			delete_option( 'generate_dynamic_css_output' );
+			delete_option( 'generate_dynamic_css_cached_version' );
+		}
+
+		$flags['structure'] = 'done';
 		update_option( 'generate_migration_settings', $flags );
 	}
 }
