@@ -817,3 +817,65 @@ if ( ! function_exists( 'generate_article_schema' ) ) {
 		echo "itemtype='https://schema.org/$itemtype' itemscope='itemscope'"; // phpcs:ignore
 	}
 }
+
+/**
+ * Process database updates if necessary.
+ * There's nothing in here yet, but we're setting the version to use later.
+ *
+ * @since 2.1
+ * @deprecated 2.5.0
+ */
+function generate_do_admin_db_updates() {
+	// Replaced by Generate_Theme_Update().
+}
+
+/**
+ * Process important database updates when someone visits the front or backend.
+ *
+ * @since 2.3
+ * @deprecated 2.5.0
+ */
+function generate_do_db_updates() {
+	// Replaced by Generate_Theme_Update().
+}
+
+if ( ! function_exists( 'generate_update_logo_setting' ) ) {
+	/**
+	 * Migrate the old logo database entry to the new custom_logo theme mod (WordPress 4.5)
+	 *
+	 * @since 1.3.29
+	 * @deprecated 2.5
+	 */
+	function generate_update_logo_setting() {
+		// Replaced by Generate_Theme_Update().
+	}
+}
+
+if ( ! function_exists( 'generate_typography_convert_values' ) ) {
+	/**
+	 * Take the old body font value and strip it of variants
+	 * This should only run once
+	 *
+	 * @since 1.3.0
+	 * @deprecated 2.5
+	 */
+	function generate_typography_convert_values() {
+		// Replaced by Generate_Theme_Update().
+	}
+}
+
+/**
+ * Execute functions after existing sites update.
+ *
+ * We check to see if options already exist. If they do, we can assume the user has
+ * updated the theme, and not installed it from scratch.
+ *
+ * We run this right away in the Dashboard to avoid other migration functions from
+ * setting options and causing these functions to run on fresh installs.
+ *
+ * @since 2.0
+ * @deprecated 2.5
+ */
+function generate_migrate_existing_settings() {
+	// Replaced by Generate_Theme_Update().
+}
