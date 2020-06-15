@@ -204,6 +204,10 @@ if ( ! function_exists( 'generate_body_classes' ) ) {
 				if ( 'contained' === $content_container ) {
 					$classes[] = 'contained-content';
 				}
+
+				if ( 'full-width-ready' === $content_container ) {
+					$classes[] = 'full-width-ready';
+				}
 			}
 
 			if ( has_post_thumbnail() ) {

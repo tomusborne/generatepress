@@ -170,6 +170,7 @@ function generate_do_layout_meta_box( $post ) {
 				<select name="_generate-full-width-content" id="_generate-full-width-content">
 					<option value="" <?php selected( $stored_meta['_generate-full-width-content'][0], '' ); ?>><?php esc_html_e( 'Default', 'generatepress' ); ?></option>
 					<option value="true" <?php selected( $stored_meta['_generate-full-width-content'][0], 'true' ); ?>><?php esc_html_e( 'Full Width', 'generatepress' ); ?></option>
+					<option value="full-width-ready" <?php selected( $stored_meta['_generate-full-width-content'][0], 'full-width-ready' ); ?>><?php esc_html_e( 'Full Width Ready', 'generatepress' ); ?></option>
 					<option value="Contained" <?php selected( $stored_meta['_generate-full-width-content'][0], 'contained' ); ?>><?php esc_html_e( 'Contained', 'generatepress' ); ?></option>
 				</select>
 			</div>

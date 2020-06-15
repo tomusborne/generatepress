@@ -131,6 +131,21 @@
 }
 
 /*--------------------------------------------------------------
+## Full Width Ready
+--------------------------------------------------------------*/
+
+.full-width-ready {
+	&.no-sidebar.separate-containers .site-main {
+		margin: 0;
+	}
+
+	&.separate-containers .inside-article,
+	&.one-container .site-content {
+		padding: 0;
+	}
+}
+
+/*--------------------------------------------------------------
 ## Contained Content
 --------------------------------------------------------------*/
 

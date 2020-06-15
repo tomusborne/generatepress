@@ -713,6 +713,15 @@ function generate_no_cache_dynamic_css() {
 		$css->add_property( 'clear', 'both' );
 	$css->stop_media_query();
 
+	if ( is_singular() ) {
+		$content_container = get_post_meta( get_the_ID(), '_generate-full-width-content', true );
+
+		if ( 'full-width-ready' === $content_container ) {
+			$css->set_selector( '.full-width-ready .entry-content > *:not(.alignfull)' );
+			$css->add_property( 'max-width', absint( generate_get_option( 'container_width' ) ), false, 'px' );
+		}
+	}
+
 	return $css->css_output();
 }
 
