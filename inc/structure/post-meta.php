@@ -153,8 +153,15 @@ function generate_do_post_meta_item( $item ) {
 
 		$time_string = '<time class="entry-date published" datetime="%1$s" itemprop="datePublished">%2$s</time>';
 
-		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
-			$time_string = '<time class="updated" datetime="%3$s" itemprop="dateModified">%4$s</time>' . $time_string;
+		$updated_time = get_the_modified_time( 'U' );
+		$published_time = get_the_time( 'U' ) + 43200;
+
+		if ( $updated_time > $published_time ) {
+			if ( apply_filters( 'generate_post_date_show_updated_only', false ) ) {
+				$time_string = '<time class="entry-date updated-date" datetime="%3$s" itemprop="dateModified">%4$s</time>';
+			} else {
+				$time_string = '<time class="updated" datetime="%3$s" itemprop="dateModified">%4$s</time>' . $time_string;
+			}
 		}
 
 		$time_string = sprintf(
