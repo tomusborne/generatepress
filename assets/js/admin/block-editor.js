@@ -5,7 +5,7 @@ jQuery( document ).ready( function( $ ) {
 									html body.gutenberg-editor-page .editor-block-list__block,\
 									.edit-post-visual-editor .editor-block-list__block[data-align=wide]';
 
-	$( 'input[name="_generate-full-width-content"]' ).on( 'change', function() {
+	$( 'select[name="_generate-full-width-content"]' ).on( 'change', function() {
 		if ( 'true' === this.value ) {
 			$( 'style#container_width' ).remove();
 			$( 'head' ).append( '<style id="container_width">' + container_width_elements + '{max-width: 100%;}</style>' );
@@ -14,8 +14,8 @@ jQuery( document ).ready( function( $ ) {
 		}
 	} );
 
-	$( 'input[name="_generate-sidebar-layout-meta"]' ).on( 'change', function() {
-		if ( 'true' !== $( 'input[name="_generate-full-width-content"]:checked' ).val() ) {
+	$( 'select[name="_generate-sidebar-layout-meta"]' ).on( 'change', function() {
+		if ( 'true' !== $( this ).val() ) {
 			var this_value = this.value,
 				content_width = '',
 				calc = '',

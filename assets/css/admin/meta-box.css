@@ -78,3 +78,21 @@
 	margin: 0;
 	border: 0;
 }
+
+.edit-post-meta-boxes-area.is-side .generate-meta-box-content > div {
+    display: block !important;
+}
+
+.edit-post-meta-boxes-area.is-side .generate-meta-box-menu {
+    display: none;
+}
+
+#generate-meta-box-container label {
+    display: none;
+}
+
+.edit-post-meta-boxes-area.is-side #generate-meta-box-container label.generate-layout-metabox-section-title {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
