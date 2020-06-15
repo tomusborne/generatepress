@@ -68,7 +68,7 @@ class GeneratePress_Theme_Update {
 
 			if ( ! empty( $existing_settings ) ) {
 				// We have settings, which means this is an old install with no version number.
-				$saved_version = '1.0';
+				$saved_version = '2.0';
 			} else {
 				// No settings and no saved version, must be a new install.
 
@@ -85,11 +85,11 @@ class GeneratePress_Theme_Update {
 			return;
 		}
 
-		if ( version_compare( $saved_version, '2.3', '<' ) ) {
+		if ( version_compare( $saved_version, '2.3.0', '<' ) ) {
 			self::v_2_3_0();
 		}
 
-		if ( version_compare( $saved_version, '2.5', '<' ) ) {
+		if ( version_compare( $saved_version, '2.5.0', '<' ) ) {
 			self::v_2_5_0();
 		}
 
@@ -113,7 +113,7 @@ class GeneratePress_Theme_Update {
 	 *
 	 * @since 1.3.0
 	 */
-	public function v_1_3_0() {
+	public static function v_1_3_0() {
 		// Don't run this if Typography add-on is activated.
 		if ( function_exists( 'generate_fonts_customize_register' ) ) {
 			return;
@@ -187,14 +187,14 @@ class GeneratePress_Theme_Update {
 	 */
 	public static function v_2_3_0() {
 		$settings = get_option( 'generate_settings', array() );
-		$needs_update = false;
+		$update_options = false;
 
 		if ( ! isset( $settings['combine_css'] ) ) {
 			$settings['combine_css'] = false;
-			$needs_update = true;
+			$update_options = true;
 		}
 
-		if ( $needs_update ) {
+		if ( $update_options ) {
 			update_option( 'generate_settings', $settings );
 		}
 	}
@@ -206,7 +206,7 @@ class GeneratePress_Theme_Update {
 	 */
 	public static function v_2_5_0() {
 		$settings = get_option( 'generate_settings', array() );
-		$needs_update = false;
+		$update_options = false;
 
 		$old_defaults = array(
 			'icons' => 'font',
@@ -216,11 +216,11 @@ class GeneratePress_Theme_Update {
 		foreach ( $old_defaults as $key => $value ) {
 			if ( ! isset( $settings[ $key ] ) ) {
 				$settings[ $key ] = $value;
-				$needs_update = true;
+				$update_options = true;
 			}
 		}
 
-		if ( $needs_update ) {
+		if ( $update_options ) {
 			update_option( 'generate_settings', $settings );
 			delete_option( 'generate_dynamic_css_output' );
 			delete_option( 'generate_dynamic_css_cached_version' );
