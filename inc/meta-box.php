@@ -93,7 +93,7 @@ function generate_do_layout_meta_box( $post ) {
 				'class' => '',
 			),
 			'container' => array(
-				'title' => esc_html__( 'Page Builder Container', 'generatepress' ),
+				'title' => esc_html__( 'Content Container', 'generatepress' ),
 				'target' => '#generate-layout-page-builder-container',
 				'class' => '',
 			),
@@ -161,8 +161,10 @@ function generate_do_layout_meta_box( $post ) {
 				</div>
 			</div>
 			<div id="generate-layout-page-builder-container" style="display: none;">
+				<label for="_generate-full-width-content" class="generate-layout-metabox-section-title"><?php esc_html_e( 'Content Container', 'generatepress' ); ?></label>
+
 				<p class="page-builder-content" style="color:#666;font-size:13px;margin-top:0;">
-					<?php esc_html_e( 'Choose your page builder content container type. Both options remove the content padding for you.', 'generatepress' ); ?>
+					<?php esc_html_e( 'Choose your content container type.', 'generatepress' ); ?>
 				</p>
 
 				<select name="_generate-full-width-content" id="_generate-full-width-content">
