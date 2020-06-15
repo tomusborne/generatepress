@@ -85,14 +85,6 @@ class GeneratePress_Theme_Update {
 			return;
 		}
 
-		if ( version_compare( $saved_version, '2.0', '<' ) ) {
-			self::v_2_0();
-		}
-
-		if ( version_compare( $saved_version, '2.1.3', '<' ) ) {
-			self::v_2_1_3();
-		}
-
 		if ( version_compare( $saved_version, '2.3', '<' ) ) {
 			self::v_2_3_0();
 		}
@@ -184,72 +176,6 @@ class GeneratePress_Theme_Update {
 
 		if ( get_theme_mod( 'custom_logo' ) ) {
 			$settings['logo'] = '';
-			update_option( 'generate_settings', $settings );
-		}
-	}
-
-	/**
-	 * Pre-2.0 defaults.
-	 *
-	 * @since 2.0
-	 */
-	public static function v_2_0() {
-		$settings = get_option( 'generate_settings', array() );
-		$needs_update = false;
-
-		if ( ! isset( $settings['font_awesome_essentials'] ) ) {
-			$settings['font_awesome_essentials'] = false;
-			$needs_update = true;
-		}
-
-		if ( ! isset( $settings['dynamic_css_cache'] ) ) {
-			$settings['dynamic_css_cache'] = false;
-			$needs_update = true;
-		}
-
-		$font_settings = wp_parse_args(
-			get_option( 'generate_settings', array() ),
-			array(
-				'font_body' => 'Open Sans',
-			)
-		);
-
-		$category = get_theme_mod( 'font_body_category', 'sans-serif' );
-		$variants = get_theme_mod( 'font_body_variants', '300,300italic,regular,italic,600,600italic,700,700italic,800,800italic' );
-
-		if ( 'Open Sans' === $font_settings['font_body'] ) {
-			$settings['font_body'] = 'Open Sans';
-			set_theme_mod( 'font_body_category', $category );
-			set_theme_mod( 'font_body_variants', $variants );
-			$needs_update = true;
-		}
-
-		if ( $needs_update ) {
-			update_option( 'generate_settings', $settings );
-		}
-	}
-
-	/**
-	 * Set blog index content open to full content.
-	 *
-	 * @since 2.1.3
-	 */
-	public static function v_2_1_3() {
-		$settings = wp_parse_args(
-			get_option( 'generate_settings', array() ),
-			array(
-				'post_content' => 'full',
-			)
-		);
-
-		$needs_update = false;
-
-		if ( 'full' === $settings['post_content'] ) {
-			$settings['post_content'] = 'full';
-			$needs_update = true;
-		}
-
-		if ( $needs_update ) {
 			update_option( 'generate_settings', $settings );
 		}
 	}
