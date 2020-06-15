@@ -40,6 +40,8 @@ class GeneratePress_Theme_Update {
 		} else {
 			add_action( 'wp', __CLASS__ . '::init', 5 );
 		}
+
+		add_action( 'admin_init', __CLASS__ . '::admin_updates', 1 );
 	}
 
 	/**
@@ -83,14 +85,6 @@ class GeneratePress_Theme_Update {
 			return;
 		}
 
-		if ( version_compare( $saved_version, '1.3.0', '<' ) ) {
-			self::v_1_3_0();
-		}
-
-		if ( version_compare( $saved_version, '1.3.29', '<' ) ) {
-			self::v_1_3_29();
-		}
-
 		if ( version_compare( $saved_version, '2.0', '<' ) ) {
 			self::v_2_0();
 		}
@@ -109,6 +103,17 @@ class GeneratePress_Theme_Update {
 
 		// Last thing to do is update our version.
 		update_option( 'generate_db_version', GENERATE_VERSION );
+	}
+
+	/**
+	 * Less important updates that should only happen in the Dashboard.
+	 * These use a database flag instead of our version number for legacy reasons.
+	 *
+	 * @since 2.5.0
+	 */
+	public static function admin_updates() {
+		self::v_1_3_0();
+		self::v_1_3_29();
 	}
 
 	/**
