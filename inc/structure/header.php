@@ -217,7 +217,7 @@ if ( ! function_exists( 'generate_construct_site_title' ) ) {
 
 		// Site title and tagline.
 		if ( false === $disable_title || false === $disable_tagline ) {
-			if ( generate_get_option( 'inline_logo_site_branding' ) && generate_has_logo_site_branding() ) {
+			if ( generate_get_option( 'inline_logo_site_branding' ) && generate_has_logo_site_branding() && ! generate_is_using_flexbox() ) {
 				echo '<div class="site-branding-container">';
 				generate_construct_logo();
 			}
@@ -235,7 +235,7 @@ if ( ! function_exists( 'generate_construct_site_title' ) ) {
 				)
 			);
 
-			if ( generate_get_option( 'inline_logo_site_branding' ) && generate_has_logo_site_branding() ) {
+			if ( generate_get_option( 'inline_logo_site_branding' ) && generate_has_logo_site_branding() && ! generate_is_using_flexbox() ) {
 				echo '</div><!-- .site-branding-container -->';
 			}
 		}
