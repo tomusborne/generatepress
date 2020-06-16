@@ -534,7 +534,30 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 	/**
 	 * Navigation alignment
 	 */
-	generatepress_classes_live_update( 'nav_alignment_setting', [ 'left', 'center', 'right' ], 'body', 'nav-aligned-' );
+	wp.customize( 'generate_settings[nav_alignment_setting]', function( value ) {
+		value.bind( function( newval ) {
+			var classes = [ 'left', 'center', 'right' ];
+			var selector = 'body';
+			var prefix = 'nav-aligned-';
+
+			if ( generatepress_live_preview.isFlex ) {
+				selector = '.main-navigation:not(.slideout-navigation)';
+				prefix = 'nav-align-';
+			}
+
+			jQuery.each( classes, function( i, v ) {
+				jQuery( selector ).removeClass( prefix + v );
+			});
+
+			if ( generatepress_live_preview.isFlex ) {
+				jQuery( selector ).addClass( prefix + newval );
+			} else {
+				if ( 'nav-align-left' !== prefix + newval ) {
+					jQuery( selector ).addClass( prefix + newval );
+				}
+			}
+		} );
+	} );
 
 	/**
 	 * Footer width

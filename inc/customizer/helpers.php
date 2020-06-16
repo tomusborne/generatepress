@@ -318,6 +318,7 @@ if ( ! function_exists( 'generate_customizer_live_preview' ) ) {
 				'desktop' => generate_get_media_query( 'desktop' ),
 				'contentLeft' => absint( $spacing_settings['content_left'] ),
 				'contentRight' => absint( $spacing_settings['content_right'] ),
+				'isFlex' => generate_is_using_flexbox(),
 			)
 		);
 	}
