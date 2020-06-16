@@ -62,6 +62,24 @@ th {
     float: left;
 }
 
+.rtl.nav-aligned-left .main-navigation .menu > li {
+	float: none;
+	display: inline-block;
+}
+
+.rtl.nav-aligned-left .main-navigation ul {
+	letter-spacing: -0.31em;
+	font-size: 1em;
+}
+
+.rtl.nav-aligned-left .main-navigation ul li {
+	letter-spacing: normal;
+}
+
+.rtl.nav-aligned-left .main-navigation {
+	text-align: left;
+}
+
 .sidebar .menu-item-has-children .dropdown-menu-toggle,
 nav ul ul .menu-item-has-children .dropdown-menu-toggle {
     float: left;
