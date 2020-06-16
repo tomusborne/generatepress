@@ -45,14 +45,12 @@ th {
 	margin-left: 0;
 }
 
-.main-navigation.nav-align-left .menu-item-align-right {
-	margin-right: 0;
-	margin-left: auto;
-	order: -10;
-}
-
 .nav-align-right .main-nav > ul {
 	justify-content: flex-start;
+}
+
+.nav-align-left .main-nav > ul {
+	justify-content: flex-end;
 }
 
 .menu-item-has-children .dropdown-menu-toggle {
