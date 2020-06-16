@@ -22,6 +22,15 @@ if ( ! function_exists( 'generate_post_image' ) ) {
 
 		// If we're not on any single post/page or the 404 template, we must be showing excerpts.
 		if ( ! is_singular() && ! is_404() ) {
+
+			$attrs = array();
+
+			if ( 'microdata' === generate_get_schema_type() ) {
+				$attrs = array(
+					'itemprop' => 'image',
+				);
+			}
+
 			echo apply_filters( // phpcs:ignore
 				'generate_featured_image_output',
 				sprintf(
@@ -35,9 +44,7 @@ if ( ! function_exists( 'generate_post_image' ) ) {
 					get_the_post_thumbnail(
 						get_the_ID(),
 						apply_filters( 'generate_page_header_default_size', 'full' ),
-						array(
-							'itemprop' => 'image',
-						)
+						$attrs
 					),
 					apply_filters( 'generate_inside_featured_image_output', '' )
 				)
