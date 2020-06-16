@@ -24,12 +24,7 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 			if ( generate_get_option( 'combine_css' ) && $suffix ) {
 				wp_enqueue_style( 'generate-style', $dir_uri . "/assets/css/all{$suffix}.css", array(), GENERATE_VERSION, 'all' );
 			} else {
-				$lite = '';
-				if ( apply_filters( 'generate_unsemantic_grid_lite', false ) ) {
-					$lite = '-lite';
-				}
-
-				wp_enqueue_style( 'generate-style-grid', $dir_uri . "/assets/css/unsemantic-grid{$lite}{$suffix}.css", false, GENERATE_VERSION, 'all' );
+				wp_enqueue_style( 'generate-style-grid', $dir_uri . "/assets/css/unsemantic-grid{$suffix}.css", false, GENERATE_VERSION, 'all' );
 				wp_enqueue_style( 'generate-style', $dir_uri . "/assets/css/style{$suffix}.css", array(), GENERATE_VERSION, 'all' );
 				wp_enqueue_style( 'generate-mobile-style', $dir_uri . "/assets/css/mobile{$suffix}.css", array(), GENERATE_VERSION, 'all' );
 			}
