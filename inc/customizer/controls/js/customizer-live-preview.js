@@ -549,7 +549,7 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 				jQuery( selector ).removeClass( prefix + v );
 			});
 
-			if ( generatepress_live_preview.isFlex ) {
+			if ( generatepress_live_preview.isFlex && generatepress_live_preview.isRTL ) {
 				jQuery( selector ).addClass( prefix + newval );
 			} else {
 				if ( 'nav-align-left' !== prefix + newval ) {
