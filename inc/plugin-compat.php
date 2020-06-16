@@ -62,8 +62,14 @@ if ( ! function_exists( 'generate_woocommerce_start' ) ) {
 						 * @hooked generate_featured_page_header_inside_single - 10
 						 */
 						do_action( 'generate_before_content' );
+
+						$itemprop = '';
+
+						if ( 'microdata' === generate_get_schema_type() ) {
+							$itemprop = ' itemprop="text"';
+						}
 						?>
-						<div class="entry-content" itemprop="text">
+						<div class="entry-content"<?php echo esc_html( $itemprop ); ?>>
 		<?php
 	}
 }
@@ -77,7 +83,7 @@ if ( ! function_exists( 'generate_woocommerce_end' ) ) {
 	 */
 	function generate_woocommerce_end() {
 		?>
-						</div><!-- .entry-content -->
+						</div>
 						<?php
 						/**
 						 * generate_after_content hook.
@@ -86,8 +92,8 @@ if ( ! function_exists( 'generate_woocommerce_end' ) ) {
 						 */
 						do_action( 'generate_after_content' );
 						?>
-					</div><!-- .inside-article -->
-				</article><!-- #post-## -->
+					</div>
+				</article>
 				<?php
 				/**
 				 * generate_after_main_content hook.
@@ -96,8 +102,8 @@ if ( ! function_exists( 'generate_woocommerce_end' ) ) {
 				 */
 				do_action( 'generate_after_main_content' );
 				?>
-			</main><!-- #main -->
-		</div><!-- #primary -->
+			</main>
+		</div>
 		<?php
 	}
 }

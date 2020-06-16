@@ -32,7 +32,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 			 */
 			do_action( 'generate_before_entry_title' );
 
-			the_title( sprintf( '<h2 class="entry-title" itemprop="headline"><a href="%s" rel="bookmark">', esc_url( generate_get_link_url() ) ), '</a></h2>' );
+			the_title(
+				sprintf(
+					'<h2 class="entry-title"%2$s><a href="%1$s" rel="bookmark">',
+					esc_url( generate_get_link_url() ),
+					'microdata' === generate_get_schema_type() ? ' itemprop="headline"' : ''
+				),
+				'</a></h2>'
+			);
 
 			/**
 			 * generate_after_entry_title hook.
@@ -55,16 +62,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 */
 		do_action( 'generate_after_entry_header' );
 
+		$itemprop = '';
+
+		if ( 'microdata' === generate_get_schema_type() ) {
+			$itemprop = ' itemprop="text"';
+		}
+
 		if ( generate_show_excerpt() ) :
 			?>
 
-			<div class="entry-summary" itemprop="text">
+			<div class="entry-summary"<?php echo esc_html( $itemprop ); ?>>
 				<?php the_excerpt(); ?>
 			</div>
 
 		<?php else : ?>
 
-			<div class="entry-content" itemprop="text">
+			<div class="entry-content"<?php echo esc_html( $itemprop ); ?>>
 				<?php
 				the_content();
 

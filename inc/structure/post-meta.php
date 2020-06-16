@@ -151,16 +151,17 @@ function generate_do_post_meta_item( $item ) {
 	if ( 'date' === $item ) {
 		$date = apply_filters( 'generate_post_date', true );
 
-		$time_string = '<time class="entry-date published" datetime="%1$s" itemprop="datePublished">%2$s</time>';
+		$time_string = '<time class="entry-date published" datetime="%1$s"%5$s>%2$s</time>';
 
 		$updated_time = get_the_modified_time( 'U' );
 		$published_time = get_the_time( 'U' ) + 43200;
+		$schema_type = generate_get_schema_type();
 
 		if ( $updated_time > $published_time ) {
 			if ( apply_filters( 'generate_post_date_show_updated_only', false ) ) {
-				$time_string = '<time class="entry-date updated-date" datetime="%3$s" itemprop="dateModified">%4$s</time>';
+				$time_string = '<time class="entry-date updated-date" datetime="%3$s"%6$s>%4$s</time>';
 			} else {
-				$time_string = '<time class="updated" datetime="%3$s" itemprop="dateModified">%4$s</time>' . $time_string;
+				$time_string = '<time class="updated" datetime="%3$s"%6$s>%4$s</time>' . $time_string;
 			}
 		}
 
@@ -169,7 +170,9 @@ function generate_do_post_meta_item( $item ) {
 			esc_attr( get_the_date( 'c' ) ),
 			esc_html( get_the_date() ),
 			esc_attr( get_the_modified_date( 'c' ) ),
-			esc_html( get_the_modified_date() )
+			esc_html( get_the_modified_date() ),
+			'microdata' === $schema_type ? ' itemprop="datePublished"' : '',
+			'microdata' === $schema_type ? ' itemprop="dateModified"' : ''
 		);
 
 		// If our date is enabled, show it.
@@ -192,16 +195,20 @@ function generate_do_post_meta_item( $item ) {
 		$author = apply_filters( 'generate_post_author', true );
 
 		if ( $author ) {
+			$schema_type = generate_get_schema_type();
+
 			echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				'generate_post_author_output',
 				sprintf(
-					'<span class="byline">%1$s<span class="author vcard" %5$s><a class="url fn n" href="%2$s" title="%3$s" rel="author" itemprop="url"><span class="author-name" itemprop="name">%4$s</span></a></span></span> ',
+					'<span class="byline">%1$s<span class="author vcard" %5$s><a class="url fn n" href="%2$s" title="%3$s" rel="author"%6$s><span class="author-name"%7$s>%4$s</span></a></span></span> ',
 					apply_filters( 'generate_inside_post_meta_item_output', '', 'author' ),
 					esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 					/* translators: 1: Author name */
 					esc_attr( sprintf( __( 'View all posts by %s', 'generatepress' ), get_the_author() ) ),
 					esc_html( get_the_author() ),
-					generate_get_microdata( 'post-author' )
+					generate_get_microdata( 'post-author' ),
+					'microdata' === $schema_type ? ' itemprop="url"' : '',
+					'microdata' === $schema_type ? ' itemprop="name"' : ''
 				)
 			);
 		}

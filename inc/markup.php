@@ -47,6 +47,15 @@ function generate_get_element_classes( $context, $class = '' ) {
 }
 
 /**
+ * Get the kind of schema we're using.
+ *
+ * @since 2.5
+ */
+function generate_get_schema_type() {
+	return apply_filters( 'generate_schema_type', 'none' );
+}
+
+/**
  * Get any necessary microdata.
  *
  * @since 2.2
@@ -57,7 +66,7 @@ function generate_get_element_classes( $context, $class = '' ) {
 function generate_get_microdata( $context ) {
 	$data = false;
 
-	if ( 'microdata' !== apply_filters( 'generate_schema_type', 'microdata' ) ) {
+	if ( 'microdata' !== generate_get_schema_type() ) {
 		return false;
 	}
 

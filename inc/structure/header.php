@@ -185,18 +185,21 @@ if ( ! function_exists( 'generate_construct_site_title' ) ) {
 		// If the disable tagline checkbox is checked, or the tagline field is empty, return true.
 		$disable_tagline = ( '1' == $generate_settings['hide_tagline'] || '' == $tagline ) ? true : false;  // phpcs:ignore
 
+		$schema_type = generate_get_schema_type();
+
 		// Build our site title.
 		$site_title = apply_filters(
 			'generate_site_title_output',
 			sprintf(
-				'<%1$s class="main-title" itemprop="headline">
+				'<%1$s class="main-title"%4$s>
 					<a href="%2$s" rel="home">
 						%3$s
 					</a>
 				</%1$s>',
 				( is_front_page() && is_home() ) ? 'h1' : 'p',
 				esc_url( apply_filters( 'generate_site_title_href', home_url( '/' ) ) ),
-				get_bloginfo( 'name' )
+				get_bloginfo( 'name' ),
+				'microdata' === generate_get_schema_type() ? ' itemprop="headline"' : ''
 			)
 		);
 
@@ -204,10 +207,11 @@ if ( ! function_exists( 'generate_construct_site_title' ) ) {
 		$site_tagline = apply_filters(
 			'generate_site_description_output',
 			sprintf(
-				'<p class="site-description" itemprop="description">
+				'<p class="site-description"%2$s>
 					%1$s
 				</p>',
-				html_entity_decode( get_bloginfo( 'description', 'display' ) ) // phpcs:ignore
+				html_entity_decode( get_bloginfo( 'description', 'display' ) ), // phpcs:ignore
+				'microdata' === generate_get_schema_type() ? ' itemprop="description"' : ''
 			)
 		);
 

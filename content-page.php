@@ -34,7 +34,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 				 */
 				do_action( 'generate_before_page_title' );
 
-				the_title( '<h1 class="entry-title" itemprop="headline">', '</h1>' );
+				the_title(
+					sprintf(
+						'<h1 class="entry-title"%s>',
+						'microdata' === generate_get_schema_type() ? ' itemprop="headline"' : ''
+					),
+					'</h1>'
+				);
 
 				/**
 				 * generate_after_page_title hook.
@@ -56,9 +62,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 * @hooked generate_post_image - 10
 		 */
 		do_action( 'generate_after_entry_header' );
+
+		$itemprop = '';
+
+		if ( 'microdata' === generate_get_schema_type() ) {
+			$itemprop = ' itemprop="text"';
+		}
 		?>
 
-		<div class="entry-content" itemprop="text">
+		<div class="entry-content"<?php echo esc_html( $itemprop ); ?>>
 			<?php
 			the_content();
 
