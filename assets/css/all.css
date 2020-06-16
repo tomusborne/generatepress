@@ -1171,7 +1171,6 @@ li.search-item.active {
 .nav-right-sidebar .main-navigation li.search-item.active {
 	width: auto;
 	display: inline-block;
-	float: right;
 }
 
 /*--------------------------------------------------------------
