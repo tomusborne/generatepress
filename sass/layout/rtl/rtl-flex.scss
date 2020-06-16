@@ -195,9 +195,3 @@ li>ul {
 .right-sidebar #right-sidebar {
 	order: -10;
 }
-
-@media (min-width: 768px) {
-	.menu-item-has-children ul .dropdown-menu-toggle {
-		transform: rotate(180deg);
-	}
-}

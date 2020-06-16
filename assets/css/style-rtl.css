@@ -4,38 +4,12 @@ th {
 	text-align: right;
 }
 
-.main-navigation ul ul {
-	float: right;
-	left: auto;
-	right: 0;
-	text-align: right;
-}
-
-.main-navigation ul ul ul {
-	left: auto;
-	right: 100%;
-}
-
 .menu-item-has-children .dropdown-menu-toggle {
 	float: left !important;
 }
 
 .rtl .main-navigation ul ul, .rtl .secondary-navigation ul ul.sub-menu {
 	right: -999999px;
-}
-
-.rtl.dropdown-hover .main-navigation ul li.sfHover > ul,
-.rtl.dropdown-hover .main-navigation ul li:hover > ul,
-.rtl.dropdown-hover .secondary-navigation ul li.sfHover > ul,
-.rtl.dropdown-hover .secondary-navigation ul li:hover > ul {
-	right: 0;
-}
-
-.rtl.dropdown-hover .main-navigation ul ul li.sfHover > ul,
-.rtl.dropdown-hover .main-navigation ul ul li:hover > ul,
-.rtl.dropdown-hover .secondary-navigation ul ul li.sfHover > ul,
-.rtl.dropdown-hover .secondary-navigation ul ul li:hover > ul {
-	right: 100%;
 }
 
 .main-navigation li {
@@ -198,8 +172,5 @@ li > ul {
 @media (min-width: 768px) {
 	.inside-footer-widgets > div {
 		float: right;
-	}
-	.menu-item-has-children ul .dropdown-menu-toggle {
-		transform: rotate(180deg);
 	}
 }
