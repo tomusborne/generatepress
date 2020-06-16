@@ -1153,13 +1153,6 @@ a:focus {
 	display: none;
 }
 
-.search-item .screen-reader-text {
-	top: 0;
-	right: 0;
-	left: auto;
-	margin: 0;
-}
-
 .main-navigation li.search-item {
 	float: right;
 	z-index: 21;
