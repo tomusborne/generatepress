@@ -83,18 +83,6 @@
 				searchItems[i].addEventListener( 'click', toggleSearch, false );
 			}
 
-			// Close navigation search on click elsewhere
-			document.addEventListener( 'click', function ( event ) {
-				if ( document.querySelector( '.navigation-search.nav-search-active' ) ) {
-					if ( ! event.target.closest( '.navigation-search' ) && ! event.target.closest( '.search-item' ) ) {
-						var activeSearchItems = document.querySelectorAll( '.search-item.active' );
-						for ( var i = 0; i < activeSearchItems.length; i++ ) {
-							toggleSearch( event, activeSearchItems[i] );
-						}
-					}
-				}
-			}, false);
-
 			// Close navigation search on escape key
 			document.addEventListener( 'keydown', function( e ) {
 				if ( document.querySelector( '.navigation-search.nav-search-active' ) ) {
