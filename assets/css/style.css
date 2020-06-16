@@ -1513,11 +1513,6 @@ object {
 	transition: opacity 300ms ease-in-out;
 }
 
-.generate-back-to-top .screen-reader-text {
-	left: 0;
-	margin: 0;
-}
-
 .footer-widgets {
 	padding: 40px;
 }

@@ -231,15 +231,13 @@ if ( ! function_exists( 'generate_back_to_top' ) ) {
 		echo apply_filters( // phpcs:ignore
 			'generate_back_to_top_output',
 			sprintf(
-				'<a title="%1$s" rel="nofollow" href="#" class="generate-back-to-top" style="opacity:0;visibility:hidden;" data-scroll-speed="%2$s" data-start-scroll="%3$s">
-					<span class="screen-reader-text">%5$s</span>
-					%6$s
+				'<a title="%1$s" aria-label="%1$s" rel="nofollow" href="#" class="generate-back-to-top" style="opacity:0;visibility:hidden;" data-scroll-speed="%2$s" data-start-scroll="%3$s">
+					%5$s
 				</a>',
 				esc_attr__( 'Scroll back to top', 'generatepress' ),
 				absint( apply_filters( 'generate_back_to_top_scroll_speed', 400 ) ),
 				absint( apply_filters( 'generate_back_to_top_start_scroll', 300 ) ),
 				esc_attr( apply_filters( 'generate_back_to_top_icon', 'fa-angle-up' ) ),
-				esc_html__( 'Scroll back to top', 'generatepress' ),
 				generate_get_svg_icon( 'arrow' )
 			)
 		);

@@ -1532,11 +1532,6 @@ object {
 	transition: opacity 300ms ease-in-out;
 }
 
-.generate-back-to-top .screen-reader-text {
-	left: 0;
-	margin: 0;
-}
-
 /*--------------------------------------------------------------
 # Featured Images
 --------------------------------------------------------------*/
