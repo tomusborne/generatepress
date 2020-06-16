@@ -40,6 +40,13 @@ get_header(); ?>
 					 */
 					get_template_part( 'content', get_post_format() );
 
+					/**
+					 * generate_after_template_part hook.
+					 *
+					 * @since 2.5
+					 */
+					do_action( 'generate_after_template_part', 'index' );
+
 				endwhile;
 
 				/**

@@ -43,6 +43,13 @@ get_header(); ?>
 
 					get_template_part( 'content', 'search' );
 
+					/**
+					 * generate_after_template_part hook.
+					 *
+					 * @since 2.5
+					 */
+					do_action( 'generate_after_template_part', 'search' );
+
 				endwhile;
 
 				/**
