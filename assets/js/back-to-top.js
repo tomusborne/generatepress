@@ -41,6 +41,7 @@
 				var travelled = window.pageYOffset;
 				if ( travelled <= (endLocation || 0) ) {
 					clearInterval(runAnimation);
+					document.activeElement.blur();
 				}
 			};
 
