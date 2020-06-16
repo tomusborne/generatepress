@@ -673,7 +673,6 @@ a:focus {
 }
 
 .main-navigation li.search-item {
-	float: right;
 	z-index: 21;
 }
 

@@ -647,6 +647,10 @@ a:focus {
 	text-align: right;
 }
 
+.main-navigation li.search-item {
+	float: right;
+}
+
 /*--------------------------------------------------------------
 ## Navigation Search
 --------------------------------------------------------------*/
@@ -700,7 +704,6 @@ a:focus {
 }
 
 .main-navigation li.search-item {
-	float: right;
 	z-index: 21;
 }
 
