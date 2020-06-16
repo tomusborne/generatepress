@@ -51,7 +51,7 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 			wp_enqueue_style( 'generate-widget-areas', $dir_uri . "/assets/css/widget-areas{$suffix}.css", array(), GENERATE_VERSION, 'all' );
 		}
 
-		if ( is_child_theme() ) {
+		if ( is_child_theme() && apply_filters( 'generate_load_child_theme_stylesheet', true ) ) {
 			wp_enqueue_style( 'generate-child', get_stylesheet_uri(), array(), filemtime( get_stylesheet_directory() . '/style.css' ), 'all' );
 		}
 
