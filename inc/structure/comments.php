@@ -170,3 +170,32 @@ function generate_filter_comment_fields( $fields ) {
 
 	return $fields;
 }
+
+add_action( 'generate_after_template_part', 'generate_do_comments_template' );
+/**
+ * Add the comments template to pages and single posts.
+ *
+ * @since 2.5
+ * @param string $template The template we're targeting.
+ */
+function generate_do_comments_template( $template ) {
+	if ( 'single' === $template || 'page' === $template ) {
+		// If comments are open or we have at least one comment, load up the comment template.
+		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- Intentionally loose.
+		if ( comments_open() || '0' != get_comments_number() ) :
+			/**
+			 * generate_before_comments_container hook.
+			 *
+			 * @since 2.1
+			 */
+			do_action( 'generate_before_comments_container' );
+			?>
+
+			<div class="comments-area">
+				<?php comments_template(); ?>
+			</div>
+
+			<?php
+		endif;
+	}
+}
