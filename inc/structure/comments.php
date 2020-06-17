@@ -171,7 +171,7 @@ function generate_filter_comment_fields( $fields ) {
 	return $fields;
 }
 
-add_action( 'generate_after_template_part', 'generate_do_comments_template' );
+add_action( 'generate_do_template_part', 'generate_do_comments_template', 15 );
 /**
  * Add the comments template to pages and single posts.
  *

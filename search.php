@@ -41,14 +41,12 @@ get_header(); ?>
 
 					the_post();
 
-					get_template_part( 'content', 'search' );
-
 					/**
-					 * generate_after_template_part hook.
+					 * generate_do_template_part hook.
 					 *
 					 * @since 2.5
 					 */
-					do_action( 'generate_after_template_part', 'search' );
+					do_action( 'generate_do_template_part', 'search' );
 
 				endwhile;
 
@@ -63,7 +61,12 @@ get_header(); ?>
 
 			else :
 
-				get_template_part( 'no-results', 'search' );
+				/**
+				 * generate_do_template_part hook.
+				 *
+				 * @since 2.5
+				 */
+				do_action( 'generate_do_template_part', 'none' );
 
 			endif;
 

@@ -30,14 +30,12 @@ get_header(); ?>
 
 				the_post();
 
-				get_template_part( 'content', 'page' );
-
 				/**
-				 * generate_after_template_part hook.
+				 * generate_do_template_part hook.
 				 *
 				 * @since 2.5
 				 */
-				do_action( 'generate_after_template_part', 'page' );
+				do_action( 'generate_do_template_part', 'page' );
 
 			endwhile;
 

@@ -117,7 +117,7 @@ if ( ! function_exists( 'generate_menu_fallback' ) ) {
 						)
 					);
 
-					echo $search_item;
+					echo $search_item; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Safe output.
 				}
 				?>
 			</ul>
