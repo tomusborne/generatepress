@@ -1086,13 +1086,13 @@ footer.entry-meta .posted-on {
 	margin-bottom: 30px;
 }
 
-.page-header .avatar {
-	float: left;
-	margin-right: 20px;
+.author .page-header .page-title {
+	display: flex;
+	align-items: center;
 }
 
-.page-header .author-info {
-	overflow: hidden;
+.author .page-header .avatar {
+	margin-right: 20px;
 }
 
 .page-header > *:last-child,
