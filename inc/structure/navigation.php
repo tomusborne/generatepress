@@ -16,6 +16,12 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 	 * @since 0.1
 	 */
 	function generate_navigation_position() {
+		/**
+		 * generate_before_navigation hook.
+		 *
+		 * @since x.x.x
+		 */
+		do_action( 'generate_before_navigation' );
 		?>
 		<nav id="site-navigation" <?php generate_do_element_classes( 'navigation' ); ?> <?php generate_do_microdata( 'navigation' ); ?>>
 			<div <?php generate_do_element_classes( 'inside_navigation' ); ?>>
