@@ -766,8 +766,8 @@ li.search-item.active {
 	right: 0;
 }
 
-.dropdown-hover .main-navigation:not(.toggled) ul li:hover > ul,
-.dropdown-hover .main-navigation:not(.toggled) ul li.sfHover > ul {
+.main-navigation:not(.toggled) ul li:hover > ul,
+.main-navigation:not(.toggled) ul li.sfHover > ul {
 	left: auto;
 	opacity: 1;
 	transition-delay: 150ms;
@@ -776,19 +776,20 @@ li.search-item.active {
 	overflow: visible;
 }
 
-.dropdown-hover .main-navigation:not(.toggled) ul ul li:hover > ul,
-.dropdown-hover .main-navigation:not(.toggled) ul ul li.sfHover > ul {
+.main-navigation:not(.toggled) ul ul li:hover > ul,
+.main-navigation:not(.toggled) ul ul li.sfHover > ul {
 	left: 100%;
 	top: 0;
 }
 
-.dropdown-hover .main-navigation.sub-menu-left:not(.toggled) ul ul li:hover > ul,
-.dropdown-hover .main-navigation.sub-menu-left:not(.toggled) ul ul li.sfHover > ul {
+.main-navigation.sub-menu-left:not(.toggled) ul ul li:hover > ul,
+.main-navigation.sub-menu-left:not(.toggled) ul ul li.sfHover > ul {
 	right: 100%;
 	left: auto;
 }
 
 .dropdown-click .main-navigation ul ul {
+	display: none;
 	visibility: hidden;
 }
 
@@ -800,6 +801,7 @@ li.search-item.active {
 
 .dropdown-click .main-navigation ul.toggled-on,
 .dropdown-click .main-navigation ul li.sfHover > ul.toggled-on {
+	display: block;
 	left: auto;
 	opacity: 1;
 	visibility: visible;

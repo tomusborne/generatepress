@@ -43,37 +43,36 @@
 	}
 }
 
-.dropdown-hover {
-	.main-navigation {
-		&:not(.toggled) {
-			ul li:hover > ul,
-			ul li.sfHover > ul {
-				left: auto;
-				opacity: 1;
-				transition-delay: 150ms;
-				pointer-events: auto;
-				height: auto;
-				overflow: visible;
-			}
-
-			ul ul li:hover > ul,
-			ul ul li.sfHover > ul {
-				left: 100%;
-				top: 0;
-			}
-		}
-
-		&.sub-menu-left:not(.toggled) ul ul li:hover > ul,
-		&.sub-menu-left:not(.toggled) ul ul li.sfHover > ul {
-			right: 100%;
+.main-navigation {
+	&:not(.toggled) {
+		ul li:hover > ul,
+		ul li.sfHover > ul {
 			left: auto;
+			opacity: 1;
+			transition-delay: 150ms;
+			pointer-events: auto;
+			height: auto;
+			overflow: visible;
 		}
+
+		ul ul li:hover > ul,
+		ul ul li.sfHover > ul {
+			left: 100%;
+			top: 0;
+		}
+	}
+
+	&.sub-menu-left:not(.toggled) ul ul li:hover > ul,
+	&.sub-menu-left:not(.toggled) ul ul li.sfHover > ul {
+		right: 100%;
+		left: auto;
 	}
 }
 
 .dropdown-click {
 	.main-navigation {
 		ul ul {
+			display: none;
 			visibility: hidden;
 
 			ul.toggled-on {
@@ -85,6 +84,7 @@
 
 		ul.toggled-on,
 		ul li.sfHover > ul.toggled-on {
+			display: block;
 			left: auto;
 			opacity: 1;
 			visibility: visible;

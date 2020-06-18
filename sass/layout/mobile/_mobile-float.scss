@@ -70,9 +70,13 @@ nav.toggled ul ul.sub-menu {
 	width: 100%;
 }
 
-.dropdown-hover .main-navigation.toggled ul li:hover > ul,
-.dropdown-hover .main-navigation.toggled ul li.sfHover > ul {
-	transition-delay: 0s;
+.dropdown-hover {
+	.main-navigation.toggled ul {
+		li:hover > ul,
+		li.sfHover > ul {
+			transition-delay: 0s;
+		}
+	}
 }
 
 .toggled .menu-item-has-children .dropdown-menu-toggle {
