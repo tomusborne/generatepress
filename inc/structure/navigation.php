@@ -63,6 +63,13 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 					?>
 				</button>
 				<?php
+				/**
+				 * generate_after_mobile_menu_button hook
+				 *
+				 * @since 2.5
+				 */
+				do_action( 'generate_after_mobile_menu_button' );
+
 				wp_nav_menu(
 					array(
 						'theme_location' => 'primary',
@@ -393,7 +400,6 @@ if ( ! function_exists( 'generate_menu_search_icon' ) ) {
 }
 
 if ( ! function_exists( 'generate_mobile_menu_search_icon' ) ) {
-	add_action( 'generate_inside_navigation', 'generate_mobile_menu_search_icon' );
 	/**
 	 * Add search icon to mobile menu bar
 	 *
@@ -420,6 +426,20 @@ if ( ! function_exists( 'generate_mobile_menu_search_icon' ) ) {
 			</span>
 		</div>
 		<?php
+	}
+}
+
+add_action( 'wp', 'generate_do_mobile_menu_search_icon' );
+/**
+ * Add search icon to mobile menu toggle.
+ *
+ * @since 2.5
+ */
+function generate_do_mobile_menu_search_icon() {
+	if ( generate_is_using_flexbox() ) {
+		add_action( 'generate_after_mobile_menu_button', 'generate_mobile_menu_search_icon' );
+	} else {
+		add_action( 'generate_inside_navigation', 'generate_mobile_menu_search_icon' );
 	}
 }
 
