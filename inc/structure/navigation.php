@@ -85,6 +85,12 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 			</div>
 		</nav>
 		<?php
+		/**
+		 * generate_after_navigation hook.
+		 *
+		 * @since x.x.x
+		 */
+		do_action( 'generate_after_navigation' );
 	}
 }
 
