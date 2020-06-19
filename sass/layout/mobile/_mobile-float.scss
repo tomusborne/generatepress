@@ -108,8 +108,8 @@ nav.toggled ul ul.sub-menu {
 .main-navigation.toggled .main-nav li {
 	float: none;
 	clear: both;
-	display: block !important;
-	text-align: left !important;
+	display: block;
+	text-align: left;
 }
 
 .main-navigation.toggled .main-nav li.hide-on-mobile {
@@ -121,12 +121,12 @@ nav.toggled ul ul.sub-menu {
 }
 
 .main-navigation.toggled .menu li.search-item {
-	display: none !important;
+	display: none;
 }
 
 .main-navigation.toggled .sf-menu > li.menu-item-float-right {
-	float: none !important;
-	display: inline-block !important;
+	float: none;
+	display: inline-block;
 }
 
 /*--------------------------------------------------------------

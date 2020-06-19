@@ -618,20 +618,20 @@ a:focus {
 	clear: left;
 }
 
-.nav-aligned-right .main-navigation .menu > li,
-.nav-aligned-center .main-navigation .menu > li {
+.nav-aligned-right .main-navigation:not(.toggled) .menu > li,
+.nav-aligned-center .main-navigation:not(.toggled) .menu > li {
 	float: none;
 	display: inline-block;
 }
 
-.nav-aligned-right .main-navigation ul,
-.nav-aligned-center .main-navigation ul {
+.nav-aligned-right .main-navigation:not(.toggled) ul,
+.nav-aligned-center .main-navigation:not(.toggled) ul {
 	letter-spacing: -0.31em;
 	font-size: 1em;
 }
 
-.nav-aligned-right .main-navigation ul li,
-.nav-aligned-center .main-navigation ul li {
+.nav-aligned-right .main-navigation:not(.toggled) ul li,
+.nav-aligned-center .main-navigation:not(.toggled) ul li {
 	letter-spacing: normal;
 }
 
