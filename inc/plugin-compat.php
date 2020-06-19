@@ -274,3 +274,40 @@ if ( ! function_exists( 'generate_beaver_builder_css' ) ) {
 		}
 	}
 }
+
+add_action( 'wp_enqueue_scripts', 'generate_do_pro_compatibility' );
+/**
+ * Add CSS to ensure compatibility with GP Premium.
+ *
+ * @since x.x.x
+ */
+function generate_do_pro_compatibility() {
+	if ( ! defined( 'GP_PREMIUM_VERSION' ) ) {
+		return;
+	}
+
+	$css = new GeneratePress_CSS();
+
+	if ( version_compare( GP_PREMIUM_VERSION, '1.11.0-alpha.1', '<' ) ) {
+		if ( defined( 'GENERATE_SECONDARY_NAV_VERSION' ) ) {
+			$css->set_selector( '.secondary-navigation .inside-navigation:before, .secondary-navigation .inside-navigation:after' );
+			$css->add_property( 'content', '"."' );
+			$css->add_property( 'display', 'block' );
+			$css->add_property( 'overflow', 'hidden' );
+			$css->add_property( 'visibility', 'hidden' );
+			$css->add_property( 'font-size', '0px' );
+			$css->add_property( 'line-height', '0px' );
+			$css->add_property( 'width', '0px' );
+			$css->add_property( 'height', '0px' );
+
+			$css->set_selector( '.secondary-navigation .inside-navigation:after' );
+			$css->add_property( 'clear', 'both' );
+
+		}
+
+	}
+
+	if ( $css->css_output() ) {
+		wp_add_inline_style( 'generate-style', $css->css_output() );
+	}
+}
