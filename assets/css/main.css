@@ -568,10 +568,6 @@ a:focus {
 	padding-left: 0;
 }
 
-.main-navigation ul li a {
-	display: block;
-}
-
 .main-navigation .main-nav ul li a {
 	padding-left: 20px;
 	padding-right: 20px;
@@ -589,10 +585,6 @@ a:focus {
 
 .main-navigation li {
 	position: relative;
-}
-
-.main-navigation ul li a {
-	display: block;
 }
 
 .main-navigation:not([class*="nav-align-"]) .menu-item-align-right {
