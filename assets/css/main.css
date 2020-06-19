@@ -1801,11 +1801,6 @@ nav.toggled ul ul.sub-menu {
 	.site-logo + .site-branding {
 		margin: 1.5em 0 0;
 	}
-	.header-widget {
-		float: none;
-		max-width: 100%;
-		text-align: center;
-	}
 	/*--------------------------------------------------------------
 	## Navigation
     --------------------------------------------------------------*/
