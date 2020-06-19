@@ -8,10 +8,6 @@
 		position: relative;
 	}
 
-	ul li a {
-		display: block;
-	}
-
 	&:not([class*="nav-align-"]) .menu-item-align-right {
 		margin-left: auto;
 
