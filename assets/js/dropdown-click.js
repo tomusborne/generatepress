@@ -21,6 +21,7 @@
 
 			// Close other sub-menus
 			var openedSubMenus = _this.closest( 'nav' ).querySelectorAll( 'ul.toggled-on' );
+
 			if ( openedSubMenus && ! _this.closest( 'ul' ).classList.contains( 'toggled-on' ) && ! _this.closest( 'li' ).classList.contains( 'sfHover' ) ) {
 				for ( var o = 0; o < openedSubMenus.length; o++ ) {
 					openedSubMenus[o].classList.remove( 'toggled-on' );
@@ -33,6 +34,7 @@
 
 			// Set aria-expanded on arrow
 			var dropdownToggle = closestLi.querySelector( '.dropdown-menu-toggle' );
+
 			if ( 'false' === dropdownToggle.getAttribute( 'aria-expanded' ) || ! dropdownToggle.getAttribute( 'aria-expanded' ) ) {
 				dropdownToggle.setAttribute( 'aria-expanded', 'true' );
 			} else {
@@ -66,13 +68,14 @@
 		// Open the sub-menu by clicking on a dropdown arrow
 		if ( body.classList.contains( 'dropdown-click-arrow' ) ) {
 			// Add a class to sub-menu items that are set to #
-			for ( var i = 0; i < document.querySelectorAll( '.main-nav .menu-item-has-children > a' ).length; i++ ) {
-				if ( '#' == document.querySelectorAll( '.main-nav .menu-item-has-children > a' )[i].getAttribute( 'href' ) ) {
-					document.querySelectorAll( '.main-nav .menu-item-has-children > a' )[i].classList.add( 'menu-item-dropdown-click' );
+			for ( var i = 0; i < parentElementLinks.length; i++ ) {
+				if ( '#' == parentElementLinks[i].getAttribute( 'href' ) ) {
+					parentElementLinks[i].classList.add( 'menu-item-dropdown-click' );
 				}
 			}
 
-			var dropdownToggleLinks = document.querySelectorAll( '.main-nav .menu-item-has-children > a .dropdown-menu-toggle' );
+			var dropdownToggleLinks = document.querySelectorAll( '.main-nav .menu-item-has-children > a .dropdown-menu-toggle, .main-nav .menu-item-has-children > button.dropdown-menu-toggle' );
+
 			for ( var i = 0; i < dropdownToggleLinks.length; i++ ) {
 				dropdownToggleLinks[i].addEventListener( 'click', dropdownClick, false );
 
@@ -94,6 +97,7 @@
 			if ( document.querySelector( 'nav ul .toggled-on' ) ) {
 				var activeSubMenus = document.querySelectorAll( 'nav ul .toggled-on' );
 				var activeDropdownToggles = document.querySelectorAll( 'nav .dropdown-menu-toggle' );
+
 				for ( var i = 0; i < activeSubMenus.length; i++ ) {
 					activeSubMenus[i].classList.remove( 'toggled-on' );
 					activeSubMenus[i].closest( '.sfHover' ).classList.remove( 'sfHover' );

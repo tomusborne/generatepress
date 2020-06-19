@@ -303,8 +303,25 @@ function generate_do_pro_compatibility() {
 			$css->set_selector( '.secondary-navigation .inside-navigation:after' );
 			$css->add_property( 'clear', 'both' );
 
+			$css->set_selector( '.secondary-navigation .menu-item-has-children ul .dropdown-menu-toggle' );
+			$css->add_property( 'float', 'right' );
+
+			$css->set_selector( '.secondary-navigation .menu-toggle' );
+			$css->add_property( 'width', '100%' );
 		}
 
+		if ( defined( 'GENERATE_MENU_PLUS_VERSION' ) ) {
+			$settings = wp_parse_args(
+				get_option( 'generate_spacing_settings', array() ),
+				generate_spacing_get_defaults()
+			);
+
+			$css->set_selector( '.slideout-navigation .main-nav ul li.menu-item-has-children > a' );
+			$css->add_property( 'padding-right', '0px' );
+
+			$css->set_selector( '.slideout-navigation .main-nav ul li.menu-item-has-children > a > .dropdown-menu-toggle' );
+			$css->add_property( 'padding-right', absint( $settings['menu_item'] ), false, 'px' );
+		}
 	}
 
 	if ( $css->css_output() ) {

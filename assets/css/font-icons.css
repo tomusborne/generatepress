@@ -46,7 +46,8 @@
 	content: "\f00d";
 }
 
-.main-navigation.toggled .sfHover > a .dropdown-menu-toggle:before {
+.main-navigation.toggled .sfHover > a .dropdown-menu-toggle:before,
+.main-navigation.toggled .sfHover > button.dropdown-menu-toggle:before {
 	content: "\f106";
 }
 

@@ -254,7 +254,7 @@ if ( ! class_exists( 'Generate_Page_Walker' ) && class_exists( 'Walker_Page' ) )
 			if ( isset( $args['pages_with_children'][ $page->ID ] ) ) {
 				$css_class[] = 'menu-item-has-children';
 				$icon = generate_get_svg_icon( 'arrow' );
-				$button = '<span role="presentation" class="dropdown-menu-toggle">' . $icon . '</span>';
+				$button = '<span class="dropdown-menu-toggle">' . $icon . '</span>';
 			}
 
 			if ( ! empty( $current_page ) ) {
@@ -324,6 +324,33 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 
 		return $title;
 	}
+}
+
+add_filter( 'nav_menu_item_args', 'generate_do_submenu_toggle_button', 10, 2 );
+/**
+ * Add our toggle button after the link element.
+ *
+ * @param Object $args Existing args.
+ * @param Object $item Current menu item.
+ */
+function generate_do_submenu_toggle_button( $args, $item ) {
+	if ( ! generate_is_using_flexbox() ) {
+		return $args;
+	}
+
+	if ( isset( $args->container_class ) && 'main-nav' === $args->container_class ) {
+		$args->after = '';
+
+		if ( in_array( 'menu-item-has-children', $item->classes, true ) ) {
+			$args->after .= sprintf(
+				'<button class="dropdown-menu-toggle" aria-label="%2$s" aria-expanded="false">%1$s</button>',
+				generate_get_svg_icon( 'arrow' ),
+				esc_attr__( 'Open Sub-Menu', 'generatepress' )
+			);
+		}
+	}
+
+	return $args;
 }
 
 if ( ! function_exists( 'generate_navigation_search' ) ) {

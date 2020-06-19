@@ -562,6 +562,10 @@ a:focus {
 	font-size: 15px;
 }
 
+.main-navigation button.dropdown-menu-toggle {
+	font-size: 15px;
+}
+
 .main-navigation ul {
 	list-style: none;
 	margin: 0;
@@ -718,11 +722,6 @@ li.search-item.active {
 	font-size: 14px;
 }
 
-.main-navigation .main-nav ul li.menu-item-has-children > a {
-	padding-right: 0;
-	position: relative;
-}
-
 .main-navigation.sub-menu-left .sub-menu {
 	right: 0;
 }
@@ -779,23 +778,20 @@ li.search-item.active {
 	top: 0;
 }
 
+.main-navigation .menu-item-has-children > a {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
 .menu-item-has-children .dropdown-menu-toggle {
-	display: inline-block;
-	height: 100%;
-	clear: both;
-	padding-right: 20px;
 	padding-left: 10px;
 }
 
-.menu-item-has-children ul .dropdown-menu-toggle {
-	padding-top: 10px;
-	padding-bottom: 10px;
-	margin-top: -10px;
-}
-
-nav ul ul .menu-item-has-children .dropdown-menu-toggle,
-.sidebar .menu-item-has-children .dropdown-menu-toggle {
-	float: right;
+.menu-item-has-children button.dropdown-menu-toggle {
+	display: none;
+	background: transparent;
+	padding: 0 20px;
 }
 
 /*--------------------------------------------------------------
@@ -1603,6 +1599,7 @@ object {
 
 .dropdown-click .sfHover > a > .dropdown-menu-toggle > .gp-icon svg,
 nav.toggled .sfHover > a > .dropdown-menu-toggle > .gp-icon svg,
+nav.toggled .sfHover > button.dropdown-menu-toggle > .gp-icon svg,
 .generate-back-to-top .gp-icon svg {
 	transform: rotate(180deg);
 }
@@ -1718,10 +1715,6 @@ nav.toggled ul ul.sub-menu {
 	transition-delay: 0s;
 }
 
-.toggled .menu-item-has-children .dropdown-menu-toggle {
-	padding-left: 20px;
-}
-
 .main-navigation.toggled .main-nav {
 	flex-basis: 100%;
 	order: 3;
@@ -1734,6 +1727,24 @@ nav.toggled ul ul.sub-menu {
 .main-navigation.toggled .main-nav li {
 	width: 100%;
 	text-align: left;
+}
+
+.main-navigation.toggled .main-nav li.menu-item-has-children {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.main-navigation.toggled .main-nav li.menu-item-has-children > a {
+	flex-grow: 1;
+}
+
+.main-navigation.toggled .main-nav li.menu-item-has-children span.dropdown-menu-toggle {
+	display: none;
+}
+
+.main-navigation.toggled .main-nav li.menu-item-has-children button.dropdown-menu-toggle {
+	display: block;
 }
 
 .main-navigation.toggled .main-nav ul ul {
@@ -1752,10 +1763,6 @@ nav.toggled ul ul.sub-menu {
 	opacity: 1;
 	display: block;
 	visibility: visible;
-}
-
-.main-navigation.toggled .menu-item-has-children .dropdown-menu-toggle {
-	float: right;
 }
 
 .main-navigation.toggled .menu li.search-item {

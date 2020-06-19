@@ -1,0 +1,21 @@
+.main-navigation {
+	.menu-item-has-children {
+		& > a {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+	}
+}
+
+.menu-item-has-children {
+	.dropdown-menu-toggle {
+		padding-left: 10px;
+	}
+
+	button.dropdown-menu-toggle {
+		display: none;
+		background: transparent;
+		padding: 0 20px;
+	}
+}

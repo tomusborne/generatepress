@@ -583,6 +583,10 @@ a:focus {
 	font-size: 15px;
 }
 
+.main-navigation button.dropdown-menu-toggle {
+	font-size: 15px;
+}
+
 .main-navigation ul {
 	list-style: none;
 	margin: 0;
@@ -753,11 +757,6 @@ li.search-item.active {
 	font-size: 14px;
 }
 
-.main-navigation .main-nav ul li.menu-item-has-children > a {
-	padding-right: 0;
-	position: relative;
-}
-
 .main-navigation.sub-menu-left .sub-menu {
 	right: 0;
 }
@@ -812,6 +811,11 @@ li.search-item.active {
 
 .nav-float-right .main-navigation ul ul ul {
 	top: 0;
+}
+
+.main-navigation .main-nav ul li.menu-item-has-children > a {
+	padding-right: 0;
+	position: relative;
 }
 
 .menu-item-has-children .dropdown-menu-toggle {
@@ -1757,6 +1761,7 @@ object {
 
 .dropdown-click .sfHover > a > .dropdown-menu-toggle > .gp-icon svg,
 nav.toggled .sfHover > a > .dropdown-menu-toggle > .gp-icon svg,
+nav.toggled .sfHover > button.dropdown-menu-toggle > .gp-icon svg,
 .generate-back-to-top .gp-icon svg {
 	transform: rotate(180deg);
 }

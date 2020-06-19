@@ -119,6 +119,7 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		);
 
 		$css = new GeneratePress_CSS();
+		$flexbox = generate_is_using_flexbox();
 
 		$css->set_selector( '.top-bar' );
 		$css->add_property( 'background-color', $settings['top_bar_background_color'] );
@@ -150,9 +151,19 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->add_property( 'background-color', $settings['navigation_background_color'] );
 
 		$css->set_selector( '.main-navigation .main-nav ul li a,.menu-toggle' );
+
+		if ( $flexbox ) {
+			$css->set_selector( '.main-navigation .main-nav ul li a,.menu-toggle, .main-navigation .main-nav ul li button' );
+		}
+
 		$css->add_property( 'color', $settings['navigation_text_color'] );
 
 		$css->set_selector( '.main-navigation .main-nav ul li:hover > a,.main-navigation .main-nav ul li:focus > a, .main-navigation .main-nav ul li.sfHover > a' );
+
+		if ( $flexbox ) {
+			$css->set_selector( '.main-navigation .main-nav ul li:hover > a,.main-navigation .main-nav ul li:focus > a, .main-navigation .main-nav ul li.sfHover > a,.main-navigation .main-nav ul li:hover > button,.main-navigation .main-nav ul li.sfHover > button' );
+		}
+
 		$css->add_property( 'color', $settings['navigation_text_hover_color'] );
 		$css->add_property( 'background-color', $settings['navigation_background_hover_color'] );
 
@@ -160,10 +171,20 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->add_property( 'color', $settings['navigation_text_color'] );
 
 		$css->set_selector( '.main-navigation .main-nav ul li[class*="current-menu-"] > a' );
+
+		if ( $flexbox ) {
+			$css->set_selector( '.main-navigation .main-nav ul li[class*="current-menu-"] > a,.main-navigation .main-nav ul li[class*="current-menu-"] > button' );
+		}
+
 		$css->add_property( 'color', $settings['navigation_text_current_color'] );
 		$css->add_property( 'background-color', $settings['navigation_background_current_color'] );
 
 		$css->set_selector( '.main-navigation .main-nav ul li[class*="current-menu-"] > a:hover,.main-navigation .main-nav ul li[class*="current-menu-"].sfHover > a' );
+
+		if ( $flexbox ) {
+			$css->set_selector( '.main-navigation .main-nav ul li[class*="current-menu-"] > a:hover,.main-navigation .main-nav ul li[class*="current-menu-"].sfHover > a,.main-navigation .main-nav ul li[class*="current-menu-"]:hover > button,.main-navigation .main-nav ul li[class*="current-menu-"].sfHover > button' );
+		}
+
 		$css->add_property( 'color', $settings['navigation_text_current_color'] );
 		$css->add_property( 'background-color', $settings['navigation_background_current_color'] );
 
@@ -190,17 +211,37 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->add_property( 'background-color', $settings['subnavigation_background_color'] );
 
 		$css->set_selector( '.main-navigation .main-nav ul ul li a' );
+
+		if ( $flexbox ) {
+			$css->set_selector( '.main-navigation .main-nav ul ul li a, .main-navigation .main-nav ul ul li button' );
+		}
+
 		$css->add_property( 'color', $settings['subnavigation_text_color'] );
 
 		$css->set_selector( '.main-navigation .main-nav ul ul li:hover > a,.main-navigation .main-nav ul ul li:focus > a,.main-navigation .main-nav ul ul li.sfHover > a' );
+
+		if ( $flexbox ) {
+			$css->set_selector( '.main-navigation .main-nav ul ul li:hover > a,.main-navigation .main-nav ul ul li:focus > a,.main-navigation .main-nav ul ul li.sfHover > a,.main-navigation .main-nav ul ul li:hover > button,.main-navigation .main-nav ul ul li.sfHover > button' );
+		}
+
 		$css->add_property( 'color', $settings['subnavigation_text_hover_color'] );
 		$css->add_property( 'background-color', $settings['subnavigation_background_hover_color'] );
 
 		$css->set_selector( '.main-navigation .main-nav ul ul li[class*="current-menu-"] > a' );
+
+		if ( $flexbox ) {
+			$css->set_selector( '.main-navigation .main-nav ul ul li[class*="current-menu-"] > a,.main-navigation ul ul li[class*="current-menu-"] > button' );
+		}
+
 		$css->add_property( 'color', $settings['subnavigation_text_current_color'] );
 		$css->add_property( 'background-color', $settings['subnavigation_background_current_color'] );
 
 		$css->set_selector( '.main-navigation .main-nav ul ul li[class*="current-menu-"] > a:hover,.main-navigation .main-nav ul ul li[class*="current-menu-"].sfHover > a' );
+
+		if ( $flexbox ) {
+			$css->set_selector( '.main-navigation .main-nav ul ul li[class*="current-menu-"] > a:hover,.main-navigation .main-nav ul ul li[class*="current-menu-"].sfHover > a,.main-navigation ul ul li[class*="current-menu-"]:hover > button,.main-navigation ul ul li[class*="current-menu-"].sfHover > button' );
+		}
+
 		$css->add_property( 'color', $settings['subnavigation_text_current_color'] );
 		$css->add_property( 'background-color', $settings['subnavigation_background_current_color'] );
 
@@ -394,6 +435,14 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->add_property( 'text-transform', $settings['navigation_font_transform'], $defaults['navigation_font_transform'] );
 		$css->add_property( 'font-size', absint( $settings['navigation_font_size'] ), $defaults['navigation_font_size'], 'px' );
 
+		if ( generate_is_using_flexbox() ) {
+			$css->set_selector( '.main-navigation button.dropdown-menu-toggle' );
+			$css->add_property( 'font-size', absint( $settings['navigation_font_size'] ), $defaults['navigation_font_size'], 'px' );
+
+			$css->set_selector( '.main-navigation ul ul li button' );
+			$css->add_property( 'font-size', absint( $subnav_font_size ), false, 'px' );
+		}
+
 		$css->set_selector( '.main-navigation .main-nav ul ul li a' );
 		$css->add_property( 'font-size', absint( $subnav_font_size ), false, 'px' );
 
@@ -519,6 +568,7 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 
 		$defaults = generate_spacing_get_defaults( false );
 		$sidebar_layout = generate_get_layout();
+		$flexbox = generate_is_using_flexbox();
 
 		$css = new GeneratePress_CSS();
 
@@ -591,18 +641,30 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->add_property( 'height', absint( $settings['menu_item_height'] ), absint( $defaults['menu_item_height'] ), 'px' );
 
 		$css->set_selector( '.rtl .menu-item-has-children .dropdown-menu-toggle' );
+
+		if ( $flexbox ) {
+			$css->set_selector( '.rtl .menu-item-has-children button.dropdown-menu-toggle' );
+		}
+
 		$css->add_property( 'padding-left', absint( $settings['menu_item'] ), false, 'px' );
 
 		$css->set_selector( '.menu-item-has-children .dropdown-menu-toggle' );
+
+		if ( $flexbox ) {
+			$css->set_selector( '.menu-item-has-children button.dropdown-menu-toggle' );
+		}
+
 		$css->add_property( 'padding-right', absint( $settings['menu_item'] ), absint( $defaults['menu_item'] ), 'px' );
 
-		$css->set_selector( '.menu-item-has-children ul .dropdown-menu-toggle' );
-		$css->add_property( 'padding-top', absint( $settings['sub_menu_item_height'] ), absint( $defaults['sub_menu_item_height'] ), 'px' );
-		$css->add_property( 'padding-bottom', absint( $settings['sub_menu_item_height'] ), absint( $defaults['sub_menu_item_height'] ), 'px' );
-		$css->add_property( 'margin-top', '-' . absint( $settings['sub_menu_item_height'] ), '-' . absint( $defaults['sub_menu_item_height'] ), 'px' );
+		if ( ! $flexbox ) {
+			$css->set_selector( '.menu-item-has-children ul .dropdown-menu-toggle' );
+			$css->add_property( 'padding-top', absint( $settings['sub_menu_item_height'] ), absint( $defaults['sub_menu_item_height'] ), 'px' );
+			$css->add_property( 'padding-bottom', absint( $settings['sub_menu_item_height'] ), absint( $defaults['sub_menu_item_height'] ), 'px' );
+			$css->add_property( 'margin-top', '-' . absint( $settings['sub_menu_item_height'] ), '-' . absint( $defaults['sub_menu_item_height'] ), 'px' );
 
-		$css->set_selector( '.rtl .main-navigation .main-nav ul li.menu-item-has-children > a' );
-		$css->add_property( 'padding-right', absint( $settings['menu_item'] ), false, 'px' );
+			$css->set_selector( '.rtl .main-navigation .main-nav ul li.menu-item-has-children > a' );
+			$css->add_property( 'padding-right', absint( $spacing_settings['menu_item'] ), false, 'px' );
+		}
 
 		$css->set_selector( '.widget-area .widget' );
 		$css->add_property( 'padding', generate_padding_css( $settings['widget_top'], $settings['widget_right'], $settings['widget_bottom'], $settings['widget_left'] ), generate_padding_css( $defaults['widget_top'], $defaults['widget_right'], $defaults['widget_bottom'], $defaults['widget_left'] ) );
@@ -648,7 +710,7 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 
 		// Add spacing back where dropdown arrow should be.
 		// Old versions of WP don't get nice things.
-		if ( version_compare( $GLOBALS['wp_version'], '4.4', '<' ) ) {
+		if ( ! $flexbox && version_compare( $GLOBALS['wp_version'], '4.4', '<' ) ) {
 			$css->set_selector( '.main-navigation .main-nav ul li.menu-item-has-children>a, .secondary-navigation .main-nav ul li.menu-item-has-children>a' );
 			$css->add_property( 'padding-right', absint( $settings['menu_item'] ), absint( $defaults['menu_item'] ), 'px' );
 		}

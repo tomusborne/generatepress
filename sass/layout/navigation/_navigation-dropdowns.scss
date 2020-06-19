@@ -31,11 +31,6 @@
 			padding: 10px 20px;
 			font-size: 14px;
 		}
-
-		ul li.menu-item-has-children > a {
-			padding-right: 0;
-			position: relative;
-		}
 	}
 
 	&.sub-menu-left .sub-menu {
@@ -101,25 +96,4 @@
 
 .nav-float-right .main-navigation ul ul ul {
 	top: 0
-}
-
-.menu-item-has-children {
-	.dropdown-menu-toggle {
-		display: inline-block;
-		height: 100%;
-		clear: both;
-		padding-right: 20px;
-		padding-left: 10px;
-	}
-
-	ul .dropdown-menu-toggle {
-		padding-top: 10px;
-		padding-bottom: 10px;
-		margin-top: -10px;
-	}
-}
-
-nav ul ul .menu-item-has-children .dropdown-menu-toggle,
-.sidebar .menu-item-has-children .dropdown-menu-toggle {
-	float: right;
 }
