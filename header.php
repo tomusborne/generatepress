@@ -56,7 +56,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	do_action( 'generate_after_header' );
 	?>
 
-	<div id="page" class="hfeed site grid-container container grid-parent">
+	<div id="page" <?php generate_do_element_classes( 'page' ); ?>>
 		<?php
 		/**
 		 * generate_inside_site_container hook.

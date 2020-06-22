@@ -631,6 +631,26 @@ if ( ! function_exists( 'generate_main_classes' ) ) {
 	}
 }
 
+add_filter( 'generate_page_class', 'generate_do_page_container_classes' );
+/**
+ * Adds custom classes to the <main> element
+ *
+ * @param array $classes The existing classes.
+ * @since 2.5.0
+ */
+function generate_do_page_container_classes( $classes ) {
+	$classes[] = 'site';
+	$classes[] = 'grid-container';
+	$classes[] = 'container';
+	$classes[] = 'hfeed';
+
+	if ( ! generate_is_using_flexbox() ) {
+		$classes[] = 'grid-parent';
+	}
+
+	return $classes;
+}
+
 if ( ! function_exists( 'generate_post_classes' ) ) {
 	add_filter( 'post_class', 'generate_post_classes' );
 	/**
