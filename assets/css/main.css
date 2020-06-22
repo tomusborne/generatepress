@@ -820,7 +820,6 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 .sidebar .main-navigation.sub-menu-left ul li.sfHover ul {
 	top: 0;
 	right: 100%;
-	left: auto;
 }
 
 .dropdown-click .widget-area .main-navigation ul ul {
