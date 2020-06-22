@@ -302,9 +302,7 @@ function generate_do_pro_compatibility() {
 
 			$css->set_selector( '.secondary-navigation .inside-navigation:after' );
 			$css->add_property( 'clear', 'both' );
-
 		}
-
 	}
 
 	if ( $css->css_output() ) {
