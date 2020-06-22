@@ -1,27 +1,3 @@
-/* Globally hidden elements when Infinite Scroll is supported and in use. */
-.infinite-scroll .paging-navigation, /* Older / Newer Posts Navigation (always hidden) */
-.infinite-scroll.neverending .site-footer { /* Theme Footer (when set to scrolling) */
-	display: none;
-}
-
-/* When Infinite Scroll has reached its end we need to re-display elements that were hidden (via .neverending) before */
-.infinity-end.neverending .site-footer {
-	display: block;
-}
-
-/* SiteOrigin Page Builder */
-.so-panel.widget {
-	padding: 0;
-}
-
-/* MailChimp CSS */
-#mc_embed_signup .clear {
-	display: block;
-	height: auto;
-	visibility: visible;
-	width: auto;
-}
-
 /* Bootstrap fix */
 .container.grid-container {
 	width: auto;

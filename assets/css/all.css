@@ -2216,6 +2216,11 @@ nav.toggled .sfHover > a > .dropdown-menu-toggle .gp-icon.icon-arrow-right svg {
 /*--------------------------------------------------------------
 # Compatibility
 --------------------------------------------------------------*/
+/* Bootstrap fix */
+.container.grid-container {
+	width: auto;
+}
+
 /* Globally hidden elements when Infinite Scroll is supported and in use. */
 .infinite-scroll .paging-navigation,
 .infinite-scroll.neverending .site-footer {
@@ -2238,11 +2243,6 @@ nav.toggled .sfHover > a > .dropdown-menu-toggle .gp-icon.icon-arrow-right svg {
 	display: block;
 	height: auto;
 	visibility: visible;
-	width: auto;
-}
-
-/* Bootstrap fix */
-.container.grid-container {
 	width: auto;
 }
 
