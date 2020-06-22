@@ -482,19 +482,6 @@ if ( ! function_exists( 'generate_navigation_classes' ) ) {
 			}
 		}
 
-		if ( 'left' === generate_get_option( 'nav_dropdown_direction' ) ) {
-			$nav_layout = generate_get_option( 'nav_position_setting' );
-
-			switch ( $nav_layout ) {
-				case 'nav-below-header':
-				case 'nav-above-header':
-				case 'nav-float-right':
-				case 'nav-float-left':
-					$classes[] = 'sub-menu-left';
-					break;
-			}
-		}
-
 		if ( generate_is_using_flexbox() ) {
 			$nav_alignment = generate_get_option( 'nav_alignment_setting' );
 
@@ -506,6 +493,30 @@ if ( ! function_exists( 'generate_navigation_classes' ) ) {
 				$classes[] = 'nav-align-left';
 			}
 		}
+
+		$submenu_direction = 'right';
+
+		if ( 'left' === generate_get_option( 'nav_dropdown_direction' ) ) {
+			$submenu_direction = 'left';
+		}
+
+		if ( 'nav-left-sidebar' === generate_get_navigation_location() ) {
+			$submenu_direction = 'right';
+
+			if ( 'both-right' === generate_get_layout() ) {
+				$submenu_direction = 'left';
+			}
+		}
+
+		if ( 'nav-right-sidebar' === generate_get_navigation_location() ) {
+			$submenu_direction = 'left';
+
+			if ( 'both-left' === generate_get_layout() ) {
+				$submenu_direction = 'right';
+			}
+		}
+
+		$classes[] = 'sub-menu-' . $submenu_direction;
 
 		return $classes;
 	}

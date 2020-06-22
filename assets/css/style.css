@@ -799,6 +799,7 @@ li.search-item.active {
 .dropdown-click .main-navigation ul li.sfHover > ul.toggled-on {
 	display: block;
 	left: auto;
+	right: auto;
 	opacity: 1;
 	visibility: visible;
 	pointer-events: auto;
@@ -844,20 +845,16 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 	margin: 0;
 }
 
-.dropdown-hover.both-left .widget-area .inside-right-sidebar .main-navigation ul li:hover ul,
-.dropdown-hover.both-left .widget-area .inside-right-sidebar .main-navigation ul li.sfHover ul,
-.dropdown-hover .widget-area .main-navigation ul li:hover ul,
-.dropdown-hover .widget-area .main-navigation ul li.sfHover > ul {
+.sidebar .main-navigation.sub-menu-right ul li:hover ul,
+.sidebar .main-navigation.sub-menu-right ul li.sfHover ul {
 	top: 0;
 	left: 100%;
 }
 
-.dropdown-hover.both-right .widget-area .main-navigation ul li:hover ul,
-.dropdown-hover.both-right .widget-area .main-navigation ul li.sfHover ul,
-.dropdown-hover .widget-area .inside-right-sidebar .main-navigation ul li:hover ul,
-.dropdown-hover .widget-area .inside-right-sidebar .main-navigation ul li.sfHover ul {
+.sidebar .main-navigation.sub-menu-left ul li:hover ul,
+.sidebar .main-navigation.sub-menu-left ul li.sfHover ul {
+	top: 0;
 	right: 100%;
-	left: auto;
 }
 
 .dropdown-click .widget-area .main-navigation ul ul {
@@ -872,6 +869,12 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 	position: relative;
 	left: 0;
 	right: 0;
+}
+
+.dropdown-click .widget-area.sidebar .main-navigation ul li.sfHover ul,
+.dropdown-click .widget-area.sidebar .main-navigation ul li:hover ul {
+	right: 0;
+	left: 0;
 }
 
 /*--------------------------------------------------------------
