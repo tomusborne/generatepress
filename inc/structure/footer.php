@@ -238,7 +238,7 @@ if ( ! function_exists( 'generate_back_to_top' ) ) {
 				absint( apply_filters( 'generate_back_to_top_scroll_speed', 400 ) ),
 				absint( apply_filters( 'generate_back_to_top_start_scroll', 300 ) ),
 				esc_attr( apply_filters( 'generate_back_to_top_icon', 'fa-angle-up' ) ),
-				generate_get_svg_icon( 'arrow' )
+				generate_get_svg_icon( 'arrow-up' )
 			)
 		);
 	}

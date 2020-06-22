@@ -316,7 +316,47 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 		if ( isset( $args->container_class ) && 'main-nav' === $args->container_class ) {
 			foreach ( $item->classes as $value ) {
 				if ( 'menu-item-has-children' === $value ) {
-					$icon = generate_get_svg_icon( 'arrow' );
+					$arrow_direction = 'down';
+
+					if ( 'primary' === $args->theme_location ) {
+						if ( 0 !== $depth ) {
+							$arrow_direction = 'right';
+
+							if ( 'left' === generate_get_option( 'nav_dropdown_direction' ) ) {
+								$arrow_direction = 'left';
+							}
+						}
+
+						if ( 'nav-left-sidebar' === generate_get_navigation_location() ) {
+							$arrow_direction = 'right';
+
+							if ( 'both-right' === generate_get_layout() ) {
+								$arrow_direction = 'left';
+							}
+						}
+
+						if ( 'nav-right-sidebar' === generate_get_navigation_location() ) {
+							$arrow_direction = 'left';
+
+							if ( 'both-left' === generate_get_layout() ) {
+								$arrow_direction = 'right';
+							}
+						}
+
+						if ( 'hover' !== generate_get_option( 'nav_dropdown_type' ) ) {
+							$arrow_direction = 'down';
+						}
+					}
+
+					$arrow_direction = apply_filters( 'generate_menu_item_dropdown_arrow_direction', $arrow_direction, $args, $depth );
+
+					if ( 'down' === $arrow_direction ) {
+						$arrow_direction = '';
+					} else {
+						$arrow_direction = '-' . $arrow_direction;
+					}
+
+					$icon = generate_get_svg_icon( 'arrow' . $arrow_direction );
 					$title = $title . '<span role="' . $role . '" class="dropdown-menu-toggle"' . $tabindex . '>' . $icon . '</span>';
 				}
 			}

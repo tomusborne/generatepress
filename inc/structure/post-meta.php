@@ -50,8 +50,8 @@ if ( ! function_exists( 'generate_content_nav' ) ) {
 				$post_navigation_args = apply_filters(
 					'generate_post_navigation_args',
 					array(
-						'previous_format' => '<div class="nav-previous">' . generate_get_svg_icon( 'arrow' ) . '<span class="prev" title="' . esc_attr__( 'Previous', 'generatepress' ) . '">%link</span></div>',
-						'next_format' => '<div class="nav-next">' . generate_get_svg_icon( 'arrow' ) . '<span class="next" title="' . esc_attr__( 'Next', 'generatepress' ) . '">%link</span></div>',
+						'previous_format' => '<div class="nav-previous">' . generate_get_svg_icon( 'arrow-left' ) . '<span class="prev" title="' . esc_attr__( 'Previous', 'generatepress' ) . '">%link</span></div>',
+						'next_format' => '<div class="nav-next">' . generate_get_svg_icon( 'arrow-right' ) . '<span class="next" title="' . esc_attr__( 'Next', 'generatepress' ) . '">%link</span></div>',
 						'link' => '%title',
 						'in_same_term' => apply_filters( 'generate_category_post_navigation', false ),
 						'excluded_terms' => '',

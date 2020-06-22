@@ -311,3 +311,51 @@ function generate_do_pro_compatibility() {
 		wp_add_inline_style( 'generate-style', $css->css_output() );
 	}
 }
+
+add_filter( 'generate_menu_item_dropdown_arrow_direction', 'generate_set_pro_menu_item_arrow_directions', 10, 3 );
+/**
+ * Set the menu item arrow directions for Secondary and Slideout navs.
+ *
+ * @since x.x.x
+ * @param string $arrow_direction The current direction.
+ * @param object $args The args for the current menu.
+ * @param int    $depth The current depth of the menu item.
+ */
+function generate_set_pro_menu_item_arrow_directions( $arrow_direction, $args, $depth ) {
+	if ( function_exists( 'generate_secondary_nav_get_defaults' ) && 'secondary' === $args->theme_location ) {
+		$settings = wp_parse_args(
+			get_option( 'generate_secondary_nav_settings', array() ),
+			generate_secondary_nav_get_defaults()
+		);
+
+		if ( 0 !== $depth ) {
+			$arrow_direction = 'right';
+
+			if ( 'left' === $settings['secondary_nav_dropdown_direction'] ) {
+				$arrow_direction = 'left';
+			}
+		}
+
+		if ( 'secondary-nav-left-sidebar' === $settings['secondary_nav_position_setting'] ) {
+			$arrow_direction = 'right';
+
+			if ( 'both-right' === generate_get_layout() ) {
+				$arrow_direction = 'left';
+			}
+		}
+
+		if ( 'secondary-nav-right-sidebar' === $settings['secondary_nav_position_setting'] ) {
+			$arrow_direction = 'left';
+
+			if ( 'both-left' === generate_get_layout() ) {
+				$arrow_direction = 'right';
+			}
+		}
+
+		if ( 'hover' !== generate_get_option( 'nav_dropdown_type' ) ) {
+			$arrow_direction = 'down';
+		}
+	}
+
+	return $arrow_direction;
+}

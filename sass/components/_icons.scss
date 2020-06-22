@@ -28,41 +28,34 @@
 	opacity: 0.7;
 }
 
-.dropdown-hover {
-	.sub-menu .dropdown-menu-toggle .gp-icon svg,
-	.children .dropdown-menu-toggle .gp-icon svg,
-	&.both-left .inside-right-sidebar .dropdown-menu-toggle .gp-icon svg,
-	.inside-left-sidebar .dropdown-menu-toggle .gp-icon svg {
+nav.toggled {
+	.icon-arrow-left svg {
 		transform: rotate(-90deg);
-		transform-origin: center;
 	}
-}
 
-.nav-next .gp-icon svg {
-	transform: rotate(-90deg);
-	transform-origin: center;
-}
-
-.dropdown-hover {
-	.sub-menu-left:not(.toggled) ul ul .dropdown-menu-toggle .gp-icon svg,
-	&.both-right .inside-left-sidebar .dropdown-menu-toggle .gp-icon svg,
-	.inside-right-sidebar .dropdown-menu-toggle .gp-icon svg {
-		-webkit-transform: rotate(90deg);
+	.icon-arrow-right svg {
 		transform: rotate(90deg);
 	}
+
+	.sfHover > a > .dropdown-menu-toggle {
+		.gp-icon {
+			svg {
+				transform: rotate(180deg);
+			}
+
+			&.icon-arrow-left svg {
+				transform: rotate(-270deg);
+			}
+
+			&.icon-arrow-right svg {
+				transform: rotate(270deg);
+			}
+		}
+	}
 }
 
-.nav-previous .gp-icon svg {
-	-webkit-transform: rotate(90deg);
-	transform: rotate(90deg);
-}
-
-.dropdown-click .sfHover > a > .dropdown-menu-toggle > .gp-icon svg,
-nav.toggled .sfHover > a > .dropdown-menu-toggle > .gp-icon svg,
-.generate-back-to-top .gp-icon svg {
-	transform: rotate(180deg);
-}
-
-nav.toggled .sub-menu .dropdown-menu-toggle .gp-icon svg {
-    transform: rotate(0deg);
+.dropdown-click {
+	.sfHover > a > .dropdown-menu-toggle > .gp-icon svg {
+		transform: rotate(180deg);
+	}
 }

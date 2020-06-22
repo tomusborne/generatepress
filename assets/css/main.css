@@ -1578,37 +1578,28 @@ object {
 	opacity: 0.7;
 }
 
-.dropdown-hover .sub-menu .dropdown-menu-toggle .gp-icon svg,
-.dropdown-hover .children .dropdown-menu-toggle .gp-icon svg,
-.dropdown-hover.both-left .inside-right-sidebar .dropdown-menu-toggle .gp-icon svg,
-.dropdown-hover .inside-left-sidebar .dropdown-menu-toggle .gp-icon svg {
+nav.toggled .icon-arrow-left svg {
 	transform: rotate(-90deg);
-	transform-origin: center;
 }
 
-.nav-next .gp-icon svg {
-	transform: rotate(-90deg);
-	transform-origin: center;
-}
-
-.dropdown-hover .sub-menu-left:not(.toggled) ul ul .dropdown-menu-toggle .gp-icon svg,
-.dropdown-hover.both-right .inside-left-sidebar .dropdown-menu-toggle .gp-icon svg,
-.dropdown-hover .inside-right-sidebar .dropdown-menu-toggle .gp-icon svg {
+nav.toggled .icon-arrow-right svg {
 	transform: rotate(90deg);
 }
 
-.nav-previous .gp-icon svg {
-	transform: rotate(90deg);
-}
-
-.dropdown-click .sfHover > a > .dropdown-menu-toggle > .gp-icon svg,
-nav.toggled .sfHover > a > .dropdown-menu-toggle > .gp-icon svg,
-.generate-back-to-top .gp-icon svg {
+nav.toggled .sfHover > a > .dropdown-menu-toggle .gp-icon svg {
 	transform: rotate(180deg);
 }
 
-nav.toggled .sub-menu .dropdown-menu-toggle .gp-icon svg {
-	transform: rotate(0deg);
+nav.toggled .sfHover > a > .dropdown-menu-toggle .gp-icon.icon-arrow-left svg {
+	transform: rotate(-270deg);
+}
+
+nav.toggled .sfHover > a > .dropdown-menu-toggle .gp-icon.icon-arrow-right svg {
+	transform: rotate(270deg);
+}
+
+.dropdown-click .sfHover > a > .dropdown-menu-toggle > .gp-icon svg {
+	transform: rotate(180deg);
 }
 
 /*--------------------------------------------------------------
