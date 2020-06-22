@@ -8,14 +8,17 @@
 	display: none;
 }
 
-.menu-toggle {
+button.menu-toggle {
+	background-color: transparent;
+	flex-grow: 1;
+	border: 0;
+	text-align: center;
 	padding: 0 20px;
 	line-height: 60px;
 	margin: 0;
 	font-weight: normal;
 	text-transform: none;
 	font-size: 15px;
-	cursor: pointer;
 
 	.mobile-menu {
         padding-left: 3px;
@@ -28,19 +31,6 @@
     .mobile-menu:empty {
         display: none;
     }
-}
-
-.main-navigation .mobile-bar-items a {
-    padding-left: 20px;
-    padding-right: 20px;
-    line-height: 60px;
-}
-
-button.menu-toggle {
-	background-color: transparent;
-	flex-grow: 1;
-	border: 0;
-	text-align: center;
 
 	&:hover,
     &:active,
@@ -53,9 +43,14 @@ button.menu-toggle {
 	text-align: left;
 }
 
+.main-navigation .mobile-bar-items a {
+    padding-left: 20px;
+    padding-right: 20px;
+    line-height: 60px;
+}
+
 .mobile-bar-items {
 	display: none;
-	order: 2;
 	z-index: 20;
 
 	a {
@@ -66,15 +61,6 @@ button.menu-toggle {
 nav.toggled {
 	ul ul.sub-menu {
 		width: 100%;
-	}
-}
-
-.dropdown-hover {
-	.main-navigation.toggled ul {
-		li:hover > ul,
-		li.sfHover > ul {
-			transition-delay: 0s;
-		}
 	}
 }
 

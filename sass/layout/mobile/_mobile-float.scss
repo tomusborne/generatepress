@@ -121,7 +121,7 @@ nav.toggled ul ul.sub-menu {
 }
 
 .main-navigation.toggled .menu li.search-item {
-	display: none;
+	display: none !important;
 }
 
 .main-navigation.toggled .sf-menu > li.menu-item-float-right {
