@@ -49,6 +49,10 @@ th {
 	margin-left: 0;
 }
 
+.main-navigation.nav-align-right .menu-item-align-right + .menu-item-align-right {
+	margin-right: 0;
+}
+
 .nav-align-right .main-nav > ul {
     justify-content: flex-start;
 }
@@ -62,13 +66,17 @@ th {
 }
 
 .rtl .main-navigation ul ul,
-.rtl .secondary-navigation ul ul.sub-menu {
-    right: -999999px;
+.rtl .secondary-navigation ul ul {
+    right: -99999px;
 }
 
 .nav-left-sidebar .main-navigation li.search-item.current-menu-item,
 .nav-right-sidebar .main-navigation li.search-item.current-menu-item {
     float: left;
+}
+
+.main-navigation ul ul {
+	text-align: right;
 }
 
 .sidebar .menu-item-has-children .dropdown-menu-toggle,
@@ -163,7 +171,7 @@ li>ul {
 
 .rtl .navigation-search {
 	left: auto;
-	right: -999999px;
+	right: -99999px;
 }
 
 .rtl .navigation-search.nav-search-active {
