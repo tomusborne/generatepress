@@ -1667,6 +1667,7 @@ button.menu-toggle:hover, button.menu-toggle:active, button.menu-toggle:focus {
 .mobile-bar-items {
 	display: none;
 	z-index: 20;
+	order: 2;
 }
 
 .mobile-bar-items a {

@@ -52,6 +52,7 @@ button.menu-toggle {
 .mobile-bar-items {
 	display: none;
 	z-index: 20;
+	order: 2;
 
 	a {
 		display: inline-block;
