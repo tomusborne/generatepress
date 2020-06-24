@@ -98,6 +98,7 @@ nav.toggled ul ul.sub-menu {
 	opacity: 1;
 	display: block;
 	visibility: visible;
+	float: none;
 }
 
 .main-navigation.toggled .main-nav li {
