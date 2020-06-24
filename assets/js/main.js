@@ -344,16 +344,19 @@
 							e.preventDefault();
 						}
 
+						var getSiblings = function( elem ) {
+							return Array.prototype.filter.call( elem.parentNode.children, function( sibling ) {
+								return sibling !== elem;
+							} );
+						};
+
 						// Close other sub-menus.
-						var openedSubMenus = this.closest( 'nav' ).querySelectorAll( '.sfHover' );
+						var closestLi = this.closest( 'li' ),
+							siblings = getSiblings( closestLi );
 
-						if ( openedSubMenus ) {
-							for ( var o = 0; o < openedSubMenus.length; o++ ) {
-								var hasParentOpen = this.closest( '.sfHover' );
-
-								if ( ! hasParentOpen ) {
-									openedSubMenus[o].classList.remove( 'sfHover' );
-								}
+						for ( var i = 0; i < siblings.length; i++ ) {
+							if ( siblings[i].classList.contains( 'sfHover' ) ) {
+								siblings[i].classList.remove( 'sfHover' );
 							}
 						}
 
