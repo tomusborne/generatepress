@@ -338,8 +338,6 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 
 		$css = new GeneratePress_CSS();
 
-		$subnav_font_size = $settings['navigation_font_size'] >= 17 ? $settings['navigation_font_size'] - 3 : $settings['navigation_font_size'] - 1;
-
 		$body_family = generate_get_font_family_css( 'font_body', 'generate_settings', generate_get_default_fonts() );
 		$top_bar_family = generate_get_font_family_css( 'font_top_bar', 'generate_settings', generate_get_default_fonts() );
 		$site_title_family = generate_get_font_family_css( 'font_site_title', 'generate_settings', generate_get_default_fonts() );
@@ -405,7 +403,11 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		}
 
 		$css->set_selector( '.main-navigation .main-nav ul ul li a' );
-		$css->add_property( 'font-size', absint( $subnav_font_size ), false, 'px' );
+
+		if ( ! empty( $settings['navigation_font_size'] ) ) {
+			$subnav_font_size = $settings['navigation_font_size'] >= 17 ? $settings['navigation_font_size'] - 3 : $settings['navigation_font_size'] - 1;
+			$css->add_property( 'font-size', absint( $subnav_font_size ), false, 'px' );
+		}
 
 		$css->set_selector( '.widget-title' );
 		$css->add_property( 'font-family', $defaults['font_widget_title'] !== $settings['font_widget_title'] ? $widget_family : null );
