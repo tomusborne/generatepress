@@ -386,7 +386,12 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->add_property( 'font-family', $defaults['font_site_tagline'] !== $settings['font_site_tagline'] ? $site_tagline_family : null );
 		$css->add_property( 'font-weight', $settings['site_tagline_font_weight'], $defaults['site_tagline_font_weight'] );
 		$css->add_property( 'text-transform', $settings['site_tagline_font_transform'], $defaults['site_tagline_font_transform'] );
-		$css->add_property( 'font-size', absint( $settings['site_tagline_font_size'] ), $defaults['site_tagline_font_size'], 'px' );
+
+		if ( ! empty( $settings['site_tagline_font_size'] ) ) {
+			$css->add_property( 'font-size', absint( $settings['site_tagline_font_size'] ), $defaults['site_tagline_font_size'], 'px' );
+		} else {
+			$css->add_property( 'font-size', 'inherit' );
+		}
 
 		$css->set_selector( '.main-navigation a, .menu-toggle' );
 		$css->add_property( 'font-family', $defaults['font_navigation'] !== $settings['font_navigation'] ? $navigation_family : null );
