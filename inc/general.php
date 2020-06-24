@@ -72,7 +72,7 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 			wp_script_add_data( 'generate-classlist', 'conditional', 'lte IE 11' );
 		}
 
-		if ( apply_filters( 'generate_combine_js', true ) ) {
+		if ( apply_filters( 'generate_combine_js', true ) && $suffix ) {
 			wp_enqueue_script( 'generate-main', $dir_uri . "/assets/js/main{$suffix}.js", array(), GENERATE_VERSION, true );
 			$script_handle = 'generate-main';
 		} else {
