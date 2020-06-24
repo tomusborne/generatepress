@@ -413,7 +413,13 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->add_property( 'font-family', $defaults['font_widget_title'] !== $settings['font_widget_title'] ? $widget_family : null );
 		$css->add_property( 'font-weight', $settings['widget_title_font_weight'], $defaults['widget_title_font_weight'] );
 		$css->add_property( 'text-transform', $settings['widget_title_font_transform'], $defaults['widget_title_font_transform'] );
-		$css->add_property( 'font-size', $settings['widget_title_font_size'], $defaults['widget_title_font_size'], 'px' );
+
+		if ( ! empty( $settings['widget_title_font_size'] ) ) {
+			$css->add_property( 'font-size', $settings['widget_title_font_size'], $defaults['widget_title_font_size'], 'px' );
+		} else {
+			$css->add_property( 'font-size', 'inherit' );
+		}
+
 		$css->add_property( 'margin-bottom', absint( $settings['widget_title_separator'] ), absint( $defaults['widget_title_separator'] ), 'px' );
 
 		$css->set_selector( '.sidebar .widget, .footer-widgets .widget' );
