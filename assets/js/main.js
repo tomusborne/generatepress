@@ -31,6 +31,12 @@
 			};
 		}
 
+		var getSiblings = function( elem ) {
+			return Array.prototype.filter.call( elem.parentNode.children, function( sibling ) {
+				return sibling !== elem;
+			} );
+		};
+
 		var allNavToggles = document.querySelectorAll( '.menu-toggle' ),
 			dropdownToggle = document.querySelectorAll( 'nav .dropdown-menu-toggle' ),
 			navLinks = document.querySelectorAll( 'nav ul a' ),
@@ -118,6 +124,17 @@
 					var subMenu = closestLi.querySelector( '.sub-menu' );
 				} else {
 					var subMenu = closestLi.querySelector( '.children' );
+				}
+
+				if ( generatepressMenu.toggleOpenedSubMenus ) {
+					var siblings = getSiblings( closestLi );
+
+					for ( var i = 0; i < siblings.length; i++ ) {
+						if ( siblings[i].classList.contains( 'sfHover' ) ) {
+							siblings[i].classList.remove( 'sfHover' );
+							siblings[i].querySelector( '.toggled-on' ).classList.remove( 'toggled-on' );
+						}
+					}
 				}
 
 				closestLi.classList.toggle( 'sfHover' );

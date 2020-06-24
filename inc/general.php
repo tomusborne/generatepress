@@ -74,10 +74,20 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 
 		if ( apply_filters( 'generate_combine_js', true ) ) {
 			wp_enqueue_script( 'generate-main', $dir_uri . "/assets/js/main{$suffix}.js", array(), GENERATE_VERSION, true );
+			$script_handle = 'generate-main';
 		} else {
 			wp_enqueue_script( 'generate-menu', $dir_uri . "/assets/js/menu{$suffix}.js", array(), GENERATE_VERSION, true );
 			wp_enqueue_script( 'generate-a11y', $dir_uri . "/assets/js/a11y{$suffix}.js", array(), GENERATE_VERSION, true );
+			$script_handle = 'generate-menu';
 		}
+
+		wp_localize_script(
+			$script_handle,
+			'generatepressMenu',
+			array(
+				'toggleOpenedSubMenus' => apply_filters( 'generate_toggle_opened_submenus', true ),
+			)
+		);
 
 		if ( 'click' === generate_get_option( 'nav_dropdown_type' ) || 'click-arrow' === generate_get_option( 'nav_dropdown_type' ) ) {
 			wp_enqueue_script( 'generate-dropdown-click', $dir_uri . "/assets/js/dropdown-click{$suffix}.js", array(), GENERATE_VERSION, true );
