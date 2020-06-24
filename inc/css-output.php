@@ -397,7 +397,12 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->add_property( 'font-family', $defaults['font_navigation'] !== $settings['font_navigation'] ? $navigation_family : null );
 		$css->add_property( 'font-weight', $settings['navigation_font_weight'], $defaults['navigation_font_weight'] );
 		$css->add_property( 'text-transform', $settings['navigation_font_transform'], $defaults['navigation_font_transform'] );
-		$css->add_property( 'font-size', absint( $settings['navigation_font_size'] ), $defaults['navigation_font_size'], 'px' );
+
+		if ( ! empty( $settings['navigation_font_size'] ) ) {
+			$css->add_property( 'font-size', absint( $settings['navigation_font_size'] ), $defaults['navigation_font_size'], 'px' );
+		} else {
+			$css->add_property( 'font-size', 'inherit' );
+		}
 
 		$css->set_selector( '.main-navigation .main-nav ul ul li a' );
 		$css->add_property( 'font-size', absint( $subnav_font_size ), false, 'px' );
