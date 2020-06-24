@@ -506,7 +506,12 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->add_property( 'font-family', $defaults['font_footer'] !== $settings['font_footer'] ? $footer_family : null );
 		$css->add_property( 'font-weight', $settings['footer_weight'], $defaults['footer_weight'] );
 		$css->add_property( 'text-transform', $settings['footer_transform'], $defaults['footer_transform'] );
-		$css->add_property( 'font-size', absint( $settings['footer_font_size'] ), $defaults['footer_font_size'], 'px' );
+
+		if ( ! empty( $settings['footer_font_size'] ) ) {
+			$css->add_property( 'font-size', absint( $settings['footer_font_size'] ), $defaults['footer_font_size'], 'px' );
+		} else {
+			$css->add_property( 'font-size', 'inherit' );
+		}
 
 		$css->start_media_query( generate_get_media_query( 'mobile' ) );
 			$mobile_site_title = ( isset( $settings['mobile_site_title_font_size'] ) ) ? $settings['mobile_site_title_font_size'] : '30';
