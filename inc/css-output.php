@@ -423,7 +423,12 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->add_property( 'margin-bottom', absint( $settings['widget_title_separator'] ), absint( $defaults['widget_title_separator'] ), 'px' );
 
 		$css->set_selector( '.sidebar .widget, .footer-widgets .widget' );
-		$css->add_property( 'font-size', absint( $settings['widget_content_font_size'] ), $defaults['widget_content_font_size'], 'px' );
+
+		if ( ! empty( $settings['widget_content_font_size'] ) ) {
+			$css->add_property( 'font-size', absint( $settings['widget_content_font_size'] ), $defaults['widget_content_font_size'], 'px' );
+		} else {
+			$css->add_property( 'font-size', 'inherit' );
+		}
 
 		$css->set_selector( 'button:not(.menu-toggle),html input[type="button"],input[type="reset"],input[type="submit"],.button,.button:visited,.wp-block-button .wp-block-button__link' );
 		$css->add_property( 'font-family', $defaults['font_buttons'] !== $settings['font_buttons'] ? $buttons_family : null );
