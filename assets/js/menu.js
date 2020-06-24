@@ -114,6 +114,7 @@
 				var closestLi = _this.closest( 'li' );
 
 				var dropdownToggle = closestLi.querySelector( '.dropdown-menu-toggle' );
+
 				if ( 'false' === dropdownToggle.getAttribute( 'aria-expanded' ) || ! dropdownToggle.getAttribute( 'aria-expanded' ) ) {
 					dropdownToggle.setAttribute( 'aria-expanded', 'true' );
 				} else {
