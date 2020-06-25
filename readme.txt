@@ -154,6 +154,8 @@ Release date: TBA
 * Tweak: Inherit tagline/main nav/widget title/widget content/site footer font size if not set
 * Tweak: Show name/email asterisk only if fields are required
 * Tweak: Remove padding-bottom from single posts when using one container
+* Tweak: Only remove margin-bottom from last element on page if it's a paragraph
+* Tweak: Remove .wp-smiley CSS
 
 = 2.4.2 =
 
