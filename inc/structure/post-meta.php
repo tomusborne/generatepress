@@ -368,11 +368,15 @@ if ( ! function_exists( 'generate_excerpt_more' ) ) {
 		return apply_filters(
 			'generate_excerpt_more_output',
 			sprintf(
-				' ... <a title="%1$s" class="read-more" href="%2$s">%3$s %4$s</a>',
+				' ... <a title="%1$s" class="read-more" href="%2$s" aria-label="%4$s">%3$s</a>',
 				the_title_attribute( 'echo=0' ),
 				esc_url( get_permalink( get_the_ID() ) ),
 				__( 'Read more', 'generatepress' ),
-				'<span class="screen-reader-text">' . get_the_title() . '</span>'
+				sprintf(
+					/* translators: Aria-label describing the read more button */
+					_x( 'More on %s', 'more on post title', 'generatepress' ),
+					the_title_attribute( 'echo=0' )
+				)
 			)
 		);
 	}
@@ -392,11 +396,15 @@ if ( ! function_exists( 'generate_content_more' ) ) {
 		return apply_filters(
 			'generate_content_more_link_output',
 			sprintf(
-				'<p class="read-more-container"><a title="%1$s" class="read-more content-read-more" href="%2$s">%3$s%4$s</a></p>',
+				'<p class="read-more-container"><a title="%1$s" class="read-more content-read-more" href="%2$s" aria-label="%4$s">%3$s</a></p>',
 				the_title_attribute( 'echo=0' ),
 				esc_url( get_permalink( get_the_ID() ) . apply_filters( 'generate_more_jump', '#more-' . get_the_ID() ) ),
 				__( 'Read more', 'generatepress' ),
-				'<span class="screen-reader-text">' . get_the_title() . '</span>'
+				sprintf(
+					/* translators: Aria-label describing the read more button */
+					_x( 'More on %s', 'more on post title', 'generatepress' ),
+					the_title_attribute( 'echo=0' )
+				)
 			)
 		);
 	}
