@@ -1807,7 +1807,7 @@ object {
 	margin-left: 20px;
 }
 
-.one-container:not(.page) .inside-article {
+.one-container:not(.page):not(.single) .inside-article {
 	padding: 0 0 30px 0;
 }
 
