@@ -154,7 +154,7 @@ function generate_do_post_meta_item( $item ) {
 		$time_string = '<time class="entry-date published" datetime="%1$s"%5$s>%2$s</time>';
 
 		$updated_time = get_the_modified_time( 'U' );
-		$published_time = get_the_time( 'U' ) + 43200;
+		$published_time = get_the_time( 'U' ) + 1800;
 		$schema_type = generate_get_schema_type();
 
 		if ( $updated_time > $published_time ) {
