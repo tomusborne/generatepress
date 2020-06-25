@@ -95,6 +95,66 @@ MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
 
 == Changelog ==
 
+= 2.5.0 =
+
+Release date: TBA
+
+* New: Flexbox layout option - see blog post for more info
+* New: generate_do_template_part hook
+* New: Better option migration system
+* New: generate_post_date_show_updated_only filter
+* New: full-width-ready option for alignfull blocks
+* New: generate_navigation_search_menu_item_output filter
+* New: style-rtl.min.css and enqueue manually
+* New: generate_load_child_theme_stylesheet filter
+* New: generate_before_navigation hook
+* New: generate_after_navigation hook
+* New: generate_page_class filter
+* New: generate_is_using_hatom filter
+* Fix: Close other sub-menus when opening a new one on touch devices
+* Fix: Footer bar menu spacing on mobile
+* Fix: Text aligned container width preview in Customizer when using full-width-content
+* Fix: Remove disable content title toggle in editor if it doesn't apply to front-end
+* Fix: One container margin based on default content padding
+* Fix: Nav aligned left when using RTL languages
+* Tweak: Remove all esc_attr() functions from CSS and escape entire output
+* Tweak: Move all CSS and JS into assets folder
+* Tweak: Break all CSS up into individual .scss files
+* Tweak: Set SVG icons as default
+* Tweak: Move font icon CSS into separate file
+* Tweak: Load comments CSS only on pages that have comments
+* Tweak: Remove speak CSS from font icons
+* Tweak: Load top bar/footer bar/footer widget CSS separately if using flexbox layout
+* Tweak: Remove display: inline from alignleft/right classes
+* Tweak: Remove parent theme dependencies from styles
+* Tweak: Fix footer widget default spacing
+* Tweak: Remove HTML comments from end of elements
+* Tweak: Combine a11y.js and menu.js
+* Tweak: Add correct paragraph margin to block editor
+* Tweak: Remove old migrations from 2.0 (font awesome, dynamic css cache, font family and blog post content)
+* Tweak: Change Layout metabox option to select dropdowns
+* Tweak: Change Page Builder Container label to Content Container
+* Tweak: Remove itemprop attributes if microdata is turned off
+* Tweak: Un-focus back to top button once the top is reached
+* Tweak: Remove close nav search on document click
+* Tweak: Set sub-menu open left on RTL languages by default
+* Tweak: Remove mixed up alignleft/right classes when using RTL languages
+* Tweak: Remove sub-menu open left CSS when using RTL languages
+* Tweak: Use aria-label in back to top button instead of screen-reader-text
+* Tweak: Hook comments template into generate_do_template_part
+* Tweak: Use flexbox for author page header
+* Tweak: Simplify navigation dropdown CSS
+* Tweak: Load mobile nav search icon after menu toggle when using flexbox
+* Tweak: Set variable for get_body_class where necessary
+* Tweak: Use separate SVGs for different arrow directions instead of CSS
+* Tweak: Use class for navigation sub-menu direction
+* Tweak: Clean up sub-menu direction CSS
+* Tweak: Remove footer widget and header layout body classes when using flexbox
+* Tweak: Close other sub-menus when another is opened
+* Tweak: Inherit tagline/main nav/widget title/widget content/site footer font size if not set
+* Tweak: Show name/email asterisk only if fields are required
+* Tweak: Remove padding-bottom from single posts when using one container
+
 = 2.4.2 =
 
 Release date: March 17, 2020
