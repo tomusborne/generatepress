@@ -1119,9 +1119,9 @@ footer.entry-meta {
 
 .taxonomy-description p:last-child,
 .read-more-container,
-.page-content > *:last-child,
-.entry-content > *:last-child,
-.entry-summary > *:last-child {
+.page-content > p:last-child,
+.entry-content > p:last-child,
+.entry-summary > p:last-child {
 	margin-bottom: 0;
 }
 
