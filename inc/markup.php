@@ -642,7 +642,10 @@ function generate_do_page_container_classes( $classes ) {
 	$classes[] = 'site';
 	$classes[] = 'grid-container';
 	$classes[] = 'container';
-	$classes[] = 'hfeed';
+
+	if ( generate_is_using_hatom() ) {
+		$classes[] = 'hfeed';
+	}
 
 	if ( ! generate_is_using_flexbox() ) {
 		$classes[] = 'grid-parent';
@@ -661,7 +664,7 @@ if ( ! function_exists( 'generate_post_classes' ) ) {
 	 * @since 1.3.39
 	 */
 	function generate_post_classes( $classes ) {
-		if ( 'page' === get_post_type() ) {
+		if ( 'page' === get_post_type() || ! generate_is_using_hatom() ) {
 			$classes = array_diff( $classes, array( 'hentry' ) );
 		}
 

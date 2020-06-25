@@ -200,7 +200,7 @@ function generate_do_post_meta_item( $item ) {
 			echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				'generate_post_author_output',
 				sprintf(
-					'<span class="byline">%1$s<span class="author vcard" %5$s><a class="url fn n" href="%2$s" title="%3$s" rel="author"%6$s><span class="author-name"%7$s>%4$s</span></a></span></span> ',
+					'<span class="byline">%1$s<span class="author%8$s" %5$s><a class="url fn n" href="%2$s" title="%3$s" rel="author"%6$s><span class="author-name"%7$s>%4$s</span></a></span></span> ',
 					apply_filters( 'generate_inside_post_meta_item_output', '', 'author' ),
 					esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
 					/* translators: 1: Author name */
@@ -208,7 +208,8 @@ function generate_do_post_meta_item( $item ) {
 					esc_html( get_the_author() ),
 					generate_get_microdata( 'post-author' ),
 					'microdata' === $schema_type ? ' itemprop="url"' : '',
-					'microdata' === $schema_type ? ' itemprop="name"' : ''
+					'microdata' === $schema_type ? ' itemprop="name"' : '',
+					generate_is_using_hatom() ? ' vcard' : ''
 				)
 			);
 		}

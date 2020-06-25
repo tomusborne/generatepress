@@ -372,7 +372,18 @@ function generate_get_media_query( $name ) {
 
 /**
  * Check whether we're using the Flexbox structure.
+ *
+ * @since 2.5
  */
 function generate_is_using_flexbox() {
 	return 'flexbox' === generate_get_option( 'structure' );
+}
+
+/**
+ * Whether to print hAtom output or not.
+ *
+ * @since 2.5
+ */
+function generate_is_using_hatom() {
+	return apply_filters( 'generate_is_using_hatom', true );
 }

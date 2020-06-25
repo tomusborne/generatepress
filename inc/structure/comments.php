@@ -37,9 +37,15 @@ if ( ! function_exists( 'generate_comment' ) ) {
 					if ( 0 != $args['avatar_size'] ) { // phpcs:ignore
 						echo get_avatar( $comment, $args['avatar_size'] );
 					}
+
+					$vcard = ' vcard';
+
+					if ( ! generate_is_using_hatom() ) {
+						$vcard = '';
+					}
 					?>
 					<div class="comment-author-info">
-						<div class="comment-author vcard" <?php generate_do_microdata( 'comment-author' ); ?>>
+						<div class="comment-author<?php echo $vcard; // phpcs:ignore ?>" <?php generate_do_microdata( 'comment-author' ); ?>>
 							<?php printf( '<cite itemprop="name" class="fn">%s</cite>', get_comment_author_link() ); ?>
 						</div>
 
