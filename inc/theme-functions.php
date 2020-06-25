@@ -413,7 +413,7 @@ function generate_get_element_classes( $context, $class = '' ) {
  * @since 2.5
  */
 function generate_get_schema_type() {
-	return apply_filters( 'generate_schema_type', 'none' );
+	return apply_filters( 'generate_schema_type', 'microdata' );
 }
 
 /**
