@@ -156,6 +156,8 @@ Release date: TBA
 * Tweak: Remove padding-bottom from single posts when using one container
 * Tweak: Only remove margin-bottom from last element on page if it's a paragraph
 * Tweak: Remove .wp-smiley CSS
+* Tweak: Add single post navigation to generate_footer_entry_items filter
+* Tweak: Hook archive post navigation into generate_after_loop hook
 
 = 2.4.2 =
 
