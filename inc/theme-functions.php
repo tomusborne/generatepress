@@ -371,12 +371,136 @@ function generate_get_media_query( $name ) {
 }
 
 /**
- * Check whether we're using the Flexbox structure.
+ * Display HTML classes for an element.
+ *
+ * @since 2.2
+ *
+ * @param string       $context The element we're targeting.
+ * @param string|array $class One or more classes to add to the class list.
+ */
+function generate_do_element_classes( $context, $class = '' ) {
+	echo 'class="' . join( ' ', generate_get_element_classes( $context, $class ) ) . '"'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in function.
+}
+
+/**
+ * Retrieve HTML classes for an element.
+ *
+ * @since 2.2
+ *
+ * @param string       $context The element we're targeting.
+ * @param string|array $class One or more classes to add to the class list.
+ * @return array Array of classes.
+ */
+function generate_get_element_classes( $context, $class = '' ) {
+	$classes = array();
+
+	if ( ! empty( $class ) ) {
+		if ( ! is_array( $class ) ) {
+			$class = preg_split( '#\s+#', $class );
+		}
+
+		$classes = array_merge( $classes, $class );
+	}
+
+	$classes = array_map( 'esc_attr', $classes );
+
+	return apply_filters( "generate_{$context}_class", $classes, $class );
+}
+
+/**
+ * Get the kind of schema we're using.
  *
  * @since 2.5
  */
-function generate_is_using_flexbox() {
-	return 'flexbox' === generate_get_option( 'structure' );
+function generate_get_schema_type() {
+	return apply_filters( 'generate_schema_type', 'none' );
+}
+
+/**
+ * Get any necessary microdata.
+ *
+ * @since 2.2
+ *
+ * @param string $context The element to target.
+ * @return string Our final attribute to add to the element.
+ */
+function generate_get_microdata( $context ) {
+	$data = false;
+
+	if ( 'microdata' !== generate_get_schema_type() ) {
+		return false;
+	}
+
+	if ( 'body' === $context ) {
+		$type = 'WebPage';
+
+		if ( is_home() || is_archive() || is_attachment() || is_tax() || is_single() ) {
+			$type = 'Blog';
+		}
+
+		if ( is_search() ) {
+			$type = 'SearchResultsPage';
+		}
+
+		$type = apply_filters( 'generate_body_itemtype', $type );
+
+		$data = sprintf(
+			'itemtype="https://schema.org/%s" itemscope',
+			esc_html( $type )
+		);
+	}
+
+	if ( 'header' === $context ) {
+		$data = 'itemtype="https://schema.org/WPHeader" itemscope';
+	}
+
+	if ( 'navigation' === $context ) {
+		$data = 'itemtype="https://schema.org/SiteNavigationElement" itemscope';
+	}
+
+	if ( 'article' === $context ) {
+		$type = apply_filters( 'generate_article_itemtype', 'CreativeWork' );
+
+		$data = sprintf(
+			'itemtype="https://schema.org/%s" itemscope',
+			esc_html( $type )
+		);
+	}
+
+	if ( 'post-author' === $context ) {
+		$data = 'itemprop="author" itemtype="https://schema.org/Person" itemscope';
+	}
+
+	if ( 'comment-body' === $context ) {
+		$data = 'itemtype="https://schema.org/Comment" itemscope';
+	}
+
+	if ( 'comment-author' === $context ) {
+		$data = 'itemprop="author" itemtype="https://schema.org/Person" itemscope';
+	}
+
+	if ( 'sidebar' === $context ) {
+		$data = 'itemtype="https://schema.org/WPSideBar" itemscope';
+	}
+
+	if ( 'footer' === $context ) {
+		$data = 'itemtype="https://schema.org/WPFooter" itemscope';
+	}
+
+	if ( $data ) {
+		return apply_filters( "generate_{$context}_microdata", $data );
+	}
+}
+
+/**
+ * Output our microdata for an element.
+ *
+ * @since 2.2
+ *
+ * @param string $context The element to target.
+ */
+function generate_do_microdata( $context ) {
+	echo generate_get_microdata( $context ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in function.
 }
 
 /**
@@ -386,4 +510,13 @@ function generate_is_using_flexbox() {
  */
 function generate_is_using_hatom() {
 	return apply_filters( 'generate_is_using_hatom', true );
+}
+
+/**
+ * Check whether we're using the Flexbox structure.
+ *
+ * @since 2.5
+ */
+function generate_is_using_flexbox() {
+	return 'flexbox' === generate_get_option( 'structure' );
 }
