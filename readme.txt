@@ -158,6 +158,7 @@ Release date: TBA
 * Tweak: Remove .wp-smiley CSS
 * Tweak: Add single post navigation to generate_footer_entry_items filter
 * Tweak: Hook archive post navigation into generate_after_loop hook
+* Tweak: Use aria-label for read more links/buttons instead of screen reader text
 
 = 2.4.2 =
 
