@@ -268,6 +268,10 @@ function generate_do_post_meta_item( $item ) {
 		}
 	}
 
+	if ( 'post-navigation' === $item ) {
+		generate_content_nav( 'nav-below' );
+	}
+
 	/**
 	 * generate_post_meta_items hook.
 	 *
@@ -332,14 +336,17 @@ if ( ! function_exists( 'generate_entry_meta' ) ) {
 	 * @since 1.2.5
 	 */
 	function generate_entry_meta() {
-		$items = apply_filters(
-			'generate_footer_entry_meta_items',
-			array(
-				'categories',
-				'tags',
-				'comments-link',
-			)
+		$items = array(
+			'categories',
+			'tags',
+			'comments-link',
 		);
+
+		if ( is_single() ) {
+			$items[] = 'post-navigation';
+		}
+
+		$items = apply_filters( 'generate_footer_entry_meta_items', $items );
 
 		foreach ( $items as $item ) {
 			generate_do_post_meta_item( $item );
@@ -438,13 +445,7 @@ if ( ! function_exists( 'generate_footer_meta' ) ) {
 		if ( in_array( get_post_type(), $post_types ) ) :
 			?>
 			<footer class="entry-meta">
-				<?php
-				generate_entry_meta();
-
-				if ( is_single() ) {
-					generate_content_nav( 'nav-below' );
-				}
-				?>
+				<?php generate_entry_meta(); ?>
 			</footer>
 			<?php
 		endif;
