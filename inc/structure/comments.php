@@ -149,17 +149,20 @@ add_filter( 'comment_form_default_fields', 'generate_filter_comment_fields' );
  */
 function generate_filter_comment_fields( $fields ) {
 	$commenter = wp_get_current_commenter();
+	$required = get_option( 'require_name_email' );
 
 	$fields['author'] = sprintf(
-		'<label for="author" class="screen-reader-text">%1$s</label><input placeholder="%1$s *" id="author" name="author" type="text" value="%2$s" size="30" />',
+		'<label for="author" class="screen-reader-text">%1$s</label><input placeholder="%1$s%3$s" id="author" name="author" type="text" value="%2$s" size="30" />',
 		esc_html__( 'Name', 'generatepress' ),
-		esc_attr( $commenter['comment_author'] )
+		esc_attr( $commenter['comment_author'] ),
+		$required ? ' *' : ''
 	);
 
 	$fields['email'] = sprintf(
-		'<label for="email" class="screen-reader-text">%1$s</label><input placeholder="%1$s *" id="email" name="email" type="email" value="%2$s" size="30" />',
+		'<label for="email" class="screen-reader-text">%1$s</label><input placeholder="%1$s%3$s" id="email" name="email" type="email" value="%2$s" size="30" />',
 		esc_html__( 'Email', 'generatepress' ),
-		esc_attr( $commenter['comment_author_email'] )
+		esc_attr( $commenter['comment_author_email'] ),
+		$required ? ' *' : ''
 	);
 
 	$fields['url'] = sprintf(
