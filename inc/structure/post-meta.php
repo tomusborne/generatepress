@@ -451,3 +451,25 @@ if ( ! function_exists( 'generate_footer_meta' ) ) {
 		endif;
 	}
 }
+
+add_action( 'generate_after_loop', 'generate_do_post_navigation' );
+/**
+ * Add our post navigation after post loops.
+ *
+ * @since 2.5.0
+ * @param string $template The template of the current action.
+ */
+function generate_do_post_navigation( $template ) {
+	$templates = apply_filters(
+		'generate_post_navigation_templates',
+		array(
+			'index',
+			'archive',
+			'search',
+		)
+	);
+
+	if ( in_array( $template, $templates ) ) {
+		generate_content_nav( 'nav-below' );
+	}
+}
