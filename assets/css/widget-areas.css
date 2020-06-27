@@ -240,4 +240,11 @@ div.top-bar .widget {
 	.footer-bar .widget_nav_menu li:last-child {
 		margin-right: 10px;
 	}
+	.footer-bar-align-left .copyright-bar {
+		margin-left: 0;
+	}
+	.footer-bar-align-right .copyright-bar {
+		order: unset;
+		margin-right: 0;
+	}
 }

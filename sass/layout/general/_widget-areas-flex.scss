@@ -289,4 +289,13 @@ div.top-bar .widget {
 		   }
 		}
 	}
+
+	.footer-bar-align-left .copyright-bar {
+		margin-left: 0;
+	}
+
+	.footer-bar-align-right .copyright-bar {
+		order: unset;
+		margin-right: 0;
+	}
 }
