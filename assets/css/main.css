@@ -1486,6 +1486,7 @@ object {
 .inside-site-info {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 }
 
 .site-info {
