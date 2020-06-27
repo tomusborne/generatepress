@@ -1733,6 +1733,7 @@ nav.toggled ul ul.sub-menu {
 	--------------------------------------------------------------*/
 	.inside-header {
 		flex-direction: column;
+		text-align: center;
 	}
 	.nav-float-right #site-navigation,
 	.nav-float-left #site-navigation {
