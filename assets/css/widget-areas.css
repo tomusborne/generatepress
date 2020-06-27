@@ -173,7 +173,7 @@ div.top-bar .widget {
 }
 
 .footer-bar-align-center .inside-site-info {
-	display: block;
+	flex-direction: column;
 }
 
 .footer-bar-align-center .footer-bar {
@@ -223,7 +223,7 @@ div.top-bar .widget {
 		padding: 0;
 	}
 	.footer-bar-active .inside-site-info {
-		display: block;
+		flex-direction: column;
 	}
 	.footer-bar-active .footer-bar {
 		margin-bottom: 10px;

@@ -193,7 +193,7 @@ div.top-bar .widget {
 
 .footer-bar-align-center {
 	.inside-site-info {
-		display: block;
+		flex-direction: column;
 	}
 
 	.footer-bar {
@@ -262,7 +262,7 @@ div.top-bar .widget {
 
 	.footer-bar-active {
 		.inside-site-info {
-			display: block;
+			flex-direction: column;
 		}
 
 		.footer-bar {
