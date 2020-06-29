@@ -379,7 +379,7 @@ function generate_get_media_query( $name ) {
  * @param string|array $class One or more classes to add to the class list.
  */
 function generate_do_element_classes( $context, $class = '' ) {
-	$after = apply_filters( 'generate_after_element_classes', '', $context );
+	$after = apply_filters( 'generate_after_element_class_attribute', '', $context );
 
 	if ( $after ) {
 		$after = ' ' . $after;

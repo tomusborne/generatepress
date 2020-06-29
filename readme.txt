@@ -111,7 +111,7 @@ Release date: TBA
 * New: generate_after_navigation hook
 * New: generate_page_class filter
 * New: generate_is_using_hatom filter
-* New: generate_after_element_classes filter
+* New: generate_after_element_class_attribute filter
 * Fix: Close other sub-menus when opening a new one on touch devices
 * Fix: Footer bar menu spacing on mobile
 * Fix: Text aligned container width preview in Customizer when using full-width-content
@@ -160,7 +160,7 @@ Release date: TBA
 * Tweak: Add single post navigation to generate_footer_entry_items filter
 * Tweak: Hook archive post navigation into generate_after_loop hook
 * Tweak: Use aria-label for read more links/buttons instead of screen reader text
-* Tweak: Move microdata to generate_after_element_classes where possible
+* Tweak: Move microdata to generate_after_element_class_attribute where possible
 * Template change: Removed generate_do_microdata() from sidebar.php and sidebar-left.php
 
 = 2.4.2 =

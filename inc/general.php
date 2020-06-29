@@ -440,7 +440,7 @@ function generate_do_template_parts( $template ) {
 	do_action( 'generate_after_do_template_parts', $template );
 }
 
-add_filter( 'generate_after_element_classes', 'generate_set_microdata_markup', 10, 2 );
+add_filter( 'generate_after_element_class_attribute', 'generate_set_microdata_markup', 10, 2 );
 /**
  * Adds microdata to elements.
  *
