@@ -31,21 +31,15 @@ if ( ! function_exists( 'generate_comment' ) ) {
 		<?php else : ?>
 
 		<li id="comment-<?php comment_ID(); ?>" <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?>>
-			<article id="div-comment-<?php comment_ID(); ?>" class="comment-body" <?php generate_do_microdata( 'comment-body' ); ?>>
+			<article id="div-comment-<?php comment_ID(); ?>" <?php generate_do_element_classes( 'comment-body', 'comment-body' ); ?>>
 				<footer class="comment-meta">
 					<?php
 					if ( 0 != $args['avatar_size'] ) { // phpcs:ignore
 						echo get_avatar( $comment, $args['avatar_size'] );
 					}
-
-					$vcard = ' vcard';
-
-					if ( ! generate_is_using_hatom() ) {
-						$vcard = '';
-					}
 					?>
 					<div class="comment-author-info">
-						<div class="comment-author<?php echo $vcard; // phpcs:ignore ?>" <?php generate_do_microdata( 'comment-author' ); ?>>
+						<div <?php generate_do_element_classes( 'comment-author' ); ?>>
 							<?php printf( '<cite itemprop="name" class="fn">%s</cite>', get_comment_author_link() ); ?>
 						</div>
 

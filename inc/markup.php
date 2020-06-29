@@ -521,6 +521,23 @@ function generate_do_page_container_classes( $classes ) {
 	return $classes;
 }
 
+add_filter( 'generate_comment-author_class', 'generate_do_comment_author_classes' );
+/**
+ * Adds custom classes to the comment author element
+ *
+ * @param array $classes The existing classes.
+ * @since 2.5.0
+ */
+function generate_do_comment_author_classes( $classes ) {
+	$classes[] = 'comment-author';
+
+	if ( generate_is_using_hatom() ) {
+		$classes[] = 'vcard';
+	}
+
+	return $classes;
+}
+
 if ( ! function_exists( 'generate_post_classes' ) ) {
 	add_filter( 'post_class', 'generate_post_classes' );
 	/**
