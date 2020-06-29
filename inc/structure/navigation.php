@@ -23,7 +23,7 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 		 */
 		do_action( 'generate_before_navigation' );
 		?>
-		<nav id="site-navigation" <?php generate_do_element_classes( 'navigation' ); ?> <?php generate_do_microdata( 'navigation' ); ?>>
+		<nav id="site-navigation" <?php generate_do_element_classes( 'navigation' ); ?>>
 			<div <?php generate_do_element_classes( 'inside_navigation' ); ?>>
 				<?php
 				/**

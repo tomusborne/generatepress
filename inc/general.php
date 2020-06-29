@@ -439,3 +439,33 @@ function generate_do_template_parts( $template ) {
 
 	do_action( 'generate_after_do_template_parts', $template );
 }
+
+add_filter( 'generate_after_element_classes', 'generate_set_microdata_markup', 10, 2 );
+/**
+ * Adds microdata to elements.
+ *
+ * @since 2.5.0
+ * @param string $output The existing output after the class attribute.
+ * @param string $context What element we're targeting.
+ */
+function generate_set_microdata_markup( $output, $context ) {
+	if ( 'left_sidebar' === $context || 'right_sidebar' === $context ) {
+		$context = 'sidebar';
+	}
+
+	if ( 'footer' === $context ) {
+		return $output;
+	}
+
+	if ( 'site-info' === $context ) {
+		$context = 'footer';
+	}
+
+	$microdata = generate_get_microdata( $context );
+
+	if ( $microdata ) {
+		return $microdata;
+	}
+
+	return $output;
+}

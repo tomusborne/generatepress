@@ -18,7 +18,7 @@ if ( ! function_exists( 'generate_construct_header' ) ) {
 	 */
 	function generate_construct_header() {
 		?>
-		<header id="masthead" <?php generate_do_element_classes( 'header' ); ?> <?php generate_do_microdata( 'header' ); ?>>
+		<header id="masthead" <?php generate_do_element_classes( 'header' ); ?>>
 			<div <?php generate_do_element_classes( 'inside_header' ); ?>>
 				<?php
 				/**
