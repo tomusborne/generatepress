@@ -380,13 +380,12 @@ function generate_get_media_query( $name ) {
  */
 function generate_do_element_classes( $context, $class = '' ) {
 	$after = apply_filters( 'generate_after_element_classes', '', $context );
-	$space = ' ';
 
-	if ( ! $after ) {
-		$space = '';
+	if ( $after ) {
+		$after = ' ' . $after;
 	}
 
-	echo 'class="' . join( ' ', generate_get_element_classes( $context, $class ) ) . '"' . $space . $after; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in function.
+	echo 'class="' . join( ' ', generate_get_element_classes( $context, $class ) ) . '"' . $after; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in function.
 }
 
 /**
