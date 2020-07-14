@@ -736,9 +736,11 @@ function generate_no_cache_dynamic_css() {
 		$css->set_selector( '.main-navigation ul,.gen-sidebar-nav' );
 		$css->add_property( 'display', 'none' );
 
-		$css->set_selector( '[class*="nav-float-"] .site-header .inside-header > *' );
-		$css->add_property( 'float', 'none' );
-		$css->add_property( 'clear', 'both' );
+		if ( ! generate_is_using_flexbox() ) {
+			$css->set_selector( '[class*="nav-float-"] .site-header .inside-header > *' );
+			$css->add_property( 'float', 'none' );
+			$css->add_property( 'clear', 'both' );
+		}
 	$css->stop_media_query();
 
 	if ( is_singular() ) {
