@@ -19,7 +19,7 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 		/**
 		 * generate_before_navigation hook.
 		 *
-		 * @since x.x.x
+		 * @since 2.5.0
 		 */
 		do_action( 'generate_before_navigation' );
 		?>
@@ -68,7 +68,7 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 				 *
 				 * @since 2.5
 				 */
-				do_action( 'generate_after_mobile_menu_button' );
+				do_action( 'generate_after_mobile_menu_button', 'primary-navigation' );
 
 				wp_nav_menu(
 					array(
@@ -99,6 +99,62 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 		 */
 		do_action( 'generate_after_navigation' );
 	}
+}
+
+add_action( 'generate_before_navigation', 'generate_do_header_mobile_menu_toggle' );
+/**
+ * Build the mobile menu toggle in the header.
+ *
+ * @since 2.5.0
+ */
+function generate_do_header_mobile_menu_toggle() {
+	if ( ! generate_is_using_flexbox() ) {
+		return;
+	}
+	?>
+	<div <?php generate_do_element_classes( 'mobile-navigation-toggle', array( 'main-navigation', 'mobile-menu-control-wrapper' ) ); ?>>
+		<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" data-nav="site-navigation">
+			<?php
+			/**
+			 * generate_inside_mobile_menu hook.
+			 *
+			 * @since 0.1
+			 */
+			do_action( 'generate_inside_mobile_menu' );
+
+			generate_do_svg_icon( 'menu-bars', true );
+
+			$mobile_menu_label = __( 'Menu', 'generatepress' );
+
+			if ( 'nav-float-right' === generate_get_navigation_location() || 'nav-float-left' === generate_get_navigation_location() ) {
+				$mobile_menu_label = '';
+			}
+
+			$mobile_menu_label = apply_filters( 'generate_mobile_menu_label', $mobile_menu_label );
+
+			if ( $mobile_menu_label ) {
+				printf(
+					'<span class="mobile-menu">%s</span>',
+					$mobile_menu_label // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- HTML allowed in filter.
+				);
+			} else {
+				printf(
+					'<span class="screen-reader-text">%s</span>',
+					esc_html__( 'Menu', 'generatepress' )
+				);
+			}
+			?>
+		</button>
+		<?php
+		/**
+		 * generate_after_mobile_menu_button hook
+		 *
+		 * @since 2.5
+		 */
+		do_action( 'generate_after_mobile_menu_button', 'mobile-menu-control-wrapper' );
+		?>
+	</div>
+	<?php
 }
 
 if ( ! function_exists( 'generate_menu_fallback' ) ) {
@@ -444,8 +500,9 @@ if ( ! function_exists( 'generate_mobile_menu_search_icon' ) ) {
 	 * Add search icon to mobile menu bar
 	 *
 	 * @since 1.3.12
+	 * @param string $location Where we're hooking into.
 	 */
-	function generate_mobile_menu_search_icon() {
+	function generate_mobile_menu_search_icon( $location = '' ) {
 		$generate_settings = wp_parse_args(
 			get_option( 'generate_settings', array() ),
 			generate_get_defaults()
@@ -456,10 +513,16 @@ if ( ! function_exists( 'generate_mobile_menu_search_icon' ) ) {
 			return;
 		}
 
+		$target = '';
+
+		if ( 'mobile-menu-control-wrapper' === $location ) {
+			$target = ' data-nav="site-navigation"';
+		}
+
 		?>
 		<div class="mobile-bar-items">
 			<?php do_action( 'generate_inside_mobile_menu_bar' ); ?>
-			<span class="search-item">
+			<span class="search-item"<?php echo $target; // phpcs:ignore -- escaping not needed. ?>>
 				<a aria-label="<?php esc_attr_e( 'Open Search Bar', 'generatepress' ); ?>" href="#">
 					<?php generate_do_svg_icon( 'search', true ); ?>
 				</a>

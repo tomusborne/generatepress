@@ -16,10 +16,14 @@
 			}
 
 			var nav = item.closest( 'nav' ),
-				link = item.querySelector( 'a' );
+				remoteNav = item.getAttribute( 'data-nav' ),
+				link = item.querySelector( 'a' ),
+				remotelyActivated = false,
+				mobileMenuControls = document.querySelector( '.mobile-menu-control-wrapper' );
 
-			if ( item.getAttribute( 'data-nav' ) ) {
-				nav = document.querySelector( this.getAttribute( 'data-nav' ) );
+			if ( remoteNav ) {
+				nav = document.getElementById( remoteNav );
+				remotelyActivated = true;
 			}
 
 			var form = nav.querySelector( '.navigation-search' );
@@ -27,6 +31,17 @@
 			var focusableEls = document.querySelectorAll('a[href], area[href], input:not([disabled]):not(.navigation-search), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [tabindex="0"]');
 
 			if ( form.classList.contains( 'nav-search-active' ) ) {
+				if ( remotelyActivated ) {
+					nav.querySelector( '.search-item' ).classList.remove( 'active' );
+					nav.querySelector( '.search-item' ).classList.remove( 'close-search' );
+					nav.classList.remove( 'nav-is-active' );
+				}
+
+				if ( mobileMenuControls ) {
+					mobileMenuControls.querySelector( '.search-item' ).classList.remove( 'active' );
+					mobileMenuControls.querySelector( '.search-item' ).classList.remove( 'close-search' );
+				}
+
 				item.classList.remove( 'close-search' );
 				item.classList.remove( 'active' );
 				document.activeElement.blur();
@@ -42,6 +57,25 @@
 					}
 				};
 			} else {
+				if ( remotelyActivated ) {
+					var remoteNav = item.closest( '.toggled' );
+
+					if ( remoteNav && remoteNav.classList.contains( 'toggled' ) ) {
+						remoteNav.querySelector( 'button.menu-toggle' ).click();
+					}
+
+					nav.querySelector( '.search-item' ).classList.add( 'active' );
+					nav.querySelector( '.search-item' ).classList.add( 'close-search' );
+					nav.classList.add( 'nav-is-active' );
+				} else if ( nav.classList.contains( 'toggled' ) ) {
+					nav.querySelector( 'button.menu-toggle' ).click();
+				}
+
+				if ( mobileMenuControls ) {
+					mobileMenuControls.querySelector( '.search-item' ).classList.add( 'active' );
+					mobileMenuControls.querySelector( '.search-item' ).classList.add( 'close-search' );
+				}
+
 				item.classList.add( 'active' );
 				form.classList.add( 'nav-search-active' );
 				link.setAttribute( 'aria-label', generatepressNavSearch.close );

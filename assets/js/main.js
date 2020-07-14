@@ -54,10 +54,23 @@
 				var _this = this;
 			}
 
+			var mobileMenuControls = document.querySelector( '.mobile-menu-control-wrapper' ),
+				parentContainer = '';
+
 			if ( _this.getAttribute( 'data-nav' ) ) {
-				var parentContainer = document.getElementById( _this.getAttribute( 'data-nav' ) );
+				parentContainer = document.getElementById( _this.getAttribute( 'data-nav' ) );
 			} else {
-				var parentContainer = document.getElementById( _this.closest( 'nav' ).getAttribute( 'id' ) );
+				parentContainer = document.getElementById( _this.closest( 'nav' ).getAttribute( 'id' ) );
+			}
+
+			if ( ! parentContainer ) {
+				return;
+			}
+
+			var isExternalToggle = false;
+
+			if ( _this.closest( '.mobile-menu-control-wrapper' ) ) {
+				isExternalToggle = true;
 			}
 
 			var nav = parentContainer.getElementsByTagName( 'ul' )[0];
@@ -67,6 +80,13 @@
 				htmlEl.classList.remove( 'mobile-menu-open' );
 				nav.setAttribute( 'aria-hidden', 'true' );
 				_this.setAttribute( 'aria-expanded', 'false' );
+
+				if ( isExternalToggle ) {
+					mobileMenuControls.classList.remove( 'toggled' );
+					parentContainer.classList.remove( 'nav-is-active' );
+				} else if ( mobileMenuControls && parentContainer.classList.contains( 'main-navigation' ) ) {
+					mobileMenuControls.classList.remove( 'toggled' );
+				}
 
 				if ( body.classList.contains( 'dropdown-hover' ) ) {
 					var dropdownItems = nav.querySelectorAll( 'li.menu-item-has-children' );
@@ -81,6 +101,20 @@
 				htmlEl.classList.add( 'mobile-menu-open' );
 				nav.setAttribute( 'aria-hidden', 'false' );
 				_this.setAttribute( 'aria-expanded', 'true' );
+
+				if ( isExternalToggle ) {
+					mobileMenuControls.classList.add( 'toggled' );
+
+					if ( mobileMenuControls.querySelector( '.search-item' ) ) {
+						if ( mobileMenuControls.querySelector( '.search-item' ).classList.contains( 'active' ) ) {
+							mobileMenuControls.querySelector( '.search-item' ).click();
+						}
+					}
+
+					parentContainer.classList.add( 'nav-is-active' );
+				} else if ( mobileMenuControls && parentContainer.classList.contains( 'main-navigation' ) ) {
+					mobileMenuControls.classList.add( 'toggled' );
+				}
 
 				if ( body.classList.contains( 'dropdown-hover' ) ) {
 					var dropdownItems = nav.querySelectorAll( 'li.menu-item-has-children' );

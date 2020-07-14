@@ -43,25 +43,6 @@ if ( ! function_exists( 'generate_is_top_bar_active' ) ) {
 	}
 }
 
-if ( ! function_exists( 'generate_hidden_navigation' ) && function_exists( 'is_customize_preview' ) ) {
-	add_action( 'wp_footer', 'generate_hidden_navigation' );
-	/**
-	 * Adds a hidden navigation if no navigation is set
-	 * This allows us to use postMessage to position the navigation when it doesn't exist
-	 *
-	 * @since 1.3.40
-	 */
-	function generate_hidden_navigation() {
-		if ( is_customize_preview() && function_exists( 'generate_navigation_position' ) ) {
-			?>
-			<div style="display:none;">
-				<?php generate_navigation_position(); ?>
-			</div>
-			<?php
-		}
-	}
-}
-
 if ( ! function_exists( 'generate_customize_partial_blogname' ) ) {
 	/**
 	 * Render the site title for the selective refresh partial.

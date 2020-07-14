@@ -112,6 +112,35 @@ nav.toggled {
 	}
 }
 
+.mobile-menu-control-wrapper {
+	display: none;
+	margin-left: auto;
+	align-items: center;
+}
+
+.nav-is-active {
+	margin-top: 1.5em;
+}
+
+#site-navigation.nav-is-active {
+	.nav-search-active {
+		position: relative;
+	}
+
+	.navigation-search input {
+		outline: auto;
+	}
+}
+
+.nav-float-left .mobile-menu-control-wrapper {
+	margin-left: 0;
+	margin-right: auto;
+}
+
+.nav-float-left #site-navigation.nav-is-active {
+	order: 6;
+}
+
 /*--------------------------------------------------------------
 ## Breakpoint (768px)
 --------------------------------------------------------------*/
@@ -138,26 +167,21 @@ nav.toggled {
 		text-align: center;
 	}
 
-	.nav-float-right #site-navigation,
-	.nav-float-left #site-navigation {
-		margin-left: 0;
-		margin-right: 0;
-		width: 100%;
-		margin-top: 1.5em;
+	.has-inline-navigation .inside-header {
+		flex-direction: row;
+		text-align: left;
+		flex-wrap: wrap;
 	}
 
 	.site-header .header-widget {
 		margin-top: 1.5em;
 		margin-left: auto;
 		margin-right: auto;
+		text-align: center;
 	}
 
-	.nav-float-left {
-		.site-logo,
-		.site-branding,
-		.header-widget {
-			order: initial;
-		}
+	.has-inline-navigation .header-widget {
+		flex-basis: 100%;
 	}
 
 	.site-logo + .site-branding {
@@ -168,7 +192,8 @@ nav.toggled {
 	## Navigation
     --------------------------------------------------------------*/
 
-    .main-navigation .inside-navigation {
+	.main-navigation .inside-navigation,
+	.has-inline-navigation .mobile-menu-control-wrapper {
 		display: flex;
 		flex-wrap: wrap;
 	}
@@ -183,6 +208,14 @@ nav.toggled {
 	.gen-sidebar-nav,
 	.main-navigation:not(.slideout-navigation):not(.toggled) .main-nav > ul {
 		display: none;
+	}
+
+	.has-inline-navigation #site-navigation {
+		flex-basis: 100%;
+
+		.inside-navigation > *:not(.navigation-search):not(.main-nav) {
+			display: none;
+		}
 	}
 
 	/*--------------------------------------------------------------
