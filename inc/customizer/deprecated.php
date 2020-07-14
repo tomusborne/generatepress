@@ -113,21 +113,3 @@ if ( ! function_exists( 'generate_typography_customize_preview_css' ) ) {
 		<?php
 	}
 }
-
-if ( ! function_exists( 'generate_hidden_navigation' ) && function_exists( 'is_customize_preview' ) ) {
-	/**
-	 * Adds a hidden navigation if no navigation is set
-	 * This allows us to use postMessage to position the navigation when it doesn't exist
-	 *
-	 * @since 1.3.40
-	 */
-	function generate_hidden_navigation() {
-		if ( is_customize_preview() && function_exists( 'generate_navigation_position' ) ) {
-			?>
-			<div style="display:none;">
-				<?php generate_navigation_position(); ?>
-			</div>
-			<?php
-		}
-	}
-}

@@ -1715,33 +1715,6 @@ nav.toggled ul ul.sub-menu {
 	display: none;
 }
 
-.mobile-menu-control-wrapper {
-	display: none;
-	margin-left: auto;
-	align-items: center;
-}
-
-.nav-is-active {
-	margin-top: 1.5em;
-}
-
-#site-navigation.nav-is-active .nav-search-active {
-	position: relative;
-}
-
-#site-navigation.nav-is-active .navigation-search input {
-	outline: auto;
-}
-
-.nav-float-left .mobile-menu-control-wrapper {
-	margin-left: 0;
-	margin-right: auto;
-}
-
-.nav-float-left #site-navigation.nav-is-active {
-	order: 6;
-}
-
 /*--------------------------------------------------------------
 ## Breakpoint (768px)
 --------------------------------------------------------------*/
@@ -1762,19 +1735,22 @@ nav.toggled ul ul.sub-menu {
 		flex-direction: column;
 		text-align: center;
 	}
-	.has-inline-navigation .inside-header {
-		flex-direction: row;
-		text-align: left;
-		flex-wrap: wrap;
+	.nav-float-right #site-navigation,
+	.nav-float-left #site-navigation {
+		margin-left: 0;
+		margin-right: 0;
+		width: 100%;
+		margin-top: 1.5em;
 	}
 	.site-header .header-widget {
 		margin-top: 1.5em;
 		margin-left: auto;
 		margin-right: auto;
-		text-align: center;
 	}
-	.has-inline-navigation .header-widget {
-		flex-basis: 100%;
+	.nav-float-left .site-logo,
+	.nav-float-left .site-branding,
+	.nav-float-left .header-widget {
+		order: initial;
 	}
 	.site-logo + .site-branding {
 		margin: 1.5em 0 0;
@@ -1782,8 +1758,7 @@ nav.toggled ul ul.sub-menu {
 	/*--------------------------------------------------------------
 	## Navigation
     --------------------------------------------------------------*/
-	.main-navigation .inside-navigation,
-	.has-inline-navigation .mobile-menu-control-wrapper {
+	.main-navigation .inside-navigation {
 		display: flex;
 		flex-wrap: wrap;
 	}
@@ -1795,12 +1770,6 @@ nav.toggled ul ul.sub-menu {
 	.main-navigation ul,
 	.gen-sidebar-nav,
 	.main-navigation:not(.slideout-navigation):not(.toggled) .main-nav > ul {
-		display: none;
-	}
-	.has-inline-navigation #site-navigation {
-		flex-basis: 100%;
-	}
-	.has-inline-navigation #site-navigation .inside-navigation > *:not(.navigation-search):not(.main-nav) {
 		display: none;
 	}
 	/*--------------------------------------------------------------

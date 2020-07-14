@@ -307,10 +307,6 @@ if ( ! function_exists( 'generate_header_classes' ) ) {
 			}
 		}
 
-		if ( generate_is_using_flexbox() && ( 'nav-float-right' === generate_get_navigation_location() || 'nav-float-left' === generate_get_navigation_location() ) ) {
-			$classes[] = 'has-inline-navigation';
-		}
-
 		return $classes;
 	}
 }
