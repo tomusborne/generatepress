@@ -100,6 +100,20 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$css->add_property( 'width', absint( $right_sidebar_width ) . '%' );
 		}
 
+		if ( generate_get_option( 'back_to_top' ) ) {
+			$css->set_selector( '.generate-back-to-top, .generate-back-to-top:visited' );
+			$css->add_property( 'font-size', '20px' );
+			$css->add_property( 'border-radius', '3px' );
+			$css->add_property( 'position', 'fixed' );
+			$css->add_property( 'bottom', '30px' );
+			$css->add_property( 'right', '30px' );
+			$css->add_property( 'line-height', '40px' );
+			$css->add_property( 'width', '40px' );
+			$css->add_property( 'text-align', 'center' );
+			$css->add_property( 'z-index', '10' );
+			$css->add_property( 'transition', 'opacity 300ms ease-in-out' );
+		}
+
 		do_action( 'generate_base_css', $css );
 
 		return apply_filters( 'generate_base_css_output', $css->css_output() );

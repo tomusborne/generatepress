@@ -1483,23 +1483,6 @@ object {
 	font-size: 15px;
 }
 
-/*--------------------------------------------------------------
-## Back to Top Button
---------------------------------------------------------------*/
-.generate-back-to-top,
-.generate-back-to-top:visited {
-	font-size: 20px;
-	border-radius: 3px;
-	position: fixed;
-	bottom: 30px;
-	right: 30px;
-	line-height: 40px;
-	width: 40px;
-	text-align: center;
-	z-index: 10;
-	transition: opacity 300ms ease-in-out;
-}
-
 .footer-widgets {
 	padding: 40px;
 }
