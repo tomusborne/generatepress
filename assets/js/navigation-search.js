@@ -15,97 +15,79 @@
 				var item = this;
 			}
 
-			var nav = item.closest( 'nav' ),
-				remoteNav = item.getAttribute( 'data-nav' ),
-				link = item.querySelector( 'a' ),
-				remotelyActivated = false,
-				mobileMenuControls = document.querySelector( '.mobile-menu-control-wrapper' );
+			var forms = document.querySelectorAll( '.navigation-search' ),
+				toggles = document.querySelectorAll( '.search-item' ),
+				focusableEls = document.querySelectorAll('a[href], area[href], input:not([disabled]):not(.navigation-search), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [tabindex="0"]'),
+				nav = '';
 
-			if ( remoteNav ) {
-				nav = document.getElementById( remoteNav );
-				remotelyActivated = true;
+			if ( item.closest( '.mobile-menu-control-wrapper' ) ) {
+				nav = document.getElementById( 'site-navigation' );
 			}
 
-			var form = nav.querySelector( '.navigation-search' );
+			for ( var i = 0; i < forms.length; i++ ) {
+				if ( forms[i].classList.contains( 'nav-search-active' ) ) {
+					forms[i].classList.remove( 'nav-search-active' );
 
-			var focusableEls = document.querySelectorAll('a[href], area[href], input:not([disabled]):not(.navigation-search), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [tabindex="0"]');
-
-			if ( form.classList.contains( 'nav-search-active' ) ) {
-				if ( remotelyActivated ) {
-					nav.querySelector( '.search-item' ).classList.remove( 'active' );
-					nav.querySelector( '.search-item' ).classList.remove( 'close-search' );
-					nav.classList.remove( 'nav-is-active' );
-				}
-
-				if ( mobileMenuControls ) {
-					mobileMenuControls.querySelector( '.search-item' ).classList.remove( 'active' );
-					mobileMenuControls.querySelector( '.search-item' ).classList.remove( 'close-search' );
-				}
-
-				item.classList.remove( 'close-search' );
-				item.classList.remove( 'active' );
-				document.activeElement.blur();
-				item.classList.remove( 'sfHover' );
-				form.classList.remove( 'nav-search-active' );
-				link.setAttribute( 'aria-label', generatepressNavSearch.open );
-				item.style.float = '';
-
-				// Allow tabindex on items again.
-				for ( var i = 0; i < focusableEls.length; i++ ) {
-					if ( ! focusableEls[i].closest( '.navigation-search' ) && ! focusableEls[i].closest( '.search-item' ) ) {
-						focusableEls[i].removeAttribute( 'tabindex' );
-					}
-				};
-			} else {
-				if ( remotelyActivated ) {
-					var remoteNav = item.closest( '.toggled' );
-
-					if ( remoteNav && remoteNav.classList.contains( 'toggled' ) ) {
-						remoteNav.querySelector( 'button.menu-toggle' ).click();
+					if ( nav ) {
+						nav.classList.remove( 'nav-is-active' );
 					}
 
-					nav.querySelector( '.search-item' ).classList.add( 'active' );
-					nav.querySelector( '.search-item' ).classList.add( 'close-search' );
-					nav.classList.add( 'nav-is-active' );
-				} else if ( nav.classList.contains( 'toggled' ) ) {
-					nav.querySelector( 'button.menu-toggle' ).click();
-				}
+					for ( var t = 0; t < toggles.length; t++ ) {
+						toggles[t].classList.remove( 'close-search' );
+						toggles[t].classList.remove( 'active' );
+						toggles[t].querySelector( 'a' ).setAttribute( 'aria-label', generatepressNavSearch.open );
+						toggles[t].style.float = '';
 
-				if ( mobileMenuControls ) {
-					mobileMenuControls.querySelector( '.search-item' ).classList.add( 'active' );
-					mobileMenuControls.querySelector( '.search-item' ).classList.add( 'close-search' );
-				}
-
-				item.classList.add( 'active' );
-				form.classList.add( 'nav-search-active' );
-				link.setAttribute( 'aria-label', generatepressNavSearch.close );
-				form.querySelector( '.search-field' ).focus();
-
-				// Trap tabindex within the search element
-				for ( var i = 0; i < focusableEls.length; i++ ) {
-					if ( ! focusableEls[i].closest( '.navigation-search' ) && ! focusableEls[i].closest( '.search-item' ) ) {
-						focusableEls[i].setAttribute( 'tabindex', '-1' );
+						// Allow tabindex on items again.
+						for ( var i = 0; i < focusableEls.length; i++ ) {
+							if ( ! focusableEls[i].closest( '.navigation-search' ) && ! focusableEls[i].closest( '.search-item' ) ) {
+								focusableEls[i].removeAttribute( 'tabindex' );
+							}
+						};
 					}
-				};
 
-				// Set a delay to stop conflict with toggleFocus() in a11y.js
-				setTimeout( function() {
-					item.classList.add( 'sfHover' );
-				}, 50 );
-
-				if ( ! document.body.classList.contains( 'nav-aligned-center' ) ) {
-					item.classList.add( 'close-search' );
+					document.activeElement.blur();
 				} else {
-					item.style.opacity = 0;
-					setTimeout( function() {
-						item.classList.add( 'close-search' );
-						item.style.opacity = 1;
-						if ( document.body.classList.contains ( 'rtl' ) ) {
-							item.style.float = 'left';
+					var openedMobileMenu = forms[i].closest( '.toggled' );
+
+					if ( openedMobileMenu ) {
+						// Close the mobile menu.
+						openedMobileMenu.querySelector( 'button.menu-toggle' ).click();
+					}
+
+					if ( nav ) {
+						nav.classList.add( 'nav-is-active' );
+					}
+
+					forms[i].classList.add( 'nav-search-active' );
+					forms[i].querySelector( '.search-field' ).focus();
+
+					for ( var t = 0; t < toggles.length; t++ ) {
+						toggles[t].classList.add( 'active' );
+						toggles[t].querySelector( 'a' ).setAttribute( 'aria-label', generatepressNavSearch.close );
+
+						// Trap tabindex within the search element
+						for ( var i = 0; i < focusableEls.length; i++ ) {
+							if ( ! focusableEls[i].closest( '.navigation-search' ) && ! focusableEls[i].closest( '.search-item' ) ) {
+								focusableEls[i].setAttribute( 'tabindex', '-1' );
+							}
+						};
+
+						if ( ! document.body.classList.contains( 'nav-aligned-center' ) ) {
+							toggles[t].classList.add( 'close-search' );
 						} else {
-							item.style.float = 'right';
+							toggles[t].style.opacity = 0;
+							setTimeout( function() {
+								toggles[t].classList.add( 'close-search' );
+								toggles[t].style.opacity = 1;
+								if ( document.body.classList.contains ( 'rtl' ) ) {
+									toggles[t].style.float = 'left';
+								} else {
+									toggles[t].style.float = 'right';
+								}
+							}, 250 );
 						}
-					}, 250 );
+					}
 				}
 			}
 		}
@@ -123,10 +105,7 @@
 					var key = e.which || e.keyCode;
 
 					if ( key === 27 ) { // 27 is esc
-						var activeSearchItems = document.querySelectorAll( '.search-item.active' );
-						for ( var i = 0; i < activeSearchItems.length; i++ ) {
-							toggleSearch( e, activeSearchItems[i] );
-						}
+						toggleSearch( e );
 					}
 				}
 			}, false );
