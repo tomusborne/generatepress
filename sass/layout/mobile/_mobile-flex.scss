@@ -167,12 +167,6 @@ nav.toggled {
 		text-align: center;
 	}
 
-	.has-inline-navigation .inside-header {
-		flex-direction: row;
-		text-align: left;
-		flex-wrap: wrap;
-	}
-
 	.site-header .header-widget {
 		margin-top: 1.5em;
 		margin-left: auto;
@@ -180,12 +174,24 @@ nav.toggled {
 		text-align: center;
 	}
 
-	.has-inline-navigation .header-widget {
-		flex-basis: 100%;
-	}
-
 	.site-logo + .site-branding {
 		margin: 1.5em 0 0;
+	}
+
+	.has-inline-navigation {
+		.inside-header {
+			flex-direction: row;
+			text-align: left;
+			flex-wrap: wrap;
+		}
+
+		.site-logo + .site-branding {
+			margin: 0 0 0 20px;
+		}
+
+		.header-widget {
+			flex-basis: 100%;
+		}
 	}
 
     /*--------------------------------------------------------------

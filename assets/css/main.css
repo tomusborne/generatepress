@@ -1762,22 +1762,25 @@ nav.toggled ul ul.sub-menu {
 		flex-direction: column;
 		text-align: center;
 	}
-	.has-inline-navigation .inside-header {
-		flex-direction: row;
-		text-align: left;
-		flex-wrap: wrap;
-	}
 	.site-header .header-widget {
 		margin-top: 1.5em;
 		margin-left: auto;
 		margin-right: auto;
 		text-align: center;
 	}
-	.has-inline-navigation .header-widget {
-		flex-basis: 100%;
-	}
 	.site-logo + .site-branding {
 		margin: 1.5em 0 0;
+	}
+	.has-inline-navigation .inside-header {
+		flex-direction: row;
+		text-align: left;
+		flex-wrap: wrap;
+	}
+	.has-inline-navigation .site-logo + .site-branding {
+		margin: 0 0 0 20px;
+	}
+	.has-inline-navigation .header-widget {
+		flex-basis: 100%;
 	}
 	/*--------------------------------------------------------------
 	## Navigation
