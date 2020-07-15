@@ -119,7 +119,7 @@ function generate_do_header_mobile_menu_toggle() {
 		return;
 	}
 	?>
-	<div <?php generate_do_element_classes( 'mobile-navigation-toggle', array( 'main-navigation', 'mobile-menu-control-wrapper' ) ); ?>>
+	<nav <?php generate_do_element_classes( 'mobile-navigation-toggle', array( 'main-navigation', 'mobile-menu-control-wrapper' ) ); ?>>
 		<?php
 		/**
 		 * generate_inside_navigation hook.
@@ -178,7 +178,7 @@ function generate_do_header_mobile_menu_toggle() {
 		 */
 		do_action( 'generate_after_mobile_menu_button', 'mobile-menu-control-wrapper' );
 		?>
-	</div>
+	</nav>
 	<?php
 }
 
