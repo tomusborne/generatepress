@@ -34,7 +34,8 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 				 * @hooked generate_navigation_search - 10
 				 * @hooked generate_mobile_menu_search_icon - 10
 				 */
-				do_action( 'generate_inside_navigation' );
+				do_action( 'generate_inside_navigation', 'primary-navigation' );
+
 				/**
 				 * generate_before_mobile_menu_button hook
 				 *
@@ -453,7 +454,11 @@ if ( ! function_exists( 'generate_navigation_search' ) ) {
 	 *
 	 * @since 1.1.4
 	 */
-	function generate_navigation_search() {
+	function generate_navigation_search( $location = '' ) {
+		if ( 'primary-navigation' !== $location ) {
+			return;
+		}
+
 		$generate_settings = wp_parse_args(
 			get_option( 'generate_settings', array() ),
 			generate_get_defaults()
