@@ -730,17 +730,29 @@ function generate_no_cache_dynamic_css() {
 	}
 
 	$css->start_media_query( generate_get_media_query( 'mobile-menu' ) );
+
+	if ( generate_is_using_flexbox() ) {
+		$css->set_selector( '.main-navigation .inside-navigation' );
+		$css->add_property( 'display', 'flex' );
+		$css->add_property( 'flex-wrap', 'wrap' );
+
+		$css->set_selector( '.main-navigation .menu-toggle,.main-navigation .mobile-bar-items,.sidebar-nav-mobile:not(#sticky-placeholder)' );
+		$css->add_property( 'display', 'block' );
+
+		$css->set_selector( '.main-navigation ul,.gen-sidebar-nav,.main-navigation:not(.slideout-navigation):not(.toggled) .main-nav > ul' );
+		$css->add_property( 'display', 'none' );
+	} else {
 		$css->set_selector( '.main-navigation .menu-toggle,.main-navigation .mobile-bar-items,.sidebar-nav-mobile:not(#sticky-placeholder)' );
 		$css->add_property( 'display', 'block' );
 
 		$css->set_selector( '.main-navigation ul,.gen-sidebar-nav' );
 		$css->add_property( 'display', 'none' );
 
-		if ( ! generate_is_using_flexbox() ) {
-			$css->set_selector( '[class*="nav-float-"] .site-header .inside-header > *' );
-			$css->add_property( 'float', 'none' );
-			$css->add_property( 'clear', 'both' );
-		}
+		$css->set_selector( '[class*="nav-float-"] .site-header .inside-header > *' );
+		$css->add_property( 'float', 'none' );
+		$css->add_property( 'clear', 'both' );
+	}
+
 	$css->stop_media_query();
 
 	if ( is_singular() ) {
