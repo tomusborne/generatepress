@@ -119,12 +119,24 @@ function generate_do_header_mobile_menu_toggle() {
 	}
 	?>
 	<div <?php generate_do_element_classes( 'mobile-navigation-toggle', array( 'main-navigation', 'mobile-menu-control-wrapper' ) ); ?>>
+		<?php
+		/**
+		 * generate_inside_navigation hook.
+		 *
+		 * @since 0.1
+		 *
+		 * @hooked generate_navigation_search - 10
+		 * @hooked generate_mobile_menu_search_icon - 10
+		 */
+		do_action( 'generate_inside_navigation', 'mobile-menu-control-wrapper' );
+
 		/**
 		 * generate_before_mobile_menu_button hook
 		 *
 		 * @since 2.5
 		 */
 		do_action( 'generate_before_mobile_menu_button', 'mobile-menu-control-wrapper' );
+		?>
 		<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" data-nav="site-navigation">
 			<?php
 			/**
