@@ -794,7 +794,7 @@ function generate_enqueue_dynamic_css() {
 		$css = get_option( 'generate_dynamic_css_output' ) . '/* End cached CSS */';
 	}
 
-	$css = $css . generate_no_cache_dynamic_css() . generate_do_icon_css();
+	$css = $css . generate_no_cache_dynamic_css();
 
 	wp_add_inline_style( 'generate-style', wp_strip_all_tags( $css ) );
 }
@@ -836,36 +836,4 @@ function generate_update_dynamic_css_cache() {
 
 	$css = generate_base_css() . generate_font_css() . generate_advanced_css() . generate_spacing_css();
 	update_option( 'generate_dynamic_css_output', wp_strip_all_tags( $css ) );
-}
-
-/**
- * Output CSS for the icon fonts.
- *
- * @since 2.3
- */
-function generate_do_icon_css() {
-	$output = false;
-
-	if ( 'font' === generate_get_option( 'icons' ) ) {
-		$url = trailingslashit( get_template_directory_uri() );
-
-		if ( defined( 'GENERATE_MENU_PLUS_VERSION' ) ) {
-			$output .= '.main-navigation .slideout-toggle a:before,
-			.slide-opened .slideout-overlay .slideout-exit:before {
-				font-family: GeneratePress;
-			}
-
-			.slideout-navigation .dropdown-menu-toggle:before {
-				content: "\f107" !important;
-			}
-
-			.slideout-navigation .sfHover > a .dropdown-menu-toggle:before {
-				content: "\f106" !important;
-			}';
-		}
-	}
-
-	if ( $output ) {
-		return str_replace( array( "\r", "\n", "\t" ), '', $output );
-	}
 }

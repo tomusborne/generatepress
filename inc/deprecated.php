@@ -879,3 +879,36 @@ if ( ! function_exists( 'generate_typography_convert_values' ) ) {
 function generate_migrate_existing_settings() {
 	// Replaced by Generate_Theme_Update().
 }
+
+/**
+ * Output CSS for the icon fonts.
+ *
+ * @since 2.3
+ * @deprecated 2.5.0
+ */
+function generate_do_icon_css() {
+	$output = false;
+
+	if ( 'font' === generate_get_option( 'icons' ) ) {
+		$url = trailingslashit( get_template_directory_uri() );
+
+		if ( defined( 'GENERATE_MENU_PLUS_VERSION' ) ) {
+			$output .= '.main-navigation .slideout-toggle a:before,
+			.slide-opened .slideout-overlay .slideout-exit:before {
+				font-family: GeneratePress;
+			}
+
+			.slideout-navigation .dropdown-menu-toggle:before {
+				content: "\f107" !important;
+			}
+
+			.slideout-navigation .sfHover > a .dropdown-menu-toggle:before {
+				content: "\f106" !important;
+			}';
+		}
+	}
+
+	if ( $output ) {
+		return str_replace( array( "\r", "\n", "\t" ), '', $output );
+	}
+}

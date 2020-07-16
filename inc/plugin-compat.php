@@ -305,6 +305,21 @@ function generate_do_pro_compatibility() {
 		}
 	}
 
+	if ( 'font' === generate_get_option( 'icons' ) ) {
+		$url = trailingslashit( get_template_directory_uri() );
+
+		if ( defined( 'GENERATE_MENU_PLUS_VERSION' ) ) {
+			$css->set_selector( '.main-navigation .slideout-toggle a:before,.slide-opened .slideout-overlay .slideout-exit:before' );
+			$css->add_property( 'font-family', 'GeneratePress' );
+
+			$css->set_selector( '.slideout-navigation .dropdown-menu-toggle:before' );
+			$css->add_property( 'content', '"\f107" !important' );
+
+			$css->set_selector( '.slideout-navigation .sfHover > a .dropdown-menu-toggle:before' );
+			$css->add_property( 'content', '"\f106" !important' );
+		}
+	}
+
 	if ( $css->css_output() ) {
 		wp_add_inline_style( 'generate-style', $css->css_output() );
 	}
