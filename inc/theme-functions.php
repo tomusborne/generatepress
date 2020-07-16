@@ -524,5 +524,10 @@ function generate_is_using_hatom() {
  * @since 2.5
  */
 function generate_is_using_flexbox() {
+	// No flexbox for old versions of GPP.
+	if ( defined( 'GP_PREMIUM_VERSION' ) && version_compare( GP_PREMIUM_VERSION, '1.11.0-alpha.1', '<' ) ) {
+		return false;
+	}
+
 	return 'flexbox' === generate_get_option( 'structure' );
 }
