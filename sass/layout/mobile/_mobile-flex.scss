@@ -164,27 +164,6 @@ nav.toggled {
 		margin: 1.5em 0 0;
 	}
 
-    /*--------------------------------------------------------------
-	## Navigation
-    --------------------------------------------------------------*/
-
-    .main-navigation .inside-navigation {
-		display: flex;
-		flex-wrap: wrap;
-	}
-
-	.main-navigation .menu-toggle,
-	.main-navigation .mobile-bar-items,
-	.sidebar-nav-mobile:not(#sticky-placeholder) {
-		display: block;
-	}
-
-	.main-navigation ul,
-	.gen-sidebar-nav,
-	.main-navigation:not(.slideout-navigation):not(.toggled) .main-nav > ul {
-		display: none;
-	}
-
 	/*--------------------------------------------------------------
 	## Content Area
 	--------------------------------------------------------------*/
