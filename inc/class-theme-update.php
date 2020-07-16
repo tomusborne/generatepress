@@ -89,7 +89,7 @@ class GeneratePress_Theme_Update {
 			self::v_2_3_0();
 		}
 
-		if ( version_compare( $saved_version, '2.5.0', '<' ) ) {
+		if ( version_compare( $saved_version, '2.5.0-alpha.1', '<' ) ) {
 			self::v_2_5_0();
 		}
 
