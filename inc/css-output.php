@@ -114,6 +114,65 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$css->add_property( 'transition', 'opacity 300ms ease-in-out' );
 		}
 
+		if ( generate_get_option( 'nav_search' ) ) {
+			$css->set_selector( '.navigation-search' );
+			$css->add_property( 'position', 'absolute' );
+			$css->add_property( 'left', '-99999px' );
+			$css->add_property( 'pointer-events', 'none' );
+			$css->add_property( 'visibility', 'hidden' );
+			$css->add_property( 'z-index', '20' );
+			$css->add_property( 'width', '100%' );
+			$css->add_property( 'top', '0' );
+			$css->add_property( 'transition', 'opacity 100ms ease-in-out' );
+			$css->add_property( 'opacity', '0' );
+
+			$css->set_selector( '.navigation-search.nav-search-active' );
+			$css->add_property( 'left', '0' );
+			$css->add_property( 'right', '0' );
+			$css->add_property( 'pointer-events', 'auto' );
+			$css->add_property( 'visibility', 'visible' );
+			$css->add_property( 'opacity', '1' );
+
+			$css->set_selector( '.navigation-search input' );
+			$css->add_property( 'outline', '0' );
+			$css->add_property( 'border', '0' );
+			$css->add_property( 'vertical-align', 'bottom' );
+			$css->add_property( 'line-height', '0' );
+			$css->add_property( 'opacity', '0.9' );
+			$css->add_property( 'width', '100%' );
+			$css->add_property( 'z-index', '20' );
+			$css->add_property( 'border-radius', '0' );
+			$css->add_property( '-webkit-appearance', 'none' );
+			$css->add_property( 'height', '60px' );
+
+			$css->set_selector( '.navigation-search input::-ms-clear' );
+			$css->add_property( 'display', 'none' );
+			$css->add_property( 'width', '0' );
+			$css->add_property( 'height', '0' );
+
+			$css->set_selector( '.navigation-search input::-ms-reveal' );
+			$css->add_property( 'display', 'none' );
+			$css->add_property( 'width', '0' );
+			$css->add_property( 'height', '0' );
+
+			$css->set_selector( '.navigation-search input::-webkit-search-decoration, .navigation-search input::-webkit-search-cancel-button, .navigation-search input::-webkit-search-results-button, .navigation-search input::-webkit-search-results-decoration' );
+			$css->add_property( 'display', 'none' );
+
+			$css->set_selector( '.main-navigation li.search-item' );
+			$css->add_property( 'z-index', '21' );
+
+			$css->set_selector( 'li.search-item.active' );
+			$css->add_property( 'transition', 'opacity 100ms ease-in-out' );
+
+			$css->set_selector( '.gen-sidebar-nav .navigation-search' );
+			$css->add_property( 'top', 'auto' );
+			$css->add_property( 'bottom', '0' );
+
+			$css->set_selector( '.nav-left-sidebar .main-navigation li.search-item.active,.nav-right-sidebar .main-navigation li.search-item.active' );
+			$css->add_property( 'width', 'auto' );
+			$css->add_property( 'display', 'inline-block' );
+		}
+
 		do_action( 'generate_base_css', $css );
 
 		return apply_filters( 'generate_base_css_output', $css->css_output() );
