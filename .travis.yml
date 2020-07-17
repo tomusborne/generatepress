@@ -59,12 +59,6 @@ script:
   # Check the PHP files with the coding standards documented in the phpcs.xml.dist file.
   - if [[ "$SNIFF" == 1 ]]; then composer lint:wpcs; fi
 
-  # Check the JS files with the lint-js script defined in the @wordpress/scripts package.
-  - if [[ "$SNIFF" == 1 ]]; then npm run lint:js; fi
-
-  # Check the SCSS files with the lint-style script defined in the @wordpress/scripts package.
-  - if [[ "$SNIFF" == 1 ]]; then npm run lint:scss; fi
-
 # Receive notifications for build results.
 # @link https://docs.travis-ci.com/user/notifications/#configuring-email-notifications
 notifications:
