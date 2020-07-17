@@ -126,7 +126,7 @@ if ( ! function_exists( 'generate_menu_fallback' ) ) {
 
 				wp_list_pages( $args );
 
-				if ( 'enable' === $generate_settings['nav_search'] ) {
+				if ( ! generate_is_using_flexbox() && 'enable' === $generate_settings['nav_search'] ) {
 					$search_item = apply_filters(
 						'generate_navigation_search_menu_item_output',
 						sprintf(
@@ -397,10 +397,56 @@ if ( ! function_exists( 'generate_navigation_search' ) ) {
 	}
 }
 
+add_action( 'generate_after_primary_menu', 'generate_do_menu_bar_item_container' );
+/**
+ * Add a container for menu bar items.
+ *
+ * @since 2.5.0
+ */
+function generate_do_menu_bar_item_container() {
+	if ( ! generate_is_using_flexbox() ) {
+		return;
+	}
+
+	if ( generate_has_menu_bar_items() ) {
+		echo '<div class="menu-bar-items">';
+			do_action( 'generate_menu_bar_items' );
+		echo '</div>';
+	}
+}
+
+add_action( 'generate_menu_bar_items', 'generate_do_navigation_search_button' );
+/**
+ * Add the navigation search button.
+ *
+ * @since 2.5.0
+ */
+function generate_do_navigation_search_button() {
+	if ( ! generate_is_using_flexbox() ) {
+		return;
+	}
+
+	if ( 'enable' !== generate_get_option( 'nav_search' ) ) {
+		return;
+	}
+
+	$search_item = apply_filters(
+		'generate_navigation_search_menu_item_output',
+		sprintf(
+			'<span class="menu-bar-item search-item"><a aria-label="%1$s" href="#">%2$s</a></span>',
+			esc_attr__( 'Open Search Bar', 'generatepress' ),
+			generate_get_svg_icon( 'search', true ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in function.
+		)
+	);
+
+	echo $search_item; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- No escaping needed.
+}
+
 if ( ! function_exists( 'generate_menu_search_icon' ) ) {
 	add_filter( 'wp_nav_menu_items', 'generate_menu_search_icon', 10, 2 );
 	/**
-	 * Add search icon to primary menu if set
+	 * Add search icon to primary menu if set.
+	 * Only used if using old float system.
 	 *
 	 * @since 1.2.9.7
 	 *
@@ -413,6 +459,10 @@ if ( ! function_exists( 'generate_menu_search_icon' ) ) {
 			get_option( 'generate_settings', array() ),
 			generate_get_defaults()
 		);
+
+		if ( generate_is_using_flexbox() ) {
+			return $nav;
+		}
 
 		// If the search icon isn't enabled, return the regular nav.
 		if ( 'enable' !== $generate_settings['nav_search'] ) {
@@ -440,8 +490,10 @@ if ( ! function_exists( 'generate_menu_search_icon' ) ) {
 }
 
 if ( ! function_exists( 'generate_mobile_menu_search_icon' ) ) {
+	add_action( 'generate_inside_navigation', 'generate_mobile_menu_search_icon' );
 	/**
-	 * Add search icon to mobile menu bar
+	 * Add search icon to mobile menu bar.
+	 * Only used if using old float system.
 	 *
 	 * @since 1.3.12
 	 */
@@ -456,6 +508,10 @@ if ( ! function_exists( 'generate_mobile_menu_search_icon' ) ) {
 			return;
 		}
 
+		if ( generate_is_using_flexbox() ) {
+			return;
+		}
+
 		?>
 		<div class="mobile-bar-items">
 			<?php do_action( 'generate_inside_mobile_menu_bar' ); ?>
@@ -466,20 +522,6 @@ if ( ! function_exists( 'generate_mobile_menu_search_icon' ) ) {
 			</span>
 		</div>
 		<?php
-	}
-}
-
-add_action( 'wp', 'generate_do_mobile_menu_search_icon' );
-/**
- * Add search icon to mobile menu toggle.
- *
- * @since 2.5
- */
-function generate_do_mobile_menu_search_icon() {
-	if ( generate_is_using_flexbox() ) {
-		add_action( 'generate_after_mobile_menu_button', 'generate_mobile_menu_search_icon' );
-	} else {
-		add_action( 'generate_inside_navigation', 'generate_mobile_menu_search_icon' );
 	}
 }
 

@@ -363,6 +363,10 @@ if ( ! function_exists( 'generate_navigation_classes' ) ) {
 			} elseif ( is_rtl() && 'left' === $nav_alignment ) {
 				$classes[] = 'nav-align-left';
 			}
+
+			if ( generate_has_menu_bar_items() ) {
+				$classes[] = 'has-menu-bar-items';
+			}
 		}
 
 		$submenu_direction = 'right';

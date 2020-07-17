@@ -531,3 +531,10 @@ function generate_is_using_flexbox() {
 
 	return 'flexbox' === generate_get_option( 'structure' );
 }
+
+/**
+ * Check if we have any menu bar items.
+ */
+function generate_has_menu_bar_items() {
+	return has_action( 'generate_menu_bar_items' );
+}

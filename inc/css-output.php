@@ -222,10 +222,10 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->set_selector( '.main-navigation,.main-navigation ul ul' );
 		$css->add_property( 'background-color', $settings['navigation_background_color'] );
 
-		$css->set_selector( '.main-navigation .main-nav ul li a,.menu-toggle' );
+		$css->set_selector( '.main-navigation .main-nav ul li a,.menu-toggle,.main-navigation .menu-bar-item a' );
 		$css->add_property( 'color', $settings['navigation_text_color'] );
 
-		$css->set_selector( '.main-navigation .main-nav ul li:hover > a,.main-navigation .main-nav ul li:focus > a, .main-navigation .main-nav ul li.sfHover > a' );
+		$css->set_selector( '.main-navigation .main-nav ul li:hover > a,.main-navigation .main-nav ul li:focus > a, .main-navigation .main-nav ul li.sfHover > a,.main-navigation .menu-bar-item:hover > a' );
 		$css->add_property( 'color', $settings['navigation_text_hover_color'] );
 		$css->add_property( 'background-color', $settings['navigation_background_hover_color'] );
 
@@ -677,7 +677,7 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->add_property( 'margin-top', absint( $settings['separator'] ), absint( $defaults['separator'] ), 'px' );
 		$css->add_property( 'margin-bottom', absint( $settings['separator'] ), absint( $defaults['separator'] ), 'px' );
 
-		$css->set_selector( '.main-navigation .main-nav ul li a,.menu-toggle,.main-navigation .mobile-bar-items a' );
+		$css->set_selector( '.main-navigation .main-nav ul li a,.menu-toggle,.main-navigation .mobile-bar-items a, .main-navigation .menu-bar-item > a' );
 		$css->add_property( 'padding-left', absint( $settings['menu_item'] ), absint( $defaults['menu_item'] ), 'px' );
 		$css->add_property( 'padding-right', absint( $settings['menu_item'] ), absint( $defaults['menu_item'] ), 'px' );
 		$css->add_property( 'line-height', absint( $settings['menu_item_height'] ), absint( $defaults['menu_item_height'] ), 'px' );
@@ -805,11 +805,7 @@ function generate_no_cache_dynamic_css() {
 	$css->start_media_query( generate_get_media_query( 'mobile-menu' ) );
 
 	if ( generate_is_using_flexbox() ) {
-		$css->set_selector( '.main-navigation .inside-navigation' );
-		$css->add_property( 'display', 'flex' );
-		$css->add_property( 'flex-wrap', 'wrap' );
-
-		$css->set_selector( '.main-navigation .menu-toggle,.main-navigation .mobile-bar-items,.sidebar-nav-mobile:not(#sticky-placeholder)' );
+		$css->set_selector( '.main-navigation .menu-toggle,.sidebar-nav-mobile:not(#sticky-placeholder)' );
 		$css->add_property( 'display', 'block' );
 
 		$css->set_selector( '.main-navigation ul,.gen-sidebar-nav,.main-navigation:not(.slideout-navigation):not(.toggled) .main-nav > ul' );

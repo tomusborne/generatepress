@@ -39,23 +39,9 @@ button.menu-toggle {
     }
 }
 
-.nav-search-enabled .main-navigation .menu-toggle {
-	text-align: left;
-}
-
-.main-navigation .mobile-bar-items a {
-    padding-left: 20px;
-    padding-right: 20px;
-    line-height: 60px;
-}
-
-.mobile-bar-items {
-	display: none;
-	z-index: 20;
-	order: 2;
-
-	a {
-		display: inline-block;
+.has-menu-bar-items {
+	button.menu-toggle {
+		flex-grow: 0;
 	}
 }
 
@@ -105,10 +91,6 @@ nav.toggled {
 
 	.menu-item-has-children .dropdown-menu-toggle {
 		float: right;
-	}
-
-	.menu li.search-item {
-		display: none;
 	}
 }
 
