@@ -388,6 +388,12 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->add_property( 'background-color', $settings['back_to_top_background_color_hover'] );
 		$css->add_property( 'color', $settings['back_to_top_text_color_hover'] );
 
+		$css->start_media_query( generate_get_media_query( 'mobile-menu' ) );
+		$css->set_selector( '.main-navigation .menu-bar-item:hover > a' );
+		$css->add_property( 'background', 'none' );
+		$css->add_property( 'color', $settings['navigation_text_color'] );
+		$css->stop_media_query();
+
 		do_action( 'generate_colors_css', $css );
 
 		return apply_filters( 'generate_colors_css_output', $css->css_output() );
