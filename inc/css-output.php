@@ -158,19 +158,21 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$css->set_selector( '.navigation-search input::-webkit-search-decoration, .navigation-search input::-webkit-search-cancel-button, .navigation-search input::-webkit-search-results-button, .navigation-search input::-webkit-search-results-decoration' );
 			$css->add_property( 'display', 'none' );
 
-			$css->set_selector( '.main-navigation li.search-item' );
-			$css->add_property( 'z-index', '21' );
+			if ( ! generate_is_using_flexbox() ) {
+				$css->set_selector( '.main-navigation li.search-item' );
+				$css->add_property( 'z-index', '21' );
 
-			$css->set_selector( 'li.search-item.active' );
-			$css->add_property( 'transition', 'opacity 100ms ease-in-out' );
+				$css->set_selector( 'li.search-item.active' );
+				$css->add_property( 'transition', 'opacity 100ms ease-in-out' );
+
+				$css->set_selector( '.nav-left-sidebar .main-navigation li.search-item.active,.nav-right-sidebar .main-navigation li.search-item.active' );
+				$css->add_property( 'width', 'auto' );
+				$css->add_property( 'display', 'inline-block' );
+			}
 
 			$css->set_selector( '.gen-sidebar-nav .navigation-search' );
 			$css->add_property( 'top', 'auto' );
 			$css->add_property( 'bottom', '0' );
-
-			$css->set_selector( '.nav-left-sidebar .main-navigation li.search-item.active,.nav-right-sidebar .main-navigation li.search-item.active' );
-			$css->add_property( 'width', 'auto' );
-			$css->add_property( 'display', 'inline-block' );
 		}
 
 		do_action( 'generate_base_css', $css );
