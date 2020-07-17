@@ -415,7 +415,20 @@ function generate_do_menu_bar_item_container() {
 	}
 }
 
-add_action( 'generate_menu_bar_items', 'generate_do_navigation_search_button' );
+add_action( 'wp', 'generate_add_menu_bar_items' );
+/**
+ * Add menu bar items to the primary navigation.
+ */
+function generate_add_menu_bar_items() {
+	if ( ! generate_is_using_flexbox() ) {
+		return;
+	}
+
+	if ( 'enable' === generate_get_option( 'nav_search' ) ) {
+		add_action( 'generate_menu_bar_items', 'generate_do_navigation_search_button' );
+	}
+}
+
 /**
  * Add the navigation search button.
  *
