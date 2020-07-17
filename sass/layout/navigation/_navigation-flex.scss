@@ -18,6 +18,10 @@
 	.menu-bar-items {
 		display: flex;
 		align-items: center;
+
+		a {
+			color: inherit;
+		}
 	}
 
 	.menu-bar-item {

@@ -599,6 +599,10 @@ a:focus {
 	align-items: center;
 }
 
+.main-navigation .menu-bar-items a {
+	color: inherit;
+}
+
 .main-navigation .menu-bar-item {
 	position: relative;
 }
