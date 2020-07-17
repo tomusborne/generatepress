@@ -183,3 +183,9 @@ li > ul {
 .right-sidebar #right-sidebar {
 	order: -10;
 }
+
+@media (max-width: 768px) {
+	.site-content .content-area {
+		order: -20;
+	}
+}
