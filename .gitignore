@@ -1,6 +1,5 @@
 node_modules
 .editorconfig
-package.json
 package-lock.json
 Gruntfile.js
 .gitattributes
