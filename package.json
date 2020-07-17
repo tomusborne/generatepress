@@ -33,7 +33,8 @@
     "grunt-contrib-watch": "^1.1.0",
     "grunt-postcss": "^0.9.0",
     "grunt-sass": "^3.0.2",
-    "node-sass": "^4.13.1"
+    "node-sass": "^4.13.1",
+    "@wordpress/scripts": "^5.0.0"
   },
   "dependencies": {
     "grunt-cli": "^1.3.2"
