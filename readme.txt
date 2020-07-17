@@ -112,6 +112,7 @@ Release date: TBA
 * New: generate_page_class filter
 * New: generate_is_using_hatom filter
 * New: generate_after_element_class_attribute filter
+* New: generate_menu_bar_items hook
 * Fix: Close other sub-menus when opening a new one on touch devices
 * Fix: Footer bar menu spacing on mobile
 * Fix: Text aligned container width preview in Customizer when using full-width-content
@@ -161,6 +162,9 @@ Release date: TBA
 * Tweak: Hook archive post navigation into generate_after_loop hook
 * Tweak: Use aria-label for read more links/buttons instead of screen reader text
 * Tweak: Move microdata to generate_after_element_class_attribute where possible
+* Tweak: Move back to top button CSS to dynamic CSS if enabled
+* Tweak: Move navigation search CSS to dynamic CSS if enabled
+* Tweak: Remove skip-link-focus.js
 * Template change: Removed generate_do_microdata() from sidebar.php and sidebar-left.php
 
 = 2.4.2 =
