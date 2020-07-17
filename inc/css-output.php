@@ -483,6 +483,16 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 			$css->add_property( 'font-size', 'inherit' );
 		}
 
+		if ( generate_is_using_flexbox() ) {
+			$css->set_selector( '.main-navigation .menu-bar-items' );
+
+			if ( ! empty( $settings['navigation_font_size'] ) ) {
+				$css->add_property( 'font-size', absint( $settings['navigation_font_size'] ), $defaults['navigation_font_size'], 'px' );
+			} else {
+				$css->add_property( 'font-size', 'inherit' );
+			}
+		}
+
 		$css->set_selector( '.main-navigation .main-nav ul ul li a' );
 
 		if ( ! empty( $settings['navigation_font_size'] ) ) {

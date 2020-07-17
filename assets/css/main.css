@@ -597,6 +597,7 @@ a:focus {
 .main-navigation .menu-bar-items {
 	display: flex;
 	align-items: center;
+	font-size: 15px;
 }
 
 .main-navigation .menu-bar-items a {
