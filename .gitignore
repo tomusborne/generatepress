@@ -1,4 +1,11 @@
 node_modules
+.sass-cache
+generatepress.zip
+generatepress
+*.zip
 .editorconfig
-package-lock.json
 .gitattributes
+vendor
+cghooks.lock
+composer.lock
+package-lock.json
