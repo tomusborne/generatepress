@@ -95,7 +95,7 @@ MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
 
 == Changelog ==
 
-= 2.5.0 =
+= 3.0.0 =
 
 Release date: TBA
 

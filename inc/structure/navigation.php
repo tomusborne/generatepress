@@ -19,7 +19,7 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 		/**
 		 * generate_before_navigation hook.
 		 *
-		 * @since x.x.x
+		 * @since 3.0.0
 		 */
 		do_action( 'generate_before_navigation' );
 		?>
@@ -95,7 +95,7 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 		/**
 		 * generate_after_navigation hook.
 		 *
-		 * @since x.x.x
+		 * @since 3.0.0
 		 */
 		do_action( 'generate_after_navigation' );
 	}
@@ -401,7 +401,7 @@ add_action( 'generate_after_primary_menu', 'generate_do_menu_bar_item_container'
 /**
  * Add a container for menu bar items.
  *
- * @since 2.5.0
+ * @since 3.0.0
  */
 function generate_do_menu_bar_item_container() {
 	if ( ! generate_is_using_flexbox() ) {
@@ -432,7 +432,7 @@ function generate_add_menu_bar_items() {
 /**
  * Add the navigation search button.
  *
- * @since 2.5.0
+ * @since 3.0.0
  */
 function generate_do_navigation_search_button() {
 	if ( ! generate_is_using_flexbox() ) {

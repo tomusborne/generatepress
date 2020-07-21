@@ -464,7 +464,7 @@ add_action( 'generate_after_loop', 'generate_do_post_navigation' );
 /**
  * Add our post navigation after post loops.
  *
- * @since 2.5.0
+ * @since 3.0.0
  * @param string $template The template of the current action.
  */
 function generate_do_post_navigation( $template ) {

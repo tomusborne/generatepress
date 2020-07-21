@@ -867,7 +867,7 @@ function generate_no_cache_dynamic_css() {
 /**
  * Get all of our dynamic CSS to be cached/added to a file.
  *
- * @since 2.5.0
+ * @since 3.0.0
  */
 function generate_get_dynamic_css() {
 	$css = generate_base_css() . generate_font_css() . generate_advanced_css() . generate_spacing_css();

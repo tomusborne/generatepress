@@ -283,7 +283,7 @@ add_action( 'wp_enqueue_scripts', 'generate_do_pro_compatibility' );
 /**
  * Add CSS to ensure compatibility with GP Premium.
  *
- * @since x.x.x
+ * @since 3.0.0
  */
 function generate_do_pro_compatibility() {
 	if ( ! defined( 'GP_PREMIUM_VERSION' ) ) {
@@ -333,7 +333,7 @@ add_filter( 'generate_menu_item_dropdown_arrow_direction', 'generate_set_pro_men
 /**
  * Set the menu item arrow directions for Secondary and Slideout navs.
  *
- * @since x.x.x
+ * @since 3.0.0
  * @param string $arrow_direction The current direction.
  * @param object $args The args for the current menu.
  * @param int    $depth The current depth of the menu item.

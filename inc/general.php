@@ -444,7 +444,7 @@ add_filter( 'generate_after_element_class_attribute', 'generate_set_microdata_ma
 /**
  * Adds microdata to elements.
  *
- * @since 2.5.0
+ * @since 3.0.0
  * @param string $output The existing output after the class attribute.
  * @param string $context What element we're targeting.
  */

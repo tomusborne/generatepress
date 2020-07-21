@@ -823,7 +823,7 @@ if ( ! function_exists( 'generate_article_schema' ) ) {
  * There's nothing in here yet, but we're setting the version to use later.
  *
  * @since 2.1
- * @deprecated 2.5.0
+ * @deprecated 3.0.0
  */
 function generate_do_admin_db_updates() {
 	// Replaced by Generate_Theme_Update().
@@ -833,7 +833,7 @@ function generate_do_admin_db_updates() {
  * Process important database updates when someone visits the front or backend.
  *
  * @since 2.3
- * @deprecated 2.5.0
+ * @deprecated 3.0.0
  */
 function generate_do_db_updates() {
 	// Replaced by Generate_Theme_Update().
@@ -884,7 +884,7 @@ function generate_migrate_existing_settings() {
  * Output CSS for the icon fonts.
  *
  * @since 2.3
- * @deprecated 2.5.0
+ * @deprecated 3.0.0
  */
 function generate_do_icon_css() {
 	$output = false;

@@ -507,7 +507,7 @@ add_filter( 'generate_page_class', 'generate_do_page_container_classes' );
  * Adds custom classes to the #page element
  *
  * @param array $classes The existing classes.
- * @since 2.5.0
+ * @since 3.0.0
  */
 function generate_do_page_container_classes( $classes ) {
 	$classes[] = 'site';
@@ -530,7 +530,7 @@ add_filter( 'generate_comment-author_class', 'generate_do_comment_author_classes
  * Adds custom classes to the comment author element
  *
  * @param array $classes The existing classes.
- * @since 2.5.0
+ * @since 3.0.0
  */
 function generate_do_comment_author_classes( $classes ) {
 	$classes[] = 'comment-author';
