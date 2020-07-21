@@ -247,6 +247,10 @@ if ( ! function_exists( 'generate_beaver_builder_css' ) ) {
 	 * @since 1.3.45
 	 */
 	function generate_beaver_builder_css() {
+		if ( generate_is_using_flexbox() ) {
+			return;
+		}
+
 		$body_classes = get_body_class();
 
 		// Check is Beaver Builder is active
