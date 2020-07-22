@@ -405,7 +405,7 @@ add_action( 'generate_do_template_part', 'generate_do_template_parts' );
 /**
  * Add template parts to templates.
  *
- * @since 2.5
+ * @since 3.0.0
  * @param string $template The current template.
  */
 function generate_do_template_parts( $template ) {

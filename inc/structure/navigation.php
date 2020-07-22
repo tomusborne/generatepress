@@ -66,7 +66,7 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 				/**
 				 * generate_after_mobile_menu_button hook
 				 *
-				 * @since 2.5
+				 * @since 3.0.0
 				 */
 				do_action( 'generate_after_mobile_menu_button' );
 

@@ -844,7 +844,7 @@ if ( ! function_exists( 'generate_update_logo_setting' ) ) {
 	 * Migrate the old logo database entry to the new custom_logo theme mod (WordPress 4.5)
 	 *
 	 * @since 1.3.29
-	 * @deprecated 2.5
+	 * @deprecated 3.0.0
 	 */
 	function generate_update_logo_setting() {
 		// Replaced by Generate_Theme_Update().
@@ -857,7 +857,7 @@ if ( ! function_exists( 'generate_typography_convert_values' ) ) {
 	 * This should only run once
 	 *
 	 * @since 1.3.0
-	 * @deprecated 2.5
+	 * @deprecated 3.0.0
 	 */
 	function generate_typography_convert_values() {
 		// Replaced by Generate_Theme_Update().
@@ -874,7 +874,7 @@ if ( ! function_exists( 'generate_typography_convert_values' ) ) {
  * setting options and causing these functions to run on fresh installs.
  *
  * @since 2.0
- * @deprecated 2.5
+ * @deprecated 3.0.0
  */
 function generate_migrate_existing_settings() {
 	// Replaced by Generate_Theme_Update().

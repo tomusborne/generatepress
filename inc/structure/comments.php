@@ -178,7 +178,7 @@ add_action( 'generate_do_template_part', 'generate_do_comments_template', 15 );
 /**
  * Add the comments template to pages and single posts.
  *
- * @since 2.5
+ * @since 3.0.0
  * @param string $template The template we're targeting.
  */
 function generate_do_comments_template( $template ) {

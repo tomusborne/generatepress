@@ -36,7 +36,7 @@ get_header(); ?>
 					/**
 					 * generate_do_template_part hook.
 					 *
-					 * @since 2.5
+					 * @since 3.0.0
 					 */
 					do_action( 'generate_do_template_part', 'index' );
 
@@ -54,7 +54,7 @@ get_header(); ?>
 				/**
 				 * generate_do_template_part hook.
 				 *
-				 * @since 2.5
+				 * @since 3.0.0
 				 */
 				do_action( 'generate_do_template_part', 'none' );
 

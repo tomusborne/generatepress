@@ -416,7 +416,7 @@ function generate_get_element_classes( $context, $class = '' ) {
 /**
  * Get the kind of schema we're using.
  *
- * @since 2.5
+ * @since 3.0.0
  */
 function generate_get_schema_type() {
 	return apply_filters( 'generate_schema_type', 'microdata' );
@@ -512,7 +512,7 @@ function generate_do_microdata( $context ) {
 /**
  * Whether to print hAtom output or not.
  *
- * @since 2.5
+ * @since 3.0.0
  */
 function generate_is_using_hatom() {
 	return apply_filters( 'generate_is_using_hatom', true );
@@ -521,7 +521,7 @@ function generate_is_using_hatom() {
 /**
  * Check whether we're using the Flexbox structure.
  *
- * @since 2.5
+ * @since 3.0.0
  */
 function generate_is_using_flexbox() {
 	// No flexbox for old versions of GPP.
