@@ -534,6 +534,8 @@ function generate_is_using_flexbox() {
 
 /**
  * Check if we have any menu bar items.
+ *
+ * @since 3.0.0
  */
 function generate_has_menu_bar_items() {
 	return has_action( 'generate_menu_bar_items' );
