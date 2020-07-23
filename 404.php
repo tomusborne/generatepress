@@ -21,12 +21,7 @@ get_header(); ?>
 			 */
 			do_action( 'generate_before_main_content' );
 
-			/**
-			 * generate_do_template_part hook.
-			 *
-			 * @since 3.0.0
-			 */
-			do_action( 'generate_do_template_part', '404' );
+			generate_do_template_part( '404' );
 
 			/**
 			 * generate_after_main_content hook.

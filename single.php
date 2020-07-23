@@ -25,12 +25,7 @@ get_header(); ?>
 
 				the_post();
 
-				/**
-				 * generate_do_template_part hook.
-				 *
-				 * @since 3.0.0
-				 */
-				do_action( 'generate_do_template_part', 'single' );
+				generate_do_template_part( 'single' );
 
 			endwhile;
 

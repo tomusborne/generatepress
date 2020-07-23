@@ -401,45 +401,6 @@ function generate_set_wp_headers( $headers ) {
 	return $headers;
 }
 
-add_action( 'generate_do_template_part', 'generate_do_template_parts' );
-/**
- * Add template parts to templates.
- *
- * @since 3.0.0
- * @param string $template The current template.
- */
-function generate_do_template_parts( $template ) {
-	if ( apply_filters( 'generate_disable_template_part', false, $template ) ) {
-		return;
-	}
-
-	if ( 'archive' === $template || 'index' === $template ) {
-		get_template_part( 'content', get_post_format() );
-	}
-
-	if ( 'page' === $template ) {
-		get_template_part( 'content', 'page' );
-	}
-
-	if ( 'single' === $template ) {
-		get_template_part( 'content', 'single' );
-	}
-
-	if ( 'search' === $template ) {
-		get_template_part( 'content', 'search' );
-	}
-
-	if ( '404' === $template ) {
-		get_template_part( 'content', '404' );
-	}
-
-	if ( 'none' === $template ) {
-		get_template_part( 'no-results' );
-	}
-
-	do_action( 'generate_after_do_template_parts', $template );
-}
-
 add_filter( 'generate_after_element_class_attribute', 'generate_set_microdata_markup', 10, 2 );
 /**
  * Adds microdata to elements.

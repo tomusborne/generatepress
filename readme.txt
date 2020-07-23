@@ -100,7 +100,9 @@ MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
 Release date: TBA
 
 * New: Flexbox layout option - see blog post for more info
-* New: generate_do_template_part hook
+* New: generate_before_do_template_part hook
+* New: generate_after_do_template_part hook
+* New: generate_do_template_part filter
 * New: Better option migration system
 * New: generate_post_date_show_updated_only filter
 * New: full-width-ready option for alignfull blocks
@@ -143,7 +145,7 @@ Release date: TBA
 * Tweak: Remove mixed up alignleft/right classes when using RTL languages
 * Tweak: Remove sub-menu open left CSS when using RTL languages
 * Tweak: Use aria-label in back to top button instead of screen-reader-text
-* Tweak: Hook comments template into generate_do_template_part
+* Tweak: Hook comments template into generate_after_do_template_part
 * Tweak: Use flexbox for author page header
 * Tweak: Simplify navigation dropdown CSS
 * Tweak: Load mobile nav search icon after menu toggle when using flexbox

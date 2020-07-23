@@ -538,3 +538,53 @@ function generate_is_using_flexbox() {
 function generate_has_menu_bar_items() {
 	return has_action( 'generate_menu_bar_items' );
 }
+
+/**
+ * Check if we should include the default template part.
+ *
+ * @since 3.0.0
+ * @param string $template The template to get.
+ */
+function generate_do_template_part( $template ) {
+	/**
+	 * generate_before_do_template_part hook.
+	 *
+	 * @since 3.0.0
+	 * @param string $template The template.
+	 */
+	do_action( 'generate_before_do_template_part', $template );
+
+	if ( apply_filters( 'generate_do_template_part', true, $template ) ) {
+		if ( 'archive' === $template || 'index' === $template ) {
+			get_template_part( 'content', get_post_format() );
+		}
+
+		if ( 'page' === $template ) {
+			get_template_part( 'content', 'page' );
+		}
+
+		if ( 'single' === $template ) {
+			get_template_part( 'content', 'single' );
+		}
+
+		if ( 'search' === $template ) {
+			get_template_part( 'content', 'search' );
+		}
+
+		if ( '404' === $template ) {
+			get_template_part( 'content', '404' );
+		}
+
+		if ( 'none' === $template ) {
+			get_template_part( 'no-results' );
+		}
+	}
+
+	/**
+	 * generate_after_do_template_parts hook.
+	 *
+	 * @since 3.0.0
+	 * @param string $template The template.
+	 */
+	do_action( 'generate_after_do_template_part', $template );
+}
