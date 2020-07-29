@@ -12,7 +12,7 @@ GeneratePress is a lightweight WordPress theme built with a focus on speed and u
 
 == Description ==
 
-GeneratePress is a lightweight WordPress theme built with a focus on speed and usability. Performance is important to us, which is why a fresh GeneratePress install adds less than 15kb (gzipped) to your page size.
+GeneratePress is a lightweight WordPress theme built with a focus on speed and usability. Performance is important to us, which is why a fresh GeneratePress install adds less than 10kb (gzipped) to your page size.
 
 We take full advantage of the new block editor (Gutenberg), which gives you more control over creating your content.
 
