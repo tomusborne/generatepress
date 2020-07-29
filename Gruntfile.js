@@ -282,7 +282,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build', ['style', 'concat', 'uglify:js', 'cssmin:css']);
 
     // Grunt release - Create installable package of the local files
-	grunt.registerTask('release', ['clean:zip', 'copy:main', 'compress:main', 'clean:main']);
+	grunt.registerTask('package', ['clean:zip', 'copy:main', 'compress:main', 'clean:main']);
 
     grunt.util.linefeed = '\n';
 };
