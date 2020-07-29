@@ -811,11 +811,6 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 	overflow: hidden;
 }
 
-.site-main .paging-navigation .navigation {
-	margin: 0;
-	/* Only for WordPress < 4.4 */
-}
-
 .site-main .post-navigation {
 	margin-bottom: 0;
 }
