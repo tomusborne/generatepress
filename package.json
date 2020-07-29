@@ -5,8 +5,8 @@
   "main": "Gruntfile.js",
   "scripts": {
     "style": "grunt style",
-		"build": "grunt build",
-		"package": "grunt package"
+    "build": "grunt build",
+    "package": "grunt package"
   },
   "repository": {
     "type": "git",
