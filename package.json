@@ -1,11 +1,12 @@
 {
   "name": "generatepress",
-  "version": "2.4.2",
+  "version": "3.0.0-alpha.1",
   "description": "A super lightweight WordPress theme.",
   "main": "Gruntfile.js",
   "scripts": {
     "style": "grunt style",
-    "build": "grunt build"
+		"build": "grunt build",
+		"package": "grunt package"
   },
   "repository": {
     "type": "git",
