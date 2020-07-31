@@ -170,34 +170,35 @@
 		 * Makes it possible to style mobile item with .toggled class.
 		 */
 		var checkMobile = function() {
-			for ( var i = 0; i < allNavToggles.length; i++ ) {
-				if ( allNavToggles[i].offsetParent === null ) {
-					var closestParent = allNavToggles[i].closest( 'nav' );
+			var openedMobileMenus = document.querySelectorAll( '.toggled' );
 
-					if ( closestParent && closestParent.classList.contains( 'toggled' ) ) {
-						var closestNav = closestParent.getElementsByTagName( 'ul' )[0];
-						var closestNavItems = closestNav.getElementsByTagName( 'li' );
-						var closestSubMenus = closestNav.getElementsByTagName( 'ul' );
+			for ( var i = 0; i < openedMobileMenus.length; i++ ) {
+				var menuToggle = openedMobileMenus[i].querySelector( '.menu-toggle' );
 
-						document.activeElement.blur();
-						closestParent.classList.remove( 'toggled' );
-						htmlEl.classList.remove( 'mobile-menu-open' );
-						allNavToggles[i].setAttribute( 'aria-expanded', 'false' );
+				if ( menuToggle && menuToggle.offsetParent === null ) {
+					// Navigation is toggled, but .menu-toggle isn't visible on the page (display: none).
+					var closestNav = openedMobileMenus[i].getElementsByTagName( 'ul' )[ 0 ],
+						closestNavItems = closestNav.getElementsByTagName( 'li' ),
+						closestSubMenus = closestNav.getElementsByTagName( 'ul' );
 
-						for ( var li = 0; li < closestNavItems.length; li++ ) {
-							closestNavItems[li].classList.remove( 'sfHover' );
-						}
+					document.activeElement.blur();
+					openedMobileMenus[i].classList.remove( 'toggled' );
+					htmlEl.classList.remove( 'mobile-menu-open' );
+					menuToggle.setAttribute( 'aria-expanded', 'false' );
 
-						for ( var sm = 0; sm < closestSubMenus.length; sm++ ) {
-							closestSubMenus[sm].classList.remove( 'toggled-on' );
-						}
-
-						if ( closestNav ) {
-							closestNav.removeAttribute( 'aria-hidden' );
-						}
-
-						disableDropdownArrows( closestParent );
+					for ( var li = 0; li < closestNavItems.length; li++ ) {
+						closestNavItems[li].classList.remove( 'sfHover' );
 					}
+
+					for ( var sm = 0; sm < closestSubMenus.length; sm++ ) {
+						closestSubMenus[sm].classList.remove( 'toggled-on' );
+					}
+
+					if ( closestNav ) {
+						closestNav.removeAttribute( 'aria-hidden' );
+					}
+
+					disableDropdownArrows( openedMobileMenus[i] );
 				}
 			}
 		}
