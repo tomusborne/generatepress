@@ -2,20 +2,17 @@
 	margin: 2em 0 0;
 }
 
-.page-header-image,
-.page-header-image-single {
+.featured-image {
 	line-height: 0; /* no more weird spacing */
 }
 
 .separate-containers {
-	.page-header-image,
-	.page-header-image-single {
+	.featured-image {
 		margin-top: $separating-space;
 	}
-}
 
-.separate-containers .inside-article > [class*="page-header-"],
-.one-container .inside-article > [class*="page-header-"] {
-	margin-bottom: 2em;
-	margin-top: 0;
+	.inside-article > .featured-image {
+		margin-top: 0;
+		margin-bottom: 2em;
+	}
 }
