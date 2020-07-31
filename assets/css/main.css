@@ -28,17 +28,32 @@
 /*--------------------------------------------------------------
 # Reset
 --------------------------------------------------------------*/
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-	border: 0;
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
 	margin: 0;
 	padding: 0;
+	border: 0;
 }
 
 html {
@@ -47,16 +62,7 @@ html {
 	-ms-text-size-adjust: 100%;
 }
 
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-main,
-nav,
-section {
+main {
 	display: block;
 }
 
@@ -95,13 +101,6 @@ td {
 	font-weight: normal;
 	text-align: left;
 	padding: 5px;
-}
-
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-	content: "";
 }
 
 a {
