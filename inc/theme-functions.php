@@ -125,6 +125,29 @@ if ( ! function_exists( 'generate_show_title' ) ) {
 	}
 }
 
+/**
+ * Check whether we should display the entry header or not.
+ *
+ * @since 3.0.0
+ */
+function generate_show_entry_header() {
+	$show_entry_header      = true;
+	$show_title             = generate_show_title();
+	$has_before_entry_title = has_action( 'generate_before_entry_title' );
+	$has_after_entry_title  = has_action( 'generate_after_entry_title' );
+
+	if ( is_page() ) {
+		$has_before_entry_title = has_action( 'generate_before_page_title' );
+		$has_after_entry_title  = has_action( 'generate_after_page_title' );
+	}
+
+	if ( ! $show_title && ! $has_before_entry_title && ! $has_after_entry_title ) {
+		$show_entry_header = false;
+	}
+
+	return apply_filters( 'generate_show_entry_header', $show_entry_header );
+}
+
 if ( ! function_exists( 'generate_get_premium_url' ) ) {
 	/**
 	 * Generate a URL to our premium add-ons.

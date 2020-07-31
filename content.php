@@ -20,38 +20,42 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 * @hooked generate_featured_page_header_inside_single - 10
 		 */
 		do_action( 'generate_before_content' );
-		?>
 
-		<header class="entry-header">
-			<?php
-			/**
-			 * generate_before_entry_title hook.
-			 *
-			 * @since 0.1
-			 */
-			do_action( 'generate_before_entry_title' );
-
-			the_title(
-				sprintf(
-					'<h2 class="entry-title"%2$s><a href="%1$s" rel="bookmark">',
-					esc_url( get_permalink() ),
-					'microdata' === generate_get_schema_type() ? ' itemprop="headline"' : ''
-				),
-				'</a></h2>'
-			);
-
-			/**
-			 * generate_after_entry_title hook.
-			 *
-			 * @since 0.1
-			 *
-			 * @hooked generate_post_meta - 10
-			 */
-			do_action( 'generate_after_entry_title' );
+		if ( generate_show_entry_header() ) :
 			?>
-		</header>
+			<header class="entry-header">
+				<?php
+				/**
+				 * generate_before_entry_title hook.
+				 *
+				 * @since 0.1
+				 */
+				do_action( 'generate_before_entry_title' );
 
-		<?php
+				if ( generate_show_title() ) {
+					the_title(
+						sprintf(
+							'<h2 class="entry-title"%2$s><a href="%1$s" rel="bookmark">',
+							esc_url( get_permalink() ),
+							'microdata' === generate_get_schema_type() ? ' itemprop="headline"' : ''
+						),
+						'</a></h2>'
+					);
+				}
+
+				/**
+				 * generate_after_entry_title hook.
+				 *
+				 * @since 0.1
+				 *
+				 * @hooked generate_post_meta - 10
+				 */
+				do_action( 'generate_after_entry_title' );
+				?>
+			</header>
+			<?php
+		endif;
+
 		/**
 		 * generate_after_entry_header hook.
 		 *
