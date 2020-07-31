@@ -220,12 +220,10 @@ function generate_do_post_meta_item( $item ) {
 	}
 
 	if ( 'tags' === $item ) {
-		$tags = apply_filters( 'generate_show_tags', true );
-
 		$term_separator = apply_filters( 'generate_term_separator', _x( ', ', 'Used between list items, there is a space after the comma.', 'generatepress' ), 'tags' );
 		$tags_list = get_the_tag_list( '', $term_separator );
 
-		if ( $tags_list && $tags ) {
+		if ( $tags_list ) {
 			echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				'generate_tag_list_output',
 				sprintf(
