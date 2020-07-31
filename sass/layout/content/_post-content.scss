@@ -25,9 +25,9 @@ footer.entry-meta .posted-on {
     display: block;
 }
 
-.page-content,
-.entry-content,
-.entry-summary {
+.page-content:not(:first-child),
+.entry-content:not(:first-child),
+.entry-summary:not(:first-child) {
 	margin: 2em 0 0;
 }
 

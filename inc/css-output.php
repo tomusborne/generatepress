@@ -820,16 +820,6 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 function generate_no_cache_dynamic_css() {
 	$css = new GeneratePress_CSS();
 
-	if ( ! generate_show_title() ) {
-		$css->set_selector( '.page .entry-content' )->add_property( 'margin-top', '0px' );
-
-		if ( is_single() ) {
-			if ( ! apply_filters( 'generate_post_author', true ) && ! apply_filters( 'generate_post_date', true ) ) {
-				$css->set_selector( '.single .entry-content' )->add_property( 'margin-top', '0px' );
-			}
-		}
-	}
-
 	$css->start_media_query( generate_get_media_query( 'mobile-menu' ) );
 
 	if ( generate_is_using_flexbox() ) {
