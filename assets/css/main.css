@@ -84,17 +84,11 @@ template {
 	display: none;
 }
 
-ol,
-ul {
-	list-style: none;
-}
-
+/**
+ * Remove the gray background on active links in IE 10.
+ */
 a {
 	background-color: transparent;
-}
-
-a img {
-	border: 0;
 }
 
 /*--------------------------------------------------------------
