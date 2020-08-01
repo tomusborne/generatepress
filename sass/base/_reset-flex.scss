@@ -32,22 +32,25 @@ html {
 	-ms-text-size-adjust:     100%;
 }
 
+/**
+ * Render the `main` element consistently in IE.
+ */
+
 main {
 	display: block;
 }
 
-audio,
-canvas,
-progress,
-video {
-	display: inline-block;
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+
+progress {
 	vertical-align: baseline;
 }
 
-audio:not([controls]) {
-	display: none;
-	height: 0;
-}
+/**
+ * Add the correct display in IE 10+.
+ */
 
 [hidden],
 template {
@@ -57,19 +60,6 @@ template {
 ol,
 ul {
 	list-style: none;
-}
-
-table { /* tables still need 'cellspacing="0"' in the markup */
-	border-collapse: separate;
-	border-spacing: 0;
-}
-
-caption,
-th,
-td {
-	font-weight: normal;
-	text-align: left;
-	padding: 5px;
 }
 
 a {
