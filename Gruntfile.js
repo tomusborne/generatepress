@@ -243,7 +243,8 @@ module.exports = function (grunt) {
             main: {
                 options: {
                     archive: 'generatepress-' + pkgInfo.version + '.zip',
-                    mode: 'zip'
+                    mode: 'zip',
+                    level: 5
                 },
                 files: [
                     {
