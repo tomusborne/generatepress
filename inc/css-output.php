@@ -114,7 +114,7 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$css->add_property( 'transition', 'opacity 300ms ease-in-out' );
 		}
 
-		if ( generate_get_option( 'nav_search' ) ) {
+		if ( 'enable' === generate_get_option( 'nav_search' ) ) {
 			$css->set_selector( '.navigation-search' );
 			$css->add_property( 'position', 'absolute' );
 			$css->add_property( 'left', '-99999px' );
