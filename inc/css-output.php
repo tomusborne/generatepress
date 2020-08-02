@@ -440,7 +440,11 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$buttons_family = generate_get_font_family_css( 'font_buttons', 'generate_settings', generate_get_default_fonts() );
 
 		$css->set_selector( 'body, button, input, select, textarea' );
-		$css->add_property( 'font-family', $body_family );
+
+		if ( 'System Stack' !== $settings['font_body'] ) {
+			$css->add_property( 'font-family', $body_family );
+		}
+
 		$css->add_property( 'font-weight', $settings['body_font_weight'], $defaults['body_font_weight'] );
 		$css->add_property( 'text-transform', $settings['body_font_transform'], $defaults['body_font_transform'] );
 		$css->add_property( 'font-size', $settings['body_font_size'], $defaults['body_font_size'], 'px' );
