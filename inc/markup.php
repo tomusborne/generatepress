@@ -346,9 +346,14 @@ if ( ! function_exists( 'generate_navigation_classes' ) ) {
 		$classes[] = 'main-navigation';
 
 		if ( 'contained-nav' === generate_get_option( 'nav_layout_setting' ) ) {
-			$classes[] = 'grid-container';
+			if ( generate_is_using_flexbox() ) {
+				$navigation_location = generate_get_navigation_location();
 
-			if ( ! generate_is_using_flexbox() ) {
+				if ( 'nav-float-right' !== $navigation_location && 'nav-float-left' !== $navigation_location ) {
+					$classes[] = 'grid-container';
+				}
+			} else {
+				$classes[] = 'grid-container';
 				$classes[] = 'grid-parent';
 			}
 		}
