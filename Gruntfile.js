@@ -108,8 +108,10 @@ module.exports = function (grunt) {
                 expand: true,
                 src: [
                     'assets/css/*.css',
+                    'assets/css/components/*.css',
                     '!assets/css/*.min.css',
-                    '!assets/css/font-awesome.css',
+                    '!assets/css/components/*.min.css',
+                    '!assets/css/components/font-awesome.css',
                 ]
             }
         },
