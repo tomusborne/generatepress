@@ -1602,6 +1602,12 @@ ul.blocks-gallery-grid {
 	box-sizing: border-box;
 }
 
+embed,
+iframe,
+object {
+	max-width: 100%;
+}
+
 .gallery {
 	margin-bottom: 1.5em;
 }
@@ -1659,12 +1665,6 @@ ul.blocks-gallery-grid {
 
 .gallery-icon {
 	padding: 5px;
-}
-
-embed,
-iframe,
-object {
-	max-width: 100%;
 }
 
 /*--------------------------------------------------------------

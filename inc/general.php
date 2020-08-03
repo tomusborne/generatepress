@@ -38,6 +38,10 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 			wp_enqueue_style( 'generate-comments', $dir_uri . "/assets/css/comments{$suffix}.css", array(), GENERATE_VERSION, 'all' );
 		}
 
+		if ( generate_is_using_flexbox() && apply_filters( 'generate_add_classic_gallery_css', false ) ) {
+			wp_enqueue_style( 'generate-classic-gallery', $dir_uri . "/assets/css/classic-gallery{$suffix}.css", array(), GENERATE_VERSION, 'all' );
+		}
+
 		if (
 			generate_is_using_flexbox() &&
 			( is_active_sidebar( 'top-bar' ) ||
