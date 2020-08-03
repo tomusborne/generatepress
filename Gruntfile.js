@@ -39,14 +39,14 @@ module.exports = function (grunt) {
                         expand: true,
                         cwd: 'sass/',
                         src: ['font-icons.scss'],
-                        dest: 'assets/css',
+                        dest: 'assets/css/components',
                         ext: '.css'
                     },
                     {
                         expand: true,
                         cwd: 'sass/',
                         src: ['comments.scss'],
-                        dest: 'assets/css',
+                        dest: 'assets/css/components',
                         ext: '.css'
                     },
                     {
@@ -60,7 +60,7 @@ module.exports = function (grunt) {
                         expand: true,
                         cwd: 'sass/',
                         src: ['widget-areas.scss'],
-                        dest: 'assets/css',
+                        dest: 'assets/css/components',
                         ext: '.css'
 					},
 					{
@@ -88,7 +88,7 @@ module.exports = function (grunt) {
                         expand: true,
                         cwd: 'sass/',
                         src: ['classic-gallery.scss'],
-                        dest: 'assets/css',
+                        dest: 'assets/css/components',
                         ext: '.css'
                     }
                 ]
@@ -164,12 +164,12 @@ module.exports = function (grunt) {
                         dest: 'assets/css/mobile.min.css',
                     },
                     {
-                        src: 'assets/css/font-icons.css',
-                        dest: 'assets/css/font-icons.min.css',
+                        src: 'assets/css/components/font-icons.css',
+                        dest: 'assets/css/components/font-icons.min.css',
                     },
                     {
-                        src: 'assets/css/comments.css',
-                        dest: 'assets/css/comments.min.css',
+                        src: 'assets/css/components/comments.css',
+                        dest: 'assets/css/components/comments.min.css',
                     },
                     {
                         src: 'assets/css/mobile.css',
@@ -180,8 +180,8 @@ module.exports = function (grunt) {
                         dest: 'assets/css/main.min.css',
                     },
                     {
-                        src: 'assets/css/widget-areas.css',
-                        dest: 'assets/css/widget-areas.min.css',
+                        src: 'assets/css/components/widget-areas.css',
+                        dest: 'assets/css/components/widget-areas.min.css',
 					},
 					{
                         src: 'assets/css/style-rtl.css',
@@ -192,8 +192,8 @@ module.exports = function (grunt) {
                         dest: 'assets/css/main-rtl.min.css',
 					},
 					{
-                        src: 'assets/css/classic-gallery.css',
-                        dest: 'assets/css/classic-gallery.min.css',
+                        src: 'assets/css/components/classic-gallery.css',
+                        dest: 'assets/css/components/classic-gallery.min.css',
                     },
                 ]
             }
