@@ -1581,6 +1581,11 @@ footer.entry-meta {
 	vertical-align: bottom;
 }
 
+.wp-block-image figcaption {
+	font-size: 13px;
+	text-align: center;
+}
+
 /*--------------------------------------------------------------
 ## Galleries
 --------------------------------------------------------------*/
