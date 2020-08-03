@@ -34,25 +34,26 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 			wp_enqueue_style( 'generate-font-icons', $dir_uri . "/assets/css/components/font-icons{$suffix}.css", array(), GENERATE_VERSION, 'all' );
 		}
 
-		if ( is_singular() && comments_open() ) {
-			wp_enqueue_style( 'generate-comments', $dir_uri . "/assets/css/components/comments{$suffix}.css", array(), GENERATE_VERSION, 'all' );
-		}
+		if ( generate_is_using_flexbox() ) {
+			if ( is_singular() && comments_open() ) {
+				wp_enqueue_style( 'generate-comments', $dir_uri . "/assets/css/components/comments{$suffix}.css", array(), GENERATE_VERSION, 'all' );
+			}
 
-		if ( generate_is_using_flexbox() && apply_filters( 'generate_add_classic_gallery_css', false ) ) {
-			wp_enqueue_style( 'generate-classic-gallery', $dir_uri . "/assets/css/components/classic-gallery{$suffix}.css", array(), GENERATE_VERSION, 'all' );
-		}
+			if ( apply_filters( 'generate_add_classic_gallery_css', false ) ) {
+				wp_enqueue_style( 'generate-classic-gallery', $dir_uri . "/assets/css/components/classic-gallery{$suffix}.css", array(), GENERATE_VERSION, 'all' );
+			}
 
-		if (
-			generate_is_using_flexbox() &&
-			( is_active_sidebar( 'top-bar' ) ||
-			is_active_sidebar( 'footer-bar' ) ||
-			is_active_sidebar( 'footer-1' ) ||
-			is_active_sidebar( 'footer-2' ) ||
-			is_active_sidebar( 'footer-3' ) ||
-			is_active_sidebar( 'footer-4' ) ||
-			is_active_sidebar( 'footer-5' ) )
-		) {
-			wp_enqueue_style( 'generate-widget-areas', $dir_uri . "/assets/css/components/widget-areas{$suffix}.css", array(), GENERATE_VERSION, 'all' );
+			if (
+				is_active_sidebar( 'top-bar' ) ||
+				is_active_sidebar( 'footer-bar' ) ||
+				is_active_sidebar( 'footer-1' ) ||
+				is_active_sidebar( 'footer-2' ) ||
+				is_active_sidebar( 'footer-3' ) ||
+				is_active_sidebar( 'footer-4' ) ||
+				is_active_sidebar( 'footer-5' )
+			) {
+				wp_enqueue_style( 'generate-widget-areas', $dir_uri . "/assets/css/components/widget-areas{$suffix}.css", array(), GENERATE_VERSION, 'all' );
+			}
 		}
 
 		if ( is_child_theme() && apply_filters( 'generate_load_child_theme_stylesheet', true ) ) {
