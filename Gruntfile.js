@@ -83,14 +83,7 @@ module.exports = function (grunt) {
                         src: ['main-rtl.scss'],
                         dest: 'assets/css',
                         ext: '.css'
-					},
-					{
-                        expand: true,
-                        cwd: 'sass/',
-                        src: ['classic-gallery.scss'],
-                        dest: 'assets/css/components',
-                        ext: '.css'
-                    }
+					}
                 ]
             }
         },
@@ -193,10 +186,6 @@ module.exports = function (grunt) {
                         src: 'assets/css/main-rtl.css',
                         dest: 'assets/css/main-rtl.min.css',
 					},
-					{
-                        src: 'assets/css/components/classic-gallery.css',
-                        dest: 'assets/css/components/classic-gallery.min.css',
-                    },
                 ]
             }
         },

@@ -39,10 +39,6 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 				wp_enqueue_style( 'generate-comments', $dir_uri . "/assets/css/components/comments{$suffix}.css", array(), GENERATE_VERSION, 'all' );
 			}
 
-			if ( apply_filters( 'generate_add_classic_gallery_css', false ) ) {
-				wp_enqueue_style( 'generate-classic-gallery', $dir_uri . "/assets/css/components/classic-gallery{$suffix}.css", array(), GENERATE_VERSION, 'all' );
-			}
-
 			if (
 				is_active_sidebar( 'top-bar' ) ||
 				is_active_sidebar( 'footer-bar' ) ||
