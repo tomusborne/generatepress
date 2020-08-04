@@ -1410,6 +1410,12 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			$show_flexbox_option = false;
 		}
 
+		if ( generate_is_using_flexbox() ) {
+			$show_flexbox_option = false;
+		}
+
+		$show_flexbox_option = apply_filters( 'generate_show_flexbox_customizer_option', $show_flexbox_option );
+
 		if ( $show_flexbox_option ) {
 			$wp_customize->add_setting(
 				'generate_settings[structure]',
