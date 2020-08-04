@@ -762,33 +762,6 @@ a:focus {
 	left: auto;
 }
 
-.dropdown-click .main-navigation ul ul {
-	display: none;
-	visibility: hidden;
-}
-
-.dropdown-click .main-navigation ul ul ul.toggled-on {
-	left: 0;
-	top: auto;
-	position: relative;
-}
-
-.dropdown-click .main-navigation ul.toggled-on,
-.dropdown-click .main-navigation ul li.sfHover > ul.toggled-on {
-	display: block;
-	left: auto;
-	right: auto;
-	opacity: 1;
-	visibility: visible;
-	pointer-events: auto;
-	height: auto;
-	overflow: visible;
-}
-
-.dropdown-click nav ul ul ul {
-	background-color: transparent;
-}
-
 .nav-float-right .main-navigation ul ul ul {
 	top: 0;
 }
@@ -833,26 +806,6 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 .sidebar .main-navigation.sub-menu-left ul li.sfHover ul {
 	top: 0;
 	right: 100%;
-}
-
-.dropdown-click .widget-area .main-navigation ul ul {
-	top: auto;
-	position: absolute;
-	float: none;
-	width: 100%;
-	left: -99999px;
-}
-
-.dropdown-click .widget-area .main-navigation ul ul.toggled-on {
-	position: relative;
-	left: 0;
-	right: 0;
-}
-
-.dropdown-click .widget-area.sidebar .main-navigation ul li.sfHover ul,
-.dropdown-click .widget-area.sidebar .main-navigation ul li:hover ul {
-	right: 0;
-	left: 0;
 }
 
 /*--------------------------------------------------------------
@@ -1820,10 +1773,6 @@ nav.toggled .sfHover > a > .dropdown-menu-toggle .gp-icon.icon-arrow-left svg {
 
 nav.toggled .sfHover > a > .dropdown-menu-toggle .gp-icon.icon-arrow-right svg {
 	transform: rotate(270deg);
-}
-
-.dropdown-click .sfHover > a > .dropdown-menu-toggle > .gp-icon svg {
-	transform: rotate(180deg);
 }
 
 /*--------------------------------------------------------------

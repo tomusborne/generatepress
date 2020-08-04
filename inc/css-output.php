@@ -175,6 +175,49 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$css->add_property( 'bottom', '0' );
 		}
 
+		if ( 'click' === generate_get_option( 'nav_dropdown_type' ) || 'click-arrow' === generate_get_option( 'nav_dropdown_type' ) ) {
+			$css->set_selector( '.dropdown-click .main-navigation ul ul' );
+			$css->add_property( 'display', 'none' );
+			$css->add_property( 'visibility', 'hidden' );
+
+			$css->set_selector( '.dropdown-click .main-navigation ul ul ul.toggled-on' );
+			$css->add_property( 'left', '0' );
+			$css->add_property( 'top', 'auto' );
+			$css->add_property( 'position', 'relative' );
+
+			$css->set_selector( '.dropdown-click .main-navigation ul.toggled-on, .dropdown-click .main-navigation ul li.sfHover > ul.toggled-on' );
+			$css->add_property( 'display', 'block' );
+			$css->add_property( 'left', 'auto' );
+			$css->add_property( 'right', 'auto' );
+			$css->add_property( 'opacity', '1' );
+			$css->add_property( 'visibility', 'visible' );
+			$css->add_property( 'pointer-events', 'auto' );
+			$css->add_property( 'height', 'auto' );
+			$css->add_property( 'overflow', 'visible' );
+
+			$css->set_selector( '.dropdown-click nav ul ul ul' );
+			$css->add_property( 'background-color', 'transparent' );
+
+			$css->set_selector( '.dropdown-click .widget-area .main-navigation ul ul' );
+			$css->add_property( 'top', 'auto' );
+			$css->add_property( 'position', 'absolute' );
+			$css->add_property( 'float', 'none' );
+			$css->add_property( 'width', '100%' );
+			$css->add_property( 'left', '-99999px' );
+
+			$css->set_selector( '.dropdown-click .widget-area .main-navigation ul ul.toggled-on' );
+			$css->add_property( 'position', 'relative' );
+			$css->add_property( 'left', '0' );
+			$css->add_property( 'right', '0' );
+
+			$css->set_selector( '.dropdown-click .widget-area.sidebar .main-navigation ul li.sfHover ul, .dropdown-click .widget-area.sidebar .main-navigation ul li:hover ul' );
+			$css->add_property( 'right', '0' );
+			$css->add_property( 'left', '0' );
+
+			$css->set_selector( '.dropdown-click .sfHover > a > .dropdown-menu-toggle > .gp-icon svg' );
+			$css->add_property( 'transform', 'rotate(180deg)' );
+		}
+
 		do_action( 'generate_base_css', $css );
 
 		return apply_filters( 'generate_base_css_output', $css->css_output() );
