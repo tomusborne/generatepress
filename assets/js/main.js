@@ -82,9 +82,19 @@
 			var parentContainer = '';
 
 			if ( _this.getAttribute( 'data-nav' ) ) {
-				var parentContainer = document.getElementById( _this.getAttribute( 'data-nav' ) );
+				parentContainer = document.getElementById( _this.getAttribute( 'data-nav' ) );
 			} else {
-				var parentContainer = document.getElementById( _this.closest( 'nav' ).getAttribute( 'id' ) );
+				parentContainer = document.getElementById( _this.closest( 'nav' ).getAttribute( 'id' ) );
+			}
+
+			if ( ! parentContainer ) {
+				return;
+			}
+
+			var isExternalToggle = false;
+
+			if ( _this.closest( '.mobile-menu-control-wrapper' ) ) {
+				isExternalToggle = true;
 			}
 
 			var nav = parentContainer.getElementsByTagName( 'ul' )[0];
@@ -200,26 +210,36 @@
 				var menuToggle = openedMobileMenus[i].querySelector( '.menu-toggle' );
 
 				if ( menuToggle && menuToggle.offsetParent === null ) {
-					// Navigation is toggled, but .menu-toggle isn't visible on the page (display: none).
-					var closestNav = openedMobileMenus[i].getElementsByTagName( 'ul' )[ 0 ],
-						closestNavItems = closestNav.getElementsByTagName( 'li' ),
-						closestSubMenus = closestNav.getElementsByTagName( 'ul' );
+					var remoteNav = false;
+
+					if ( openedMobileMenus[i].classList.contains( 'mobile-menu-control-wrapper' ) ) {
+						remoteNav = true;
+					}
+
+					if ( ! remoteNav ) {
+						// Navigation is toggled, but .menu-toggle isn't visible on the page (display: none).
+						var closestNav = openedMobileMenus[i].getElementsByTagName( 'ul' )[ 0 ],
+							closestNavItems = closestNav.getElementsByTagName( 'li' ),
+							closestSubMenus = closestNav.getElementsByTagName( 'ul' );
+					}
 
 					document.activeElement.blur();
 					openedMobileMenus[i].classList.remove( 'toggled' );
 					htmlEl.classList.remove( 'mobile-menu-open' );
 					menuToggle.setAttribute( 'aria-expanded', 'false' );
 
-					for ( var li = 0; li < closestNavItems.length; li++ ) {
-						closestNavItems[li].classList.remove( 'sfHover' );
-					}
+					if ( ! remoteNav ) {
+						for ( var li = 0; li < closestNavItems.length; li++ ) {
+							closestNavItems[li].classList.remove( 'sfHover' );
+						}
 
-					for ( var sm = 0; sm < closestSubMenus.length; sm++ ) {
-						closestSubMenus[sm].classList.remove( 'toggled-on' );
-					}
+						for ( var sm = 0; sm < closestSubMenus.length; sm++ ) {
+							closestSubMenus[sm].classList.remove( 'toggled-on' );
+						}
 
-					if ( closestNav ) {
-						closestNav.removeAttribute( 'aria-hidden' );
+						if ( closestNav ) {
+							closestNav.removeAttribute( 'aria-hidden' );
+						}
 					}
 
 					disableDropdownArrows( openedMobileMenus[i] );
