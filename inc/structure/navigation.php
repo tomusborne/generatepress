@@ -35,13 +35,6 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 				 * @hooked generate_mobile_menu_search_icon - 10
 				 */
 				do_action( 'generate_inside_navigation', 'primary-navigation' );
-
-				/**
-				 * generate_before_mobile_menu_button hook
-				 *
-				 * @since 2.5
-				 */
-				do_action( 'generate_before_mobile_menu_button', 'primary-navigation' );
 				?>
 				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
 					<?php
@@ -70,13 +63,6 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 					?>
 				</button>
 				<?php
-				/**
-				 * generate_after_mobile_menu_button hook
-				 *
-				 * @since 3.0.0
-				 */
-				do_action( 'generate_after_mobile_menu_button' );
-
 				wp_nav_menu(
 					array(
 						'theme_location' => 'primary',
@@ -130,13 +116,6 @@ function generate_do_header_mobile_menu_toggle() {
 		 * @hooked generate_mobile_menu_search_icon - 10
 		 */
 		do_action( 'generate_inside_navigation', 'mobile-menu-control-wrapper' );
-
-		/**
-		 * generate_before_mobile_menu_button hook
-		 *
-		 * @since 2.5
-		 */
-		do_action( 'generate_before_mobile_menu_button', 'mobile-menu-control-wrapper' );
 		?>
 		<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" data-nav="site-navigation">
 			<?php
@@ -170,14 +149,6 @@ function generate_do_header_mobile_menu_toggle() {
 			}
 			?>
 		</button>
-		<?php
-		/**
-		 * generate_after_mobile_menu_button hook
-		 *
-		 * @since 2.5
-		 */
-		do_action( 'generate_after_mobile_menu_button', 'mobile-menu-control-wrapper' );
-		?>
 	</nav>
 	<?php
 }
