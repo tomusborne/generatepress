@@ -1,15 +1,10 @@
-.post-image {
+.post-image:not(:first-child) {
 	margin: 2em 0 0;
 }
 
 .page-header-image,
 .page-header-image-single {
 	line-height: 0; /* no more weird spacing */
-}
-
-.separate-containers .page-header-image,
-.separate-containers .page-header-content {
-	margin-top: $separating-space;
 }
 
 .separate-containers .inside-article > [class*="page-header-"],
@@ -20,4 +15,14 @@
 
 .inside-article .page-header-image-single.page-header-below-title {
 	margin-top: 2em;
+}
+
+.separate-containers {
+	.page-header-image,
+	.page-header-contained,
+	.page-header-content,
+	.page-header-image-single,
+	.page-header-content-single {
+		margin-top: $separating-space;
+	}
 }

@@ -7,23 +7,20 @@
 # Links
 # Alignments
 # Accessibility
-# Clearings
 # Navigation
-    # Mobile Menu
-    # Navigation Search
     # Dropdown Menus
     # Sidebar Navigation
-    # Navigation Layout
 # Post Navigation
 # Header
 # Post Content
 # Widgets
 # Content Layout
+# Sidebars
 # Footer
 # Featured Images
-# Top Bar
 # Icons
 # Compatibility
+# Mobile
 --------------------------------------------------------------*/
 
 @import "abstracts/variables";
@@ -31,7 +28,7 @@
 /*--------------------------------------------------------------
 # Reset
 --------------------------------------------------------------*/
-@import "base/reset";
+@import "base/reset-flex";
 
 /*--------------------------------------------------------------
 # Elements
@@ -63,11 +60,6 @@
 --------------------------------------------------------------*/
 @import "layout/navigation/navigation";
 @import "layout/navigation/navigation-flex";
-
-/*--------------------------------------------------------------
-## Navigation Search
---------------------------------------------------------------*/
-@import "layout/navigation/navigation-search";
 
 /*--------------------------------------------------------------
 ## Dropdown Menus
@@ -120,7 +112,7 @@
 /*--------------------------------------------------------------
 # Featured Images
 --------------------------------------------------------------*/
-@import "layout/content/featured-images";
+@import "layout/content/featured-images-flex";
 
 /*--------------------------------------------------------------
 # Icons

@@ -36,12 +36,7 @@ get_header(); ?>
 
 					the_post();
 
-					/**
-					 * generate_do_template_part hook.
-					 *
-					 * @since 2.5
-					 */
-					do_action( 'generate_do_template_part', 'archive' );
+					generate_do_template_part( 'archive' );
 
 				endwhile;
 
@@ -54,7 +49,7 @@ get_header(); ?>
 
 			else :
 
-				get_template_part( 'no-results', 'archive' );
+				generate_do_template_part( 'none' );
 
 			endif;
 

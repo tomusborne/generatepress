@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 */
 		do_action( 'generate_before_content' );
 
-		if ( generate_show_title() ) :
+		if ( generate_show_entry_header() ) :
 			?>
 
 			<header class="entry-header">
@@ -34,13 +34,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 				 */
 				do_action( 'generate_before_page_title' );
 
-				the_title(
-					sprintf(
-						'<h1 class="entry-title"%s>',
-						'microdata' === generate_get_schema_type() ? ' itemprop="headline"' : ''
-					),
-					'</h1>'
-				);
+				if ( generate_show_title() ) {
+					the_title(
+						sprintf(
+							'<h1 class="entry-title"%s>',
+							'microdata' === generate_get_schema_type() ? ' itemprop="headline"' : ''
+						),
+						'</h1>'
+					);
+				}
 
 				/**
 				 * generate_after_page_title hook.

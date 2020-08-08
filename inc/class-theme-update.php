@@ -47,7 +47,7 @@ class GeneratePress_Theme_Update {
 	/**
 	 * Implement theme update logic. Only run updates on existing sites.
 	 *
-	 * @since 2.5.0
+	 * @since 3.0.0
 	 */
 	public static function init() {
 		if ( is_customize_preview() ) {
@@ -89,8 +89,8 @@ class GeneratePress_Theme_Update {
 			self::v_2_3_0();
 		}
 
-		if ( version_compare( $saved_version, '2.5.0', '<' ) ) {
-			self::v_2_5_0();
+		if ( version_compare( $saved_version, '3.0.0-alpha.1', '<' ) ) {
+			self::v_3_0_0();
 		}
 
 		// Last thing to do is update our version.
@@ -101,7 +101,7 @@ class GeneratePress_Theme_Update {
 	 * Less important updates that should only happen in the Dashboard.
 	 * These use a database flag instead of our version number for legacy reasons.
 	 *
-	 * @since 2.5.0
+	 * @since 3.0.0
 	 */
 	public static function admin_updates() {
 		self::v_1_3_0();
@@ -202,9 +202,9 @@ class GeneratePress_Theme_Update {
 	/**
 	 * Update sites using old defaults.
 	 *
-	 * @since 2.5.0
+	 * @since 3.0.0
 	 */
-	public static function v_2_5_0() {
+	public static function v_3_0_0() {
 		$settings = get_option( 'generate_settings', array() );
 		$update_options = false;
 

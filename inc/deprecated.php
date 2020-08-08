@@ -823,7 +823,7 @@ if ( ! function_exists( 'generate_article_schema' ) ) {
  * There's nothing in here yet, but we're setting the version to use later.
  *
  * @since 2.1
- * @deprecated 2.5.0
+ * @deprecated 3.0.0
  */
 function generate_do_admin_db_updates() {
 	// Replaced by Generate_Theme_Update().
@@ -833,7 +833,7 @@ function generate_do_admin_db_updates() {
  * Process important database updates when someone visits the front or backend.
  *
  * @since 2.3
- * @deprecated 2.5.0
+ * @deprecated 3.0.0
  */
 function generate_do_db_updates() {
 	// Replaced by Generate_Theme_Update().
@@ -844,7 +844,7 @@ if ( ! function_exists( 'generate_update_logo_setting' ) ) {
 	 * Migrate the old logo database entry to the new custom_logo theme mod (WordPress 4.5)
 	 *
 	 * @since 1.3.29
-	 * @deprecated 2.5
+	 * @deprecated 3.0.0
 	 */
 	function generate_update_logo_setting() {
 		// Replaced by Generate_Theme_Update().
@@ -857,7 +857,7 @@ if ( ! function_exists( 'generate_typography_convert_values' ) ) {
 	 * This should only run once
 	 *
 	 * @since 1.3.0
-	 * @deprecated 2.5
+	 * @deprecated 3.0.0
 	 */
 	function generate_typography_convert_values() {
 		// Replaced by Generate_Theme_Update().
@@ -874,8 +874,41 @@ if ( ! function_exists( 'generate_typography_convert_values' ) ) {
  * setting options and causing these functions to run on fresh installs.
  *
  * @since 2.0
- * @deprecated 2.5
+ * @deprecated 3.0.0
  */
 function generate_migrate_existing_settings() {
 	// Replaced by Generate_Theme_Update().
+}
+
+/**
+ * Output CSS for the icon fonts.
+ *
+ * @since 2.3
+ * @deprecated 3.0.0
+ */
+function generate_do_icon_css() {
+	$output = false;
+
+	if ( 'font' === generate_get_option( 'icons' ) ) {
+		$url = trailingslashit( get_template_directory_uri() );
+
+		if ( defined( 'GENERATE_MENU_PLUS_VERSION' ) ) {
+			$output .= '.main-navigation .slideout-toggle a:before,
+			.slide-opened .slideout-overlay .slideout-exit:before {
+				font-family: GeneratePress;
+			}
+
+			.slideout-navigation .dropdown-menu-toggle:before {
+				content: "\f107" !important;
+			}
+
+			.slideout-navigation .sfHover > a .dropdown-menu-toggle:before {
+				content: "\f106" !important;
+			}';
+		}
+	}
+
+	if ( $output ) {
+		return str_replace( array( "\r", "\n", "\t" ), '', $output );
+	}
 }

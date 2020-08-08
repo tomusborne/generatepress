@@ -100,6 +100,124 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$css->add_property( 'width', absint( $right_sidebar_width ) . '%' );
 		}
 
+		if ( generate_get_option( 'back_to_top' ) ) {
+			$css->set_selector( '.generate-back-to-top, .generate-back-to-top:visited' );
+			$css->add_property( 'font-size', '20px' );
+			$css->add_property( 'border-radius', '3px' );
+			$css->add_property( 'position', 'fixed' );
+			$css->add_property( 'bottom', '30px' );
+			$css->add_property( 'right', '30px' );
+			$css->add_property( 'line-height', '40px' );
+			$css->add_property( 'width', '40px' );
+			$css->add_property( 'text-align', 'center' );
+			$css->add_property( 'z-index', '10' );
+			$css->add_property( 'transition', 'opacity 300ms ease-in-out' );
+		}
+
+		if ( 'enable' === generate_get_option( 'nav_search' ) ) {
+			$css->set_selector( '.navigation-search' );
+			$css->add_property( 'position', 'absolute' );
+			$css->add_property( 'left', '-99999px' );
+			$css->add_property( 'pointer-events', 'none' );
+			$css->add_property( 'visibility', 'hidden' );
+			$css->add_property( 'z-index', '20' );
+			$css->add_property( 'width', '100%' );
+			$css->add_property( 'top', '0' );
+			$css->add_property( 'transition', 'opacity 100ms ease-in-out' );
+			$css->add_property( 'opacity', '0' );
+
+			$css->set_selector( '.navigation-search.nav-search-active' );
+			$css->add_property( 'left', '0' );
+			$css->add_property( 'right', '0' );
+			$css->add_property( 'pointer-events', 'auto' );
+			$css->add_property( 'visibility', 'visible' );
+			$css->add_property( 'opacity', '1' );
+
+			$css->set_selector( '.navigation-search input' );
+			$css->add_property( 'outline', '0' );
+			$css->add_property( 'border', '0' );
+			$css->add_property( 'vertical-align', 'bottom' );
+			$css->add_property( 'line-height', '0' );
+			$css->add_property( 'opacity', '0.9' );
+			$css->add_property( 'width', '100%' );
+			$css->add_property( 'z-index', '20' );
+			$css->add_property( 'border-radius', '0' );
+			$css->add_property( '-webkit-appearance', 'none' );
+			$css->add_property( 'height', '60px' );
+
+			$css->set_selector( '.navigation-search input::-ms-clear' );
+			$css->add_property( 'display', 'none' );
+			$css->add_property( 'width', '0' );
+			$css->add_property( 'height', '0' );
+
+			$css->set_selector( '.navigation-search input::-ms-reveal' );
+			$css->add_property( 'display', 'none' );
+			$css->add_property( 'width', '0' );
+			$css->add_property( 'height', '0' );
+
+			$css->set_selector( '.navigation-search input::-webkit-search-decoration, .navigation-search input::-webkit-search-cancel-button, .navigation-search input::-webkit-search-results-button, .navigation-search input::-webkit-search-results-decoration' );
+			$css->add_property( 'display', 'none' );
+
+			if ( ! generate_is_using_flexbox() ) {
+				$css->set_selector( '.main-navigation li.search-item' );
+				$css->add_property( 'z-index', '21' );
+
+				$css->set_selector( 'li.search-item.active' );
+				$css->add_property( 'transition', 'opacity 100ms ease-in-out' );
+
+				$css->set_selector( '.nav-left-sidebar .main-navigation li.search-item.active,.nav-right-sidebar .main-navigation li.search-item.active' );
+				$css->add_property( 'width', 'auto' );
+				$css->add_property( 'display', 'inline-block' );
+			}
+
+			$css->set_selector( '.gen-sidebar-nav .navigation-search' );
+			$css->add_property( 'top', 'auto' );
+			$css->add_property( 'bottom', '0' );
+		}
+
+		if ( 'click' === generate_get_option( 'nav_dropdown_type' ) || 'click-arrow' === generate_get_option( 'nav_dropdown_type' ) ) {
+			$css->set_selector( '.dropdown-click .main-navigation ul ul' );
+			$css->add_property( 'display', 'none' );
+			$css->add_property( 'visibility', 'hidden' );
+
+			$css->set_selector( '.dropdown-click .main-navigation ul ul ul.toggled-on' );
+			$css->add_property( 'left', '0' );
+			$css->add_property( 'top', 'auto' );
+			$css->add_property( 'position', 'relative' );
+
+			$css->set_selector( '.dropdown-click .main-navigation ul.toggled-on, .dropdown-click .main-navigation ul li.sfHover > ul.toggled-on' );
+			$css->add_property( 'display', 'block' );
+			$css->add_property( 'left', 'auto' );
+			$css->add_property( 'right', 'auto' );
+			$css->add_property( 'opacity', '1' );
+			$css->add_property( 'visibility', 'visible' );
+			$css->add_property( 'pointer-events', 'auto' );
+			$css->add_property( 'height', 'auto' );
+			$css->add_property( 'overflow', 'visible' );
+
+			$css->set_selector( '.dropdown-click nav ul ul ul' );
+			$css->add_property( 'background-color', 'transparent' );
+
+			$css->set_selector( '.dropdown-click .widget-area .main-navigation ul ul' );
+			$css->add_property( 'top', 'auto' );
+			$css->add_property( 'position', 'absolute' );
+			$css->add_property( 'float', 'none' );
+			$css->add_property( 'width', '100%' );
+			$css->add_property( 'left', '-99999px' );
+
+			$css->set_selector( '.dropdown-click .widget-area .main-navigation ul ul.toggled-on' );
+			$css->add_property( 'position', 'relative' );
+			$css->add_property( 'left', '0' );
+			$css->add_property( 'right', '0' );
+
+			$css->set_selector( '.dropdown-click .widget-area.sidebar .main-navigation ul li.sfHover ul, .dropdown-click .widget-area.sidebar .main-navigation ul li:hover ul' );
+			$css->add_property( 'right', '0' );
+			$css->add_property( 'left', '0' );
+
+			$css->set_selector( '.dropdown-click .sfHover > a > .dropdown-menu-toggle > .gp-icon svg' );
+			$css->add_property( 'transform', 'rotate(180deg)' );
+		}
+
 		do_action( 'generate_base_css', $css );
 
 		return apply_filters( 'generate_base_css_output', $css->css_output() );
@@ -149,14 +267,19 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->set_selector( '.main-navigation,.main-navigation ul ul' );
 		$css->add_property( 'background-color', $settings['navigation_background_color'] );
 
-		$css->set_selector( '.main-navigation .main-nav ul li a,.menu-toggle' );
+		$css->set_selector( '.main-navigation .main-nav ul li a,.menu-toggle, .main-navigation .menu-bar-items' );
 		$css->add_property( 'color', $settings['navigation_text_color'] );
 
-		$css->set_selector( '.main-navigation .main-nav ul li:hover > a,.main-navigation .main-nav ul li:focus > a, .main-navigation .main-nav ul li.sfHover > a' );
+		$css->set_selector( '.main-navigation .main-nav ul li:hover > a,.main-navigation .main-nav ul li:focus > a, .main-navigation .main-nav ul li.sfHover > a,.main-navigation .menu-bar-item:hover > a' );
 		$css->add_property( 'color', $settings['navigation_text_hover_color'] );
 		$css->add_property( 'background-color', $settings['navigation_background_hover_color'] );
 
-		$css->set_selector( 'button.menu-toggle:hover,button.menu-toggle:focus,.main-navigation .mobile-bar-items a,.main-navigation .mobile-bar-items a:hover,.main-navigation .mobile-bar-items a:focus' );
+		if ( generate_is_using_flexbox() ) {
+			$css->set_selector( 'button.menu-toggle:hover,button.menu-toggle:focus' );
+		} else {
+			$css->set_selector( 'button.menu-toggle:hover,button.menu-toggle:focus,.main-navigation .mobile-bar-items a,.main-navigation .mobile-bar-items a:hover,.main-navigation .mobile-bar-items a:focus' );
+		}
+
 		$css->add_property( 'color', $settings['navigation_text_color'] );
 
 		$css->set_selector( '.main-navigation .main-nav ul li[class*="current-menu-"] > a' );
@@ -315,6 +438,12 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->add_property( 'background-color', $settings['back_to_top_background_color_hover'] );
 		$css->add_property( 'color', $settings['back_to_top_text_color_hover'] );
 
+		$css->start_media_query( generate_get_media_query( 'mobile-menu' ) );
+		$css->set_selector( '.main-navigation .menu-bar-item:hover > a' );
+		$css->add_property( 'background', 'none' );
+		$css->add_property( 'color', $settings['navigation_text_color'] );
+		$css->stop_media_query();
+
 		do_action( 'generate_colors_css', $css );
 
 		return apply_filters( 'generate_colors_css_output', $css->css_output() );
@@ -354,7 +483,11 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$buttons_family = generate_get_font_family_css( 'font_buttons', 'generate_settings', generate_get_default_fonts() );
 
 		$css->set_selector( 'body, button, input, select, textarea' );
-		$css->add_property( 'font-family', $body_family );
+
+		if ( 'System Stack' !== $settings['font_body'] ) {
+			$css->add_property( 'font-family', $body_family );
+		}
+
 		$css->add_property( 'font-weight', $settings['body_font_weight'], $defaults['body_font_weight'] );
 		$css->add_property( 'text-transform', $settings['body_font_transform'], $defaults['body_font_transform'] );
 		$css->add_property( 'font-size', $settings['body_font_size'], $defaults['body_font_size'], 'px' );
@@ -400,6 +533,16 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 			$css->add_property( 'font-size', absint( $settings['navigation_font_size'] ), $defaults['navigation_font_size'], 'px' );
 		} else {
 			$css->add_property( 'font-size', 'inherit' );
+		}
+
+		if ( generate_is_using_flexbox() ) {
+			$css->set_selector( '.main-navigation .menu-bar-items' );
+
+			if ( ! empty( $settings['navigation_font_size'] ) ) {
+				$css->add_property( 'font-size', absint( $settings['navigation_font_size'] ), $defaults['navigation_font_size'], 'px' );
+			} else {
+				$css->add_property( 'font-size', 'inherit' );
+			}
 		}
 
 		$css->set_selector( '.main-navigation .main-nav ul ul li a' );
@@ -604,7 +747,12 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->add_property( 'margin-top', absint( $settings['separator'] ), absint( $defaults['separator'] ), 'px' );
 		$css->add_property( 'margin-bottom', absint( $settings['separator'] ), absint( $defaults['separator'] ), 'px' );
 
-		$css->set_selector( '.main-navigation .main-nav ul li a,.menu-toggle,.main-navigation .mobile-bar-items a' );
+		if ( generate_is_using_flexbox() ) {
+			$css->set_selector( '.main-navigation .main-nav ul li a,.menu-toggle,.main-navigation .menu-bar-item > a' );
+		} else {
+			$css->set_selector( '.main-navigation .main-nav ul li a,.menu-toggle,.main-navigation .mobile-bar-items a' );
+		}
+
 		$css->add_property( 'padding-left', absint( $settings['menu_item'] ), absint( $defaults['menu_item'] ), 'px' );
 		$css->add_property( 'padding-right', absint( $settings['menu_item'] ), absint( $defaults['menu_item'] ), 'px' );
 		$css->add_property( 'line-height', absint( $settings['menu_item_height'] ), absint( $defaults['menu_item_height'] ), 'px' );
@@ -719,28 +867,26 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 function generate_no_cache_dynamic_css() {
 	$css = new GeneratePress_CSS();
 
-	if ( ! generate_show_title() ) {
-		$css->set_selector( '.page .entry-content' )->add_property( 'margin-top', '0px' );
-
-		if ( is_single() ) {
-			if ( ! apply_filters( 'generate_post_author', true ) && ! apply_filters( 'generate_post_date', true ) ) {
-				$css->set_selector( '.single .entry-content' )->add_property( 'margin-top', '0px' );
-			}
-		}
-	}
-
 	$css->start_media_query( generate_get_media_query( 'mobile-menu' ) );
+
+	if ( generate_is_using_flexbox() ) {
+		$css->set_selector( '.main-navigation .menu-toggle,.sidebar-nav-mobile:not(#sticky-placeholder)' );
+		$css->add_property( 'display', 'block' );
+
+		$css->set_selector( '.main-navigation ul,.gen-sidebar-nav,.main-navigation:not(.slideout-navigation):not(.toggled) .main-nav > ul' );
+		$css->add_property( 'display', 'none' );
+	} else {
 		$css->set_selector( '.main-navigation .menu-toggle,.main-navigation .mobile-bar-items,.sidebar-nav-mobile:not(#sticky-placeholder)' );
 		$css->add_property( 'display', 'block' );
 
 		$css->set_selector( '.main-navigation ul,.gen-sidebar-nav' );
 		$css->add_property( 'display', 'none' );
 
-		if ( ! generate_is_using_flexbox() ) {
-			$css->set_selector( '[class*="nav-float-"] .site-header .inside-header > *' );
-			$css->add_property( 'float', 'none' );
-			$css->add_property( 'clear', 'both' );
-		}
+		$css->set_selector( '[class*="nav-float-"] .site-header .inside-header > *' );
+		$css->add_property( 'float', 'none' );
+		$css->add_property( 'clear', 'both' );
+	}
+
 	$css->stop_media_query();
 
 	if ( is_singular() ) {
@@ -755,6 +901,17 @@ function generate_no_cache_dynamic_css() {
 	return $css->css_output();
 }
 
+/**
+ * Get all of our dynamic CSS to be cached/added to a file.
+ *
+ * @since 3.0.0
+ */
+function generate_get_dynamic_css() {
+	$css = generate_base_css() . generate_font_css() . generate_advanced_css() . generate_spacing_css();
+
+	return apply_filters( 'generate_dynamic_css', $css );
+}
+
 add_action( 'wp_enqueue_scripts', 'generate_enqueue_dynamic_css', 50 );
 /**
  * Enqueue our dynamic CSS.
@@ -762,13 +919,15 @@ add_action( 'wp_enqueue_scripts', 'generate_enqueue_dynamic_css', 50 );
  * @since 2.0
  */
 function generate_enqueue_dynamic_css() {
-	if ( ! get_option( 'generate_dynamic_css_output', false ) || is_customize_preview() || apply_filters( 'generate_dynamic_css_skip_cache', false ) ) {
-		$css = generate_base_css() . generate_font_css() . generate_advanced_css() . generate_spacing_css();
+	if ( apply_filters( 'generate_using_dynamic_css_external_file', false ) ) {
+		$css = '';
+	} elseif ( ! get_option( 'generate_dynamic_css_output', false ) || is_customize_preview() || apply_filters( 'generate_dynamic_css_skip_cache', false ) ) {
+		$css = generate_get_dynamic_css();
 	} else {
 		$css = get_option( 'generate_dynamic_css_output' ) . '/* End cached CSS */';
 	}
 
-	$css = $css . generate_no_cache_dynamic_css() . generate_do_icon_css();
+	$css = $css . generate_no_cache_dynamic_css();
 
 	wp_add_inline_style( 'generate-style', wp_strip_all_tags( $css ) );
 }
@@ -810,36 +969,4 @@ function generate_update_dynamic_css_cache() {
 
 	$css = generate_base_css() . generate_font_css() . generate_advanced_css() . generate_spacing_css();
 	update_option( 'generate_dynamic_css_output', wp_strip_all_tags( $css ) );
-}
-
-/**
- * Output CSS for the icon fonts.
- *
- * @since 2.3
- */
-function generate_do_icon_css() {
-	$output = false;
-
-	if ( 'font' === generate_get_option( 'icons' ) ) {
-		$url = trailingslashit( get_template_directory_uri() );
-
-		if ( defined( 'GENERATE_MENU_PLUS_VERSION' ) ) {
-			$output .= '.main-navigation .slideout-toggle a:before,
-			.slide-opened .slideout-overlay .slideout-exit:before {
-				font-family: GeneratePress;
-			}
-
-			.slideout-navigation .dropdown-menu-toggle:before {
-				content: "\f107" !important;
-			}
-
-			.slideout-navigation .sfHover > a .dropdown-menu-toggle:before {
-				content: "\f106" !important;
-			}';
-		}
-	}
-
-	if ( $output ) {
-		return str_replace( array( "\r", "\n", "\t" ), '', $output );
-	}
 }

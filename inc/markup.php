@@ -307,10 +307,6 @@ if ( ! function_exists( 'generate_header_classes' ) ) {
 			}
 		}
 
-		if ( generate_is_using_flexbox() && ( 'nav-float-right' === generate_get_navigation_location() || 'nav-float-left' === generate_get_navigation_location() ) ) {
-			$classes[] = 'has-inline-navigation';
-		}
-
 		return $classes;
 	}
 }
@@ -350,9 +346,14 @@ if ( ! function_exists( 'generate_navigation_classes' ) ) {
 		$classes[] = 'main-navigation';
 
 		if ( 'contained-nav' === generate_get_option( 'nav_layout_setting' ) ) {
-			$classes[] = 'grid-container';
+			if ( generate_is_using_flexbox() ) {
+				$navigation_location = generate_get_navigation_location();
 
-			if ( ! generate_is_using_flexbox() ) {
+				if ( 'nav-float-right' !== $navigation_location && 'nav-float-left' !== $navigation_location ) {
+					$classes[] = 'grid-container';
+				}
+			} else {
+				$classes[] = 'grid-container';
 				$classes[] = 'grid-parent';
 			}
 		}
@@ -366,6 +367,10 @@ if ( ! function_exists( 'generate_navigation_classes' ) ) {
 				$classes[] = 'nav-align-right';
 			} elseif ( is_rtl() && 'left' === $nav_alignment ) {
 				$classes[] = 'nav-align-left';
+			}
+
+			if ( generate_has_menu_bar_items() ) {
+				$classes[] = 'has-menu-bar-items';
 			}
 		}
 
@@ -507,7 +512,7 @@ add_filter( 'generate_page_class', 'generate_do_page_container_classes' );
  * Adds custom classes to the #page element
  *
  * @param array $classes The existing classes.
- * @since 2.5.0
+ * @since 3.0.0
  */
 function generate_do_page_container_classes( $classes ) {
 	$classes[] = 'site';
@@ -530,7 +535,7 @@ add_filter( 'generate_comment-author_class', 'generate_do_comment_author_classes
  * Adds custom classes to the comment author element
  *
  * @param array $classes The existing classes.
- * @since 2.5.0
+ * @since 3.0.0
  */
 function generate_do_comment_author_classes( $classes ) {
 	$classes[] = 'comment-author';

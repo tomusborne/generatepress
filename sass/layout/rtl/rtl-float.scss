@@ -8,7 +8,7 @@ th {
 	float: left !important;
 }
 
-.rtl .main-navigation ul ul, .rtl .secondary-navigation ul ul.sub-menu {
+.rtl .main-navigation ul ul, .rtl .secondary-navigation ul ul {
     right: -999999px;
 }
 
@@ -159,6 +159,11 @@ li>ul {
 
 .main-navigation.toggled .main-nav li {
 	text-align: right !important;
+}
+
+.entry-meta .gp-icon {
+	margin-right: 0;
+	margin-left: 0.6em;
 }
 
 @media (max-width: 768px) {

@@ -1,0 +1,18 @@
+.post-image:not(:first-child) {
+	margin: 2em 0 0;
+}
+
+.featured-image {
+	line-height: 0; /* no more weird spacing */
+}
+
+.separate-containers {
+	.featured-image {
+		margin-top: $separating-space;
+	}
+
+	.inside-article > .featured-image {
+		margin-top: 0;
+		margin-bottom: 2em;
+	}
+}

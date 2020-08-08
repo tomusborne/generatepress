@@ -106,7 +106,7 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 			}
 
 			// If we don't have a value or our value is the same as our og default, bail.
-			if ( empty( $value ) || $og_default === $value ) {
+			if ( ( empty( $value ) && ! is_numeric( $value ) ) || $og_default === $value ) {
 				return false;
 			}
 

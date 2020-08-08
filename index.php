@@ -33,12 +33,7 @@ get_header(); ?>
 
 					the_post();
 
-					/**
-					 * generate_do_template_part hook.
-					 *
-					 * @since 2.5
-					 */
-					do_action( 'generate_do_template_part', 'index' );
+					generate_do_template_part( 'index' );
 
 				endwhile;
 
@@ -51,12 +46,7 @@ get_header(); ?>
 
 			else :
 
-				/**
-				 * generate_do_template_part hook.
-				 *
-				 * @since 2.5
-				 */
-				do_action( 'generate_do_template_part', 'none' );
+				generate_do_template_part( 'none' );
 
 			endif;
 

@@ -31,24 +31,25 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 		}
 
 		if ( 'font' === generate_get_option( 'icons' ) ) {
-			wp_enqueue_style( 'generate-font-icons', $dir_uri . "/assets/css/font-icons{$suffix}.css", array(), GENERATE_VERSION, 'all' );
+			wp_enqueue_style( 'generate-font-icons', $dir_uri . "/assets/css/components/font-icons{$suffix}.css", array(), GENERATE_VERSION, 'all' );
 		}
 
-		if ( is_singular() && comments_open() ) {
-			wp_enqueue_style( 'generate-comments', $dir_uri . "/assets/css/comments{$suffix}.css", array(), GENERATE_VERSION, 'all' );
-		}
+		if ( generate_is_using_flexbox() ) {
+			if ( is_singular() && comments_open() ) {
+				wp_enqueue_style( 'generate-comments', $dir_uri . "/assets/css/components/comments{$suffix}.css", array(), GENERATE_VERSION, 'all' );
+			}
 
-		if (
-			generate_is_using_flexbox() &&
-			( is_active_sidebar( 'top-bar' ) ||
-			is_active_sidebar( 'footer-bar' ) ||
-			is_active_sidebar( 'footer-1' ) ||
-			is_active_sidebar( 'footer-2' ) ||
-			is_active_sidebar( 'footer-3' ) ||
-			is_active_sidebar( 'footer-4' ) ||
-			is_active_sidebar( 'footer-5' ) )
-		) {
-			wp_enqueue_style( 'generate-widget-areas', $dir_uri . "/assets/css/widget-areas{$suffix}.css", array(), GENERATE_VERSION, 'all' );
+			if (
+				is_active_sidebar( 'top-bar' ) ||
+				is_active_sidebar( 'footer-bar' ) ||
+				is_active_sidebar( 'footer-1' ) ||
+				is_active_sidebar( 'footer-2' ) ||
+				is_active_sidebar( 'footer-3' ) ||
+				is_active_sidebar( 'footer-4' ) ||
+				is_active_sidebar( 'footer-5' )
+			) {
+				wp_enqueue_style( 'generate-widget-areas', $dir_uri . "/assets/css/components/widget-areas{$suffix}.css", array(), GENERATE_VERSION, 'all' );
+			}
 		}
 
 		if ( is_child_theme() && apply_filters( 'generate_load_child_theme_stylesheet', true ) ) {
@@ -56,7 +57,7 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 		}
 
 		if ( ! apply_filters( 'generate_fontawesome_essentials', false ) ) {
-			wp_enqueue_style( 'font-awesome', $dir_uri . "/assets/css/font-awesome{$suffix}.css", false, '4.7', 'all' );
+			wp_enqueue_style( 'font-awesome', $dir_uri . "/assets/css/components/font-awesome{$suffix}.css", false, '4.7', 'all' );
 		}
 
 		if ( is_rtl() ) {
@@ -401,50 +402,11 @@ function generate_set_wp_headers( $headers ) {
 	return $headers;
 }
 
-add_action( 'generate_do_template_part', 'generate_do_template_parts' );
-/**
- * Add template parts to templates.
- *
- * @since 2.5
- * @param string $template The current template.
- */
-function generate_do_template_parts( $template ) {
-	if ( apply_filters( 'generate_disable_template_part', false, $template ) ) {
-		return;
-	}
-
-	if ( 'archive' === $template || 'index' === $template ) {
-		get_template_part( 'content', get_post_format() );
-	}
-
-	if ( 'page' === $template ) {
-		get_template_part( 'content', 'page' );
-	}
-
-	if ( 'single' === $template ) {
-		get_template_part( 'content', 'single' );
-	}
-
-	if ( 'search' === $template ) {
-		get_template_part( 'content', 'search' );
-	}
-
-	if ( '404' === $template ) {
-		get_template_part( 'content', '404' );
-	}
-
-	if ( 'none' === $template ) {
-		get_template_part( 'no-results' );
-	}
-
-	do_action( 'generate_after_do_template_parts', $template );
-}
-
 add_filter( 'generate_after_element_class_attribute', 'generate_set_microdata_markup', 10, 2 );
 /**
  * Adds microdata to elements.
  *
- * @since 2.5.0
+ * @since 3.0.0
  * @param string $output The existing output after the class attribute.
  * @param string $context What element we're targeting.
  */

@@ -46,7 +46,7 @@
 
 		var enableDropdownArrows = function( nav ) {
 			if ( body.classList.contains( 'dropdown-hover' ) ) {
-				var dropdownItems = nav.querySelectorAll( 'li.menu-item-has-children' )
+				var dropdownItems = nav.querySelectorAll( 'li.menu-item-has-children' );
 
 				for ( var i = 0; i < dropdownItems.length; i++ ) {
 					dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'tabindex', '0' );
@@ -58,7 +58,7 @@
 
 		var disableDropdownArrows = function( nav ) {
 			if ( body.classList.contains( 'dropdown-hover' ) ) {
-				var dropdownItems = nav.querySelectorAll( 'li.menu-item-has-children' )
+				var dropdownItems = nav.querySelectorAll( 'li.menu-item-has-children' );
 
 				for ( var i = 0; i < dropdownItems.length; i++ ) {
 					dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).removeAttribute( 'tabindex' );
@@ -82,19 +82,9 @@
 			var parentContainer = '';
 
 			if ( _this.getAttribute( 'data-nav' ) ) {
-				parentContainer = document.getElementById( _this.getAttribute( 'data-nav' ) );
+				var parentContainer = document.getElementById( _this.getAttribute( 'data-nav' ) );
 			} else {
-				parentContainer = document.getElementById( _this.closest( 'nav' ).getAttribute( 'id' ) );
-			}
-
-			if ( ! parentContainer ) {
-				return;
-			}
-
-			var isExternalToggle = false;
-
-			if ( _this.closest( '.mobile-menu-control-wrapper' ) ) {
-				isExternalToggle = true;
+				var parentContainer = document.getElementById( _this.closest( 'nav' ).getAttribute( 'id' ) );
 			}
 
 			var nav = parentContainer.getElementsByTagName( 'ul' )[0];
@@ -204,62 +194,35 @@
 		 * Makes it possible to style mobile item with .toggled class.
 		 */
 		var checkMobile = function() {
-			for ( var i = 0; i < allNavToggles.length; i++ ) {
-				if ( allNavToggles[i].offsetParent === null ) {
-					if ( mobileMenuControls ) {
-						var mobileMenuControlsToggle = mobileMenuControls.querySelector( '.menu-toggle' );
+			var openedMobileMenus = document.querySelectorAll( '.toggled' );
 
-						// Our main menu-toggle might be hidden, but that doesn't mean the inline toggle is.
-						if ( mobileMenuControlsToggle.offsetParent ) {
-							continue;
-						}
+			for ( var i = 0; i < openedMobileMenus.length; i++ ) {
+				var menuToggle = openedMobileMenus[i].querySelector( '.menu-toggle' );
+
+				if ( menuToggle && menuToggle.offsetParent === null ) {
+					// Navigation is toggled, but .menu-toggle isn't visible on the page (display: none).
+					var closestNav = openedMobileMenus[i].getElementsByTagName( 'ul' )[ 0 ],
+						closestNavItems = closestNav.getElementsByTagName( 'li' ),
+						closestSubMenus = closestNav.getElementsByTagName( 'ul' );
+
+					document.activeElement.blur();
+					openedMobileMenus[i].classList.remove( 'toggled' );
+					htmlEl.classList.remove( 'mobile-menu-open' );
+					menuToggle.setAttribute( 'aria-expanded', 'false' );
+
+					for ( var li = 0; li < closestNavItems.length; li++ ) {
+						closestNavItems[li].classList.remove( 'sfHover' );
 					}
 
-					var closestParent = allNavToggles[i].closest( 'nav' );
-
-					if ( mobileMenuControls && allNavToggles[i].closest( '.mobile-menu-control-wrapper' ) ) {
-						var remoteNavId = mobileMenuControls.querySelector( '.menu-toggle' ).getAttribute( 'data-nav' ),
-							remoteNav = document.getElementById( remoteNavId );
-
-						closestParent = remoteNav;
+					for ( var sm = 0; sm < closestSubMenus.length; sm++ ) {
+						closestSubMenus[sm].classList.remove( 'toggled-on' );
 					}
 
-					if ( ! closestParent && mobileMenuControls && remoteNav ) {
-						closestParent = remoteNav;
+					if ( closestNav ) {
+						closestNav.removeAttribute( 'aria-hidden' );
 					}
 
-					if ( closestParent && closestParent.classList.contains( 'toggled' ) ) {
-						var closestNav = closestParent.getElementsByTagName( 'ul' )[0];
-						var closestNavItems = closestNav.getElementsByTagName( 'li' );
-						var closestSubMenus = closestNav.getElementsByTagName( 'ul' );
-
-						document.activeElement.blur();
-						closestParent.classList.remove( 'toggled' );
-						htmlEl.classList.remove( 'mobile-menu-open' );
-						allNavToggles[i].setAttribute( 'aria-expanded', 'false' );
-
-						for ( var li = 0; li < closestNavItems.length; li++ ) {
-							closestNavItems[li].classList.remove( 'sfHover' );
-						}
-
-						for ( var sm = 0; sm < closestSubMenus.length; sm++ ) {
-							closestSubMenus[sm].classList.remove( 'toggled-on' );
-						}
-
-						if ( closestNav ) {
-							closestNav.removeAttribute( 'aria-hidden' );
-						}
-
-						if ( mobileMenuControls && mobileMenuControls.classList.contains( 'toggled' ) ) {
-							mobileMenuControls.classList.remove( 'toggled' );
-						}
-
-						if ( closestParent.classList.contains( 'nav-is-active' ) ) {
-							closestParent.classList.remove( 'nav-is-active' );
-						}
-
-						disableDropdownArrows( closestParent );
-					}
+					disableDropdownArrows( openedMobileMenus[i] );
 				}
 			}
 		}

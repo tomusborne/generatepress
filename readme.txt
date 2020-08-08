@@ -5,14 +5,14 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options
 Requires at least: 4.5
-Tested up to: 5.4
+Tested up to: 5.5
 Stable tag: 2.4.2
 
 GeneratePress is a lightweight WordPress theme built with a focus on speed and usability.
 
 == Description ==
 
-GeneratePress is a lightweight WordPress theme built with a focus on speed and usability. Performance is important to us, which is why a fresh GeneratePress install adds less than 15kb (gzipped) to your page size.
+GeneratePress is a lightweight WordPress theme built with a focus on speed and usability. Performance is important to us, which is why a fresh GeneratePress install adds less than 10kb (gzipped) to your page size.
 
 We take full advantage of the new block editor (Gutenberg), which gives you more control over creating your content.
 
@@ -95,12 +95,14 @@ MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
 
 == Changelog ==
 
-= 2.5.0 =
+= 3.0.0 =
 
 Release date: TBA
 
 * New: Flexbox layout option - see blog post for more info
-* New: generate_do_template_part hook
+* New: generate_before_do_template_part hook
+* New: generate_after_do_template_part hook
+* New: generate_do_template_part filter
 * New: Better option migration system
 * New: generate_post_date_show_updated_only filter
 * New: full-width-ready option for alignfull blocks
@@ -112,6 +114,7 @@ Release date: TBA
 * New: generate_page_class filter
 * New: generate_is_using_hatom filter
 * New: generate_after_element_class_attribute filter
+* New: generate_menu_bar_items hook
 * Fix: Close other sub-menus when opening a new one on touch devices
 * Fix: Footer bar menu spacing on mobile
 * Fix: Text aligned container width preview in Customizer when using full-width-content
@@ -142,7 +145,7 @@ Release date: TBA
 * Tweak: Remove mixed up alignleft/right classes when using RTL languages
 * Tweak: Remove sub-menu open left CSS when using RTL languages
 * Tweak: Use aria-label in back to top button instead of screen-reader-text
-* Tweak: Hook comments template into generate_do_template_part
+* Tweak: Hook comments template into generate_after_do_template_part
 * Tweak: Use flexbox for author page header
 * Tweak: Simplify navigation dropdown CSS
 * Tweak: Load mobile nav search icon after menu toggle when using flexbox
@@ -161,6 +164,9 @@ Release date: TBA
 * Tweak: Hook archive post navigation into generate_after_loop hook
 * Tweak: Use aria-label for read more links/buttons instead of screen reader text
 * Tweak: Move microdata to generate_after_element_class_attribute where possible
+* Tweak: Move back to top button CSS to dynamic CSS if enabled
+* Tweak: Move navigation search CSS to dynamic CSS if enabled
+* Tweak: Remove skip-link-focus.js
 * Template change: Removed generate_do_microdata() from sidebar.php and sidebar-left.php
 
 = 2.4.2 =

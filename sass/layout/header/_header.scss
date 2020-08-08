@@ -8,7 +8,7 @@
 
 .main-title {
 	margin: 0;
-	font-size: 45px;
+	font-size: $site-title-font-size;
 	line-height: 1.2em;
 	word-wrap: break-word;
 	font-weight: bold;
@@ -20,7 +20,7 @@
 	line-height: 1.5;
 	font-weight: normal;
 	text-transform: none;
-	font-size: 15px;
+	font-size: $site-description-font-size;
 }
 
 .site-logo {

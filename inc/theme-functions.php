@@ -125,6 +125,29 @@ if ( ! function_exists( 'generate_show_title' ) ) {
 	}
 }
 
+/**
+ * Check whether we should display the entry header or not.
+ *
+ * @since 3.0.0
+ */
+function generate_show_entry_header() {
+	$show_entry_header      = true;
+	$show_title             = generate_show_title();
+	$has_before_entry_title = has_action( 'generate_before_entry_title' );
+	$has_after_entry_title  = has_action( 'generate_after_entry_title' );
+
+	if ( is_page() ) {
+		$has_before_entry_title = has_action( 'generate_before_page_title' );
+		$has_after_entry_title  = has_action( 'generate_after_page_title' );
+	}
+
+	if ( ! $show_title && ! $has_before_entry_title && ! $has_after_entry_title ) {
+		$show_entry_header = false;
+	}
+
+	return apply_filters( 'generate_show_entry_header', $show_entry_header );
+}
+
 if ( ! function_exists( 'generate_get_premium_url' ) ) {
 	/**
 	 * Generate a URL to our premium add-ons.
@@ -416,7 +439,7 @@ function generate_get_element_classes( $context, $class = '' ) {
 /**
  * Get the kind of schema we're using.
  *
- * @since 2.5
+ * @since 3.0.0
  */
 function generate_get_schema_type() {
 	return apply_filters( 'generate_schema_type', 'microdata' );
@@ -512,7 +535,7 @@ function generate_do_microdata( $context ) {
 /**
  * Whether to print hAtom output or not.
  *
- * @since 2.5
+ * @since 3.0.0
  */
 function generate_is_using_hatom() {
 	return apply_filters( 'generate_is_using_hatom', true );
@@ -521,8 +544,72 @@ function generate_is_using_hatom() {
 /**
  * Check whether we're using the Flexbox structure.
  *
- * @since 2.5
+ * @since 3.0.0
  */
 function generate_is_using_flexbox() {
+	// No flexbox for old versions of GPP.
+	if ( defined( 'GP_PREMIUM_VERSION' ) && version_compare( GP_PREMIUM_VERSION, '1.11.0-alpha.1', '<' ) ) {
+		return false;
+	}
+
 	return 'flexbox' === generate_get_option( 'structure' );
+}
+
+/**
+ * Check if we have any menu bar items.
+ *
+ * @since 3.0.0
+ */
+function generate_has_menu_bar_items() {
+	return has_action( 'generate_menu_bar_items' );
+}
+
+/**
+ * Check if we should include the default template part.
+ *
+ * @since 3.0.0
+ * @param string $template The template to get.
+ */
+function generate_do_template_part( $template ) {
+	/**
+	 * generate_before_do_template_part hook.
+	 *
+	 * @since 3.0.0
+	 * @param string $template The template.
+	 */
+	do_action( 'generate_before_do_template_part', $template );
+
+	if ( apply_filters( 'generate_do_template_part', true, $template ) ) {
+		if ( 'archive' === $template || 'index' === $template ) {
+			get_template_part( 'content', get_post_format() );
+		}
+
+		if ( 'page' === $template ) {
+			get_template_part( 'content', 'page' );
+		}
+
+		if ( 'single' === $template ) {
+			get_template_part( 'content', 'single' );
+		}
+
+		if ( 'search' === $template ) {
+			get_template_part( 'content', 'search' );
+		}
+
+		if ( '404' === $template ) {
+			get_template_part( 'content', '404' );
+		}
+
+		if ( 'none' === $template ) {
+			get_template_part( 'no-results' );
+		}
+	}
+
+	/**
+	 * generate_after_do_template_parts hook.
+	 *
+	 * @since 3.0.0
+	 * @param string $template The template.
+	 */
+	do_action( 'generate_after_do_template_part', $template );
 }
