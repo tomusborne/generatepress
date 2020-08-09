@@ -1548,6 +1548,33 @@ nav.toggled ul ul.sub-menu {
 	float: right;
 }
 
+.mobile-menu-control-wrapper {
+	display: none;
+	margin-left: auto;
+	align-items: center;
+}
+
+.nav-is-active {
+	margin-top: 1.5em;
+}
+
+#site-navigation.nav-is-active .nav-search-active {
+	position: relative;
+}
+
+#site-navigation.nav-is-active .navigation-search input {
+	outline: auto;
+}
+
+.nav-float-left .mobile-menu-control-wrapper {
+	margin-left: 0;
+	margin-right: auto;
+}
+
+.nav-float-left #site-navigation.nav-is-active {
+	order: 6;
+}
+
 /*--------------------------------------------------------------
 ## Breakpoint (768px)
 --------------------------------------------------------------*/
@@ -1575,31 +1602,6 @@ nav.toggled ul ul.sub-menu {
 	}
 	.site-logo + .site-branding {
 		margin: 1.5em 0 0;
-	}
-	.has-inline-navigation .inside-header {
-		flex-direction: row;
-		text-align: left;
-		flex-wrap: wrap;
-	}
-	.has-inline-navigation .site-logo + .site-branding {
-		margin: 0 0 0 20px;
-	}
-	.has-inline-navigation .header-widget {
-		flex-basis: 100%;
-	}
-	/*--------------------------------------------------------------
-	## Navigation
-    --------------------------------------------------------------*/
-	.main-navigation .inside-navigation,
-	.has-inline-navigation .mobile-menu-control-wrapper {
-		display: flex;
-		flex-wrap: wrap;
-	}
-	.has-inline-navigation #site-navigation {
-		flex-basis: 100%;
-	}
-	.has-inline-navigation #site-navigation .inside-navigation > *:not(.navigation-search):not(.main-nav) {
-		display: none;
 	}
 	/*--------------------------------------------------------------
 	## Content Area

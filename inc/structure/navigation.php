@@ -34,7 +34,7 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 				 * @hooked generate_navigation_search - 10
 				 * @hooked generate_mobile_menu_search_icon - 10
 				 */
-				do_action( 'generate_inside_navigation', 'primary-navigation' );
+				do_action( 'generate_inside_navigation' );
 				?>
 				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
 					<?php
@@ -98,7 +98,7 @@ add_action( 'generate_before_navigation', 'generate_do_header_mobile_menu_toggle
 /**
  * Build the mobile menu toggle in the header.
  *
- * @since 2.5.0
+ * @since 3.0.0
  */
 function generate_do_header_mobile_menu_toggle() {
 	if ( ! generate_is_using_flexbox() ) {
@@ -108,14 +108,11 @@ function generate_do_header_mobile_menu_toggle() {
 	<nav <?php generate_do_element_classes( 'mobile-navigation-toggle', array( 'main-navigation', 'mobile-menu-control-wrapper' ) ); ?>>
 		<?php
 		/**
-		 * generate_inside_navigation hook.
+		 * generate_inside_mobile_menu_control_wrapper hook.
 		 *
-		 * @since 0.1
-		 *
-		 * @hooked generate_navigation_search - 10
-		 * @hooked generate_mobile_menu_search_icon - 10
+		 * @since 3.0.0
 		 */
-		do_action( 'generate_inside_navigation', 'mobile-menu-control-wrapper' );
+		do_action( 'generate_inside_mobile_menu_control_wrapper' );
 		?>
 		<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" data-nav="site-navigation">
 			<?php
@@ -425,11 +422,7 @@ if ( ! function_exists( 'generate_navigation_search' ) ) {
 	 *
 	 * @since 1.1.4
 	 */
-	function generate_navigation_search( $location = '' ) {
-		if ( 'primary-navigation' !== $location ) {
-			return;
-		}
-
+	function generate_navigation_search() {
 		$generate_settings = wp_parse_args(
 			get_option( 'generate_settings', array() ),
 			generate_get_defaults()
@@ -454,6 +447,7 @@ if ( ! function_exists( 'generate_navigation_search' ) ) {
 }
 
 add_action( 'generate_after_primary_menu', 'generate_do_menu_bar_item_container' );
+add_action( 'generate_inside_mobile_menu_control_wrapper', 'generate_do_menu_bar_item_container' );
 /**
  * Add a container for menu bar items.
  *

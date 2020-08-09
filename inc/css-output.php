@@ -875,6 +875,27 @@ function generate_no_cache_dynamic_css() {
 
 		$css->set_selector( '.main-navigation ul,.gen-sidebar-nav,.main-navigation:not(.slideout-navigation):not(.toggled) .main-nav > ul' );
 		$css->add_property( 'display', 'none' );
+
+		$css->set_selector( '.has-inline-mobile-toggle .inside-header' );
+		$css->add_property( 'flex-direction', 'row' );
+		$css->add_property( 'text-align', 'left' );
+		$css->add_property( 'flex-wrap', 'wrap' );
+
+		$css->set_selector( '.has-inline-mobile-toggle .site-logo + .site-branding' );
+		$css->add_property( 'margin', '0 0 0 20px' );
+
+		$css->set_selector( '.has-inline-mobile-toggle .header-widget' );
+		$css->add_property( 'flex-basis', '100%' );
+
+		$css->set_selector( '.has-inline-mobile-toggle .mobile-menu-control-wrapper' );
+		$css->add_property( 'display', 'flex' );
+		$css->add_property( 'flex-wrap', 'wrap' );
+
+		$css->set_selector( '.has-inline-mobile-toggle #site-navigation' );
+		$css->add_property( 'flex-basis', '100%' );
+
+		$css->set_selector( '.has-inline-mobile-toggle #site-navigation .inside-navigation > *:not(.navigation-search):not(.main-nav)' );
+		$css->add_property( 'display', 'none' );
 	} else {
 		$css->set_selector( '.main-navigation .menu-toggle,.main-navigation .mobile-bar-items,.sidebar-nav-mobile:not(#sticky-placeholder)' );
 		$css->add_property( 'display', 'block' );

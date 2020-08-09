@@ -204,45 +204,58 @@
 		 * Makes it possible to style mobile item with .toggled class.
 		 */
 		var checkMobile = function() {
-			var openedMobileMenus = document.querySelectorAll( '.toggled' );
+			var openedMobileMenus = document.querySelectorAll( '.toggled, .nav-is-active' );
 
 			for ( var i = 0; i < openedMobileMenus.length; i++ ) {
 				var menuToggle = openedMobileMenus[i].querySelector( '.menu-toggle' );
 
 				if ( menuToggle && menuToggle.offsetParent === null ) {
-					var remoteNav = false;
+					if ( openedMobileMenus[i].classList.contains( 'toggled' ) ) {
+						var remoteNav = false;
 
-					if ( openedMobileMenus[i].classList.contains( 'mobile-menu-control-wrapper' ) ) {
-						remoteNav = true;
-					}
-
-					if ( ! remoteNav ) {
-						// Navigation is toggled, but .menu-toggle isn't visible on the page (display: none).
-						var closestNav = openedMobileMenus[i].getElementsByTagName( 'ul' )[ 0 ],
-							closestNavItems = closestNav.getElementsByTagName( 'li' ),
-							closestSubMenus = closestNav.getElementsByTagName( 'ul' );
-					}
-
-					document.activeElement.blur();
-					openedMobileMenus[i].classList.remove( 'toggled' );
-					htmlEl.classList.remove( 'mobile-menu-open' );
-					menuToggle.setAttribute( 'aria-expanded', 'false' );
-
-					if ( ! remoteNav ) {
-						for ( var li = 0; li < closestNavItems.length; li++ ) {
-							closestNavItems[li].classList.remove( 'sfHover' );
+						if ( openedMobileMenus[i].classList.contains( 'mobile-menu-control-wrapper' ) ) {
+							remoteNav = true;
 						}
 
-						for ( var sm = 0; sm < closestSubMenus.length; sm++ ) {
-							closestSubMenus[sm].classList.remove( 'toggled-on' );
+						if ( ! remoteNav ) {
+							// Navigation is toggled, but .menu-toggle isn't visible on the page (display: none).
+							var closestNav = openedMobileMenus[i].getElementsByTagName( 'ul' )[ 0 ],
+								closestNavItems = closestNav.getElementsByTagName( 'li' ),
+								closestSubMenus = closestNav.getElementsByTagName( 'ul' );
 						}
 
-						if ( closestNav ) {
-							closestNav.removeAttribute( 'aria-hidden' );
+						document.activeElement.blur();
+						openedMobileMenus[i].classList.remove( 'toggled' );
+
+						if ( openedMobileMenus[i].classList.contains( 'nav-is-active' ) ) {
+							openedMobileMenus[i].classList.remove( 'nav-is-active' );
 						}
+
+						htmlEl.classList.remove( 'mobile-menu-open' );
+						menuToggle.setAttribute( 'aria-expanded', 'false' );
+
+						if ( ! remoteNav ) {
+							for ( var li = 0; li < closestNavItems.length; li++ ) {
+								closestNavItems[li].classList.remove( 'sfHover' );
+							}
+
+							for ( var sm = 0; sm < closestSubMenus.length; sm++ ) {
+								closestSubMenus[sm].classList.remove( 'toggled-on' );
+							}
+
+							if ( closestNav ) {
+								closestNav.removeAttribute( 'aria-hidden' );
+							}
+						}
+
+						disableDropdownArrows( openedMobileMenus[i] );
 					}
 
-					disableDropdownArrows( openedMobileMenus[i] );
+					if ( mobileMenuControls.querySelector( '.search-item' ) ) {
+						if ( mobileMenuControls.querySelector( '.search-item' ).classList.contains( 'active' ) ) {
+							mobileMenuControls.querySelector( '.search-item' ).click();
+						}
+					}
 				}
 			}
 		}
