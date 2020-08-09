@@ -104,6 +104,10 @@ function generate_do_header_mobile_menu_toggle() {
 	if ( ! generate_is_using_flexbox() ) {
 		return;
 	}
+
+	if ( ! generate_has_inline_mobile_toggle() ) {
+		return;
+	}
 	?>
 	<nav <?php generate_do_element_classes( 'mobile-navigation-toggle', array( 'main-navigation', 'mobile-menu-control-wrapper' ) ); ?>>
 		<?php
