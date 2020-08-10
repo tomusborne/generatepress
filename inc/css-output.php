@@ -662,17 +662,24 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		}
 
 		$css->start_media_query( generate_get_media_query( 'mobile' ) );
-			$mobile_site_title = ( isset( $settings['mobile_site_title_font_size'] ) ) ? $settings['mobile_site_title_font_size'] : '30';
-			$css->set_selector( '.main-title' );
-			$css->add_property( 'font-size', absint( $mobile_site_title ), false, 'px' );
+		$css->set_selector( '.main-title' );
 
-			$mobile_h1 = ( isset( $settings['mobile_heading_1_font_size'] ) ) ? $settings['mobile_heading_1_font_size'] : '30';
-			$css->set_selector( 'h1' );
-			$css->add_property( 'font-size', absint( $mobile_h1 ), false, 'px' );
+		if ( ! empty( $settings['mobile_site_title_font_size'] ) ) {
+			$css->add_property( 'font-size', absint( $settings['mobile_site_title_font_size'] ), false, 'px' );
+		}
 
-			$mobile_h2 = ( isset( $settings['mobile_heading_2_font_size'] ) ) ? $settings['mobile_heading_2_font_size'] : '25';
-			$css->set_selector( 'h2' );
-			$css->add_property( 'font-size', absint( $mobile_h2 ), false, 'px' );
+		$css->set_selector( 'h1' );
+
+		if ( ! empty( $settings['mobile_heading_1_font_size'] ) ) {
+			$css->add_property( 'font-size', absint( $settings['mobile_heading_1_font_size'] ), false, 'px' );
+		}
+
+
+		$css->set_selector( 'h2' );
+
+		if ( ! empty( $settings['mobile_heading_2_font_size'] ) ) {
+			$css->add_property( 'font-size', absint( $settings['mobile_heading_2_font_size'] ), false, 'px' );
+		}
 		$css->stop_media_query();
 
 		do_action( 'generate_typography_css', $css );
