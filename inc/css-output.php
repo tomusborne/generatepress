@@ -894,6 +894,9 @@ function generate_no_cache_dynamic_css() {
 		$css->set_selector( '.has-inline-mobile-toggle #site-navigation' );
 		$css->add_property( 'flex-basis', '100%' );
 
+		$css->set_selector( '.nav-float-left #site-navigation' );
+		$css->add_property( 'order', '10' );
+
 		$css->set_selector( '.has-inline-mobile-toggle #site-navigation .inside-navigation > *:not(.navigation-search):not(.main-nav)' );
 		$css->add_property( 'display', 'none' );
 	} else {

@@ -117,10 +117,7 @@ nav.toggled {
 .nav-float-left .mobile-menu-control-wrapper {
 	margin-left: 0;
 	margin-right: auto;
-}
-
-.nav-float-left #site-navigation.nav-is-active {
-	order: 6;
+	flex-direction: row-reverse;
 }
 
 /*--------------------------------------------------------------
