@@ -376,3 +376,18 @@ function generate_set_pro_menu_item_arrow_directions( $arrow_direction, $args, $
 
 	return $arrow_direction;
 }
+
+add_filter( 'generate_menu_plus_option_defaults', 'generate_set_menu_plus_compat_defaults' );
+/**
+ * Set defaults in our pro Menu Plus module.
+ *
+ * @since 3.0.0
+ * @param array $defaults The existing defaults.
+ */
+function generate_set_menu_plus_compat_defaults( $defaults ) {
+	if ( generate_has_inline_mobile_toggle() ) {
+		$defaults['mobile_menu_label'] = '';
+	}
+
+	return $defaults;
+}
