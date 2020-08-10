@@ -63,6 +63,13 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 					?>
 				</button>
 				<?php
+				/**
+				 * generate_after_mobile_menu_button hook
+				 *
+				 * @since 3.0.0
+				 */
+				do_action( 'generate_after_mobile_menu_button' );
+
 				wp_nav_menu(
 					array(
 						'theme_location' => 'primary',
