@@ -307,6 +307,10 @@ if ( ! function_exists( 'generate_header_classes' ) ) {
 			}
 		}
 
+		if ( generate_has_inline_mobile_toggle() ) {
+			$classes[] = 'has-inline-mobile-toggle';
+		}
+
 		return $classes;
 	}
 }

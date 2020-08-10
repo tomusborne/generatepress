@@ -613,3 +613,14 @@ function generate_do_template_part( $template ) {
 	 */
 	do_action( 'generate_after_do_template_part', $template );
 }
+
+/**
+ * Check if we should use inline mobile navigation.
+ *
+ * @since 3.0.0
+ */
+function generate_has_inline_mobile_toggle() {
+	$has_inline_mobile_toggle = generate_is_using_flexbox() && ( 'nav-float-right' === generate_get_navigation_location() || 'nav-float-left' === generate_get_navigation_location() );
+
+	return apply_filters( 'generate_has_inline_mobile_toggle', $has_inline_mobile_toggle );
+}

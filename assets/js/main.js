@@ -40,6 +40,7 @@
 		var allNavToggles = document.querySelectorAll( '.menu-toggle' ),
 			dropdownToggle = document.querySelectorAll( 'nav .dropdown-menu-toggle' ),
 			navLinks = document.querySelectorAll( 'nav ul a' ),
+			mobileMenuControls = document.querySelector( '.mobile-menu-control-wrapper' ),
 			body = document.body,
 			htmlEl = document.documentElement;
 
@@ -78,10 +79,22 @@
 				var _this = this;
 			}
 
+			var parentContainer = '';
+
 			if ( _this.getAttribute( 'data-nav' ) ) {
-				var parentContainer = document.getElementById( _this.getAttribute( 'data-nav' ) );
+				parentContainer = document.getElementById( _this.getAttribute( 'data-nav' ) );
 			} else {
-				var parentContainer = document.getElementById( _this.closest( 'nav' ).getAttribute( 'id' ) );
+				parentContainer = document.getElementById( _this.closest( 'nav' ).getAttribute( 'id' ) );
+			}
+
+			if ( ! parentContainer ) {
+				return;
+			}
+
+			var isExternalToggle = false;
+
+			if ( _this.closest( '.mobile-menu-control-wrapper' ) ) {
+				isExternalToggle = true;
 			}
 
 			var nav = parentContainer.getElementsByTagName( 'ul' )[0];
@@ -92,12 +105,33 @@
 				nav.setAttribute( 'aria-hidden', 'true' );
 				_this.setAttribute( 'aria-expanded', 'false' );
 
+				if ( isExternalToggle ) {
+					mobileMenuControls.classList.remove( 'toggled' );
+					parentContainer.classList.remove( 'nav-is-active' );
+				} else if ( mobileMenuControls && parentContainer.classList.contains( 'main-navigation' ) ) {
+					mobileMenuControls.classList.remove( 'toggled' );
+				}
+
 				disableDropdownArrows( nav );
 			} else {
 				parentContainer.classList.add( 'toggled' );
 				htmlEl.classList.add( 'mobile-menu-open' );
 				nav.setAttribute( 'aria-hidden', 'false' );
 				_this.setAttribute( 'aria-expanded', 'true' );
+
+				if ( isExternalToggle ) {
+					mobileMenuControls.classList.add( 'toggled' );
+
+					if ( mobileMenuControls.querySelector( '.search-item' ) ) {
+						if ( mobileMenuControls.querySelector( '.search-item' ).classList.contains( 'active' ) ) {
+							mobileMenuControls.querySelector( '.search-item' ).click();
+						}
+					}
+
+					parentContainer.classList.add( 'nav-is-active' );
+				} else if ( mobileMenuControls && parentContainer.classList.contains( 'main-navigation' ) ) {
+					mobileMenuControls.classList.add( 'toggled' );
+				}
 
 				enableDropdownArrows( nav );
 			}
@@ -170,35 +204,58 @@
 		 * Makes it possible to style mobile item with .toggled class.
 		 */
 		var checkMobile = function() {
-			var openedMobileMenus = document.querySelectorAll( '.toggled' );
+			var openedMobileMenus = document.querySelectorAll( '.toggled, .nav-is-active' );
 
 			for ( var i = 0; i < openedMobileMenus.length; i++ ) {
 				var menuToggle = openedMobileMenus[i].querySelector( '.menu-toggle' );
 
 				if ( menuToggle && menuToggle.offsetParent === null ) {
-					// Navigation is toggled, but .menu-toggle isn't visible on the page (display: none).
-					var closestNav = openedMobileMenus[i].getElementsByTagName( 'ul' )[ 0 ],
-						closestNavItems = closestNav.getElementsByTagName( 'li' ),
-						closestSubMenus = closestNav.getElementsByTagName( 'ul' );
+					if ( openedMobileMenus[i].classList.contains( 'toggled' ) ) {
+						var remoteNav = false;
 
-					document.activeElement.blur();
-					openedMobileMenus[i].classList.remove( 'toggled' );
-					htmlEl.classList.remove( 'mobile-menu-open' );
-					menuToggle.setAttribute( 'aria-expanded', 'false' );
+						if ( openedMobileMenus[i].classList.contains( 'mobile-menu-control-wrapper' ) ) {
+							remoteNav = true;
+						}
 
-					for ( var li = 0; li < closestNavItems.length; li++ ) {
-						closestNavItems[li].classList.remove( 'sfHover' );
+						if ( ! remoteNav ) {
+							// Navigation is toggled, but .menu-toggle isn't visible on the page (display: none).
+							var closestNav = openedMobileMenus[i].getElementsByTagName( 'ul' )[ 0 ],
+								closestNavItems = closestNav.getElementsByTagName( 'li' ),
+								closestSubMenus = closestNav.getElementsByTagName( 'ul' );
+						}
+
+						document.activeElement.blur();
+						openedMobileMenus[i].classList.remove( 'toggled' );
+
+						if ( openedMobileMenus[i].classList.contains( 'nav-is-active' ) ) {
+							openedMobileMenus[i].classList.remove( 'nav-is-active' );
+						}
+
+						htmlEl.classList.remove( 'mobile-menu-open' );
+						menuToggle.setAttribute( 'aria-expanded', 'false' );
+
+						if ( ! remoteNav ) {
+							for ( var li = 0; li < closestNavItems.length; li++ ) {
+								closestNavItems[li].classList.remove( 'sfHover' );
+							}
+
+							for ( var sm = 0; sm < closestSubMenus.length; sm++ ) {
+								closestSubMenus[sm].classList.remove( 'toggled-on' );
+							}
+
+							if ( closestNav ) {
+								closestNav.removeAttribute( 'aria-hidden' );
+							}
+						}
+
+						disableDropdownArrows( openedMobileMenus[i] );
 					}
 
-					for ( var sm = 0; sm < closestSubMenus.length; sm++ ) {
-						closestSubMenus[sm].classList.remove( 'toggled-on' );
+					if ( mobileMenuControls.querySelector( '.search-item' ) ) {
+						if ( mobileMenuControls.querySelector( '.search-item' ).classList.contains( 'active' ) ) {
+							mobileMenuControls.querySelector( '.search-item' ).click();
+						}
 					}
-
-					if ( closestNav ) {
-						closestNav.removeAttribute( 'aria-hidden' );
-					}
-
-					disableDropdownArrows( openedMobileMenus[i] );
 				}
 			}
 		}

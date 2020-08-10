@@ -101,6 +101,66 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 	}
 }
 
+add_action( 'generate_before_navigation', 'generate_do_header_mobile_menu_toggle' );
+/**
+ * Build the mobile menu toggle in the header.
+ *
+ * @since 3.0.0
+ */
+function generate_do_header_mobile_menu_toggle() {
+	if ( ! generate_is_using_flexbox() ) {
+		return;
+	}
+
+	if ( ! generate_has_inline_mobile_toggle() ) {
+		return;
+	}
+	?>
+	<nav <?php generate_do_element_classes( 'mobile-navigation-toggle', array( 'main-navigation', 'mobile-menu-control-wrapper' ) ); ?>>
+		<?php
+		/**
+		 * generate_inside_mobile_menu_control_wrapper hook.
+		 *
+		 * @since 3.0.0
+		 */
+		do_action( 'generate_inside_mobile_menu_control_wrapper' );
+		?>
+		<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" data-nav="site-navigation">
+			<?php
+			/**
+			 * generate_inside_mobile_menu hook.
+			 *
+			 * @since 0.1
+			 */
+			do_action( 'generate_inside_mobile_menu' );
+
+			generate_do_svg_icon( 'menu-bars', true );
+
+			$mobile_menu_label = __( 'Menu', 'generatepress' );
+
+			if ( 'nav-float-right' === generate_get_navigation_location() || 'nav-float-left' === generate_get_navigation_location() ) {
+				$mobile_menu_label = '';
+			}
+
+			$mobile_menu_label = apply_filters( 'generate_mobile_menu_label', $mobile_menu_label );
+
+			if ( $mobile_menu_label ) {
+				printf(
+					'<span class="mobile-menu">%s</span>',
+					$mobile_menu_label // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- HTML allowed in filter.
+				);
+			} else {
+				printf(
+					'<span class="screen-reader-text">%s</span>',
+					esc_html__( 'Menu', 'generatepress' )
+				);
+			}
+			?>
+		</button>
+	</nav>
+	<?php
+}
+
 if ( ! function_exists( 'generate_menu_fallback' ) ) {
 	/**
 	 * Menu fallback.
@@ -398,6 +458,7 @@ if ( ! function_exists( 'generate_navigation_search' ) ) {
 }
 
 add_action( 'generate_after_primary_menu', 'generate_do_menu_bar_item_container' );
+add_action( 'generate_inside_mobile_menu_control_wrapper', 'generate_do_menu_bar_item_container' );
 /**
  * Add a container for menu bar items.
  *

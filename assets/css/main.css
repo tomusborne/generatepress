@@ -1548,6 +1548,30 @@ nav.toggled ul ul.sub-menu {
 	float: right;
 }
 
+.mobile-menu-control-wrapper {
+	display: none;
+	margin-left: auto;
+	align-items: center;
+}
+
+.nav-is-active {
+	margin-top: 1.5em;
+}
+
+#site-navigation.nav-is-active .nav-search-active {
+	position: relative;
+}
+
+#site-navigation.nav-is-active .navigation-search input {
+	outline: auto;
+}
+
+.nav-float-left .mobile-menu-control-wrapper {
+	margin-left: 0;
+	margin-right: auto;
+	flex-direction: row-reverse;
+}
+
 /*--------------------------------------------------------------
 ## Breakpoint (768px)
 --------------------------------------------------------------*/
@@ -1568,22 +1592,10 @@ nav.toggled ul ul.sub-menu {
 		flex-direction: column;
 		text-align: center;
 	}
-	.nav-float-right #site-navigation,
-	.nav-float-left #site-navigation {
-		margin-left: 0;
-		margin-right: 0;
-		width: 100%;
-		margin-top: 1.5em;
-	}
 	.site-header .header-widget {
 		margin-top: 1.5em;
 		margin-left: auto;
 		margin-right: auto;
-	}
-	.nav-float-left .site-logo,
-	.nav-float-left .site-branding,
-	.nav-float-left .header-widget {
-		order: initial;
 	}
 	.site-logo + .site-branding {
 		margin: 1.5em 0 0;
