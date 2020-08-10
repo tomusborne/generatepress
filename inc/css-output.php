@@ -264,6 +264,11 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->set_selector( '.site-description' );
 		$css->add_property( 'color', $settings['site_tagline_color'] );
 
+		if ( $settings['navigation_background_color'] === $settings['header_background_color'] ) {
+			$css->set_selector( '.mobile-menu-control-wrapper .menu-toggle,.mobile-menu-control-wrapper .menu-toggle:hover,.mobile-menu-control-wrapper .menu-toggle:focus' );
+			$css->add_property( 'background-color', 'rgba(0, 0, 0, 0.02)' );
+		}
+
 		$css->set_selector( '.main-navigation,.main-navigation ul ul' );
 		$css->add_property( 'background-color', $settings['navigation_background_color'] );
 
