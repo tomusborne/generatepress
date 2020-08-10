@@ -100,13 +100,14 @@ nav.toggled {
 	align-items: center;
 }
 
-.nav-is-active {
-	margin-top: 1.5em;
-}
+.has-inline-mobile-toggle {
+	#site-navigation.toggled {
+		margin-top: 1.5em;
+	}
 
-#site-navigation.nav-is-active {
 	.nav-search-active {
 		position: relative;
+		margin-top: 1.5em;
 	}
 
 	.navigation-search input {

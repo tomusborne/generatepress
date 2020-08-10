@@ -1554,15 +1554,16 @@ nav.toggled ul ul.sub-menu {
 	align-items: center;
 }
 
-.nav-is-active {
+.has-inline-mobile-toggle #site-navigation.toggled {
 	margin-top: 1.5em;
 }
 
-#site-navigation.nav-is-active .nav-search-active {
+.has-inline-mobile-toggle .nav-search-active {
 	position: relative;
+	margin-top: 1.5em;
 }
 
-#site-navigation.nav-is-active .navigation-search input {
+.has-inline-mobile-toggle .navigation-search input {
 	outline: auto;
 }
 
