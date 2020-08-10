@@ -241,10 +241,10 @@ class GeneratePress_Theme_Update {
 		$update_spacing_options = false;
 
 		$old_spacing_defaults = array(
-			'content_top' => '40',
-			'content_right' => '40',
-			'content_bottom' => '40',
-			'content_left' => '40',
+			'header_top' => '40',
+			'header_right' => '40',
+			'header_bottom' => '40',
+			'header_left' => '40',
 		);
 
 		foreach ( $old_spacing_defaults as $key => $value ) {
