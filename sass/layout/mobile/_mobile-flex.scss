@@ -101,17 +101,22 @@ nav.toggled {
 }
 
 .has-inline-mobile-toggle {
-	#site-navigation.toggled {
-		margin-top: 1.5em;
-	}
+	#site-navigation {
+		&.toggled {
+			margin-top: 1.5em;
+		}
 
-	.nav-search-active {
-		position: relative;
-		margin-top: 1.5em;
-	}
+		&.has-active-search {
+			margin-top: 1.5em;
 
-	.navigation-search input {
-		outline: auto;
+			.nav-search-active {
+				position: relative;
+			}
+
+			.navigation-search input {
+				outline: auto;
+			}
+		}
 	}
 }
 

@@ -107,7 +107,6 @@
 
 				if ( isExternalToggle ) {
 					mobileMenuControls.classList.remove( 'toggled' );
-					parentContainer.classList.remove( 'nav-is-active' );
 				} else if ( mobileMenuControls && parentContainer.classList.contains( 'main-navigation' ) ) {
 					mobileMenuControls.classList.remove( 'toggled' );
 				}
@@ -127,8 +126,6 @@
 							mobileMenuControls.querySelector( '.search-item' ).click();
 						}
 					}
-
-					parentContainer.classList.add( 'nav-is-active' );
 				} else if ( mobileMenuControls && parentContainer.classList.contains( 'main-navigation' ) ) {
 					mobileMenuControls.classList.add( 'toggled' );
 				}
@@ -204,7 +201,7 @@
 		 * Makes it possible to style mobile item with .toggled class.
 		 */
 		var checkMobile = function() {
-			var openedMobileMenus = document.querySelectorAll( '.toggled, .nav-is-active' );
+			var openedMobileMenus = document.querySelectorAll( '.toggled, .has-active-search' );
 
 			for ( var i = 0; i < openedMobileMenus.length; i++ ) {
 				var menuToggle = openedMobileMenus[i].querySelector( '.menu-toggle' );
@@ -226,10 +223,6 @@
 
 						document.activeElement.blur();
 						openedMobileMenus[i].classList.remove( 'toggled' );
-
-						if ( openedMobileMenus[i].classList.contains( 'nav-is-active' ) ) {
-							openedMobileMenus[i].classList.remove( 'nav-is-active' );
-						}
 
 						htmlEl.classList.remove( 'mobile-menu-open' );
 						menuToggle.setAttribute( 'aria-expanded', 'false' );

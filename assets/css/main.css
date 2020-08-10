@@ -1558,12 +1558,15 @@ nav.toggled ul ul.sub-menu {
 	margin-top: 1.5em;
 }
 
-.has-inline-mobile-toggle .nav-search-active {
-	position: relative;
+.has-inline-mobile-toggle #site-navigation.has-active-search {
 	margin-top: 1.5em;
 }
 
-.has-inline-mobile-toggle .navigation-search input {
+.has-inline-mobile-toggle #site-navigation.has-active-search .nav-search-active {
+	position: relative;
+}
+
+.has-inline-mobile-toggle #site-navigation.has-active-search .navigation-search input {
 	outline: auto;
 }
 
