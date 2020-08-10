@@ -757,12 +757,12 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 }
 
 .inside-header {
-	padding: 40px;
+	padding: 20px;
 }
 
 .main-title {
 	margin: 0;
-	font-size: 45px;
+	font-size: 25px;
 	line-height: 1.2em;
 	word-wrap: break-word;
 	font-weight: bold;
