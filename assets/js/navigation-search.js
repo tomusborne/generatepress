@@ -105,7 +105,12 @@
 					var key = e.which || e.keyCode;
 
 					if ( key === 27 ) { // 27 is esc
-						toggleSearch( e );
+						var activeSearchItems = document.querySelectorAll( '.search-item.active' );
+
+						for ( var i = 0; i < activeSearchItems.length; i++ ) {
+							toggleSearch( e, activeSearchItems[i] );
+							break;
+						}
 					}
 				}
 			}, false );
