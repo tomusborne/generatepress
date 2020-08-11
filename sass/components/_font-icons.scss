@@ -73,6 +73,13 @@
 	}
 }
 
+.widget .search-form {
+	button:before {
+		content: "\f002";
+		font-family: GeneratePress;
+	}
+}
+
 /*--------------------------------------------------------------
 # Navigation Dropdowns
 --------------------------------------------------------------*/
