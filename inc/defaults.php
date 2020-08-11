@@ -28,7 +28,7 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 				'top_bar_width' => 'full',
 				'top_bar_inner_width' => 'contained',
 				'top_bar_alignment' => 'right',
-				'container_width' => '1100',
+				'container_width' => '1200',
 				'container_alignment' => 'boxes',
 				'header_layout_setting' => 'fluid-header',
 				'header_inner_width' => 'contained',
