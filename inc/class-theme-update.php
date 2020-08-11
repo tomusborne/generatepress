@@ -212,6 +212,7 @@ class GeneratePress_Theme_Update {
 			'icons' => 'font',
 			'structure' => 'floats',
 			'hide_tagline' => '',
+			'container_width' => '1100',
 			'nav_position_setting' => 'nav-below-header',
 			'navigation_background_color' => '#222222',
 			'navigation_text_color' => '#ffffff',
@@ -224,6 +225,10 @@ class GeneratePress_Theme_Update {
 			'subnavigation_background_current_color' => '#4f4f4f',
 			'site_title_font_size' => '45',
 			'mobile_site_title_font_size' => '30',
+			'form_button_background_color' => '#666666',
+			'form_button_background_color_hover' => '#3f3f3f',
+			'footer_background_color' => '#222222',
+			'footer_link_hover_color' => '#606060',
 		);
 
 		foreach ( $old_defaults as $key => $value ) {
@@ -241,6 +246,8 @@ class GeneratePress_Theme_Update {
 		$update_spacing_options = false;
 
 		$old_spacing_defaults = array(
+			'separator' => '20',
+			'mobile_separator' => '',
 			'header_top' => '40',
 			'header_right' => '40',
 			'header_bottom' => '40',
