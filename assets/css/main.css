@@ -1181,6 +1181,10 @@ object {
 	display: flex;
 }
 
+.widget .search-form label {
+	flex-grow: 1;
+}
+
 .widget .search-form input {
 	border-right: 0;
 }

@@ -1,5 +1,9 @@
 .widget .search-form {
-    display: flex;
+	display: flex;
+
+	label {
+		flex-grow: 1;
+	}
 
     input {
         border-right: 0;
