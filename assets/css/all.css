@@ -1760,10 +1760,6 @@ ol.comment-list {
 	max-width: 100%;
 }
 
-.widget_search .search-submit {
-	display: none;
-}
-
 .widget_categories .children {
 	margin-left: 1.5em;
 	padding-top: 5px;
@@ -1830,6 +1826,10 @@ ol.comment-list {
 .sidebar .grid-container {
 	max-width: 100%;
 	width: 100%;
+}
+
+.widget_search .search-submit {
+	display: none;
 }
 
 /*--------------------------------------------------------------
