@@ -27,7 +27,7 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 		$css->add_property( 'background-color', $settings['background_color'] );
 		$css->add_property( 'color', $settings['text_color'] );
 
-		$css->set_selector( 'a, a:visited' );
+		$css->set_selector( 'a' );
 		$css->add_property( 'color', $settings['link_color'] );
 
 		$css->set_selector( 'a:visited' )->add_property( 'color', $settings['link_color_visited'] );
@@ -101,7 +101,7 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 		}
 
 		if ( generate_get_option( 'back_to_top' ) ) {
-			$css->set_selector( '.generate-back-to-top, .generate-back-to-top:visited' );
+			$css->set_selector( '.generate-back-to-top' );
 			$css->add_property( 'font-size', '20px' );
 			$css->add_property( 'border-radius', '3px' );
 			$css->add_property( 'position', 'fixed' );
@@ -242,7 +242,7 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->add_property( 'background-color', $settings['top_bar_background_color'] );
 		$css->add_property( 'color', $settings['top_bar_text_color'] );
 
-		$css->set_selector( '.top-bar a,.top-bar a:visited' );
+		$css->set_selector( '.top-bar a' );
 		$css->add_property( 'color', $settings['top_bar_link_color'] );
 
 		$css->set_selector( '.top-bar a:hover' );
@@ -258,7 +258,7 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->set_selector( '.site-header a:hover' );
 		$css->add_property( 'color', $settings['header_link_hover_color'] );
 
-		$css->set_selector( '.main-title a,.main-title a:hover,.main-title a:visited' );
+		$css->set_selector( '.main-title a,.main-title a:hover' );
 		$css->add_property( 'color', $settings['site_title_color'] );
 
 		$css->set_selector( '.site-description' );
@@ -336,7 +336,7 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->add_property( 'color', $settings['content_text_color'] );
 		$css->add_property( 'background-color', $settings['content_background_color'] );
 
-		$css->set_selector( '.inside-article a,.inside-article a:visited,.paging-navigation a,.paging-navigation a:visited,.comments-area a,.comments-area a:visited,.page-header a,.page-header a:visited' );
+		$css->set_selector( '.inside-article a,.paging-navigation a,.comments-area a,.page-header a' );
 		$css->add_property( 'color', $settings['content_link_color'] );
 
 		$css->set_selector( '.inside-article a:hover,.paging-navigation a:hover,.comments-area a:hover,.page-header a:hover' );
@@ -345,7 +345,7 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->set_selector( '.entry-header h1,.page-header h1' );
 		$css->add_property( 'color', $settings['content_title_color'] );
 
-		$css->set_selector( '.entry-title a,.entry-title a:visited' );
+		$css->set_selector( '.entry-title a' );
 		$css->add_property( 'color', $settings['blog_post_title_color'] );
 
 		$css->set_selector( '.entry-title a:hover' );
@@ -354,7 +354,7 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->set_selector( '.entry-meta' );
 		$css->add_property( 'color', $settings['entry_meta_text_color'] );
 
-		$css->set_selector( '.entry-meta a,.entry-meta a:visited' );
+		$css->set_selector( '.entry-meta a' );
 		$css->add_property( 'color', $settings['entry_meta_link_color'] );
 
 		$css->set_selector( '.entry-meta a:hover' );
@@ -382,7 +382,7 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->add_property( 'color', $settings['sidebar_widget_text_color'] );
 		$css->add_property( 'background-color', $settings['sidebar_widget_background_color'] );
 
-		$css->set_selector( '.sidebar .widget a,.sidebar .widget a:visited' );
+		$css->set_selector( '.sidebar .widget a' );
 		$css->add_property( 'color', $settings['sidebar_widget_link_color'] );
 
 		$css->set_selector( '.sidebar .widget a:hover' );
@@ -395,7 +395,7 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->add_property( 'color', $settings['footer_widget_text_color'] );
 		$css->add_property( 'background-color', $settings['footer_widget_background_color'] );
 
-		$css->set_selector( '.footer-widgets a,.footer-widgets a:visited' );
+		$css->set_selector( '.footer-widgets a' );
 		$css->add_property( 'color', $settings['footer_widget_link_color'] );
 
 		$css->set_selector( '.footer-widgets a:hover' );
@@ -408,7 +408,7 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->add_property( 'color', $settings['footer_text_color'] );
 		$css->add_property( 'background-color', $settings['footer_background_color'] );
 
-		$css->set_selector( '.site-info a,.site-info a:visited' );
+		$css->set_selector( '.site-info a' );
 		$css->add_property( 'color', $settings['footer_link_color'] );
 
 		$css->set_selector( '.site-info a:hover' );
@@ -427,7 +427,7 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->add_property( 'background-color', $settings['form_background_color_focus'] );
 		$css->add_property( 'border-color', $settings['form_border_color_focus'] );
 
-		$css->set_selector( 'button,html input[type="button"],input[type="reset"],input[type="submit"],a.button,a.button:visited,a.wp-block-button__link:not(.has-background)' );
+		$css->set_selector( 'button,html input[type="button"],input[type="reset"],input[type="submit"],a.button,a.wp-block-button__link:not(.has-background)' );
 		$css->add_property( 'color', $settings['form_button_text_color'] );
 		$css->add_property( 'background-color', $settings['form_button_background_color'] );
 
@@ -435,7 +435,7 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->add_property( 'color', $settings['form_button_text_color_hover'] );
 		$css->add_property( 'background-color', $settings['form_button_background_color_hover'] );
 
-		$css->set_selector( '.generate-back-to-top,.generate-back-to-top:visited' );
+		$css->set_selector( '.generate-back-to-top' );
 		$css->add_property( 'background-color', $settings['back_to_top_background_color'] );
 		$css->add_property( 'color', $settings['back_to_top_text_color'] );
 
@@ -578,7 +578,7 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 			$css->add_property( 'font-size', 'inherit' );
 		}
 
-		$css->set_selector( 'button:not(.menu-toggle),html input[type="button"],input[type="reset"],input[type="submit"],.button,.button:visited,.wp-block-button .wp-block-button__link' );
+		$css->set_selector( 'button:not(.menu-toggle),html input[type="button"],input[type="reset"],input[type="submit"],.button,.wp-block-button .wp-block-button__link' );
 		$css->add_property( 'font-family', $defaults['font_buttons'] !== $settings['font_buttons'] ? $buttons_family : null );
 		$css->add_property( 'font-weight', $settings['buttons_font_weight'], $defaults['buttons_font_weight'] );
 		$css->add_property( 'text-transform', $settings['buttons_font_transform'], $defaults['buttons_font_transform'] );
