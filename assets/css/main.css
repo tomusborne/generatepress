@@ -564,6 +564,7 @@ a:focus {
 .main-navigation .main-nav > ul {
 	display: flex;
 	flex-wrap: wrap;
+	align-items: center;
 }
 
 .main-navigation li {
