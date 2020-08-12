@@ -1,11 +1,12 @@
 .widget .search-form {
 	display: flex;
+	flex-wrap: wrap;
 
 	label {
-		flex-grow: 1;
+		flex: 10 115px;
 	}
 
-    input {
-        border-right: 0;
-    }
+	button {
+		flex: 1 0 50px;
+	}
 }
