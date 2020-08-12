@@ -252,7 +252,7 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->add_property( 'background-color', $settings['header_background_color'] );
 		$css->add_property( 'color', $settings['header_text_color'] );
 
-		$css->set_selector( '.site-header a,.site-header a:visited' );
+		$css->set_selector( '.site-header a' );
 		$css->add_property( 'color', $settings['header_link_color'] );
 
 		$css->set_selector( '.site-header a:hover' );
@@ -265,7 +265,7 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->add_property( 'color', $settings['site_tagline_color'] );
 
 		if ( $settings['navigation_background_color'] === $settings['header_background_color'] ) {
-			$css->set_selector( '.mobile-menu-control-wrapper .menu-toggle,.mobile-menu-control-wrapper .menu-toggle:hover,.mobile-menu-control-wrapper .menu-toggle:focus,.has-inline-mobile-toggle .main-navigation.toggled' );
+			$css->set_selector( '.mobile-menu-control-wrapper .menu-toggle,.mobile-menu-control-wrapper .menu-toggle:hover,.mobile-menu-control-wrapper .menu-toggle:focus,.has-inline-mobile-toggle #site-navigation.toggled' );
 			$css->add_property( 'background-color', 'rgba(0, 0, 0, 0.02)' );
 		}
 

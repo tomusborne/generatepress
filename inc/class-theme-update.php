@@ -211,6 +211,25 @@ class GeneratePress_Theme_Update {
 		$old_defaults = array(
 			'icons' => 'font',
 			'structure' => 'floats',
+			'hide_tagline' => '',
+			'container_width' => '1100',
+			'nav_position_setting' => 'nav-below-header',
+			'navigation_background_color' => '#222222',
+			'navigation_text_color' => '#ffffff',
+			'navigation_background_hover_color' => '#3f3f3f',
+			'navigation_text_hover_color' => '#ffffff',
+			'navigation_background_current_color' => '#3f3f3f',
+			'navigation_text_current_color' => '#ffffff',
+			'subnavigation_background_color' => '#3f3f3f',
+			'subnavigation_background_hover_color' => '#4f4f4f',
+			'subnavigation_background_current_color' => '#4f4f4f',
+			'subnavigation_text_current_color' => '#8f919e',
+			'site_title_font_size' => '45',
+			'mobile_site_title_font_size' => '30',
+			'form_button_background_color' => '#666666',
+			'form_button_background_color_hover' => '#3f3f3f',
+			'footer_background_color' => '#222222',
+			'footer_link_hover_color' => '#606060',
 		);
 
 		foreach ( $old_defaults as $key => $value ) {
@@ -222,6 +241,32 @@ class GeneratePress_Theme_Update {
 
 		if ( $update_options ) {
 			update_option( 'generate_settings', $settings );
+		}
+
+		$spacing_settings = get_option( 'generate_spacing_settings', array() );
+		$update_spacing_options = false;
+
+		$old_spacing_defaults = array(
+			'separator' => '20',
+			'mobile_separator' => '',
+			'header_top' => '40',
+			'header_right' => '40',
+			'header_bottom' => '40',
+			'header_left' => '40',
+		);
+
+		foreach ( $old_spacing_defaults as $key => $value ) {
+			if ( ! isset( $spacing_settings[ $key ] ) ) {
+				$spacing_settings[ $key ] = $value;
+				$update_spacing_options = true;
+			}
+		}
+
+		if ( $update_spacing_options ) {
+			update_option( 'generate_spacing_settings', $spacing_settings );
+		}
+
+		if ( $update_options || $update_spacing_options ) {
 			delete_option( 'generate_dynamic_css_output' );
 			delete_option( 'generate_dynamic_css_cached_version' );
 

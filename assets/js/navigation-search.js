@@ -29,7 +29,7 @@
 					forms[i].classList.remove( 'nav-search-active' );
 
 					if ( nav ) {
-						nav.classList.remove( 'nav-is-active' );
+						nav.classList.remove( 'has-active-search' );
 					}
 
 					for ( var t = 0; t < toggles.length; t++ ) {
@@ -56,7 +56,7 @@
 					}
 
 					if ( nav ) {
-						nav.classList.add( 'nav-is-active' );
+						nav.classList.add( 'has-active-search' );
 					}
 
 					forms[i].classList.add( 'nav-search-active' );
