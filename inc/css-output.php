@@ -101,7 +101,7 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 		}
 
 		if ( generate_get_option( 'back_to_top' ) ) {
-			$css->set_selector( '.generate-back-to-top' );
+			$css->set_selector( 'a.generate-back-to-top' );
 			$css->add_property( 'font-size', '20px' );
 			$css->add_property( 'border-radius', '3px' );
 			$css->add_property( 'position', 'fixed' );
@@ -435,11 +435,11 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->add_property( 'color', $settings['form_button_text_color_hover'] );
 		$css->add_property( 'background-color', $settings['form_button_background_color_hover'] );
 
-		$css->set_selector( '.generate-back-to-top' );
+		$css->set_selector( 'a.generate-back-to-top' );
 		$css->add_property( 'background-color', $settings['back_to_top_background_color'] );
 		$css->add_property( 'color', $settings['back_to_top_text_color'] );
 
-		$css->set_selector( '.generate-back-to-top:hover,.generate-back-to-top:focus' );
+		$css->set_selector( 'a.generate-back-to-top:hover,a.generate-back-to-top:focus' );
 		$css->add_property( 'background-color', $settings['back_to_top_background_color_hover'] );
 		$css->add_property( 'color', $settings['back_to_top_text_color_hover'] );
 
