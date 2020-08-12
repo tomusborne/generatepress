@@ -726,7 +726,10 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->add_property( 'width', 'calc(100% + ' . absint( $content_padding ) . 'px)' );
 		$css->add_property( 'max-width', 'calc(100% + ' . absint( $content_padding ) . 'px)' );
 
-		if ( 'text' === generate_get_option( 'container_alignment' ) ) {
+		if ( generate_is_using_flexbox() && 'boxes' === generate_get_option( 'container_alignment' ) ) {
+			$css->set_selector( '.inside-header.grid-container' );
+			$css->add_property( 'max-width', generate_get_option( 'container_width' ) + $content_padding, false, 'px' );
+		} elseif ( 'text' === generate_get_option( 'container_alignment' ) ) {
 			$css->set_selector( '.container.grid-container' );
 			$css->add_property( 'max-width', generate_get_option( 'container_width' ) + $content_padding, false, 'px' );
 		}
