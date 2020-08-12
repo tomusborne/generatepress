@@ -323,27 +323,29 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			)
 		);
 
-		$wp_customize->add_setting(
-			'generate_settings[link_color_visited]',
-			array(
-				'default' => $defaults['link_color_visited'],
-				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_hex_color',
-				'transport' => 'refresh',
-			)
-		);
-
-		$wp_customize->add_control(
-			new WP_Customize_Color_Control(
-				$wp_customize,
+		if ( '' !== generate_get_option( 'link_color_visited' ) ) {
+			$wp_customize->add_setting(
 				'generate_settings[link_color_visited]',
 				array(
-					'label' => __( 'Link Color Visited', 'generatepress' ),
-					'section' => 'body_section',
-					'settings' => 'generate_settings[link_color_visited]',
+					'default' => $defaults['link_color_visited'],
+					'type' => 'option',
+					'sanitize_callback' => 'generate_sanitize_hex_color',
+					'transport' => 'refresh',
 				)
-			)
-		);
+			);
+
+			$wp_customize->add_control(
+				new WP_Customize_Color_Control(
+					$wp_customize,
+					'generate_settings[link_color_visited]',
+					array(
+						'label' => __( 'Link Color Visited', 'generatepress' ),
+						'section' => 'body_section',
+						'settings' => 'generate_settings[link_color_visited]',
+					)
+				)
+			);
+		}
 
 		$color_defaults = generate_get_color_defaults();
 
