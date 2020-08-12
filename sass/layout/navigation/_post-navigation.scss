@@ -16,4 +16,18 @@
 	.nav-next {
 		display: none;
 	}
+
+	.nav-links {
+		& > * {
+			padding: 0 5px;
+		}
+
+		& > *:first-child {
+			padding-left: 0;
+		}
+
+		.current {
+			font-weight: bold;
+		}
+	}
 }

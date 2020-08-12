@@ -750,6 +750,18 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 	display: none;
 }
 
+.paging-navigation .nav-links > * {
+	padding: 0 5px;
+}
+
+.paging-navigation .nav-links > *:first-child {
+	padding-left: 0;
+}
+
+.paging-navigation .nav-links .current {
+	font-weight: bold;
+}
+
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/

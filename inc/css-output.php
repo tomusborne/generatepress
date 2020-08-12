@@ -714,6 +714,12 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header, .wp-block-group__inner-container' );
 		$css->add_property( 'padding', generate_padding_css( $settings['content_top'], $settings['content_right'], $settings['content_bottom'], $settings['content_left'] ), generate_padding_css( $defaults['content_top'], $defaults['content_right'], $defaults['content_bottom'], $defaults['content_left'] ) );
 
+		if ( generate_is_using_flexbox() ) {
+			$css->set_selector( '.separate-containers .paging-navigation' );
+			$css->add_property( 'padding-top', '20px' );
+			$css->add_property( 'padding-bottom', '20px' );
+		}
+
 		$content_padding = absint( $settings['content_right'] ) + absint( $settings['content_left'] );
 		$css->set_selector( '.entry-content .alignwide, body:not(.no-sidebar) .entry-content .alignfull' );
 		$css->add_property( 'margin-left', '-' . absint( $settings['content_left'] ) . 'px' );
