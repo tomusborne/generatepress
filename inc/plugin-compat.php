@@ -417,3 +417,27 @@ function generate_set_menu_plus_compat_defaults( $defaults ) {
 
 	return $defaults;
 }
+
+add_filter( 'generate_spacing_option_defaults', 'generate_set_spacing_compat_defaults', 20 );
+/**
+ * Set defaults in our pro Spacing module.
+ *
+ * @since 3.0.0
+ * @param array $defaults The existing defaults.
+ */
+function generate_set_spacing_compat_defaults( $defaults ) {
+	$defaults['mobile_header_right'] = '30';
+	$defaults['mobile_header_left'] = '30';
+
+	$defaults['mobile_widget_top'] = '30';
+	$defaults['mobile_widget_right'] = '30';
+	$defaults['mobile_widget_bottom'] = '30';
+	$defaults['mobile_widget_left'] = '30';
+
+	$defaults['mobile_footer_widget_container_top'] = '30';
+	$defaults['mobile_footer_widget_container_right'] = '30';
+	$defaults['mobile_footer_widget_container_bottom'] = '30';
+	$defaults['mobile_footer_widget_container_left'] = '30';
+
+	return $defaults;
+}

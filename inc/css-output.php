@@ -811,6 +811,58 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 			$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header, .wp-block-group__inner-container' );
 			$css->add_property( 'padding', generate_padding_css( $settings['mobile_content_top'], $settings['mobile_content_right'], $settings['mobile_content_bottom'], $settings['mobile_content_left'] ) );
 
+			$css->set_selector( '.inside-header' );
+
+			if ( '' !== $settings['mobile_header_top'] ) {
+				$css->add_property( 'padding-top', absint( $settings['mobile_header_top'] ), false, 'px' );
+			}
+
+			if ( '' !== $settings['mobile_header_right'] ) {
+				$css->add_property( 'padding-right', absint( $settings['mobile_header_right'] ), false, 'px' );
+			}
+
+			if ( '' !== $settings['mobile_header_bottom'] ) {
+				$css->add_property( 'padding-bottom', absint( $settings['mobile_header_bottom'] ), false, 'px' );
+			}
+
+			if ( '' !== $settings['mobile_header_left'] ) {
+				$css->add_property( 'padding-left', absint( $settings['mobile_header_left'] ), false, 'px' );
+			}
+
+			$css->set_selector( '.widget-area .widget' );
+			if ( '' !== $settings['mobile_widget_top'] ) {
+				$css->add_property( 'padding-top', absint( $settings['mobile_widget_top'] ), false, 'px' );
+			}
+
+			if ( '' !== $settings['mobile_widget_right'] ) {
+				$css->add_property( 'padding-right', absint( $settings['mobile_widget_right'] ), false, 'px' );
+			}
+
+			if ( '' !== $settings['mobile_widget_bottom'] ) {
+				$css->add_property( 'padding-bottom', absint( $settings['mobile_widget_bottom'] ), false, 'px' );
+			}
+
+			if ( '' !== $settings['mobile_widget_left'] ) {
+				$css->add_property( 'padding-left', absint( $settings['mobile_widget_left'] ), false, 'px' );
+			}
+
+			$css->set_selector( '.footer-widgets' );
+			if ( '' !== $settings['mobile_footer_widget_container_top'] ) {
+				$css->add_property( 'padding-top', absint( $settings['mobile_footer_widget_container_top'] ), false, 'px' );
+			}
+
+			if ( '' !== $settings['mobile_footer_widget_container_right'] ) {
+				$css->add_property( 'padding-right', absint( $settings['mobile_footer_widget_container_right'] ), false, 'px' );
+			}
+
+			if ( '' !== $settings['mobile_footer_widget_container_bottom'] ) {
+				$css->add_property( 'padding-bottom', absint( $settings['mobile_footer_widget_container_bottom'] ), false, 'px' );
+			}
+
+			if ( '' !== $settings['mobile_footer_widget_container_left'] ) {
+				$css->add_property( 'padding-left', absint( $settings['mobile_footer_widget_container_left'] ), false, 'px' );
+			}
+
 			$mobile_content_padding = absint( $settings['mobile_content_right'] ) + absint( $settings['mobile_content_left'] );
 			$css->set_selector( '.entry-content .alignwide, body:not(.no-sidebar) .entry-content .alignfull' );
 			$css->add_property( 'margin-left', '-' . absint( $settings['mobile_content_left'] ) . 'px' );
