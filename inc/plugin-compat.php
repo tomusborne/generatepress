@@ -426,6 +426,8 @@ add_filter( 'generate_spacing_option_defaults', 'generate_set_spacing_compat_def
  * @param array $defaults The existing defaults.
  */
 function generate_set_spacing_compat_defaults( $defaults ) {
+	$defaults['mobile_header_top'] = '0';
+	$defaults['mobile_header_bottom'] = '';
 	$defaults['mobile_header_right'] = '30';
 	$defaults['mobile_header_left'] = '30';
 
