@@ -253,6 +253,16 @@ class GeneratePress_Theme_Update {
 			'header_right' => '40',
 			'header_bottom' => '40',
 			'header_left' => '40',
+			'mobile_header_right' => '',
+			'mobile_header_left' => '',
+			'mobile_widget_top' => '',
+			'mobile_widget_right' => '',
+			'mobile_widget_bottom' => '',
+			'mobile_widget_left' => '',
+			'mobile_footer_widget_container_top' => '',
+			'mobile_footer_widget_container_right' => '',
+			'mobile_footer_widget_container_bottom' => '',
+			'mobile_footer_widget_container_left' => '',
 		);
 
 		foreach ( $old_spacing_defaults as $key => $value ) {
