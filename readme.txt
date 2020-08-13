@@ -118,12 +118,22 @@ Release date: TBA
 * New: generate_menu_bar_items hook
 * New: generate_show_entry_header filter
 * New: Re-design archive post navigation box
+* New: Container width default set to 1200
+* New: Navigation location default set to float right
+* New: Navigation color defaults updated
+* New: Button color defaults updated
+* New: Footer color defaults updated
+* New: Site title font size default updated
+* New: Search button added to search widget
+* New: Archive post navigation design
 * Fix: Close other sub-menus when opening a new one on touch devices
 * Fix: Footer bar menu spacing on mobile
 * Fix: Text aligned container width preview in Customizer when using full-width-content
 * Fix: Remove disable content title toggle in editor if it doesn't apply to front-end
 * Fix: One container margin based on default content padding
 * Fix: Nav aligned left when using RTL languages
+* Tweak: Remove all :visited references from dynamic CSS
+* Tweak: Make sub-menu dropdown box-shadow harder
 * Tweak: Remove content margin-top if it's the first child in parent
 * Tweak: Remove featured image margin-top if it's the first child in parent
 * Tweak: Only print entry-meta wrapper to page if it contains meta
@@ -155,7 +165,6 @@ Release date: TBA
 * Tweak: Hook comments template into generate_after_do_template_part
 * Tweak: Use flexbox for author page header
 * Tweak: Simplify navigation dropdown CSS
-* Tweak: Load mobile nav search icon after menu toggle when using flexbox
 * Tweak: Set variable for get_body_class where necessary
 * Tweak: Use separate SVGs for different arrow directions instead of CSS
 * Tweak: Use class for navigation sub-menu direction
@@ -173,11 +182,16 @@ Release date: TBA
 * Tweak: Move microdata to generate_after_element_class_attribute where possible
 * Tweak: Move back to top button CSS to dynamic CSS if enabled
 * Tweak: Move navigation search CSS to dynamic CSS if enabled
+* Tweak: Move dropdown-click CSS to dynamic CSS if enabled
 * Tweak: Remove skip-link-focus.js
 * Tweak: Disable old Beaver Builer full-width compat CSS when using flexbox layout
 * Tweak: Remove CSS to disable comments link on single posts
 * Tweak: Add featured-image class to singular featured images
 * Tweak: Don't output body font family if it's the default that exists in stylesheet
+* Tweak: Allow 0 value in dynamic CSS
+* Tweak: Remove mobile navigation static CSS as it's added dynamically already
+* Tweak: Improve checkMobile() javascript performance
+* Tweak: Prevent font-size values from being set to 0
 * Template change: Removed generate_do_microdata() from sidebar.php and sidebar-left.php
 
 = 2.4.2 =
