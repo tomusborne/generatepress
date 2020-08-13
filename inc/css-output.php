@@ -582,10 +582,7 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->add_property( 'font-family', $defaults['font_buttons'] !== $settings['font_buttons'] ? $buttons_family : null );
 		$css->add_property( 'font-weight', $settings['buttons_font_weight'], $defaults['buttons_font_weight'] );
 		$css->add_property( 'text-transform', $settings['buttons_font_transform'], $defaults['buttons_font_transform'] );
-
-		if ( '' !== $settings['buttons_font_size'] ) {
-			$css->add_property( 'font-size', absint( $settings['buttons_font_size'] ), $defaults['buttons_font_size'], 'px' );
-		}
+		$css->add_property( 'font-size', absint( $settings['buttons_font_size'] ), $defaults['buttons_font_size'], 'px' );
 
 		$css->set_selector( 'h1' );
 		$css->add_property( 'font-family', $defaults['font_heading_1'] !== $settings['font_heading_1'] ? $h1_family : null );
@@ -615,10 +612,7 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->add_property( 'font-family', $defaults['font_heading_4'] !== $settings['font_heading_4'] ? $h4_family : null );
 		$css->add_property( 'font-weight', $settings['heading_4_weight'], $defaults['heading_4_weight'] );
 		$css->add_property( 'text-transform', $settings['heading_4_transform'], $defaults['heading_4_transform'] );
-
-		if ( '' !== $settings['heading_4_font_size'] ) {
-			$css->add_property( 'font-size', absint( $settings['heading_4_font_size'] ), $defaults['heading_4_font_size'], 'px' );
-		}
+		$css->add_property( 'font-size', absint( $settings['heading_4_font_size'] ), $defaults['heading_4_font_size'], 'px' );
 
 		if ( '' !== $settings['heading_4_line_height'] ) {
 			$css->add_property( 'line-height', floatval( $settings['heading_4_line_height'] ), $defaults['heading_4_line_height'], 'em' );
@@ -628,10 +622,7 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->add_property( 'font-family', $defaults['font_heading_5'] !== $settings['font_heading_5'] ? $h5_family : null );
 		$css->add_property( 'font-weight', $settings['heading_5_weight'], $defaults['heading_5_weight'] );
 		$css->add_property( 'text-transform', $settings['heading_5_transform'], $defaults['heading_5_transform'] );
-
-		if ( '' !== $settings['heading_5_font_size'] ) {
-			$css->add_property( 'font-size', $settings['heading_5_font_size'], $defaults['heading_5_font_size'], 'px' );
-		}
+		$css->add_property( 'font-size', $settings['heading_5_font_size'], $defaults['heading_5_font_size'], 'px' );
 
 		if ( '' !== $settings['heading_5_line_height'] ) {
 			$css->add_property( 'line-height', floatval( $settings['heading_5_line_height'] ), $defaults['heading_5_line_height'], 'em' );
@@ -641,10 +632,7 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->add_property( 'font-family', $defaults['font_heading_6'] !== $settings['font_heading_6'] ? $h6_family : null );
 		$css->add_property( 'font-weight', $settings['heading_6_weight'], $defaults['heading_6_weight'] );
 		$css->add_property( 'text-transform', $settings['heading_6_transform'], $defaults['heading_6_transform'] );
-
-		if ( '' !== $settings['heading_6_font_size'] ) {
-			$css->add_property( 'font-size', absint( $settings['heading_6_font_size'] ), $defaults['heading_6_font_size'], 'px' );
-		}
+		$css->add_property( 'font-size', absint( $settings['heading_6_font_size'] ), $defaults['heading_6_font_size'], 'px' );
 
 		if ( '' !== $settings['heading_6_line_height'] ) {
 			$css->add_property( 'line-height', floatval( $settings['heading_6_line_height'] ), $defaults['heading_6_line_height'], 'em' );
@@ -663,23 +651,13 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 
 		$css->start_media_query( generate_get_media_query( 'mobile' ) );
 		$css->set_selector( '.main-title' );
-
-		if ( ! empty( $settings['mobile_site_title_font_size'] ) ) {
-			$css->add_property( 'font-size', absint( $settings['mobile_site_title_font_size'] ), false, 'px' );
-		}
+		$css->add_property( 'font-size', absint( $settings['mobile_site_title_font_size'] ), false, 'px' );
 
 		$css->set_selector( 'h1' );
-
-		if ( ! empty( $settings['mobile_heading_1_font_size'] ) ) {
-			$css->add_property( 'font-size', absint( $settings['mobile_heading_1_font_size'] ), false, 'px' );
-		}
-
+		$css->add_property( 'font-size', absint( $settings['mobile_heading_1_font_size'] ), false, 'px' );
 
 		$css->set_selector( 'h2' );
-
-		if ( ! empty( $settings['mobile_heading_2_font_size'] ) ) {
-			$css->add_property( 'font-size', absint( $settings['mobile_heading_2_font_size'] ), false, 'px' );
-		}
+		$css->add_property( 'font-size', absint( $settings['mobile_heading_2_font_size'] ), false, 'px' );
 		$css->stop_media_query();
 
 		do_action( 'generate_typography_css', $css );

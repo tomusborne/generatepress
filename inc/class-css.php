@@ -90,13 +90,18 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 		 * @access public
 		 * @since  1.0
 		 *
-		 * @param  string $property - the css property.
-		 * @param  string $value - the value to be placed with the property.
-		 * @param  string $og_default - check to see if the value matches the default.
-		 * @param  string $unit - the unit for the value (px).
+		 * @param string $property The css property.
+		 * @param string $value The value to be placed with the property.
+		 * @param string $og_default Check to see if the value matches the default.
+		 * @param string $unit The unit for the value (px).
 		 * @return $this
 		 */
 		public function add_property( $property, $value, $og_default = false, $unit = false ) {
+			// Setting font-size to 0 is rarely ever a good thing.
+			if ( 'font-size' === $property && 0 === $value ) {
+				return false;
+			}
+
 			// Add our unit to our value if it exists.
 			if ( $unit && '' !== $unit ) {
 				$value = $value . $unit;
