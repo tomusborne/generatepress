@@ -193,6 +193,7 @@ Release date: TBA
 * Tweak: Improve checkMobile() javascript performance
 * Tweak: Prevent font-size values from being set to 0
 * Template change: Removed generate_do_microdata() from sidebar.php and sidebar-left.php
+* Template changes: Added generate_do_template_part() to all templates with a loop
 
 = 2.4.2 =
 
