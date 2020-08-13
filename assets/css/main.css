@@ -1504,29 +1504,33 @@ nav.toggled .sfHover > a > .dropdown-menu-toggle .gp-icon.icon-arrow-right svg {
 	display: none;
 }
 
-button.menu-toggle {
-	background-color: transparent;
-	flex-grow: 1;
-	border: 0;
-	text-align: center;
+.menu-toggle {
 	padding: 0 20px;
 	line-height: 60px;
 	margin: 0;
 	font-weight: normal;
 	text-transform: none;
 	font-size: 15px;
+	cursor: pointer;
 }
 
-button.menu-toggle .mobile-menu {
+.menu-toggle .mobile-menu {
 	padding-left: 3px;
 }
 
-button.menu-toggle .gp-icon + .mobile-menu {
+.menu-toggle .gp-icon + .mobile-menu {
 	padding-left: 9px;
 }
 
-button.menu-toggle .mobile-menu:empty {
+.menu-toggle .mobile-menu:empty {
 	display: none;
+}
+
+button.menu-toggle {
+	background-color: transparent;
+	flex-grow: 1;
+	border: 0;
+	text-align: center;
 }
 
 button.menu-toggle:hover, button.menu-toggle:active, button.menu-toggle:focus {

@@ -8,17 +8,14 @@
 	display: none;
 }
 
-button.menu-toggle {
-	background-color: transparent;
-	flex-grow: 1;
-	border: 0;
-	text-align: center;
+.menu-toggle {
 	padding: 0 20px;
 	line-height: 60px;
 	margin: 0;
 	font-weight: normal;
 	text-transform: none;
 	font-size: 15px;
+	cursor: pointer;
 
 	.mobile-menu {
         padding-left: 3px;
@@ -31,6 +28,13 @@ button.menu-toggle {
     .mobile-menu:empty {
         display: none;
     }
+}
+
+button.menu-toggle {
+	background-color: transparent;
+	flex-grow: 1;
+	border: 0;
+	text-align: center;
 
 	&:hover,
     &:active,
