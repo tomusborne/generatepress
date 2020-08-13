@@ -19,12 +19,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 		printf(
 			'<button class="search-submit" aria-label="%1$s">%2$s</button>',
 			esc_attr( apply_filters( 'generate_search_button', _x( 'Search', 'submit button', 'generatepress' ) ) ),
-			generate_get_svg_icon( 'search' )
+			generate_get_svg_icon( 'search' ) // phpcs:ignore -- Escaping not necessary here.
 		);
 	} else {
 		printf(
 			'<input type="submit" class="search-submit" value="%s">',
-			apply_filters( 'generate_search_button', _x( 'Search', 'submit button', 'generatepress' ) ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			apply_filters( 'generate_search_button', _x( 'Search', 'submit button', 'generatepress' ) ) // phpcs:ignore -- Escaping not necessary here.
 		);
 	}
 	?>
