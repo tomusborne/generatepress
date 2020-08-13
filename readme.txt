@@ -100,6 +100,7 @@ MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
 Release date: TBA
 
 * New: Flexbox layout option - see blog post for more info
+* New: Default mobile header when using aligned nav + flexbox layout
 * New: generate_before_do_template_part hook
 * New: generate_after_do_template_part hook
 * New: generate_do_template_part filter
@@ -115,12 +116,18 @@ Release date: TBA
 * New: generate_is_using_hatom filter
 * New: generate_after_element_class_attribute filter
 * New: generate_menu_bar_items hook
+* New: generate_show_entry_header filter
+* New: Re-design archive post navigation box
 * Fix: Close other sub-menus when opening a new one on touch devices
 * Fix: Footer bar menu spacing on mobile
 * Fix: Text aligned container width preview in Customizer when using full-width-content
 * Fix: Remove disable content title toggle in editor if it doesn't apply to front-end
 * Fix: One container margin based on default content padding
 * Fix: Nav aligned left when using RTL languages
+* Tweak: Remove content margin-top if it's the first child in parent
+* Tweak: Remove featured image margin-top if it's the first child in parent
+* Tweak: Only print entry-meta wrapper to page if it contains meta
+* Tweak: Rebuild navigation search javascript
 * Tweak: Remove all esc_attr() functions from CSS and escape entire output
 * Tweak: Move all CSS and JS into assets folder
 * Tweak: Break all CSS up into individual .scss files
@@ -167,6 +174,10 @@ Release date: TBA
 * Tweak: Move back to top button CSS to dynamic CSS if enabled
 * Tweak: Move navigation search CSS to dynamic CSS if enabled
 * Tweak: Remove skip-link-focus.js
+* Tweak: Disable old Beaver Builer full-width compat CSS when using flexbox layout
+* Tweak: Remove CSS to disable comments link on single posts
+* Tweak: Add featured-image class to singular featured images
+* Tweak: Don't output body font family if it's the default that exists in stylesheet
 * Template change: Removed generate_do_microdata() from sidebar.php and sidebar-left.php
 
 = 2.4.2 =
