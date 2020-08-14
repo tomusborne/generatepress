@@ -340,6 +340,17 @@ function generate_do_pro_compatibility() {
 					$css->add_property( 'margin-top', '0' );
 				}
 			}
+
+			if ( 'font' === generate_get_option( 'icons' ) ) {
+				$css->set_selector( '.main-navigation .slideout-toggle a:before,.slide-opened .slideout-overlay .slideout-exit:before' );
+				$css->add_property( 'font-family', 'GeneratePress' );
+
+				$css->set_selector( '.slideout-navigation .dropdown-menu-toggle:before' );
+				$css->add_property( 'content', '"\f107" !important' );
+
+				$css->set_selector( '.slideout-navigation .sfHover > a .dropdown-menu-toggle:before' );
+				$css->add_property( 'content', '"\f106" !important' );
+			}
 		}
 
 		if ( ! generate_show_title() ) {
@@ -350,19 +361,6 @@ function generate_do_pro_compatibility() {
 					$css->set_selector( '.single .entry-content' )->add_property( 'margin-top', '0' );
 				}
 			}
-		}
-	}
-
-	if ( defined( 'GENERATE_MENU_PLUS_VERSION' ) ) {
-		if ( 'font' === generate_get_option( 'icons' ) ) {
-			$css->set_selector( '.main-navigation .slideout-toggle a:before,.slide-opened .slideout-overlay .slideout-exit:before' );
-			$css->add_property( 'font-family', 'GeneratePress' );
-
-			$css->set_selector( '.slideout-navigation .dropdown-menu-toggle:before' );
-			$css->add_property( 'content', '"\f107" !important' );
-
-			$css->set_selector( '.slideout-navigation .sfHover > a .dropdown-menu-toggle:before' );
-			$css->add_property( 'content', '"\f106" !important' );
 		}
 	}
 
