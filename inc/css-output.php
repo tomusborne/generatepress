@@ -35,7 +35,13 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 		$css->set_selector( 'a:hover, a:focus, a:active' );
 		$css->add_property( 'color', $settings['link_color_hover'] );
 
-		$css->set_selector( 'body .grid-container' )->add_property( 'max-width', absint( $settings['container_width'] ), false, 'px' );
+		if ( generate_is_using_flexbox() ) {
+			if ( '1200' !== $settings['container_width'] ) {
+				$css->set_selector( '.grid-container' )->add_property( 'max-width', absint( $settings['container_width'] ), false, 'px' );
+			}
+		} else {
+			$css->set_selector( 'body .grid-container' )->add_property( 'max-width', absint( $settings['container_width'] ), false, 'px' );
+		}
 
 		if ( apply_filters( 'generate_do_group_inner_container_style', true ) ) {
 			$css->set_selector( '.wp-block-group__inner-container' );
