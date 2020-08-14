@@ -1438,6 +1438,15 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 						'flexbox' => __( 'Flexbox', 'generatepress' ),
 						'floats' => __( 'Floats', 'generatepress' ),
 					),
+					'description' => sprintf(
+						'<strong>%1$s</strong> %2$s',
+						__( 'Caution:', 'gp-premium' ),
+						/* translators: Learn more here */
+						sprintf(
+							__( 'Switching your structure can change how your website displays. Review your website thoroughly before publishing this change, or use a staging site to review the potential changes. Learn more %s.', 'gp-premium' ),
+							'<a href="https://docs.generatepress.com/article/switching-from-floats-to-flexbox/" target="_blank" rel="noopener noreferrer">' . __( 'here', 'gp-premium' ) . '</a>'
+						)
+					),
 					'settings' => 'generate_settings[structure]',
 				)
 			);
