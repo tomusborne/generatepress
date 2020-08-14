@@ -292,20 +292,54 @@ function generate_do_pro_compatibility() {
 
 	$css = new GeneratePress_CSS();
 
-	if ( generate_is_using_flexbox() && version_compare( GP_PREMIUM_VERSION, '1.11.0-alpha.1', '<' ) ) {
+	if ( version_compare( GP_PREMIUM_VERSION, '1.11.0-alpha.1', '<' ) ) {
 		if ( defined( 'GENERATE_SECONDARY_NAV_VERSION' ) ) {
-			$css->set_selector( '.secondary-navigation .inside-navigation:before, .secondary-navigation .inside-navigation:after' );
-			$css->add_property( 'content', '"."' );
-			$css->add_property( 'display', 'block' );
-			$css->add_property( 'overflow', 'hidden' );
-			$css->add_property( 'visibility', 'hidden' );
-			$css->add_property( 'font-size', '0px' );
-			$css->add_property( 'line-height', '0px' );
-			$css->add_property( 'width', '0px' );
-			$css->add_property( 'height', '0px' );
+			if ( generate_is_using_flexbox() ) {
+				$css->set_selector( '.secondary-navigation .inside-navigation:before, .secondary-navigation .inside-navigation:after' );
+				$css->add_property( 'content', '"."' );
+				$css->add_property( 'display', 'block' );
+				$css->add_property( 'overflow', 'hidden' );
+				$css->add_property( 'visibility', 'hidden' );
+				$css->add_property( 'font-size', '0px' );
+				$css->add_property( 'line-height', '0px' );
+				$css->add_property( 'width', '0px' );
+				$css->add_property( 'height', '0px' );
 
-			$css->set_selector( '.secondary-navigation .inside-navigation:after' );
-			$css->add_property( 'clear', 'both' );
+				$css->set_selector( '.secondary-navigation .inside-navigation:after' );
+				$css->add_property( 'clear', 'both' );
+			}
+		}
+	}
+
+	if ( version_compare( GP_PREMIUM_VERSION, '1.12.0-alpha.1', '<' ) ) {
+		if ( defined( 'GENERATE_MENU_PLUS_VERSION' ) ) {
+			if ( generate_has_inline_mobile_toggle() ) {
+				$menu_plus_settings = wp_parse_args(
+					get_option( 'generate_menu_plus_settings', array() ),
+					generate_menu_plus_get_defaults()
+				);
+
+				if ( 'true' === $menu_plus_settings['sticky_menu'] || 'mobile' === $menu_plus_settings['sticky_menu'] || 'enable' === $menu_plus_settings['mobile_header_sticky'] ) {
+					$css->start_media_query( generate_get_media_query( 'mobile' ) );
+
+					$css->set_selector( '#sticky-placeholder' );
+					$css->add_property( 'height', '0' );
+					$css->add_property( 'overflow', 'hidden' );
+
+					$css->set_selector( '.has-inline-mobile-toggle #site-navigation.toggled' );
+					$css->add_property( 'margin-top', '0' );
+
+					$css->set_selector( '.has-inline-mobile-menu #site-navigation.toggled .main-nav > ul' );
+					$css->add_property( 'top', '1.5em' );
+
+					$css->stop_media_query();
+				}
+
+				if ( 'false' !== $menu_plus_settings['slideout_menu'] ) {
+					$css->set_selector( '.slideout-mobile .has-inline-mobile-toggle #site-navigation.toggled,.slideout-both .has-inline-mobile-toggle #site-navigation.toggled' );
+					$css->add_property( 'margin-top', '0' );
+				}
+			}
 		}
 	}
 
@@ -319,34 +353,6 @@ function generate_do_pro_compatibility() {
 
 			$css->set_selector( '.slideout-navigation .sfHover > a .dropdown-menu-toggle:before' );
 			$css->add_property( 'content', '"\f106" !important' );
-		}
-
-		if ( generate_has_inline_mobile_toggle() && version_compare( GP_PREMIUM_VERSION, '1.12.0-alpha.1', '<' ) ) {
-			$menu_plus_settings = wp_parse_args(
-				get_option( 'generate_menu_plus_settings', array() ),
-				generate_menu_plus_get_defaults()
-			);
-
-			if ( 'true' === $menu_plus_settings['sticky_menu'] || 'mobile' === $menu_plus_settings['sticky_menu'] || 'enable' === $menu_plus_settings['mobile_header_sticky'] ) {
-				$css->start_media_query( generate_get_media_query( 'mobile' ) );
-
-				$css->set_selector( '#sticky-placeholder' );
-				$css->add_property( 'height', '0' );
-				$css->add_property( 'overflow', 'hidden' );
-
-				$css->set_selector( '.has-inline-mobile-toggle #site-navigation.toggled' );
-				$css->add_property( 'margin-top', '0' );
-
-				$css->set_selector( '.has-inline-mobile-menu #site-navigation.toggled .main-nav > ul' );
-				$css->add_property( 'top', '1.5em' );
-
-				$css->stop_media_query();
-			}
-
-			if ( 'false' !== $menu_plus_settings['slideout_menu'] ) {
-				$css->set_selector( '.slideout-mobile .has-inline-mobile-toggle #site-navigation.toggled,.slideout-both .has-inline-mobile-toggle #site-navigation.toggled' );
-				$css->add_property( 'margin-top', '0' );
-			}
 		}
 	}
 
