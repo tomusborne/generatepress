@@ -341,6 +341,16 @@ function generate_do_pro_compatibility() {
 				}
 			}
 		}
+
+		if ( ! generate_show_title() ) {
+			$css->set_selector( '.page .entry-content' )->add_property( 'margin-top', '0px' );
+
+			if ( is_single() ) {
+				if ( ! apply_filters( 'generate_post_author', true ) && ! apply_filters( 'generate_post_date', true ) ) {
+					$css->set_selector( '.single .entry-content' )->add_property( 'margin-top', '0' );
+				}
+			}
+		}
 	}
 
 	if ( defined( 'GENERATE_MENU_PLUS_VERSION' ) ) {
