@@ -87,7 +87,7 @@ jQuery( document ).ready( function( $ ) {
 	}
 } );
 
-jQuery( window ).load( function() {
+jQuery( window ).on( 'load', function() {
 	var post_title_block = jQuery( '.editor-post-title__block' ),
 		disable_title_option = jQuery( '#meta-generate-disable-headline' );
 
