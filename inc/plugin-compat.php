@@ -443,3 +443,61 @@ function generate_set_spacing_compat_defaults( $defaults ) {
 
 	return $defaults;
 }
+
+add_filter( 'generate_page_hero_css_output', 'generate_do_pro_page_hero_css', 10, 2 );
+/**
+ * Add CSS to our premium Page Heroes.
+ *
+ * @since 3.0.0
+ * @param string $css_output Existing CSS.
+ * @param array  $options The Header Element options.
+ */
+function generate_do_pro_page_hero_css( $css_output, $options ) {
+	if ( ! defined( 'GP_PREMIUM_VERSION' ) ) {
+		return $css_output;
+	}
+
+	$new_css = '';
+
+	if ( version_compare( GP_PREMIUM_VERSION, '1.12.0-alpha.1', '<' ) ) {
+		$css = new GeneratePress_CSS();
+
+		$padding_inside = false;
+
+		if ( generate_is_using_flexbox() && 'text' === generate_get_option( 'container_alignment' ) ) {
+			$padding_inside = true;
+		}
+
+		if ( $padding_inside ) {
+			$container_width = generate_get_option( 'container_width' );
+			$padding_right = '0px';
+			$padding_left = '0px';
+
+			if ( $options['padding_right'] ) {
+				$padding_right = absint( $options['padding_right'] ) . $options['padding_right_unit'];
+			}
+
+			if ( $options['padding_left'] ) {
+				$padding_left = absint( $options['padding_left'] ) . $options['padding_left_unit'];
+			}
+
+			$css->set_selector( '.page-hero .inside-page-hero.grid-container' );
+
+			$css->add_property(
+				'max-width',
+				sprintf(
+					'calc(%1$s - %2$s - %3$s)',
+					$container_width . 'px',
+					$padding_right,
+					$padding_left
+				)
+			);
+		}
+
+		if ( $css->css_output() ) {
+			$new_css = $css->css_output();
+		}
+	}
+
+	return $css_output . $new_css;
+}
