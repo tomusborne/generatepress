@@ -19,22 +19,6 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 		$dir_uri = get_template_directory_uri();
 
 		if ( generate_is_using_flexbox() ) {
-			wp_enqueue_style( 'generate-style', $dir_uri . "/assets/css/main{$suffix}.css", array(), GENERATE_VERSION, 'all' );
-		} else {
-			if ( generate_get_option( 'combine_css' ) && $suffix ) {
-				wp_enqueue_style( 'generate-style', $dir_uri . "/assets/css/all{$suffix}.css", array(), GENERATE_VERSION, 'all' );
-			} else {
-				wp_enqueue_style( 'generate-style-grid', $dir_uri . "/assets/css/unsemantic-grid{$suffix}.css", false, GENERATE_VERSION, 'all' );
-				wp_enqueue_style( 'generate-style', $dir_uri . "/assets/css/style{$suffix}.css", array(), GENERATE_VERSION, 'all' );
-				wp_enqueue_style( 'generate-mobile-style', $dir_uri . "/assets/css/mobile{$suffix}.css", array(), GENERATE_VERSION, 'all' );
-			}
-		}
-
-		if ( 'font' === generate_get_option( 'icons' ) ) {
-			wp_enqueue_style( 'generate-font-icons', $dir_uri . "/assets/css/components/font-icons{$suffix}.css", array(), GENERATE_VERSION, 'all' );
-		}
-
-		if ( generate_is_using_flexbox() ) {
 			if ( is_singular() && comments_open() ) {
 				wp_enqueue_style( 'generate-comments', $dir_uri . "/assets/css/components/comments{$suffix}.css", array(), GENERATE_VERSION, 'all' );
 			}
@@ -50,6 +34,20 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 			) {
 				wp_enqueue_style( 'generate-widget-areas', $dir_uri . "/assets/css/components/widget-areas{$suffix}.css", array(), GENERATE_VERSION, 'all' );
 			}
+
+			wp_enqueue_style( 'generate-style', $dir_uri . "/assets/css/main{$suffix}.css", array(), GENERATE_VERSION, 'all' );
+		} else {
+			if ( generate_get_option( 'combine_css' ) && $suffix ) {
+				wp_enqueue_style( 'generate-style', $dir_uri . "/assets/css/all{$suffix}.css", array(), GENERATE_VERSION, 'all' );
+			} else {
+				wp_enqueue_style( 'generate-style-grid', $dir_uri . "/assets/css/unsemantic-grid{$suffix}.css", false, GENERATE_VERSION, 'all' );
+				wp_enqueue_style( 'generate-style', $dir_uri . "/assets/css/style{$suffix}.css", array(), GENERATE_VERSION, 'all' );
+				wp_enqueue_style( 'generate-mobile-style', $dir_uri . "/assets/css/mobile{$suffix}.css", array(), GENERATE_VERSION, 'all' );
+			}
+		}
+
+		if ( 'font' === generate_get_option( 'icons' ) ) {
+			wp_enqueue_style( 'generate-font-icons', $dir_uri . "/assets/css/components/font-icons{$suffix}.css", array(), GENERATE_VERSION, 'all' );
 		}
 
 		if ( is_child_theme() && apply_filters( 'generate_load_child_theme_stylesheet', true ) ) {
