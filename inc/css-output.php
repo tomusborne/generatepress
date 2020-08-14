@@ -36,7 +36,7 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 		$css->add_property( 'color', $settings['link_color_hover'] );
 
 		if ( generate_is_using_flexbox() ) {
-			if ( '1200' !== $settings['container_width'] ) {
+			if ( 1200 !== (int) $settings['container_width'] ) {
 				$css->set_selector( '.grid-container' )->add_property( 'max-width', absint( $settings['container_width'] ), false, 'px' );
 			}
 		} else {
