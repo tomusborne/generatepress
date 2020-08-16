@@ -1285,12 +1285,13 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 	padding: 0 5px;
 }
 
-.paging-navigation .nav-links > *:first-child {
-	padding-left: 0;
-}
-
 .paging-navigation .nav-links .current {
 	font-weight: bold;
+}
+
+/* Less specific so we don't overwrite existing customizations. */
+.nav-links > *:first-child {
+	padding-left: 0;
 }
 
 /*--------------------------------------------------------------
