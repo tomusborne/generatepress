@@ -650,5 +650,16 @@ function generate_get_the_title_parameters() {
 		);
 	}
 
+	if ( 'link' === get_post_format() ) {
+		$params = array(
+			'before' => sprintf(
+				'<h2 class="entry-title"%2$s><a href="%1$s" rel="bookmark">',
+				esc_url( generate_get_link_url() ),
+				'microdata' === generate_get_schema_type() ? ' itemprop="headline"' : ''
+			),
+			'after' => '</a></h2>',
+		);
+	}
+
 	return apply_filters( 'generate_get_the_title_parameters', $params );
 }
