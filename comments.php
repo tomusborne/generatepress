@@ -41,33 +41,36 @@ do_action( 'generate_before_comments' );
 	do_action( 'generate_inside_comments' );
 
 	if ( have_comments() ) :
-		?>
-		<h3 class="comments-title">
-			<?php
-			$comments_number = get_comments_number();
-			$comments_title = apply_filters(
-				'generate_comment_form_title',
-				sprintf(
-					esc_html(
-						/* translators: 1: number of comments, 2: post title */
-						_nx(
-							'%1$s thought on &ldquo;%2$s&rdquo;',
-							'%1$s thoughts on &ldquo;%2$s&rdquo;',
-							$comments_number,
-							'comments title',
-							'generatepress'
-						)
-					),
-					number_format_i18n( $comments_number ),
-					get_the_title()
-				)
-			);
+		$comments_number = get_comments_number();
+		$comments_title = apply_filters(
+			'generate_comment_form_title',
+			sprintf(
+				esc_html(
+					/* translators: 1: number of comments, 2: post title */
+					_nx(
+						'%1$s thought on &ldquo;%2$s&rdquo;',
+						'%1$s thoughts on &ldquo;%2$s&rdquo;',
+						$comments_number,
+						'comments title',
+						'generatepress'
+					)
+				),
+				number_format_i18n( $comments_number ),
+				get_the_title()
+			)
+		);
 
-			echo esc_html( $comments_title );
-			?>
-		</h3>
+		// phpcs:ignore -- Title escaped in output.
+		echo apply_filters(
+			'generate_comments_title_output',
+			sprintf(
+				'<h3 class="comments-title">%s</h3>',
+				esc_html( $comments_title )
+			),
+			$comments_title,
+			$comments_number
+		);
 
-		<?php
 		/**
 		 * generate_below_comments_title hook.
 		 *
