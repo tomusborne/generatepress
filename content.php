@@ -33,14 +33,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 				do_action( 'generate_before_entry_title' );
 
 				if ( generate_show_title() ) {
-					the_title(
-						sprintf(
-							'<h2 class="entry-title"%2$s><a href="%1$s" rel="bookmark">',
-							esc_url( get_permalink() ),
-							'microdata' === generate_get_schema_type() ? ' itemprop="headline"' : ''
-						),
-						'</a></h2>'
-					);
+					$params = generate_get_the_title_parameters();
+
+					the_title( $params['before'], $params['after'] );
 				}
 
 				/**
