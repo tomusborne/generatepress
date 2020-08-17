@@ -21,42 +21,44 @@ get_header(); ?>
 			 */
 			do_action( 'generate_before_main_content' );
 
-			if ( have_posts() ) :
-				?>
+			if ( generate_has_default_loop() ) {
+				if ( have_posts() ) :
+					?>
 
-				<header class="page-header">
-					<h1 class="page-title">
-						<?php
-						printf(
-							/* translators: 1: Search query name */
-							__( 'Search Results for: %s', 'generatepress' ),
-							'<span>' . get_search_query() . '</span>'
-						);
-						?>
-					</h1>
-				</header>
+					<header class="page-header">
+						<h1 class="page-title">
+							<?php
+							printf(
+								/* translators: 1: Search query name */
+								__( 'Search Results for: %s', 'generatepress' ),
+								'<span>' . get_search_query() . '</span>'
+							);
+							?>
+						</h1>
+					</header>
 
-				<?php
-				while ( have_posts() ) :
+					<?php
+					while ( have_posts() ) :
 
-					the_post();
+						the_post();
 
-					generate_do_template_part( 'search' );
+						generate_do_template_part( 'search' );
 
-				endwhile;
+					endwhile;
 
-				/**
-				 * generate_after_loop hook.
-				 *
-				 * @since 2.3
-				 */
-				do_action( 'generate_after_loop', 'search' );
+					/**
+					 * generate_after_loop hook.
+					 *
+					 * @since 2.3
+					 */
+					do_action( 'generate_after_loop', 'search' );
 
-			else :
+				else :
 
-				generate_do_template_part( 'none' );
+					generate_do_template_part( 'none' );
 
-			endif;
+				endif;
+			}
 
 			/**
 			 * generate_after_main_content hook.

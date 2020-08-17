@@ -26,13 +26,15 @@ get_header(); ?>
 			 */
 			do_action( 'generate_before_main_content' );
 
-			while ( have_posts() ) :
+			if ( generate_has_default_loop() ) {
+				while ( have_posts() ) :
 
-				the_post();
+					the_post();
 
-				generate_do_template_part( 'page' );
+					generate_do_template_part( 'page' );
 
-			endwhile;
+				endwhile;
+			}
 
 			/**
 			 * generate_after_main_content hook.

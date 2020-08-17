@@ -663,3 +663,12 @@ function generate_get_the_title_parameters() {
 
 	return apply_filters( 'generate_get_the_title_parameters', $params );
 }
+
+/**
+ * Check whether we should display the default loop or not.
+ *
+ * @since 3.0.0
+ */
+function generate_has_default_loop() {
+	return apply_filters( 'generate_has_default_loop', true );
+}
