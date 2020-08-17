@@ -126,6 +126,9 @@ Release date: TBA
 * New: Site title font size default updated
 * New: Search button added to search widget
 * New: Archive post navigation design
+* New: generate_comments_title_output filter
+* New: generate_get_the_title_parameters filter
+* New: generate_has_default_loop filter
 * Fix: Close other sub-menus when opening a new one on touch devices
 * Fix: Footer bar menu spacing on mobile
 * Fix: Text aligned container width preview in Customizer when using full-width-content
@@ -192,6 +195,7 @@ Release date: TBA
 * Tweak: Remove mobile navigation static CSS as it's added dynamically already
 * Tweak: Improve checkMobile() javascript performance
 * Tweak: Prevent font-size values from being set to 0
+* Tweak: Replace deprecate .load() with on('load') in block-editor.js
 * Template change: Removed generate_do_microdata() from sidebar.php and sidebar-left.php
 * Template changes: Added generate_do_template_part() to all templates with a loop
 
