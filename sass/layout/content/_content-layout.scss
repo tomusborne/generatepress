@@ -121,6 +121,13 @@
 	&.one-container .site-content {
 		padding: 0;
 	}
+
+	.entry-content .alignwide,
+	.entry-content .alignfull {
+		margin-left: 0;
+		width: auto;
+		max-width: unset;
+	}
 }
 
 /*--------------------------------------------------------------

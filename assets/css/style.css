@@ -1510,6 +1510,13 @@ ol.comment-list {
 	padding: 0;
 }
 
+.full-width-content .entry-content .alignwide,
+.full-width-content .entry-content .alignfull {
+	margin-left: 0;
+	width: auto;
+	max-width: unset;
+}
+
 /*--------------------------------------------------------------
 ## Full Width Ready
 --------------------------------------------------------------*/
