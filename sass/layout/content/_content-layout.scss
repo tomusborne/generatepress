@@ -131,27 +131,6 @@
 }
 
 /*--------------------------------------------------------------
-## Full Width Ready
---------------------------------------------------------------*/
-
-.full-width-ready {
-	.container.grid-container {
-		max-width: unset;
-	}
-
-	&.no-sidebar.separate-containers .site-main {
-		margin-left: 0;
-		margin-right: 0;
-	}
-
-	&.separate-containers .inside-article,
-	&.one-container .site-content {
-		padding-left: 0;
-		padding-right: 0;
-	}
-}
-
-/*--------------------------------------------------------------
 ## Contained Content
 --------------------------------------------------------------*/
 

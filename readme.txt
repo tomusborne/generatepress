@@ -106,7 +106,6 @@ Release date: TBA
 * New: generate_do_template_part filter
 * New: Better option migration system
 * New: generate_post_date_show_updated_only filter
-* New: full-width-ready option for alignfull blocks
 * New: generate_navigation_search_menu_item_output filter
 * New: style-rtl.min.css and enqueue manually
 * New: generate_load_child_theme_stylesheet filter
