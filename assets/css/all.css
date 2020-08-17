@@ -1974,13 +1974,19 @@ ol.comment-list {
 /*--------------------------------------------------------------
 ## Full Width Ready
 --------------------------------------------------------------*/
+.full-width-ready .container.grid-container {
+	max-width: unset;
+}
+
 .full-width-ready.no-sidebar.separate-containers .site-main {
-	margin: 0;
+	margin-left: 0;
+	margin-right: 0;
 }
 
 .full-width-ready.separate-containers .inside-article,
 .full-width-ready.one-container .site-content {
-	padding: 0;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 /*--------------------------------------------------------------
