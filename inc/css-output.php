@@ -816,6 +816,24 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header, .wp-block-group__inner-container' );
 		$css->add_property( 'padding', generate_padding_css( $settings['mobile_content_top'], $settings['mobile_content_right'], $settings['mobile_content_bottom'], $settings['mobile_content_left'] ) );
 
+		$css->set_selector( '.inside-top-bar' );
+
+		if ( '' !== $settings['mobile_top_bar_top'] ) {
+			$css->add_property( 'padding-top', absint( $settings['mobile_top_bar_top'] ), false, 'px' );
+		}
+
+		if ( '' !== $settings['mobile_top_bar_right'] ) {
+			$css->add_property( 'padding-right', absint( $settings['mobile_top_bar_right'] ), false, 'px' );
+		}
+
+		if ( '' !== $settings['mobile_top_bar_bottom'] ) {
+			$css->add_property( 'padding-bottom', absint( $settings['mobile_top_bar_bottom'] ), false, 'px' );
+		}
+
+		if ( '' !== $settings['mobile_top_bar_left'] ) {
+			$css->add_property( 'padding-left', absint( $settings['mobile_top_bar_left'] ), false, 'px' );
+		}
+
 		$css->set_selector( '.inside-header' );
 
 		if ( '' !== $settings['mobile_header_top'] ) {
