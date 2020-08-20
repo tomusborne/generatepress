@@ -790,8 +790,13 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->set_selector( '.widget-area .widget' );
 		$css->add_property( 'padding', generate_padding_css( $settings['widget_top'], $settings['widget_right'], $settings['widget_bottom'], $settings['widget_left'] ), generate_padding_css( $defaults['widget_top'], $defaults['widget_right'], $defaults['widget_bottom'], $defaults['widget_left'] ) );
 
-		$css->set_selector( '.footer-widgets' );
-		$css->add_property( 'padding', generate_padding_css( $settings['footer_widget_container_top'], $settings['footer_widget_container_right'], $settings['footer_widget_container_bottom'], $settings['footer_widget_container_left'] ), generate_padding_css( $defaults['footer_widget_container_top'], $defaults['footer_widget_container_right'], $defaults['footer_widget_container_bottom'], $defaults['footer_widget_container_left'] ) );
+		if ( generate_is_using_flexbox() ) {
+			$css->set_selector( '.footer-widgets-container' );
+			$css->add_property( 'padding', generate_padding_css( $settings['footer_widget_container_top'], $settings['footer_widget_container_right'], $settings['footer_widget_container_bottom'], $settings['footer_widget_container_left'] ), generate_padding_css( $defaults['footer_widget_container_top'], $defaults['footer_widget_container_right'], $defaults['footer_widget_container_bottom'], $defaults['footer_widget_container_left'] ) );
+		} else {
+			$css->set_selector( '.footer-widgets' );
+			$css->add_property( 'padding', generate_padding_css( $settings['footer_widget_container_top'], $settings['footer_widget_container_right'], $settings['footer_widget_container_bottom'], $settings['footer_widget_container_left'] ), generate_padding_css( $defaults['footer_widget_container_top'], $defaults['footer_widget_container_right'], $defaults['footer_widget_container_bottom'], $defaults['footer_widget_container_left'] ) );
+		}
 
 		$css->set_selector( '.site-footer .footer-widgets-container .inner-padding' );
 		$css->add_property( 'padding', generate_padding_css( '0', '0', '0', $settings['footer_widget_separator'] ), generate_padding_css( '0', '0', '0', $defaults['footer_widget_separator'] ) );

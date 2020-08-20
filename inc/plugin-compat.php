@@ -353,6 +353,13 @@ function generate_do_pro_compatibility() {
 			}
 		}
 
+		if ( defined( 'GENERATE_SPACING_VERSION' ) ) {
+			if ( generate_is_using_flexbox() ) {
+				$css->set_selector( '#footer-widgets, .site-info' );
+				$css->add_property( 'padding', '0' );
+			}
+		}
+
 		if ( ! generate_show_title() ) {
 			$css->set_selector( '.page .entry-content' )->add_property( 'margin-top', '0px' );
 
