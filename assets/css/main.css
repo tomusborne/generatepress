@@ -1685,13 +1685,6 @@ nav.toggled ul ul.sub-menu {
 	.entry-meta a {
 		line-height: 1.8em;
 	}
-	/*--------------------------------------------------------------
-	## Footer
-	--------------------------------------------------------------*/
-	.site-info .inside-site-info {
-		padding-left: 10px;
-		padding-right: 10px;
-	}
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {

@@ -873,6 +873,28 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 			$css->add_property( 'padding-left', absint( $settings['mobile_footer_widget_container_left'] ), false, 'px' );
 		}
 
+		if ( generate_is_using_flexbox() ) {
+			$css->set_selector( '.inside-site-info' );
+		} else {
+			$css->set_selector( '.site-info' );
+		}
+
+		if ( '' !== $settings['mobile_footer_top'] ) {
+			$css->add_property( 'padding-top', absint( $settings['mobile_footer_top'] ), false, 'px' );
+		}
+
+		if ( '' !== $settings['mobile_footer_right'] ) {
+			$css->add_property( 'padding-right', absint( $settings['mobile_footer_right'] ), false, 'px' );
+		}
+
+		if ( '' !== $settings['mobile_footer_bottom'] ) {
+			$css->add_property( 'padding-bottom', absint( $settings['mobile_footer_bottom'] ), false, 'px' );
+		}
+
+		if ( '' !== $settings['mobile_footer_left'] ) {
+			$css->add_property( 'padding-left', absint( $settings['mobile_footer_left'] ), false, 'px' );
+		}
+
 		$mobile_content_padding = absint( $settings['mobile_content_right'] ) + absint( $settings['mobile_content_left'] );
 		$css->set_selector( '.entry-content .alignwide, body:not(.no-sidebar) .entry-content .alignfull' );
 		$css->add_property( 'margin-left', '-' . absint( $settings['mobile_content_left'] ) . 'px' );

@@ -316,6 +316,10 @@ if ( ! function_exists( 'generate_spacing_get_defaults' ) ) {
 			'footer_right' => '40',
 			'footer_bottom' => '20',
 			'footer_left' => '40',
+			'mobile_footer_top' => '',
+			'mobile_footer_right' => '30',
+			'mobile_footer_bottom' => '',
+			'mobile_footer_left' => '30',
 		);
 
 		if ( $filter ) {
