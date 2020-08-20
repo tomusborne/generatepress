@@ -692,6 +692,13 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->set_selector( '.inside-top-bar' );
 		$css->add_property( 'padding', generate_padding_css( $settings['top_bar_top'], $settings['top_bar_right'], $settings['top_bar_bottom'], $settings['top_bar_left'] ), generate_padding_css( $defaults['top_bar_top'], $defaults['top_bar_right'], $defaults['top_bar_bottom'], $defaults['top_bar_left'] ) );
 
+		if ( generate_is_using_flexbox() && 'boxes' === generate_get_option( 'container_alignment' ) ) {
+			$top_bar_padding = absint( $settings['top_bar_right'] ) + absint( $settings['top_bar_left'] );
+
+			$css->set_selector( '.inside-top-bar.grid-container' );
+			$css->add_property( 'max-width', generate_get_option( 'container_width' ) + $top_bar_padding, false, 'px' );
+		}
+
 		$css->set_selector( '.inside-header' );
 		$css->add_property( 'padding', generate_padding_css( $settings['header_top'], $settings['header_right'], $settings['header_bottom'], $settings['header_left'] ), generate_padding_css( $defaults['header_top'], $defaults['header_right'], $defaults['header_bottom'], $defaults['header_left'] ) );
 
