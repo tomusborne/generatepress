@@ -1394,11 +1394,11 @@ object {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	padding: 20px 40px;
 }
 
 .site-info {
 	text-align: center;
-	padding: 20px;
 	font-size: 15px;
 }
 
@@ -1688,7 +1688,7 @@ nav.toggled ul ul.sub-menu {
 	/*--------------------------------------------------------------
 	## Footer
 	--------------------------------------------------------------*/
-	.site-info {
+	.site-info .inside-site-info {
 		padding-left: 10px;
 		padding-right: 10px;
 	}

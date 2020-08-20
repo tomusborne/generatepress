@@ -799,8 +799,13 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->set_selector( '.site-footer .footer-widgets-container .inside-footer-widgets' );
 		$css->add_property( 'margin-left', '-' . absint( $settings['footer_widget_separator'] ), '-' . absint( $defaults['footer_widget_separator'] ), 'px' );
 
-		$css->set_selector( '.site-info' );
-		$css->add_property( 'padding', generate_padding_css( $settings['footer_top'], $settings['footer_right'], $settings['footer_bottom'], $settings['footer_left'] ), generate_padding_css( $defaults['footer_top'], $defaults['footer_right'], $defaults['footer_bottom'], $defaults['footer_left'] ) );
+		if ( generate_is_using_flexbox() ) {
+			$css->set_selector( '.inside-site-info' );
+			$css->add_property( 'padding', generate_padding_css( $settings['footer_top'], $settings['footer_right'], $settings['footer_bottom'], $settings['footer_left'] ), generate_padding_css( $defaults['footer_top'], $defaults['footer_right'], $defaults['footer_bottom'], $defaults['footer_left'] ) );
+		} else {
+			$css->set_selector( '.site-info' );
+			$css->add_property( 'padding', generate_padding_css( $settings['footer_top'], $settings['footer_right'], $settings['footer_bottom'], $settings['footer_left'] ), generate_padding_css( $defaults['footer_top'], $defaults['footer_right'], $defaults['footer_bottom'], $defaults['footer_left'] ) );
+		}
 
 		$css->start_media_query( generate_get_media_query( 'mobile' ) );
 		$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header, .wp-block-group__inner-container' );
