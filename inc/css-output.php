@@ -821,6 +821,13 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		if ( generate_is_using_flexbox() ) {
 			$css->set_selector( '.inside-site-info' );
 			$css->add_property( 'padding', generate_padding_css( $settings['footer_top'], $settings['footer_right'], $settings['footer_bottom'], $settings['footer_left'] ), generate_padding_css( $defaults['footer_top'], $defaults['footer_right'], $defaults['footer_bottom'], $defaults['footer_left'] ) );
+
+			if ( 'boxes' === generate_get_option( 'container_alignment' ) ) {
+				$site_info_padding = absint( $settings['footer_right'] ) + absint( $settings['footer_left'] );
+
+				$css->set_selector( '.inside-site-info.grid-container' );
+				$css->add_property( 'max-width', generate_get_option( 'container_width' ) + $site_info_padding, false, 'px' );
+			}
 		} else {
 			$css->set_selector( '.site-info' );
 			$css->add_property( 'padding', generate_padding_css( $settings['footer_top'], $settings['footer_right'], $settings['footer_bottom'], $settings['footer_left'] ), generate_padding_css( $defaults['footer_top'], $defaults['footer_right'], $defaults['footer_bottom'], $defaults['footer_left'] ) );
