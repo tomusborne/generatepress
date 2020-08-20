@@ -280,9 +280,9 @@ if ( ! function_exists( 'generate_spacing_get_defaults' ) ) {
 	function generate_spacing_get_defaults( $filter = true ) {
 		$defaults = array(
 			'top_bar_top' => '10',
-			'top_bar_right' => '10',
+			'top_bar_right' => '40',
 			'top_bar_bottom' => '10',
-			'top_bar_left' => '10',
+			'top_bar_left' => '40',
 			'header_top' => '20',
 			'header_right' => '40',
 			'header_bottom' => '20',

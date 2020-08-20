@@ -34,7 +34,6 @@
 	font-size: 13px;
 
 	.inside-top-bar {
-		padding: 10px;
 		display: flex;
 		align-items: center;
 		flex-wrap: wrap;
@@ -81,6 +80,10 @@
 			}
 		}
 	}
+}
+
+.inside-top-bar {
+	padding: 10px 40px;
 }
 
 div.top-bar .widget {

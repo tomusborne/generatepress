@@ -251,6 +251,8 @@ class GeneratePress_Theme_Update {
 		$old_spacing_defaults = array(
 			'separator' => '20',
 			'mobile_separator' => '',
+			'top_bar_right' => '10',
+			'top_bar_left' => '10',
 			'header_top' => '40',
 			'header_right' => '40',
 			'header_bottom' => '40',

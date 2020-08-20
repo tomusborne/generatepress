@@ -31,7 +31,6 @@
 }
 
 .top-bar .inside-top-bar {
-	padding: 10px;
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
@@ -75,6 +74,10 @@
 
 .top-bar .widget_nav_menu li ul {
 	display: none;
+}
+
+.inside-top-bar {
+	padding: 10px 40px;
 }
 
 div.top-bar .widget {
