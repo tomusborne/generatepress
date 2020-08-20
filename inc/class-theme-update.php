@@ -265,6 +265,8 @@ class GeneratePress_Theme_Update {
 			'mobile_footer_widget_container_right' => '',
 			'mobile_footer_widget_container_bottom' => '',
 			'mobile_footer_widget_container_left' => '',
+			'footer_right' => '20',
+			'footer_left' => '20',
 		);
 
 		foreach ( $old_spacing_defaults as $key => $value ) {

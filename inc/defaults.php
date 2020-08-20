@@ -313,9 +313,9 @@ if ( ! function_exists( 'generate_spacing_get_defaults' ) ) {
 			'footer_widget_container_left' => '40',
 			'footer_widget_separator' => '40',
 			'footer_top' => '20',
-			'footer_right' => '20',
+			'footer_right' => '40',
 			'footer_bottom' => '20',
-			'footer_left' => '20',
+			'footer_left' => '40',
 		);
 
 		if ( $filter ) {

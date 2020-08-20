@@ -1978,8 +1978,11 @@ ol.comment-list {
 --------------------------------------------------------------*/
 .site-info {
 	text-align: center;
-	padding: 20px;
 	font-size: 15px;
+}
+
+.site-info {
+	padding: 20px 40px;
 }
 
 .footer-widgets {
