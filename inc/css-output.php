@@ -851,7 +851,12 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 			$css->add_property( 'padding-left', absint( $settings['mobile_widget_left'] ), false, 'px' );
 		}
 
-		$css->set_selector( '.footer-widgets' );
+		if ( generate_is_using_flexbox() ) {
+			$css->set_selector( '.footer-widgets-container' );
+		} else {
+			$css->set_selector( '.footer-widgets' );
+		}
+
 		if ( '' !== $settings['mobile_footer_widget_container_top'] ) {
 			$css->add_property( 'padding-top', absint( $settings['mobile_footer_widget_container_top'] ), false, 'px' );
 		}
