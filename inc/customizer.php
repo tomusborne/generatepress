@@ -1051,7 +1051,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'default' => $defaults['content_layout_setting'],
 				'type' => 'option',
 				'sanitize_callback' => 'generate_sanitize_choices',
-				'transport' => 'postMessage',
 			)
 		);
 
@@ -1091,6 +1090,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				),
 				'settings' => 'generate_settings[container_alignment]',
 				'priority' => 30,
+				'active_callback' => 'generate_has_container_alignment_callback',
 			)
 		);
 

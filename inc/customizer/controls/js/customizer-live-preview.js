@@ -349,11 +349,6 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 	}
 
 	/**
-	 * Content layout
-	 */
-	generatepress_classes_live_update( 'content_layout_setting', [ 'one-container', 'separate-containers' ], 'body' );
-
-	/**
 	 * Top bar width
 	 */
 	wp.customize( 'generate_settings[top_bar_width]', function( value ) {
@@ -543,6 +538,7 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 	jQuery( 'body' ).on( 'generate_spacing_updated', function() {
 		var containerAlignment = wp.customize( 'generate_settings[container_alignment]' ).get(),
 			containerWidth = wp.customize( 'generate_settings[container_width]' ).get(),
+			containerLayout = wp.customize( 'generate_settings[content_layout_setting]' ).get(),
 			contentLeft = generatepress_live_preview.contentLeft,
 			contentRight = generatepress_live_preview.contentRight;
 
@@ -567,7 +563,7 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 			}
 		}
 
-		if ( generatepress_live_preview.isFlex && 'boxes' === containerAlignment ) {
+		if ( generatepress_live_preview.isFlex && 'boxes' === containerAlignment && 'one-container' !== containerLayout ) {
 			var topBarPaddingLeft = jQuery( '.inside-top-bar' ).css( 'padding-left' ),
 				topBarPaddingRight = jQuery( '.inside-top-bar' ).css( 'padding-right' ),
 				headerPaddingLeft = jQuery( '.inside-header' ).css( 'padding-left' ),

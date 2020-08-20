@@ -344,3 +344,16 @@ function generate_is_using_floats_callback() {
 function generate_show_inline_logo_callback() {
 	return 'floats' === generate_get_option( 'structure' ) && generate_has_logo_site_branding();
 }
+
+/**
+ * Callback to show or hide the Container alignment option.
+ *
+ * @since 3.0.0
+ */
+function generate_has_container_alignment_callback() {
+	if ( generate_is_using_flexbox() && 'one-container' === generate_get_option( 'content_layout_setting' ) ) {
+		return false;
+	}
+
+	return true;
+}
