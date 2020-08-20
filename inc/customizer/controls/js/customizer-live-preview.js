@@ -623,5 +623,21 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 				}, 100);
 			}
 		}
+
+		if ( generatepress_live_preview.isFlex ) {
+			/**
+			 * Change the elements that GP Premium targets during live preview.
+			 * Only needed until GPP 1.12.0
+			 */
+			setTimeout( function() {
+				jQuery( '#footer_widget_container_top, #footer_widget_container_right, #footer_widget_container_bottom, #footer_widget_container_left, #mobile_footer_widget_container_top, #mobile_footer_widget_container_right, #mobile_footer_widget_container_bottom, #mobile_footer_widget_container_left' ).text(function(index, text) {
+					return text.replace( '.footer-widgets{', '.footer-widgets-container{' );
+				} );
+
+				jQuery( '#footer_top, #footer_right, #footer_bottom, #footer_left' ).text(function(index, text) {
+					return text.replace( '.site-info{', '.inside-site-info{' );
+				} );
+			}, 50 );
+		}
 	} );
 } )( jQuery );
