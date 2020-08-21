@@ -232,6 +232,11 @@ class GeneratePress_Theme_Update {
 			'form_button_background_color_hover' => '#3f3f3f',
 			'footer_background_color' => '#222222',
 			'footer_link_hover_color' => '#606060',
+			'heading_1_font_size' => '40',
+			'heading_2_font_size' => '30',
+			'heading_3_font_size' => '20',
+			'heading_4_font_size' => '',
+			'heading_5_font_size' => '',
 		);
 
 		foreach ( $old_defaults as $key => $value ) {

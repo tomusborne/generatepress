@@ -204,7 +204,7 @@ fieldset legend {
 }
 
 h1 {
-	font-size: 40px;
+	font-size: 42px;
 	margin-bottom: 20px;
 	line-height: 1.2em;
 	font-weight: 300;
@@ -212,7 +212,7 @@ h1 {
 }
 
 h2 {
-	font-size: 30px;
+	font-size: 35px;
 	margin-bottom: 20px;
 	line-height: 1.2em;
 	font-weight: 300;
@@ -220,11 +220,19 @@ h2 {
 }
 
 h3 {
-	font-size: 20px;
+	font-size: 29px;
 	margin-bottom: 20px;
 	line-height: 1.2em;
 	font-weight: normal;
 	text-transform: none;
+}
+
+h4 {
+	font-size: 24px;
+}
+
+h5 {
+	font-size: 20px;
 }
 
 h4,
