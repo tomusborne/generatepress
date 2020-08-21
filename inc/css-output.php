@@ -702,6 +702,13 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->set_selector( '.inside-header' );
 		$css->add_property( 'padding', generate_padding_css( $settings['header_top'], $settings['header_right'], $settings['header_bottom'], $settings['header_left'] ), generate_padding_css( $defaults['header_top'], $defaults['header_right'], $defaults['header_bottom'], $defaults['header_left'] ) );
 
+		if ( generate_is_using_flexbox() && 'boxes' === generate_get_option( 'container_alignment' ) && 'one-container' !== generate_get_option( 'content_layout_setting' ) ) {
+			$header_padding = absint( $settings['header_right'] ) + absint( $settings['header_left'] );
+
+			$css->set_selector( '.inside-header.grid-container' );
+			$css->add_property( 'max-width', generate_get_option( 'container_width' ) + $header_padding, false, 'px' );
+		}
+
 		$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header, .wp-block-group__inner-container' );
 		$css->add_property( 'padding', generate_padding_css( $settings['content_top'], $settings['content_right'], $settings['content_bottom'], $settings['content_left'] ), generate_padding_css( $defaults['content_top'], $defaults['content_right'], $defaults['content_bottom'], $defaults['content_left'] ) );
 
@@ -716,11 +723,6 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->add_property( 'margin-left', '-' . absint( $settings['content_left'] ) . 'px' );
 		$css->add_property( 'width', 'calc(100% + ' . absint( $content_padding ) . 'px)' );
 		$css->add_property( 'max-width', 'calc(100% + ' . absint( $content_padding ) . 'px)' );
-
-		if ( generate_is_using_flexbox() && 'boxes' === generate_get_option( 'container_alignment' ) && 'one-container' !== generate_get_option( 'content_layout_setting' ) ) {
-			$css->set_selector( '.inside-header.grid-container' );
-			$css->add_property( 'max-width', generate_get_option( 'container_width' ) + $content_padding, false, 'px' );
-		}
 
 		if ( ! generate_is_using_flexbox() && 'text' === generate_get_option( 'container_alignment' ) ) {
 			$css->set_selector( '.container.grid-container' );
