@@ -65,7 +65,7 @@ function generate_do_default_sidebar_widgets( $area ) {
 		}
 	}
 
-	if ( ! apply_filters( 'generate_show_default_sidebar_widgets', true ) ) {
+	if ( ! apply_filters( 'generate_show_default_sidebar_widgets', true ) || generate_is_using_flexbox() ) {
 		return;
 	}
 	?>
