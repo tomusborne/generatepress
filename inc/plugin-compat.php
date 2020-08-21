@@ -522,3 +522,21 @@ function generate_do_pro_page_hero_css( $css_output, $options ) {
 
 	return $css_output . $new_css;
 }
+
+add_action( 'customize_register', 'generate_pro_compat_customize_register', 100 );
+/**
+ * Alter some Customizer options in the pro version.
+ *
+ * @since 3.0.0
+ * @param object $wp_customize The Customizer object.
+ */
+function generate_pro_compat_customize_register( $wp_customize ) {
+	if ( ! defined( 'GP_PREMIUM_VERSION' ) ) {
+		return;
+	}
+
+	if ( version_compare( GP_PREMIUM_VERSION, '1.12.0-alpha.1', '<' ) ) {
+		$wp_customize->get_setting( 'generate_spacing_settings[separator]' )->transport = 'refresh';
+		$wp_customize->get_setting( 'generate_spacing_settings[content_bottom]' )->transport = 'refresh';
+	}
+}

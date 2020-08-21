@@ -1,38 +1,22 @@
-.site-content {
-	display: flex;
-
-	.content-area {
-		flex: 1;
-	}
-}
-
-.grid-container {
-	margin-left: auto;
-	margin-right: auto;
-	max-width: $container-width;
-}
-
-.sidebar .widget,
-.page-header,
-.site-main > * {
-	margin-bottom: $separating-space;
-}
-
-.both-right .inside-left-sidebar,
-.both-left .inside-left-sidebar {
-	margin-right: $separating-space / 2;
-}
-
-.both-right .inside-right-sidebar,
-.both-left .inside-right-sidebar {
-	margin-left: $separating-space / 2;
-}
-
 /*--------------------------------------------------------------
 ## One Container
 --------------------------------------------------------------*/
 
 .one-container {
+	&.both-left .inside-left-sidebar,
+	&.both-right .inside-left-sidebar {
+		margin-right: $element-padding / 2;
+	}
+
+	&.both-left .inside-right-sidebar,
+	&.both-right .inside-right-sidebar {
+		margin-left: $element-padding / 2;
+	}
+
+	&:not(.page):not(.single) .inside-article {
+		padding: 0 0 30px 0;
+	}
+
 	&.right-sidebar .site-main,
 	&.both-right .site-main {
 		margin-right: $element-padding;
@@ -47,13 +31,14 @@
 		margin: 0px $element-padding 0px $element-padding;
 	}
 
-	.post:not(:last-child) {
-		padding-bottom: $element-padding;
-	}
-
 	.site-content {
 		padding: $element-padding;
 	}
+}
+
+.separate-containers .site-main > *:last-child,
+.one-container .site-main > *:last-child {
+	margin-bottom: 0;
 }
 
 /*--------------------------------------------------------------
@@ -66,6 +51,12 @@
 	.page-header,
 	.paging-navigation {
 		padding: $element-padding;
+	}
+
+	.widget,
+	.site-main > *,
+	.page-header {
+		margin-bottom: $separating-space;
 	}
 
 	.site-main {
@@ -85,6 +76,16 @@
 	&.left-sidebar .site-main,
 	&.both-left .site-main {
 		margin-right: 0;
+	}
+
+	&.both-right .inside-left-sidebar,
+	&.both-left .inside-left-sidebar {
+		margin-right: $separating-space / 2;
+	}
+
+	&.both-right .inside-right-sidebar,
+	&.both-left .inside-right-sidebar {
+		margin-left: $separating-space / 2;
 	}
 
 	.inside-right-sidebar,

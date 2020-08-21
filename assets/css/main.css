@@ -1237,23 +1237,25 @@ object {
 	max-width: 1200px;
 }
 
+.sidebar .widget,
+.page-header,
+.site-main > * {
+	margin-bottom: 20px;
+}
+
+.both-right .inside-left-sidebar,
+.both-left .inside-left-sidebar {
+	margin-right: 10px;
+}
+
+.both-right .inside-right-sidebar,
+.both-left .inside-right-sidebar {
+	margin-left: 10px;
+}
+
 /*--------------------------------------------------------------
 ## One Container
 --------------------------------------------------------------*/
-.one-container.both-left .inside-left-sidebar,
-.one-container.both-right .inside-left-sidebar {
-	margin-right: 20px;
-}
-
-.one-container.both-left .inside-right-sidebar,
-.one-container.both-right .inside-right-sidebar {
-	margin-left: 20px;
-}
-
-.one-container:not(.page):not(.single) .inside-article {
-	padding: 0 0 30px 0;
-}
-
 .one-container.right-sidebar .site-main,
 .one-container.both-right .site-main {
 	margin-right: 40px;
@@ -1268,13 +1270,12 @@ object {
 	margin: 0px 40px 0px 40px;
 }
 
-.one-container .site-content {
-	padding: 40px;
+.one-container .post:not(:last-child) {
+	padding-bottom: 40px;
 }
 
-.separate-containers .site-main > *:last-child,
-.one-container .site-main > *:last-child {
-	margin-bottom: 0;
+.one-container .site-content {
+	padding: 40px;
 }
 
 /*--------------------------------------------------------------
@@ -1285,12 +1286,6 @@ object {
 .separate-containers .page-header,
 .separate-containers .paging-navigation {
 	padding: 40px;
-}
-
-.separate-containers .widget,
-.separate-containers .site-main > *,
-.separate-containers .page-header {
-	margin-bottom: 20px;
 }
 
 .separate-containers .site-main {
@@ -1310,16 +1305,6 @@ object {
 .separate-containers.left-sidebar .site-main,
 .separate-containers.both-left .site-main {
 	margin-right: 0;
-}
-
-.separate-containers.both-right .inside-left-sidebar,
-.separate-containers.both-left .inside-left-sidebar {
-	margin-right: 10px;
-}
-
-.separate-containers.both-right .inside-right-sidebar,
-.separate-containers.both-left .inside-right-sidebar {
-	margin-left: 10px;
 }
 
 .separate-containers .inside-right-sidebar,
