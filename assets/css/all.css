@@ -1412,10 +1412,6 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 	display: block;
 }
 
-.post {
-	margin: 0 0 2em;
-}
-
 .posted-on .updated,
 .entry-header .gp-icon {
 	display: none;
@@ -1850,6 +1846,10 @@ ol.comment-list {
 /*--------------------------------------------------------------
 # Content Layout
 --------------------------------------------------------------*/
+.post {
+	margin: 0 0 2em;
+}
+
 /*--------------------------------------------------------------
 ## One Container
 --------------------------------------------------------------*/
