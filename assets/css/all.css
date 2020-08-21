@@ -717,7 +717,7 @@ fieldset legend {
 }
 
 h1 {
-	font-size: 42px;
+	font-size: 40px;
 	margin-bottom: 20px;
 	line-height: 1.2em;
 	font-weight: normal;
@@ -725,7 +725,7 @@ h1 {
 }
 
 h2 {
-	font-size: 35px;
+	font-size: 33px;
 	margin-bottom: 20px;
 	line-height: 1.2em;
 	font-weight: normal;
@@ -733,7 +733,7 @@ h2 {
 }
 
 h3 {
-	font-size: 29px;
+	font-size: 28px;
 	margin-bottom: 20px;
 	line-height: 1.2em;
 	font-weight: normal;
@@ -741,11 +741,11 @@ h3 {
 }
 
 h4 {
-	font-size: 24px;
+	font-size: 23px;
 }
 
 h5 {
-	font-size: 20px;
+	font-size: 19px;
 }
 
 h4,
