@@ -7,6 +7,11 @@
 	margin-bottom: $separating-space;
 }
 
+.separate-containers .site-main > *:last-child,
+.one-container .site-main > *:last-child {
+	margin-bottom: 0;
+}
+
 /*--------------------------------------------------------------
 ## Full Width Content
 --------------------------------------------------------------*/

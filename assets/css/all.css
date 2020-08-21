@@ -1885,11 +1885,6 @@ ol.comment-list {
 	padding: 50px;
 }
 
-.separate-containers .site-main > *:last-child,
-.one-container .site-main > *:last-child {
-	margin-bottom: 0;
-}
-
 /*--------------------------------------------------------------
 ## Separate Containers
 --------------------------------------------------------------*/
@@ -1948,6 +1943,11 @@ ol.comment-list {
 
 .widget-area .main-navigation {
 	margin-bottom: 30px;
+}
+
+.separate-containers .site-main > *:last-child,
+.one-container .site-main > *:last-child {
+	margin-bottom: 0;
 }
 
 /*--------------------------------------------------------------
