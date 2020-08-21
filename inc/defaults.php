@@ -208,7 +208,7 @@ if ( ! function_exists( 'generate_get_default_fonts' ) ) {
 			'font_heading_1' => 'inherit',
 			'font_heading_1_category' => '',
 			'font_heading_1_variants' => '',
-			'heading_1_weight' => '300',
+			'heading_1_weight' => 'normal',
 			'heading_1_transform' => 'none',
 			'heading_1_font_size' => '42',
 			'heading_1_line_height' => '1.2', // em.
@@ -217,7 +217,7 @@ if ( ! function_exists( 'generate_get_default_fonts' ) ) {
 			'font_heading_2' => 'inherit',
 			'font_heading_2_category' => '',
 			'font_heading_2_variants' => '',
-			'heading_2_weight' => '300',
+			'heading_2_weight' => 'normal',
 			'heading_2_transform' => 'none',
 			'heading_2_font_size' => '35',
 			'heading_2_line_height' => '1.2', // em.

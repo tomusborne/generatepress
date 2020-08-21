@@ -207,7 +207,7 @@ h1 {
 	font-size: 42px;
 	margin-bottom: 20px;
 	line-height: 1.2em;
-	font-weight: 300;
+	font-weight: normal;
 	text-transform: none;
 }
 
@@ -215,7 +215,7 @@ h2 {
 	font-size: 35px;
 	margin-bottom: 20px;
 	line-height: 1.2em;
-	font-weight: 300;
+	font-weight: normal;
 	text-transform: none;
 }
 
