@@ -2,7 +2,7 @@
 ## Footer Widgets
 --------------------------------------------------------------*/
 .footer-widgets-container {
-	padding: 40px;
+	padding: 50px;
 }
 
 .inside-footer-widgets {
@@ -14,11 +14,11 @@
 }
 
 .site-footer .footer-widgets-container .inner-padding {
-	padding: 0px 0px 0px 40px;
+	padding: 0px 0px 0px 50px;
 }
 
 .site-footer .footer-widgets-container .inside-footer-widgets {
-	margin-left: -40px;
+	margin-left: -50px;
 }
 
 /*--------------------------------------------------------------

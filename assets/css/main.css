@@ -787,7 +787,7 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 }
 
 .inside-header {
-	padding: 20px 40px;
+	padding: 20px 50px;
 }
 
 .main-title {
@@ -1118,7 +1118,7 @@ object {
 # Widgets
 --------------------------------------------------------------*/
 .widget-area .widget {
-	padding: 40px;
+	padding: 50px;
 }
 
 .widget select {
@@ -1230,17 +1230,17 @@ object {
 .sidebar .widget,
 .page-header,
 .site-main > * {
-	margin-bottom: 20px;
+	margin-bottom: 30px;
 }
 
 .both-right .inside-left-sidebar,
 .both-left .inside-left-sidebar {
-	margin-right: 10px;
+	margin-right: 15px;
 }
 
 .both-right .inside-right-sidebar,
 .both-left .inside-right-sidebar {
-	margin-left: 10px;
+	margin-left: 15px;
 }
 
 /*--------------------------------------------------------------
@@ -1248,24 +1248,24 @@ object {
 --------------------------------------------------------------*/
 .one-container.right-sidebar .site-main,
 .one-container.both-right .site-main {
-	margin-right: 40px;
+	margin-right: 50px;
 }
 
 .one-container.left-sidebar .site-main,
 .one-container.both-left .site-main {
-	margin-left: 40px;
+	margin-left: 50px;
 }
 
 .one-container.both-sidebars .site-main {
-	margin: 0px 40px 0px 40px;
+	margin: 0px 50px 0px 50px;
 }
 
 .one-container .post:not(:last-child) {
-	padding-bottom: 40px;
+	padding-bottom: 50px;
 }
 
 .one-container .site-content {
-	padding: 40px;
+	padding: 50px;
 }
 
 /*--------------------------------------------------------------
@@ -1275,11 +1275,11 @@ object {
 .separate-containers .comments-area,
 .separate-containers .page-header,
 .separate-containers .paging-navigation {
-	padding: 40px;
+	padding: 50px;
 }
 
 .separate-containers .site-main {
-	margin: 20px;
+	margin: 30px;
 }
 
 .separate-containers.no-sidebar .site-main {
@@ -1299,17 +1299,17 @@ object {
 
 .separate-containers .inside-right-sidebar,
 .separate-containers .inside-left-sidebar {
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-top: 30px;
+	margin-bottom: 30px;
 }
 
 .inside-page-header,
 .wp-block-group__inner-container {
-	padding: 40px;
+	padding: 50px;
 }
 
 .widget-area .main-navigation {
-	margin-bottom: 20px;
+	margin-bottom: 30px;
 }
 
 /*--------------------------------------------------------------
@@ -1398,7 +1398,7 @@ object {
 }
 
 .separate-containers .featured-image {
-	margin-top: 20px;
+	margin-top: 30px;
 }
 
 .separate-containers .inside-article > .featured-image {

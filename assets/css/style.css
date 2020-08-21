@@ -850,7 +850,7 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 }
 
 .inside-header {
-	padding: 20px 40px;
+	padding: 20px 50px;
 }
 
 .main-title {
@@ -1300,7 +1300,7 @@ ol.comment-list {
 # Widgets
 --------------------------------------------------------------*/
 .widget-area .widget {
-	padding: 40px;
+	padding: 50px;
 }
 
 .widget select {
@@ -1401,12 +1401,12 @@ ol.comment-list {
 --------------------------------------------------------------*/
 .one-container.both-left .inside-left-sidebar,
 .one-container.both-right .inside-left-sidebar {
-	margin-right: 20px;
+	margin-right: 25px;
 }
 
 .one-container.both-left .inside-right-sidebar,
 .one-container.both-right .inside-right-sidebar {
-	margin-left: 20px;
+	margin-left: 25px;
 }
 
 .one-container:not(.page):not(.single) .inside-article {
@@ -1415,20 +1415,20 @@ ol.comment-list {
 
 .one-container.right-sidebar .site-main,
 .one-container.both-right .site-main {
-	margin-right: 40px;
+	margin-right: 50px;
 }
 
 .one-container.left-sidebar .site-main,
 .one-container.both-left .site-main {
-	margin-left: 40px;
+	margin-left: 50px;
 }
 
 .one-container.both-sidebars .site-main {
-	margin: 0px 40px 0px 40px;
+	margin: 0px 50px 0px 50px;
 }
 
 .one-container .site-content {
-	padding: 40px;
+	padding: 50px;
 }
 
 .separate-containers .site-main > *:last-child,
@@ -1443,17 +1443,17 @@ ol.comment-list {
 .separate-containers .comments-area,
 .separate-containers .page-header,
 .separate-containers .paging-navigation {
-	padding: 40px;
+	padding: 50px;
 }
 
 .separate-containers .widget,
 .separate-containers .site-main > *,
 .separate-containers .page-header {
-	margin-bottom: 20px;
+	margin-bottom: 30px;
 }
 
 .separate-containers .site-main {
-	margin: 20px;
+	margin: 30px;
 }
 
 .separate-containers.no-sidebar .site-main {
@@ -1473,27 +1473,27 @@ ol.comment-list {
 
 .separate-containers.both-right .inside-left-sidebar,
 .separate-containers.both-left .inside-left-sidebar {
-	margin-right: 10px;
+	margin-right: 15px;
 }
 
 .separate-containers.both-right .inside-right-sidebar,
 .separate-containers.both-left .inside-right-sidebar {
-	margin-left: 10px;
+	margin-left: 15px;
 }
 
 .separate-containers .inside-right-sidebar,
 .separate-containers .inside-left-sidebar {
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-top: 30px;
+	margin-bottom: 30px;
 }
 
 .inside-page-header,
 .wp-block-group__inner-container {
-	padding: 40px;
+	padding: 50px;
 }
 
 .widget-area .main-navigation {
-	margin-bottom: 20px;
+	margin-bottom: 30px;
 }
 
 /*--------------------------------------------------------------
@@ -1647,7 +1647,7 @@ ol.comment-list {
 .separate-containers .page-header-content,
 .separate-containers .page-header-image-single,
 .separate-containers .page-header-content-single {
-	margin-top: 20px;
+	margin-top: 30px;
 }
 
 /*--------------------------------------------------------------
