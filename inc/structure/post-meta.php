@@ -169,16 +169,23 @@ function generate_do_post_meta_item( $item ) {
 			'microdata' === $schema_type ? ' itemprop="dateModified"' : ''
 		);
 
+		$posted_on = '<span class="posted-on">%1$s%4$s</span> ';
+
+		if ( apply_filters( 'generate_post_date_link', false ) ) {
+			$posted_on = '<span class="posted-on">%1$s<a href="%2$s" title="%3$s" rel="bookmark">%4$s</a></span> ';
+		}
+
 		echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			'generate_post_date_output',
 			sprintf(
-				'<span class="posted-on">%1$s<a href="%2$s" title="%3$s" rel="bookmark">%4$s</a></span> ',
+				$posted_on,
 				apply_filters( 'generate_inside_post_meta_item_output', '', 'date' ),
 				esc_url( get_permalink() ),
 				esc_attr( get_the_time() ),
 				$time_string
 			),
-			$time_string
+			$time_string,
+			$posted_on
 		);
 	}
 
