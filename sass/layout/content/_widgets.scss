@@ -2,16 +2,6 @@
     padding: 40px;
 }
 
-.widget {
-	margin: 0 0 30px;
-	box-sizing: border-box;
-}
-
-.sidebar .widget,
-.footer-widgets .widget {
-	font-size: 17px;
-}
-
 .widget select {
 	max-width: 100%;
 }
@@ -51,11 +41,6 @@
 
 .widget .search-field {
 	width: 100%;
-}
-
-.widget:last-child,
-.separate-containers .widget:last-child {
-	margin-bottom: 0;
 }
 
 .widget_nav_menu ul ul,

@@ -1,3 +1,18 @@
 .widget_search .search-submit {
 	display: none;
 }
+
+.widget {
+	margin: 0 0 30px;
+	box-sizing: border-box;
+}
+
+.widget:last-child,
+.separate-containers .widget:last-child {
+	margin-bottom: 0;
+}
+
+.sidebar .widget,
+.footer-widgets .widget {
+	font-size: 17px;
+}

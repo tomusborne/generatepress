@@ -10,3 +10,12 @@
 		flex: 1 0 50px;
 	}
 }
+
+.footer-widgets .widget {
+	margin-bottom: 30px;
+}
+
+.sidebar .widget:last-child,
+.footer-widgets .widget:last-child {
+	margin-bottom: 0;
+}
