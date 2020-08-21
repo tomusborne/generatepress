@@ -536,7 +536,12 @@ function generate_pro_compat_customize_register( $wp_customize ) {
 	}
 
 	if ( version_compare( GP_PREMIUM_VERSION, '1.12.0-alpha.1', '<' ) ) {
-		$wp_customize->get_setting( 'generate_spacing_settings[separator]' )->transport = 'refresh';
-		$wp_customize->get_setting( 'generate_spacing_settings[content_bottom]' )->transport = 'refresh';
+		if ( $wp_customize->get_control( 'generate_spacing_settings[separator]' ) ) {
+			$wp_customize->get_setting( 'generate_spacing_settings[separator]' )->transport = 'refresh';
+		}
+
+		if ( $wp_customize->get_control( 'generate_spacing_settings[separator]' ) ) {
+			$wp_customize->get_setting( 'generate_spacing_settings[separator]' )->transport = 'refresh';
+		}
 	}
 }
