@@ -244,8 +244,11 @@ class GeneratePress_Theme_Update {
 			'heading_2_font_size' => '30',
 			'heading_2_weight' => '300',
 			'heading_3_font_size' => '20',
+			'mobile_heading_3_font_size' => '',
 			'heading_4_font_size' => '',
+			'mobile_heading_4_font_size' => '',
 			'heading_5_font_size' => '',
+			'mobile_heading_5_font_size' => '',
 		);
 
 		foreach ( $old_defaults as $key => $value ) {

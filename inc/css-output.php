@@ -664,6 +664,15 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 
 		$css->set_selector( 'h2' );
 		$css->add_property( 'font-size', absint( $settings['mobile_heading_2_font_size'] ), false, 'px' );
+
+		$css->set_selector( 'h3' );
+		$css->add_property( 'font-size', absint( $settings['mobile_heading_3_font_size'] ), false, 'px' );
+
+		$css->set_selector( 'h4' );
+		$css->add_property( 'font-size', absint( $settings['mobile_heading_4_font_size'] ), false, 'px' );
+
+		$css->set_selector( 'h5' );
+		$css->add_property( 'font-size', absint( $settings['mobile_heading_5_font_size'] ), false, 'px' );
 		$css->stop_media_query();
 
 		do_action( 'generate_typography_css', $css );
