@@ -1444,11 +1444,11 @@ ol.comment-list {
 .separate-containers .widget,
 .separate-containers .site-main > *,
 .separate-containers .page-header {
-	margin-bottom: 30px;
+	margin-bottom: 25px;
 }
 
 .separate-containers .site-main {
-	margin: 30px;
+	margin: 25px;
 }
 
 .separate-containers.no-sidebar .site-main {
@@ -1468,18 +1468,18 @@ ol.comment-list {
 
 .separate-containers.both-right .inside-left-sidebar,
 .separate-containers.both-left .inside-left-sidebar {
-	margin-right: 15px;
+	margin-right: 12.5px;
 }
 
 .separate-containers.both-right .inside-right-sidebar,
 .separate-containers.both-left .inside-right-sidebar {
-	margin-left: 15px;
+	margin-left: 12.5px;
 }
 
 .separate-containers .inside-right-sidebar,
 .separate-containers .inside-left-sidebar {
-	margin-top: 30px;
-	margin-bottom: 30px;
+	margin-top: 25px;
+	margin-bottom: 25px;
 }
 
 .inside-page-header,
@@ -1488,7 +1488,7 @@ ol.comment-list {
 }
 
 .widget-area .main-navigation {
-	margin-bottom: 30px;
+	margin-bottom: 25px;
 }
 
 .separate-containers .site-main > *:last-child,
@@ -1647,7 +1647,7 @@ ol.comment-list {
 .separate-containers .page-header-content,
 .separate-containers .page-header-image-single,
 .separate-containers .page-header-content-single {
-	margin-top: 30px;
+	margin-top: 25px;
 }
 
 /*--------------------------------------------------------------

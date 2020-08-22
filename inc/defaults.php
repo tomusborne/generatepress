@@ -306,7 +306,7 @@ if ( ! function_exists( 'generate_spacing_get_defaults' ) ) {
 			'mobile_content_right' => '30',
 			'mobile_content_bottom' => '30',
 			'mobile_content_left' => '30',
-			'separator' => '30',
+			'separator' => '25',
 			'mobile_separator' => '15',
 			'left_sidebar_width' => '25',
 			'right_sidebar_width' => '25',
