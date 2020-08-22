@@ -231,24 +231,24 @@
 				subMenuCurrentTextColorSetting.set( generatepress_color_defaults.subnavigation_text_current_color );
 			}
 
-			if ( 'white' === newval ) {
-				backgroundColorSetting.set( '#ffffff' );
-				textColorSetting.set( '#000000' );
+			if ( 'classic' === newval ) {
+				backgroundColorSetting.set( '#222222' );
+				textColorSetting.set( '#ffffff' );
 
-				backgroundColorHoverSetting.set( '#ffffff' );
-				textColorHoverSetting.set( '#8f919e' );
+				backgroundColorHoverSetting.set( '#3f3f3f' );
+				textColorHoverSetting.set( '#ffffff' );
 
-				currentBackgroundColorSetting.set( '#ffffff' );
-				currentTextColorSetting.set( '#8f919e' );
+				currentBackgroundColorSetting.set( '#3f3f3f' );
+				currentTextColorSetting.set( '#ffffff' );
 
-				subMenuBackgroundColorSetting.set( '#f6f9fc' );
-				subMenuTextColorSetting.set( '#000000' );
+				subMenuBackgroundColorSetting.set( '#3f3f3f' );
+				subMenuTextColorSetting.set( '#ffffff' );
 
-				subMenuBackgroundColorHoverSetting.set( '#f6f9fc' );
-				subMenuTextColorHoverSetting.set( '#8f919e' );
+				subMenuBackgroundColorHoverSetting.set( '#4f4f4f' );
+				subMenuTextColorHoverSetting.set( '#ffffff' );
 
-				subMenuCurrentBackgroundColorSetting.set( '#f6f9fc' );
-				subMenuCurrentTextColorSetting.set( '#8f919e' );
+				subMenuCurrentBackgroundColorSetting.set( '#4f4f4f' );
+				subMenuCurrentTextColorSetting.set( '#ffffff' );
 			}
 
 			if ( 'grey' === newval ) {
