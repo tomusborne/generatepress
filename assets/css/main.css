@@ -787,7 +787,7 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 }
 
 .inside-header {
-	padding: 20px 50px;
+	padding: 20px 40px;
 }
 
 .main-title {
@@ -1118,7 +1118,7 @@ object {
 # Widgets
 --------------------------------------------------------------*/
 .widget-area .widget {
-	padding: 50px;
+	padding: 40px;
 }
 
 .widget select {
@@ -1230,17 +1230,17 @@ object {
 .sidebar .widget,
 .page-header,
 .site-main > * {
-	margin-bottom: 25px;
+	margin-bottom: 20px;
 }
 
 .both-right .inside-left-sidebar,
 .both-left .inside-left-sidebar {
-	margin-right: 12.5px;
+	margin-right: 10px;
 }
 
 .both-right .inside-right-sidebar,
 .both-left .inside-right-sidebar {
-	margin-left: 12.5px;
+	margin-left: 10px;
 }
 
 /*--------------------------------------------------------------
@@ -1248,24 +1248,24 @@ object {
 --------------------------------------------------------------*/
 .one-container.right-sidebar .site-main,
 .one-container.both-right .site-main {
-	margin-right: 50px;
+	margin-right: 40px;
 }
 
 .one-container.left-sidebar .site-main,
 .one-container.both-left .site-main {
-	margin-left: 50px;
+	margin-left: 40px;
 }
 
 .one-container.both-sidebars .site-main {
-	margin: 0px 50px 0px 50px;
+	margin: 0px 40px 0px 40px;
 }
 
 .one-container .post:not(:last-child) {
-	padding-bottom: 50px;
+	padding-bottom: 40px;
 }
 
 .one-container .site-content {
-	padding: 50px;
+	padding: 40px;
 }
 
 /*--------------------------------------------------------------
@@ -1275,11 +1275,11 @@ object {
 .separate-containers .comments-area,
 .separate-containers .page-header,
 .separate-containers .paging-navigation {
-	padding: 50px;
+	padding: 40px;
 }
 
 .separate-containers .site-main {
-	margin: 25px;
+	margin: 20px;
 }
 
 .separate-containers.no-sidebar .site-main {
@@ -1299,17 +1299,17 @@ object {
 
 .separate-containers .inside-right-sidebar,
 .separate-containers .inside-left-sidebar {
-	margin-top: 25px;
-	margin-bottom: 25px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 .inside-page-header,
 .wp-block-group__inner-container {
-	padding: 50px;
+	padding: 40px;
 }
 
 .widget-area .main-navigation {
-	margin-bottom: 25px;
+	margin-bottom: 20px;
 }
 
 .separate-containers .site-main > *:last-child,
@@ -1403,7 +1403,7 @@ object {
 }
 
 .separate-containers .featured-image {
-	margin-top: 25px;
+	margin-top: 20px;
 }
 
 .separate-containers .inside-article > .featured-image {

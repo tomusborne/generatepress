@@ -850,7 +850,7 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 }
 
 .inside-header {
-	padding: 20px 50px;
+	padding: 20px 40px;
 }
 
 .main-title {
@@ -1300,7 +1300,7 @@ ol.comment-list {
 # Widgets
 --------------------------------------------------------------*/
 .widget-area .widget {
-	padding: 50px;
+	padding: 40px;
 }
 
 .widget select {
@@ -1401,12 +1401,12 @@ ol.comment-list {
 --------------------------------------------------------------*/
 .one-container.both-left .inside-left-sidebar,
 .one-container.both-right .inside-left-sidebar {
-	margin-right: 25px;
+	margin-right: 20px;
 }
 
 .one-container.both-left .inside-right-sidebar,
 .one-container.both-right .inside-right-sidebar {
-	margin-left: 25px;
+	margin-left: 20px;
 }
 
 .one-container:not(.page):not(.single) .inside-article {
@@ -1415,20 +1415,20 @@ ol.comment-list {
 
 .one-container.right-sidebar .site-main,
 .one-container.both-right .site-main {
-	margin-right: 50px;
+	margin-right: 40px;
 }
 
 .one-container.left-sidebar .site-main,
 .one-container.both-left .site-main {
-	margin-left: 50px;
+	margin-left: 40px;
 }
 
 .one-container.both-sidebars .site-main {
-	margin: 0px 50px 0px 50px;
+	margin: 0px 40px 0px 40px;
 }
 
 .one-container .site-content {
-	padding: 50px;
+	padding: 40px;
 }
 
 /*--------------------------------------------------------------
@@ -1438,17 +1438,17 @@ ol.comment-list {
 .separate-containers .comments-area,
 .separate-containers .page-header,
 .separate-containers .paging-navigation {
-	padding: 50px;
+	padding: 40px;
 }
 
 .separate-containers .widget,
 .separate-containers .site-main > *,
 .separate-containers .page-header {
-	margin-bottom: 25px;
+	margin-bottom: 20px;
 }
 
 .separate-containers .site-main {
-	margin: 25px;
+	margin: 20px;
 }
 
 .separate-containers.no-sidebar .site-main {
@@ -1468,27 +1468,27 @@ ol.comment-list {
 
 .separate-containers.both-right .inside-left-sidebar,
 .separate-containers.both-left .inside-left-sidebar {
-	margin-right: 12.5px;
+	margin-right: 10px;
 }
 
 .separate-containers.both-right .inside-right-sidebar,
 .separate-containers.both-left .inside-right-sidebar {
-	margin-left: 12.5px;
+	margin-left: 10px;
 }
 
 .separate-containers .inside-right-sidebar,
 .separate-containers .inside-left-sidebar {
-	margin-top: 25px;
-	margin-bottom: 25px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 .inside-page-header,
 .wp-block-group__inner-container {
-	padding: 50px;
+	padding: 40px;
 }
 
 .widget-area .main-navigation {
-	margin-bottom: 25px;
+	margin-bottom: 20px;
 }
 
 .separate-containers .site-main > *:last-child,
@@ -1647,7 +1647,7 @@ ol.comment-list {
 .separate-containers .page-header-content,
 .separate-containers .page-header-image-single,
 .separate-containers .page-header-content-single {
-	margin-top: 25px;
+	margin-top: 20px;
 }
 
 /*--------------------------------------------------------------
