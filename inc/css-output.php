@@ -103,7 +103,7 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$css->add_property( 'width', absint( $right_sidebar_width ) . '%' );
 
 			$css->set_selector( '#left-sidebar' );
-			$css->add_property( 'width', absint( $right_sidebar_width ) . '%' );
+			$css->add_property( 'width', absint( $left_sidebar_width ) . '%' );
 		}
 
 		if ( generate_get_option( 'back_to_top' ) ) {
