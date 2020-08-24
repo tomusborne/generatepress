@@ -313,7 +313,7 @@ function generate_do_pro_compatibility() {
 
 	if ( version_compare( GP_PREMIUM_VERSION, '1.12.0-alpha.1', '<' ) ) {
 		if ( defined( 'GENERATE_MENU_PLUS_VERSION' ) ) {
-			if ( generate_has_inline_mobile_toggle() ) {
+			if ( generate_has_inline_mobile_toggle() && function_exists( 'generate_menu_plus_get_defaults' ) ) {
 				$menu_plus_settings = wp_parse_args(
 					get_option( 'generate_menu_plus_settings', array() ),
 					generate_menu_plus_get_defaults()
