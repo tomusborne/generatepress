@@ -995,6 +995,16 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 			$css->set_selector( '.separate-containers .inside-right-sidebar, .separate-containers .inside-left-sidebar' );
 			$css->add_property( 'margin-top', absint( $settings['mobile_separator'] ), false, 'px' );
 			$css->add_property( 'margin-bottom', absint( $settings['mobile_separator'] ), false, 'px' );
+
+			if ( generate_is_using_flexbox() ) {
+				$css->set_selector( '.one-container .site-main .paging-navigation' );
+				$css->add_property( 'margin-bottom', absint( $settings['mobile_separator'] ), false, 'px' );
+			}
+		} else {
+			if ( generate_is_using_flexbox() ) {
+				$css->set_selector( '.one-container .site-main .paging-navigation' );
+				$css->add_property( 'margin-bottom', absint( $settings['separator'] ), false, 'px' );
+			}
 		}
 		$css->stop_media_query();
 
