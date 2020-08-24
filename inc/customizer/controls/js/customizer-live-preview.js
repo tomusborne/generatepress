@@ -648,11 +648,11 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 				newSecondaryNavPaddingRight = parseFloat( headerPaddingRight ) - parseFloat( secondaryMenuItemPadding );
 
 			if ( jQuery( 'style#navigation_padding' ).length ) {
-				jQuery( 'style#navigation_padding' ).html( '.nav-below-header .main-navigation .inside-navigation, .nav-above-header .main-navigation .inside-navigation{padding: 0 ' + newNavPaddingRight + 'px 0 ' + newNavPaddingLeft + 'px;}' );
-				jQuery( 'style#secondary_navigation_padding' ).html( '.secondary-nav-below-header .secondary-navigation .inside-navigation, .secondary-nav-above-header .secondary-navigation .inside-navigation{padding: 0 ' + newSecondaryNavPaddingRight + 'px 0 ' + newSecondaryNavPaddingLeft + 'px;}' );
+				jQuery( 'style#navigation_padding' ).html( '.nav-below-header .main-navigation .inside-navigation.grid-container, .nav-above-header .main-navigation .inside-navigation.grid-container{padding: 0 ' + newNavPaddingRight + 'px 0 ' + newNavPaddingLeft + 'px;}' );
+				jQuery( 'style#secondary_navigation_padding' ).html( '.secondary-nav-below-header .secondary-navigation .inside-navigation.grid-container, .secondary-nav-above-header .secondary-navigation .inside-navigation.grid-container{padding: 0 ' + newSecondaryNavPaddingRight + 'px 0 ' + newSecondaryNavPaddingLeft + 'px;}' );
 			} else {
-				jQuery( 'head' ).append( '<style id="navigation_padding">.nav-below-header .main-navigation .inside-navigation, .nav-above-header .main-navigation .inside-navigation{padding: 0 ' + newNavPaddingRight + 'px 0 ' + newNavPaddingLeft + 'px;}</style>' );
-				jQuery( 'head' ).append( '<style id="secondary_navigation_padding">.secondary-nav-below-header .secondary-navigation .inside-navigation, .secondary-nav-above-header .secondary-navigation .inside-navigation{padding: 0 ' + newSecondaryNavPaddingRight + 'px 0 ' + newSecondaryNavPaddingLeft + 'px;}</style>' );
+				jQuery( 'head' ).append( '<style id="navigation_padding">.nav-below-header .main-navigation .inside-navigation.grid-container, .nav-above-header .main-navigation .inside-navigation.grid-container{padding: 0 ' + newNavPaddingRight + 'px 0 ' + newNavPaddingLeft + 'px;}</style>' );
+				jQuery( 'head' ).append( '<style id="secondary_navigation_padding">.secondary-nav-below-header .secondary-navigation .inside-navigation.grid-container, .secondary-nav-above-header .secondary-navigation .inside-navigation.grid-container{padding: 0 ' + newSecondaryNavPaddingRight + 'px 0 ' + newSecondaryNavPaddingLeft + 'px;}</style>' );
 				setTimeout(function() {
 					jQuery( 'style#navigation_padding' ).not( ':last' ).remove();
 					jQuery( 'style#secondary_navigation_padding' ).not( ':last' ).remove();

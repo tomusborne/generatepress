@@ -376,7 +376,7 @@ function generate_do_pro_compatibility() {
 					$navigation_left_padding = absint( $spacing_settings['header_left'] ) - absint( $secondary_nav_settings['secondary_menu_item'] );
 					$navigation_right_padding = absint( $spacing_settings['header_right'] ) - absint( $secondary_nav_settings['secondary_menu_item'] );
 
-					$css->set_selector( '.secondary-nav-below-header .secondary-navigation .inside-navigation, .secondary-nav-above-header .secondary-navigation .inside-navigation' );
+					$css->set_selector( '.secondary-nav-below-header .secondary-navigation .inside-navigation.grid-container, .secondary-nav-above-header .secondary-navigation .inside-navigation.grid-container' );
 					$css->add_property( 'padding', generate_padding_css( 0, $navigation_right_padding, 0, $navigation_left_padding ) );
 				}
 			}

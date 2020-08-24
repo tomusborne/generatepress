@@ -723,7 +723,7 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 				$navigation_left_padding = absint( $settings['header_left'] ) - absint( $settings['menu_item'] );
 				$navigation_right_padding = absint( $settings['header_right'] ) - absint( $settings['menu_item'] );
 
-				$css->set_selector( '.nav-below-header .main-navigation .inside-navigation, .nav-above-header .main-navigation .inside-navigation' );
+				$css->set_selector( '.nav-below-header .main-navigation .inside-navigation.grid-container, .nav-above-header .main-navigation .inside-navigation.grid-container' );
 				$css->add_property( 'padding', generate_padding_css( 0, $navigation_right_padding, 0, $navigation_left_padding ) );
 			}
 		}
