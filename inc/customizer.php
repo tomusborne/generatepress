@@ -737,15 +737,59 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'choices' => array(
 					'current' => __( 'Current', 'generatepress' ),
 					'default' => __( 'Default', 'generatepress' ),
+					'classic' => __( 'Classic', 'generatepress' ),
+					'nav-before' => __( 'Navigation Before', 'generatepress' ),
+					'nav-after' => __( 'Navigation After', 'generatepress' ),
 					'nav-before-centered' => __( 'Navigation Before - Centered', 'generatepress' ),
 					'nav-after-centered' => __( 'Navigation After - Centered', 'generatepress' ),
-					'nav-right' => __( 'Navigation Right', 'generatepress' ),
 					'nav-left' => __( 'Navigation Left', 'generatepress' ),
 				),
 				'settings' => 'generate_header_helper',
 				'priority' => 4,
 			)
 		);
+
+		if ( ! $wp_customize->get_setting( 'generate_settings[site_title_font_size]' ) ) {
+			$typography_defaults = generate_get_default_fonts();
+
+			$wp_customize->add_setting(
+				'generate_settings[site_title_font_size]',
+				array(
+					'default' => $typography_defaults['site_title_font_size'],
+					'type' => 'option',
+					'sanitize_callback' => 'absint',
+					'transport' => 'postMessage',
+				)
+			);
+		}
+
+		if ( ! $wp_customize->get_setting( 'generate_spacing_settings[header_top]' ) ) {
+			$spacing_defaults = generate_spacing_get_defaults();
+
+			$wp_customize->add_setting(
+				'generate_spacing_settings[header_top]',
+				array(
+					'default' => $spacing_defaults['header_top'],
+					'type' => 'option',
+					'sanitize_callback' => 'absint',
+					'transport' => 'postMessage',
+				)
+			);
+		}
+
+		if ( ! $wp_customize->get_setting( 'generate_spacing_settings[header_bottom]' ) ) {
+			$spacing_defaults = generate_spacing_get_defaults();
+
+			$wp_customize->add_setting(
+				'generate_spacing_settings[header_bottom]',
+				array(
+					'default' => $spacing_defaults['header_bottom'],
+					'type' => 'option',
+					'sanitize_callback' => 'absint',
+					'transport' => 'postMessage',
+				)
+			);
+		}
 
 		$wp_customize->add_setting(
 			'generate_settings[header_layout_setting]',

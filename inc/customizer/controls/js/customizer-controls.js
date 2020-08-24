@@ -99,29 +99,59 @@
 		api.control( 'generate_settings[nav_alignment_setting]', setNavAlignmentsActiveState );
 	} );
 
-	var setOption = function( headerAlignment, navLocation, navAlignment ) {
-		if ( headerAlignment ) {
-			api.control( 'generate_settings[header_alignment_setting]' ).setting.set( headerAlignment );
+	var setOption = function( options ) {
+		if ( options.headerAlignment ) {
+			api.instance( 'generate_settings[header_alignment_setting]' ).set( options.headerAlignment );
 		}
 
-		if ( navLocation ) {
-			api.control( 'generate_settings[nav_position_setting]' ).setting.set( navLocation );
+		if ( options.navLocation ) {
+			api.instance( 'generate_settings[nav_position_setting]' ).set( options.navLocation );
 		}
 
-		if ( navAlignment ) {
-			api.control( 'generate_settings[nav_alignment_setting]' ).setting.set( navAlignment );
+		if ( options.navAlignment ) {
+			api.instance( 'generate_settings[nav_alignment_setting]' ).set( options.navAlignment );
+		}
+
+		if ( options.boxAlignment ) {
+			api.instance( 'generate_settings[container_alignment]' ).set( options.boxAlignment );
+		}
+
+		if ( options.siteTitleFontSize ) {
+			api.instance( 'generate_settings[site_title_font_size]' ).set( options.siteTitleFontSize );
+		}
+
+		if ( 'undefined' !== typeof options.hideSiteTagline ) {
+			api.instance( 'generate_settings[hide_tagline]' ).set( options.hideSiteTagline );
+		}
+
+		if ( options.headerPaddingTop ) {
+			api.instance( 'generate_spacing_settings[header_top]' ).set( options.headerPaddingTop );
+		}
+
+		if ( options.headerPaddingBottom ) {
+			api.instance( 'generate_spacing_settings[header_bottom]' ).set( options.headerPaddingBottom );
 		}
 	};
 
 	api( 'generate_header_helper', function( value ) {
 		var headerAlignment = false,
 			navLocation = false,
-			navAlignment = false;
+			navAlignment = false,
+			boxAlignment = false,
+			siteTitleFontSize = false,
+			hideSiteTagline = false,
+			headerPaddingTop = false,
+			headerPaddingBottom = false;
 
 		value.bind( function( newval ) {
-			var headerAlignmentSetting = api.control( 'generate_settings[header_alignment_setting]' ).setting;
-			var navLocationSetting = api.control( 'generate_settings[nav_position_setting]' ).setting;
-			var navAlignmentSetting = api.control( 'generate_settings[nav_alignment_setting]' ).setting;
+			var headerAlignmentSetting = api.instance( 'generate_settings[header_alignment_setting]' );
+			var navLocationSetting = api.instance( 'generate_settings[nav_position_setting]' );
+			var navAlignmentSetting = api.instance( 'generate_settings[nav_alignment_setting]' );
+			var boxAlignmentSetting = api.instance( 'generate_settings[container_alignment]' );
+			var siteTitleFontSizeSetting = api.instance( 'generate_settings[site_title_font_size]' );
+			var hideSiteTaglineSetting = api.instance( 'generate_settings[hide_tagline]' );
+			var headerPaddingTopSetting = api.instance( 'generate_spacing_settings[header_top]' );
+			var headerPaddingBottomSetting = api.instance( 'generate_spacing_settings[header_bottom]' );
 
 			if ( ! headerAlignmentSetting._dirty ) {
 				headerAlignment = headerAlignmentSetting.get();
@@ -135,28 +165,109 @@
 				navAlignment = navAlignmentSetting.get();
 			}
 
+			if ( ! boxAlignmentSetting._dirty ) {
+				boxAlignment = boxAlignmentSetting.get();
+			}
+
+			if ( ! siteTitleFontSizeSetting._dirty ) {
+				siteTitleFontSize = siteTitleFontSizeSetting.get();
+			}
+
+			if ( ! hideSiteTaglineSetting._dirty ) {
+				hideSiteTagline = hideSiteTaglineSetting.get();
+			}
+
+			if ( ! headerPaddingTopSetting._dirty ) {
+				headerPaddingTop = headerPaddingTopSetting.get();
+			}
+
+			if ( ! headerPaddingBottomSetting._dirty ) {
+				headerPaddingBottom = headerPaddingBottomSetting.get();
+			}
+
+			var options = {
+				headerAlignment: generatepress_defaults.header_alignment_setting,
+				navLocation: generatepress_defaults.nav_position_setting,
+				navAlignment: generatepress_defaults.nav_alignment_setting,
+				boxAlignment: generatepress_defaults.container_alignment,
+				siteTitleFontSize: generatepress_typography_defaults.site_title_font_size,
+				hideSiteTagline: generatepress_defaults.hide_tagline,
+				headerPaddingTop: generatepress_spacing_defaults.header_top,
+				headerPaddingBottom: generatepress_spacing_defaults.header_bottom,
+			};
+
 			if ( 'current' === newval ) {
-				setOption( headerAlignment, navLocation, navAlignment );
+				options = {
+					headerAlignment: headerAlignment,
+					navLocation: navLocation,
+					navAlignment: navAlignment,
+					boxAlignment: boxAlignment,
+					siteTitleFontSize: siteTitleFontSize,
+					hideSiteTagline: hideSiteTagline,
+					headerPaddingTop: headerPaddingTop,
+					headerPaddingBottom: headerPaddingBottom,
+				};
+
+				setOption( options );
 			}
 
 			if ( 'default' === newval ) {
-				setOption( generatepress_defaults.header_alignment_setting, generatepress_defaults.nav_position_setting, generatepress_defaults.nav_alignment_setting );
+				setOption( options );
+			}
+
+			if ( 'classic' === newval ) {
+				var options = {
+					headerAlignment: 'left',
+					navLocation: 'nav-below-header',
+					navAlignment: 'left',
+					boxAlignment: 'boxes',
+					siteTitleFontSize: '45',
+					hideSiteTagline: '',
+					headerPaddingTop: '40',
+					headerPaddingBottom: '40',
+				};
+
+				setOption( options );
+			}
+
+			if ( 'nav-before' === newval ) {
+				options['headerAlignment'] = 'left';
+				options['navLocation'] = 'nav-above-header';
+				options['navAlignment'] = 'left';
+
+				setOption( options );
+			}
+
+			if ( 'nav-after' === newval ) {
+				options['headerAlignment'] = 'left';
+				options['navLocation'] = 'nav-below-header';
+				options['navAlignment'] = 'left';
+
+				setOption( options );
 			}
 
 			if ( 'nav-before-centered' === newval ) {
-				setOption( 'center', 'nav-above-header', 'center' );
+				options['headerAlignment'] = 'center';
+				options['navLocation'] = 'nav-above-header';
+				options['navAlignment'] = 'center';
+
+				setOption( options );
 			}
 
 			if ( 'nav-after-centered' === newval ) {
-				setOption( 'center', 'nav-below-header', 'center' );
-			}
+				options['headerAlignment'] = 'center';
+				options['navLocation'] = 'nav-below-header';
+				options['navAlignment'] = 'center';
 
-			if ( 'nav-right' === newval ) {
-				setOption( 'left', 'nav-float-right', 'left' );
+				setOption( options );
 			}
 
 			if ( 'nav-left' === newval ) {
-				setOption( 'right', 'nav-float-left', 'right' );
+				options['headerAlignment'] = 'left';
+				options['navLocation'] = 'nav-float-left';
+				options['navAlignment'] = 'right';
+
+				setOption( options );
 			}
 		} );
 	} );
