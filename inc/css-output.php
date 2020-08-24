@@ -711,11 +711,21 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->set_selector( '.inside-header' );
 		$css->add_property( 'padding', generate_padding_css( $settings['header_top'], $settings['header_right'], $settings['header_bottom'], $settings['header_left'] ), generate_padding_css( $defaults['header_top'], $defaults['header_right'], $defaults['header_bottom'], $defaults['header_left'] ) );
 
-		if ( generate_is_using_flexbox() && 'boxes' === generate_get_option( 'container_alignment' ) && 'one-container' !== generate_get_option( 'content_layout_setting' ) ) {
-			$header_padding = absint( $settings['header_right'] ) + absint( $settings['header_left'] );
+		if ( generate_is_using_flexbox() ) {
+			if ( 'boxes' === generate_get_option( 'container_alignment' ) ) {
+				$header_padding = absint( $settings['header_right'] ) + absint( $settings['header_left'] );
 
-			$css->set_selector( '.inside-header.grid-container' );
-			$css->add_property( 'max-width', generate_get_option( 'container_width' ) + $header_padding, false, 'px' );
+				$css->set_selector( '.inside-header.grid-container' );
+				$css->add_property( 'max-width', generate_get_option( 'container_width' ) + $header_padding, false, 'px' );
+			}
+
+			if ( 'text' === generate_get_option( 'container_alignment' ) ) {
+				$navigation_left_padding = absint( $settings['header_left'] ) - absint( $settings['menu_item'] );
+				$navigation_right_padding = absint( $settings['header_right'] ) - absint( $settings['menu_item'] );
+
+				$css->set_selector( '.nav-below-header .main-navigation .inside-navigation, .nav-above-header .main-navigation .inside-navigation' );
+				$css->add_property( 'padding', generate_padding_css( 0, $navigation_right_padding, 0, $navigation_left_padding ) );
+			}
 		}
 
 		$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header, .wp-block-group__inner-container' );

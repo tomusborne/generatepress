@@ -360,6 +360,28 @@ function generate_do_pro_compatibility() {
 			}
 		}
 
+		if ( defined( 'GENERATE_SECONDARY_NAV_VERSION' ) ) {
+			if ( generate_is_using_flexbox() ) {
+				if ( 'text' === generate_get_option( 'container_alignment' ) && function_exists( 'generate_secondary_nav_get_defaults' ) ) {
+					$secondary_nav_settings = wp_parse_args(
+						get_option( 'generate_secondary_nav_settings', array() ),
+						generate_secondary_nav_get_defaults()
+					);
+
+					$spacing_settings = wp_parse_args(
+						get_option( 'generate_spacing_settings', array() ),
+						generate_spacing_get_defaults()
+					);
+
+					$navigation_left_padding = absint( $spacing_settings['header_left'] ) - absint( $secondary_nav_settings['secondary_menu_item'] );
+					$navigation_right_padding = absint( $spacing_settings['header_right'] ) - absint( $secondary_nav_settings['secondary_menu_item'] );
+
+					$css->set_selector( '.secondary-nav-below-header .secondary-navigation .inside-navigation, .secondary-nav-above-header .secondary-navigation .inside-navigation' );
+					$css->add_property( 'padding', generate_padding_css( 0, $navigation_right_padding, 0, $navigation_left_padding ) );
+				}
+			}
+		}
+
 		if ( ! generate_show_title() ) {
 			$css->set_selector( '.page .entry-content' )->add_property( 'margin-top', '0px' );
 

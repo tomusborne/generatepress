@@ -620,6 +620,46 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 			}
 		}
 
+		if ( generatepress_live_preview.isFlex && 'text' === containerAlignment ) {
+			var headerPaddingLeft = jQuery( '.inside-header' ).css( 'padding-left' ),
+				headerPaddingRight = jQuery( '.inside-header' ).css( 'padding-right' ),
+				menuItemPadding = jQuery( '.main-navigation .main-nav ul li a' ).css( 'padding-left' ),
+				secondaryMenuItemPadding = jQuery( '.secondary-navigation .main-nav ul li a' ).css( 'padding-left' );
+
+			if ( typeof wp.customize( 'generate_spacing_settings[header_left]' ) !== 'undefined' ) {
+				headerPaddingLeft = wp.customize( 'generate_spacing_settings[header_left]' ).get() + 'px';
+			}
+
+			if ( typeof wp.customize( 'generate_spacing_settings[header_right]' ) !== 'undefined' ) {
+				headerPaddingRight = wp.customize( 'generate_spacing_settings[header_right]' ).get() + 'px';
+			}
+
+			if ( typeof wp.customize( 'generate_spacing_settings[menu_item]' ) !== 'undefined' ) {
+				menuItemPadding = wp.customize( 'generate_spacing_settings[menu_item]' ).get() + 'px';
+			}
+
+			if ( typeof wp.customize( 'generate_spacing_settings[secondary_menu_item]' ) !== 'undefined' ) {
+				secondaryMenuItemPadding = wp.customize( 'generate_spacing_settings[secondary_menu_item]' ).get() + 'px';
+			}
+
+			var newNavPaddingLeft = parseFloat( headerPaddingLeft ) - parseFloat( menuItemPadding ),
+				newNavPaddingRight = parseFloat( headerPaddingRight ) - parseFloat( menuItemPadding ),
+				newSecondaryNavPaddingLeft = parseFloat( headerPaddingLeft ) - parseFloat( secondaryMenuItemPadding ),
+				newSecondaryNavPaddingRight = parseFloat( headerPaddingRight ) - parseFloat( secondaryMenuItemPadding );
+
+			if ( jQuery( 'style#navigation_padding' ).length ) {
+				jQuery( 'style#navigation_padding' ).html( '.nav-below-header .main-navigation .inside-navigation, .nav-above-header .main-navigation .inside-navigation{padding: 0 ' + newNavPaddingRight + 'px 0 ' + newNavPaddingLeft + 'px;}' );
+				jQuery( 'style#secondary_navigation_padding' ).html( '.secondary-nav-below-header .secondary-navigation .inside-navigation, .secondary-nav-above-header .secondary-navigation .inside-navigation{padding: 0 ' + newSecondaryNavPaddingRight + 'px 0 ' + newSecondaryNavPaddingLeft + 'px;}' );
+			} else {
+				jQuery( 'head' ).append( '<style id="navigation_padding">.nav-below-header .main-navigation .inside-navigation, .nav-above-header .main-navigation .inside-navigation{padding: 0 ' + newNavPaddingRight + 'px 0 ' + newNavPaddingLeft + 'px;}</style>' );
+				jQuery( 'head' ).append( '<style id="secondary_navigation_padding">.secondary-nav-below-header .secondary-navigation .inside-navigation, .secondary-nav-above-header .secondary-navigation .inside-navigation{padding: 0 ' + newSecondaryNavPaddingRight + 'px 0 ' + newSecondaryNavPaddingLeft + 'px;}</style>' );
+				setTimeout(function() {
+					jQuery( 'style#navigation_padding' ).not( ':last' ).remove();
+					jQuery( 'style#secondary_navigation_padding' ).not( ':last' ).remove();
+				}, 100);
+			}
+		}
+
 		if ( generatepress_live_preview.isFlex ) {
 			/**
 			 * Change the elements that GP Premium targets during live preview.
