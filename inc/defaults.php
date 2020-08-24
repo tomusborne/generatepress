@@ -98,7 +98,7 @@ if ( ! function_exists( 'generate_get_color_defaults' ) ) {
 				'subnavigation_text_current_color' => '#7a8896',
 				'navigation_search_background_color' => '',
 				'navigation_search_text_color' => '',
-				'content_background_color' => '',
+				'content_background_color' => '#ffffff',
 				'content_text_color' => '',
 				'content_link_color' => '',
 				'content_link_hover_color' => '',
