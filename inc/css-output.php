@@ -701,7 +701,7 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->set_selector( '.inside-top-bar' );
 		$css->add_property( 'padding', generate_padding_css( $settings['top_bar_top'], $settings['top_bar_right'], $settings['top_bar_bottom'], $settings['top_bar_left'] ), generate_padding_css( $defaults['top_bar_top'], $defaults['top_bar_right'], $defaults['top_bar_bottom'], $defaults['top_bar_left'] ) );
 
-		if ( generate_is_using_flexbox() && 'boxes' === generate_get_option( 'container_alignment' ) && 'one-container' !== generate_get_option( 'content_layout_setting' ) ) {
+		if ( generate_is_using_flexbox() && 'boxes' === generate_get_option( 'container_alignment' ) ) {
 			$top_bar_padding = absint( $settings['top_bar_right'] ) + absint( $settings['top_bar_left'] );
 
 			$css->set_selector( '.inside-top-bar.grid-container' );
@@ -833,7 +833,7 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 			$css->set_selector( '.footer-widgets-container' );
 			$css->add_property( 'padding', generate_padding_css( $settings['footer_widget_container_top'], $settings['footer_widget_container_right'], $settings['footer_widget_container_bottom'], $settings['footer_widget_container_left'] ), generate_padding_css( $defaults['footer_widget_container_top'], $defaults['footer_widget_container_right'], $defaults['footer_widget_container_bottom'], $defaults['footer_widget_container_left'] ) );
 
-			if ( 'boxes' === generate_get_option( 'container_alignment' ) && 'one-container' !== generate_get_option( 'content_layout_setting' ) ) {
+			if ( 'boxes' === generate_get_option( 'container_alignment' ) ) {
 				$footer_widgets_padding = absint( $settings['footer_widget_container_right'] ) + absint( $settings['footer_widget_container_left'] );
 
 				$css->set_selector( '.footer-widgets-container.grid-container' );
@@ -854,7 +854,7 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 			$css->set_selector( '.inside-site-info' );
 			$css->add_property( 'padding', generate_padding_css( $settings['footer_top'], $settings['footer_right'], $settings['footer_bottom'], $settings['footer_left'] ), generate_padding_css( $defaults['footer_top'], $defaults['footer_right'], $defaults['footer_bottom'], $defaults['footer_left'] ) );
 
-			if ( 'boxes' === generate_get_option( 'container_alignment' ) && 'one-container' !== generate_get_option( 'content_layout_setting' ) ) {
+			if ( 'boxes' === generate_get_option( 'container_alignment' ) ) {
 				$site_info_padding = absint( $settings['footer_right'] ) + absint( $settings['footer_left'] );
 
 				$css->set_selector( '.inside-site-info.grid-container' );

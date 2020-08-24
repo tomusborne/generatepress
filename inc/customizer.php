@@ -1090,7 +1090,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				),
 				'settings' => 'generate_settings[container_alignment]',
 				'priority' => 30,
-				'active_callback' => 'generate_has_container_alignment_callback',
 			)
 		);
 

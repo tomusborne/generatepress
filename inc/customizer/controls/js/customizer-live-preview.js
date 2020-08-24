@@ -563,7 +563,7 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 			}
 		}
 
-		if ( generatepress_live_preview.isFlex && 'boxes' === containerAlignment && 'one-container' !== containerLayout ) {
+		if ( generatepress_live_preview.isFlex && 'boxes' === containerAlignment ) {
 			var topBarPaddingLeft = jQuery( '.inside-top-bar' ).css( 'padding-left' ),
 				topBarPaddingRight = jQuery( '.inside-top-bar' ).css( 'padding-right' ),
 				headerPaddingLeft = jQuery( '.inside-header' ).css( 'padding-left' ),
