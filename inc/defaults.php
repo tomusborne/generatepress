@@ -118,7 +118,7 @@ if ( ! function_exists( 'generate_get_color_defaults' ) ) {
 				'sidebar_widget_text_color' => '',
 				'sidebar_widget_link_color' => '',
 				'sidebar_widget_link_hover_color' => '',
-				'sidebar_widget_title_color' => '#000000',
+				'sidebar_widget_title_color' => '',
 				'footer_widget_background_color' => '#ffffff',
 				'footer_widget_text_color' => '',
 				'footer_widget_link_color' => '',

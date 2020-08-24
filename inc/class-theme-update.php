@@ -232,6 +232,7 @@ class GeneratePress_Theme_Update {
 			'subnavigation_background_hover_color' => '#4f4f4f',
 			'subnavigation_background_current_color' => '#4f4f4f',
 			'subnavigation_text_current_color' => '#8f919e',
+			'sidebar_widget_title_color' => '#000000',
 			'site_title_font_size' => '45',
 			'mobile_site_title_font_size' => '30',
 			'form_button_background_color' => '#666666',
