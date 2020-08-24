@@ -99,10 +99,10 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '25' );
 			$left_sidebar_width = apply_filters( 'generate_left_sidebar_width', '25' );
 
-			$css->set_selector( '#right-sidebar' );
+			$css->set_selector( '.is-right-sidebar' );
 			$css->add_property( 'width', absint( $right_sidebar_width ) . '%' );
 
-			$css->set_selector( '#left-sidebar' );
+			$css->set_selector( '.is-left-sidebar' );
 			$css->add_property( 'width', absint( $left_sidebar_width ) . '%' );
 		}
 

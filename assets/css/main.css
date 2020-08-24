@@ -1632,12 +1632,12 @@ nav.toggled ul ul.sub-menu {
 	.site-content {
 		flex-direction: column;
 	}
-	#right-sidebar.sidebar,
-	#left-sidebar.sidebar {
+	.is-left-sidebar.sidebar,
+	.is-right-sidebar.sidebar {
 		width: auto;
 		order: initial;
 	}
-	#left-sidebar + #right-sidebar .inside-right-sidebar {
+	.is-left-sidebar + .is-right-sidebar .inside-right-sidebar {
 		margin-top: 0;
 	}
 	.both-right .inside-left-sidebar,

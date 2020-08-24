@@ -131,6 +131,7 @@ if ( ! function_exists( 'generate_right_sidebar_classes' ) ) {
 	function generate_right_sidebar_classes( $classes ) {
 		$classes[] = 'widget-area';
 		$classes[] = 'sidebar';
+		$classes[] = 'is-right-sidebar';
 
 		if ( ! generate_is_using_flexbox() ) {
 			$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '25' );
@@ -174,6 +175,7 @@ if ( ! function_exists( 'generate_left_sidebar_classes' ) ) {
 	function generate_left_sidebar_classes( $classes ) {
 		$classes[] = 'widget-area';
 		$classes[] = 'sidebar';
+		$classes[] = 'is-left-sidebar';
 
 		if ( ! generate_is_using_flexbox() ) {
 			$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '25' );
