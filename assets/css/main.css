@@ -879,13 +879,14 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 	order: -10;
 }
 
-.header-aligned-right .site-logo {
-	order: 2;
+.site-branding-container {
+	display: inline-flex;
+	align-items: center;
+	text-align: left;
 }
 
-.site-logo + .site-branding {
-	margin-left: 20px;
-	margin-right: 20px;
+.site-branding-container .site-logo {
+	margin-right: 1em;
 }
 
 /*--------------------------------------------------------------
@@ -1623,9 +1624,7 @@ nav.toggled ul ul.sub-menu {
 		margin-top: 1.5em;
 		margin-left: auto;
 		margin-right: auto;
-	}
-	.site-logo + .site-branding {
-		margin: 1.5em 0 0;
+		text-align: center;
 	}
 	/*--------------------------------------------------------------
 	## Content Area

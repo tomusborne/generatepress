@@ -672,3 +672,20 @@ function generate_get_the_title_parameters() {
 function generate_has_default_loop() {
 	return apply_filters( 'generate_has_default_loop', true );
 }
+
+/**
+ * Detemine whether to output site branding container.
+ *
+ * @since 3.0.0
+ */
+function generate_needs_site_branding_container() {
+	$container = false;
+
+	if ( generate_has_logo_site_branding() ) {
+		if ( generate_is_using_flexbox() || generate_get_option( 'inline_logo_site_branding' ) ) {
+			$container = true;
+		}
+	}
+
+	return $container;
+}

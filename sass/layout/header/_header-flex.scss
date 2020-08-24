@@ -67,13 +67,14 @@
 		margin-left: 0;
 		order: -10;
 	}
-
-	.site-logo {
-		order: 2;
-	}
 }
 
-.site-logo + .site-branding {
-	margin-left: 20px;
-	margin-right: 20px;
+.site-branding-container {
+	display: inline-flex;
+	align-items: center;
+	text-align: left;
+
+	.site-logo {
+		margin-right: 1em;
+	}
 }
