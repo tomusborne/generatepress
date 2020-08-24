@@ -41,7 +41,7 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 				'nav_dropdown_type' => 'hover',
 				'nav_dropdown_direction' => is_rtl() ? 'left' : 'right',
 				'nav_search' => 'disable',
-				'content_layout_setting' => 'one-container',
+				'content_layout_setting' => 'separate-containers',
 				'layout_setting' => 'right-sidebar',
 				'blog_layout_setting' => 'right-sidebar',
 				'single_layout_setting' => 'right-sidebar',

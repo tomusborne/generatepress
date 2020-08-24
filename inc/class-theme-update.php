@@ -214,7 +214,6 @@ class GeneratePress_Theme_Update {
 			'hide_tagline' => '',
 			'container_width' => '1100',
 			'nav_drop_point' => '',
-			'content_layout_setting' => 'separate-containers',
 			'nav_position_setting' => 'nav-below-header',
 			'container_alignment' => 'boxes',
 			'background_color' => '#efefef',
