@@ -1143,15 +1143,6 @@ object {
 
 .widget .search-form {
 	display: flex;
-	flex-wrap: wrap;
-}
-
-.widget .search-form label {
-	flex: 10 115px;
-}
-
-.widget .search-form button {
-	flex: 1 0 50px;
 }
 
 .footer-widgets .widget {
