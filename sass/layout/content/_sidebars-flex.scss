@@ -4,20 +4,20 @@
 }
 
 .left-sidebar .sidebar,
-.both-left #left-sidebar,
-.both-sidebars #left-sidebar {
+.both-left .is-left-sidebar,
+.both-sidebars .is-left-sidebar {
 	order: -10;
 }
 
-.both-left #right-sidebar {
+.both-left .is-right-sidebar {
 	order: -5;
 }
 
-.both-right #left-sidebar {
+.both-right .is-left-sidebar {
 	order: 5;
 }
 
-.both-right #right-sidebar,
-.both-sidebars #right-sidebar {
+.both-right .is-right-sidebar,
+.both-sidebars .is-right-sidebar {
 	order: 10;
 }
