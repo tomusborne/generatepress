@@ -24,20 +24,13 @@
 .nav-float-left {
 	#site-navigation {
 		margin-right: auto;
-	}
-
-	.site-logo {
-		order: 10;
-	}
-
-	.site-branding {
-		order: 5;
+		order: -10;
 	}
 
 	.header-widget {
 		margin-left: 0;
 		margin-right: 20px;
-		order: -10;
+		order: -15;
 	}
 }
 
