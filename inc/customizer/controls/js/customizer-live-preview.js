@@ -444,7 +444,6 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 					}
 
 					$( '.main-navigation' ).addClass( 'grid-container' ).addClass( 'grid-parent' );
-					$( '.main-navigation .inside-navigation' ).removeClass( 'grid-container' ).removeClass( 'grid-parent' );
 				}
 			}
 		} );
