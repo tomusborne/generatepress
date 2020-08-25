@@ -37,7 +37,7 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 				'nav_layout_setting' => 'fluid-nav',
 				'nav_inner_width' => 'contained',
 				'nav_position_setting' => 'nav-float-right',
-				'nav_drop_point' => '900',
+				'nav_drop_point' => '',
 				'nav_dropdown_type' => 'hover',
 				'nav_dropdown_direction' => is_rtl() ? 'left' : 'right',
 				'nav_search' => 'disable',

@@ -213,7 +213,6 @@ class GeneratePress_Theme_Update {
 			'structure' => 'floats',
 			'hide_tagline' => '',
 			'container_width' => '1100',
-			'nav_drop_point' => '',
 			'nav_position_setting' => 'nav-below-header',
 			'container_alignment' => 'boxes',
 			'background_color' => '#efefef',
