@@ -96,8 +96,8 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 		}
 
 		if ( generate_is_using_flexbox() ) {
-			$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '25' );
-			$left_sidebar_width = apply_filters( 'generate_left_sidebar_width', '25' );
+			$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '30' );
+			$left_sidebar_width = apply_filters( 'generate_left_sidebar_width', '30' );
 
 			$css->set_selector( '.is-right-sidebar' );
 			$css->add_property( 'width', absint( $right_sidebar_width ) . '%' );
