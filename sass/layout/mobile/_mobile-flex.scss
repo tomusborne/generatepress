@@ -173,6 +173,7 @@ nav.toggled {
 
 	.is-left-sidebar.sidebar,
 	.is-right-sidebar.sidebar {
+		min-width: auto;
 		width: auto;
 		order: initial;
 	}

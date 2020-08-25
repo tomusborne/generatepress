@@ -1343,6 +1343,10 @@ object {
 	order: 10;
 }
 
+.sidebar {
+	min-width: 275px;
+}
+
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
@@ -1601,6 +1605,7 @@ nav.toggled ul ul.sub-menu {
 	}
 	.is-left-sidebar.sidebar,
 	.is-right-sidebar.sidebar {
+		min-width: auto;
 		width: auto;
 		order: initial;
 	}
