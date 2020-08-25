@@ -19,3 +19,18 @@
 .footer-widgets .widget:last-child {
 	margin-bottom: 0;
 }
+
+.widget ul li {
+	list-style-type: none;
+	position: relative;
+	margin-bottom: 0.5em;
+}
+
+.widget ul li ul {
+	margin-left: 1em;
+	margin-top: 0.5em;
+}
+
+.wp-calendar-table {
+	table-layout: fixed;
+}
