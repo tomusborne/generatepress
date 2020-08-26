@@ -74,7 +74,7 @@ if ( ! function_exists( 'generate_filter_the_archive_title' ) ) {
 
 			$title = sprintf(
 				'%1$s<span class="vcard">%2$s</span>',
-				get_avatar( get_the_author_meta( 'ID' ), 75 ),
+				get_avatar( get_the_author_meta( 'ID' ), 50 ),
 				get_the_author()
 			);
 

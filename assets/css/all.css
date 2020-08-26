@@ -1481,6 +1481,7 @@ footer.entry-meta .posted-on {
 .author .page-header .page-title {
 	display: flex;
 	align-items: center;
+	font-size: 2em;
 }
 
 .author .page-header .avatar {
