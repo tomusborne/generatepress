@@ -66,13 +66,16 @@ footer.entry-meta .posted-on {
 
 .page-header {
 	margin-bottom: 30px;
+
+	.page-title {
+		font-size: 2em;
+	}
 }
 
 .author .page-header {
 	.page-title {
 		display: flex;
 		align-items: center;
-		font-size: 2em;
 	}
 
 	.avatar {

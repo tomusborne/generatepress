@@ -955,10 +955,13 @@ footer.entry-meta .posted-on {
 	margin-bottom: 30px;
 }
 
+.page-header .page-title {
+	font-size: 2em;
+}
+
 .author .page-header .page-title {
 	display: flex;
 	align-items: center;
-	font-size: 2em;
 }
 
 .author .page-header .avatar {
