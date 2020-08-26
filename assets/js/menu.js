@@ -206,6 +206,10 @@
 			for ( var i = 0; i < openedMobileMenus.length; i++ ) {
 				var menuToggle = openedMobileMenus[i].querySelector( '.menu-toggle' );
 
+				if ( mobileMenuControls && ! menuToggle.closest( 'nav' ).classList.contains( 'mobile-menu-control-wrapper' ) ) {
+					menuToggle = mobileMenuControls.querySelector( '.menu-toggle' );
+				}
+
 				if ( menuToggle && menuToggle.offsetParent === null ) {
 					if ( openedMobileMenus[i].classList.contains( 'toggled' ) ) {
 						var remoteNav = false;
