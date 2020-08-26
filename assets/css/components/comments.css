@@ -113,3 +113,7 @@ ol.comment-list {
 .comment-content .reply {
 	font-size: 85%;
 }
+
+#cancel-comment-reply-link {
+	padding-left: 10px;
+}
