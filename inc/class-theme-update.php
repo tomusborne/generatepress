@@ -275,6 +275,8 @@ class GeneratePress_Theme_Update {
 			'top_bar_left' => '10',
 			'mobile_top_bar_right' => '',
 			'mobile_top_bar_left' => '',
+			'header_top' => '40',
+			'header_bottom' => '40',
 			'mobile_header_right' => '',
 			'mobile_header_left' => '',
 			'mobile_widget_top' => '',
