@@ -1219,7 +1219,8 @@ object {
 	margin: 0px 40px 0px 40px;
 }
 
-.one-container .post:not(:last-child) {
+.one-container.archive .post:not(:last-child),
+.one-container.blog .post:not(:last-child) {
 	padding-bottom: 40px;
 }
 
