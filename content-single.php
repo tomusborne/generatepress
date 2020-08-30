@@ -68,7 +68,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		}
 		?>
 
-		<div class="entry-content"<?php echo esc_html( $itemprop ); ?>>
+		<div class="entry-content"<?php echo $itemprop; // phpcs:ignore -- No escaping needed. ?>>
 			<?php
 			the_content();
 

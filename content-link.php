@@ -69,13 +69,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 		if ( generate_show_excerpt() ) :
 			?>
 
-			<div class="entry-summary"<?php echo esc_html( $itemprop ); ?>>
+			<div class="entry-summary"<?php echo $itemprop; // phpcs:ignore -- No escaping needed. ?>>
 				<?php the_excerpt(); ?>
 			</div>
 
 		<?php else : ?>
 
-			<div class="entry-content"<?php echo esc_html( $itemprop ); ?>>
+			<div class="entry-content"<?php echo $itemprop; // phpcs:ignore -- No escaping needed. ?>>
 				<?php
 				the_content();
 
