@@ -1474,10 +1474,6 @@ footer.entry-meta .posted-on {
 	margin-bottom: 0;
 }
 
-.page-header {
-	margin-bottom: 30px;
-}
-
 .page-header .page-title {
 	font-size: 1.5em;
 }
@@ -1856,6 +1852,10 @@ ol.comment-list {
 --------------------------------------------------------------*/
 .post {
 	margin: 0 0 2em;
+}
+
+.page-header {
+	margin-bottom: 30px;
 }
 
 /*--------------------------------------------------------------
