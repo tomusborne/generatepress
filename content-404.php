@@ -36,9 +36,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	 * @hooked generate_post_image - 10
 	 */
 	do_action( 'generate_after_entry_header' );
+
+	$itemprop = '';
+
+	if ( 'microdata' === generate_get_schema_type() ) {
+		$itemprop = ' itemprop="text"';
+	}
 	?>
 
-	<div class="entry-content" itemprop="text">
+	<div class="entry-content"<?php echo $itemprop; // phpcs:ignore -- No escaping needed. ?>>
 		<?php
 		printf(
 			'<p>%s</p>',
