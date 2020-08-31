@@ -312,14 +312,14 @@ function generate_do_pro_compatibility() {
 	}
 
 	if ( version_compare( GP_PREMIUM_VERSION, '1.12.0-alpha.1', '<' ) ) {
-		if ( defined( 'GENERATE_MENU_PLUS_VERSION' ) ) {
-			if ( generate_has_inline_mobile_toggle() && function_exists( 'generate_menu_plus_get_defaults' ) ) {
-				$menu_plus_settings = wp_parse_args(
-					get_option( 'generate_menu_plus_settings', array() ),
-					generate_menu_plus_get_defaults()
-				);
+		if ( defined( 'GENERATE_MENU_PLUS_VERSION' ) && function_exists( 'generate_menu_plus_get_defaults' ) ) {
+			$menu_plus_settings = wp_parse_args(
+				get_option( 'generate_menu_plus_settings', array() ),
+				generate_menu_plus_get_defaults()
+			);
 
-				if ( 'true' === $menu_plus_settings['sticky_menu'] || 'mobile' === $menu_plus_settings['sticky_menu'] || 'enable' === $menu_plus_settings['mobile_header_sticky'] ) {
+			if ( 'true' === $menu_plus_settings['sticky_menu'] || 'mobile' === $menu_plus_settings['sticky_menu'] || 'enable' === $menu_plus_settings['mobile_header_sticky'] ) {
+				if ( generate_has_inline_mobile_toggle() ) {
 					$css->start_media_query( generate_get_media_query( 'mobile' ) );
 
 					$css->set_selector( '#sticky-placeholder' );
@@ -335,10 +335,24 @@ function generate_do_pro_compatibility() {
 					$css->stop_media_query();
 				}
 
-				if ( 'false' !== $menu_plus_settings['slideout_menu'] ) {
-					$css->set_selector( '.slideout-mobile .has-inline-mobile-toggle #site-navigation.toggled,.slideout-both .has-inline-mobile-toggle #site-navigation.toggled' );
-					$css->add_property( 'margin-top', '0' );
-				}
+				$css->set_selector( '.nav-float-right .navigation-stick' );
+				$css->add_property( 'width', '100% !important' );
+				$css->add_property( 'left', '0' );
+
+				$css->set_selector( '.nav-float-right .navigation-stick .navigation-branding' );
+				$css->add_property( 'margin-right', 'auto' );
+
+				$css->set_selector( '.nav-below-header .navigation-stick.has-sticky-branding .inside-navigation.grid-container, .nav-above-header .navigation-stick.has-sticky-branding .inside-navigation.grid-container' );
+				$css->add_property( 'padding-left', '0' );
+				$css->add_property( 'padding-right', '0' );
+
+				$css->set_selector( '.nav-float-right .main-navigation.has-branding:not([class*="nav-align-"]):not(.mobile-header-navigation) .menu-bar-items,.nav-float-right .main-navigation.has-sticky-branding.navigation-stick:not([class*="nav-align-"]):not(.mobile-header-navigation) .menu-bar-items' );
+				$css->add_property( 'margin-left', '0' );
+			}
+
+			if ( generate_has_inline_mobile_toggle() && 'false' !== $menu_plus_settings['slideout_menu'] ) {
+				$css->set_selector( '.slideout-mobile .has-inline-mobile-toggle #site-navigation.toggled,.slideout-both .has-inline-mobile-toggle #site-navigation.toggled' );
+				$css->add_property( 'margin-top', '0' );
 			}
 
 			if ( 'font' === generate_get_option( 'icons' ) ) {
