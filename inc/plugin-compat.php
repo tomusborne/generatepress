@@ -318,9 +318,9 @@ function generate_do_pro_compatibility() {
 				generate_menu_plus_get_defaults()
 			);
 
-			if ( 'true' === $menu_plus_settings['sticky_menu'] || 'mobile' === $menu_plus_settings['sticky_menu'] || 'enable' === $menu_plus_settings['mobile_header_sticky'] ) {
+			if ( 'true' === $menu_plus_settings['sticky_menu'] || 'desktop' === $menu_plus_settings['sticky_menu'] || 'mobile' === $menu_plus_settings['sticky_menu'] || 'enable' === $menu_plus_settings['mobile_header_sticky'] ) {
 				if ( generate_has_inline_mobile_toggle() ) {
-					$css->start_media_query( generate_get_media_query( 'mobile' ) );
+					$css->start_media_query( generate_get_media_query( 'mobile-menu' ) );
 
 					$css->set_selector( '#sticky-placeholder' );
 					$css->add_property( 'height', '0' );
@@ -333,6 +333,28 @@ function generate_do_pro_compatibility() {
 					$css->add_property( 'top', '1.5em' );
 
 					$css->stop_media_query();
+				}
+
+				if ( 'desktop' === $menu_plus_settings['sticky_menu'] ) {
+					$css->set_selector( '.sticky-enabled .gen-sidebar-nav.is_stuck .main-navigation' );
+					$css->add_property( 'margin-bottom', '0' );
+
+					$css->set_selector( '.sticky-enabled .gen-sidebar-nav.is_stuck' );
+					$css->add_property( 'z-index', '500' );
+
+					$css->set_selector( '.sticky-enabled .main-navigation.is_stuck' );
+					$css->add_property( 'box-shadow', '0 2px 2px -2px rgba(0, 0, 0, .2)' );
+
+					$css->set_selector( '.navigation-stick:not(.gen-sidebar-nav)' );
+					$css->add_property( 'left', '0' );
+					$css->add_property( 'right', '0' );
+					$css->add_property( 'width', '100% !important' );
+
+					$css->set_selector( '.both-sticky-menu .main-navigation:not(#mobile-header).toggled .main-nav > ul,.mobile-sticky-menu .main-navigation:not(#mobile-header).toggled .main-nav > ul,.mobile-header-sticky #mobile-header.toggled .main-nav > ul' );
+					$css->add_property( 'position', 'absolute' );
+					$css->add_property( 'left', '0' );
+					$css->add_property( 'right', '0' );
+					$css->add_property( 'z-index', '999' );
 				}
 
 				$css->set_selector( '.nav-float-right .navigation-stick' );
