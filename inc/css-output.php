@@ -174,6 +174,7 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 				$css->set_selector( '.nav-left-sidebar .main-navigation li.search-item.active,.nav-right-sidebar .main-navigation li.search-item.active' );
 				$css->add_property( 'width', 'auto' );
 				$css->add_property( 'display', 'inline-block' );
+				$css->add_property( 'float', 'right' );
 			}
 
 			$css->set_selector( '.gen-sidebar-nav .navigation-search' );
