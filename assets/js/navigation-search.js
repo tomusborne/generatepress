@@ -39,9 +39,9 @@
 						toggles[t].style.float = '';
 
 						// Allow tabindex on items again.
-						for ( var i = 0; i < focusableEls.length; i++ ) {
-							if ( ! focusableEls[i].closest( '.navigation-search' ) && ! focusableEls[i].closest( '.search-item' ) ) {
-								focusableEls[i].removeAttribute( 'tabindex' );
+						for ( var f = 0; f < focusableEls.length; f++ ) {
+							if ( ! focusableEls[f].closest( '.navigation-search' ) && ! focusableEls[f].closest( '.search-item' ) ) {
+								focusableEls[f].removeAttribute( 'tabindex' );
 							}
 						};
 					}
@@ -67,9 +67,9 @@
 						toggles[t].querySelector( 'a' ).setAttribute( 'aria-label', generatepressNavSearch.close );
 
 						// Trap tabindex within the search element
-						for ( var i = 0; i < focusableEls.length; i++ ) {
-							if ( ! focusableEls[i].closest( '.navigation-search' ) && ! focusableEls[i].closest( '.search-item' ) ) {
-								focusableEls[i].setAttribute( 'tabindex', '-1' );
+						for ( var f = 0; f < focusableEls.length; f++ ) {
+							if ( ! focusableEls[f].closest( '.navigation-search' ) && ! focusableEls[f].closest( '.search-item' ) ) {
+								focusableEls[f].setAttribute( 'tabindex', '-1' );
 							}
 						};
 
