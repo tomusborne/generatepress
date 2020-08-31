@@ -628,7 +628,7 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->add_property( 'font-family', $defaults['font_heading_5'] !== $settings['font_heading_5'] ? $h5_family : null );
 		$css->add_property( 'font-weight', $settings['heading_5_weight'], $defaults['heading_5_weight'] );
 		$css->add_property( 'text-transform', $settings['heading_5_transform'], $defaults['heading_5_transform'] );
-		$css->add_property( 'font-size', $settings['heading_5_font_size'], $defaults['heading_5_font_size'], 'px' );
+		$css->add_property( 'font-size', absint( $settings['heading_5_font_size'] ), $defaults['heading_5_font_size'], 'px' );
 
 		if ( '' !== $settings['heading_5_line_height'] ) {
 			$css->add_property( 'line-height', floatval( $settings['heading_5_line_height'] ), $defaults['heading_5_line_height'], 'em' );
