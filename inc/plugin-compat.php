@@ -567,3 +567,22 @@ function generate_pro_compat_customize_register( $wp_customize ) {
 		}
 	}
 }
+
+add_action( 'wp', 'generate_do_pro_compatibility_setup' );
+/**
+ * Do basic compatibility with GP Premium versions.
+ *
+ * @since 3.0.0
+ */
+function generate_do_pro_compatibility_setup() {
+	if ( ! defined( 'GP_PREMIUM_VERSION' ) ) {
+		return;
+	}
+
+	if ( version_compare( GP_PREMIUM_VERSION, '1.12.0-alpha.1', '<' ) ) {
+		// Fix Elements removing archive post titles.
+		if ( function_exists( 'generate_premium_do_elements' ) && ! is_singular() ) {
+			add_filter( 'generate_show_title', '__return_true', 20 );
+		}
+	}
+}
