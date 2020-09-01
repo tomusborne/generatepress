@@ -309,7 +309,8 @@
 		} );
 
 		if ( body.classList.contains( 'dropdown-hover' ) ) {
-			var navLinks = document.querySelectorAll( 'nav .main-nav ul a' );
+			var navLinks = document.querySelectorAll( 'nav .main-nav ul a' ),
+				menuBarItems = document.querySelectorAll( '.menu-bar-items .menu-bar-item > a' );
 
 			/**
 			 * Make menu items tab accessible when using the hover dropdown type
@@ -322,13 +323,27 @@
 				var self = this;
 
 				while ( -1 === self.className.indexOf( 'main-nav' ) ) {
-
 					if ( 'li' === self.tagName.toLowerCase() ) {
-						if ( -1 !== self.className.indexOf( 'sfHover' ) ) {
-							self.className = self.className.replace( ' sfHover', '' );
-						} else {
-							self.className += ' sfHover';
-						}
+						self.classList.toggle( 'sfHover' );
+					}
+
+					self = self.parentElement;
+				}
+			}
+
+			/**
+			 * Make our menu bar items tab accessible.
+			 */
+			var toggleMenuBarItemFocus = function() {
+				if ( this.closest( 'nav' ).classList.contains( 'toggled' ) || this.closest( 'nav' ).classList.contains( 'slideout-navigation' ) ) {
+					return;
+				}
+
+				var self = this;
+
+				while ( -1 === self.className.indexOf( 'menu-bar-items' ) ) {
+					if ( self.classList.contains( 'menu-bar-item' ) ) {
+						self.classList.toggle( 'sfHover' );
 					}
 
 					self = self.parentElement;
@@ -338,6 +353,11 @@
 			for ( var i = 0; i < navLinks.length; i++ ) {
 				navLinks[i].addEventListener( 'focus', toggleFocus );
 				navLinks[i].addEventListener( 'blur', toggleFocus );
+			}
+
+			for ( var i = 0; i < menuBarItems.length; i++ ) {
+				menuBarItems[i].addEventListener( 'focus', toggleMenuBarItemFocus );
+				menuBarItems[i].addEventListener( 'blur', toggleMenuBarItemFocus );
 			}
 		}
 	}

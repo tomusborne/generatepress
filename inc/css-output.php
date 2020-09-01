@@ -282,7 +282,7 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->set_selector( '.main-navigation .main-nav ul li a,.menu-toggle, .main-navigation .menu-bar-items' );
 		$css->add_property( 'color', $settings['navigation_text_color'] );
 
-		$css->set_selector( '.main-navigation .main-nav ul li:hover > a,.main-navigation .main-nav ul li:focus > a, .main-navigation .main-nav ul li.sfHover > a,.main-navigation .menu-bar-item:hover > a' );
+		$css->set_selector( '.main-navigation .main-nav ul li:hover > a,.main-navigation .main-nav ul li:focus > a, .main-navigation .main-nav ul li.sfHover > a, .main-navigation .menu-bar-item:hover > a, .main-navigation .menu-bar-item.sfHover > a' );
 		$css->add_property( 'color', $settings['navigation_text_hover_color'] );
 		$css->add_property( 'background-color', $settings['navigation_background_hover_color'] );
 
@@ -451,7 +451,7 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->add_property( 'color', $settings['back_to_top_text_color_hover'] );
 
 		$css->start_media_query( generate_get_media_query( 'mobile-menu' ) );
-		$css->set_selector( '.main-navigation .menu-bar-item:hover > a' );
+		$css->set_selector( '.main-navigation .menu-bar-item:hover > a, .main-navigation .menu-bar-item.sfHover > a' );
 		$css->add_property( 'background', 'none' );
 		$css->add_property( 'color', $settings['navigation_text_color'] );
 		$css->stop_media_query();
