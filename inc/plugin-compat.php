@@ -279,7 +279,7 @@ if ( ! function_exists( 'generate_beaver_builder_css' ) ) {
 	}
 }
 
-add_action( 'wp_enqueue_scripts', 'generate_do_pro_compatibility' );
+add_action( 'wp_enqueue_scripts', 'generate_do_pro_compatibility', 50 );
 /**
  * Add CSS to ensure compatibility with GP Premium.
  *
