@@ -293,21 +293,19 @@ function generate_do_pro_compatibility() {
 	$css = new GeneratePress_CSS();
 
 	if ( version_compare( GP_PREMIUM_VERSION, '1.11.0-alpha.1', '<' ) ) {
-		if ( defined( 'GENERATE_SECONDARY_NAV_VERSION' ) ) {
-			if ( generate_is_using_flexbox() ) {
-				$css->set_selector( '.secondary-navigation .inside-navigation:before, .secondary-navigation .inside-navigation:after' );
-				$css->add_property( 'content', '"."' );
-				$css->add_property( 'display', 'block' );
-				$css->add_property( 'overflow', 'hidden' );
-				$css->add_property( 'visibility', 'hidden' );
-				$css->add_property( 'font-size', '0px' );
-				$css->add_property( 'line-height', '0px' );
-				$css->add_property( 'width', '0px' );
-				$css->add_property( 'height', '0px' );
+		if ( generate_is_using_flexbox() && defined( 'GENERATE_SECONDARY_NAV_VERSION' ) ) {
+			$css->set_selector( '.secondary-navigation .inside-navigation:before, .secondary-navigation .inside-navigation:after' );
+			$css->add_property( 'content', '"."' );
+			$css->add_property( 'display', 'block' );
+			$css->add_property( 'overflow', 'hidden' );
+			$css->add_property( 'visibility', 'hidden' );
+			$css->add_property( 'font-size', '0px' );
+			$css->add_property( 'line-height', '0px' );
+			$css->add_property( 'width', '0px' );
+			$css->add_property( 'height', '0px' );
 
-				$css->set_selector( '.secondary-navigation .inside-navigation:after' );
-				$css->add_property( 'clear', 'both' );
-			}
+			$css->set_selector( '.secondary-navigation .inside-navigation:after' );
+			$css->add_property( 'clear', 'both' );
 		}
 	}
 
@@ -318,7 +316,7 @@ function generate_do_pro_compatibility() {
 				generate_menu_plus_get_defaults()
 			);
 
-			if ( 'true' === $menu_plus_settings['sticky_menu'] || 'desktop' === $menu_plus_settings['sticky_menu'] || 'mobile' === $menu_plus_settings['sticky_menu'] || 'enable' === $menu_plus_settings['mobile_header_sticky'] ) {
+			if ( generate_is_using_flexbox() && ( 'true' === $menu_plus_settings['sticky_menu'] || 'desktop' === $menu_plus_settings['sticky_menu'] || 'mobile' === $menu_plus_settings['sticky_menu'] || 'enable' === $menu_plus_settings['mobile_header_sticky'] ) ) {
 				if ( generate_has_inline_mobile_toggle() ) {
 					$css->start_media_query( generate_get_media_query( 'mobile-menu' ) );
 
