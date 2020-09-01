@@ -385,6 +385,53 @@ function generate_do_pro_compatibility() {
 				$css->set_selector( '.slideout-navigation .sfHover > a .dropdown-menu-toggle:before' );
 				$css->add_property( 'content', '"\f106" !important' );
 			}
+
+			if ( generate_is_using_flexbox() && $menu_plus_settings['navigation_as_header'] ) {
+				$content_left = 40;
+				$content_right = 40;
+
+				if ( function_exists( 'generate_spacing_get_defaults' ) ) {
+					$spacing_settings = wp_parse_args(
+						get_option( 'generate_spacing_settings', array() ),
+						generate_spacing_get_defaults()
+					);
+
+					$content_left = $spacing_settings['content_left'];
+					$content_right = $spacing_settings['content_right'];
+				}
+
+				if ( 'text' === generate_get_option( 'container_alignment' ) ) {
+					$css->set_selector( '.main-navigation.has-branding .inside-navigation.grid-container, .main-navigation.has-branding .inside-navigation.grid-container' );
+					$css->add_property( 'padding', generate_padding_css( 0, $content_right, 0, $content_left ) );
+				} else {
+					$css->start_media_query( '(max-width: ' . ( generate_get_option( 'container_width' ) + 10 ) . 'px)' );
+					$css->set_selector( '#site-navigation.has-branding .navigation-branding, #sticky-navigation .navigation-branding' );
+					$css->add_property( 'margin-left', '20px' );
+
+					if ( is_rtl() ) {
+						$css->set_selector( '#site-navigation.has-branding .navigation-branding, #sticky-navigation .navigation-branding' );
+						$css->add_property( 'margin-left', 'auto' );
+						$css->add_property( 'margin-right', '20px' );
+					}
+					$css->stop_media_query();
+				}
+
+				$css->start_media_query( generate_get_media_query( 'mobile-menu' ) );
+				if ( 'text' === generate_get_option( 'container_alignment' ) ) {
+					$css->set_selector( '.main-navigation.has-branding .inside-navigation.grid-container' );
+					$css->add_property( 'padding', '0px' );
+				}
+
+				$css->set_selector( '#site-navigation.has-branding .navigation-branding, #sticky-navigation.has-branding .navigation-branding' );
+				$css->add_property( 'margin-left', '20px' );
+
+				if ( is_rtl() ) {
+					$css->set_selector( '#site-navigation.has-branding .navigation-branding, #sticky-navigation.has-branding .navigation-branding' );
+					$css->add_property( 'margin-left', 'auto' );
+					$css->add_property( 'margin-right', '20px' );
+				}
+				$css->stop_media_query();
+			}
 		}
 
 		if ( defined( 'GENERATE_SPACING_VERSION' ) ) {
