@@ -403,32 +403,12 @@ function generate_do_pro_compatibility() {
 				if ( 'text' === generate_get_option( 'container_alignment' ) ) {
 					$css->set_selector( '.main-navigation.has-branding .inside-navigation.grid-container, .main-navigation.has-branding .inside-navigation.grid-container' );
 					$css->add_property( 'padding', generate_padding_css( 0, $content_right, 0, $content_left ) );
-				} else {
-					$css->start_media_query( '(max-width: ' . ( generate_get_option( 'container_width' ) + 10 ) . 'px)' );
-					$css->set_selector( '#site-navigation.has-branding .navigation-branding, #sticky-navigation .navigation-branding' );
-					$css->add_property( 'margin-left', '20px' );
-
-					if ( is_rtl() ) {
-						$css->set_selector( '#site-navigation.has-branding .navigation-branding, #sticky-navigation .navigation-branding' );
-						$css->add_property( 'margin-left', 'auto' );
-						$css->add_property( 'margin-right', '20px' );
-					}
-					$css->stop_media_query();
 				}
 
 				$css->start_media_query( generate_get_media_query( 'mobile-menu' ) );
 				if ( 'text' === generate_get_option( 'container_alignment' ) ) {
 					$css->set_selector( '.main-navigation.has-branding .inside-navigation.grid-container' );
 					$css->add_property( 'padding', '0px' );
-				}
-
-				$css->set_selector( '#site-navigation.has-branding .navigation-branding, #sticky-navigation.has-branding .navigation-branding' );
-				$css->add_property( 'margin-left', '20px' );
-
-				if ( is_rtl() ) {
-					$css->set_selector( '#site-navigation.has-branding .navigation-branding, #sticky-navigation.has-branding .navigation-branding' );
-					$css->add_property( 'margin-left', 'auto' );
-					$css->add_property( 'margin-right', '20px' );
 				}
 				$css->stop_media_query();
 			}
