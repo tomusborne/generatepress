@@ -618,6 +618,36 @@ function generate_do_pro_page_hero_css( $css_output, $options ) {
 			);
 		}
 
+		if ( generate_is_using_flexbox() && '' !== $options['site_header_merge'] ) {
+			if ( 'merge-desktop' === $options['site_header_merge'] ) {
+				$css->start_media_query( apply_filters( 'generate_not_mobile_media_query', '(min-width: 769px)' ) );
+			}
+
+			if ( $options['navigation_colors'] ) {
+				$navigation_background = $options['navigation_background_color'] ? $options['navigation_background_color'] : 'transparent';
+				$navigation_background_hover = $options['navigation_background_color_hover'] ? $options['navigation_background_color_hover'] : 'transparent';
+
+				$css->set_selector( '.header-wrap #site-navigation:not(.toggled), .header-wrap #mobile-header:not(.toggled):not(.navigation-stick), .has-inline-mobile-toggle .mobile-menu-control-wrapper' );
+				$css->add_property( 'background', $navigation_background );
+
+				$css->set_selector( '.main-navigation:not(.toggled):not(.navigation-stick) .menu-bar-item > a' );
+				$css->add_property( 'color', esc_attr( $options['navigation_text_color'] ) );
+
+				$css->set_selector( '.header-wrap #site-navigation:not(.toggled) .menu-bar-item:hover > a, .header-wrap #mobile-header:not(.toggled) .menu-bar-item:hover > a, .header-wrap #site-navigation:not(.toggled) .menu-bar-item.sfHover > a, .header-wrap #mobile-header:not(.toggled) .menu-bar-item.sfHover > a' );
+				$css->add_property( 'background', $navigation_background_hover );
+
+				if ( '' !== $options['navigation_text_color_hover'] ) {
+					$css->add_property( 'color', esc_attr( $options['navigation_text_color_hover'] ) );
+				} else {
+					$css->add_property( 'color', esc_attr( $options['navigation_text_color'] ) );
+				}
+			}
+
+			if ( 'merge-desktop' === $options['site_header_merge'] ) {
+				$css->stop_media_query();
+			}
+		}
+
 		if ( $css->css_output() ) {
 			$new_css = $css->css_output();
 		}
