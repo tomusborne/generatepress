@@ -238,7 +238,7 @@ class GeneratePress_Theme_Update {
 			'footer_link_hover_color' => '#606060',
 			'entry_meta_link_color' => '#595959',
 			'entry_meta_link_color_hover' => '#1e73be',
-			'blog_post_title_color' => '#',
+			'blog_post_title_color' => '',
 			'blog_post_title_hover_color' => '',
 			'heading_1_font_size' => '40',
 			'mobile_heading_1_font_size' => '30',
