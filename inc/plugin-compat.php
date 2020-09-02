@@ -610,10 +610,10 @@ function generate_do_pro_page_hero_css( $css_output, $options ) {
 				$css->set_selector( '.header-wrap #site-navigation:not(.toggled), .header-wrap #mobile-header:not(.toggled):not(.navigation-stick), .has-inline-mobile-toggle .mobile-menu-control-wrapper' );
 				$css->add_property( 'background', $navigation_background );
 
-				$css->set_selector( '.main-navigation:not(.toggled):not(.navigation-stick) .menu-bar-item > a' );
+				$css->set_selector( '.main-navigation:not(.toggled):not(.navigation-stick) .menu-bar-item:not(.close-search) > a' );
 				$css->add_property( 'color', esc_attr( $options['navigation_text_color'] ) );
 
-				$css->set_selector( '.header-wrap #site-navigation:not(.toggled) .menu-bar-item:hover > a, .header-wrap #mobile-header:not(.toggled) .menu-bar-item:hover > a, .header-wrap #site-navigation:not(.toggled) .menu-bar-item.sfHover > a, .header-wrap #mobile-header:not(.toggled) .menu-bar-item.sfHover > a' );
+				$css->set_selector( '.header-wrap #site-navigation:not(.toggled) .menu-bar-item:not(.close-search):hover > a, .header-wrap #mobile-header:not(.toggled) .menu-bar-item:not(.close-search):hover > a, .header-wrap #site-navigation:not(.toggled) .menu-bar-item:not(.close-search).sfHover > a, .header-wrap #mobile-header:not(.toggled) .menu-bar-item:not(.close-search).sfHover > a' );
 				$css->add_property( 'background', $navigation_background_hover );
 
 				if ( '' !== $options['navigation_text_color_hover'] ) {
