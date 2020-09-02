@@ -313,7 +313,7 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 			$navigation_search_text = $settings['navigation_search_text_color'];
 		}
 
-		$css->set_selector( '.navigation-search input[type="search"],.navigation-search input[type="search"]:active, .navigation-search input[type="search"]:focus, .main-navigation .main-nav ul li.search-item.active > a' );
+		$css->set_selector( '.navigation-search input[type="search"],.navigation-search input[type="search"]:active, .navigation-search input[type="search"]:focus, .main-navigation .main-nav ul li.search-item.active > a, .main-navigation .menu-bar-items .search-item.active > a' );
 		$css->add_property( 'color', $navigation_search_text );
 		$css->add_property( 'background-color', $navigation_search_background );
 
