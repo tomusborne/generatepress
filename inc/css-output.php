@@ -202,6 +202,9 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$css->add_property( 'height', 'auto' );
 			$css->add_property( 'overflow', 'visible' );
 
+			$css->set_selector( '.dropdown-click .main-navigation.sub-menu-left .sub-menu.toggled-on, .dropdown-click .main-navigation.sub-menu-left ul li.sfHover > ul.toggled-on' );
+			$css->add_property( 'right', '0' );
+
 			$css->set_selector( '.dropdown-click nav ul ul ul' );
 			$css->add_property( 'background-color', 'transparent' );
 
