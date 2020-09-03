@@ -443,6 +443,27 @@ function generate_do_pro_compatibility() {
 			}
 		}
 
+		if ( defined( 'GENERATE_FONT_VERSION' ) && function_exists( 'generate_get_default_fonts' ) ) {
+			$font_settings = wp_parse_args(
+				get_option( 'generate_settings', array() ),
+				generate_get_default_fonts()
+			);
+
+			if ( isset( $font_settings['tablet_navigation_font_size'] ) && '' !== $font_settings['tablet_navigation_font_size'] ) {
+				$css->start_media_query( generate_get_media_query( 'tablet' ) );
+				$css->set_selector( '.main-navigation .menu-toggle' );
+				$css->add_property( 'font-size', absint( $font_settings['tablet_navigation_font_size'] ), false, 'px' );
+				$css->stop_media_query();
+			}
+
+			if ( isset( $font_settings['mobile_navigation_font_size'] ) && '' !== $font_settings['mobile_navigation_font_size'] ) {
+				$css->start_media_query( generate_get_media_query( 'mobile-menu' ) );
+				$css->set_selector( '.main-navigation .menu-toggle' );
+				$css->add_property( 'font-size', absint( $font_settings['mobile_navigation_font_size'] ), false, 'px' );
+				$css->stop_media_query();
+			}
+		}
+
 		if ( ! generate_show_title() ) {
 			$css->set_selector( '.page .entry-content' )->add_property( 'margin-top', '0px' );
 
