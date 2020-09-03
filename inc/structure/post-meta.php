@@ -465,7 +465,7 @@ if ( ! function_exists( 'generate_content_more' ) ) {
 	}
 }
 
-add_action( 'wp', 'generate_add_post_meta' );
+add_action( 'wp', 'generate_add_post_meta', 5 );
 /**
  * Add our post meta items to the page.
  *
