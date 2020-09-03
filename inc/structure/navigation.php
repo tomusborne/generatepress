@@ -116,7 +116,7 @@ function generate_do_header_mobile_menu_toggle() {
 		return;
 	}
 	?>
-	<nav <?php generate_do_element_classes( 'mobile-navigation-toggle', array( 'main-navigation', 'mobile-menu-control-wrapper' ) ); ?>>
+	<nav id="mobile-menu-control-wrapper" <?php generate_do_element_classes( 'mobile-navigation-toggle', array( 'main-navigation', 'mobile-menu-control-wrapper' ) ); ?>>
 		<?php
 		/**
 		 * generate_inside_mobile_menu_control_wrapper hook.
