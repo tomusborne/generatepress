@@ -116,7 +116,6 @@ Release date: TBA
 * New: generate_after_element_class_attribute filter
 * New: generate_menu_bar_items hook
 * New: generate_show_entry_header filter
-* New: Re-design archive post navigation box
 * New: Container width default set to 1200
 * New: Navigation location default set to float right
 * New: Navigation color defaults updated
@@ -128,6 +127,7 @@ Release date: TBA
 * New: generate_comments_title_output filter
 * New: generate_get_the_title_parameters filter
 * New: generate_has_default_loop filter
+* New: is-left-sidebar and is-right-sidebar classes added to sidebars
 * Fix: Close other sub-menus when opening a new one on touch devices
 * Fix: Footer bar menu spacing on mobile
 * Fix: Text aligned container width preview in Customizer when using full-width-content
@@ -195,6 +195,11 @@ Release date: TBA
 * Tweak: Improve checkMobile() javascript performance
 * Tweak: Prevent font-size values from being set to 0
 * Tweak: Replace deprecate .load() with on('load') in block-editor.js
+* Tweak: Change navigation search line-height to 1
+* Tweak: Reduce font-size of archive page-header heading
+* Tweak: Reduce size of author archive avatar
+* Tweak: Add padding-left to cancel comment reply link
+* Tweak: Update navigation color and header presets
 * Template change: Removed generate_do_microdata() from sidebar.php and sidebar-left.php
 * Template changes: Added generate_do_template_part() to all templates with a loop
 
