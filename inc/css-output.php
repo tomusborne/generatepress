@@ -143,7 +143,7 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$css->add_property( 'outline', '0' );
 			$css->add_property( 'border', '0' );
 			$css->add_property( 'vertical-align', 'bottom' );
-			$css->add_property( 'line-height', '0' );
+			$css->add_property( 'line-height', '1' );
 			$css->add_property( 'opacity', '0.9' );
 			$css->add_property( 'width', '100%' );
 			$css->add_property( 'z-index', '20' );
