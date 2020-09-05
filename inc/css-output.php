@@ -1072,6 +1072,9 @@ function generate_no_cache_dynamic_css() {
 		$css->set_selector( '.main-navigation ul,.gen-sidebar-nav,.main-navigation:not(.slideout-navigation):not(.toggled) .main-nav > ul,.has-inline-mobile-toggle #site-navigation .inside-navigation > *:not(.navigation-search):not(.main-nav)' );
 		$css->add_property( 'display', 'none' );
 
+		$css->set_selector( '.nav-align-right .inside-navigation,.nav-align-center .inside-navigation' );
+		$css->add_property( 'justify-content', 'space-between' );
+
 		if ( generate_has_inline_mobile_toggle() ) {
 			$css->set_selector( '.has-inline-mobile-toggle .mobile-menu-control-wrapper' );
 			$css->add_property( 'display', 'flex' );
