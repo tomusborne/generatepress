@@ -125,6 +125,7 @@ nav.toggled {
 }
 
 .nav-float-left .mobile-menu-control-wrapper {
+	order: -10;
 	margin-left: 0;
 	margin-right: auto;
 	flex-direction: row-reverse;
