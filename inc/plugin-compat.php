@@ -434,10 +434,37 @@ function generate_do_pro_compatibility() {
 					$css->add_property( 'padding', generate_padding_css( 0, $content_right, 0, $content_left ) );
 				}
 
+				$css->set_selector( '.navigation-branding' );
+				$css->add_property( 'margin-left', '10px' );
+
+				$css->set_selector( '.navigation-branding .main-title, .mobile-header-navigation .site-logo' );
+				$css->add_property( 'margin-left', '10px' );
+
+				if ( is_rtl() ) {
+					$css->set_selector( '.navigation-branding' );
+					$css->add_property( 'margin-left', 'auto' );
+					$css->add_property( 'margin-right', '10px' );
+
+					$css->set_selector( '.navigation-branding .main-title, .mobile-header-navigation .site-logo' );
+					$css->add_property( 'margin-right', '10px' );
+					$css->add_property( 'margin-left', '0' );
+				}
+
+				$css->set_selector( '.navigation-branding > div + .main-title' );
+				$css->add_property( 'margin-left', '10px' );
+
+				if ( is_rtl() ) {
+					$css->set_selector( '.navigation-branding > div + .main-title' );
+					$css->add_property( 'margin-right', '10px' );
+				}
+
+				$css->set_selector( '.has-branding .navigation-branding img' );
+				$css->add_property( 'margin', '0' );
+
 				$css->start_media_query( generate_get_media_query( 'mobile-menu' ) );
 				if ( 'text' === generate_get_option( 'container_alignment' ) ) {
 					$css->set_selector( '.main-navigation.has-branding .inside-navigation.grid-container' );
-					$css->add_property( 'padding', '0px' );
+					$css->add_property( 'padding', '0' );
 				}
 				$css->stop_media_query();
 			}
