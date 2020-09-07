@@ -362,9 +362,38 @@ function generate_do_pro_compatibility() {
 				$css->set_selector( '.nav-float-right .navigation-stick .navigation-branding' );
 				$css->add_property( 'margin-right', 'auto' );
 
-				$css->set_selector( '.nav-below-header .navigation-stick.has-sticky-branding .inside-navigation.grid-container, .nav-above-header .navigation-stick.has-sticky-branding .inside-navigation.grid-container' );
-				$css->add_property( 'padding-left', '0' );
-				$css->add_property( 'padding-right', '0' );
+				if ( ! $menu_plus_settings['navigation_as_header'] ) {
+					$header_left = 40;
+					$header_right = 40;
+					$mobile_header_left = 30;
+					$mobile_header_right = 30;
+
+					if ( function_exists( 'generate_spacing_get_defaults' ) ) {
+						$spacing_settings = wp_parse_args(
+							get_option( 'generate_spacing_settings', array() ),
+							generate_spacing_get_defaults()
+						);
+
+						$header_left = $spacing_settings['header_left'];
+						$header_right = $spacing_settings['header_right'];
+						$mobile_header_left = $spacing_settings['mobile_header_left'];
+						$mobile_header_right = $spacing_settings['mobile_header_right'];
+					}
+
+					if ( function_exists( 'generate_is_using_flexbox' ) && generate_is_using_flexbox() ) {
+						if ( function_exists( 'generate_get_option' ) && 'text' === generate_get_option( 'container_alignment' ) ) {
+							$css->set_selector( '.main-navigation.navigation-stick .inside-navigation.grid-container' );
+							$css->add_property( 'padding-left', $header_left, false, 'px' );
+							$css->add_property( 'padding-right', $header_right, false, 'px' );
+
+							$css->start_media_query( generate_get_media_query( 'mobile-menu' ) );
+							$css->set_selector( '.main-navigation.navigation-stick .inside-navigation.grid-container' );
+							$css->add_property( 'padding-left', $mobile_header_left, false, 'px' );
+							$css->add_property( 'padding-right', $mobile_header_right, false, 'px' );
+							$css->stop_media_query();
+						}
+					}
+				}
 
 				$css->set_selector( '.nav-float-right .main-navigation.has-branding:not([class*="nav-align-"]):not(.mobile-header-navigation) .menu-bar-items,.nav-float-right .main-navigation.has-sticky-branding.navigation-stick:not([class*="nav-align-"]):not(.mobile-header-navigation) .menu-bar-items' );
 				$css->add_property( 'margin-left', '0' );
