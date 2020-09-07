@@ -1095,9 +1095,6 @@ function generate_no_cache_dynamic_css() {
 			$css->add_property( 'text-align', 'left' );
 			$css->add_property( 'flex-wrap', 'wrap' );
 
-			$css->set_selector( '.has-inline-mobile-toggle .site-logo + .site-branding' );
-			$css->add_property( 'margin', '0 0 0 20px' );
-
 			$css->set_selector( '.has-inline-mobile-toggle .header-widget,.has-inline-mobile-toggle #site-navigation' );
 			$css->add_property( 'flex-basis', '100%' );
 
