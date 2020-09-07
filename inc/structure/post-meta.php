@@ -474,13 +474,27 @@ add_action( 'wp', 'generate_add_post_meta', 5 );
 function generate_add_post_meta() {
 	$header_items = generate_get_header_entry_meta_items();
 
-	if ( ! empty( $header_items ) ) {
+	$header_post_types = apply_filters(
+		'generate_entry_meta_post_types',
+		array(
+			'post',
+		)
+	);
+
+	if ( in_array( get_post_type(), $header_post_types ) && ! empty( $header_items ) ) {
 		add_action( 'generate_after_entry_title', 'generate_post_meta' );
 	}
 
 	$footer_items = generate_get_footer_entry_meta_items();
 
-	if ( ! empty( $footer_items ) ) {
+	$footer_post_types = apply_filters(
+		'generate_footer_meta_post_types',
+		array(
+			'post',
+		)
+	);
+
+	if ( in_array( get_post_type(), $footer_post_types ) && ! empty( $footer_items ) ) {
 		add_action( 'generate_after_entry_content', 'generate_footer_meta' );
 	}
 }
@@ -492,20 +506,11 @@ if ( ! function_exists( 'generate_post_meta' ) ) {
 	 * @since 1.3.29
 	 */
 	function generate_post_meta() {
-		$post_types = apply_filters(
-			'generate_entry_meta_post_types',
-			array(
-				'post',
-			)
-		);
-
-		if ( in_array( get_post_type(), $post_types ) ) :
-			?>
-			<div class="entry-meta">
-				<?php generate_posted_on(); ?>
-			</div>
-			<?php
-		endif;
+		?>
+		<div class="entry-meta">
+			<?php generate_posted_on(); ?>
+		</div>
+		<?php
 	}
 }
 
@@ -516,20 +521,11 @@ if ( ! function_exists( 'generate_footer_meta' ) ) {
 	 * @since 1.3.30
 	 */
 	function generate_footer_meta() {
-		$post_types = apply_filters(
-			'generate_footer_meta_post_types',
-			array(
-				'post',
-			)
-		);
-
-		if ( in_array( get_post_type(), $post_types ) ) :
-			?>
-			<footer class="entry-meta">
-				<?php generate_entry_meta(); ?>
-			</footer>
-			<?php
-		endif;
+		?>
+		<footer class="entry-meta">
+			<?php generate_entry_meta(); ?>
+		</footer>
+		<?php
 	}
 }
 
