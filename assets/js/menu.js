@@ -52,6 +52,7 @@
 					dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'tabindex', '0' );
 					dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'role', 'button' );
 					dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'aria-expanded', 'false' );
+					dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'aria-label', generatepressMenu.openSubMenuLabel );
 				}
 			}
 		};
@@ -64,7 +65,18 @@
 					dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).removeAttribute( 'tabindex' );
 					dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'role', 'presentation' );
 					dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).removeAttribute( 'aria-expanded' );
+					dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).removeAttribute( 'aria-label' );
 				}
+			}
+		};
+
+		var setDropdownArrowAttributes = function( arrow ) {
+			if ( 'false' === arrow.getAttribute( 'aria-expanded' ) || ! arrow.getAttribute( 'aria-expanded' ) ) {
+				arrow.setAttribute( 'aria-expanded', 'true' );
+				arrow.setAttribute( 'aria-label', generatepressMenu.closeSubMenuLabel );
+			} else {
+				arrow.setAttribute( 'aria-expanded', 'false' );
+				arrow.setAttribute( 'aria-label', generatepressMenu.openSubMenuLabel );
 			}
 		};
 
@@ -154,13 +166,7 @@
 				e.preventDefault();
 				var closestLi = _this.closest( 'li' );
 
-				var dropdownToggle = closestLi.querySelector( '.dropdown-menu-toggle' );
-
-				if ( 'false' === dropdownToggle.getAttribute( 'aria-expanded' ) || ! dropdownToggle.getAttribute( 'aria-expanded' ) ) {
-					dropdownToggle.setAttribute( 'aria-expanded', 'true' );
-				} else {
-					dropdownToggle.setAttribute( 'aria-expanded', 'false' );
-				}
+				setDropdownArrowAttributes( closestLi.querySelector( '.dropdown-menu-toggle' ) );
 
 				if ( closestLi.querySelector( '.sub-menu' ) ) {
 					var subMenu = closestLi.querySelector( '.sub-menu' );
@@ -175,6 +181,7 @@
 						if ( siblings[i].classList.contains( 'sfHover' ) ) {
 							siblings[i].classList.remove( 'sfHover' );
 							siblings[i].querySelector( '.toggled-on' ).classList.remove( 'toggled-on' );
+							setDropdownArrowAttributes( siblings[i].querySelector( '.dropdown-menu-toggle' ) );
 						}
 					}
 				}

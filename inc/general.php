@@ -83,8 +83,13 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 		wp_localize_script(
 			$script_handle,
 			'generatepressMenu',
-			array(
-				'toggleOpenedSubMenus' => apply_filters( 'generate_toggle_opened_submenus', true ),
+			apply_filters(
+				'generate_localize_js_args',
+				array(
+					'toggleOpenedSubMenus' => true,
+					'openSubMenuLabel' => esc_attr__( 'Open Sub-Menu', 'generatepress' ),
+					'closeSubMenuLabel' => esc_attr__( 'Close Sub-Menu', 'generatepress' ),
+				)
 			)
 		);
 
