@@ -1519,6 +1519,25 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 		);
 
 		$wp_customize->add_setting(
+			'generate_settings[underline_links]',
+			array(
+				'default' => $defaults['underline_links'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_checkbox',
+			)
+		);
+
+		$wp_customize->add_control(
+			'generate_settings[underline_links]',
+			array(
+				'type' => 'checkbox',
+				'label' => __( 'Underline links', 'generatepress' ),
+				'description' => __( 'Add underlines to your links in your main content areas.', 'generatepress' ),
+				'section' => 'generate_general_section',
+			)
+		);
+
+		$wp_customize->add_setting(
 			'generate_settings[combine_css]',
 			array(
 				'default' => $defaults['combine_css'],
