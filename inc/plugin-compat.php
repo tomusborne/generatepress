@@ -478,7 +478,7 @@ function generate_do_pro_compatibility() {
 		}
 
 		if ( defined( 'GENERATE_SECONDARY_NAV_VERSION' ) ) {
-			if ( generate_is_using_flexbox() ) {
+			if ( generate_is_using_flexbox() && has_nav_menu( 'secondary' ) ) {
 				if ( 'text' === generate_get_option( 'container_alignment' ) && function_exists( 'generate_secondary_nav_get_defaults' ) ) {
 					$secondary_nav_settings = wp_parse_args(
 						get_option( 'generate_secondary_nav_settings', array() ),
