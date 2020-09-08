@@ -733,6 +733,14 @@ function generate_pro_compat_customize_register( $wp_customize ) {
 		if ( $wp_customize->get_control( 'generate_spacing_settings[separator]' ) ) {
 			$wp_customize->get_setting( 'generate_spacing_settings[separator]' )->transport = 'refresh';
 		}
+
+		if ( $wp_customize->get_control( 'generate_spacing_settings[right_sidebar_width]' ) ) {
+			$wp_customize->get_setting( 'generate_spacing_settings[right_sidebar_width]' )->transport = 'refresh';
+		}
+
+		if ( $wp_customize->get_control( 'generate_spacing_settings[left_sidebar_width]' ) ) {
+			$wp_customize->get_setting( 'generate_spacing_settings[left_sidebar_width]' )->transport = 'refresh';
+		}
 	}
 }
 

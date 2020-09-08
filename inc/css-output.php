@@ -95,17 +95,6 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$css->add_property( 'width', absint( generate_get_option( 'logo_width' ) ), false, 'px' );
 		}
 
-		if ( generate_is_using_flexbox() ) {
-			$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '30' );
-			$left_sidebar_width = apply_filters( 'generate_left_sidebar_width', '30' );
-
-			$css->set_selector( '.is-right-sidebar' );
-			$css->add_property( 'width', absint( $right_sidebar_width ) . '%' );
-
-			$css->set_selector( '.is-left-sidebar' );
-			$css->add_property( 'width', absint( $left_sidebar_width ) . '%' );
-		}
-
 		if ( generate_get_option( 'back_to_top' ) ) {
 			$css->set_selector( 'a.generate-back-to-top' );
 			$css->add_property( 'font-size', '20px' );
@@ -1072,6 +1061,39 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
  */
 function generate_no_cache_dynamic_css() {
 	$css = new GeneratePress_CSS();
+
+	if ( generate_is_using_flexbox() ) {
+		$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '30' );
+		$left_sidebar_width = apply_filters( 'generate_left_sidebar_width', '30' );
+
+		$css->set_selector( '.is-right-sidebar' );
+		$css->add_property( 'width', absint( $right_sidebar_width ) . '%' );
+
+		$css->set_selector( '.is-left-sidebar' );
+		$css->add_property( 'width', absint( $left_sidebar_width ) . '%' );
+
+		$content_width = 100;
+		$sidebar_layout = generate_get_layout();
+
+		switch ( $sidebar_layout ) {
+			case 'right-sidebar':
+				$content_width = $content_width - absint( $right_sidebar_width );
+				break;
+
+			case 'left-sidebar':
+				$content_width = $content_width - absint( $left_sidebar_width );
+				break;
+
+			case 'both-sidebars':
+			case 'both-right':
+			case 'both-left':
+				$content_width = $content_width - absint( $right_sidebar_width ) - absint( $left_sidebar_width );
+				break;
+		}
+
+		$css->set_selector( '.site-content .content-area' );
+		$css->add_property( 'width', absint( $content_width ) . '%' );
+	}
 
 	$css->start_media_query( generate_get_media_query( 'mobile-menu' ) );
 

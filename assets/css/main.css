@@ -1176,10 +1176,6 @@ object {
 	display: flex;
 }
 
-.site-content .content-area {
-	flex: 1;
-}
-
 .grid-container {
 	margin-left: auto;
 	margin-right: auto;
@@ -1333,10 +1329,6 @@ object {
 .both-right .is-right-sidebar,
 .both-sidebars .is-right-sidebar {
 	order: 10;
-}
-
-.sidebar {
-	min-width: 275px;
 }
 
 /*--------------------------------------------------------------
@@ -1595,6 +1587,9 @@ nav.toggled ul ul.sub-menu {
 	--------------------------------------------------------------*/
 	.site-content {
 		flex-direction: column;
+	}
+	.container .site-content .content-area {
+		width: auto;
 	}
 	.is-left-sidebar.sidebar,
 	.is-right-sidebar.sidebar {

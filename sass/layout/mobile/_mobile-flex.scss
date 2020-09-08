@@ -172,6 +172,10 @@ nav.toggled {
 		flex-direction: column;
 	}
 
+	.container .site-content .content-area {
+		width: auto;
+	}
+
 	.is-left-sidebar.sidebar,
 	.is-right-sidebar.sidebar {
 		width: auto;
