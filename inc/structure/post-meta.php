@@ -95,8 +95,22 @@ if ( ! function_exists( 'generate_content_nav' ) ) {
 					the_posts_pagination(
 						array(
 							'mid_size' => apply_filters( 'generate_pagination_mid_size', 1 ),
-							'prev_text' => apply_filters( 'generate_previous_link_text', __( '&larr; Previous', 'generatepress' ) ),
-							'next_text' => apply_filters( 'generate_next_link_text', __( 'Next &rarr;', 'generatepress' ) ),
+							'prev_text' => apply_filters(
+								'generate_previous_link_text',
+								sprintf(
+									/* translators: left arrow */
+									__( '%s Previous', 'generatepress' ),
+									'<span aria-hidden="true">&larr;</span>'
+								)
+							),
+							'next_text' => apply_filters(
+								'generate_next_link_text',
+								sprintf(
+									/* translators: right arrow */
+									__( 'Next %s', 'generatepress' ),
+									'<span aria-hidden="true">&rarr;</span>'
+								)
+							),
 						)
 					);
 				}
