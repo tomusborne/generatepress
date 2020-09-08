@@ -111,6 +111,10 @@ if ( ! function_exists( 'generate_content_nav' ) ) {
 									'<span aria-hidden="true">&rarr;</span>'
 								)
 							),
+							'before_page_number' => sprintf(
+								'<span class="screen-reader-text">%s</span>',
+								_x( 'Page', 'prepends the pagination page number for screen readers', 'generatepress' )
+							),
 						)
 					);
 				}
