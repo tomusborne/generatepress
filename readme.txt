@@ -127,7 +127,11 @@ Release date: TBA
 * New: generate_comments_title_output filter
 * New: generate_get_the_title_parameters filter
 * New: generate_has_default_loop filter
+* New: generate_localize_js_args filter
 * New: is-left-sidebar and is-right-sidebar classes added to sidebars
+* New: Add aria-label to dropdown menu arrows on mobile
+* New: Hide pagination arrows from screen readers
+* New: Prepend pagination numbers with "Page" for screen readers
 * Fix: Close other sub-menus when opening a new one on touch devices
 * Fix: Footer bar menu spacing on mobile
 * Fix: Text aligned container width preview in Customizer when using full-width-content
@@ -200,6 +204,7 @@ Release date: TBA
 * Tweak: Reduce size of author archive avatar
 * Tweak: Add padding-left to cancel comment reply link
 * Tweak: Update navigation color and header presets
+* Tweak: Add [type="search"] to .navigation-search input CSS selector
 * Template change: Removed generate_do_microdata() from sidebar.php and sidebar-left.php
 * Template changes: Added generate_do_template_part() to all templates with a loop
 
