@@ -128,7 +128,7 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$css->add_property( 'visibility', 'visible' );
 			$css->add_property( 'opacity', '1' );
 
-			$css->set_selector( '.navigation-search input' );
+			$css->set_selector( '.navigation-search input[type="search"]' );
 			$css->add_property( 'outline', '0' );
 			$css->add_property( 'border', '0' );
 			$css->add_property( 'vertical-align', 'bottom' );
