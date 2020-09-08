@@ -499,7 +499,7 @@ function generate_do_pro_compatibility() {
 			}
 		}
 
-		if ( defined( 'GENERATE_FONT_VERSION' ) && function_exists( 'generate_get_default_fonts' ) ) {
+		if ( generate_is_using_flexbox() && defined( 'GENERATE_FONT_VERSION' ) && function_exists( 'generate_get_default_fonts' ) ) {
 			$font_settings = wp_parse_args(
 				get_option( 'generate_settings', array() ),
 				generate_get_default_fonts()
