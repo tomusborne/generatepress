@@ -76,16 +76,12 @@
 						if ( ! document.body.classList.contains( 'nav-aligned-center' ) ) {
 							toggles[t].classList.add( 'close-search' );
 						} else {
-							toggles[t].style.opacity = 0;
-							setTimeout( function() {
-								toggles[t].classList.add( 'close-search' );
-								toggles[t].style.opacity = 1;
-								if ( document.body.classList.contains ( 'rtl' ) ) {
-									toggles[t].style.float = 'left';
-								} else {
-									toggles[t].style.float = 'right';
-								}
-							}, 250 );
+							toggles[t].classList.add( 'close-search' );
+							if ( document.body.classList.contains ( 'rtl' ) ) {
+								toggles[t].style.float = 'left';
+							} else {
+								toggles[t].style.float = 'right';
+							}
 						}
 					}
 				}
