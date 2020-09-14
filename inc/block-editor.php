@@ -199,11 +199,11 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'padding', generate_padding_css( $spacing_settings['content_top'], $spacing_settings['content_right'], $spacing_settings['content_bottom'], $spacing_settings['content_left'] ) );
 	}
 
-	$css->set_selector( '.wp-block-button__link:not(.has-background)' );
+	$css->set_selector( '.editor-styles-wrapper a.button, .wp-block-button__link:not(.has-background)' );
 	$css->add_property( 'color', $color_settings['form_button_text_color'] );
 	$css->add_property( 'background-color', $color_settings['form_button_background_color'] );
 
-	$css->set_selector( '.wp-block-button__link:not(.has-background):active, .wp-block-button__link:not(.has-background):focus, .wp-block-button__link:not(.has-background):hover' );
+	$css->set_selector( '.editor-styles-wrapper a.button:hover, .editor-styles-wrapper a.button:focus, .wp-block-button__link:not(.has-background):active, .wp-block-button__link:not(.has-background):focus, .wp-block-button__link:not(.has-background):hover' );
 	$css->add_property( 'color', $color_settings['form_button_text_color_hover'] );
 	$css->add_property( 'background-color', $color_settings['form_button_background_color_hover'] );
 
@@ -360,7 +360,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', generate_get_option( 'text_color' ) );
 	}
 
-	$css->set_selector( '.block-editor-block-list__layout .wp-block-button .wp-block-button__link' );
+	$css->set_selector( '.editor-styles-wrapper a.button, .block-editor-block-list__layout .wp-block-button .wp-block-button__link' );
 	$css->add_property( 'font-family', $buttons_family );
 	$css->add_property( 'font-weight', $font_settings['buttons_font_weight'] );
 	$css->add_property( 'text-transform', $font_settings['buttons_font_transform'] );
