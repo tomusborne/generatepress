@@ -1738,8 +1738,14 @@ ol.comment-list {
 	margin-bottom: 1.5em;
 }
 
-#wp-comment-cookies-consent {
-	margin-right: 7px;
+.comment-form-cookies-consent {
+	display: flex;
+	align-items: center;
+}
+
+.comment-form-cookies-consent input {
+	margin-right: 0.5em;
+	margin-bottom: 0;
 }
 
 .one-container .comments-area {
