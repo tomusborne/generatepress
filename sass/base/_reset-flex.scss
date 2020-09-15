@@ -50,23 +50,6 @@ progress {
 	vertical-align: baseline;
 }
 
-/**
- * Add the correct display in IE 10+.
- */
-
-[hidden],
-template {
-	display: none;
-}
-
-/**
- * Remove the gray background on active links in IE 10.
- */
-
-a {
-	background-color: transparent;
-}
-
 /* Inherit box-sizing to more easily change it's value on a component level.
 @link http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
 
