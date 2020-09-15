@@ -138,6 +138,7 @@ Release date: TBA
 * Fix: Remove disable content title toggle in editor if it doesn't apply to front-end
 * Fix: One container margin based on default content padding
 * Fix: Nav aligned left when using RTL languages
+* Tweak: Update screen-reader-text CSS
 * Tweak: Remove all :visited references from dynamic CSS
 * Tweak: Make sub-menu dropdown box-shadow harder
 * Tweak: Remove content margin-top if it's the first child in parent
@@ -205,6 +206,8 @@ Release date: TBA
 * Tweak: Add padding-left to cancel comment reply link
 * Tweak: Update navigation color and header presets
 * Tweak: Add [type="search"] to .navigation-search input CSS selector
+* Tweak: Better style GP core button in block editor
+* Tweak: Improve comment cookie consent display across browsers
 * Template change: Removed generate_do_microdata() from sidebar.php and sidebar-left.php
 * Template changes: Added generate_do_template_part() to all templates with a loop
 
