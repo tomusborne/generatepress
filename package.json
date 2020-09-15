@@ -1,6 +1,6 @@
 {
   "name": "generatepress",
-  "version": "3.0.0-alpha.4",
+  "version": "3.0.0-alpha.5",
   "description": "A super lightweight WordPress theme.",
   "main": "Gruntfile.js",
   "scripts": {
