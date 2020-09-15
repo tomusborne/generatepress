@@ -1146,6 +1146,10 @@ object {
 	display: flex;
 }
 
+.widget .search-form button.search-submit {
+	font-size: 15px;
+}
+
 .footer-widgets .widget {
 	margin-bottom: 30px;
 }
