@@ -564,7 +564,7 @@ function generate_do_post_navigation( $template ) {
 		)
 	);
 
-	if ( in_array( $template, $templates ) ) {
+	if ( in_array( $template, $templates ) && apply_filters( 'generate_show_post_navigation', true ) ) {
 		generate_content_nav( 'nav-below' );
 	}
 }
