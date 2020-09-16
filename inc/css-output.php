@@ -96,7 +96,7 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 		}
 
 		if ( generate_get_option( 'back_to_top' ) ) {
-			$css->set_selector( 'a.generate-back-to-top' );
+			$css->set_selector( '.generate-back-to-top' );
 			$css->add_property( 'font-size', '20px' );
 			$css->add_property( 'border-radius', '3px' );
 			$css->add_property( 'position', 'fixed' );
