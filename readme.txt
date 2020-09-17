@@ -180,7 +180,6 @@ Release date: TBA
 * Tweak: Close other sub-menus when another is opened
 * Tweak: Inherit tagline/main nav/widget title/widget content/site footer font size if not set
 * Tweak: Show name/email asterisk only if fields are required
-* Tweak: Remove padding-bottom from single posts when using one container
 * Tweak: Only remove margin-bottom from last element on page if it's a paragraph
 * Tweak: Remove .wp-smiley CSS
 * Tweak: Add single post navigation to generate_footer_entry_items filter
@@ -208,6 +207,8 @@ Release date: TBA
 * Tweak: Add [type="search"] to .navigation-search input CSS selector
 * Tweak: Better style GP core button in block editor
 * Tweak: Improve comment cookie consent display across browsers
+* Tweak: Add is-logo-image class to site logo
+* Tweak: Remove type attribute from scripts and styles
 * Template change: Removed generate_do_microdata() from sidebar.php and sidebar-left.php
 * Template changes: Added generate_do_template_part() to all templates with a loop
 
