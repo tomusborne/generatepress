@@ -280,7 +280,7 @@ function generate_do_post_meta_item( $item ) {
 		}
 	}
 
-	if ( 'post-navigation' === $item ) {
+	if ( 'post-navigation' === $item && is_single() ) {
 		generate_content_nav( 'nav-below' );
 	}
 
@@ -369,6 +369,7 @@ function generate_get_header_entry_meta_items() {
 		)
 	);
 
+	// Disable post meta items based on their individual filters.
 	$items = generate_disable_post_meta_items( $items );
 
 	return $items;
@@ -380,18 +381,17 @@ function generate_get_header_entry_meta_items() {
  * @since 3.0.0
  */
 function generate_get_footer_entry_meta_items() {
-	$items = array(
-		'categories',
-		'tags',
-		'comments-link',
+	$items = apply_filters(
+		'generate_footer_entry_meta_items',
+		array(
+			'categories',
+			'tags',
+			'comments-link',
+			'post-navigation',
+		)
 	);
 
-	if ( is_single() ) {
-		$items[] = 'post-navigation';
-	}
-
-	$items = apply_filters( 'generate_footer_entry_meta_items', $items );
-
+	// Disable post meta items based on their individual filters.
 	$items = generate_disable_post_meta_items( $items );
 
 	return $items;
