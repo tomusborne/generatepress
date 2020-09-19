@@ -194,8 +194,8 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					),
 					'choices' => array(
 						'desktop' => array(
-							'min' => 30,
-							'max' => 800,
+							'min' => 20,
+							'max' => 1200,
 							'step' => 10,
 							'edit' => true,
 							'unit' => 'px',
