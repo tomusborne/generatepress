@@ -60,7 +60,12 @@
 					}
 
 					forms[i].classList.add( 'nav-search-active' );
-					forms[i].querySelector( '.search-field' ).focus();
+
+					var searchField = forms[i].querySelector( '.search-field' );
+
+					if ( searchField ) {
+						searchField.focus();
+					}
 
 					for ( var t = 0; t < toggles.length; t++ ) {
 						toggles[t].classList.add( 'active' );
