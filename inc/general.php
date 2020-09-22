@@ -63,7 +63,7 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 		}
 
 		if ( is_child_theme() && apply_filters( 'generate_load_child_theme_stylesheet', true ) ) {
-			wp_enqueue_style( 'generate-child', get_stylesheet_uri(), array(), filemtime( get_stylesheet_directory() . '/style.css' ), 'all' );
+			wp_enqueue_style( 'generate-child', get_stylesheet_uri(), array( 'generate-style' ), filemtime( get_stylesheet_directory() . '/style.css' ), 'all' );
 		}
 
 		if ( function_exists( 'wp_script_add_data' ) ) {
