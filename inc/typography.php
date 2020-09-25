@@ -17,11 +17,6 @@ if ( ! function_exists( 'generate_enqueue_google_fonts' ) ) {
 	 * @since 0.1
 	 */
 	function generate_enqueue_google_fonts() {
-
-		if ( is_admin() ) {
-			return;
-		}
-
 		$generate_settings = wp_parse_args(
 			get_option( 'generate_settings', array() ),
 			generate_get_default_fonts()
