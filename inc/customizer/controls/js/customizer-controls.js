@@ -25,6 +25,12 @@
 		 */
 		isNavAlignable = function() {
 			if ( 'nav-float-right' === setting.get() || 'nav-float-left' === setting.get() ) {
+				var navAsHeader = api.instance( 'generate_menu_plus_settings[navigation_as_header]' );
+
+				if ( navAsHeader && navAsHeader.get() ) {
+					return true;
+				}
+
 				return false;
 			}
 
