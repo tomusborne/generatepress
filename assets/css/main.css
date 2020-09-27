@@ -941,10 +941,6 @@ footer.entry-meta .posted-on {
 	margin-bottom: 0;
 }
 
-.page-header .page-title {
-	font-size: 1.5em;
-}
-
 .author .page-header .page-title {
 	display: flex;
 	align-items: center;
@@ -1096,6 +1092,10 @@ embed,
 iframe,
 object {
 	max-width: 100%;
+}
+
+.page-header .page-title {
+	font-size: 1.5em;
 }
 
 /*--------------------------------------------------------------
