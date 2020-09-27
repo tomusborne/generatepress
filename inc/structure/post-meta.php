@@ -391,6 +391,15 @@ function generate_get_footer_entry_meta_items() {
 		)
 	);
 
+	/**
+	 * This wasn't a "meta item" prior to 3.0.0 and some users may be using the filter above
+	 * without specifying that they want to include post-navigation. The below forces it to display
+	 * for users using the old float system to prevent it from disappearing on update.
+	 */
+	if ( ! generate_is_using_flexbox() ) {
+		$items[] = 'post-navigation';
+	}
+
 	// Disable post meta items based on their individual filters.
 	$items = generate_disable_post_meta_items( $items );
 
