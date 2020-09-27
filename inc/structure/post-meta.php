@@ -396,7 +396,7 @@ function generate_get_footer_entry_meta_items() {
 	 * without specifying that they want to include post-navigation. The below forces it to display
 	 * for users using the old float system to prevent it from disappearing on update.
 	 */
-	if ( ! generate_is_using_flexbox() ) {
+	if ( ! generate_is_using_flexbox() && ! in_array( 'post-navigation', (array) $items ) ) {
 		$items[] = 'post-navigation';
 	}
 
