@@ -247,6 +247,8 @@ function generate_do_inline_block_editor_css() {
 	$css->add_property( 'text-transform', $font_settings['heading_1_transform'] );
 	$css->add_property( 'font-size', absint( $font_settings['heading_1_font_size'] ), false, 'px' );
 	$css->add_property( 'line-height', floatval( $font_settings['heading_1_line_height'] ), false, 'em' );
+	$css->add_property( 'margin-bottom', floatval( $font_settings['heading_1_margin_bottom'] ), false, 'px' );
+	$css->add_property( 'margin-top', '0' );
 
 	if ( $color_settings['h1_color'] ) {
 		$css->add_property( 'color', $color_settings['h1_color'] );
@@ -267,6 +269,8 @@ function generate_do_inline_block_editor_css() {
 	$css->add_property( 'text-transform', $font_settings['heading_2_transform'] );
 	$css->add_property( 'font-size', absint( $font_settings['heading_2_font_size'] ), false, 'px' );
 	$css->add_property( 'line-height', floatval( $font_settings['heading_2_line_height'] ), false, 'em' );
+	$css->add_property( 'margin-bottom', floatval( $font_settings['heading_2_margin_bottom'] ), false, 'px' );
+	$css->add_property( 'margin-top', '0' );
 
 	if ( $color_settings['h2_color'] ) {
 		$css->add_property( 'color', $color_settings['h2_color'] );
@@ -282,6 +286,8 @@ function generate_do_inline_block_editor_css() {
 	$css->add_property( 'text-transform', $font_settings['heading_3_transform'] );
 	$css->add_property( 'font-size', absint( $font_settings['heading_3_font_size'] ), false, 'px' );
 	$css->add_property( 'line-height', floatval( $font_settings['heading_3_line_height'] ), false, 'em' );
+	$css->add_property( 'margin-bottom', floatval( $font_settings['heading_3_margin_bottom'] ), false, 'px' );
+	$css->add_property( 'margin-top', '0' );
 
 	if ( $color_settings['h3_color'] ) {
 		$css->add_property( 'color', $color_settings['h3_color'] );
@@ -295,6 +301,8 @@ function generate_do_inline_block_editor_css() {
 	$css->add_property( 'font-family', $h4_family );
 	$css->add_property( 'font-weight', $font_settings['heading_4_weight'] );
 	$css->add_property( 'text-transform', $font_settings['heading_4_transform'] );
+	$css->add_property( 'margin-bottom', '20px' );
+	$css->add_property( 'margin-top', '0' );
 
 	if ( '' !== $font_settings['heading_4_font_size'] ) {
 		$css->add_property( 'font-size', absint( $font_settings['heading_4_font_size'] ), false, 'px' );
@@ -318,6 +326,8 @@ function generate_do_inline_block_editor_css() {
 	$css->add_property( 'font-family', $h5_family );
 	$css->add_property( 'font-weight', $font_settings['heading_5_weight'] );
 	$css->add_property( 'text-transform', $font_settings['heading_5_transform'] );
+	$css->add_property( 'margin-bottom', '20px' );
+	$css->add_property( 'margin-top', '0' );
 
 	if ( '' !== $font_settings['heading_5_font_size'] ) {
 		$css->add_property( 'font-size', absint( $font_settings['heading_5_font_size'] ), false, 'px' );
@@ -341,6 +351,8 @@ function generate_do_inline_block_editor_css() {
 	$css->add_property( 'font-family', $h6_family );
 	$css->add_property( 'font-weight', $font_settings['heading_6_weight'] );
 	$css->add_property( 'text-transform', $font_settings['heading_6_transform'] );
+	$css->add_property( 'margin-bottom', '20px' );
+	$css->add_property( 'margin-top', '0' );
 
 	if ( '' !== $font_settings['heading_6_font_size'] ) {
 		$css->add_property( 'font-size', absint( $font_settings['heading_6_font_size'] ), false, 'px' );
