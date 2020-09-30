@@ -188,7 +188,7 @@ function generate_do_inline_block_editor_css() {
 	$css->set_selector( 'html body.gutenberg-editor-page .block-editor-block-list__block[data-align="full"]' );
 	$css->add_property( 'max-width', 'none' );
 
-	$css->set_selector( '.edit-post-visual-editor .block-editor-block-list__block[data-align=wide]' );
+	$css->set_selector( '.wp-block[data-align="wide"]' );
 	$css->add_property( 'max-width', absint( $content_width ), false, 'px' );
 
 	if ( apply_filters( 'generate_do_group_inner_container_style', true ) ) {
