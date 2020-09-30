@@ -138,6 +138,7 @@ Release date: TBA
 * Fix: Remove disable content title toggle in editor if it doesn't apply to front-end
 * Fix: One container margin based on default content padding
 * Fix: Nav aligned left when using RTL languages
+* Fix: Wide block alignment in the editor
 * Tweak: Update screen-reader-text CSS
 * Tweak: Remove all :visited references from dynamic CSS
 * Tweak: Make sub-menu dropdown box-shadow harder
@@ -200,7 +201,6 @@ Release date: TBA
 * Tweak: Prevent font-size values from being set to 0
 * Tweak: Replace deprecate .load() with on('load') in block-editor.js
 * Tweak: Change navigation search line-height to 1
-* Tweak: Reduce font-size of archive page-header heading
 * Tweak: Reduce size of author archive avatar
 * Tweak: Add padding-left to cancel comment reply link
 * Tweak: Update navigation color and header presets
@@ -209,6 +209,7 @@ Release date: TBA
 * Tweak: Improve comment cookie consent display across browsers
 * Tweak: Add is-logo-image class to site logo
 * Tweak: Remove type attribute from scripts and styles
+* Tweak: Add margins to headings in the editor
 * Template change: Removed generate_do_microdata() from sidebar.php and sidebar-left.php
 * Template changes: Added generate_do_template_part() to all templates with a loop
 
