@@ -1393,7 +1393,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'label' => __( 'Content Type', 'generatepress' ),
 				'section' => 'generate_blog_section',
 				'choices' => array(
-					'full' => __( 'Full', 'generatepress' ),
+					'full' => __( 'Full Content', 'generatepress' ),
 					'excerpt' => __( 'Excerpt', 'generatepress' ),
 				),
 				'settings' => 'generate_settings[post_content]',
