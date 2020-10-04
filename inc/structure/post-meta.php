@@ -347,7 +347,7 @@ function generate_disable_post_meta_items( $items ) {
 		}
 
 		// phpcs:ignore -- Hook name is coming from a variable.
-		if ( ! apply_filters( $disable_filter_names[ $item ], $default_display ) ) {
+		if ( isset( $disable_filter_names[ $item ] ) && ! apply_filters( $disable_filter_names[ $item ], $default_display ) ) {
 			$items = array_diff( $items, array( $item ) );
 		}
 	}
