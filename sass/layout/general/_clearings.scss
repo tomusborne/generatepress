@@ -1,0 +1,17 @@
+.clear:after,
+.entry-content:after,
+.comment-content:after,
+.site-header:after,
+.site-content:after,
+.paging-navigation:after,
+.site-footer:after,
+.site-info:after,
+.page-header-content-container:after, /* Temporary clearing until GPP 1.6.3 */
+.inside-navigation:not(.grid-container):after,
+.inside-header:not(.grid-container):after,
+.inside-top-bar:not(.grid-container):after,
+.inside-footer-widgets:not(.grid-container):after {
+	content: "";
+	display: table;
+	clear: both;
+}

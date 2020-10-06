@@ -5,14 +5,14 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options
 Requires at least: 4.5
-Tested up to: 5.4
-Stable tag: 2.4.2
+Tested up to: 5.5
+Stable tag: 3.0.0
 
 GeneratePress is a lightweight WordPress theme built with a focus on speed and usability.
 
 == Description ==
 
-GeneratePress is a lightweight WordPress theme built with a focus on speed and usability. Performance is important to us, which is why a fresh GeneratePress install adds less than 15kb (gzipped) to your page size.
+GeneratePress is a lightweight WordPress theme built with a focus on speed and usability. Performance is important to us, which is why a fresh GeneratePress install adds less than 10kb (gzipped) to your page size.
 
 We take full advantage of the new block editor (Gutenberg), which gives you more control over creating your content.
 
@@ -94,6 +94,124 @@ By Brian Grinstead, http://briangrinstead.com
 MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
 
 == Changelog ==
+
+= 3.0.0 =
+
+Release date: October 6, 2020
+
+* New: Flexbox layout option - see blog post for more info
+* New: Default mobile header when using aligned nav + flexbox layout
+* New: generate_before_do_template_part hook
+* New: generate_after_do_template_part hook
+* New: generate_do_template_part filter
+* New: Better option migration system
+* New: generate_post_date_show_updated_only filter
+* New: generate_navigation_search_menu_item_output filter
+* New: style-rtl.min.css and enqueue manually
+* New: generate_load_child_theme_stylesheet filter
+* New: generate_before_navigation hook
+* New: generate_after_navigation hook
+* New: generate_page_class filter
+* New: generate_is_using_hatom filter
+* New: generate_after_element_class_attribute filter
+* New: generate_menu_bar_items hook
+* New: generate_show_entry_header filter
+* New: Container width default set to 1200
+* New: Navigation location default set to float right
+* New: Navigation color defaults updated
+* New: Button color defaults updated
+* New: Footer color defaults updated
+* New: Site title font size default updated
+* New: Search button added to search widget
+* New: Archive post navigation design
+* New: generate_comments_title_output filter
+* New: generate_get_the_title_parameters filter
+* New: generate_has_default_loop filter
+* New: generate_localize_js_args filter
+* New: is-left-sidebar and is-right-sidebar classes added to sidebars
+* New: Add aria-label to dropdown menu arrows on mobile
+* New: Hide pagination arrows from screen readers
+* New: Prepend pagination numbers with "Page" for screen readers
+* Fix: Close other sub-menus when opening a new one on touch devices
+* Fix: Footer bar menu spacing on mobile
+* Fix: Text aligned container width preview in Customizer when using full-width-content
+* Fix: Remove disable content title toggle in editor if it doesn't apply to front-end
+* Fix: One container margin based on default content padding
+* Fix: Nav aligned left when using RTL languages
+* Fix: Wide block alignment in the editor
+* Tweak: Update screen-reader-text CSS
+* Tweak: Remove all :visited references from dynamic CSS
+* Tweak: Make sub-menu dropdown box-shadow harder
+* Tweak: Remove content margin-top if it's the first child in parent
+* Tweak: Remove featured image margin-top if it's the first child in parent
+* Tweak: Only print entry-meta wrapper to page if it contains meta
+* Tweak: Rebuild navigation search javascript
+* Tweak: Remove all esc_attr() functions from CSS and escape entire output
+* Tweak: Move all CSS and JS into assets folder
+* Tweak: Break all CSS up into individual .scss files
+* Tweak: Set SVG icons as default
+* Tweak: Move font icon CSS into separate file
+* Tweak: Load comments CSS only on pages that have comments
+* Tweak: Remove speak CSS from font icons
+* Tweak: Load top bar/footer bar/footer widget CSS separately if using flexbox layout
+* Tweak: Remove display: inline from alignleft/right classes
+* Tweak: Remove parent theme dependencies from styles
+* Tweak: Fix footer widget default spacing
+* Tweak: Remove HTML comments from end of elements
+* Tweak: Combine a11y.js and menu.js
+* Tweak: Add correct paragraph margin to block editor
+* Tweak: Remove old migrations from 2.0 (font awesome, dynamic css cache, font family and blog post content)
+* Tweak: Change Layout metabox option to select dropdowns
+* Tweak: Change Page Builder Container label to Content Container
+* Tweak: Remove itemprop attributes if microdata is turned off
+* Tweak: Un-focus back to top button once the top is reached
+* Tweak: Remove close nav search on document click
+* Tweak: Set sub-menu open left on RTL languages by default
+* Tweak: Remove mixed up alignleft/right classes when using RTL languages
+* Tweak: Remove sub-menu open left CSS when using RTL languages
+* Tweak: Use aria-label in back to top button instead of screen-reader-text
+* Tweak: Hook comments template into generate_after_do_template_part
+* Tweak: Use flexbox for author page header
+* Tweak: Simplify navigation dropdown CSS
+* Tweak: Set variable for get_body_class where necessary
+* Tweak: Use separate SVGs for different arrow directions instead of CSS
+* Tweak: Use class for navigation sub-menu direction
+* Tweak: Clean up sub-menu direction CSS
+* Tweak: Remove footer widget and header layout body classes when using flexbox
+* Tweak: Close other sub-menus when another is opened
+* Tweak: Inherit tagline/main nav/widget title/widget content/site footer font size if not set
+* Tweak: Show name/email asterisk only if fields are required
+* Tweak: Only remove margin-bottom from last element on page if it's a paragraph
+* Tweak: Remove .wp-smiley CSS
+* Tweak: Add single post navigation to generate_footer_entry_items filter
+* Tweak: Hook archive post navigation into generate_after_loop hook
+* Tweak: Use aria-label for read more links/buttons instead of screen reader text
+* Tweak: Move microdata to generate_after_element_class_attribute where possible
+* Tweak: Move back to top button CSS to dynamic CSS if enabled
+* Tweak: Move navigation search CSS to dynamic CSS if enabled
+* Tweak: Move dropdown-click CSS to dynamic CSS if enabled
+* Tweak: Remove skip-link-focus.js
+* Tweak: Disable old Beaver Builer full-width compat CSS when using flexbox layout
+* Tweak: Remove CSS to disable comments link on single posts
+* Tweak: Add featured-image class to singular featured images
+* Tweak: Don't output body font family if it's the default that exists in stylesheet
+* Tweak: Allow 0 value in dynamic CSS
+* Tweak: Remove mobile navigation static CSS as it's added dynamically already
+* Tweak: Improve checkMobile() javascript performance
+* Tweak: Prevent font-size values from being set to 0
+* Tweak: Replace deprecate .load() with on('load') in block-editor.js
+* Tweak: Change navigation search line-height to 1
+* Tweak: Reduce size of author archive avatar
+* Tweak: Add padding-left to cancel comment reply link
+* Tweak: Update navigation color and header presets
+* Tweak: Add [type="search"] to .navigation-search input CSS selector
+* Tweak: Better style GP core button in block editor
+* Tweak: Improve comment cookie consent display across browsers
+* Tweak: Add is-logo-image class to site logo
+* Tweak: Remove type attribute from scripts and styles
+* Tweak: Add margins to headings in the editor
+* Template change: Removed generate_do_microdata() from sidebar.php and sidebar-left.php
+* Template changes: Added generate_do_template_part() to all templates with a loop
 
 = 2.4.2 =
 

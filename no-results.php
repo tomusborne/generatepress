@@ -24,8 +24,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		?>
 
 		<header class="entry-header">
-			<h1 class="entry-title"><?php _e( 'Nothing Found', 'generatepress' ); // WPCS: XSS OK. ?></h1>
-		</header><!-- .entry-header -->
+			<h1 class="entry-title"><?php _e( 'Nothing Found', 'generatepress' ); ?></h1>
+		</header>
 
 		<?php
 		/**
@@ -44,7 +44,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 					<p>
 						<?php
-						printf( // WPCS: XSS ok.
+						printf(
 							/* translators: 1: Admin URL */
 							__( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'generatepress' ),
 							esc_url( admin_url( 'post-new.php' ) )
@@ -54,17 +54,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 				<?php elseif ( is_search() ) : ?>
 
-					<p><?php _e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'generatepress' ); // WPCS: XSS OK. ?></p>
+					<p><?php _e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'generatepress' ); ?></p>
 					<?php get_search_form(); ?>
 
 				<?php else : ?>
 
-					<p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'generatepress' ); // WPCS: XSS OK. ?></p>
+					<p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'generatepress' ); ?></p>
 					<?php get_search_form(); ?>
 
 				<?php endif; ?>
 
-		</div><!-- .entry-content -->
+		</div>
 
 		<?php
 		/**
@@ -74,5 +74,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 */
 		do_action( 'generate_after_content' );
 		?>
-	</div><!-- .inside-article -->
-</div><!-- .no-results -->
+	</div>
+</div>

@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Set our theme version.
-define( 'GENERATE_VERSION', '2.4.2' );
+define( 'GENERATE_VERSION', '3.0.0' );
 
 if ( ! function_exists( 'generate_setup' ) ) {
 	add_action( 'after_setup_theme', 'generate_setup' );
@@ -31,22 +31,27 @@ if ( ! function_exists( 'generate_setup' ) ) {
 		add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link', 'status' ) );
 		add_theme_support( 'woocommerce' );
 		add_theme_support( 'title-tag' );
-		add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ) );
+		add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption', 'script', 'style' ) );
 		add_theme_support( 'customize-selective-refresh-widgets' );
 		add_theme_support( 'align-wide' );
 		add_theme_support( 'responsive-embeds' );
 
-		add_theme_support( 'custom-logo', array(
-			'height' => 70,
-			'width' => 350,
-			'flex-height' => true,
-			'flex-width' => true,
-		) );
+		add_theme_support(
+			'custom-logo',
+			array(
+				'height' => 70,
+				'width' => 350,
+				'flex-height' => true,
+				'flex-width' => true,
+			)
+		);
 
 		// Register primary menu.
-		register_nav_menus( array(
-			'primary' => __( 'Primary Menu', 'generatepress' ),
-		) );
+		register_nav_menus(
+			array(
+				'primary' => __( 'Primary Menu', 'generatepress' ),
+			)
+		);
 
 		/**
 		 * Set the content width to something large
@@ -77,7 +82,7 @@ require $theme_dir . '/inc/markup.php';
 require $theme_dir . '/inc/typography.php';
 require $theme_dir . '/inc/plugin-compat.php';
 require $theme_dir . '/inc/block-editor.php';
-require $theme_dir . '/inc/migrate.php';
+require $theme_dir . '/inc/class-theme-update.php';
 require $theme_dir . '/inc/deprecated.php';
 
 if ( is_admin() ) {

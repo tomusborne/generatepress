@@ -24,7 +24,7 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 		 * @access protected
 		 * @var string
 		 */
-		protected $_selector = '';
+		protected $_selector = ''; // phpcs:ignore PSR2.Classes.PropertyDeclaration.Underscore
 
 		/**
 		 * Stores the final css output with all of its rules for the current selector.
@@ -32,7 +32,7 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 		 * @access protected
 		 * @var string
 		 */
-		protected $_selector_output = '';
+		protected $_selector_output = ''; // phpcs:ignore PSR2.Classes.PropertyDeclaration.Underscore
 
 		/**
 		 * Stores all of the rules that will be added to the selector
@@ -40,7 +40,7 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 		 * @access protected
 		 * @var string
 		 */
-		protected $_css = '';
+		protected $_css = ''; // phpcs:ignore PSR2.Classes.PropertyDeclaration.Underscore
 
 		/**
 		 * The string that holds all of the css to output
@@ -48,14 +48,14 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 		 * @access protected
 		 * @var string
 		 */
-		protected $_output = '';
+		protected $_output = ''; // phpcs:ignore PSR2.Classes.PropertyDeclaration.Underscore
 
 		/**
 		 * Stores media queries
 		 *
 		 * @var null
 		 */
-		protected $_media_query = null;
+		protected $_media_query = null; // phpcs:ignore PSR2.Classes.PropertyDeclaration.Underscore
 
 		/**
 		 * The string that holds all of the css to output inside of the media query
@@ -63,7 +63,7 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 		 * @access protected
 		 * @var string
 		 */
-		protected $_media_query_output = '';
+		protected $_media_query_output = ''; // phpcs:ignore PSR2.Classes.PropertyDeclaration.Underscore
 
 		/**
 		 * Sets a selector to the object and changes the current selector to a new one
@@ -71,12 +71,12 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 		 * @access public
 		 * @since  1.0
 		 *
-		 * @param  string $selector - the css identifier of the html that you wish to target
+		 * @param  string $selector - the css identifier of the html that you wish to target.
 		 * @return $this
 		 */
 		public function set_selector( $selector = '' ) {
 			// Render the css in the output string everytime the selector changes.
-			if ( $this->_selector !== '' ) {
+			if ( '' !== $this->_selector ) {
 				$this->add_selector_rules_to_output();
 			}
 
@@ -90,13 +90,18 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 		 * @access public
 		 * @since  1.0
 		 *
-		 * @param  string $property - the css property
-		 * @param  string $value - the value to be placed with the property
-		 * @param  string $og_default - check to see if the value matches the default
-		 * @param  string $unit - the unit for the value (px)
+		 * @param string $property The css property.
+		 * @param string $value The value to be placed with the property.
+		 * @param string $og_default Check to see if the value matches the default.
+		 * @param string $unit The unit for the value (px).
 		 * @return $this
 		 */
 		public function add_property( $property, $value, $og_default = false, $unit = false ) {
+			// Setting font-size to 0 is rarely ever a good thing.
+			if ( 'font-size' === $property && 0 === $value ) {
+				return false;
+			}
+
 			// Add our unit to our value if it exists.
 			if ( $unit && '' !== $unit ) {
 				$value = $value . $unit;
@@ -106,7 +111,7 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 			}
 
 			// If we don't have a value or our value is the same as our og default, bail.
-			if ( empty( $value ) || $og_default == $value ) {
+			if ( ( empty( $value ) && ! is_numeric( $value ) ) || $og_default === $value ) {
 				return false;
 			}
 
@@ -118,7 +123,7 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 		 * Sets a media query in the class
 		 *
 		 * @since  1.1
-		 * @param  string $value
+		 * @param string $value The media query.
 		 * @return $this
 		 */
 		public function start_media_query( $value ) {

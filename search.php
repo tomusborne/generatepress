@@ -21,40 +21,44 @@ get_header(); ?>
 			 */
 			do_action( 'generate_before_main_content' );
 
-			if ( have_posts() ) : ?>
+			if ( generate_has_default_loop() ) {
+				if ( have_posts() ) :
+					?>
 
-				<header class="page-header">
-					<h1 class="page-title">
-						<?php
-						printf( // WPCS: XSS ok.
-							/* translators: 1: Search query name */
-							__( 'Search Results for: %s', 'generatepress' ),
-							'<span>' . get_search_query() . '</span>'
-						);
-						?>
-					</h1>
-				</header><!-- .page-header -->
+					<header class="page-header">
+						<h1 class="page-title">
+							<?php
+							printf(
+								/* translators: 1: Search query name */
+								__( 'Search Results for: %s', 'generatepress' ),
+								'<span>' . get_search_query() . '</span>'
+							);
+							?>
+						</h1>
+					</header>
 
-				<?php while ( have_posts() ) : the_post();
+					<?php
+					while ( have_posts() ) :
 
-					get_template_part( 'content', 'search' );
+						the_post();
 
-				endwhile;
+						generate_do_template_part( 'search' );
 
-				/**
-				 * generate_after_loop hook.
-				 *
-				 * @since 2.3
-				 */
-				do_action( 'generate_after_loop' );
+					endwhile;
 
-				generate_content_nav( 'nav-below' );
+					/**
+					 * generate_after_loop hook.
+					 *
+					 * @since 2.3
+					 */
+					do_action( 'generate_after_loop', 'search' );
 
-			else :
+				else :
 
-				get_template_part( 'no-results', 'search' );
+					generate_do_template_part( 'none' );
 
-			endif;
+				endif;
+			}
 
 			/**
 			 * generate_after_main_content hook.
@@ -63,8 +67,8 @@ get_header(); ?>
 			 */
 			do_action( 'generate_after_main_content' );
 			?>
-		</main><!-- #main -->
-	</div><!-- #primary -->
+		</main>
+	</div>
 
 	<?php
 	/**
@@ -76,4 +80,4 @@ get_header(); ?>
 
 	generate_construct_sidebars();
 
-get_footer();
+	get_footer();

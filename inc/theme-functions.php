@@ -89,6 +89,7 @@ if ( ! function_exists( 'generate_get_footer_widgets' ) ) {
 if ( ! function_exists( 'generate_show_excerpt' ) ) {
 	/**
 	 * Figure out if we should show the blog excerpts or full posts
+	 *
 	 * @since 1.3.15
 	 */
 	function generate_show_excerpt() {
@@ -124,6 +125,29 @@ if ( ! function_exists( 'generate_show_title' ) ) {
 	}
 }
 
+/**
+ * Check whether we should display the entry header or not.
+ *
+ * @since 3.0.0
+ */
+function generate_show_entry_header() {
+	$show_entry_header      = true;
+	$show_title             = generate_show_title();
+	$has_before_entry_title = has_action( 'generate_before_entry_title' );
+	$has_after_entry_title  = has_action( 'generate_after_entry_title' );
+
+	if ( is_page() ) {
+		$has_before_entry_title = has_action( 'generate_before_page_title' );
+		$has_after_entry_title  = has_action( 'generate_after_page_title' );
+	}
+
+	if ( ! $show_title && ! $has_before_entry_title && ! $has_after_entry_title ) {
+		$show_entry_header = false;
+	}
+
+	return apply_filters( 'generate_show_entry_header', $show_entry_header );
+}
+
 if ( ! function_exists( 'generate_get_premium_url' ) ) {
 	/**
 	 * Generate a URL to our premium add-ons.
@@ -132,7 +156,7 @@ if ( ! function_exists( 'generate_get_premium_url' ) ) {
 	 * @since 1.3.42
 	 *
 	 * @param string $url URL to premium page.
-	 * @param bool $trailing_slash Whether we want to include a trailing slash.
+	 * @param bool   $trailing_slash Whether we want to include a trailing slash.
 	 * @return string The URL to generatepress.com.
 	 */
 	function generate_get_premium_url( $url = 'https://generatepress.com/premium', $trailing_slash = true ) {
@@ -140,10 +164,13 @@ if ( ! function_exists( 'generate_get_premium_url' ) ) {
 			$url = trailingslashit( $url );
 		}
 
-		$args = apply_filters( 'generate_premium_url_args', array(
-			'ref' => null,
-			'campaign' => null,
-		) );
+		$args = apply_filters(
+			'generate_premium_url_args',
+			array(
+				'ref' => null,
+				'campaign' => null,
+			)
+		);
 
 		if ( isset( $args['ref'] ) ) {
 			$url = add_query_arg( 'ref', absint( $args['ref'] ), $url );
@@ -197,6 +224,7 @@ if ( ! function_exists( 'generate_get_link_url' ) ) {
 	function generate_get_link_url() {
 		$has_url = get_url_in_content( get_the_content() );
 
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Core filter name.
 		return $has_url ? $has_url : apply_filters( 'the_permalink', get_permalink() );
 	}
 }
@@ -231,6 +259,9 @@ function generate_has_logo_site_branding() {
  * Create SVG icons.
  *
  * @since 2.3
+ *
+ * @param string $icon The icon to get.
+ * @param bool   $replace Whether we're replacing an icon on action (click).
  */
 function generate_get_svg_icon( $icon, $replace = false ) {
 	if ( 'svg' !== generate_get_option( 'icons' ) ) {
@@ -283,6 +314,24 @@ function generate_get_svg_icon( $icon, $replace = false ) {
 					</svg>';
 	}
 
+	if ( 'arrow-right' === $icon ) {
+		$output = '<svg viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
+						<path d="M178.425 256.001c0 2.266-1.133 4.815-2.832 6.515L43.599 394.509c-1.7 1.7-4.248 2.833-6.514 2.833s-4.816-1.133-6.515-2.833l-14.163-14.162c-1.699-1.7-2.832-3.966-2.832-6.515 0-2.266 1.133-4.815 2.832-6.515l111.317-111.316L16.407 144.685c-1.699-1.7-2.832-4.249-2.832-6.515s1.133-4.815 2.832-6.515l14.163-14.162c1.7-1.7 4.249-2.833 6.515-2.833s4.815 1.133 6.514 2.833l131.994 131.993c1.7 1.7 2.832 4.249 2.832 6.515z" fill-rule="nonzero"/>
+					</svg>';
+	}
+
+	if ( 'arrow-left' === $icon ) {
+		$output = '<svg viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
+						<path d="M178.425 138.212c0 2.265-1.133 4.813-2.832 6.512L64.276 256.001l111.317 111.277c1.7 1.7 2.832 4.247 2.832 6.513 0 2.265-1.133 4.813-2.832 6.512L161.43 394.46c-1.7 1.7-4.249 2.832-6.514 2.832-2.266 0-4.816-1.133-6.515-2.832L16.407 262.514c-1.699-1.7-2.832-4.248-2.832-6.513 0-2.265 1.133-4.813 2.832-6.512l131.994-131.947c1.7-1.699 4.249-2.831 6.515-2.831 2.265 0 4.815 1.132 6.514 2.831l14.163 14.157c1.7 1.7 2.832 3.965 2.832 6.513z" fill-rule="nonzero"/>
+					</svg>';
+	}
+
+	if ( 'arrow-up' === $icon ) {
+		$output = '<svg viewBox="0 0 330 512" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
+						<path d="M305.863 314.916c0 2.266-1.133 4.815-2.832 6.514l-14.157 14.163c-1.699 1.7-3.964 2.832-6.513 2.832-2.265 0-4.813-1.133-6.512-2.832L164.572 224.276 53.295 335.593c-1.699 1.7-4.247 2.832-6.512 2.832-2.265 0-4.814-1.133-6.513-2.832L26.113 321.43c-1.699-1.7-2.831-4.248-2.831-6.514s1.132-4.816 2.831-6.515L158.06 176.408c1.699-1.7 4.247-2.833 6.512-2.833 2.265 0 4.814 1.133 6.513 2.833L303.03 308.4c1.7 1.7 2.832 4.249 2.832 6.515z" fill-rule="nonzero"/>
+					</svg>';
+	}
+
 	if ( $replace ) {
 		$output .= '<svg viewBox="0 0 512 512" aria-hidden="true" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em">
 						<path d="M71.029 71.029c9.373-9.372 24.569-9.372 33.942 0L256 222.059l151.029-151.03c9.373-9.372 24.569-9.372 33.942 0 9.372 9.373 9.372 24.569 0 33.942L289.941 256l151.03 151.029c9.372 9.373 9.372 24.569 0 33.942-9.373 9.372-24.569 9.372-33.942 0L256 289.941l-151.029 151.03c-9.373 9.372-24.569 9.372-33.942 0-9.372-9.373-9.372-24.569 0-33.942L222.059 256 71.029 104.971c-9.372-9.373-9.372-24.569 0-33.942z" />
@@ -310,12 +359,11 @@ function generate_get_svg_icon( $icon, $replace = false ) {
  *
  * @since 2.3
  *
- * @param string $icon
- * @param bool $replace Whether to include the close icon to be shown using JS.
- * @return string
+ * @param string $icon The icon to print.
+ * @param bool   $replace Whether to include the close icon to be shown using JS.
  */
 function generate_do_svg_icon( $icon, $replace = false ) {
-	echo generate_get_svg_icon( $icon, $replace );
+	echo generate_get_svg_icon( $icon, $replace ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in function.
 }
 
 /**
@@ -323,7 +371,7 @@ function generate_do_svg_icon( $icon, $replace = false ) {
  *
  * @since 2.4
  *
- * @param string $name
+ * @param string $name Name of the media query.
  * @return string The full media query.
  */
 function generate_get_media_query( $name ) {
@@ -332,12 +380,312 @@ function generate_get_media_query( $name ) {
 	$mobile = apply_filters( 'generate_mobile_media_query', '(max-width:768px)' );
 	$mobile_menu = apply_filters( 'generate_mobile_menu_media_query', $mobile );
 
-	$queries = apply_filters( 'generate_media_queries', array(
-		'desktop' 		=> $desktop,
-		'tablet' 		=> $tablet,
-		'mobile' 		=> $mobile,
-		'mobile-menu' 	=> $mobile_menu,
-	) );
+	$queries = apply_filters(
+		'generate_media_queries',
+		array(
+			'desktop' => $desktop,
+			'tablet' => $tablet,
+			'mobile' => $mobile,
+			'mobile-menu' => $mobile_menu,
+		)
+	);
 
 	return $queries[ $name ];
+}
+
+/**
+ * Display HTML classes for an element.
+ *
+ * @since 2.2
+ *
+ * @param string       $context The element we're targeting.
+ * @param string|array $class One or more classes to add to the class list.
+ */
+function generate_do_element_classes( $context, $class = '' ) {
+	$after = apply_filters( 'generate_after_element_class_attribute', '', $context );
+
+	if ( $after ) {
+		$after = ' ' . $after;
+	}
+
+	echo 'class="' . join( ' ', generate_get_element_classes( $context, $class ) ) . '"' . $after; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in function.
+}
+
+/**
+ * Retrieve HTML classes for an element.
+ *
+ * @since 2.2
+ *
+ * @param string       $context The element we're targeting.
+ * @param string|array $class One or more classes to add to the class list.
+ * @return array Array of classes.
+ */
+function generate_get_element_classes( $context, $class = '' ) {
+	$classes = array();
+
+	if ( ! empty( $class ) ) {
+		if ( ! is_array( $class ) ) {
+			$class = preg_split( '#\s+#', $class );
+		}
+
+		$classes = array_merge( $classes, $class );
+	}
+
+	$classes = array_map( 'esc_attr', $classes );
+
+	return apply_filters( "generate_{$context}_class", $classes, $class );
+}
+
+/**
+ * Get the kind of schema we're using.
+ *
+ * @since 3.0.0
+ */
+function generate_get_schema_type() {
+	return apply_filters( 'generate_schema_type', 'microdata' );
+}
+
+/**
+ * Get any necessary microdata.
+ *
+ * @since 2.2
+ *
+ * @param string $context The element to target.
+ * @return string Our final attribute to add to the element.
+ */
+function generate_get_microdata( $context ) {
+	$data = false;
+
+	if ( 'microdata' !== generate_get_schema_type() ) {
+		return false;
+	}
+
+	if ( 'body' === $context ) {
+		$type = 'WebPage';
+
+		if ( is_home() || is_archive() || is_attachment() || is_tax() || is_single() ) {
+			$type = 'Blog';
+		}
+
+		if ( is_search() ) {
+			$type = 'SearchResultsPage';
+		}
+
+		$type = apply_filters( 'generate_body_itemtype', $type );
+
+		$data = sprintf(
+			'itemtype="https://schema.org/%s" itemscope',
+			esc_html( $type )
+		);
+	}
+
+	if ( 'header' === $context ) {
+		$data = 'itemtype="https://schema.org/WPHeader" itemscope';
+	}
+
+	if ( 'navigation' === $context ) {
+		$data = 'itemtype="https://schema.org/SiteNavigationElement" itemscope';
+	}
+
+	if ( 'article' === $context ) {
+		$type = apply_filters( 'generate_article_itemtype', 'CreativeWork' );
+
+		$data = sprintf(
+			'itemtype="https://schema.org/%s" itemscope',
+			esc_html( $type )
+		);
+	}
+
+	if ( 'post-author' === $context ) {
+		$data = 'itemprop="author" itemtype="https://schema.org/Person" itemscope';
+	}
+
+	if ( 'comment-body' === $context ) {
+		$data = 'itemtype="https://schema.org/Comment" itemscope';
+	}
+
+	if ( 'comment-author' === $context ) {
+		$data = 'itemprop="author" itemtype="https://schema.org/Person" itemscope';
+	}
+
+	if ( 'sidebar' === $context ) {
+		$data = 'itemtype="https://schema.org/WPSideBar" itemscope';
+	}
+
+	if ( 'footer' === $context ) {
+		$data = 'itemtype="https://schema.org/WPFooter" itemscope';
+	}
+
+	if ( $data ) {
+		return apply_filters( "generate_{$context}_microdata", $data );
+	}
+}
+
+/**
+ * Output our microdata for an element.
+ *
+ * @since 2.2
+ *
+ * @param string $context The element to target.
+ */
+function generate_do_microdata( $context ) {
+	echo generate_get_microdata( $context ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in function.
+}
+
+/**
+ * Whether to print hAtom output or not.
+ *
+ * @since 3.0.0
+ */
+function generate_is_using_hatom() {
+	return apply_filters( 'generate_is_using_hatom', true );
+}
+
+/**
+ * Check whether we're using the Flexbox structure.
+ *
+ * @since 3.0.0
+ */
+function generate_is_using_flexbox() {
+	// No flexbox for old versions of GPP.
+	if ( defined( 'GP_PREMIUM_VERSION' ) && version_compare( GP_PREMIUM_VERSION, '1.11.0-alpha.1', '<' ) ) {
+		return false;
+	}
+
+	return 'flexbox' === generate_get_option( 'structure' );
+}
+
+/**
+ * Check if we have any menu bar items.
+ *
+ * @since 3.0.0
+ */
+function generate_has_menu_bar_items() {
+	return has_action( 'generate_menu_bar_items' );
+}
+
+/**
+ * Check if we should include the default template part.
+ *
+ * @since 3.0.0
+ * @param string $template The template to get.
+ */
+function generate_do_template_part( $template ) {
+	/**
+	 * generate_before_do_template_part hook.
+	 *
+	 * @since 3.0.0
+	 * @param string $template The template.
+	 */
+	do_action( 'generate_before_do_template_part', $template );
+
+	if ( apply_filters( 'generate_do_template_part', true, $template ) ) {
+		if ( 'archive' === $template || 'index' === $template ) {
+			get_template_part( 'content', get_post_format() );
+		}
+
+		if ( 'page' === $template ) {
+			get_template_part( 'content', 'page' );
+		}
+
+		if ( 'single' === $template ) {
+			get_template_part( 'content', 'single' );
+		}
+
+		if ( 'search' === $template ) {
+			get_template_part( 'content', 'search' );
+		}
+
+		if ( '404' === $template ) {
+			get_template_part( 'content', '404' );
+		}
+
+		if ( 'none' === $template ) {
+			get_template_part( 'no-results' );
+		}
+	}
+
+	/**
+	 * generate_after_do_template_parts hook.
+	 *
+	 * @since 3.0.0
+	 * @param string $template The template.
+	 */
+	do_action( 'generate_after_do_template_part', $template );
+}
+
+/**
+ * Check if we should use inline mobile navigation.
+ *
+ * @since 3.0.0
+ */
+function generate_has_inline_mobile_toggle() {
+	$has_inline_mobile_toggle = generate_is_using_flexbox() && ( 'nav-float-right' === generate_get_navigation_location() || 'nav-float-left' === generate_get_navigation_location() );
+
+	return apply_filters( 'generate_has_inline_mobile_toggle', $has_inline_mobile_toggle );
+}
+
+/**
+ * Build our the_title() parameters.
+ *
+ * @since 3.0.0
+ */
+function generate_get_the_title_parameters() {
+	$params = array(
+		'before' => sprintf(
+			'<h1 class="entry-title"%s>',
+			'microdata' === generate_get_schema_type() ? ' itemprop="headline"' : ''
+		),
+		'after' => '</h1>',
+	);
+
+	if ( ! is_singular() ) {
+		$params = array(
+			'before' => sprintf(
+				'<h2 class="entry-title"%2$s><a href="%1$s" rel="bookmark">',
+				esc_url( get_permalink() ),
+				'microdata' === generate_get_schema_type() ? ' itemprop="headline"' : ''
+			),
+			'after' => '</a></h2>',
+		);
+	}
+
+	if ( 'link' === get_post_format() ) {
+		$params = array(
+			'before' => sprintf(
+				'<h2 class="entry-title"%2$s><a href="%1$s" rel="bookmark">',
+				esc_url( generate_get_link_url() ),
+				'microdata' === generate_get_schema_type() ? ' itemprop="headline"' : ''
+			),
+			'after' => '</a></h2>',
+		);
+	}
+
+	return apply_filters( 'generate_get_the_title_parameters', $params );
+}
+
+/**
+ * Check whether we should display the default loop or not.
+ *
+ * @since 3.0.0
+ */
+function generate_has_default_loop() {
+	return apply_filters( 'generate_has_default_loop', true );
+}
+
+/**
+ * Detemine whether to output site branding container.
+ *
+ * @since 3.0.0
+ */
+function generate_needs_site_branding_container() {
+	$container = false;
+
+	if ( generate_has_logo_site_branding() ) {
+		if ( generate_is_using_flexbox() || generate_get_option( 'inline_logo_site_branding' ) ) {
+			$container = true;
+		}
+	}
+
+	return $container;
 }

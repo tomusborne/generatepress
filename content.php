@@ -20,31 +20,37 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 * @hooked generate_featured_page_header_inside_single - 10
 		 */
 		do_action( 'generate_before_content' );
-		?>
 
-		<header class="entry-header">
-			<?php
-			/**
-			 * generate_before_entry_title hook.
-			 *
-			 * @since 0.1
-			 */
-			do_action( 'generate_before_entry_title' );
-
-			the_title( sprintf( '<h2 class="entry-title" itemprop="headline"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' );
-
-			/**
-			 * generate_after_entry_title hook.
-			 *
-			 * @since 0.1
-			 *
-			 * @hooked generate_post_meta - 10
-			 */
-			do_action( 'generate_after_entry_title' );
+		if ( generate_show_entry_header() ) :
 			?>
-		</header><!-- .entry-header -->
+			<header class="entry-header">
+				<?php
+				/**
+				 * generate_before_entry_title hook.
+				 *
+				 * @since 0.1
+				 */
+				do_action( 'generate_before_entry_title' );
 
-		<?php
+				if ( generate_show_title() ) {
+					$params = generate_get_the_title_parameters();
+
+					the_title( $params['before'], $params['after'] );
+				}
+
+				/**
+				 * generate_after_entry_title hook.
+				 *
+				 * @since 0.1
+				 *
+				 * @hooked generate_post_meta - 10
+				 */
+				do_action( 'generate_after_entry_title' );
+				?>
+			</header>
+			<?php
+		endif;
+
 		/**
 		 * generate_after_entry_header hook.
 		 *
@@ -54,26 +60,36 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 */
 		do_action( 'generate_after_entry_header' );
 
-		if ( generate_show_excerpt() ) : ?>
+		$itemprop = '';
 
-			<div class="entry-summary" itemprop="text">
+		if ( 'microdata' === generate_get_schema_type() ) {
+			$itemprop = ' itemprop="text"';
+		}
+
+		if ( generate_show_excerpt() ) :
+			?>
+
+			<div class="entry-summary"<?php echo $itemprop; // phpcs:ignore -- No escaping needed. ?>>
 				<?php the_excerpt(); ?>
-			</div><!-- .entry-summary -->
+			</div>
 
 		<?php else : ?>
 
-			<div class="entry-content" itemprop="text">
+			<div class="entry-content"<?php echo $itemprop; // phpcs:ignore -- No escaping needed. ?>>
 				<?php
 				the_content();
 
-				wp_link_pages( array(
-					'before' => '<div class="page-links">' . __( 'Pages:', 'generatepress' ),
-					'after'  => '</div>',
-				) );
+				wp_link_pages(
+					array(
+						'before' => '<div class="page-links">' . __( 'Pages:', 'generatepress' ),
+						'after'  => '</div>',
+					)
+				);
 				?>
-			</div><!-- .entry-content -->
+			</div>
 
-		<?php endif;
+			<?php
+		endif;
 
 		/**
 		 * generate_after_entry_content hook.
@@ -91,5 +107,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 */
 		do_action( 'generate_after_content' );
 		?>
-	</div><!-- .inside-article -->
-</article><!-- #post-## -->
+	</div>
+</article>

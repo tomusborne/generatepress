@@ -1,0 +1,96 @@
+.site-info {
+	padding: 20px 40px;
+}
+
+.footer-widgets {
+	padding: 40px;
+}
+
+.site-footer .footer-widgets-container {
+	.inner-padding {
+		padding: 0px 0px 0px 40px;
+	}
+
+	.inside-footer-widgets {
+		margin-left: -40px;
+	}
+}
+
+/*--------------------------------------------------------------
+## Footer Bar
+--------------------------------------------------------------*/
+
+.footer-bar-active .footer-bar .widget {
+	padding: 0;
+}
+
+.footer-bar {
+	.widget_nav_menu {
+		& > div > ul {
+			display: inline-block;
+			vertical-align: top;
+		}
+
+		li {
+			margin: 0 10px;
+			float: left;
+			padding: 0;
+
+			&:first-child {
+				margin-left: 0;
+			}
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+			ul {
+				display: none;
+			}
+		}
+	}
+
+	.textwidget p:last-child {
+		margin: 0;
+	}
+
+	.widget-title {
+		display: none;
+	}
+}
+
+.footer-bar-align-right {
+	.copyright-bar {
+		float: left;
+	}
+
+	.footer-bar {
+		float: right;
+		text-align: right;
+	}
+}
+
+.footer-bar-align-left {
+	.copyright-bar {
+		float: right;
+		text-align: right;
+	}
+
+	.footer-bar {
+		float: left;
+		text-align: left;
+	}
+}
+
+.footer-bar-align-center {
+	.copyright-bar {
+		float: none;
+		text-align: center;
+	}
+
+	.footer-bar {
+		float: none;
+		text-align: center;
+		margin-bottom: 10px;
+	}
+}

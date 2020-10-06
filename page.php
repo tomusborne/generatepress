@@ -26,28 +26,15 @@ get_header(); ?>
 			 */
 			do_action( 'generate_before_main_content' );
 
-			while ( have_posts() ) : the_post();
+			if ( generate_has_default_loop() ) {
+				while ( have_posts() ) :
 
-				get_template_part( 'content', 'page' );
+					the_post();
 
-				// If comments are open or we have at least one comment, load up the comment template.
-				if ( comments_open() || '0' != get_comments_number() ) :
-					/**
-					 * generate_before_comments_container hook.
-					 *
-					 * @since 2.1
-					 */
-					do_action( 'generate_before_comments_container' );
-					?>
+					generate_do_template_part( 'page' );
 
-					<div class="comments-area">
-						<?php comments_template(); ?>
-					</div>
-
-					<?php
-				endif;
-
-			endwhile;
+				endwhile;
+			}
 
 			/**
 			 * generate_after_main_content hook.
@@ -56,8 +43,8 @@ get_header(); ?>
 			 */
 			do_action( 'generate_after_main_content' );
 			?>
-		</main><!-- #main -->
-	</div><!-- #primary -->
+		</main>
+	</div>
 
 	<?php
 	/**
@@ -69,4 +56,4 @@ get_header(); ?>
 
 	generate_construct_sidebars();
 
-get_footer();
+	get_footer();

@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 ?>
-<div id="right-sidebar" <?php generate_do_element_classes( 'right_sidebar' ); ?> <?php generate_do_microdata( 'sidebar' ); ?>>
+<div id="right-sidebar" <?php generate_do_element_classes( 'right_sidebar' ); ?>>
 	<div class="inside-right-sidebar">
 		<?php
 		/**
@@ -30,5 +30,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 */
 		do_action( 'generate_after_right_sidebar_content' );
 		?>
-	</div><!-- .inside-right-sidebar -->
-</div><!-- #secondary -->
+	</div>
+</div>

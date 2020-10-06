@@ -16,16 +16,57 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 	 * @since 2.0
 	 */
 	class Generate_Typography_Customize_Control extends WP_Customize_Control {
+		/**
+		 * Set the type.
+		 *
+		 * @var string $type
+		 */
 		public $type = 'gp-customizer-typography';
 
+		/**
+		 * Enqueue scripts.
+		 */
 		public function enqueue() {
-			wp_enqueue_script( 'generatepress-typography-selectWoo', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/js/selectWoo.min.js', array( 'customize-controls', 'jquery' ), GENERATE_VERSION, true );
-			wp_enqueue_style( 'generatepress-typography-selectWoo', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/css/selectWoo.min.css', array(), GENERATE_VERSION );
+			wp_enqueue_script(
+				'generatepress-typography-selectWoo',
+				trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/js/selectWoo.min.js',
+				array(
+					'customize-controls',
+					'jquery',
+				),
+				GENERATE_VERSION,
+				true
+			);
 
-			wp_enqueue_script( 'generatepress-typography-customizer', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/js/typography-customizer.js', array( 'customize-controls', 'generatepress-typography-selectWoo' ), GENERATE_VERSION, true );
-			wp_enqueue_style( 'generatepress-typography-customizer', trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/css/typography-customizer.css', array(), GENERATE_VERSION );
+			wp_enqueue_style(
+				'generatepress-typography-selectWoo',
+				trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/css/selectWoo.min.css',
+				array(),
+				GENERATE_VERSION
+			);
+
+			wp_enqueue_script(
+				'generatepress-typography-customizer',
+				trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/js/typography-customizer.js',
+				array(
+					'customize-controls',
+					'generatepress-typography-selectWoo',
+				),
+				GENERATE_VERSION,
+				true
+			);
+
+			wp_enqueue_style(
+				'generatepress-typography-customizer',
+				trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/css/typography-customizer.css',
+				array(),
+				GENERATE_VERSION
+			);
 		}
 
+		/**
+		 * Send variables to json.
+		 */
 		public function to_json() {
 			parent::to_json();
 
@@ -43,7 +84,7 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 					'link'  => $this->get_link( $setting_key ),
 					'value' => $this->value( $setting_key ),
 					'default' => isset( $setting_id->default ) ? $setting_id->default : '',
-					'id' => isset( $setting_id->id ) ? $setting_id->id : ''
+					'id' => isset( $setting_id->id ) ? $setting_id->id : '',
 				);
 
 				if ( 'weight' === $setting_key ) {
@@ -56,6 +97,9 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 			}
 		}
 
+		/**
+		 * Render content.
+		 */
 		public function content_template() {
 			?>
 			<# if ( '' !== data.label ) { #>
@@ -165,6 +209,9 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 			<?php
 		}
 
+		/**
+		 * Build font weight choices.
+		 */
 		public function get_font_weight_choices() {
 			return array(
 				'normal' => esc_html( 'normal' ),
@@ -181,6 +228,9 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Generate_Typogra
 			);
 		}
 
+		/**
+		 * Build text transform choices.
+		 */
 		public function get_font_transform_choices() {
 			return array(
 				'none' => esc_html( 'none' ),

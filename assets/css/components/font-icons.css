@@ -1,0 +1,162 @@
+@font-face {
+	font-family: "GeneratePress";
+	src: url("../../fonts/generatepress.eot");
+	src: url("../../fonts/generatepress.eot#iefix") format("embedded-opentype"), url("../../fonts/generatepress.woff2") format("woff2"), url("../../fonts/generatepress.woff") format("woff"), url("../../fonts/generatepress.ttf") format("truetype"), url("../../fonts/generatepress.svg#GeneratePress") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+
+.menu-toggle:before,
+.search-item a:before,
+.dropdown-menu-toggle:before,
+.cat-links:before,
+.tags-links:before,
+.comments-link:before,
+.nav-previous .prev:before,
+.nav-next .next:before,
+.generate-back-to-top:before {
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	line-height: 1;
+}
+
+.cat-links:before,
+.tags-links:before,
+.comments-link:before,
+.nav-previous .prev:before,
+.nav-next .next:before {
+	opacity: 0.7;
+}
+
+/*--------------------------------------------------------------
+# Mobile Menu
+--------------------------------------------------------------*/
+.menu-toggle:before {
+	content: "\f0c9";
+	font-family: GeneratePress;
+	width: 1.28571429em;
+	text-align: center;
+	display: inline-block;
+}
+
+.toggled .menu-toggle:before {
+	content: "\f00d";
+}
+
+.main-navigation.toggled .sfHover > a .dropdown-menu-toggle:before {
+	content: "\f106";
+}
+
+/*--------------------------------------------------------------
+# Navigation Search
+--------------------------------------------------------------*/
+.search-item a:before {
+	content: "\f002";
+	font-family: GeneratePress;
+	width: 1.28571429em;
+	text-align: center;
+	display: inline-block;
+}
+
+.search-item.close-search a:before {
+	content: "\f00d";
+}
+
+.widget .search-form button:before {
+	content: "\f002";
+	font-family: GeneratePress;
+}
+
+/*--------------------------------------------------------------
+# Navigation Dropdowns
+--------------------------------------------------------------*/
+.dropdown-menu-toggle:before {
+	content: "\f107";
+	font-family: GeneratePress;
+	display: inline-block;
+	width: 0.8em;
+	text-align: left;
+}
+
+nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
+	text-align: right;
+}
+
+.dropdown-hover .sub-menu-left:not(.toggled) ul ul .dropdown-menu-toggle:before {
+	transform: rotate(180deg);
+}
+
+.dropdown-click .menu-item-has-children.sfHover > a .dropdown-menu-toggle:before {
+	content: "\f106";
+}
+
+.dropdown-hover nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
+	content: "\f105";
+}
+
+/*--------------------------------------------------------------
+# Post Content
+--------------------------------------------------------------*/
+.entry-header .cat-links:before,
+.entry-header .tags-links:before,
+.entry-header .comments-link:before {
+	display: none;
+}
+
+.cat-links:before,
+.tags-links:before,
+.comments-link:before,
+.nav-previous .prev:before,
+.nav-next .next:before {
+	font-family: GeneratePress;
+	text-decoration: inherit;
+	position: relative;
+	margin-right: 0.6em;
+	width: 13px;
+	text-align: center;
+	display: inline-block;
+}
+
+.cat-links:before {
+	content: "\f07b";
+}
+
+.tags-links:before {
+	content: "\f02c";
+}
+
+.comments-link:before {
+	content: "\f086";
+}
+
+.nav-previous .prev:before {
+	content: "\f104";
+}
+
+.nav-next .next:before {
+	content: "\f105";
+}
+
+/*--------------------------------------------------------------
+# Sidebar Navigation
+--------------------------------------------------------------*/
+.dropdown-hover.both-right .inside-left-sidebar .dropdown-menu-toggle:before,
+.dropdown-hover .inside-right-sidebar .dropdown-menu-toggle:before {
+	content: "\f104";
+}
+
+.dropdown-hover.both-left .inside-right-sidebar .dropdown-menu-toggle:before,
+.dropdown-hover .inside-left-sidebar .dropdown-menu-toggle:before {
+	content: "\f105";
+}
+
+/*--------------------------------------------------------------
+# Back to Top Button
+--------------------------------------------------------------*/
+.generate-back-to-top:before {
+	content: "\f106";
+	font-family: GeneratePress;
+}

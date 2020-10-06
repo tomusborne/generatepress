@@ -1,0 +1,49 @@
+.inside-page-header,
+.wp-block-group__inner-container {
+	padding: $element-padding;
+}
+
+.widget-area .main-navigation {
+	margin-bottom: $separating-space;
+}
+
+.separate-containers .site-main > *:last-child,
+.one-container .site-main > *:last-child {
+	margin-bottom: 0;
+}
+
+/*--------------------------------------------------------------
+## Full Width Content
+--------------------------------------------------------------*/
+
+.full-width-content {
+	.container.grid-container {
+		max-width: 100%;
+	}
+
+	&.no-sidebar.separate-containers .site-main {
+		margin: 0;
+	}
+
+	&.separate-containers .inside-article,
+	&.one-container .site-content {
+		padding: 0;
+	}
+
+	.entry-content .alignwide {
+		margin-left: 0;
+		width: auto;
+		max-width: unset;
+	}
+}
+
+/*--------------------------------------------------------------
+## Contained Content
+--------------------------------------------------------------*/
+
+.contained-content {
+	&.separate-containers .inside-article,
+	&.one-container .site-content {
+		padding: 0;
+	}
+}

@@ -40,28 +40,37 @@ do_action( 'generate_before_comments' );
 	 */
 	do_action( 'generate_inside_comments' );
 
-	if ( have_comments() ) : ?>
-		<h3 class="comments-title">
-			<?php
-			$comments_number = get_comments_number();
-			$comments_title = apply_filters( 'generate_comment_form_title', sprintf( // WPCS: XSS OK.
-				/* translators: 1: number of comments, 2: post title */
-				esc_html( _nx(
-					'%1$s thought on &ldquo;%2$s&rdquo;',
-					'%1$s thoughts on &ldquo;%2$s&rdquo;',
-					$comments_number,
-					'comments title',
-					'generatepress'
-				) ),
+	if ( have_comments() ) :
+		$comments_number = get_comments_number();
+		$comments_title = apply_filters(
+			'generate_comment_form_title',
+			sprintf(
+				esc_html(
+					/* translators: 1: number of comments, 2: post title */
+					_nx(
+						'%1$s thought on &ldquo;%2$s&rdquo;',
+						'%1$s thoughts on &ldquo;%2$s&rdquo;',
+						$comments_number,
+						'comments title',
+						'generatepress'
+					)
+				),
 				number_format_i18n( $comments_number ),
 				get_the_title()
-			) );
+			)
+		);
 
-			echo esc_html( $comments_title );
-			?>
-		</h3>
+		// phpcs:ignore -- Title escaped in output.
+		echo apply_filters(
+			'generate_comments_title_output',
+			sprintf(
+				'<h3 class="comments-title">%s</h3>',
+				esc_html( $comments_title )
+			),
+			$comments_title,
+			$comments_number
+		);
 
-		<?php
 		/**
 		 * generate_below_comments_title hook.
 		 *
@@ -69,7 +78,8 @@ do_action( 'generate_before_comments' );
 		 */
 		do_action( 'generate_below_comments_title' );
 
-		if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
+		if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) :
+			?>
 			<nav id="comment-nav-above" class="comment-navigation" role="navigation">
 				<h2 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'generatepress' ); ?></h2>
 				<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'generatepress' ) ); ?></div>
@@ -86,26 +96,33 @@ do_action( 'generate_before_comments' );
 			 * define generate_comment() and that will be used instead.
 			 * See generate_comment() in inc/template-tags.php for more.
 			 */
-			wp_list_comments( array(
-				'callback' => 'generate_comment',
-			) );
+			wp_list_comments(
+				array(
+					'callback' => 'generate_comment',
+				)
+			);
 			?>
 		</ol><!-- .comment-list -->
 
-		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
+		<?php
+		if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) :
+			?>
 			<nav id="comment-nav-below" class="comment-navigation" role="navigation">
 				<h2 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'generatepress' ); ?></h2>
 				<div class="nav-previous"><?php previous_comments_link( __( '&larr; Older Comments', 'generatepress' ) ); ?></div>
 				<div class="nav-next"><?php next_comments_link( __( 'Newer Comments &rarr;', 'generatepress' ) ); ?></div>
 			</nav><!-- #comment-nav-below -->
-		<?php endif;
+			<?php
+		endif;
 
 	endif;
 
-	// If comments are closed and there are comments, let's leave a little note, shall we?
-	if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
-		<p class="no-comments"><?php _e( 'Comments are closed.', 'generatepress' ); // WPCS: XSS OK. ?></p>
-	<?php endif;
+	// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
+	if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
+		?>
+		<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'generatepress' ); ?></p>
+		<?php
+	endif;
 
 	comment_form();
 	?>

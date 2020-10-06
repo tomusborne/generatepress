@@ -1,0 +1,23 @@
+.sidebar .grid-container {
+	max-width: 100%;
+	width: 100%;
+}
+
+.left-sidebar .sidebar,
+.both-left .is-left-sidebar,
+.both-sidebars .is-left-sidebar {
+	order: -10;
+}
+
+.both-left .is-right-sidebar {
+	order: -5;
+}
+
+.both-right .is-left-sidebar {
+	order: 5;
+}
+
+.both-right .is-right-sidebar,
+.both-sidebars .is-right-sidebar {
+	order: 10;
+}

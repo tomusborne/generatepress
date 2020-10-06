@@ -20,10 +20,8 @@ if ( ! function_exists( 'generate_archive_title' ) ) {
 		if ( ! function_exists( 'the_archive_title' ) ) {
 			return;
 		}
-
-		$clearfix = is_author() ? ' clearfix' : '';
 		?>
-		<header class="page-header<?php echo $clearfix; // WPCS: XSS ok, sanitization ok. ?>">
+		<header class="page-header">
 			<?php
 			/**
 			 * generate_before_archive_title hook.
@@ -47,7 +45,7 @@ if ( ! function_exists( 'generate_archive_title' ) ) {
 			 */
 			do_action( 'generate_after_archive_title' );
 			?>
-		</header><!-- .page-header -->
+		</header>
 		<?php
 	}
 }
@@ -59,7 +57,7 @@ if ( ! function_exists( 'generate_filter_the_archive_title' ) ) {
 	 *
 	 * @since 1.3.45
 	 *
-	 * @param string $title The archive title
+	 * @param string $title The archive title.
 	 * @return string The altered archive title
 	 */
 	function generate_filter_the_archive_title( $title ) {
@@ -73,10 +71,13 @@ if ( ! function_exists( 'generate_filter_the_archive_title' ) ) {
 			 * what author we're dealing with (if that is the case).
 			 */
 			the_post();
-			$title = sprintf( '%1$s<span class="vcard">%2$s</span>',
-				get_avatar( get_the_author_meta( 'ID' ), 75 ),
+
+			$title = sprintf(
+				'%1$s<span class="vcard">%2$s</span>',
+				get_avatar( get_the_author_meta( 'ID' ), 50 ),
 				get_the_author()
 			);
+
 			/*
 			 * Since we called the_post() above, we need to
 			 * rewind the loop back to the beginning that way
@@ -100,11 +101,11 @@ function generate_do_archive_description() {
 	$term_description = term_description();
 
 	if ( ! empty( $term_description ) ) {
-		printf( '<div class="taxonomy-description">%s</div>', $term_description ); // WPCS: XSS ok, sanitization ok.
+		printf( '<div class="taxonomy-description">%s</div>', $term_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	if ( get_the_author_meta( 'description' ) && is_author() ) {
-		echo '<div class="author-info">' . get_the_author_meta( 'description' ) . '</div>'; // WPCS: XSS ok, sanitization ok.
+		echo '<div class="author-info">' . get_the_author_meta( 'description' ) . '</div>';  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**

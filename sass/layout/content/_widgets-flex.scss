@@ -1,0 +1,31 @@
+.widget .search-form {
+	display: flex;
+
+	button.search-submit {
+		font-size: 15px;
+	}
+}
+
+.footer-widgets .widget {
+	margin-bottom: 30px;
+}
+
+.sidebar .widget:last-child,
+.footer-widgets .widget:last-child {
+	margin-bottom: 0;
+}
+
+.widget ul li {
+	list-style-type: none;
+	position: relative;
+	margin-bottom: 0.5em;
+}
+
+.widget ul li ul {
+	margin-left: 1em;
+	margin-top: 0.5em;
+}
+
+.wp-calendar-table {
+	table-layout: fixed;
+}

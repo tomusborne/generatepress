@@ -1,0 +1,34 @@
+.site-main {
+	.comment-navigation,
+	.posts-navigation,
+	.post-navigation {
+		margin: 0 0 2em;
+		overflow: hidden;
+	}
+
+	.post-navigation {
+		margin-bottom: 0;
+	}
+}
+
+.paging-navigation {
+	.nav-previous,
+	.nav-next {
+		display: none;
+	}
+
+	.nav-links {
+		& > * {
+			padding: 0 5px;
+		}
+
+		.current {
+			font-weight: bold;
+		}
+	}
+}
+
+/* Less specific so we don't overwrite existing customizations. */
+.nav-links > *:first-child {
+	padding-left: 0;
+}

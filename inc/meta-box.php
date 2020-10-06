@@ -23,8 +23,8 @@ function generate_enqueue_meta_box_scripts( $hook ) {
 		$screen = get_current_screen();
 		$post_type = $screen->id;
 
-		if ( in_array( $post_type, ( array ) $post_types ) ) {
-			wp_enqueue_style( 'generate-layout-metabox', get_template_directory_uri() . '/css/admin/meta-box.css', array(), GENERATE_VERSION );
+		if ( in_array( $post_type, (array) $post_types ) ) {
+			wp_enqueue_style( 'generate-layout-metabox', get_template_directory_uri() . '/assets/css/admin/meta-box.css', array(), GENERATE_VERSION );
 		}
 	}
 }
@@ -42,6 +42,15 @@ function generate_register_layout_meta_box() {
 
 	if ( ! defined( 'GENERATE_LAYOUT_META_BOX' ) ) {
 		define( 'GENERATE_LAYOUT_META_BOX', true );
+	}
+
+	global $post;
+
+	$blog_id = get_option( 'page_for_posts' );
+
+	// No need for the Layout metabox on the blog page.
+	if ( $blog_id && (int) $blog_id === (int) $post->ID ) {
+		return;
 	}
 
 	$post_types = get_post_types( array( 'public' => true ) );
@@ -74,7 +83,8 @@ function generate_do_layout_meta_box( $post ) {
 	$stored_meta['_generate-full-width-content'][0] = ( isset( $stored_meta['_generate-full-width-content'][0] ) ) ? $stored_meta['_generate-full-width-content'][0] : '';
 	$stored_meta['_generate-disable-headline'][0] = ( isset( $stored_meta['_generate-disable-headline'][0] ) ) ? $stored_meta['_generate-disable-headline'][0] : '';
 
-	$tabs = apply_filters( 'generate_metabox_tabs',
+	$tabs = apply_filters(
+		'generate_metabox_tabs',
 		array(
 			'sidebars' => array(
 				'title' => esc_html__( 'Sidebars', 'generatepress' ),
@@ -92,7 +102,7 @@ function generate_do_layout_meta_box( $post ) {
 				'class' => '',
 			),
 			'container' => array(
-				'title' => esc_html__( 'Page Builder Container', 'generatepress' ),
+				'title' => esc_html__( 'Content Container', 'generatepress' ),
 				'target' => '#generate-layout-page-builder-container',
 				'class' => '',
 			),
@@ -120,7 +130,7 @@ function generate_do_layout_meta_box( $post ) {
 	<div id="generate-meta-box-container">
 		<ul class="generate-meta-box-menu">
 			<?php
-			foreach ( ( array ) $tabs as $tab => $data ) {
+			foreach ( (array) $tabs as $tab => $data ) {
 				echo '<li class="' . esc_attr( $data['class'] ) . '"><a data-target="' . esc_attr( $data['target'] ) . '" href="#">' . esc_html( $data['title'] ) . '</a></li>';
 			}
 
@@ -130,113 +140,60 @@ function generate_do_layout_meta_box( $post ) {
 		<div class="generate-meta-box-content">
 			<div id="generate-layout-sidebars">
 				<div class="generate_layouts">
-					<label for="meta-generate-layout-global" style="display:block;margin-bottom:10px;">
-						<input type="radio" name="_generate-sidebar-layout-meta" id="meta-generate-layout-global" value="" <?php checked( $stored_meta['_generate-sidebar-layout-meta'][0], '' ); ?>>
-						<?php esc_html_e( 'Default', 'generatepress' );?>
-					</label>
+					<label for="generate-sidebar-layout" class="generate-layout-metabox-section-title"><?php esc_html_e( 'Sidebar Layout', 'generatepress' ); ?></label>
 
-					<label for="meta-generate-layout-one" style="display:block;margin-bottom:3px;" title="<?php esc_attr_e( 'Right Sidebar', 'generatepress' );?>">
-						<input type="radio" name="_generate-sidebar-layout-meta" id="meta-generate-layout-one" value="right-sidebar" <?php checked( $stored_meta['_generate-sidebar-layout-meta'][0], 'right-sidebar' ); ?>>
-						<?php esc_html_e( 'Content', 'generatepress' );?> / <strong><?php echo esc_html_x( 'Sidebar', 'Short name for meta box', 'generatepress' ); ?></strong>
-					</label>
-
-					<label for="meta-generate-layout-two" style="display:block;margin-bottom:3px;" title="<?php esc_attr_e( 'Left Sidebar', 'generatepress' );?>">
-						<input type="radio" name="_generate-sidebar-layout-meta" id="meta-generate-layout-two" value="left-sidebar" <?php checked( $stored_meta['_generate-sidebar-layout-meta'][0], 'left-sidebar' ); ?>>
-						<strong><?php echo esc_html_x( 'Sidebar', 'Short name for meta box', 'generatepress' ); ?></strong> / <?php esc_html_e( 'Content', 'generatepress' );?>
-					</label>
-
-					<label for="meta-generate-layout-three" style="display:block;margin-bottom:3px;" title="<?php esc_attr_e( 'No Sidebars', 'generatepress' );?>">
-						<input type="radio" name="_generate-sidebar-layout-meta" id="meta-generate-layout-three" value="no-sidebar" <?php checked( $stored_meta['_generate-sidebar-layout-meta'][0], 'no-sidebar' ); ?>>
-						<?php esc_html_e( 'Content (no sidebars)', 'generatepress' );?>
-					</label>
-
-					<label for="meta-generate-layout-four" style="display:block;margin-bottom:3px;" title="<?php esc_attr_e( 'Both Sidebars', 'generatepress' );?>">
-						<input type="radio" name="_generate-sidebar-layout-meta" id="meta-generate-layout-four" value="both-sidebars" <?php checked( $stored_meta['_generate-sidebar-layout-meta'][0], 'both-sidebars' ); ?>>
-						<strong><?php echo esc_html_x( 'Sidebar', 'Short name for meta box', 'generatepress' ); ?></strong> / <?php esc_html_e( 'Content', 'generatepress' );?> / <strong><?php echo esc_html_x( 'Sidebar', 'Short name for meta box', 'generatepress' ); ?></strong>
-					</label>
-
-					<label for="meta-generate-layout-five" style="display:block;margin-bottom:3px;" title="<?php esc_attr_e( 'Both Sidebars on Left', 'generatepress' );?>">
-						<input type="radio" name="_generate-sidebar-layout-meta" id="meta-generate-layout-five" value="both-left" <?php checked( $stored_meta['_generate-sidebar-layout-meta'][0], 'both-left' ); ?>>
-						<strong><?php echo esc_html_x( 'Sidebar', 'Short name for meta box', 'generatepress' ); ?></strong> / <strong><?php echo esc_html_x( 'Sidebar', 'Short name for meta box', 'generatepress' ); ?></strong> / <?php esc_html_e( 'Content', 'generatepress' );?>
-					</label>
-
-					<label for="meta-generate-layout-six" style="display:block;margin-bottom:3px;" title="<?php esc_attr_e( 'Both Sidebars on Right', 'generatepress' );?>">
-						<input type="radio" name="_generate-sidebar-layout-meta" id="meta-generate-layout-six" value="both-right" <?php checked( $stored_meta['_generate-sidebar-layout-meta'][0], 'both-right' ); ?>>
-						<?php esc_html_e( 'Content', 'generatepress' );?> / <strong><?php echo esc_html_x( 'Sidebar', 'Short name for meta box', 'generatepress' ); ?></strong> / <strong><?php echo esc_html_x( 'Sidebar', 'Short name for meta box', 'generatepress' ); ?></strong>
-					</label>
+					<select name="_generate-sidebar-layout-meta" id="generate-sidebar-layout">
+						<option value="" <?php selected( $stored_meta['_generate-sidebar-layout-meta'][0], '' ); ?>><?php esc_html_e( 'Default', 'generatepress' ); ?></option>
+						<option value="right-sidebar" <?php selected( $stored_meta['_generate-sidebar-layout-meta'][0], 'right-sidebar' ); ?>><?php esc_html_e( 'Right Sidebar', 'generatepress' ); ?></option>
+						<option value="left-sidebar" <?php selected( $stored_meta['_generate-sidebar-layout-meta'][0], 'left-sidebar' ); ?>><?php esc_html_e( 'Left Sidebar', 'generatepress' ); ?></option>
+						<option value="no-sidebar" <?php selected( $stored_meta['_generate-sidebar-layout-meta'][0], 'no-sidebar' ); ?>><?php esc_html_e( 'No Sidebars', 'generatepress' ); ?></option>
+						<option value="both-sidebars" <?php selected( $stored_meta['_generate-sidebar-layout-meta'][0], 'both-sidebars' ); ?>><?php esc_html_e( 'Both Sidebars', 'generatepress' ); ?></option>
+						<option value="both-left" <?php selected( $stored_meta['_generate-sidebar-layout-meta'][0], 'both-left' ); ?>><?php esc_html_e( 'Both Sidebars on Left', 'generatepress' ); ?></option>
+						<option value="both-right" <?php selected( $stored_meta['_generate-sidebar-layout-meta'][0], 'both-right' ); ?>><?php esc_html_e( 'Both Sidebars on Right', 'generatepress' ); ?></option>
+					</select>
 				</div>
 			</div>
+
 			<div id="generate-layout-footer-widgets" style="display: none;">
 				<div class="generate_footer_widget">
-					<label for="meta-generate-footer-widget-global" style="display:block;margin-bottom:10px;">
-						<input type="radio" name="_generate-footer-widget-meta" id="meta-generate-footer-widget-global" value="" <?php checked( $stored_meta['_generate-footer-widget-meta'][0], '' ); ?>>
-						<?php esc_html_e( 'Default', 'generatepress' );?>
-					</label>
+					<label for="generate-footer-widget" class="generate-layout-metabox-section-title"><?php esc_html_e( 'Footer Widgets', 'generatepress' ); ?></label>
 
-					<label for="meta-generate-footer-widget-zero" style="display:block;margin-bottom:3px;" title="<?php esc_attr_e( '0 Widgets', 'generatepress' );?>">
-						<input type="radio" name="_generate-footer-widget-meta" id="meta-generate-footer-widget-zero" value="0" <?php checked( $stored_meta['_generate-footer-widget-meta'][0], '0' ); ?>>
-						<?php esc_html_e( '0 Widgets', 'generatepress' );?>
-					</label>
-
-					<label for="meta-generate-footer-widget-one" style="display:block;margin-bottom:3px;" title="<?php esc_attr_e( '1 Widget', 'generatepress' );?>">
-						<input type="radio" name="_generate-footer-widget-meta" id="meta-generate-footer-widget-one" value="1" <?php checked( $stored_meta['_generate-footer-widget-meta'][0], '1' ); ?>>
-						<?php esc_html_e( '1 Widget', 'generatepress' );?>
-					</label>
-
-					<label for="meta-generate-footer-widget-two" style="display:block;margin-bottom:3px;" title="<?php esc_attr_e( '2 Widgets', 'generatepress' );?>">
-						<input type="radio" name="_generate-footer-widget-meta" id="meta-generate-footer-widget-two" value="2" <?php checked( $stored_meta['_generate-footer-widget-meta'][0], '2' ); ?>>
-						<?php esc_html_e( '2 Widgets', 'generatepress' );?>
-					</label>
-
-					<label for="meta-generate-footer-widget-three" style="display:block;margin-bottom:3px;" title="<?php esc_attr_e( '3 Widgets', 'generatepress' );?>">
-						<input type="radio" name="_generate-footer-widget-meta" id="meta-generate-footer-widget-three" value="3" <?php checked( $stored_meta['_generate-footer-widget-meta'][0], '3' ); ?>>
-						<?php esc_html_e( '3 Widgets', 'generatepress' );?>
-					</label>
-
-					<label for="meta-generate-footer-widget-four" style="display:block;margin-bottom:3px;" title="<?php esc_attr_e( '4 Widgets', 'generatepress' );?>">
-						<input type="radio" name="_generate-footer-widget-meta" id="meta-generate-footer-widget-four" value="4" <?php checked( $stored_meta['_generate-footer-widget-meta'][0], '4' ); ?>>
-						<?php esc_html_e( '4 Widgets', 'generatepress' );?>
-					</label>
-
-					<label for="meta-generate-footer-widget-five" style="display:block;margin-bottom:3px;" title="<?php esc_attr_e( '5 Widgets', 'generatepress' );?>">
-						<input type="radio" name="_generate-footer-widget-meta" id="meta-generate-footer-widget-five" value="5" <?php checked( $stored_meta['_generate-footer-widget-meta'][0], '5' ); ?>>
-						<?php esc_html_e( '5 Widgets', 'generatepress' );?>
-					</label>
+					<select name="_generate-footer-widget-meta" id="generate-footer-widget">
+						<option value="" <?php selected( $stored_meta['_generate-footer-widget-meta'][0], '' ); ?>><?php esc_html_e( 'Default', 'generatepress' ); ?></option>
+						<option value="0" <?php selected( $stored_meta['_generate-sidebar-layout-meta'][0], '0' ); ?>><?php esc_html_e( '0 Widgets', 'generatepress' ); ?></option>
+						<option value="1" <?php selected( $stored_meta['_generate-sidebar-layout-meta'][0], '1' ); ?>><?php esc_html_e( '1 Widgets', 'generatepress' ); ?></option>
+						<option value="2" <?php selected( $stored_meta['_generate-sidebar-layout-meta'][0], '2' ); ?>><?php esc_html_e( '2 Widgets', 'generatepress' ); ?></option>
+						<option value="3" <?php selected( $stored_meta['_generate-sidebar-layout-meta'][0], '3' ); ?>><?php esc_html_e( '3 Widgets', 'generatepress' ); ?></option>
+						<option value="4" <?php selected( $stored_meta['_generate-sidebar-layout-meta'][0], '4' ); ?>><?php esc_html_e( '4 Widgets', 'generatepress' ); ?></option>
+						<option value="5" <?php selected( $stored_meta['_generate-sidebar-layout-meta'][0], '5' ); ?>><?php esc_html_e( '5 Widgets', 'generatepress' ); ?></option>
+					</select>
 				</div>
 			</div>
 			<div id="generate-layout-page-builder-container" style="display: none;">
+				<label for="_generate-full-width-content" class="generate-layout-metabox-section-title"><?php esc_html_e( 'Content Container', 'generatepress' ); ?></label>
+
 				<p class="page-builder-content" style="color:#666;font-size:13px;margin-top:0;">
-					<?php esc_html_e( 'Choose your page builder content container type. Both options remove the content padding for you.', 'generatepress' ) ;?>
+					<?php esc_html_e( 'Choose your content container type.', 'generatepress' ); ?>
 				</p>
 
-				<p class="generate_full_width_template">
-					<label for="default-content" style="display:block;margin-bottom:10px;">
-						<input type="radio" name="_generate-full-width-content" id="default-content" value="" <?php checked( $stored_meta['_generate-full-width-content'][0], '' ); ?>>
-						<?php esc_html_e( 'Default', 'generatepress' );?>
-					</label>
-
-					<label id="full-width-content" for="_generate-full-width-content" style="display:block;margin-bottom:10px;">
-						<input type="radio" name="_generate-full-width-content" id="_generate-full-width-content" value="true" <?php checked( $stored_meta['_generate-full-width-content'][0], 'true' ); ?>>
-						<?php esc_html_e( 'Full Width', 'generatepress' );?>
-					</label>
-
-					<label id="generate-remove-padding" for="_generate-remove-content-padding" style="display:block;margin-bottom:10px;">
-						<input type="radio" name="_generate-full-width-content" id="_generate-remove-content-padding" value="contained" <?php checked( $stored_meta['_generate-full-width-content'][0], 'contained' ); ?>>
-						<?php esc_html_e( 'Contained', 'generatepress' );?>
-					</label>
-				</p>
+				<select name="_generate-full-width-content" id="_generate-full-width-content">
+					<option value="" <?php selected( $stored_meta['_generate-full-width-content'][0], '' ); ?>><?php esc_html_e( 'Default', 'generatepress' ); ?></option>
+					<option value="true" <?php selected( $stored_meta['_generate-full-width-content'][0], 'true' ); ?>><?php esc_html_e( 'Full Width', 'generatepress' ); ?></option>
+					<option value="contained" <?php selected( $stored_meta['_generate-full-width-content'][0], 'contained' ); ?>><?php esc_html_e( 'Contained', 'generatepress' ); ?></option>
+				</select>
 			</div>
 			<div id="generate-layout-disable-elements" style="display: none;">
+				<label class="generate-layout-metabox-section-title"><?php esc_html_e( 'Disable Elements', 'generatepress' ); ?></label>
 				<?php if ( ! defined( 'GENERATE_DE_VERSION' ) ) : ?>
 					<div class="generate_disable_elements">
-						<label for="meta-generate-disable-headline" style="display:block;margin: 0 0 1em;" title="<?php esc_attr_e( 'Content Title', 'generatepress' );?>">
+						<label for="meta-generate-disable-headline" style="display:block;margin: 0 0 1em;" title="<?php esc_attr_e( 'Content Title', 'generatepress' ); ?>">
 							<input type="checkbox" name="_generate-disable-headline" id="meta-generate-disable-headline" value="true" <?php checked( $stored_meta['_generate-disable-headline'][0], 'true' ); ?>>
-							<?php esc_html_e( 'Content Title', 'generatepress' );?>
+							<?php esc_html_e( 'Content Title', 'generatepress' ); ?>
 						</label>
 
 						<?php if ( ! defined( 'GP_PREMIUM_VERSION' ) ) : ?>
 							<span style="display:block;padding-top:1em;border-top:1px solid #EFEFEF;">
-								<a href="<?php echo generate_get_premium_url( 'https://generatepress.com/downloads/generate-disable-elements' ); // WPCS: XSS ok, sanitization ok. ?>" target="_blank"><?php esc_html_e( 'Premium module available', 'generatepress' ); ?></a>
+								<a href="<?php echo generate_get_premium_url( 'https://generatepress.com/downloads/generate-disable-elements' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in function. ?>" target="_blank"><?php esc_html_e( 'Premium module available', 'generatepress' ); ?></a>
 							</span>
 						<?php endif; ?>
 					</div>
@@ -247,7 +204,7 @@ function generate_do_layout_meta_box( $post ) {
 			<?php do_action( 'generate_layout_meta_box_content', $stored_meta ); ?>
 		</div>
 	</div>
-    <?php
+	<?php
 }
 
 add_action( 'save_post', 'generate_save_layout_meta_data' );
@@ -255,8 +212,7 @@ add_action( 'save_post', 'generate_save_layout_meta_data' );
  * Saves the sidebar layout meta data.
  *
  * @since 2.0
- *
- * @param int Post ID.
+ * @param int $post_id Post ID.
  */
 function generate_save_layout_meta_data( $post_id ) {
 	$is_autosave = wp_is_post_autosave( $post_id );
@@ -299,7 +255,7 @@ function generate_save_layout_meta_data( $post_id ) {
 		delete_post_meta( $post_id, $page_builder_container_key );
 	}
 
-	// We only need this if the Disable Elements module doesn't exist
+	// We only need this if the Disable Elements module doesn't exist.
 	if ( ! defined( 'GENERATE_DE_VERSION' ) ) {
 		$disable_content_title_key   = '_generate-disable-headline';
 		$disable_content_title_value = filter_input( INPUT_POST, $disable_content_title_key, FILTER_SANITIZE_STRING );

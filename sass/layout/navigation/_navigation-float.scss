@@ -1,0 +1,47 @@
+.main-navigation li {
+	float: left;
+	position: relative;
+}
+
+.sf-menu > li.menu-item-float-right {
+	float: right !important;
+}
+
+.nav-float-right .inside-header .main-navigation {
+	float: right;
+	clear: right;
+}
+
+.nav-float-left .inside-header .main-navigation {
+	float: left;
+	clear: left;
+}
+
+.nav-aligned-right .main-navigation:not(.toggled) .menu > li,
+.nav-aligned-center .main-navigation:not(.toggled) .menu > li {
+	float: none;
+	display: inline-block;
+}
+
+.nav-aligned-right .main-navigation:not(.toggled) ul,
+.nav-aligned-center .main-navigation:not(.toggled) ul {
+	letter-spacing: -0.31em;
+	font-size: 1em;
+}
+
+.nav-aligned-right .main-navigation:not(.toggled) ul li,
+.nav-aligned-center .main-navigation:not(.toggled) ul li {
+	letter-spacing: normal;
+}
+
+.nav-aligned-center .main-navigation {
+	text-align: center;
+}
+
+.nav-aligned-right .main-navigation {
+	text-align: right;
+}
+
+.main-navigation li.search-item {
+	float: right;
+}

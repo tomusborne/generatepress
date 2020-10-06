@@ -1,0 +1,98 @@
+.generate-meta-box-content > div {
+	padding: 12px;
+}
+#generate_layout_options_meta_box .inside {
+	padding: 0;
+	margin:0;
+}
+#generate-meta-box-container .generate-meta-box-menu {
+	position: relative;
+	float: left;
+	list-style: none;
+	width: 180px;
+	line-height: 1em;
+	margin: 0 0 -1px 0;
+	padding: 0;
+	background-color: #fafafa;
+	border-right: 1px solid #eee;
+	box-sizing: border-box;
+}
+
+#generate-meta-box-container .generate-meta-box-menu li {
+	display: block;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	line-height: 20px;
+}
+
+#generate-meta-box-container .generate-meta-box-menu li a {
+	display: block;
+	margin: 0;
+	padding: 10px;
+	line-height: 20px !important;
+	text-decoration: none;
+	border-bottom: 1px solid #eee;
+	box-shadow: none;
+}
+
+#generate-meta-box-container .generate-meta-box-content {
+	float: left;
+	width: calc( 100% - 180px );
+	margin-left: -1px;
+	border-left: 1px solid #eee;
+	background-color: #fff;
+}
+
+#generate-meta-box-container {
+	overflow: hidden;
+	background: #fff;
+	background: linear-gradient( 90deg, #fafafa 0%, #fafafa 180px, #fff 180px, #fff 100% );
+}
+
+#generate-meta-box-container .current {
+	position: relative;
+	font-weight: bold;
+	background-color: #e0e0e0;
+}
+
+#generate-meta-box-container .current a {
+	color: #555;
+}
+
+#generate-meta-box-container label {
+	font-weight: 400;
+	display: inline-block;
+	margin-bottom: 3px;
+}
+
+
+.generate-meta-box-menu li {
+	display: inline-block;
+}
+
+#side-sortables #generate-meta-box-container .generate-meta-box-menu,
+#side-sortables #generate-meta-box-container .generate-meta-box-content  {
+    float: none;
+    width: 100%;
+	margin: 0;
+	border: 0;
+}
+
+.edit-post-meta-boxes-area.is-side .generate-meta-box-content > div {
+    display: block !important;
+}
+
+.edit-post-meta-boxes-area.is-side .generate-meta-box-menu {
+    display: none;
+}
+
+#generate-meta-box-container label {
+    display: none;
+}
+
+.edit-post-meta-boxes-area.is-side #generate-meta-box-container label.generate-layout-metabox-section-title {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}

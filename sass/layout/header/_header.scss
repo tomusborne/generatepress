@@ -1,0 +1,33 @@
+.site-header {
+	position: relative;
+}
+
+.inside-header {
+	padding: 20px $element-padding;
+}
+
+.main-title {
+	margin: 0;
+	font-size: $site-title-font-size;
+	line-height: 1.2em;
+	word-wrap: break-word;
+	font-weight: bold;
+	text-transform: none;
+}
+
+.site-description {
+	margin: 0;
+	line-height: 1.5;
+	font-weight: normal;
+	text-transform: none;
+	font-size: $site-description-font-size;
+}
+
+.site-logo {
+	display: inline-block;
+	max-width: 100%;
+}
+
+.site-header .header-image {
+	vertical-align: middle;
+}

@@ -1,0 +1,19 @@
+.widget-area .main-navigation li {
+	float: none;
+	display: block;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+.sidebar .main-navigation.sub-menu-right ul li:hover ul,
+.sidebar .main-navigation.sub-menu-right ul li.sfHover ul {
+	top: 0;
+	left: 100%;
+}
+
+.sidebar .main-navigation.sub-menu-left ul li:hover ul,
+.sidebar .main-navigation.sub-menu-left ul li.sfHover ul {
+	top: 0;
+	right: 100%;
+}

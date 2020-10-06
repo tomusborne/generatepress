@@ -1,0 +1,29 @@
+.widget-area .widget {
+    padding: $element-padding;
+}
+
+.widget select {
+	max-width: 100%;
+}
+
+.sidebar .widget *:last-child,
+.footer-widgets .widget *:last-child {
+	margin-bottom: 0;
+}
+
+.widget-title {
+	margin-bottom: 30px;
+	font-size: 20px;
+	line-height: 1.5;
+	font-weight: normal;
+	text-transform: none;
+}
+
+.widget ul,
+.widget ol {
+	margin: 0;
+}
+
+.widget .search-field {
+	width: 100%;
+}

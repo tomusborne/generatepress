@@ -1,0 +1,55 @@
+.gp-icon {
+	display: inline-flex;
+	align-self: center;
+
+	svg {
+		height: 1em;
+		width: 1em;
+		top: .125em;
+		position: relative;
+		fill: currentColor;
+	}
+}
+
+.icon-menu-bars svg:nth-child(2),
+.toggled .icon-menu-bars svg:nth-child(1),
+.icon-search svg:nth-child(2),
+.close-search .icon-search svg:nth-child(1) {
+	display: none;
+}
+
+.toggled .icon-menu-bars svg:nth-child(2),
+.close-search .icon-search svg:nth-child(2) {
+	display: block;
+}
+
+.entry-meta .gp-icon {
+	margin-right: 0.6em;
+	opacity: 0.7;
+}
+
+nav.toggled {
+	.icon-arrow-left svg {
+		transform: rotate(-90deg);
+	}
+
+	.icon-arrow-right svg {
+		transform: rotate(90deg);
+	}
+
+	.sfHover > a > .dropdown-menu-toggle {
+		.gp-icon {
+			svg {
+				transform: rotate(180deg);
+			}
+
+			&.icon-arrow-left svg {
+				transform: rotate(-270deg);
+			}
+
+			&.icon-arrow-right svg {
+				transform: rotate(270deg);
+			}
+		}
+	}
+}
