@@ -818,7 +818,7 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->set_selector( '.main-navigation ul ul' );
 		$css->add_property( 'width', absint( $settings['sub_menu_width'] ), absint( $defaults['sub_menu_width'] ), 'px' );
 
-		$css->set_selector( '.navigation-search input' );
+		$css->set_selector( '.navigation-search input[type="search"]' );
 		$css->add_property( 'height', absint( $settings['menu_item_height'] ), absint( $defaults['menu_item_height'] ), 'px' );
 
 		$css->set_selector( '.rtl .menu-item-has-children .dropdown-menu-toggle' );
