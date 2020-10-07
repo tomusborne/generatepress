@@ -620,6 +620,10 @@ a:focus {
 	justify-content: center;
 }
 
+.nav-align-center .main-nav > ul {
+	justify-content: center;
+}
+
 .nav-align-right .inside-navigation {
 	justify-content: flex-end;
 }
