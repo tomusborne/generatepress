@@ -279,6 +279,25 @@ if ( ! function_exists( 'generate_beaver_builder_css' ) ) {
 	}
 }
 
+add_action( 'wp_enqueue_scripts', 'generate_do_third_party_plugin_css', 50 );
+/**
+ * Add CSS for third-party plugins.
+ *
+ * @since 3.0.1
+ */
+function generate_do_third_party_plugin_css() {
+	$css = new GeneratePress_CSS();
+
+	if ( generate_is_using_flexbox() && class_exists( 'Elementor\Plugin' ) ) {
+		$css->set_selector( '.elementor-template-full-width .site-content' );
+		$css->add_property( 'display', 'block' );
+	}
+
+	if ( $css->css_output() ) {
+		wp_add_inline_style( 'generate-style', $css->css_output() );
+	}
+}
+
 add_action( 'wp_enqueue_scripts', 'generate_do_pro_compatibility', 50 );
 /**
  * Add CSS to ensure compatibility with GP Premium.
