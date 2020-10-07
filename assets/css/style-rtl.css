@@ -10,6 +10,7 @@ th {
 
 .main-navigation li {
 	float: right;
+	text-align: right;
 }
 
 .main-navigation li.search-item,
