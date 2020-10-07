@@ -69,10 +69,18 @@
 
 					forms[i].classList.add( 'nav-search-active' );
 
-					var searchField = forms[i].querySelector( '.search-field' );
+					var container = this.closest( 'nav' );
 
-					if ( searchField ) {
-						searchField.focus();
+					if ( container ) {
+						if ( container.classList.contains( 'mobile-menu-control-wrapper' ) ) {
+							container = nav;
+						}
+
+						var searchField = container.querySelector( '.search-field' );
+
+						if ( searchField ) {
+							searchField.focus();
+						}
 					}
 
 					for ( var t = 0; t < toggles.length; t++ ) {
