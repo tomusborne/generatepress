@@ -840,6 +840,7 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 .header-aligned-center:not([class*="nav-float-"]) .inside-header {
 	justify-content: center;
 	flex-direction: column;
+	text-align: center;
 }
 
 .header-aligned-center:not([class*="nav-float-"]) .header-widget {
