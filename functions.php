@@ -63,7 +63,7 @@ if ( ! function_exists( 'generate_setup' ) ) {
 		}
 
 		// This theme styles the visual editor to resemble the theme style.
-		add_editor_style( 'css/admin/editor-style.css' );
+		add_editor_style( 'assets/css/admin/editor-style.css' );
 	}
 }
 
