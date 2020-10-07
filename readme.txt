@@ -95,6 +95,21 @@ MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
 
 == Changelog ==
 
+= 3.0.1 =
+
+Release date: TBA
+
+* Fix: Custom navigation search height
+* Fix: Missing sub-menu on RTL sites with sub-menu set to open right
+* Fix: RTL order of default flexbox mobile menu
+* Fix: RTL sub-menu text alignment
+* Fix: Elementor full width template when using flexbox
+* Fix: editor-style.css location
+* Fix: Navigation search when sticky navigation is activated
+* Tweak: Add text-align: center; to centered header in flexbox
+* Tweak: Center menu items in flex when nav aligned center
+* Tweak: Remove float: right from navigation search toggle when centered
+
 = 3.0.0 =
 
 Release date: October 6, 2020
