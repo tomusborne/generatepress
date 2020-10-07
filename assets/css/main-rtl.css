@@ -52,11 +52,6 @@ th {
 	float: left !important;
 }
 
-.rtl .main-navigation ul ul,
-.rtl .secondary-navigation ul ul {
-	right: -99999px;
-}
-
 .main-navigation ul ul {
 	text-align: right;
 }
