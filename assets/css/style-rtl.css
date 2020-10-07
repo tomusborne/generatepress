@@ -8,10 +8,6 @@ th {
 	float: left !important;
 }
 
-.rtl .main-navigation ul ul, .rtl .secondary-navigation ul ul {
-	right: -999999px;
-}
-
 .main-navigation li {
 	float: right;
 }
