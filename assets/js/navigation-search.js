@@ -32,8 +32,10 @@
 
 					forms[i].classList.remove( 'nav-search-active' );
 
-					if ( nav ) {
-						nav.classList.remove( 'has-active-search' );
+					var activeSearch = document.querySelector( '.has-active-search' );;
+
+					if ( activeSearch ) {
+						activeSearch.classList.remove( 'has-active-search' );
 					}
 
 					for ( var t = 0; t < toggles.length; t++ ) {
