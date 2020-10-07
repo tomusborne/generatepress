@@ -27,6 +27,11 @@ th {
 .nav-float-right {
 	#site-navigation {
 		order: -5;
+
+		&.toggled,
+		&.has-active-search {
+			order: 10;
+		}
 	}
 
 	.header-widget {
@@ -39,9 +44,15 @@ th {
 		order: 5;
 	}
 
-	.header-widget {
+	.header-widget,
+	.mobile-menu-control-wrapper {
 		order: 10;
 	}
+}
+
+.mobile-menu-control-wrapper {
+	margin-right: auto;
+	margin-left: 0;
 }
 
 .nav-align-right .inside-navigation {
