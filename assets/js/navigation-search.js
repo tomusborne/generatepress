@@ -96,16 +96,7 @@
 							}
 						};
 
-						if ( ! document.body.classList.contains( 'nav-aligned-center' ) ) {
-							toggles[t].classList.add( 'close-search' );
-						} else {
-							toggles[t].classList.add( 'close-search' );
-							if ( document.body.classList.contains ( 'rtl' ) ) {
-								toggles[t].style.float = 'left';
-							} else {
-								toggles[t].style.float = 'right';
-							}
-						}
+						toggles[t].classList.add( 'close-search' );
 					}
 				}
 			}
