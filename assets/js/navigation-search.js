@@ -27,7 +27,7 @@
 			for ( var i = 0; i < forms.length; i++ ) {
 				if ( forms[i].classList.contains( 'nav-search-active' ) ) {
 					if ( forms[i].closest( '#sticky-placeholder' ) ) {
-						break;
+						continue;
 					}
 
 					forms[i].classList.remove( 'nav-search-active' );
@@ -54,7 +54,7 @@
 					document.activeElement.blur();
 				} else {
 					if ( forms[i].closest( '#sticky-placeholder' ) ) {
-						break;
+						continue;
 					}
 
 					var openedMobileMenu = forms[i].closest( '.toggled' );
