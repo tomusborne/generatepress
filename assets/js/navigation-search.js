@@ -42,7 +42,6 @@
 						toggles[t].classList.remove( 'close-search' );
 						toggles[t].classList.remove( 'active' );
 						toggles[t].querySelector( 'a' ).setAttribute( 'aria-label', generatepressNavSearch.open );
-						toggles[t].style.float = '';
 
 						// Allow tabindex on items again.
 						for ( var f = 0; f < focusableEls.length; f++ ) {
