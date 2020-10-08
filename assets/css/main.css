@@ -620,6 +620,10 @@ a:focus {
 	justify-content: center;
 }
 
+.nav-align-center .main-nav > ul {
+	justify-content: center;
+}
+
 .nav-align-right .inside-navigation {
 	justify-content: flex-end;
 }
@@ -840,6 +844,7 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 .header-aligned-center:not([class*="nav-float-"]) .inside-header {
 	justify-content: center;
 	flex-direction: column;
+	text-align: center;
 }
 
 .header-aligned-center:not([class*="nav-float-"]) .header-widget {
@@ -1164,7 +1169,6 @@ object {
 --------------------------------------------------------------*/
 .site-content {
 	display: flex;
-	justify-content: center;
 }
 
 .grid-container {

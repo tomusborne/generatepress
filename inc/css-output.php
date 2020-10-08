@@ -818,7 +818,7 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->set_selector( '.main-navigation ul ul' );
 		$css->add_property( 'width', absint( $settings['sub_menu_width'] ), absint( $defaults['sub_menu_width'] ), 'px' );
 
-		$css->set_selector( '.navigation-search input' );
+		$css->set_selector( '.navigation-search input[type="search"]' );
 		$css->add_property( 'height', absint( $settings['menu_item_height'] ), absint( $defaults['menu_item_height'] ), 'px' );
 
 		$css->set_selector( '.rtl .menu-item-has-children .dropdown-menu-toggle' );
@@ -1106,6 +1106,11 @@ function generate_no_cache_dynamic_css() {
 
 		$css->set_selector( '.nav-align-right .inside-navigation,.nav-align-center .inside-navigation' );
 		$css->add_property( 'justify-content', 'space-between' );
+
+		if ( is_rtl() ) {
+			$css->set_selector( '.rtl .nav-align-right .inside-navigation,.rtl .nav-align-center .inside-navigation, .rtl .nav-align-left .inside-navigation' );
+			$css->add_property( 'justify-content', 'space-between' );
+		}
 
 		if ( generate_has_inline_mobile_toggle() ) {
 			$css->set_selector( '.has-inline-mobile-toggle .mobile-menu-control-wrapper' );

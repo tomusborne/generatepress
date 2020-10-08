@@ -6,7 +6,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options
 Requires at least: 4.5
 Tested up to: 5.5
-Stable tag: 3.0.0
+Stable tag: 3.0.1
 
 GeneratePress is a lightweight WordPress theme built with a focus on speed and usability.
 
@@ -94,6 +94,22 @@ By Brian Grinstead, http://briangrinstead.com
 MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
 
 == Changelog ==
+
+= 3.0.1 =
+
+Release date: October 8, 2020
+
+* Fix: Custom navigation search height
+* Fix: Missing sub-menu on RTL sites with sub-menu set to open right
+* Fix: RTL order of default flexbox mobile menu
+* Fix: RTL sub-menu text alignment
+* Fix: Elementor full width template when using flexbox
+* Fix: editor-style.css location
+* Fix: Navigation search when sticky navigation is activated
+* Tweak: Add text-align: center; to centered header in flexbox
+* Tweak: Center menu items in flex when nav aligned center
+* Tweak: Remove float: right from navigation search toggle when centered
+* Tweak: Remove justify-content: center from .site-content
 
 = 3.0.0 =
 

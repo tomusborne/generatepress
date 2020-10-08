@@ -28,6 +28,10 @@ th {
 	order: -5;
 }
 
+.nav-float-right #site-navigation.toggled, .nav-float-right #site-navigation.has-active-search {
+	order: 10;
+}
+
 .nav-float-right .header-widget {
 	order: -10;
 }
@@ -36,8 +40,14 @@ th {
 	order: 5;
 }
 
-.nav-float-left .header-widget {
+.nav-float-left .header-widget,
+.nav-float-left .mobile-menu-control-wrapper {
 	order: 10;
+}
+
+.mobile-menu-control-wrapper {
+	margin-right: auto;
+	margin-left: 0;
 }
 
 .nav-align-right .inside-navigation {
@@ -50,11 +60,6 @@ th {
 
 .menu-item-has-children .dropdown-menu-toggle {
 	float: left !important;
-}
-
-.rtl .main-navigation ul ul,
-.rtl .secondary-navigation ul ul {
-	right: -99999px;
 }
 
 .main-navigation ul ul {

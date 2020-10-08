@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Set our theme version.
-define( 'GENERATE_VERSION', '3.0.0' );
+define( 'GENERATE_VERSION', '3.0.1' );
 
 if ( ! function_exists( 'generate_setup' ) ) {
 	add_action( 'after_setup_theme', 'generate_setup' );
@@ -63,7 +63,7 @@ if ( ! function_exists( 'generate_setup' ) ) {
 		}
 
 		// This theme styles the visual editor to resemble the theme style.
-		add_editor_style( 'css/admin/editor-style.css' );
+		add_editor_style( 'assets/css/admin/editor-style.css' );
 	}
 }
 
