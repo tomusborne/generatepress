@@ -1169,7 +1169,6 @@ object {
 --------------------------------------------------------------*/
 .site-content {
 	display: flex;
-	justify-content: center;
 }
 
 .grid-container {
