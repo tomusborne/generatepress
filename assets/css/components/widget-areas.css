@@ -210,6 +210,9 @@ div.top-bar .widget {
 	.top-bar .widget_nav_menu li {
 		padding: 5px 0;
 	}
+	.top-bar-align-center {
+		text-align: center;
+	}
 	/*--------------------------------------------------------------
 	## Footer
 	--------------------------------------------------------------*/
