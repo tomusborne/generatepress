@@ -248,7 +248,10 @@ if ( ! function_exists( 'generate_get_navigation_location' ) ) {
  * @since 2.3
  */
 function generate_has_logo_site_branding() {
-	if ( get_theme_mod( 'custom_logo' ) && ( ! generate_get_option( 'hide_title' ) || ! generate_get_option( 'hide_tagline' ) ) ) {
+	$has_site_title = ! generate_get_option( 'hide_title' ) && get_bloginfo( 'title' );
+	$has_site_tagline = ! generate_get_option( 'hide_tagline' ) && get_bloginfo( 'description' );
+
+	if ( get_theme_mod( 'custom_logo' ) && ( $has_site_title || $has_site_tagline ) ) {
 		return true;
 	}
 
