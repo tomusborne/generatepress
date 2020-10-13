@@ -17,12 +17,6 @@
 	cursor: pointer;
 }
 
-.main-navigation .mobile-bar-items a {
-	padding-left: 20px;
-	padding-right: 20px;
-	line-height: 60px;
-}
-
 button.menu-toggle {
 	background-color: transparent;
 	width: 100%;
