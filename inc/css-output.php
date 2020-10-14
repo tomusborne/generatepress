@@ -568,7 +568,7 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->set_selector( '.sidebar .widget, .footer-widgets .widget' );
 
 		if ( ! empty( $settings['widget_content_font_size'] ) ) {
-			$css->add_property( 'font-size', absint( $settings['widget_content_font_size'] ), $defaults['widget_content_font_size'], 'px' );
+			$css->add_property( 'font-size', absint( $settings['widget_content_font_size'] ), false, 'px' );
 		} else {
 			$css->add_property( 'font-size', 'inherit' );
 		}

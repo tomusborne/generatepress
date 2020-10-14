@@ -1164,6 +1164,12 @@ a:focus {
 	float: right;
 }
 
+.main-navigation .mobile-bar-items a {
+	padding-left: 20px;
+	padding-right: 20px;
+	line-height: 60px;
+}
+
 /*--------------------------------------------------------------
 ## Dropdown Menus
 --------------------------------------------------------------*/
@@ -1446,7 +1452,7 @@ footer.entry-meta .posted-on {
 .page-content:not(:first-child),
 .entry-content:not(:first-child),
 .entry-summary:not(:first-child) {
-	margin: 2em 0 0;
+	margin-top: 2em;
 }
 
 .page-links {
@@ -2313,12 +2319,6 @@ nav.toggled .sfHover > a > .dropdown-menu-toggle .gp-icon.icon-arrow-right svg {
 	text-transform: none;
 	font-size: 15px;
 	cursor: pointer;
-}
-
-.main-navigation .mobile-bar-items a {
-	padding-left: 20px;
-	padding-right: 20px;
-	line-height: 60px;
 }
 
 button.menu-toggle {

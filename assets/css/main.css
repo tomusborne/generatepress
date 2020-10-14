@@ -906,7 +906,7 @@ footer.entry-meta .posted-on {
 .page-content:not(:first-child),
 .entry-content:not(:first-child),
 .entry-summary:not(:first-child) {
-	margin: 2em 0 0;
+	margin-top: 2em;
 }
 
 .page-links {
