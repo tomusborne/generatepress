@@ -75,21 +75,6 @@ progress {
 	vertical-align: baseline;
 }
 
-/**
- * Add the correct display in IE 10+.
- */
-[hidden],
-template {
-	display: none;
-}
-
-/**
- * Remove the gray background on active links in IE 10.
- */
-a {
-	background-color: transparent;
-}
-
 /* Inherit box-sizing to more easily change it's value on a component level.
 @link http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
 html {
@@ -100,6 +85,51 @@ html {
 *::before,
 *::after {
 	box-sizing: inherit;
+}
+
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+*/
+button,
+input,
+optgroup,
+select,
+textarea {
+	font-family: inherit;
+	font-size: 100%;
+	margin: 0;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+[type="search"] {
+	-webkit-appearance: textfield;
+	outline-offset: -2px;
+}
+
+/**
+  * Remove the inner padding in Chrome and Safari on macOS.
+  */
+[type="search"]::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+::-moz-focus-inner {
+	border-style: none;
+	padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+:-moz-focusring {
+	outline: 1px dotted ButtonText;
 }
 
 /*--------------------------------------------------------------
@@ -204,7 +234,7 @@ fieldset legend {
 }
 
 h1 {
-	font-size: 40px;
+	font-size: 42px;
 	margin-bottom: 20px;
 	line-height: 1.2em;
 	font-weight: normal;
@@ -212,7 +242,7 @@ h1 {
 }
 
 h2 {
-	font-size: 33px;
+	font-size: 35px;
 	margin-bottom: 20px;
 	line-height: 1.2em;
 	font-weight: normal;
@@ -220,7 +250,7 @@ h2 {
 }
 
 h3 {
-	font-size: 28px;
+	font-size: 29px;
 	margin-bottom: 20px;
 	line-height: 1.2em;
 	font-weight: normal;
@@ -228,11 +258,11 @@ h3 {
 }
 
 h4 {
-	font-size: 23px;
+	font-size: 24px;
 }
 
 h5 {
-	font-size: 19px;
+	font-size: 20px;
 }
 
 h4,
@@ -351,57 +381,16 @@ img {
 # Forms
 --------------------------------------------------------------*/
 button,
-input,
-select,
-textarea {
-	font-size: 100%;
-	/* Corrects font size not being inherited in all browsers */
-	margin: 0;
-	/* Addresses margins set differently in IE6/7, F3/4, S5, Chrome */
-	vertical-align: baseline;
-	/* Improves appearance and consistency in all browsers */
-	*vertical-align: middle;
-	/* Improves appearance and consistency in all browsers */
-}
-
-button,
-html input[type="button"],
+input[type="button"],
 input[type="reset"],
 input[type="submit"] {
+	background: #55555e;
+	color: #fff;
 	border: 1px solid transparent;
-	background: #666;
 	cursor: pointer;
-	/* Improves usability and consistency of cursor style between image-type 'input' and others */
 	-webkit-appearance: button;
 	/* Corrects inability to style clickable 'input' types in iOS */
 	padding: 10px 20px;
-	color: #FFF;
-}
-
-input[type="checkbox"],
-input[type="radio"] {
-	box-sizing: border-box;
-	/* Addresses box sizing set to content-box in IE8/9 */
-	padding: 0;
-	/* Addresses excess padding in IE8/9 */
-}
-
-input[type="search"] {
-	-webkit-appearance: textfield;
-	/* Addresses appearance set to searchfield in S5, Chrome */
-	box-sizing: content-box;
-}
-
-input[type="search"]::-webkit-search-decoration {
-	/* Corrects inner padding displayed oddly in S5, Chrome on OSX */
-	-webkit-appearance: none;
-}
-
-button::-moz-focus-inner,
-input::-moz-focus-inner {
-	/* Corrects inner padding and border displayed oddly in FF3/4 www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/ */
-	border: 0;
-	padding: 0;
 }
 
 input[type="text"],
@@ -413,26 +402,14 @@ input[type="tel"],
 input[type="number"],
 textarea,
 select {
-	background: #FAFAFA;
-	color: #666;
-	border: 1px solid #ccc;
-	border-radius: 0px;
+	border: 1px solid;
+	border-radius: 0;
 	padding: 10px 15px;
-	box-sizing: border-box;
 	max-width: 100%;
 }
 
 textarea {
-	overflow: auto;
-	/* Removes default vertical scrollbar in IE6/7/8/9 */
-	vertical-align: top;
-	/* Improves readability and alignment in all browsers */
 	width: 100%;
-}
-
-input[type="file"] {
-	max-width: 100%;
-	box-sizing: border-box;
 }
 
 /*--------------------------------------------------------------
@@ -501,32 +478,44 @@ input {
 /*--------------------------------------------------------------
 # Accessibility
 --------------------------------------------------------------*/
-.screen-reader-text,
-.screen-reader-text span,
-.screen-reader-shortcut {
-	position: absolute !important;
-	clip: rect(0, 0, 0, 0);
-	height: 1px;
-	width: 1px;
+.screen-reader-text {
 	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	-webkit-clip-path: inset(50%);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
 	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important;
 }
 
-.screen-reader-text:focus,
-.screen-reader-shortcut:focus {
-	clip: auto !important;
-	height: auto;
-	width: auto;
-	display: block;
-	font-size: 1em;
-	font-weight: bold;
-	padding: 15px 23px 14px;
-	color: #333;
-	background: #fff;
-	z-index: 100000;
-	/* Above WP toolbar. */
-	text-decoration: none;
+.screen-reader-text:focus {
+	background-color: #f1f1f1;
+	border-radius: 3px;
 	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	clip: auto !important;
+	-webkit-clip-path: none;
+	clip-path: none;
+	color: #21759b;
+	display: block;
+	font-size: 0.875rem;
+	font-weight: 700;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000;
+}
+
+/* Do not show the outline on the skip link target. */
+#primary[tabindex="-1"]:focus {
+	outline: 0;
 }
 
 /*--------------------------------------------------------------
@@ -621,6 +610,10 @@ input {
 }
 
 .nav-align-center .inside-navigation {
+	justify-content: center;
+}
+
+.nav-align-center .main-nav > ul {
 	justify-content: center;
 }
 
@@ -844,6 +837,7 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 .header-aligned-center:not([class*="nav-float-"]) .inside-header {
 	justify-content: center;
 	flex-direction: column;
+	text-align: center;
 }
 
 .header-aligned-center:not([class*="nav-float-"]) .header-widget {
@@ -869,6 +863,7 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 	display: inline-flex;
 	align-items: center;
 	text-align: left;
+	flex-shrink: 0;
 }
 
 .site-branding-container .site-logo {
@@ -904,7 +899,7 @@ footer.entry-meta .posted-on {
 .page-content:not(:first-child),
 .entry-content:not(:first-child),
 .entry-summary:not(:first-child) {
-	margin: 2em 0 0;
+	margin-top: 2em;
 }
 
 .page-links {
@@ -942,10 +937,6 @@ footer.entry-meta .posted-on {
 
 .entry-title {
 	margin-bottom: 0;
-}
-
-.page-header .page-title {
-	font-size: 1.5em;
 }
 
 .author .page-header .page-title {
@@ -1138,6 +1129,10 @@ object {
 	display: flex;
 }
 
+.widget .search-form button.search-submit {
+	font-size: 15px;
+}
+
 .footer-widgets .widget {
 	margin-bottom: 30px;
 }
@@ -1167,10 +1162,6 @@ object {
 --------------------------------------------------------------*/
 .site-content {
 	display: flex;
-}
-
-.site-content .content-area {
-	flex: 1;
 }
 
 .grid-container {
@@ -1286,8 +1277,7 @@ object {
 	padding: 0;
 }
 
-.full-width-content .entry-content .alignwide,
-.full-width-content .entry-content .alignfull {
+.full-width-content .entry-content .alignwide {
 	margin-left: 0;
 	width: auto;
 	max-width: unset;
@@ -1326,10 +1316,6 @@ object {
 .both-right .is-right-sidebar,
 .both-sidebars .is-right-sidebar {
 	order: 10;
-}
-
-.sidebar {
-	min-width: 275px;
 }
 
 /*--------------------------------------------------------------
@@ -1588,6 +1574,9 @@ nav.toggled ul ul.sub-menu {
 	--------------------------------------------------------------*/
 	.site-content {
 		flex-direction: column;
+	}
+	.container .site-content .content-area {
+		width: auto;
 	}
 	.is-left-sidebar.sidebar,
 	.is-right-sidebar.sidebar {

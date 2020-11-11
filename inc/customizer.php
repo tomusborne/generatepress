@@ -194,8 +194,8 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					),
 					'choices' => array(
 						'desktop' => array(
-							'min' => 30,
-							'max' => 800,
+							'min' => 20,
+							'max' => 1200,
 							'step' => 10,
 							'edit' => true,
 							'unit' => 'px',
@@ -1393,7 +1393,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'label' => __( 'Content Type', 'generatepress' ),
 				'section' => 'generate_blog_section',
 				'choices' => array(
-					'full' => __( 'Full', 'generatepress' ),
+					'full' => __( 'Full Content', 'generatepress' ),
 					'excerpt' => __( 'Excerpt', 'generatepress' ),
 				),
 				'settings' => 'generate_settings[post_content]',
@@ -1483,11 +1483,11 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					),
 					'description' => sprintf(
 						'<strong>%1$s</strong> %2$s',
-						__( 'Caution:', 'gp-premium' ),
+						__( 'Caution:', 'generatepress' ),
 						sprintf(
 							/* translators: Learn more here */
-							__( 'Switching your structure can change how your website displays. Review your website thoroughly before publishing this change, or use a staging site to review the potential changes. Learn more %s.', 'gp-premium' ),
-							'<a href="https://docs.generatepress.com/article/switching-from-floats-to-flexbox/" target="_blank" rel="noopener noreferrer">' . __( 'here', 'gp-premium' ) . '</a>'
+							__( 'Switching your structure can change how your website displays. Review your website thoroughly before publishing this change, or use a staging site to review the potential changes. Learn more %s.', 'generatepress' ),
+							'<a href="https://docs.generatepress.com/article/switching-from-floats-to-flexbox/" target="_blank" rel="noopener noreferrer">' . __( 'here', 'generatepress' ) . '</a>'
 						)
 					),
 					'settings' => 'generate_settings[structure]',

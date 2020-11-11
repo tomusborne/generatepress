@@ -188,7 +188,7 @@ function generate_do_inline_block_editor_css() {
 	$css->set_selector( 'html body.gutenberg-editor-page .block-editor-block-list__block[data-align="full"]' );
 	$css->add_property( 'max-width', 'none' );
 
-	$css->set_selector( '.edit-post-visual-editor .block-editor-block-list__block[data-align=wide]' );
+	$css->set_selector( '.wp-block[data-align="wide"]' );
 	$css->add_property( 'max-width', absint( $content_width ), false, 'px' );
 
 	if ( apply_filters( 'generate_do_group_inner_container_style', true ) ) {
@@ -199,11 +199,11 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'padding', generate_padding_css( $spacing_settings['content_top'], $spacing_settings['content_right'], $spacing_settings['content_bottom'], $spacing_settings['content_left'] ) );
 	}
 
-	$css->set_selector( '.wp-block-button__link:not(.has-background)' );
+	$css->set_selector( '.editor-styles-wrapper a.button, .wp-block-button__link:not(.has-background)' );
 	$css->add_property( 'color', $color_settings['form_button_text_color'] );
 	$css->add_property( 'background-color', $color_settings['form_button_background_color'] );
 
-	$css->set_selector( '.wp-block-button__link:not(.has-background):active, .wp-block-button__link:not(.has-background):focus, .wp-block-button__link:not(.has-background):hover' );
+	$css->set_selector( '.editor-styles-wrapper a.button:hover, .editor-styles-wrapper a.button:focus, .wp-block-button__link:not(.has-background):active, .wp-block-button__link:not(.has-background):focus, .wp-block-button__link:not(.has-background):hover' );
 	$css->add_property( 'color', $color_settings['form_button_text_color_hover'] );
 	$css->add_property( 'background-color', $color_settings['form_button_background_color_hover'] );
 
@@ -247,6 +247,8 @@ function generate_do_inline_block_editor_css() {
 	$css->add_property( 'text-transform', $font_settings['heading_1_transform'] );
 	$css->add_property( 'font-size', absint( $font_settings['heading_1_font_size'] ), false, 'px' );
 	$css->add_property( 'line-height', floatval( $font_settings['heading_1_line_height'] ), false, 'em' );
+	$css->add_property( 'margin-bottom', floatval( $font_settings['heading_1_margin_bottom'] ), false, 'px' );
+	$css->add_property( 'margin-top', '0' );
 
 	if ( $color_settings['h1_color'] ) {
 		$css->add_property( 'color', $color_settings['h1_color'] );
@@ -267,6 +269,8 @@ function generate_do_inline_block_editor_css() {
 	$css->add_property( 'text-transform', $font_settings['heading_2_transform'] );
 	$css->add_property( 'font-size', absint( $font_settings['heading_2_font_size'] ), false, 'px' );
 	$css->add_property( 'line-height', floatval( $font_settings['heading_2_line_height'] ), false, 'em' );
+	$css->add_property( 'margin-bottom', floatval( $font_settings['heading_2_margin_bottom'] ), false, 'px' );
+	$css->add_property( 'margin-top', '0' );
 
 	if ( $color_settings['h2_color'] ) {
 		$css->add_property( 'color', $color_settings['h2_color'] );
@@ -282,6 +286,8 @@ function generate_do_inline_block_editor_css() {
 	$css->add_property( 'text-transform', $font_settings['heading_3_transform'] );
 	$css->add_property( 'font-size', absint( $font_settings['heading_3_font_size'] ), false, 'px' );
 	$css->add_property( 'line-height', floatval( $font_settings['heading_3_line_height'] ), false, 'em' );
+	$css->add_property( 'margin-bottom', floatval( $font_settings['heading_3_margin_bottom'] ), false, 'px' );
+	$css->add_property( 'margin-top', '0' );
 
 	if ( $color_settings['h3_color'] ) {
 		$css->add_property( 'color', $color_settings['h3_color'] );
@@ -295,6 +301,8 @@ function generate_do_inline_block_editor_css() {
 	$css->add_property( 'font-family', $h4_family );
 	$css->add_property( 'font-weight', $font_settings['heading_4_weight'] );
 	$css->add_property( 'text-transform', $font_settings['heading_4_transform'] );
+	$css->add_property( 'margin-bottom', '20px' );
+	$css->add_property( 'margin-top', '0' );
 
 	if ( '' !== $font_settings['heading_4_font_size'] ) {
 		$css->add_property( 'font-size', absint( $font_settings['heading_4_font_size'] ), false, 'px' );
@@ -318,6 +326,8 @@ function generate_do_inline_block_editor_css() {
 	$css->add_property( 'font-family', $h5_family );
 	$css->add_property( 'font-weight', $font_settings['heading_5_weight'] );
 	$css->add_property( 'text-transform', $font_settings['heading_5_transform'] );
+	$css->add_property( 'margin-bottom', '20px' );
+	$css->add_property( 'margin-top', '0' );
 
 	if ( '' !== $font_settings['heading_5_font_size'] ) {
 		$css->add_property( 'font-size', absint( $font_settings['heading_5_font_size'] ), false, 'px' );
@@ -341,6 +351,8 @@ function generate_do_inline_block_editor_css() {
 	$css->add_property( 'font-family', $h6_family );
 	$css->add_property( 'font-weight', $font_settings['heading_6_weight'] );
 	$css->add_property( 'text-transform', $font_settings['heading_6_transform'] );
+	$css->add_property( 'margin-bottom', '20px' );
+	$css->add_property( 'margin-top', '0' );
 
 	if ( '' !== $font_settings['heading_6_font_size'] ) {
 		$css->add_property( 'font-size', absint( $font_settings['heading_6_font_size'] ), false, 'px' );
@@ -360,7 +372,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', generate_get_option( 'text_color' ) );
 	}
 
-	$css->set_selector( '.block-editor-block-list__layout .wp-block-button .wp-block-button__link' );
+	$css->set_selector( '.editor-styles-wrapper a.button, .block-editor-block-list__layout .wp-block-button .wp-block-button__link' );
 	$css->add_property( 'font-family', $buttons_family );
 	$css->add_property( 'font-weight', $font_settings['buttons_font_weight'] );
 	$css->add_property( 'text-transform', $font_settings['buttons_font_transform'] );

@@ -279,6 +279,25 @@ if ( ! function_exists( 'generate_beaver_builder_css' ) ) {
 	}
 }
 
+add_action( 'wp_enqueue_scripts', 'generate_do_third_party_plugin_css', 50 );
+/**
+ * Add CSS for third-party plugins.
+ *
+ * @since 3.0.1
+ */
+function generate_do_third_party_plugin_css() {
+	$css = new GeneratePress_CSS();
+
+	if ( generate_is_using_flexbox() && class_exists( 'Elementor\Plugin' ) ) {
+		$css->set_selector( '.elementor-template-full-width .site-content' );
+		$css->add_property( 'display', 'block' );
+	}
+
+	if ( $css->css_output() ) {
+		wp_add_inline_style( 'generate-style', $css->css_output() );
+	}
+}
+
 add_action( 'wp_enqueue_scripts', 'generate_do_pro_compatibility', 50 );
 /**
  * Add CSS to ensure compatibility with GP Premium.
@@ -478,7 +497,7 @@ function generate_do_pro_compatibility() {
 		}
 
 		if ( defined( 'GENERATE_SECONDARY_NAV_VERSION' ) ) {
-			if ( generate_is_using_flexbox() ) {
+			if ( generate_is_using_flexbox() && has_nav_menu( 'secondary' ) ) {
 				if ( 'text' === generate_get_option( 'container_alignment' ) && function_exists( 'generate_secondary_nav_get_defaults' ) ) {
 					$secondary_nav_settings = wp_parse_args(
 						get_option( 'generate_secondary_nav_settings', array() ),
@@ -499,7 +518,7 @@ function generate_do_pro_compatibility() {
 			}
 		}
 
-		if ( defined( 'GENERATE_FONT_VERSION' ) && function_exists( 'generate_get_default_fonts' ) ) {
+		if ( generate_is_using_flexbox() && defined( 'GENERATE_FONT_VERSION' ) && function_exists( 'generate_get_default_fonts' ) ) {
 			$font_settings = wp_parse_args(
 				get_option( 'generate_settings', array() ),
 				generate_get_default_fonts()
@@ -726,12 +745,64 @@ function generate_pro_compat_customize_register( $wp_customize ) {
 	}
 
 	if ( version_compare( GP_PREMIUM_VERSION, '1.12.0-alpha.1', '<' ) ) {
-		if ( $wp_customize->get_control( 'generate_spacing_settings[separator]' ) ) {
+		if ( $wp_customize->get_setting( 'generate_spacing_settings[separator]' ) ) {
 			$wp_customize->get_setting( 'generate_spacing_settings[separator]' )->transport = 'refresh';
 		}
 
-		if ( $wp_customize->get_control( 'generate_spacing_settings[separator]' ) ) {
-			$wp_customize->get_setting( 'generate_spacing_settings[separator]' )->transport = 'refresh';
+		if ( $wp_customize->get_setting( 'generate_spacing_settings[right_sidebar_width]' ) ) {
+			$wp_customize->get_setting( 'generate_spacing_settings[right_sidebar_width]' )->transport = 'refresh';
+		}
+
+		if ( $wp_customize->get_setting( 'generate_spacing_settings[left_sidebar_width]' ) ) {
+			$wp_customize->get_setting( 'generate_spacing_settings[left_sidebar_width]' )->transport = 'refresh';
+		}
+
+		if ( $wp_customize->get_setting( 'generate_spacing_settings[footer_widget_container_top]' ) ) {
+			$wp_customize->get_setting( 'generate_spacing_settings[footer_widget_container_top]' )->transport = 'refresh';
+		}
+
+		if ( $wp_customize->get_setting( 'generate_spacing_settings[footer_widget_container_right]' ) ) {
+			$wp_customize->get_setting( 'generate_spacing_settings[footer_widget_container_right]' )->transport = 'refresh';
+		}
+
+		if ( $wp_customize->get_setting( 'generate_spacing_settings[footer_widget_container_bottom]' ) ) {
+			$wp_customize->get_setting( 'generate_spacing_settings[footer_widget_container_bottom]' )->transport = 'refresh';
+		}
+
+		if ( $wp_customize->get_setting( 'generate_spacing_settings[footer_widget_container_left]' ) ) {
+			$wp_customize->get_setting( 'generate_spacing_settings[footer_widget_container_left]' )->transport = 'refresh';
+		}
+
+		if ( $wp_customize->get_setting( 'generate_spacing_settings[mobile_footer_widget_container_top]' ) ) {
+			$wp_customize->get_setting( 'generate_spacing_settings[mobile_footer_widget_container_top]' )->transport = 'refresh';
+		}
+
+		if ( $wp_customize->get_setting( 'generate_spacing_settings[mobile_footer_widget_container_right]' ) ) {
+			$wp_customize->get_setting( 'generate_spacing_settings[mobile_footer_widget_container_right]' )->transport = 'refresh';
+		}
+
+		if ( $wp_customize->get_setting( 'generate_spacing_settings[mobile_footer_widget_container_bottom]' ) ) {
+			$wp_customize->get_setting( 'generate_spacing_settings[mobile_footer_widget_container_bottom]' )->transport = 'refresh';
+		}
+
+		if ( $wp_customize->get_setting( 'generate_spacing_settings[mobile_footer_widget_container_left]' ) ) {
+			$wp_customize->get_setting( 'generate_spacing_settings[mobile_footer_widget_container_left]' )->transport = 'refresh';
+		}
+
+		if ( $wp_customize->get_setting( 'generate_spacing_settings[footer_top]' ) ) {
+			$wp_customize->get_setting( 'generate_spacing_settings[footer_top]' )->transport = 'refresh';
+		}
+
+		if ( $wp_customize->get_setting( 'generate_spacing_settings[footer_right]' ) ) {
+			$wp_customize->get_setting( 'generate_spacing_settings[footer_right]' )->transport = 'refresh';
+		}
+
+		if ( $wp_customize->get_setting( 'generate_spacing_settings[footer_bottom]' ) ) {
+			$wp_customize->get_setting( 'generate_spacing_settings[footer_bottom]' )->transport = 'refresh';
+		}
+
+		if ( $wp_customize->get_setting( 'generate_spacing_settings[footer_left]' ) ) {
+			$wp_customize->get_setting( 'generate_spacing_settings[footer_left]' )->transport = 'refresh';
 		}
 	}
 }

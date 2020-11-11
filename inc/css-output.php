@@ -106,19 +106,8 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$css->add_property( 'width', absint( generate_get_option( 'logo_width' ) ), false, 'px' );
 		}
 
-		if ( generate_is_using_flexbox() ) {
-			$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '30' );
-			$left_sidebar_width = apply_filters( 'generate_left_sidebar_width', '30' );
-
-			$css->set_selector( '.is-right-sidebar' );
-			$css->add_property( 'width', absint( $right_sidebar_width ) . '%' );
-
-			$css->set_selector( '.is-left-sidebar' );
-			$css->add_property( 'width', absint( $left_sidebar_width ) . '%' );
-		}
-
 		if ( generate_get_option( 'back_to_top' ) ) {
-			$css->set_selector( 'a.generate-back-to-top' );
+			$css->set_selector( '.generate-back-to-top' );
 			$css->add_property( 'font-size', '20px' );
 			$css->add_property( 'border-radius', '3px' );
 			$css->add_property( 'position', 'fixed' );
@@ -150,7 +139,7 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$css->add_property( 'visibility', 'visible' );
 			$css->add_property( 'opacity', '1' );
 
-			$css->set_selector( '.navigation-search input' );
+			$css->set_selector( '.navigation-search input[type="search"]' );
 			$css->add_property( 'outline', '0' );
 			$css->add_property( 'border', '0' );
 			$css->add_property( 'vertical-align', 'bottom' );
@@ -590,7 +579,7 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->set_selector( '.sidebar .widget, .footer-widgets .widget' );
 
 		if ( ! empty( $settings['widget_content_font_size'] ) ) {
-			$css->add_property( 'font-size', absint( $settings['widget_content_font_size'] ), $defaults['widget_content_font_size'], 'px' );
+			$css->add_property( 'font-size', absint( $settings['widget_content_font_size'] ), false, 'px' );
 		} else {
 			$css->add_property( 'font-size', 'inherit' );
 		}
@@ -840,7 +829,7 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		$css->set_selector( '.main-navigation ul ul' );
 		$css->add_property( 'width', absint( $settings['sub_menu_width'] ), absint( $defaults['sub_menu_width'] ), 'px' );
 
-		$css->set_selector( '.navigation-search input' );
+		$css->set_selector( '.navigation-search input[type="search"]' );
 		$css->add_property( 'height', absint( $settings['menu_item_height'] ), absint( $defaults['menu_item_height'] ), 'px' );
 
 		$css->set_selector( '.rtl .menu-item-has-children .dropdown-menu-toggle' );
@@ -1084,6 +1073,39 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 function generate_no_cache_dynamic_css() {
 	$css = new GeneratePress_CSS();
 
+	if ( generate_is_using_flexbox() ) {
+		$right_sidebar_width = apply_filters( 'generate_right_sidebar_width', '30' );
+		$left_sidebar_width = apply_filters( 'generate_left_sidebar_width', '30' );
+
+		$css->set_selector( '.is-right-sidebar' );
+		$css->add_property( 'width', absint( $right_sidebar_width ) . '%' );
+
+		$css->set_selector( '.is-left-sidebar' );
+		$css->add_property( 'width', absint( $left_sidebar_width ) . '%' );
+
+		$content_width = 100;
+		$sidebar_layout = generate_get_layout();
+
+		switch ( $sidebar_layout ) {
+			case 'right-sidebar':
+				$content_width = $content_width - absint( $right_sidebar_width );
+				break;
+
+			case 'left-sidebar':
+				$content_width = $content_width - absint( $left_sidebar_width );
+				break;
+
+			case 'both-sidebars':
+			case 'both-right':
+			case 'both-left':
+				$content_width = $content_width - absint( $right_sidebar_width ) - absint( $left_sidebar_width );
+				break;
+		}
+
+		$css->set_selector( '.site-content .content-area' );
+		$css->add_property( 'width', absint( $content_width ) . '%' );
+	}
+
 	$css->start_media_query( generate_get_media_query( 'mobile-menu' ) );
 
 	if ( generate_is_using_flexbox() ) {
@@ -1096,6 +1118,11 @@ function generate_no_cache_dynamic_css() {
 		$css->set_selector( '.nav-align-right .inside-navigation,.nav-align-center .inside-navigation' );
 		$css->add_property( 'justify-content', 'space-between' );
 
+		if ( is_rtl() ) {
+			$css->set_selector( '.rtl .nav-align-right .inside-navigation,.rtl .nav-align-center .inside-navigation, .rtl .nav-align-left .inside-navigation' );
+			$css->add_property( 'justify-content', 'space-between' );
+		}
+
 		if ( generate_has_inline_mobile_toggle() ) {
 			$css->set_selector( '.has-inline-mobile-toggle .mobile-menu-control-wrapper' );
 			$css->add_property( 'display', 'flex' );
@@ -1105,9 +1132,6 @@ function generate_no_cache_dynamic_css() {
 			$css->add_property( 'flex-direction', 'row' );
 			$css->add_property( 'text-align', 'left' );
 			$css->add_property( 'flex-wrap', 'wrap' );
-
-			$css->set_selector( '.has-inline-mobile-toggle .site-logo + .site-branding' );
-			$css->add_property( 'margin', '0 0 0 20px' );
 
 			$css->set_selector( '.has-inline-mobile-toggle .header-widget,.has-inline-mobile-toggle #site-navigation' );
 			$css->add_property( 'flex-basis', '100%' );

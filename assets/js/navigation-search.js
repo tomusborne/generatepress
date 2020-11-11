@@ -26,17 +26,22 @@
 
 			for ( var i = 0; i < forms.length; i++ ) {
 				if ( forms[i].classList.contains( 'nav-search-active' ) ) {
+					if ( forms[i].closest( '#sticky-placeholder' ) ) {
+						continue;
+					}
+
 					forms[i].classList.remove( 'nav-search-active' );
 
-					if ( nav ) {
-						nav.classList.remove( 'has-active-search' );
+					var activeSearch = document.querySelector( '.has-active-search' );;
+
+					if ( activeSearch ) {
+						activeSearch.classList.remove( 'has-active-search' );
 					}
 
 					for ( var t = 0; t < toggles.length; t++ ) {
 						toggles[t].classList.remove( 'close-search' );
 						toggles[t].classList.remove( 'active' );
 						toggles[t].querySelector( 'a' ).setAttribute( 'aria-label', generatepressNavSearch.open );
-						toggles[t].style.float = '';
 
 						// Allow tabindex on items again.
 						for ( var f = 0; f < focusableEls.length; f++ ) {
@@ -48,6 +53,10 @@
 
 					document.activeElement.blur();
 				} else {
+					if ( forms[i].closest( '#sticky-placeholder' ) ) {
+						continue;
+					}
+
 					var openedMobileMenu = forms[i].closest( '.toggled' );
 
 					if ( openedMobileMenu ) {
@@ -60,7 +69,20 @@
 					}
 
 					forms[i].classList.add( 'nav-search-active' );
-					forms[i].querySelector( '.search-field' ).focus();
+
+					var container = this.closest( 'nav' );
+
+					if ( container ) {
+						if ( container.classList.contains( 'mobile-menu-control-wrapper' ) ) {
+							container = nav;
+						}
+
+						var searchField = container.querySelector( '.search-field' );
+
+						if ( searchField ) {
+							searchField.focus();
+						}
+					}
 
 					for ( var t = 0; t < toggles.length; t++ ) {
 						toggles[t].classList.add( 'active' );
@@ -73,20 +95,7 @@
 							}
 						};
 
-						if ( ! document.body.classList.contains( 'nav-aligned-center' ) ) {
-							toggles[t].classList.add( 'close-search' );
-						} else {
-							toggles[t].style.opacity = 0;
-							setTimeout( function() {
-								toggles[t].classList.add( 'close-search' );
-								toggles[t].style.opacity = 1;
-								if ( document.body.classList.contains ( 'rtl' ) ) {
-									toggles[t].style.float = 'left';
-								} else {
-									toggles[t].style.float = 'right';
-								}
-							}, 250 );
-						}
+						toggles[t].classList.add( 'close-search' );
 					}
 				}
 			}

@@ -6,7 +6,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options
 Requires at least: 4.5
 Tested up to: 5.5
-Stable tag: 2.4.2
+Stable tag: 3.0.2
 
 GeneratePress is a lightweight WordPress theme built with a focus on speed and usability.
 
@@ -95,9 +95,35 @@ MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
 
 == Changelog ==
 
+= 3.0.2 =
+
+Release date: October 14, 2020
+
+* Fix: Missing logo when site title/tagline are empty but not disabled
+* Fix: Widget content font-size value missing when using default
+* Fix: Centered top bar text alignment on mobile
+* Fix: Custom mobile-bar-items sizing not working on mobile
+* Tweak: Only set margin-top of .entry-content
+
+= 3.0.1 =
+
+Release date: October 8, 2020
+
+* Fix: Custom navigation search height
+* Fix: Missing sub-menu on RTL sites with sub-menu set to open right
+* Fix: RTL order of default flexbox mobile menu
+* Fix: RTL sub-menu text alignment
+* Fix: Elementor full width template when using flexbox
+* Fix: editor-style.css location
+* Fix: Navigation search when sticky navigation is activated
+* Tweak: Add text-align: center; to centered header in flexbox
+* Tweak: Center menu items in flex when nav aligned center
+* Tweak: Remove float: right from navigation search toggle when centered
+* Tweak: Remove justify-content: center from .site-content
+
 = 3.0.0 =
 
-Release date: TBA
+Release date: October 6, 2020
 
 * New: Flexbox layout option - see blog post for more info
 * New: Default mobile header when using aligned nav + flexbox layout
@@ -127,13 +153,19 @@ Release date: TBA
 * New: generate_comments_title_output filter
 * New: generate_get_the_title_parameters filter
 * New: generate_has_default_loop filter
+* New: generate_localize_js_args filter
 * New: is-left-sidebar and is-right-sidebar classes added to sidebars
+* New: Add aria-label to dropdown menu arrows on mobile
+* New: Hide pagination arrows from screen readers
+* New: Prepend pagination numbers with "Page" for screen readers
 * Fix: Close other sub-menus when opening a new one on touch devices
 * Fix: Footer bar menu spacing on mobile
 * Fix: Text aligned container width preview in Customizer when using full-width-content
 * Fix: Remove disable content title toggle in editor if it doesn't apply to front-end
 * Fix: One container margin based on default content padding
 * Fix: Nav aligned left when using RTL languages
+* Fix: Wide block alignment in the editor
+* Tweak: Update screen-reader-text CSS
 * Tweak: Remove all :visited references from dynamic CSS
 * Tweak: Make sub-menu dropdown box-shadow harder
 * Tweak: Remove content margin-top if it's the first child in parent
@@ -175,7 +207,6 @@ Release date: TBA
 * Tweak: Close other sub-menus when another is opened
 * Tweak: Inherit tagline/main nav/widget title/widget content/site footer font size if not set
 * Tweak: Show name/email asterisk only if fields are required
-* Tweak: Remove padding-bottom from single posts when using one container
 * Tweak: Only remove margin-bottom from last element on page if it's a paragraph
 * Tweak: Remove .wp-smiley CSS
 * Tweak: Add single post navigation to generate_footer_entry_items filter
@@ -196,10 +227,15 @@ Release date: TBA
 * Tweak: Prevent font-size values from being set to 0
 * Tweak: Replace deprecate .load() with on('load') in block-editor.js
 * Tweak: Change navigation search line-height to 1
-* Tweak: Reduce font-size of archive page-header heading
 * Tweak: Reduce size of author archive avatar
 * Tweak: Add padding-left to cancel comment reply link
 * Tweak: Update navigation color and header presets
+* Tweak: Add [type="search"] to .navigation-search input CSS selector
+* Tweak: Better style GP core button in block editor
+* Tweak: Improve comment cookie consent display across browsers
+* Tweak: Add is-logo-image class to site logo
+* Tweak: Remove type attribute from scripts and styles
+* Tweak: Add margins to headings in the editor
 * Template change: Removed generate_do_microdata() from sidebar.php and sidebar-left.php
 * Template changes: Added generate_do_template_part() to all templates with a loop
 

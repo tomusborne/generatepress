@@ -27,6 +27,11 @@ th {
 .nav-float-right {
 	#site-navigation {
 		order: -5;
+
+		&.toggled,
+		&.has-active-search {
+			order: 10;
+		}
 	}
 
 	.header-widget {
@@ -39,9 +44,15 @@ th {
 		order: 5;
 	}
 
-	.header-widget {
+	.header-widget,
+	.mobile-menu-control-wrapper {
 		order: 10;
 	}
+}
+
+.mobile-menu-control-wrapper {
+	margin-right: auto;
+	margin-left: 0;
 }
 
 .nav-align-right .inside-navigation {
@@ -54,11 +65,6 @@ th {
 
 .menu-item-has-children .dropdown-menu-toggle {
 	float: left !important;
-}
-
-.rtl .main-navigation ul ul,
-.rtl .secondary-navigation ul ul {
-    right: -99999px;
 }
 
 .main-navigation ul ul {

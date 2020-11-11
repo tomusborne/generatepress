@@ -263,7 +263,7 @@ fieldset legend {
 }
 
 h1 {
-	font-size: 40px;
+	font-size: 42px;
 	margin-bottom: 20px;
 	line-height: 1.2em;
 	font-weight: normal;
@@ -271,7 +271,7 @@ h1 {
 }
 
 h2 {
-	font-size: 33px;
+	font-size: 35px;
 	margin-bottom: 20px;
 	line-height: 1.2em;
 	font-weight: normal;
@@ -279,7 +279,7 @@ h2 {
 }
 
 h3 {
-	font-size: 28px;
+	font-size: 29px;
 	margin-bottom: 20px;
 	line-height: 1.2em;
 	font-weight: normal;
@@ -287,11 +287,11 @@ h3 {
 }
 
 h4 {
-	font-size: 23px;
+	font-size: 24px;
 }
 
 h5 {
-	font-size: 19px;
+	font-size: 20px;
 }
 
 h4,
@@ -428,7 +428,7 @@ html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
 	border: 1px solid transparent;
-	background: #666;
+	background: #55555e;
 	cursor: pointer;
 	/* Improves usability and consistency of cursor style between image-type 'input' and others */
 	-webkit-appearance: button;
@@ -560,32 +560,44 @@ input {
 /*--------------------------------------------------------------
 # Accessibility
 --------------------------------------------------------------*/
-.screen-reader-text,
-.screen-reader-text span,
-.screen-reader-shortcut {
-	position: absolute !important;
-	clip: rect(0, 0, 0, 0);
-	height: 1px;
-	width: 1px;
+.screen-reader-text {
 	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	-webkit-clip-path: inset(50%);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
 	overflow: hidden;
+	padding: 0;
+	position: absolute !important;
+	width: 1px;
+	word-wrap: normal !important;
 }
 
-.screen-reader-text:focus,
-.screen-reader-shortcut:focus {
-	clip: auto !important;
-	height: auto;
-	width: auto;
-	display: block;
-	font-size: 1em;
-	font-weight: bold;
-	padding: 15px 23px 14px;
-	color: #333;
-	background: #fff;
-	z-index: 100000;
-	/* Above WP toolbar. */
-	text-decoration: none;
+.screen-reader-text:focus {
+	background-color: #f1f1f1;
+	border-radius: 3px;
 	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	clip: auto !important;
+	-webkit-clip-path: none;
+	clip-path: none;
+	color: #21759b;
+	display: block;
+	font-size: 0.875rem;
+	font-weight: 700;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000;
+}
+
+/* Do not show the outline on the skip link target. */
+#primary[tabindex="-1"]:focus {
+	outline: 0;
 }
 
 /*--------------------------------------------------------------
@@ -689,6 +701,12 @@ input {
 
 .main-navigation li.search-item {
 	float: right;
+}
+
+.main-navigation .mobile-bar-items a {
+	padding-left: 20px;
+	padding-right: 20px;
+	line-height: 60px;
 }
 
 /*--------------------------------------------------------------
@@ -973,7 +991,7 @@ footer.entry-meta .posted-on {
 .page-content:not(:first-child),
 .entry-content:not(:first-child),
 .entry-summary:not(:first-child) {
-	margin: 2em 0 0;
+	margin-top: 2em;
 }
 
 .page-links {
@@ -1011,10 +1029,6 @@ footer.entry-meta .posted-on {
 
 .entry-title {
 	margin-bottom: 0;
-}
-
-.page-header .page-title {
-	font-size: 1.5em;
 }
 
 .author .page-header .page-title {
@@ -1277,8 +1291,14 @@ ol.comment-list {
 	margin-bottom: 1.5em;
 }
 
-#wp-comment-cookies-consent {
-	margin-right: 7px;
+.comment-form-cookies-consent {
+	display: flex;
+	align-items: center;
+}
+
+.comment-form-cookies-consent input {
+	margin-right: 0.5em;
+	margin-bottom: 0;
 }
 
 .one-container .comments-area {
@@ -1410,7 +1430,7 @@ ol.comment-list {
 	margin-left: 20px;
 }
 
-.one-container:not(.page):not(.single) .inside-article {
+.one-container:not(.page) .inside-article {
 	padding: 0 0 30px 0;
 }
 
@@ -1513,8 +1533,7 @@ ol.comment-list {
 	padding: 0;
 }
 
-.full-width-content .entry-content .alignwide,
-.full-width-content .entry-content .alignfull {
+.full-width-content .entry-content .alignwide {
 	margin-left: 0;
 	width: auto;
 	max-width: unset;

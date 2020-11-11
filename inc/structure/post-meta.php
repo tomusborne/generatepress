@@ -95,8 +95,26 @@ if ( ! function_exists( 'generate_content_nav' ) ) {
 					the_posts_pagination(
 						array(
 							'mid_size' => apply_filters( 'generate_pagination_mid_size', 1 ),
-							'prev_text' => apply_filters( 'generate_previous_link_text', __( '&larr; Previous', 'generatepress' ) ),
-							'next_text' => apply_filters( 'generate_next_link_text', __( 'Next &rarr;', 'generatepress' ) ),
+							'prev_text' => apply_filters(
+								'generate_previous_link_text',
+								sprintf(
+									/* translators: left arrow */
+									__( '%s Previous', 'generatepress' ),
+									'<span aria-hidden="true">&larr;</span>'
+								)
+							),
+							'next_text' => apply_filters(
+								'generate_next_link_text',
+								sprintf(
+									/* translators: right arrow */
+									__( 'Next %s', 'generatepress' ),
+									'<span aria-hidden="true">&rarr;</span>'
+								)
+							),
+							'before_page_number' => sprintf(
+								'<span class="screen-reader-text">%s</span>',
+								_x( 'Page', 'prepends the pagination page number for screen readers', 'generatepress' )
+							),
 						)
 					);
 				}
@@ -262,7 +280,7 @@ function generate_do_post_meta_item( $item ) {
 		}
 	}
 
-	if ( 'post-navigation' === $item ) {
+	if ( 'post-navigation' === $item && is_single() ) {
 		generate_content_nav( 'nav-below' );
 	}
 
@@ -329,7 +347,7 @@ function generate_disable_post_meta_items( $items ) {
 		}
 
 		// phpcs:ignore -- Hook name is coming from a variable.
-		if ( ! apply_filters( $disable_filter_names[ $item ], $default_display ) ) {
+		if ( isset( $disable_filter_names[ $item ] ) && ! apply_filters( $disable_filter_names[ $item ], $default_display ) ) {
 			$items = array_diff( $items, array( $item ) );
 		}
 	}
@@ -351,6 +369,7 @@ function generate_get_header_entry_meta_items() {
 		)
 	);
 
+	// Disable post meta items based on their individual filters.
 	$items = generate_disable_post_meta_items( $items );
 
 	return $items;
@@ -362,18 +381,26 @@ function generate_get_header_entry_meta_items() {
  * @since 3.0.0
  */
 function generate_get_footer_entry_meta_items() {
-	$items = array(
-		'categories',
-		'tags',
-		'comments-link',
+	$items = apply_filters(
+		'generate_footer_entry_meta_items',
+		array(
+			'categories',
+			'tags',
+			'comments-link',
+			'post-navigation',
+		)
 	);
 
-	if ( is_single() ) {
+	/**
+	 * This wasn't a "meta item" prior to 3.0.0 and some users may be using the filter above
+	 * without specifying that they want to include post-navigation. The below forces it to display
+	 * for users using the old float system to prevent it from disappearing on update.
+	 */
+	if ( ! generate_is_using_flexbox() && ! in_array( 'post-navigation', (array) $items ) ) {
 		$items[] = 'post-navigation';
 	}
 
-	$items = apply_filters( 'generate_footer_entry_meta_items', $items );
-
+	// Disable post meta items based on their individual filters.
 	$items = generate_disable_post_meta_items( $items );
 
 	return $items;
@@ -474,13 +501,27 @@ add_action( 'wp', 'generate_add_post_meta', 5 );
 function generate_add_post_meta() {
 	$header_items = generate_get_header_entry_meta_items();
 
-	if ( ! empty( $header_items ) ) {
+	$header_post_types = apply_filters(
+		'generate_entry_meta_post_types',
+		array(
+			'post',
+		)
+	);
+
+	if ( in_array( get_post_type(), $header_post_types ) && ! empty( $header_items ) ) {
 		add_action( 'generate_after_entry_title', 'generate_post_meta' );
 	}
 
 	$footer_items = generate_get_footer_entry_meta_items();
 
-	if ( ! empty( $footer_items ) ) {
+	$footer_post_types = apply_filters(
+		'generate_footer_meta_post_types',
+		array(
+			'post',
+		)
+	);
+
+	if ( in_array( get_post_type(), $footer_post_types ) && ! empty( $footer_items ) ) {
 		add_action( 'generate_after_entry_content', 'generate_footer_meta' );
 	}
 }
@@ -492,20 +533,11 @@ if ( ! function_exists( 'generate_post_meta' ) ) {
 	 * @since 1.3.29
 	 */
 	function generate_post_meta() {
-		$post_types = apply_filters(
-			'generate_entry_meta_post_types',
-			array(
-				'post',
-			)
-		);
-
-		if ( in_array( get_post_type(), $post_types ) ) :
-			?>
-			<div class="entry-meta">
-				<?php generate_posted_on(); ?>
-			</div>
-			<?php
-		endif;
+		?>
+		<div class="entry-meta">
+			<?php generate_posted_on(); ?>
+		</div>
+		<?php
 	}
 }
 
@@ -516,20 +548,11 @@ if ( ! function_exists( 'generate_footer_meta' ) ) {
 	 * @since 1.3.30
 	 */
 	function generate_footer_meta() {
-		$post_types = apply_filters(
-			'generate_footer_meta_post_types',
-			array(
-				'post',
-			)
-		);
-
-		if ( in_array( get_post_type(), $post_types ) ) :
-			?>
-			<footer class="entry-meta">
-				<?php generate_entry_meta(); ?>
-			</footer>
-			<?php
-		endif;
+		?>
+		<footer class="entry-meta">
+			<?php generate_entry_meta(); ?>
+		</footer>
+		<?php
 	}
 }
 
@@ -550,7 +573,7 @@ function generate_do_post_navigation( $template ) {
 		)
 	);
 
-	if ( in_array( $template, $templates ) ) {
+	if ( in_array( $template, $templates ) && apply_filters( 'generate_show_post_navigation', true ) ) {
 		generate_content_nav( 'nav-below' );
 	}
 }

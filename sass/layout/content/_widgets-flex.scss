@@ -1,5 +1,9 @@
 .widget .search-form {
 	display: flex;
+
+	button.search-submit {
+		font-size: 15px;
+	}
 }
 
 .footer-widgets .widget {

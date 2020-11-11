@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Set our theme version.
-define( 'GENERATE_VERSION', '3.0.0-alpha.2' );
+define( 'GENERATE_VERSION', '3.0.2' );
 
 if ( ! function_exists( 'generate_setup' ) ) {
 	add_action( 'after_setup_theme', 'generate_setup' );
@@ -31,7 +31,7 @@ if ( ! function_exists( 'generate_setup' ) ) {
 		add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link', 'status' ) );
 		add_theme_support( 'woocommerce' );
 		add_theme_support( 'title-tag' );
-		add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ) );
+		add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption', 'script', 'style' ) );
 		add_theme_support( 'customize-selective-refresh-widgets' );
 		add_theme_support( 'align-wide' );
 		add_theme_support( 'responsive-embeds' );
@@ -63,7 +63,7 @@ if ( ! function_exists( 'generate_setup' ) ) {
 		}
 
 		// This theme styles the visual editor to resemble the theme style.
-		add_editor_style( 'css/admin/editor-style.css' );
+		add_editor_style( 'assets/css/admin/editor-style.css' );
 	}
 }
 

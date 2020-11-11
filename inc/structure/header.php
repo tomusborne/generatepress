@@ -109,7 +109,7 @@ if ( ! function_exists( 'generate_construct_logo' ) ) {
 		$attr = apply_filters(
 			'generate_logo_attributes',
 			array(
-				'class' => 'header-image',
+				'class' => 'header-image is-logo-image',
 				'alt'   => esc_attr( apply_filters( 'generate_logo_title', get_bloginfo( 'name', 'display' ) ) ),
 				'src'   => $logo_url,
 				'title' => esc_attr( apply_filters( 'generate_logo_title', get_bloginfo( 'name', 'display' ) ) ),

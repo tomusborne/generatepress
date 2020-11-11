@@ -432,18 +432,20 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 			if ( $( 'body' ).hasClass( 'sticky-enabled' ) ) {
 				wp.customize.preview.send( 'refresh' );
 			} else {
+				var mainNavigation = $( '.main-navigation' );
+
 				if ( 'fluid-nav' == newval ) {
-					$( '.main-navigation' ).removeClass( 'grid-container' ).removeClass( 'grid-parent' );
+					mainNavigation.removeClass( 'grid-container' ).removeClass( 'grid-parent' );
 					if ( 'full-width' !== wp.customize.value('generate_settings[nav_inner_width]')() ) {
 						$( '.main-navigation .inside-navigation' ).addClass( 'grid-container' ).addClass( 'grid-parent' );
 					}
 				}
 				if ( 'contained-nav' == newval ) {
-					if ( generatepress_live_preview.isFlex && ( 'nav-float-right' === navLocation || 'nav-float-left' === navLocation ) ) {
+					if ( ! mainNavigation.hasClass( 'has-branding' ) && generatepress_live_preview.isFlex && ( 'nav-float-right' === navLocation || 'nav-float-left' === navLocation ) ) {
 						return;
 					}
 
-					$( '.main-navigation' ).addClass( 'grid-container' ).addClass( 'grid-parent' );
+					mainNavigation.addClass( 'grid-container' ).addClass( 'grid-parent' );
 				}
 			}
 		} );
@@ -657,22 +659,6 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 					jQuery( 'style#secondary_navigation_padding' ).not( ':last' ).remove();
 				}, 100);
 			}
-		}
-
-		if ( generatepress_live_preview.isFlex ) {
-			/**
-			 * Change the elements that GP Premium targets during live preview.
-			 * Only needed until GPP 1.12.0
-			 */
-			setTimeout( function() {
-				jQuery( '#footer_widget_container_top, #footer_widget_container_right, #footer_widget_container_bottom, #footer_widget_container_left, #mobile_footer_widget_container_top, #mobile_footer_widget_container_right, #mobile_footer_widget_container_bottom, #mobile_footer_widget_container_left' ).text(function(index, text) {
-					return text.replace( '.footer-widgets{', '.footer-widgets-container{' );
-				} );
-
-				jQuery( '#footer_top, #footer_right, #footer_bottom, #footer_left' ).text(function(index, text) {
-					return text.replace( '.site-info{', '.inside-site-info{' );
-				} );
-			}, 50 );
 		}
 	} );
 } )( jQuery );

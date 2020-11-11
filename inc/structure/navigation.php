@@ -479,6 +479,8 @@ function generate_do_menu_bar_item_container() {
 add_action( 'wp', 'generate_add_menu_bar_items' );
 /**
  * Add menu bar items to the primary navigation.
+ *
+ * @since 3.0.0
  */
 function generate_add_menu_bar_items() {
 	if ( ! generate_is_using_flexbox() ) {
