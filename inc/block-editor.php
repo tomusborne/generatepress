@@ -191,6 +191,17 @@ function generate_do_inline_block_editor_css() {
 	$css->set_selector( '.wp-block[data-align="wide"]' );
 	$css->add_property( 'max-width', absint( $content_width ), false, 'px' );
 
+	if ( generate_get_option( 'underline_links' ) ) {
+		$css->set_selector( '.wp-block a' );
+		$css->add_property( 'text-decoration', 'underline' );
+
+		$css->set_selector( 'a.button' );
+		$css->add_property( 'text-decoration', 'none' );
+	} else {
+		$css->set_selector( '.wp-block a' );
+		$css->add_property( 'text-decoration', 'none' );
+	}
+
 	if ( apply_filters( 'generate_do_group_inner_container_style', true ) ) {
 		$css->set_selector( '.wp-block-group__inner-container' );
 		$css->add_property( 'max-width', absint( $content_width ), false, 'px' );
