@@ -32,6 +32,17 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 
 		$css->set_selector( 'a:visited' )->add_property( 'color', $settings['link_color_visited'] );
 
+		if ( generate_get_option( 'underline_links' ) ) {
+			$css->set_selector( 'a' );
+			$css->add_property( 'text-decoration', 'underline' );
+
+			$css->set_selector( '.entry-title a, .site-branding a, a.button' );
+			$css->add_property( 'text-decoration', 'none' );
+		} else {
+			$css->set_selector( 'a' );
+			$css->add_property( 'text-decoration', 'none' );
+		}
+
 		$css->set_selector( 'a:hover, a:focus, a:active' );
 		$css->add_property( 'color', $settings['link_color_hover'] );
 
