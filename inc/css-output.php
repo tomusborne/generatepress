@@ -509,8 +509,10 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->set_selector( 'p' );
 		$css->add_property( 'margin-bottom', floatval( $settings['paragraph_margin'] ), $defaults['paragraph_margin'], 'em' );
 
-		$css->set_selector( '.entry-content > [class*="wp-block-"]:not(:last-child)' );
-		$css->add_property( 'margin-bottom', floatval( $settings['paragraph_margin'] ), false, 'em' );
+		if ( apply_filters( 'generate_do_wp_block_margin_bottom', true ) ) {
+			$css->set_selector( '.entry-content > [class*="wp-block-"]:not(:last-child)' );
+			$css->add_property( 'margin-bottom', floatval( $settings['paragraph_margin'] ), false, 'em' );
+		}
 
 		$css->set_selector( '.top-bar' );
 		$css->add_property( 'font-family', $defaults['font_top_bar'] !== $settings['font_top_bar'] ? $top_bar_family : null );
