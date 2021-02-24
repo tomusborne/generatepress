@@ -77,12 +77,17 @@ jQuery( document ).ready( function( $ ) {
 		}
 	} );
 
+	// This is a fallback in case the core editor check for the dark theme fails.
+	// If the background is using a gradient or rgba, the WP method can get confused.
 	if ( generate_block_editor.show_editor_styles ) {
 		var text_color = tinycolor( generate_block_editor.text_color ).toHex8(),
 			isTextDark = tinycolor( text_color ).isDark();
 
 		if ( ! isTextDark ) {
-			$( 'body' ).addClass( 'is-dark-theme' );
+			// Need the timeout to override core WP setting the class.
+			setTimeout( function() {
+				$( 'body' ).addClass( 'is-dark-theme' );
+			}, 5 );
 		}
 	}
 } );
