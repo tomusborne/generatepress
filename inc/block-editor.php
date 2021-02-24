@@ -210,11 +210,14 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'padding', generate_padding_css( $spacing_settings['content_top'], $spacing_settings['content_right'], $spacing_settings['content_bottom'], $spacing_settings['content_left'] ) );
 	}
 
-	$css->set_selector( '.editor-styles-wrapper a.button, .wp-block-button__link:not(.has-background)' );
+	$css->set_selector( '.editor-styles-wrapper a.button, .editor-styles-wrapper a.button:visited, .wp-block-button__link:not(.has-background)' );
 	$css->add_property( 'color', $color_settings['form_button_text_color'] );
 	$css->add_property( 'background-color', $color_settings['form_button_background_color'] );
+	$css->add_property( 'padding', '10px 20px' );
+	$css->add_property( 'border', '0' );
+	$css->add_property( 'border-radius', '0' );
 
-	$css->set_selector( '.editor-styles-wrapper a.button:hover, .editor-styles-wrapper a.button:focus, .wp-block-button__link:not(.has-background):active, .wp-block-button__link:not(.has-background):focus, .wp-block-button__link:not(.has-background):hover' );
+	$css->set_selector( '.editor-styles-wrapper a.button:hover, .editor-styles-wrapper a.button:active, .editor-styles-wrapper a.button:focus, .wp-block-button__link:not(.has-background):active, .wp-block-button__link:not(.has-background):focus, .wp-block-button__link:not(.has-background):hover' );
 	$css->add_property( 'color', $color_settings['form_button_text_color_hover'] );
 	$css->add_property( 'background-color', $color_settings['form_button_background_color_hover'] );
 
@@ -390,6 +393,8 @@ function generate_do_inline_block_editor_css() {
 
 	if ( '' !== $font_settings['buttons_font_size'] ) {
 		$css->add_property( 'font-size', absint( $font_settings['buttons_font_size'] ), false, 'px' );
+	} else {
+		$css->add_property( 'font-size', 'inherit' );
 	}
 
 	$css->set_selector( 'body .editor-styles-wrapper' );
