@@ -390,7 +390,7 @@ function generate_do_inline_block_editor_css() {
 		if ( $color_settings['content_background_color'] ) {
 			$css->add_property( 'background-color', $color_settings['content_background_color'] );
 		} else {
-			$css->add_property( 'background-color', 'transparent' );
+			$css->add_property( 'background-color', generate_get_option( 'background_color' ) );
 		}
 	} else {
 		$css->set_selector( 'body .editor-styles-wrapper' );
