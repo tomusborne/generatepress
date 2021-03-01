@@ -95,6 +95,13 @@ MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
 
 == Changelog ==
 
+= 3.0.3 =
+
+Release date: TBA
+
+* Fix: is-dark-theme class in editor in WP 5.7
+* Fix: Saving footer widget post meta in editor
+
 = 3.0.2 =
 
 Release date: October 14, 2020
