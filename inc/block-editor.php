@@ -381,14 +381,27 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'font-size', absint( $font_settings['buttons_font_size'] ), false, 'px' );
 	}
 
-	$css->set_selector( 'body .editor-styles-wrapper' );
-	$css->add_property( 'background-color', generate_get_option( 'background_color' ) );
+	if ( version_compare( $GLOBALS['wp_version'], '5.7-alpha.1', '>' ) ) {
+		$css->set_selector( '.block-editor__container .edit-post-visual-editor' );
+		$css->add_property( 'background-color', generate_get_option( 'background_color' ) );
 
-	if ( $color_settings['content_background_color'] ) {
-		$body_background = generate_get_option( 'background_color' );
-		$content_background = $color_settings['content_background_color'];
+		$css->set_selector( '.block-editor__container .editor-styles-wrapper' );
 
-		$css->add_property( 'background', 'linear-gradient(' . $content_background . ',' . $content_background . '), linear-gradient(' . $body_background . ',' . $body_background . ')' );
+		if ( $color_settings['content_background_color'] ) {
+			$css->add_property( 'background-color', $color_settings['content_background_color'] );
+		} else {
+			$css->add_property( 'background-color', generate_get_option( 'background_color' ) );
+		}
+	} else {
+		$css->set_selector( 'body .editor-styles-wrapper' );
+		$css->add_property( 'background-color', generate_get_option( 'background_color' ) );
+
+		if ( $color_settings['content_background_color'] ) {
+			$body_background = generate_get_option( 'background_color' );
+			$content_background = $color_settings['content_background_color'];
+
+			$css->add_property( 'background', 'linear-gradient(' . $content_background . ',' . $content_background . '), linear-gradient(' . $body_background . ',' . $body_background . ')' );
+		}
 	}
 
 	$css->set_selector( '.block-editor-block-list__block a, .block-editor-block-list__block a:visited' );

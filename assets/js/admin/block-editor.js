@@ -76,15 +76,6 @@ jQuery( document ).ready( function( $ ) {
 			body.addClass( 'content-title-hidden' );
 		}
 	} );
-
-	if ( generate_block_editor.show_editor_styles ) {
-		var text_color = tinycolor( generate_block_editor.text_color ).toHex8(),
-			isTextDark = tinycolor( text_color ).isDark();
-
-		if ( ! isTextDark ) {
-			$( 'body' ).addClass( 'is-dark-theme' );
-		}
-	}
 } );
 
 jQuery( window ).on( 'load', function() {
@@ -94,5 +85,19 @@ jQuery( window ).on( 'load', function() {
 	if ( post_title_block && disable_title_option.length > 0 ) {
 		post_title_block.append( '<button class="content-title-visibility disable-content-title" title="' + generate_block_editor.disable_content_title + '" aria-hidden="true"></button>' );
 		post_title_block.append( '<button class="content-title-visibility show-content-title" title="' + generate_block_editor.show_content_title + '" aria-hidden="true"></button>' );
+	}
+
+	// This is a fallback in case the core editor check for the dark theme fails.
+	// If the background is using a gradient or rgba, the WP method can be wrong.
+	// So instead, we check for text color, as it's a better indicator of the true background color.
+	if ( generate_block_editor.show_editor_styles ) {
+		var text_color = tinycolor( generate_block_editor.text_color ).toHex8(),
+			isTextDark = tinycolor( text_color ).isDark();
+
+		if ( ! isTextDark ) {
+			document.body.classList.add( 'is-dark-theme' );
+		} else {
+			document.body.classList.remove( 'is-dark-theme' );
+		}
 	}
 } );
