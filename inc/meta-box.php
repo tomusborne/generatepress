@@ -160,12 +160,12 @@ function generate_do_layout_meta_box( $post ) {
 
 					<select name="_generate-footer-widget-meta" id="generate-footer-widget">
 						<option value="" <?php selected( $stored_meta['_generate-footer-widget-meta'][0], '' ); ?>><?php esc_html_e( 'Default', 'generatepress' ); ?></option>
-						<option value="0" <?php selected( $stored_meta['_generate-sidebar-layout-meta'][0], '0' ); ?>><?php esc_html_e( '0 Widgets', 'generatepress' ); ?></option>
-						<option value="1" <?php selected( $stored_meta['_generate-sidebar-layout-meta'][0], '1' ); ?>><?php esc_html_e( '1 Widgets', 'generatepress' ); ?></option>
-						<option value="2" <?php selected( $stored_meta['_generate-sidebar-layout-meta'][0], '2' ); ?>><?php esc_html_e( '2 Widgets', 'generatepress' ); ?></option>
-						<option value="3" <?php selected( $stored_meta['_generate-sidebar-layout-meta'][0], '3' ); ?>><?php esc_html_e( '3 Widgets', 'generatepress' ); ?></option>
-						<option value="4" <?php selected( $stored_meta['_generate-sidebar-layout-meta'][0], '4' ); ?>><?php esc_html_e( '4 Widgets', 'generatepress' ); ?></option>
-						<option value="5" <?php selected( $stored_meta['_generate-sidebar-layout-meta'][0], '5' ); ?>><?php esc_html_e( '5 Widgets', 'generatepress' ); ?></option>
+						<option value="0" <?php selected( $stored_meta['_generate-footer-widget-meta'][0], '0' ); ?>><?php esc_html_e( '0 Widgets', 'generatepress' ); ?></option>
+						<option value="1" <?php selected( $stored_meta['_generate-footer-widget-meta'][0], '1' ); ?>><?php esc_html_e( '1 Widgets', 'generatepress' ); ?></option>
+						<option value="2" <?php selected( $stored_meta['_generate-footer-widget-meta'][0], '2' ); ?>><?php esc_html_e( '2 Widgets', 'generatepress' ); ?></option>
+						<option value="3" <?php selected( $stored_meta['_generate-footer-widget-meta'][0], '3' ); ?>><?php esc_html_e( '3 Widgets', 'generatepress' ); ?></option>
+						<option value="4" <?php selected( $stored_meta['_generate-footer-widget-meta'][0], '4' ); ?>><?php esc_html_e( '4 Widgets', 'generatepress' ); ?></option>
+						<option value="5" <?php selected( $stored_meta['_generate-footer-widget-meta'][0], '5' ); ?>><?php esc_html_e( '5 Widgets', 'generatepress' ); ?></option>
 					</select>
 				</div>
 			</div>
