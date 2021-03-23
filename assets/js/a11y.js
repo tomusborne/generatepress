@@ -14,7 +14,8 @@
 
 		if ( body.classList.contains( 'dropdown-hover' ) ) {
 			var navLinks = document.querySelectorAll( 'nav .main-nav ul a' ),
-				menuBarItems = document.querySelectorAll( '.menu-bar-items .menu-bar-item > a' );
+				menuBarItems = document.querySelectorAll( '.menu-bar-items .menu-bar-item > a' ),
+				i;
 
 			/**
 			 * Make menu items tab accessible when using the hover dropdown type
@@ -33,7 +34,7 @@
 
 					self = self.parentElement;
 				}
-			}
+			};
 
 			/**
 			 * Make our menu bar items tab accessible.
@@ -52,16 +53,16 @@
 
 					self = self.parentElement;
 				}
+			};
+
+			for ( i = 0; i < navLinks.length; i++ ) {
+				navLinks[ i ].addEventListener( 'focus', toggleFocus );
+				navLinks[ i ].addEventListener( 'blur', toggleFocus );
 			}
 
-			for ( var i = 0; i < navLinks.length; i++ ) {
-				navLinks[i].addEventListener( 'focus', toggleFocus );
-				navLinks[i].addEventListener( 'blur', toggleFocus );
-			}
-
-			for ( var i = 0; i < menuBarItems.length; i++ ) {
-				menuBarItems[i].addEventListener( 'focus', toggleMenuBarItemFocus );
-				menuBarItems[i].addEventListener( 'blur', toggleMenuBarItemFocus );
+			for ( i = 0; i < menuBarItems.length; i++ ) {
+				menuBarItems[ i ].addEventListener( 'focus', toggleMenuBarItemFocus );
+				menuBarItems[ i ].addEventListener( 'blur', toggleMenuBarItemFocus );
 			}
 		}
 	}
@@ -72,9 +73,8 @@
 	if ( 'ontouchend' in document.documentElement && document.body.classList.contains( 'dropdown-hover' ) ) {
 		var parentElements = document.querySelectorAll( '.sf-menu .menu-item-has-children' );
 
-		for ( var i = 0; i < parentElements.length; i++ ) {
-			parentElements[i].addEventListener( 'touchend', function( e ) {
-
+		for ( i = 0; i < parentElements.length; i++ ) {
+			parentElements[ i ].addEventListener( 'touchend', function( e ) {
 				// Bail on mobile
 				if ( this.closest( 'nav' ).classList.contains( 'toggled' ) ) {
 					return;
@@ -101,9 +101,9 @@
 						var closestLi = this.closest( 'li' ),
 							siblings = getSiblings( closestLi );
 
-						for ( var i = 0; i < siblings.length; i++ ) {
-							if ( siblings[i].classList.contains( 'sfHover' ) ) {
-								siblings[i].classList.remove( 'sfHover' );
+						for ( i = 0; i < siblings.length; i++ ) {
+							if ( siblings[ i ].classList.contains( 'sfHover' ) ) {
+								siblings[ i ].classList.remove( 'sfHover' );
 							}
 						}
 
@@ -113,8 +113,8 @@
 						var closeDropdown,
 							thisItem = this;
 
-						document.addEventListener( 'touchend', closeDropdown = function(e) {
-							e.stopPropagation();
+						document.addEventListener( 'touchend', closeDropdown = function( event ) {
+							event.stopPropagation();
 
 							thisItem.classList.remove( 'sfHover' );
 							document.removeEventListener( 'touchend', closeDropdown );
@@ -124,4 +124,4 @@
 			} );
 		}
 	}
-} )();
+}() );

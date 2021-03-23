@@ -4,6 +4,7 @@
 	if ( 'querySelector' in document && 'addEventListener' in window ) {
 		/**
 		 * matches() pollyfil
+		 *
 		 * @see https://developer.mozilla.org/en-US/docs/Web/API/Element/closest#Browser_compatibility
 		 */
 		if ( ! Element.prototype.matches ) {
@@ -12,7 +13,10 @@
 
 		/**
 		 * closest() pollyfil
+		 *
 		 * @see https://developer.mozilla.org/en-US/docs/Web/API/Element/closest#Browser_compatibility
+		 * @param {Object} s The element to check.
+		 * @return {Object} The closest object.
 		 */
 		if ( ! Element.prototype.closest ) {
 			Element.prototype.closest = function( s ) {
@@ -38,21 +42,22 @@
 		};
 
 		var allNavToggles = document.querySelectorAll( '.menu-toggle' ),
-			dropdownToggle = document.querySelectorAll( 'nav .dropdown-menu-toggle' ),
-			navLinks = document.querySelectorAll( 'nav ul a' ),
+			dropdownToggles = document.querySelectorAll( 'nav .dropdown-menu-toggle' ),
+			navLinks = document.querySelectorAll( 'nav .main-nav ul a' ),
 			mobileMenuControls = document.querySelector( '.mobile-menu-control-wrapper' ),
 			body = document.body,
-			htmlEl = document.documentElement;
+			htmlEl = document.documentElement,
+			i;
 
 		var enableDropdownArrows = function( nav ) {
 			if ( body.classList.contains( 'dropdown-hover' ) ) {
 				var dropdownItems = nav.querySelectorAll( 'li.menu-item-has-children' );
 
-				for ( var i = 0; i < dropdownItems.length; i++ ) {
-					dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'tabindex', '0' );
-					dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'role', 'button' );
-					dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'aria-expanded', 'false' );
-					dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'aria-label', generatepressMenu.openSubMenuLabel );
+				for ( i = 0; i < dropdownItems.length; i++ ) {
+					dropdownItems[ i ].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'tabindex', '0' );
+					dropdownItems[ i ].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'role', 'button' );
+					dropdownItems[ i ].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'aria-expanded', 'false' );
+					dropdownItems[ i ].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'aria-label', generatepressMenu.openSubMenuLabel );
 				}
 			}
 		};
@@ -61,11 +66,11 @@
 			if ( body.classList.contains( 'dropdown-hover' ) ) {
 				var dropdownItems = nav.querySelectorAll( 'li.menu-item-has-children' );
 
-				for ( var i = 0; i < dropdownItems.length; i++ ) {
-					dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).removeAttribute( 'tabindex' );
-					dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'role', 'presentation' );
-					dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).removeAttribute( 'aria-expanded' );
-					dropdownItems[i].querySelector( '.dropdown-menu-toggle' ).removeAttribute( 'aria-label' );
+				for ( i = 0; i < dropdownItems.length; i++ ) {
+					dropdownItems[ i ].querySelector( '.dropdown-menu-toggle' ).removeAttribute( 'tabindex' );
+					dropdownItems[ i ].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'role', 'presentation' );
+					dropdownItems[ i ].querySelector( '.dropdown-menu-toggle' ).removeAttribute( 'aria-expanded' );
+					dropdownItems[ i ].querySelector( '.dropdown-menu-toggle' ).removeAttribute( 'aria-label' );
 				}
 			}
 		};
@@ -83,12 +88,12 @@
 		/**
 		 * Start mobile menu toggle.
 		 *
-		 * @param e The event.
-		 * @param _this The clicked item.
+		 * @param {Object} e The event.
+		 * @param {Object} _this The clicked item.
 		 */
 		var toggleNav = function( e, _this ) {
 			if ( ! _this ) {
-				var _this = this;
+				_this = this;
 			}
 
 			var parentContainer = '';
@@ -109,7 +114,7 @@
 				isExternalToggle = true;
 			}
 
-			var nav = parentContainer.getElementsByTagName( 'ul' )[0];
+			var nav = parentContainer.getElementsByTagName( 'ul' )[ 0 ];
 
 			if ( parentContainer.classList.contains( 'toggled' ) ) {
 				parentContainer.classList.remove( 'toggled' );
@@ -144,22 +149,21 @@
 
 				enableDropdownArrows( nav );
 			}
-		}
+		};
 
-		for ( var i = 0; i < allNavToggles.length; i++ ) {
-			allNavToggles[i].addEventListener( 'click', toggleNav, false );
+		for ( i = 0; i < allNavToggles.length; i++ ) {
+			allNavToggles[ i ].addEventListener( 'click', toggleNav, false );
 		}
 
 		/**
 		 * Open sub-menus
 		 *
-		 * @param e The event.
-		 * @param _this The clicked item.
+		 * @param {Object} e The event.
+		 * @param {Object} _this The clicked item.
 		 */
 		var toggleSubNav = function( e, _this ) {
-
 			if ( ! _this ) {
-				var _this = this;
+				_this = this;
 			}
 
 			if ( ( _this.closest( 'nav' ).classList.contains( 'toggled' ) || htmlEl.classList.contains( 'slide-opened' ) ) && ! body.classList.contains( 'dropdown-click' ) ) {
@@ -171,17 +175,17 @@
 				if ( closestLi.querySelector( '.sub-menu' ) ) {
 					var subMenu = closestLi.querySelector( '.sub-menu' );
 				} else {
-					var subMenu = closestLi.querySelector( '.children' );
+					subMenu = closestLi.querySelector( '.children' );
 				}
 
 				if ( generatepressMenu.toggleOpenedSubMenus ) {
 					var siblings = getSiblings( closestLi );
 
-					for ( var i = 0; i < siblings.length; i++ ) {
-						if ( siblings[i].classList.contains( 'sfHover' ) ) {
-							siblings[i].classList.remove( 'sfHover' );
-							siblings[i].querySelector( '.toggled-on' ).classList.remove( 'toggled-on' );
-							setDropdownArrowAttributes( siblings[i].querySelector( '.dropdown-menu-toggle' ) );
+					for ( i = 0; i < siblings.length; i++ ) {
+						if ( siblings[ i ].classList.contains( 'sfHover' ) ) {
+							siblings[ i ].classList.remove( 'sfHover' );
+							siblings[ i ].querySelector( '.toggled-on' ).classList.remove( 'toggled-on' );
+							setDropdownArrowAttributes( siblings[ i ].querySelector( '.dropdown-menu-toggle' ) );
 						}
 					}
 				}
@@ -191,13 +195,13 @@
 			}
 
 			e.stopPropagation();
-		}
+		};
 
-		for ( var i = 0; i < dropdownToggle.length; i++ ) {
-			dropdownToggle[i].addEventListener( 'click', toggleSubNav, false );
-			dropdownToggle[i].addEventListener( 'keypress', function( e ) {
+		for ( i = 0; i < dropdownToggles.length; i++ ) {
+			dropdownToggles[ i ].addEventListener( 'click', toggleSubNav, false );
+			dropdownToggles[ i ].addEventListener( 'keypress', function( e ) {
 				var key = e.which || e.keyCode;
-				if (key === 13) { // 13 is enter
+				if ( key === 13 ) { // 13 is enter
 					toggleSubNav( e, this );
 				}
 			}, false );
@@ -210,41 +214,41 @@
 		var checkMobile = function() {
 			var openedMobileMenus = document.querySelectorAll( '.toggled, .has-active-search' );
 
-			for ( var i = 0; i < openedMobileMenus.length; i++ ) {
-				var menuToggle = openedMobileMenus[i].querySelector( '.menu-toggle' );
+			for ( i = 0; i < openedMobileMenus.length; i++ ) {
+				var menuToggle = openedMobileMenus[ i ].querySelector( '.menu-toggle' );
 
 				if ( mobileMenuControls && ! menuToggle.closest( 'nav' ).classList.contains( 'mobile-menu-control-wrapper' ) ) {
 					menuToggle = mobileMenuControls.querySelector( '.menu-toggle' );
 				}
 
 				if ( menuToggle && menuToggle.offsetParent === null ) {
-					if ( openedMobileMenus[i].classList.contains( 'toggled' ) ) {
+					if ( openedMobileMenus[ i ].classList.contains( 'toggled' ) ) {
 						var remoteNav = false;
 
-						if ( openedMobileMenus[i].classList.contains( 'mobile-menu-control-wrapper' ) ) {
+						if ( openedMobileMenus[ i ].classList.contains( 'mobile-menu-control-wrapper' ) ) {
 							remoteNav = true;
 						}
 
 						if ( ! remoteNav ) {
 							// Navigation is toggled, but .menu-toggle isn't visible on the page (display: none).
-							var closestNav = openedMobileMenus[i].getElementsByTagName( 'ul' )[ 0 ],
+							var closestNav = openedMobileMenus[ i ].getElementsByTagName( 'ul' )[ 0 ],
 								closestNavItems = closestNav.getElementsByTagName( 'li' ),
 								closestSubMenus = closestNav.getElementsByTagName( 'ul' );
 						}
 
 						document.activeElement.blur();
-						openedMobileMenus[i].classList.remove( 'toggled' );
+						openedMobileMenus[ i ].classList.remove( 'toggled' );
 
 						htmlEl.classList.remove( 'mobile-menu-open' );
 						menuToggle.setAttribute( 'aria-expanded', 'false' );
 
 						if ( ! remoteNav ) {
 							for ( var li = 0; li < closestNavItems.length; li++ ) {
-								closestNavItems[li].classList.remove( 'sfHover' );
+								closestNavItems[ li ].classList.remove( 'sfHover' );
 							}
 
 							for ( var sm = 0; sm < closestSubMenus.length; sm++ ) {
-								closestSubMenus[sm].classList.remove( 'toggled-on' );
+								closestSubMenus[ sm ].classList.remove( 'toggled-on' );
 							}
 
 							if ( closestNav ) {
@@ -252,7 +256,7 @@
 							}
 						}
 
-						disableDropdownArrows( openedMobileMenus[i] );
+						disableDropdownArrows( openedMobileMenus[ i ] );
 					}
 
 					if ( mobileMenuControls.querySelector( '.search-item' ) ) {
@@ -262,7 +266,7 @@
 					}
 				}
 			}
-		}
+		};
 		window.addEventListener( 'resize', checkMobile, false );
 		window.addEventListener( 'orientationchange', checkMobile, false );
 
@@ -270,19 +274,19 @@
 			/**
 			 * Do some essential things when menu items are clicked.
 			 */
-			for ( var i = 0; i < navLinks.length; i++ ) {
-				navLinks[i].addEventListener( 'click', function( e ) {
+			for ( i = 0; i < navLinks.length; i++ ) {
+				navLinks[ i ].addEventListener( 'click', function( e ) {
 					// Remove sfHover class if we're going to another site.
 					if ( this.hostname !== window.location.hostname ) {
 						document.activeElement.blur();
 					}
 
-					var closest_nav = this.closest( 'nav' );
-					if ( closest_nav.classList.contains( 'toggled' ) || htmlEl.classList.contains( 'slide-opened' ) ) {
+					var closestNav = this.closest( 'nav' );
+					if ( closestNav.classList.contains( 'toggled' ) || htmlEl.classList.contains( 'slide-opened' ) ) {
 						var url = this.getAttribute( 'href' );
 
 						// Open the sub-menu if the link has no destination
-						if ( '#' == url || '' == url ) {
+						if ( '#' === url || '' === url ) {
 							e.preventDefault();
 							var closestLi = this.closest( 'li' );
 							closestLi.classList.toggle( 'sfHover' );
@@ -296,7 +300,5 @@
 				}, false );
 			}
 		}
-
 	}
-
-})();
+}() );
