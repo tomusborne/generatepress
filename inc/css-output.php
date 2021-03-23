@@ -36,10 +36,7 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$css->set_selector( 'a' );
 			$css->add_property( 'text-decoration', 'underline' );
 
-			$css->set_selector( '.entry-title a, .site-branding a, a.button' );
-			$css->add_property( 'text-decoration', 'none' );
-		} else {
-			$css->set_selector( 'a' );
+			$css->set_selector( '.entry-title a, .site-branding a, a.button, .wp-block-button__link' );
 			$css->add_property( 'text-decoration', 'none' );
 		}
 
