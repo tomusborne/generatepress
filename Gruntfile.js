@@ -207,6 +207,17 @@ module.exports = function (grunt) {
             }
         },
 
+		watch: {
+			options: {
+				debounceDelay: 500,
+				livereload: true
+			},
+			sass: {
+                files: ['sass/**/*'],
+                tasks: ['style']
+            }
+		},
+
         copy: {
             main: {
                 options: {
@@ -274,6 +285,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-contrib-watch');
 
     // SASS compile
     grunt.registerTask('scss', ['sass']);
