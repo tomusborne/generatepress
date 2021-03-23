@@ -6,7 +6,8 @@
   "scripts": {
     "style": "grunt style",
     "build": "grunt build",
-    "package": "grunt package"
+    "package": "grunt package",
+    "watch": "grunt watch"
   },
   "repository": {
     "type": "git",
@@ -33,8 +34,7 @@
     "grunt-contrib-watch": "^1.1.0",
     "grunt-postcss": "^0.9.0",
     "grunt-sass": "^3.1.0",
-    "node-sass": "^4.14.1",
-    "@wordpress/scripts": "^12.1.1"
+    "node-sass": "^4.14.1"
   },
   "dependencies": {
     "grunt-cli": "^1.3.2"
