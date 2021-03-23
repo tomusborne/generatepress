@@ -4,17 +4,19 @@
 		box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
 		float: left;
 		position: absolute;
-		left: -99999px;
 		opacity: 0;
 		z-index: 99999;
 		width: 200px;
 		text-align: left;
 		top: auto;
-		transition: opacity 80ms linear;
-		transition-delay: 0s;
+		transition: opacity 350ms ease 100ms, transform 0ms ease 1000ms;
 		pointer-events: none;
-		height: 0;
-		overflow: hidden;
+		transform: scale(0);
+		transform-origin: top left;
+
+		ul {
+			transition: opacity 350ms ease 100ms, transform 0ms ease 0ms;
+		}
 
 		a {
 			display: block;
@@ -47,12 +49,10 @@
 	&:not(.toggled) {
 		ul li:hover > ul,
 		ul li.sfHover > ul {
-			left: auto;
 			opacity: 1;
-			transition-delay: 150ms;
 			pointer-events: auto;
-			height: auto;
-			overflow: visible;
+			transform: scale(1);
+			transition: opacity 350ms ease 100ms, transform 0ms ease 0ms;
 		}
 
 		ul ul li:hover > ul,
