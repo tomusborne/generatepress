@@ -2,14 +2,13 @@
 	ul ul {
 		display: block;
 		box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
-		float: left;
 		position: absolute;
 		opacity: 0;
 		z-index: 99999;
 		width: 200px;
 		text-align: left;
 		top: auto;
-		transition: opacity 350ms ease 100ms, transform 0ms ease 1000ms;
+		transition: opacity 350ms ease 100ms, transform 0ms ease 450ms;
 		pointer-events: none;
 		transform: scale(0);
 		transform-origin: top left;
