@@ -79,8 +79,8 @@
 
 				dropdownToggleLinks[ i ].addEventListener( 'keydown', function( e ) {
 					var _this = this;
-					var key = e.which || e.keyCode;
-					if ( key === 13 ) { // 13 is enter
+
+					if ( 'Enter' === e.key ) {
 						dropdownClick( e, _this );
 					}
 				}, false );
@@ -115,8 +115,7 @@
 
 		// Close sub-menus on escape key
 		document.addEventListener( 'keydown', function( e ) {
-			var key = e.which || e.keyCode;
-			if ( key === 27 ) { // 27 is esc
+			if ( 'Escape' === e.key ) { // 27 is esc
 				closeSubMenus();
 			}
 		}, false );

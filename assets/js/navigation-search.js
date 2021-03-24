@@ -111,9 +111,7 @@
 			// Close navigation search on escape key
 			document.addEventListener( 'keydown', function( e ) {
 				if ( document.querySelector( '.navigation-search.nav-search-active' ) ) {
-					var key = e.which || e.keyCode;
-
-					if ( key === 27 ) { // 27 is esc
+					if ( 'Escape' === e.key ) {
 						var activeSearchItems = document.querySelectorAll( '.search-item.active' );
 
 						for ( var activeSearchItem = 0; activeSearchItem < activeSearchItems.length; activeSearchItem++ ) {
