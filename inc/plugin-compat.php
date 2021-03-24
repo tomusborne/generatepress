@@ -824,4 +824,10 @@ function generate_do_pro_compatibility_setup() {
 			add_filter( 'generate_show_title', '__return_true', 20 );
 		}
 	}
+
+	if ( version_compare( GP_PREMIUM_VERSION, '2.1.0-alpha.1', '<' ) ) {
+		add_action( 'generate_inside_secondary_navigation', 'generate_enqueue_navigation_script' );
+		add_action( 'generate_inside_mobile_header', 'generate_enqueue_navigation_script' );
+		add_action( 'generate_inside_slideout_navigation', 'generate_enqueue_navigation_script' );
+	}
 }
