@@ -92,7 +92,7 @@
 
 .gp-container {
 	max-width: 1200px;
-	margin: 0 auto;
+	margin: 40px auto 0;
 	padding: 0 20px;
 	box-sizing: border-box;
 }
