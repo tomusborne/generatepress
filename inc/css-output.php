@@ -32,11 +32,28 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 
 		$css->set_selector( 'a:visited' )->add_property( 'color', $settings['link_color_visited'] );
 
-		if ( generate_get_option( 'underline_links' ) ) {
-			$css->set_selector( 'a' );
-			$css->add_property( 'text-decoration', 'underline' );
+		$underline_links = generate_get_option( 'underline_links' );
 
-			$css->set_selector( '.entry-title a, .site-branding a, a.button, .wp-block-button__link' );
+		if ( 'never' !== $underline_links ) {
+			if ( 'always' === $underline_links ) {
+				$css->set_selector( 'a' );
+				$css->add_property( 'text-decoration', 'underline' );
+			}
+
+			if ( 'hover' === $underline_links ) {
+				$css->set_selector( 'a:hover, a:focus' );
+				$css->add_property( 'text-decoration', 'underline' );
+			}
+
+			if ( 'not-hover' === $underline_links ) {
+				$css->set_selector( 'a' );
+				$css->add_property( 'text-decoration', 'underline' );
+
+				$css->set_selector( 'a:hover, a:focus' );
+				$css->add_property( 'text-decoration', 'none' );
+			}
+
+			$css->set_selector( '.entry-title a, .site-branding a, a.button, .wp-block-button__link, .main-navigation a' );
 			$css->add_property( 'text-decoration', 'none' );
 		}
 

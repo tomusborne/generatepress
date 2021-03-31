@@ -61,7 +61,7 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 				'combine_css' => true,
 				'dynamic_css_cache' => true,
 				'structure' => 'flexbox',
-				'underline_links' => false,
+				'underline_links' => 'always',
 			)
 		);
 	}

@@ -1523,17 +1523,24 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			array(
 				'default' => $defaults['underline_links'],
 				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_checkbox',
+				'sanitize_callback' => 'generate_sanitize_choices',
 			)
 		);
 
 		$wp_customize->add_control(
 			'generate_settings[underline_links]',
 			array(
-				'type' => 'checkbox',
-				'label' => __( 'Underline links', 'generatepress' ),
+				'type' => 'select',
+				'label' => __( 'Underline Links', 'generatepress' ),
 				'description' => __( 'Add underlines to your links in your main content areas.', 'generatepress' ),
 				'section' => 'generate_general_section',
+				'choices' => array(
+					'always' => __( 'Always', 'generatepress' ),
+					'hover' => __( 'On hover', 'generatepress' ),
+					'not-hover' => __( 'Not on hover', 'generatepress' ),
+					'never' => __( 'Never', 'generatepress' ),
+				),
+				'settings' => 'generate_settings[underline_links]',
 			)
 		);
 
