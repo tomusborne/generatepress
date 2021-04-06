@@ -352,6 +352,7 @@ class GeneratePress_Theme_Update {
 		$update_options = false;
 
 		$old_defaults = array(
+			'underline_links' => 'never',
 			'navigation_text_hover_color' => '#7a8896',
 			'navigation_text_current_color' => '#7a8896',
 			'subnavigation_text_hover_color' => '#7a8896',
