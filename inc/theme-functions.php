@@ -711,6 +711,12 @@ function generate_parse_attr( $context, $attributes = array(), $settings = array
 
 	if ( $classes ) {
 		$attributes['class'] = join( ' ', $classes );
+	} else {
+		$defaults = array(
+			'class' => sanitize_html_class( $context ),
+		);
+
+		$attributes = wp_parse_args( $attributes, $defaults );
 	}
 
 	// Contextual filter.
