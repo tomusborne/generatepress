@@ -780,3 +780,11 @@ function generate_do_attr( $context, $attributes = array(), $settings = array() 
 	echo generate_get_attr( $context, $attributes, $settings ); // phpcs:ignore -- Escaping done in function.
 }
 
+/**
+ * Determine if we're using the official AMP plugin or not.
+ *
+ * @since 3.1.0
+ */
+function generate_is_amp() {
+	return function_exists( 'is_amp_endpoint' ) && is_amp_endpoint();
+}

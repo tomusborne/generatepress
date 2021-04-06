@@ -425,6 +425,10 @@ add_action( 'wp_footer', 'generate_do_a11y_scripts' );
  * @since 3.1.0
  */
 function generate_do_a11y_scripts() {
+	if ( generate_is_amp() ) {
+		return;
+	}
+
 	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 	$dir_uri = get_template_directory_uri();
 
