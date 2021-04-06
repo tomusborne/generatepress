@@ -83,6 +83,20 @@ module.exports = function (grunt) {
                         src: ['main-rtl.scss'],
                         dest: 'assets/css',
                         ext: '.css'
+					},
+					{
+                        expand: true,
+                        cwd: 'sass/',
+                        src: ['amp.scss'],
+                        dest: 'assets/css',
+                        ext: '.css'
+					},
+					{
+                        expand: true,
+                        cwd: 'sass/',
+                        src: ['dashboard.scss'],
+                        dest: 'assets/css/admin',
+                        ext: '.css'
 					}
                 ]
             }
@@ -113,10 +127,6 @@ module.exports = function (grunt) {
             js: {
                 files: [
                     {
-                        src: 'assets/js/a11y.js',
-                        dest: 'assets/js/a11y.min.js',
-                    },
-                    {
                         src: 'assets/js/back-to-top.js',
                         dest: 'assets/js/back-to-top.min.js',
                     },
@@ -132,10 +142,6 @@ module.exports = function (grunt) {
                         src: 'assets/js/navigation-search.js',
                         dest: 'assets/js/navigation-search.min.js',
 					},
-					{
-                        src: 'assets/js/main.js',
-                        dest: 'assets/js/main.min.js',
-                    },
                 ]
             }
         },
@@ -186,23 +192,6 @@ module.exports = function (grunt) {
                         src: 'assets/css/main-rtl.css',
                         dest: 'assets/css/main-rtl.min.css',
 					},
-                ]
-            }
-        },
-
-        concat: {
-            options: {
-                separator: '\n'
-            },
-            dist: {
-                files: [
-					{
-                        src: [
-                            'assets/js/menu.js',
-                            'assets/js/a11y.js',
-                        ],
-                        dest: 'assets/js/main.js',
-                    },
                 ]
             }
         },
@@ -294,7 +283,7 @@ module.exports = function (grunt) {
     grunt.registerTask('style', ['scss', 'postcss:style']);
 
     // Style and min
-    grunt.registerTask('build', ['style', 'concat', 'uglify:js', 'cssmin:css']);
+    grunt.registerTask('build', ['style', 'uglify:js', 'cssmin:css']);
 
     // Grunt release - Create installable package of the local files
 	grunt.registerTask('package', ['clean:zip', 'copy:main', 'compress:main', 'clean:main']);
