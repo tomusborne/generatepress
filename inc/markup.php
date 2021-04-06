@@ -566,3 +566,118 @@ if ( ! function_exists( 'generate_post_classes' ) ) {
 		return $classes;
 	}
 }
+
+add_filter( 'generate_attr_header', 'generate_set_header_attributes' );
+/**
+ * Add attributes to our site header.
+ *
+ * @since 3.1.0
+ * @param array $attributes The existing attributes.
+ */
+function generate_set_header_attributes( $attributes ) {
+	$attributes['id'] = 'masthead';
+
+	return $attributes;
+}
+
+add_filter( 'generate_attr_menu-toggle', 'generate_set_menu_toggle_attributes' );
+/**
+ * Add attributes to our menu toggle.
+ *
+ * @since 3.1.0
+ * @param array $attributes The existing attributes.
+ */
+function generate_set_menu_toggle_attributes( $attributes ) {
+	$attributes['class'] = 'menu-toggle';
+	$attributes['aria-controls'] = 'primary-menu';
+	$attributes['aria-expanded'] = 'false';
+
+	return $attributes;
+}
+
+add_filter( 'generate_attr_navigation', 'generate_set_navigation_attributes' );
+/**
+ * Add attributes to our main navigation.
+ *
+ * @since 3.1.0
+ * @param array $attributes The existing attributes.
+ */
+function generate_set_navigation_attributes( $attributes ) {
+	$attributes['id'] = 'site-navigation';
+
+	return $attributes;
+}
+
+add_filter( 'generate_attr_inside-navigation', 'generate_set_inside_navigation_attributes' );
+/**
+ * Add attributes to our main navigation.
+ *
+ * @since 3.1.0
+ * @param array $attributes The existing attributes.
+ */
+function generate_set_inside_navigation_attributes( $attributes ) {
+	$classes = generate_get_element_classes( 'inside_navigation' );
+
+	if ( $classes ) {
+		$attributes['class'] = join( ' ', $classes );
+	}
+
+	return $attributes;
+}
+
+add_filter( 'generate_attr_mobile-menu-control-wrapper', 'generate_set_mobile_menu_control_wrapper_attributes' );
+/**
+ * Add attributes to our main navigation.
+ *
+ * @since 3.1.0
+ * @param array $attributes The existing attributes.
+ */
+function generate_set_mobile_menu_control_wrapper_attributes( $attributes ) {
+	$attributes['id'] = 'mobile-menu-control-wrapper';
+	$attributes['class'] = 'main-navigation mobile-menu-control-wrapper';
+
+	return $attributes;
+}
+
+add_filter( 'generate_attr_site-info', 'generate_set_site_info_attributes' );
+/**
+ * Add attributes to our footer element.
+ *
+ * @since 3.1.0
+ * @param array $attributes The existing attributes.
+ */
+function generate_set_site_info_attributes( $attributes ) {
+	$attributes['class'] = 'site-info';
+
+	return $attributes;
+}
+
+add_filter( 'generate_attr_entry-header', 'generate_set_entry_header_attributes' );
+/**
+ * Add attributes to our entry headers.
+ *
+ * @since 3.1.0
+ * @param array $attributes The existing attributes.
+ */
+function generate_set_entry_header_attributes( $attributes ) {
+	$attributes['class'] = 'entry-header';
+
+	return $attributes;
+}
+
+add_filter( 'generate_attr_post-navigation', 'generate_set_post_navigation_attributes' );
+/**
+ * Add attributes to our entry headers.
+ *
+ * @since 3.1.0
+ * @param array $attributes The existing attributes.
+ */
+function generate_set_post_navigation_attributes( $attributes ) {
+	if ( is_single() ) {
+		$attributes['class'] = 'post-navigation';
+	} else {
+		$attributes['class'] = 'paging-navigation';
+	}
+
+	return $attributes;
+}
