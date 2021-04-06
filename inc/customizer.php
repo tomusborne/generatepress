@@ -1456,7 +1456,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 		}
 
 		if ( generate_is_using_flexbox() ) {
-			$show_flexbox_option = true;
+			$show_flexbox_option = false;
 		}
 
 		$show_flexbox_option = apply_filters( 'generate_show_flexbox_customizer_option', $show_flexbox_option );
