@@ -576,6 +576,7 @@ add_filter( 'generate_attr_header', 'generate_set_header_attributes' );
  */
 function generate_set_header_attributes( $attributes ) {
 	$attributes['id'] = 'masthead';
+	$attributes['aria-label'] = esc_attr__( 'Site', 'generatepress' );
 
 	return $attributes;
 }
@@ -604,6 +605,7 @@ add_filter( 'generate_attr_navigation', 'generate_set_navigation_attributes' );
  */
 function generate_set_navigation_attributes( $attributes ) {
 	$attributes['id'] = 'site-navigation';
+	$attributes['aria-label'] = esc_attr__( 'Primary', 'generatepress' );
 
 	return $attributes;
 }
@@ -635,6 +637,7 @@ add_filter( 'generate_attr_mobile-menu-control-wrapper', 'generate_set_mobile_me
 function generate_set_mobile_menu_control_wrapper_attributes( $attributes ) {
 	$attributes['id'] = 'mobile-menu-control-wrapper';
 	$attributes['class'] = 'main-navigation mobile-menu-control-wrapper';
+	$attributes['aria-label'] = esc_attr__( 'Mobile Toggle', 'generatepress' );
 
 	return $attributes;
 }
@@ -648,6 +651,7 @@ add_filter( 'generate_attr_site-info', 'generate_set_site_info_attributes' );
  */
 function generate_set_site_info_attributes( $attributes ) {
 	$attributes['class'] = 'site-info';
+	$attributes['aria-label'] = esc_attr__( 'Site', 'generatepress' );
 
 	return $attributes;
 }
@@ -661,6 +665,7 @@ add_filter( 'generate_attr_entry-header', 'generate_set_entry_header_attributes'
  */
 function generate_set_entry_header_attributes( $attributes ) {
 	$attributes['class'] = 'entry-header';
+	$attributes['aria-label'] = esc_attr__( 'Content', 'generatepress' );
 
 	return $attributes;
 }
@@ -675,8 +680,10 @@ add_filter( 'generate_attr_post-navigation', 'generate_set_post_navigation_attri
 function generate_set_post_navigation_attributes( $attributes ) {
 	if ( is_single() ) {
 		$attributes['class'] = 'post-navigation';
+		$attributes['aria-label'] = esc_attr__( 'Single Post', 'generatepress' );
 	} else {
 		$attributes['class'] = 'paging-navigation';
+		$attributes['aria-label'] = esc_attr__( 'Archive Page', 'generatepress' );
 	}
 
 	return $attributes;
