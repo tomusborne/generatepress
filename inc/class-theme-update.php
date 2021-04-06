@@ -93,6 +93,10 @@ class GeneratePress_Theme_Update {
 			self::v_3_0_0();
 		}
 
+		if ( version_compare( $saved_version, '3.1.0-alpha.1', '<' ) ) {
+			self::v_3_1_0();
+		}
+
 		// Delete our CSS cache.
 		delete_option( 'generate_dynamic_css_output' );
 		delete_option( 'generate_dynamic_css_cached_version' );
@@ -335,6 +339,34 @@ class GeneratePress_Theme_Update {
 
 				update_option( 'generatepress_dynamic_css_data', $dynamic_css_data );
 			}
+		}
+	}
+
+	/**
+	 * Update sites using old defaults.
+	 *
+	 * @since 3.1.0
+	 */
+	public static function v_3_1_0() {
+		$settings = get_option( 'generate_settings', array() );
+		$update_options = false;
+
+		$old_defaults = array(
+			'navigation_text_hover_color' => '#7a8896',
+			'navigation_text_current_color' => '#7a8896',
+			'subnavigation_text_hover_color' => '#7a8896',
+			'subnavigation_text_current_color' => '#7a8896',
+		);
+
+		foreach ( $old_defaults as $key => $value ) {
+			if ( ! isset( $settings[ $key ] ) ) {
+				$settings[ $key ] = $value;
+				$update_options = true;
+			}
+		}
+
+		if ( $update_options ) {
+			update_option( 'generate_settings', $settings );
 		}
 	}
 }
