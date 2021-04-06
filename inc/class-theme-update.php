@@ -93,6 +93,21 @@ class GeneratePress_Theme_Update {
 			self::v_3_0_0();
 		}
 
+		// Delete our CSS cache.
+		delete_option( 'generate_dynamic_css_output' );
+		delete_option( 'generate_dynamic_css_cached_version' );
+
+		// Reset our dynamic CSS file updated time so it regenerates.
+		$dynamic_css_data = get_option( 'generatepress_dynamic_css_data', array() );
+
+		if ( ! empty( $dynamic_css_data ) ) {
+			if ( isset( $dynamic_css_data['updated_time'] ) ) {
+				unset( $dynamic_css_data['updated_time'] );
+			}
+
+			update_option( 'generatepress_dynamic_css_data', $dynamic_css_data );
+		}
+
 		// Last thing to do is update our version.
 		update_option( 'generate_db_version', GENERATE_VERSION );
 	}
