@@ -38,6 +38,14 @@ get_header(); ?>
 					</header>
 
 					<?php
+
+					/**
+					 * generate_before_loop hook.
+					 *
+					 * @since 3.1.0
+					 */
+					do_action( 'generate_before_loop', 'search' );
+
 					while ( have_posts() ) :
 
 						the_post();

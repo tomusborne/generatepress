@@ -30,6 +30,13 @@ get_header(); ?>
 			if ( generate_has_default_loop() ) {
 				if ( have_posts() ) :
 
+					/**
+					 * generate_before_loop hook.
+					 *
+					 * @since 3.1.0
+					 */
+					do_action( 'generate_before_loop', 'index' );
+
 					while ( have_posts() ) :
 
 						the_post();
