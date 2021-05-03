@@ -152,17 +152,19 @@ function generate_filter_comment_fields( $fields ) {
 	$required = get_option( 'require_name_email' );
 
 	$fields['author'] = sprintf(
-		'<label for="author" class="screen-reader-text">%1$s</label><input placeholder="%1$s%3$s" id="author" name="author" type="text" value="%2$s" size="30" />',
+		'<label for="author" class="screen-reader-text">%1$s</label><input placeholder="%1$s%3$s" id="author" name="author" type="text" value="%2$s" size="30"%4$s />',
 		esc_html__( 'Name', 'generatepress' ),
 		esc_attr( $commenter['comment_author'] ),
-		$required ? ' *' : ''
+		$required ? ' *' : '',
+		$required ? ' required' : ''
 	);
 
 	$fields['email'] = sprintf(
-		'<label for="email" class="screen-reader-text">%1$s</label><input placeholder="%1$s%3$s" id="email" name="email" type="email" value="%2$s" size="30" />',
+		'<label for="email" class="screen-reader-text">%1$s</label><input placeholder="%1$s%3$s" id="email" name="email" type="email" value="%2$s" size="30"%4$s />',
 		esc_html__( 'Email', 'generatepress' ),
 		esc_attr( $commenter['comment_author_email'] ),
-		$required ? ' *' : ''
+		$required ? ' *' : '',
+		$required ? ' required' : ''
 	);
 
 	$fields['url'] = sprintf(
