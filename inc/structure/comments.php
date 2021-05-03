@@ -125,7 +125,7 @@ add_filter( 'comment_form_defaults', 'generate_set_comment_form_defaults' );
  */
 function generate_set_comment_form_defaults( $defaults ) {
 	$defaults['comment_field'] = sprintf(
-		'<p class="comment-form-comment"><label for="comment" class="screen-reader-text">%1$s</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" required></textarea></p>',
+		'<p class="comment-form-comment"><label for="comment" class="screen-reader-text">%1$s</label><textarea id="comment" name="comment" cols="45" rows="8" required></textarea></p>',
 		esc_html__( 'Comment', 'generatepress' )
 	);
 
