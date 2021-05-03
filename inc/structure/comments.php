@@ -44,6 +44,13 @@ if ( ! function_exists( 'generate_comment' ) ) {
 						</div>
 
 						<?php
+						/**
+						 * generate_after_comment_author_name hook.
+						 *
+						 * @since 3.1.0
+						 */
+						do_action( 'generate_after_comment_author_name' );
+
 						if ( apply_filters( 'generate_show_comment_entry_meta', true ) ) :
 						?>
 							<div class="entry-meta comment-metadata">
