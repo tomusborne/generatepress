@@ -43,21 +43,25 @@ if ( ! function_exists( 'generate_comment' ) ) {
 							<?php printf( '<cite itemprop="name" class="fn">%s</cite>', get_comment_author_link() ); ?>
 						</div>
 
-						<div class="entry-meta comment-metadata">
-							<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
-								<time datetime="<?php comment_time( 'c' ); ?>" itemprop="datePublished">
-									<?php
-										printf(
-											/* translators: 1: date, 2: time */
-											_x( '%1$s at %2$s', '1: date, 2: time', 'generatepress' ), // phpcs:ignore
-											get_comment_date(), // phpcs:ignore
-											get_comment_time() // phpcs:ignore
-										);
-									?>
-								</time>
-							</a>
-							<?php edit_comment_link( __( 'Edit', 'generatepress' ), '<span class="edit-link">| ', '</span>' ); ?>
-						</div>
+						<?php
+						if ( apply_filters( 'generate_show_comment_entry_meta', true ) ) :
+						?>
+							<div class="entry-meta comment-metadata">
+								<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
+									<time datetime="<?php comment_time( 'c' ); ?>" itemprop="datePublished">
+										<?php
+											printf(
+												/* translators: 1: date, 2: time */
+												_x( '%1$s at %2$s', '1: date, 2: time', 'generatepress' ), // phpcs:ignore
+												get_comment_date(), // phpcs:ignore
+												get_comment_time() // phpcs:ignore
+											);
+										?>
+									</time>
+								</a>
+								<?php edit_comment_link( __( 'Edit', 'generatepress' ), '<span class="edit-link">| ', '</span>' ); ?>
+							</div>
+						<?php endif; ?>
 					</div>
 
 					<?php if ( '0' == $comment->comment_approved ) : // phpcs:ignore ?>
