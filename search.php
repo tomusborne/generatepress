@@ -23,21 +23,23 @@ get_header(); ?>
 
 			if ( generate_has_default_loop() ) {
 				if ( have_posts() ) :
-					?>
+					if ( apply_filters( 'generate_show_search_page_title', true ) ) :
+						?>
 
-					<header class="page-header">
-						<h1 class="page-title">
-							<?php
-							printf(
-								/* translators: 1: Search query name */
-								__( 'Search Results for: %s', 'generatepress' ),
-								'<span>' . get_search_query() . '</span>'
-							);
-							?>
-						</h1>
-					</header>
+						<header class="page-header">
+							<h1 class="page-title">
+								<?php
+								printf(
+									/* translators: 1: Search query name */
+									__( 'Search Results for: %s', 'generatepress' ),
+									'<span>' . get_search_query() . '</span>'
+								);
+								?>
+							</h1>
+						</header>
 
-					<?php
+						<?php
+					endif;
 
 					/**
 					 * generate_before_loop hook.
