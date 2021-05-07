@@ -8,7 +8,8 @@
 		"jQuery": "readonly",
 		"ajaxurl": "readonly",
 		"generatepressMenu": "readonly",
-		"generatepressNavSearch": "readonly"
+		"generatepressNavSearch": "readonly",
+		"generateCustomizerControls": "readonly"
 	},
 	"env": {
 	  "browser": true,

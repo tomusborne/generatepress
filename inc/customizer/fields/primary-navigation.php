@@ -1,0 +1,376 @@
+<?php
+/**
+ * This file handles the customizer fields for the primary navigtion.
+ *
+ * @package GeneratePress
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // No direct access, please.
+}
+
+$wp_customize->add_section(
+	'generate_styling_panel_primary_navigation',
+	array(
+		'title' => __( 'Primary Navigation', 'gp-premium' ),
+		'priority' => 40,
+		'panel' => 'generate_styling_panel',
+	)
+);
+
+$wp_customize->add_control(
+	new GeneratePress_Title_Customize_Control(
+		$wp_customize,
+		'generate_primary_navigation_parent_items',
+		array(
+			'section'  => 'generate_styling_panel_primary_navigation',
+			'type'     => 'generatepress-customizer-title',
+			'title'    => __( 'Parent Items', 'gp-premium' ),
+			'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+			'priority' => 1,
+		)
+	)
+);
+
+GeneratePress_Customize_Field::add_wrapper(
+	'generate_primary_navigation_background_wrapper',
+	[
+		'section' => 'generate_styling_panel_primary_navigation',
+		'wrapper_type' => 'color',
+		'wrapper_items' => [
+			'navigation_background_color',
+			'navigation_background_hover_color',
+			'navigation_background_current_color',
+		],
+	]
+);
+
+GeneratePress_Customize_Field::add_field(
+	'generate_settings[navigation_background_color]',
+	'GeneratePress_Customize_Color_Control',
+	[
+		'default' => $color_defaults['navigation_background_color'],
+		'transport' => 'postMessage',
+		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+	],
+	[
+		'label' => __( 'Background', 'gp-premium' ),
+		'section' => 'generate_styling_panel_primary_navigation',
+		'alpha' => true,
+		'choices' => [
+			'wrapper' => 'navigation_background_color',
+		],
+		'output' => [
+			[
+				'element'  => '.main-navigation',
+				'property' => 'background-color',
+			],
+		],
+	]
+);
+
+GeneratePress_Customize_Field::add_field(
+	'generate_settings[navigation_background_hover_color]',
+	'GeneratePress_Customize_Color_Control',
+	[
+		'default' => $color_defaults['navigation_background_hover_color'],
+		'transport' => 'postMessage',
+		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+	],
+	[
+		'section' => 'generate_styling_panel_primary_navigation',
+		'alpha' => true,
+		'choices' => [
+			'wrapper' => 'navigation_background_hover_color',
+		],
+		'output' => [
+			[
+				'element'  => '.navigation-search input[type="search"], .navigation-search input[type="search"]:focus, .main-navigation .main-nav ul li:hover > a, .main-navigation .main-nav ul li:focus > a, .main-navigation .main-nav ul li.sfHover > a, .main-navigation .menu-bar-item:hover a',
+				'property' => 'background-color',
+			],
+		],
+	]
+);
+
+GeneratePress_Customize_Field::add_field(
+	'generate_settings[navigation_background_current_color]',
+	'GeneratePress_Customize_Color_Control',
+	[
+		'default' => $color_defaults['navigation_background_current_color'],
+		'transport' => 'postMessage',
+		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+	],
+	[
+		'section' => 'generate_styling_panel_primary_navigation',
+		'alpha' => true,
+		'choices' => [
+			'wrapper' => 'navigation_background_current_color',
+		],
+		'output' => [
+			[
+				'element'  => '.main-navigation .main-nav ul li[class*="current-menu-"] > a, .main-navigation .main-nav ul li[class*="current-menu-"]:hover > a, .main-navigation .main-nav ul li[class*="current-menu-"].sfHover > a',
+				'property' => 'background-color',
+			],
+		],
+	]
+);
+
+GeneratePress_Customize_Field::add_wrapper(
+	'generate_primary_navigation_text_wrapper',
+	[
+		'section' => 'generate_styling_panel_primary_navigation',
+		'wrapper_type' => 'color',
+		'wrapper_items' => [
+			'navigation_text_color',
+			'navigation_text_hover_color',
+			'navigation_text_current_color',
+		],
+	]
+);
+
+GeneratePress_Customize_Field::add_field(
+	'generate_settings[navigation_text_color]',
+	'GeneratePress_Customize_Color_Control',
+	[
+		'default' => $color_defaults['navigation_text_color'],
+		'transport' => 'postMessage',
+		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+	],
+	[
+		'label' => __( 'Text', 'gp-premium' ),
+		'section' => 'generate_styling_panel_primary_navigation',
+		'choices' => [
+			'wrapper' => 'navigation_text_color',
+		],
+		'output' => [
+			[
+				'element'  => '.main-navigation .main-nav ul li a, .main-navigation .menu-toggle, .main-navigation button.menu-toggle:hover, .main-navigation button.menu-toggle:focus, .main-navigation .mobile-bar-items a, .main-navigation .mobile-bar-items a:hover, .main-navigation .mobile-bar-items a:focus, .main-navigation .menu-bar-items',
+				'property' => 'color',
+			],
+		],
+	]
+);
+
+GeneratePress_Customize_Field::add_field(
+	'generate_settings[navigation_text_hover_color]',
+	'GeneratePress_Customize_Color_Control',
+	[
+		'default' => $color_defaults['navigation_text_hover_color'],
+		'transport' => 'postMessage',
+		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+	],
+	[
+		'section' => 'generate_styling_panel_primary_navigation',
+		'choices' => [
+			'wrapper' => 'navigation_text_hover_color',
+		],
+		'output' => [
+			[
+				'element'  => '.navigation-search input[type="search"], .navigation-search input[type="search"]:active, .navigation-search input[type="search"]:focus, .main-navigation .main-nav ul li:hover > a, .main-navigation .main-nav ul li:focus > a, .main-navigation .main-nav ul li.sfHover > a, .main-navigation .menu-bar-item:hover a',
+				'property' => 'color',
+			],
+		],
+	]
+);
+
+GeneratePress_Customize_Field::add_field(
+	'generate_settings[navigation_text_current_color]',
+	'GeneratePress_Customize_Color_Control',
+	[
+		'default' => $color_defaults['navigation_text_current_color'],
+		'transport' => 'postMessage',
+		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+	],
+	[
+		'section' => 'generate_styling_panel_primary_navigation',
+		'choices' => [
+			'wrapper' => 'navigation_text_current_color',
+		],
+		'output' => [
+			[
+				'element'  => '.main-navigation .main-nav ul li[class*="current-menu-"] > a, .main-navigation .main-nav ul li[class*="current-menu-"]:hover > a, .main-navigation .main-nav ul li[class*="current-menu-"].sfHover > a',
+				'property' => 'color',
+			],
+		],
+	]
+);
+
+$wp_customize->add_control(
+	new GeneratePress_Title_Customize_Control(
+		$wp_customize,
+		'generate_primary_navigation_submenu_items',
+		array(
+			'section'  => 'generate_styling_panel_primary_navigation',
+			'type'     => 'generatepress-customizer-title',
+			'title'    => __( 'Sub-Menu Items', 'gp-premium' ),
+			'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
+		)
+	)
+);
+
+GeneratePress_Customize_Field::add_wrapper(
+	'generate_primary_navigation_submenu_background_wrapper',
+	[
+		'section' => 'generate_styling_panel_primary_navigation',
+		'wrapper_type' => 'color',
+		'wrapper_items' => [
+			'subnavigation_background_color',
+			'subnavigation_background_hover_color',
+			'subnavigation_background_current_color',
+		],
+	]
+);
+
+GeneratePress_Customize_Field::add_field(
+	'generate_settings[subnavigation_background_color]',
+	'GeneratePress_Customize_Color_Control',
+	[
+		'default' => $color_defaults['subnavigation_background_color'],
+		'transport' => 'postMessage',
+		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+	],
+	[
+		'label' => __( 'Background', 'generatepress' ),
+		'section' => 'generate_styling_panel_primary_navigation',
+		'alpha' => true,
+		'choices' => [
+			'wrapper' => 'subnavigation_background_color',
+		],
+		'output' => [
+			[
+				'element'  => '.main-navigation ul ul',
+				'property' => 'background-color',
+			],
+		],
+	]
+);
+
+$submenu_hover_selectors = '.main-navigation .main-nav ul ul li:hover > a, .main-navigation .main-nav ul ul li:focus > a, .main-navigation .main-nav ul ul li.sfHover > a';
+
+GeneratePress_Customize_Field::add_field(
+	'generate_settings[subnavigation_background_hover_color]',
+	'GeneratePress_Customize_Color_Control',
+	[
+		'default' => $color_defaults['subnavigation_background_hover_color'],
+		'transport' => 'postMessage',
+		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+	],
+	[
+		'section' => 'generate_styling_panel_primary_navigation',
+		'alpha' => true,
+		'choices' => [
+			'wrapper' => 'subnavigation_background_hover_color',
+		],
+		'output' => [
+			[
+				'element'  => $submenu_hover_selectors,
+				'property' => 'background-color',
+			],
+		],
+	]
+);
+
+$submenu_current_selectors = '.main-navigation .main-nav ul li[class*="current-menu-"] > a, .main-navigation .main-nav ul li[class*="current-menu-"]:hover > a, .main-navigation .main-nav ul li[class*="current-menu-"].sfHover > a';
+
+GeneratePress_Customize_Field::add_field(
+	'generate_settings[subnavigation_background_current_color]',
+	'GeneratePress_Customize_Color_Control',
+	[
+		'default' => $color_defaults['subnavigation_background_current_color'],
+		'transport' => 'postMessage',
+		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+	],
+	[
+		'section' => 'generate_styling_panel_primary_navigation',
+		'alpha' => true,
+		'choices' => [
+			'wrapper' => 'subnavigation_background_current_color',
+		],
+		'output' => [
+			[
+				'element'  => $submenu_current_selectors,
+				'property' => 'background-color',
+			],
+		],
+	]
+);
+
+GeneratePress_Customize_Field::add_wrapper(
+	'generate_primary_navigation_submenu_text_wrapper',
+	[
+		'section' => 'generate_styling_panel_primary_navigation',
+		'wrapper_type' => 'color',
+		'wrapper_items' => [
+			'subnavigation_text_color',
+			'subnavigation_text_hover_color',
+			'subnavigation_text_current_color',
+		],
+	]
+);
+
+GeneratePress_Customize_Field::add_field(
+	'generate_settings[subnavigation_text_color]',
+	'GeneratePress_Customize_Color_Control',
+	[
+		'default' => $color_defaults['subnavigation_text_color'],
+		'transport' => 'postMessage',
+		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+	],
+	[
+		'label' => __( 'Text', 'gp-premium' ),
+		'section' => 'generate_styling_panel_primary_navigation',
+		'choices' => [
+			'wrapper' => 'subnavigation_text_color',
+		],
+		'output' => [
+			[
+				'element'  => '.main-navigation .main-nav ul ul li a',
+				'property' => 'color',
+			],
+		],
+	]
+);
+
+GeneratePress_Customize_Field::add_field(
+	'generate_settings[subnavigation_text_hover_color]',
+	'GeneratePress_Customize_Color_Control',
+	[
+		'default' => $color_defaults['subnavigation_text_hover_color'],
+		'transport' => 'postMessage',
+		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+	],
+	[
+		'section' => 'generate_styling_panel_primary_navigation',
+		'choices' => [
+			'wrapper' => 'subnavigation_text_hover_color',
+		],
+		'output' => [
+			[
+				'element'  => $submenu_hover_selectors,
+				'property' => 'color',
+			],
+		],
+	]
+);
+
+GeneratePress_Customize_Field::add_field(
+	'generate_settings[subnavigation_text_current_color]',
+	'GeneratePress_Customize_Color_Control',
+	[
+		'default' => $color_defaults['subnavigation_text_current_color'],
+		'transport' => 'postMessage',
+		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+	],
+	[
+		'section' => 'generate_styling_panel_primary_navigation',
+		'choices' => [
+			'wrapper' => 'subnavigation_text_current_color',
+		],
+		'output' => [
+			[
+				'element'  => $submenu_current_selectors,
+				'property' => 'color',
+			],
+		],
+	]
+);

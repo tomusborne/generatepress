@@ -180,6 +180,10 @@ if ( ! function_exists( 'generate_sanitize_hex_color' ) ) {
 			return $color;
 		}
 
+		if ( strpos( $color, 'var(' ) !== false ) {
+			return sanitize_text_field( $color );
+		}
+
 		return '';
 	}
 }
@@ -275,6 +279,44 @@ function generate_do_control_inline_scripts() {
 	wp_localize_script( 'generatepress-customizer-controls', 'generatepress_color_defaults', generate_get_color_defaults() );
 	wp_localize_script( 'generatepress-customizer-controls', 'generatepress_typography_defaults', generate_get_default_fonts() );
 	wp_localize_script( 'generatepress-customizer-controls', 'generatepress_spacing_defaults', generate_spacing_get_defaults() );
+
+	wp_enqueue_script(
+		'generate-customizer-controls',
+		trailingslashit( get_template_directory_uri() ) . 'assets/dist/customizer.js',
+		// We're including wp-color-picker for localized strings, nothing more.
+		array( 'customize-controls', 'wp-i18n', 'wp-components', 'wp-element', 'jquery', 'customize-base', 'wp-color-picker' ),
+		GENERATE_VERSION,
+		true
+	);
+
+	$color_palette = get_theme_support( 'editor-color-palette' );
+	$colors = array();
+
+	if ( is_array( $color_palette ) ) {
+		foreach ( $color_palette as $key => $value ) {
+			foreach ( $value as $color ) {
+				$colors[] = array(
+					'name' => $color['name'],
+					'color' => $color['color'],
+				);
+			}
+		}
+	}
+
+	wp_localize_script(
+		'generate-customizer-controls',
+		'generateCustomizerControls',
+		array(
+			'palette' => $colors,
+		)
+	);
+
+	wp_enqueue_style(
+		'generate-customizer-controls',
+		trailingslashit( get_template_directory_uri() ) . 'assets/dist/style-customizer.css',
+		array( 'wp-components' ),
+		GENERATE_VERSION
+	);
 }
 
 if ( ! function_exists( 'generate_customizer_live_preview' ) ) {
@@ -305,6 +347,17 @@ if ( ! function_exists( 'generate_customizer_live_preview' ) ) {
 				'isRTL' => is_rtl(),
 			)
 		);
+
+		wp_enqueue_script(
+			'generate-postMessage',
+			trailingslashit( get_template_directory_uri() ) . 'inc/customizer/controls/js/postMessage.js',
+			array( 'jquery', 'customize-preview', 'wp-hooks' ),
+			GENERATE_VERSION,
+			true
+		);
+
+		global $generate_customize_fields;
+		wp_localize_script( 'generate-postMessage', 'gpPostMessageFields', $generate_customize_fields );
 	}
 }
 

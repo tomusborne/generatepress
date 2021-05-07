@@ -1,0 +1,443 @@
+.components-base-control__help {
+  margin-top: 2px;
+  margin-bottom: 0;
+}
+
+.components-base-control__label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.generate-customize-control-wrapper {
+  display: flex;
+}
+
+.generate-customize-control-wrapper[data-wrapper-type=color] > div:first-child {
+  flex-grow: 1;
+}
+.generate-customize-control-wrapper[data-wrapper-type=color] > div:not(:last-child) {
+  margin-right: 5px;
+}
+
+.generate-customize-control-wrapper[data-wrapper-type=two-col] > div {
+  flex-basis: calc(50% - 5px);
+}
+.generate-customize-control-wrapper[data-wrapper-type=two-col] > div:nth-child(odd) {
+  margin-right: 5px;
+}
+.generate-customize-control-wrapper[data-wrapper-type=two-col] > div:nth-child(even) {
+  margin-left: 5px;
+}
+
+.generate-customize-control-title {
+  background: #ffffff;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  font-size: 15px;
+}
+.generate-component-color-picker-wrapper > .components-base-control__field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.generate-component-color-picker-wrapper > .components-base-control__field .components-color-palette__item-wrapper {
+  margin: 0;
+}
+.generate-component-color-picker-wrapper > .components-base-control__field .components-color-palette__item-wrapper .components-circular-option-picker__option:focus::after {
+  display: none;
+}
+
+.generate-component-color-picker .components-color-picker {
+  box-sizing: border-box;
+}
+.generate-component-color-picker .components-color-picker__inputs-wrapper {
+  display: none;
+}
+.generate-component-color-picker .generate-color-input-wrapper {
+  display: flex;
+  padding: 16px 16px 0;
+}
+.generate-component-color-picker .generate-color-input-wrapper .generate-color-input {
+  flex-grow: 1;
+  margin-right: 5px;
+}
+.generate-component-color-picker .generate-color-input-wrapper input {
+  margin-right: 5px;
+}
+.generate-component-color-picker .generate-color-input-wrapper .components-base-control__field {
+  margin-bottom: 0;
+}
+.generate-component-color-picker > .components-base-control:first-child {
+  margin-bottom: 0;
+}
+.generate-component-color-picker .components-color-picker__inputs-wrapper {
+  min-width: auto;
+}
+.generate-component-color-picker .generate-component-color-picker-palette {
+  padding: 16px 16px 0;
+}
+.generate-component-color-picker .generate-component-color-picker-palette .components-circular-option-picker {
+  display: flex;
+  flex-wrap: wrap;
+}
+.generate-component-color-picker .generate-component-color-picker-palette .components-circular-option-picker .components-circular-option-picker__option-wrapper {
+  margin: 0 8px 8px 0;
+}
+.generate-component-color-picker .components-color-palette {
+  margin: 0;
+}
+.generate-component-color-picker .components-color-picker {
+  padding: 5px;
+}
+.generate-component-color-picker .components-color-picker__body {
+  padding-bottom: 0;
+}
+.generate-component-color-picker .components-popover__content {
+  padding: 10px;
+  width: 295px;
+  box-sizing: border-box;
+}
+.generate-component-color-picker .components-color-clear-color {
+  height: auto;
+}
+
+.generate-component-color-picker[data-x-axis=left] .components-popover__content {
+  margin-right: -35px !important;
+}
+
+.generate-component-color-opacity {
+  display: flex;
+  padding: 0 16px;
+  margin: 10px 0;
+}
+.generate-component-color-opacity .components-range-control {
+  flex-grow: 1;
+  padding-left: 5px;
+}
+.generate-customize-control-wrapper[data-wrapper-type=google-font] {
+  flex-wrap: wrap;
+}
+.generate-customize-control-wrapper[data-wrapper-type=google-font].generate-is-google-font {
+  background: #fff;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+.generate-customize-control-wrapper[data-wrapper-type=google-font].generate-is-google-font .components-base-control__field {
+  margin-bottom: 0;
+}
+.generate-customize-control-wrapper[data-wrapper-type=google-font].generate-is-google-font #body_font_google--wrapper {
+  margin-bottom: 10px;
+}
+.generate-customize-control-wrapper[data-wrapper-type=google-font]:not(.generate-is-google-font) > div:not(:first-child) {
+  display: none;
+}
+.generate-customize-control-wrapper[data-wrapper-type=google-font] > div {
+  flex-basis: 50%;
+}
+.generate-customize-control-wrapper[data-wrapper-type=google-font] > div#body_font_google--wrapper {
+  flex-basis: 100%;
+}
+.generate-customize-control-wrapper[data-wrapper-type=google-font] > div#body_font_category--wrapper {
+  flex-basis: calc(35% - 10px);
+  margin-right: 10px;
+}
+.generate-customize-control-wrapper[data-wrapper-type=google-font] > div#body_font_variants--wrapper {
+  flex-basis: 65%;
+}
+
+.components-select-control__input--generate-fontfamily {
+  margin-bottom: 5px;
+}
+
+.generate-component-font-family-picker-wrapper .components-base-control__field {
+  margin-bottom: 0;
+}
+.generate-component-color-picker-wrapper > .components-base-control__field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.generate-component-color-picker-wrapper > .components-base-control__field .components-color-palette__item-wrapper {
+  margin: 0;
+}
+.generate-component-color-picker-wrapper > .components-base-control__field .components-color-palette__item-wrapper .components-circular-option-picker__option:focus::after {
+  display: none;
+}
+
+.generate-component-color-picker .components-color-picker {
+  box-sizing: border-box;
+}
+.generate-component-color-picker .components-color-picker__inputs-wrapper {
+  display: none;
+}
+.generate-component-color-picker .generate-color-input-wrapper {
+  display: flex;
+  padding: 16px 16px 0;
+}
+.generate-component-color-picker .generate-color-input-wrapper .generate-color-input {
+  flex-grow: 1;
+  margin-right: 5px;
+}
+.generate-component-color-picker .generate-color-input-wrapper input {
+  margin-right: 5px;
+}
+.generate-component-color-picker .generate-color-input-wrapper .components-base-control__field {
+  margin-bottom: 0;
+}
+.generate-component-color-picker > .components-base-control:first-child {
+  margin-bottom: 0;
+}
+.generate-component-color-picker .components-color-picker__inputs-wrapper {
+  min-width: auto;
+}
+.generate-component-color-picker .generate-component-color-picker-palette {
+  padding: 16px 16px 0;
+}
+.generate-component-color-picker .generate-component-color-picker-palette .components-circular-option-picker {
+  display: flex;
+  flex-wrap: wrap;
+}
+.generate-component-color-picker .generate-component-color-picker-palette .components-circular-option-picker .components-circular-option-picker__option-wrapper {
+  margin: 0 8px 8px 0;
+}
+.generate-component-color-picker .components-color-palette {
+  margin: 0;
+}
+.generate-component-color-picker .components-color-picker {
+  padding: 5px;
+}
+.generate-component-color-picker .components-color-picker__body {
+  padding-bottom: 0;
+}
+.generate-component-color-picker .components-popover__content {
+  padding: 10px;
+  width: 295px;
+  box-sizing: border-box;
+}
+.generate-component-color-picker .components-color-clear-color {
+  height: auto;
+}
+
+.generate-component-color-picker[data-x-axis=left] .components-popover__content {
+  margin-right: -35px !important;
+}
+
+.generate-component-color-opacity {
+  display: flex;
+  padding: 0 16px;
+  margin: 10px 0;
+}
+.generate-component-color-opacity .components-range-control {
+  flex-grow: 1;
+  padding-left: 5px;
+}
+
+.generate-customize-control-wrapper {
+  display: flex;
+}
+.generate-customize-control-wrapper.generate-customize-color-control-wrapper > div:first-child {
+  flex-grow: 1;
+}
+.generate-customize-control-wrapper.generate-customize-color-control-wrapper > div:not(:last-child) {
+  margin-right: 5px;
+}
+.generate-component-color-picker-wrapper > .components-base-control__field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.generate-component-color-picker-wrapper > .components-base-control__field .components-color-palette__item-wrapper {
+  margin: 0;
+}
+.generate-component-color-picker-wrapper > .components-base-control__field .components-color-palette__item-wrapper .components-circular-option-picker__option:focus::after {
+  display: none;
+}
+
+.generate-component-color-picker .components-color-picker {
+  box-sizing: border-box;
+}
+.generate-component-color-picker .components-color-picker__inputs-wrapper {
+  display: none;
+}
+.generate-component-color-picker .generate-color-input-wrapper {
+  display: flex;
+  padding: 16px 16px 0;
+}
+.generate-component-color-picker .generate-color-input-wrapper .generate-color-input {
+  flex-grow: 1;
+  margin-right: 5px;
+}
+.generate-component-color-picker .generate-color-input-wrapper input {
+  margin-right: 5px;
+}
+.generate-component-color-picker .generate-color-input-wrapper .components-base-control__field {
+  margin-bottom: 0;
+}
+.generate-component-color-picker > .components-base-control:first-child {
+  margin-bottom: 0;
+}
+.generate-component-color-picker .components-color-picker__inputs-wrapper {
+  min-width: auto;
+}
+.generate-component-color-picker .generate-component-color-picker-palette {
+  padding: 16px 16px 0;
+}
+.generate-component-color-picker .generate-component-color-picker-palette .components-circular-option-picker {
+  display: flex;
+  flex-wrap: wrap;
+}
+.generate-component-color-picker .generate-component-color-picker-palette .components-circular-option-picker .components-circular-option-picker__option-wrapper {
+  margin: 0 8px 8px 0;
+}
+.generate-component-color-picker .components-color-palette {
+  margin: 0;
+}
+.generate-component-color-picker .components-color-picker {
+  padding: 5px;
+}
+.generate-component-color-picker .components-color-picker__body {
+  padding-bottom: 0;
+}
+.generate-component-color-picker .components-popover__content {
+  padding: 10px;
+  width: 295px;
+  box-sizing: border-box;
+}
+.generate-component-color-picker .components-color-clear-color {
+  height: auto;
+}
+
+.generate-component-color-picker[data-x-axis=left] .components-popover__content {
+  margin-right: -35px !important;
+}
+
+.generate-component-color-opacity {
+  display: flex;
+  padding: 0 16px;
+  margin: 10px 0;
+}
+.generate-component-color-opacity .components-range-control {
+  flex-grow: 1;
+  padding-left: 5px;
+}
+
+.generate-customize-control-wrapper {
+  display: flex;
+}
+.generate-customize-control-wrapper.generate-customize-color-control-wrapper > div:first-child {
+  flex-grow: 1;
+}
+.generate-customize-control-wrapper.generate-customize-color-control-wrapper > div:not(:last-child) {
+  margin-right: 5px;
+}
+.generate-component-color-picker-wrapper > .components-base-control__field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.generate-component-color-picker-wrapper > .components-base-control__field .components-color-palette__item-wrapper {
+  margin: 0;
+}
+.generate-component-color-picker-wrapper > .components-base-control__field .components-color-palette__item-wrapper .components-circular-option-picker__option:focus::after {
+  display: none;
+}
+
+.generate-component-color-picker .components-color-picker {
+  box-sizing: border-box;
+}
+.generate-component-color-picker .components-color-picker__inputs-wrapper {
+  display: none;
+}
+.generate-component-color-picker .generate-color-input-wrapper {
+  display: flex;
+  padding: 16px 16px 0;
+}
+.generate-component-color-picker .generate-color-input-wrapper .generate-color-input {
+  flex-grow: 1;
+  margin-right: 5px;
+}
+.generate-component-color-picker .generate-color-input-wrapper input {
+  margin-right: 5px;
+}
+.generate-component-color-picker .generate-color-input-wrapper .components-base-control__field {
+  margin-bottom: 0;
+}
+.generate-component-color-picker > .components-base-control:first-child {
+  margin-bottom: 0;
+}
+.generate-component-color-picker .components-color-picker__inputs-wrapper {
+  min-width: auto;
+}
+.generate-component-color-picker .generate-component-color-picker-palette {
+  padding: 16px 16px 0;
+}
+.generate-component-color-picker .generate-component-color-picker-palette .components-circular-option-picker {
+  display: flex;
+  flex-wrap: wrap;
+}
+.generate-component-color-picker .generate-component-color-picker-palette .components-circular-option-picker .components-circular-option-picker__option-wrapper {
+  margin: 0 8px 8px 0;
+}
+.generate-component-color-picker .components-color-palette {
+  margin: 0;
+}
+.generate-component-color-picker .components-color-picker {
+  padding: 5px;
+}
+.generate-component-color-picker .components-color-picker__body {
+  padding-bottom: 0;
+}
+.generate-component-color-picker .components-popover__content {
+  padding: 10px;
+  width: 295px;
+  box-sizing: border-box;
+}
+.generate-component-color-picker .components-color-clear-color {
+  height: auto;
+}
+
+.generate-component-color-picker[data-x-axis=left] .components-popover__content {
+  margin-right: -35px !important;
+}
+
+.generate-component-color-opacity {
+  display: flex;
+  padding: 0 16px;
+  margin: 10px 0;
+}
+.generate-component-color-opacity .components-range-control {
+  flex-grow: 1;
+  padding-left: 5px;
+}
+
+.generate-customize-control-wrapper {
+  display: flex;
+}
+.generate-customize-control-wrapper.generate-customize-color-control-wrapper > div:first-child {
+  flex-grow: 1;
+}
+.generate-customize-control-wrapper.generate-customize-color-control-wrapper > div:not(:last-child) {
+  margin-right: 5px;
+}
+.components-gblocks-range-control--wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.components-gblocks-range-control--wrapper .components-gblocks-range-control--range {
+  width: calc(100% - 80px);
+}
+.components-gblocks-range-control--wrapper .components-gblocks-range-control-input {
+  width: 60px;
+}
+.components-gblocks-range-control--wrapper .components-base-control__help {
+  margin-top: -8px;
+  font-size: 12px;
+  font-style: normal;
+  color: #757575;
+}
+
+/*# sourceMappingURL=style-customizer.css.map*/

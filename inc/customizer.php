@@ -28,9 +28,13 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 	 * @param WP_Customize_Manager $wp_customize Theme Customizer object.
 	 */
 	function generate_customize_register( $wp_customize ) {
-		$defaults = generate_get_defaults();
+		if ( version_compare( PHP_VERSION, '5.6', '<' ) ) {
+			return;
+		}
 
-		require_once trailingslashit( get_template_directory() ) . 'inc/customizer/customizer-helpers.php';
+		$defaults = generate_get_defaults();
+		$color_defaults = generate_get_color_defaults();
+		$typography_defaults = generate_get_default_fonts();
 
 		if ( $wp_customize->get_control( 'blogdescription' ) ) {
 			$wp_customize->get_control( 'blogdescription' )->priority = 3;
@@ -49,6 +53,14 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 		if ( method_exists( $wp_customize, 'register_control_type' ) ) {
 			$wp_customize->register_control_type( 'Generate_Customize_Misc_Control' );
 			$wp_customize->register_control_type( 'Generate_Range_Slider_Control' );
+			$wp_customize->register_control_type( 'GeneratePress_Customize_Color_Control' );
+			$wp_customize->register_control_type( 'GeneratePress_Customize_Toggle_Control' );
+			$wp_customize->register_control_type( 'GeneratePress_Customize_Select_Control' );
+			$wp_customize->register_control_type( 'GeneratePress_Customize_Text_Control' );
+			$wp_customize->register_control_type( 'GeneratePress_Customize_Title_Control' );
+			$wp_customize->register_control_type( 'GeneratePress_Customize_Range_Control' );
+			$wp_customize->register_control_type( 'GeneratePress_Customize_Font_Family_Control' );
+			$wp_customize->register_control_type( 'GeneratePress_Customize_Wrapper_Control' );
 		}
 
 		if ( method_exists( $wp_customize, 'register_section_type' ) ) {
@@ -225,129 +237,19 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			)
 		);
 
-		$wp_customize->add_section(
-			'body_section',
+		$wp_customize->add_panel(
+			'generate_styling_panel',
 			array(
-				'title' => $wp_customize->get_panel( 'generate_colors_panel' ) ? __( 'Body', 'generatepress' ) : __( 'Colors', 'generatepress' ),
-				'capability' => 'edit_theme_options',
 				'priority' => 30,
-				'panel' => $wp_customize->get_panel( 'generate_colors_panel' ) ? 'generate_colors_panel' : false,
+				'title' => __( 'Design', 'generatepress' ),
 			)
 		);
 
-		$wp_customize->add_setting(
-			'generate_settings[background_color]',
-			array(
-				'default' => $defaults['background_color'],
-				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_hex_color',
-				'transport' => 'postMessage',
-			)
-		);
-
-		$wp_customize->add_control(
-			new WP_Customize_Color_Control(
-				$wp_customize,
-				'generate_settings[background_color]',
-				array(
-					'label' => __( 'Background Color', 'generatepress' ),
-					'section' => 'body_section',
-					'settings' => 'generate_settings[background_color]',
-				)
-			)
-		);
-
-		$wp_customize->add_setting(
-			'generate_settings[text_color]',
-			array(
-				'default' => $defaults['text_color'],
-				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_hex_color',
-				'transport' => 'postMessage',
-			)
-		);
-
-		$wp_customize->add_control(
-			new WP_Customize_Color_Control(
-				$wp_customize,
-				'generate_settings[text_color]',
-				array(
-					'label' => __( 'Text Color', 'generatepress' ),
-					'section' => 'body_section',
-					'settings' => 'generate_settings[text_color]',
-				)
-			)
-		);
-
-		$wp_customize->add_setting(
-			'generate_settings[link_color]',
-			array(
-				'default' => $defaults['link_color'],
-				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_hex_color',
-				'transport' => 'postMessage',
-			)
-		);
-
-		$wp_customize->add_control(
-			new WP_Customize_Color_Control(
-				$wp_customize,
-				'generate_settings[link_color]',
-				array(
-					'label' => __( 'Link Color', 'generatepress' ),
-					'section' => 'body_section',
-					'settings' => 'generate_settings[link_color]',
-				)
-			)
-		);
-
-		$wp_customize->add_setting(
-			'generate_settings[link_color_hover]',
-			array(
-				'default' => $defaults['link_color_hover'],
-				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_hex_color',
-				'transport' => 'postMessage',
-			)
-		);
-
-		$wp_customize->add_control(
-			new WP_Customize_Color_Control(
-				$wp_customize,
-				'generate_settings[link_color_hover]',
-				array(
-					'label' => __( 'Link Color Hover', 'generatepress' ),
-					'section' => 'body_section',
-					'settings' => 'generate_settings[link_color_hover]',
-				)
-			)
-		);
-
-		if ( '' !== generate_get_option( 'link_color_visited' ) ) {
-			$wp_customize->add_setting(
-				'generate_settings[link_color_visited]',
-				array(
-					'default' => $defaults['link_color_visited'],
-					'type' => 'option',
-					'sanitize_callback' => 'generate_sanitize_hex_color',
-					'transport' => 'refresh',
-				)
-			);
-
-			$wp_customize->add_control(
-				new WP_Customize_Color_Control(
-					$wp_customize,
-					'generate_settings[link_color_visited]',
-					array(
-						'label' => __( 'Link Color Visited', 'generatepress' ),
-						'section' => 'body_section',
-						'settings' => 'generate_settings[link_color_visited]',
-					)
-				)
-			);
-		}
-
-		$color_defaults = generate_get_color_defaults();
+		$fields_dir = trailingslashit( get_template_directory() ) . 'inc/customizer/fields';
+		require_once $fields_dir . '/body.php';
+		require_once $fields_dir . '/top-bar.php';
+		require_once $fields_dir . '/header.php';
+		require_once $fields_dir . '/primary-navigation.php';
 
 		if ( ! $wp_customize->get_setting( 'generate_settings[blog_post_title_color]' ) ) {
 			$wp_customize->add_setting(
@@ -391,158 +293,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 						'section' => $wp_customize->get_section( 'content_color_section' ) ? 'content_color_section' : 'body_section',
 						'settings' => 'generate_settings[blog_post_title_hover_color]',
 					)
-				)
-			);
-		}
-
-		$wp_customize->add_setting(
-			'nav_color_presets',
-			array(
-				'default' => 'current',
-				'type' => 'option',
-				'sanitize_callback' => 'generate_sanitize_preset_layout',
-				'transport' => 'postMessage',
-			)
-		);
-
-		$wp_customize->add_control(
-			'nav_color_presets',
-			array(
-				'type' => 'select',
-				'label' => __( 'Navigation Color Presets', 'generatepress' ),
-				'section' => $wp_customize->get_section( 'navigation_color_section' ) ? 'navigation_color_section' : 'body_section',
-				'priority' => $wp_customize->get_section( 'navigation_color_section' ) ? 0 : null,
-				'choices' => array(
-					'current' => __( 'Current', 'generatepress' ),
-					'default' => __( 'Default', 'generatepress' ),
-					'classic' => __( 'Classic', 'generatepress' ),
-					'grey' => __( 'Grey', 'generatepress' ),
-					'red' => __( 'Red', 'generatepress' ),
-					'green' => __( 'Green', 'generatepress' ),
-					'blue' => __( 'Blue', 'generatepress' ),
-				),
-				'settings' => 'nav_color_presets',
-			)
-		);
-
-		if ( ! $wp_customize->get_setting( 'generate_settings[navigation_background_color]' ) ) {
-			$wp_customize->add_setting(
-				'generate_settings[navigation_background_color]',
-				array(
-					'default' => $color_defaults['navigation_background_color'],
-					'type' => 'option',
-					'sanitize_callback' => 'generate_sanitize_rgba_color',
-					'transport' => 'postMessage',
-				)
-			);
-
-			$wp_customize->add_setting(
-				'generate_settings[navigation_text_color]',
-				array(
-					'default' => $color_defaults['navigation_text_color'],
-					'type' => 'option',
-					'sanitize_callback' => 'generate_sanitize_hex_color',
-					'transport' => 'postMessage',
-				)
-			);
-
-			$wp_customize->add_setting(
-				'generate_settings[navigation_background_hover_color]',
-				array(
-					'default'     => $color_defaults['navigation_background_hover_color'],
-					'type'        => 'option',
-					'transport'   => 'postMessage',
-					'sanitize_callback' => 'generate_sanitize_rgba_color',
-				)
-			);
-
-			$wp_customize->add_setting(
-				'generate_settings[navigation_text_hover_color]',
-				array(
-					'default'     => $color_defaults['navigation_text_hover_color'],
-					'type'        => 'option',
-					'transport'   => 'postMessage',
-					'sanitize_callback' => 'generate_sanitize_hex_color',
-				)
-			);
-
-			$wp_customize->add_setting(
-				'generate_settings[navigation_background_current_color]',
-				array(
-					'default' => $color_defaults['navigation_background_current_color'],
-					'type' => 'option',
-					'sanitize_callback' => 'generate_sanitize_rgba_color',
-					'transport' => 'postMessage',
-				)
-			);
-
-			$wp_customize->add_setting(
-				'generate_settings[navigation_text_current_color]',
-				array(
-					'default' => $color_defaults['navigation_text_current_color'],
-					'type' => 'option',
-					'sanitize_callback' => 'generate_sanitize_hex_color',
-					'transport' => 'postMessage',
-				)
-			);
-
-			$wp_customize->add_setting(
-				'generate_settings[subnavigation_background_color]',
-				array(
-					'default'     => $color_defaults['subnavigation_background_color'],
-					'type'        => 'option',
-					'transport'   => 'postMessage',
-					'sanitize_callback' => 'generate_sanitize_rgba_color',
-				)
-			);
-
-			$wp_customize->add_setting(
-				'generate_settings[subnavigation_text_color]',
-				array(
-					'default' => $color_defaults['subnavigation_text_color'],
-					'type' => 'option',
-					'sanitize_callback' => 'generate_sanitize_hex_color',
-					'transport' => 'postMessage',
-				)
-			);
-
-			$wp_customize->add_setting(
-				'generate_settings[subnavigation_background_hover_color]',
-				array(
-					'default'     => $color_defaults['subnavigation_background_hover_color'],
-					'type'        => 'option',
-					'transport'   => 'postMessage',
-					'sanitize_callback' => 'generate_sanitize_rgba_color',
-				)
-			);
-
-			$wp_customize->add_setting(
-				'generate_settings[subnavigation_text_hover_color]',
-				array(
-					'default' => $color_defaults['subnavigation_text_hover_color'],
-					'type' => 'option',
-					'sanitize_callback' => 'generate_sanitize_hex_color',
-					'transport' => 'postMessage',
-				)
-			);
-
-			$wp_customize->add_setting(
-				'generate_settings[subnavigation_background_current_color]',
-				array(
-					'default'     => $color_defaults['subnavigation_background_current_color'],
-					'type'        => 'option',
-					'transport'   => 'postMessage',
-					'sanitize_callback' => 'generate_sanitize_rgba_color',
-				)
-			);
-
-			$wp_customize->add_setting(
-				'generate_settings[subnavigation_text_current_color]',
-				array(
-					'default' => $color_defaults['subnavigation_text_current_color'],
-					'type' => 'option',
-					'sanitize_callback' => 'generate_sanitize_hex_color',
-					'transport' => 'postMessage',
 				)
 			);
 		}

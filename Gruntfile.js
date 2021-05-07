@@ -288,5 +288,33 @@ module.exports = function (grunt) {
     // Grunt release - Create installable package of the local files
 	grunt.registerTask('package', ['clean:zip', 'copy:main', 'compress:main', 'clean:main']);
 
+	grunt.registerTask('download-google-fonts', function () {
+        var done = this.async();
+        var request = require('request');
+        var fs = require('fs');
+
+        request('https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&key=AIzaSyCMsgO9oLyggmUXxBP85zQiEHJ5m3OAl0U', function (error, response, body) {
+
+            if (response && response.statusCode == 200) {
+
+				var fonts = {};
+
+                JSON.parse(body).items.forEach(function (font) {
+					fonts[ font.family ] = {
+						'variants': font.variants,
+						'category': font.category,
+					}
+                })
+
+                fs.writeFile('src/customizer-controls/font-picker/google-fonts.json', JSON.stringify(fonts, undefined, 4), function (err) {
+                    if (!err) {
+                        console.log("Google Fonts Updated!");
+                        done();
+                    }
+                });
+            }
+        });
+    });
+
     grunt.util.linefeed = '\n';
 };

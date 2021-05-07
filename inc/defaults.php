@@ -159,9 +159,10 @@ if ( ! function_exists( 'generate_get_default_fonts' ) ) {
 	 */
 	function generate_get_default_fonts( $filter = true ) {
 		$defaults = array(
-			'font_body' => 'System Stack',
-			'font_body_category' => '',
-			'font_body_variants' => '',
+			'body_font_family' => '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
+			'body_font_google' => false,
+			'body_font_category' => '',
+			'body_font_variants' => '',
 			'body_font_weight' => 'normal',
 			'body_font_transform' => 'none',
 			'body_font_size' => '17',
@@ -262,6 +263,9 @@ if ( ! function_exists( 'generate_get_default_fonts' ) ) {
 			'footer_weight' => 'normal',
 			'footer_transform' => 'none',
 			'footer_font_size' => '15',
+			'font_body' => 'System Stack',
+			'font_body_category' => '',
+			'font_body_variants' => '',
 		);
 
 		if ( $filter ) {
