@@ -52,7 +52,7 @@ if ( ! function_exists( 'generate_comment' ) ) {
 						do_action( 'generate_after_comment_author_name' );
 
 						if ( apply_filters( 'generate_show_comment_entry_meta', true ) ) :
-						?>
+							?>
 							<div class="entry-meta comment-metadata">
 								<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
 									<time datetime="<?php comment_time( 'c' ); ?>" itemprop="datePublished">
@@ -68,7 +68,9 @@ if ( ! function_exists( 'generate_comment' ) ) {
 								</a>
 								<?php edit_comment_link( __( 'Edit', 'generatepress' ), '<span class="edit-link">| ', '</span>' ); ?>
 							</div>
-						<?php endif; ?>
+							<?php
+						endif;
+						?>
 					</div>
 
 					<?php if ( '0' == $comment->comment_approved ) : // phpcs:ignore ?>
