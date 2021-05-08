@@ -13,9 +13,24 @@
 			}
         }
 	}
+
+	.generate-color-picker-area button {
+		width: 28px;
+		height: 28px;
+		position: relative;
+
+		&:hover {
+			background-color: inherit;
+		}
+
+		&:focus:after {
+			width: 28px;
+			height: 28px;
+		}
+	}
 }
 
-.generate-component-color-picker {
+.generate-customize-control--popover {
 	.components-color-picker {
 		box-sizing: border-box;
 	}
@@ -73,12 +88,6 @@
 
 	.components-color-picker__body {
 	    padding-bottom: 0;
-	}
-
-	.components-popover__content {
-		padding: 10px;
-		width: 295px;
-		box-sizing: border-box;
 	}
 
 	.components-color-clear-color {
