@@ -12,7 +12,7 @@
  *
  * @see WP_Customize_Control
  */
-class GeneratePress_Customize_Title_Control extends WP_Customize_Control {
+class GeneratePress_Customize_Typography_Manager_Control extends WP_Customize_Control {
 	/**
 	 * Type.
 	 *
@@ -20,16 +20,7 @@ class GeneratePress_Customize_Title_Control extends WP_Customize_Control {
 	 * @since 1.0.0
 	 * @var string
 	 */
-	public $type = 'generate-title-control';
-
-	/**
-	 * Title.
-	 *
-	 * @access public
-	 * @since 1.0.0
-	 * @var string
-	 */
-	public $title = '';
+	public $type = 'generate-typography-control';
 
 	/**
 	 * Refresh the parameters passed to the JavaScript via JSON.
@@ -39,7 +30,7 @@ class GeneratePress_Customize_Title_Control extends WP_Customize_Control {
 	 */
 	public function to_json() {
 		parent::to_json();
-		$this->json['title'] = $this->title;
+		$this->json['choices'] = $this->choices;
 	}
 
 	/**
@@ -49,11 +40,5 @@ class GeneratePress_Customize_Title_Control extends WP_Customize_Control {
 	 * @since 1.0.0
 	 * @return void
 	 */
-	public function content_template() {
-		?>
-		<div class="generate-customize-control-title">
-			<h3>{{ data.title }}</h3>
-		</div>
-		<?php
-	}
+	public function content_template() {}
 }

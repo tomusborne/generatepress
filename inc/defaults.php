@@ -62,6 +62,31 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 				'dynamic_css_cache' => true,
 				'structure' => 'flexbox',
 				'underline_links' => 'always',
+				'font_manager' => array(),
+				'typography' => array(
+					array(
+						'selector' => '',
+						'fontFamily' => 'System default',
+						'fontWeight' => '',
+						'textTransform' => '',
+						'fontSize' => '17',
+						'fontSizeTablet' => '',
+						'fontSizeMobile' => '',
+						'fontSizeUnit' => 'px',
+						'lineHeight' => '',
+						'lineHeightTablet' => '',
+						'lineHeightMobile' => '',
+						'lineHeightUnit' => '',
+						'letterSpacing' => '',
+						'letterSpacingTablet' => '',
+						'letterSpacingMobile' => '',
+						'letterSpacingUnit' => 'px',
+						'bottomMargin' => '',
+						'bottomMarginTablet' => '',
+						'bottomMarginMobile' => '',
+						'bottomMarginUnit' => 'px',
+					),
+				),
 			)
 		);
 	}

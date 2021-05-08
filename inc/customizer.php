@@ -60,6 +60,8 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			$wp_customize->register_control_type( 'GeneratePress_Customize_Title_Control' );
 			$wp_customize->register_control_type( 'GeneratePress_Customize_Range_Control' );
 			$wp_customize->register_control_type( 'GeneratePress_Customize_Font_Family_Control' );
+			$wp_customize->register_control_type( 'GeneratePress_Customize_Font_Manager_Control' );
+			$wp_customize->register_control_type( 'GeneratePress_Customize_Typography_Manager_Control' );
 			$wp_customize->register_control_type( 'GeneratePress_Customize_Wrapper_Control' );
 		}
 
@@ -250,6 +252,57 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 		require_once $fields_dir . '/top-bar.php';
 		require_once $fields_dir . '/header.php';
 		require_once $fields_dir . '/primary-navigation.php';
+
+		$wp_customize->add_section(
+			'generate_typography_section',
+			array(
+				'title' => esc_attr__( 'Typography v2', 'generatepress' ),
+			)
+		);
+
+		GeneratePress_Customize_Field::add_title(
+			'generate_font_manager_title',
+			[
+				'section' => 'generate_typography_section',
+				'title' => __( 'Font Manager', 'generatepress' ),
+			]
+		);
+
+		GeneratePress_Customize_Field::add_field(
+			'generate_settings[font_manager]',
+			'GeneratePress_Customize_Font_Manager_Control',
+			[
+				'default' => $defaults['font_manager'],
+				'sanitize_callback' => '',
+				'transport' => 'refresh',
+			],
+			[
+				'label' => __( 'Choose Font', 'generatepress' ),
+				'section' => 'generate_typography_section',
+			]
+		);
+
+		GeneratePress_Customize_Field::add_title(
+			'generate_typography_manager_title',
+			[
+				'section' => 'generate_typography_section',
+				'title' => __( 'Typography Manager', 'generatepress' ),
+			]
+		);
+
+		GeneratePress_Customize_Field::add_field(
+			'generate_settings[typography]',
+			'GeneratePress_Customize_Typography_Manager_Control',
+			[
+				'default' => $defaults['typography'],
+				'sanitize_callback' => '',
+				'transport' => 'refresh',
+			],
+			[
+				'label' => __( 'Configure', 'generatepress' ),
+				'section' => 'generate_typography_section',
+			]
+		);
 
 		if ( ! $wp_customize->get_setting( 'generate_settings[blog_post_title_color]' ) ) {
 			$wp_customize->add_setting(

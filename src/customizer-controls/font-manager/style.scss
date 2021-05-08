@@ -1,0 +1,54 @@
+.generate-font-manager--item {
+    background: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+	position: relative;
+
+	.generate-font-manager--header {
+		display: flex;
+
+		.generate-font-manager--label {
+			flex-grow: 1;
+		}
+	}
+
+	.generate-font-manager--options {
+		margin-top: 15px;
+	}
+
+	.generate-font-manager--footer {
+		margin-top: 15px;
+		padding-top: 15px;
+		border-top: 1px solid #ddd;
+	}
+
+	.components-button.generate-font-manager--delete-font {
+		svg {
+			margin-right: 0;
+			width: 20px;
+			height: 20px;
+		}
+	}
+
+	.generate-font-manager-google-font--field {
+		margin-top: 10px;
+	}
+
+	.generate-font-manager--google-font-options {
+		display: flex;
+		flex-wrap: wrap;
+		margin-top: 15px;
+
+		& > div {
+			flex-basis: calc(50% - 10px);
+
+			&:nth-child(even) {
+				margin-left: 5px;
+			}
+
+			&:nth-child(odd) {
+				margin-right: 5px;
+			}
+		}
+	}
+}
