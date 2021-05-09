@@ -1,0 +1,39 @@
+.components-generate--control__units {
+	display: flex;
+}
+
+.generate-component-input-with-unit {
+    display: flex;
+
+	& > div:first-child {
+		flex-grow: 1;
+	}
+
+	div {
+		margin-bottom: 0;
+	}
+}
+
+.generate-component-control--unit-picker {
+	button {
+    	height: auto;
+		min-height: 30px;
+		margin-left: 2px;
+		border: 1px solid #444;
+		font-weight: 500;
+		font-size: 11px;
+		text-transform: uppercase;
+	}
+}
+
+.components-generate--control-buttons__units {
+    display: flex;
+
+	button.components-button {
+		text-transform: uppercase;
+		padding: 10px;
+		height: auto;
+		line-height: normal;
+		font-weight: 500;
+	}
+}

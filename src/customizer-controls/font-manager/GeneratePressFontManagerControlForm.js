@@ -41,7 +41,11 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 	return (
 		<div>
 			<div className="customize-control-notifications-container" ref={ props.setNotificationContainer }></div>
-
+			<div className="generate-font-manager--item generate-font-family--item--default">
+				<div className="generate-font-manager--header">
+					<Button disabled className="generate-font-manager--label">{ __( 'System Default', 'generatepress' ) }</Button>
+				</div>
+			</div>
 			{
 				fonts.map( ( font, index ) => {
 					const itemId = index + 1;

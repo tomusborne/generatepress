@@ -20,7 +20,7 @@ export default function getFontWeight( fontFamily ) {
 		{ value: '900', 	label: '900' },
 	];
 
-	if ( typeof googleFonts[ fontFamily ] !== 'undefined' && typeof googleFonts[ fontFamily ].variants !== 'undefined' ) {
+	if ( 'undefined' !== typeof googleFonts[ fontFamily ] && 'undefined' !== typeof googleFonts[ fontFamily ].variants ) {
 		weight = [
 			{ value: '', label: __( 'Default', 'generatepress' ) },
 			{ value: 'normal', label: __( 'Normal', 'generatepress' ) },

@@ -66,10 +66,10 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 				'typography' => array(
 					array(
 						'selector' => '',
-						'fontFamily' => 'System default',
+						'fontFamily' => '',
 						'fontWeight' => '',
 						'textTransform' => '',
-						'fontSize' => '17',
+						'fontSize' => '',
 						'fontSizeTablet' => '',
 						'fontSizeMobile' => '',
 						'fontSizeUnit' => 'px',
@@ -81,10 +81,6 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 						'letterSpacingTablet' => '',
 						'letterSpacingMobile' => '',
 						'letterSpacingUnit' => 'px',
-						'bottomMargin' => '',
-						'bottomMarginTablet' => '',
-						'bottomMarginMobile' => '',
-						'bottomMarginUnit' => 'px',
 					),
 				),
 			)

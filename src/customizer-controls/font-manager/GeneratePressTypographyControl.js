@@ -5,6 +5,11 @@ import {
 	unmountComponentAtNode,
 } from '@wordpress/element';
 
+import {
+	SlotFillProvider,
+	Popover,
+} from '@wordpress/components';
+
 /**
  * GeneratePressColorControl.
  *
@@ -125,15 +130,19 @@ const GeneratePressTypographyControl = wp.customize.Control.extend( {
 		const control = this;
 		const value = control.setting.get();
 
-		const form = <GeneratePressTypographyControlForm
-			{ ...control.params }
-			value={ value }
-			setNotificationContainer={ control.setNotificationContainer }
-			customizerSetting={ control.setting }
-			control={ control }
-			choices={ control.params.choices }
-			default={ control.params.defaultValue }
-		/>;
+		const form = <SlotFillProvider>
+			<GeneratePressTypographyControlForm
+				{ ...control.params }
+				value={ value }
+				setNotificationContainer={ control.setNotificationContainer }
+				customizerSetting={ control.setting }
+				control={ control }
+				choices={ control.params.choices }
+				default={ control.params.defaultValue }
+			/>
+
+			<Popover.Slot />
+		</SlotFillProvider>;
 
 		let wrapper = control.container[ 0 ];
 

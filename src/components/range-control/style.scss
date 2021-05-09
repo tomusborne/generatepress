@@ -1,0 +1,21 @@
+.components-generate-range-control {
+	.components-generate-range-control--wrapper {
+		display: flex;
+		justify-content: space-between;
+
+		.components-generate-range-control--range {
+			width: calc(100% - 80px);
+		}
+
+		.components-generate-range-control-input {
+			width: 60px;
+		}
+	}
+
+	.components-base-control__help {
+		margin-top: -8px;
+		font-size: 12px;
+		font-style: normal;
+		color: rgb(117, 117, 117);
+	}
+}

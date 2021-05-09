@@ -1,5 +1,10 @@
 import './style.scss';
 import getIcon from '../../utils/get-icon';
+import getFontWeights from '../../utils/get-font-weights';
+import hasNumericValue from '../../utils/has-numeric-value';
+import RangeControl from '../../components/range-control';
+import UtilityLabel from '../../components/utility-label';
+import UnitPicker from '../../components/unit-picker';
 
 import {
 	useState,
@@ -7,10 +12,8 @@ import {
 
 import {
 	TextControl,
-	ToggleControl,
 	Button,
 	Tooltip,
-	BaseControl,
 	Popover,
 	SelectControl,
 } from '@wordpress/components';
@@ -38,6 +41,59 @@ const GeneratePressTypographyControlForm = ( props ) => {
 
 	const fonts = props.value;
 
+	const fontManagerControl = wp.customize.control( 'generate_settings[font_manager]' );
+	const availableFonts = fontManagerControl.setting.get();
+
+	const elements = {
+		body: __( 'Body', 'generatepress' ),
+		'main-title': __( 'Site Title', 'generatepress' ),
+		'site-description': __( 'Site Description', 'generatepress' ),
+		'main-navigation': __( 'Main Navigation', 'generatepress' ),
+		'main-sub-navigation': __( 'Main Sub-Navigation', 'generatepress' ),
+		buttons: __( 'Buttons', 'generatepress' ),
+		'all-headings': __( 'All Headings', 'generatepress' ),
+		h1: __( 'Heading 1 (H1)', 'generatepress' ),
+		h2: __( 'Heading 2 (H2)', 'generatepress' ),
+		h3: __( 'Heading 3 (H3)', 'generatepress' ),
+		h4: __( 'Heading 4 (H4)', 'generatepress' ),
+		h5: __( 'Heading 5 (H5)', 'generatepress' ),
+		h6: __( 'Heading 6 (H6)', 'generatepress' ),
+		'widget-titles': __( 'Widget Titles', 'generatepress' ),
+		footer: __( 'Footer', 'generatepress' ),
+		custom: __( 'Custom', 'generatepress' ),
+	};
+
+	const getElementLabel = ( element ) => {
+		return 'undefined' !== typeof elements[ element ] ? elements[ element ] : element;
+	};
+
+	const elementOptions = [
+		{ value: '', label: __( 'Choose element…', 'generatepress' ) },
+	];
+
+	Object.keys( elements ).forEach( ( element ) => {
+		elementOptions.push(
+			{
+				value: element,
+				label: elements[ element ],
+			}
+		);
+	} );
+
+	const fontFamilies = [
+		{ value: '', label: __( '-- Select --', 'generatepress' ) },
+		{ value: 'System Font', label: __( 'System Font', 'generatepress' ) },
+	];
+
+	availableFonts.forEach( ( value, i ) => {
+		fontFamilies.push(
+			{
+				value: availableFonts[ i ].fontFamily,
+				label: availableFonts[ i ].fontFamily,
+			}
+		);
+	} );
+
 	return (
 		<div>
 			<div className="customize-control-notifications-container" ref={ props.setNotificationContainer }></div>
@@ -45,20 +101,6 @@ const GeneratePressTypographyControlForm = ( props ) => {
 			{
 				fonts.map( ( font, index ) => {
 					const itemId = index + 1;
-
-					const fontManagerControl = wp.customize.control( 'generate_settings[font_manager]' );
-					const availableFonts = fontManagerControl.setting.get();
-
-					const elements = [
-						{ value: '', label: __( 'Choose element…', 'generatepress' ) },
-						{ value: 'body', label: __( 'Body', 'generatepress' ) },
-						{ value: 'main-title', label: __( 'Site Title', 'generatepress' ) },
-						{ value: 'site-description', label: __( 'Site Description', 'generatepress' ) },
-						{ value: 'main-navigation', label: __( 'Main Navigation', 'generatepress' ) },
-						{ value: 'buttons', label: __( 'Buttons', 'generatepress' ) },
-					];
-
-					console.log(availableFonts);
 
 					return (
 						<div className="generate-font-manager--item" key={ index }>
@@ -71,7 +113,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 										}
 									} }
 								>
-									{ !! fonts[ index ].selector ? fonts[ index ].selector : props.label }
+									{ !! fonts[ index ].selector ? getElementLabel( fonts[ index ].selector ) : props.label }
 									{ !! fonts[ index ].selector && !! fonts[ index ].fontFamily && ' / ' + fonts[ index ].fontFamily }
 								</Button>
 
@@ -95,65 +137,155 @@ const GeneratePressTypographyControlForm = ( props ) => {
 							{ itemId === isOpen &&
 								<Popover
 									position="bottom center"
-									className="generate-customize-control--popover"
+									className="generate-customize-control--popover generate-customize-control--font-popover"
 									onClose={ toggleClose }
 									focusOnMount="container"
 								>
-									<BaseControl
-										className="generate-component-font-family-picker-wrapper"
-										id="generate-font-manager-family-name--input"
-									>
+									<SelectControl
+										label={ __( 'Element', 'generatepress' ) }
+										help={ __( 'Choose the element to target.', 'generatepress' ) }
+										value={ fonts[ index ].selector }
+										options={ elementOptions }
+										onChange={ ( value ) => {
+											const fontValues = [ ...fonts ];
 
-										<SelectControl
-											label={ __( 'Element', 'generatepress' ) }
-											help={ __( 'Choose the element to target.', 'generatepress' ) }
-											value={ fonts[ index ].selector }
-											options={ elements }
-											onChange={ ( value ) => {
-												const fontValues = [ ...fonts ];
+											fontValues[ index ] = {
+												...fontValues[ index ],
+												selector: value,
+											};
 
-												fontValues[ index ] = {
-													...fontValues[ index ],
-													selector: value,
-												};
+											handleChangeComplete( fontValues );
+										} }
+									/>
 
-												handleChangeComplete( fontValues );
-											} }
-										/>
-
-										{ !! fonts[ index ].selector &&
-											<div>
-												<select
-													className="components-select-control__input components-select-control__input--generate-fontfamily"
+									{ !! fonts[ index ].selector &&
+										<>
+											{ 'custom' === fonts[ index ].selector &&
+												<TextControl
+													help={ __( 'Enter custom CSS selector.', 'generatepress' ) }
+													value={ fonts[ index ].customSelector }
 													onChange={ ( value ) => {
-														//onFontShortcut( value );
+														const fontValues = [ ...fonts ];
+
+														fontValues[ index ] = {
+															...fontValues[ index ],
+															customSelector: value,
+														};
+
+														handleChangeComplete( fontValues );
 													} }
-													onBlur={ () => {
-														// do nothing
+												/>
+											}
+
+											<SelectControl
+												label={ __( 'Font Family', 'generatepress' ) }
+												value={ fonts[ index ].fontFamily }
+												options={ fontFamilies }
+												onChange={ ( value ) => {
+													const fontValues = [ ...fonts ];
+
+													fontValues[ index ] = {
+														...fontValues[ index ],
+														fontFamily: value,
+													};
+
+													handleChangeComplete( fontValues );
+												} }
+											/>
+
+											<div className="components-base-control generate-font-manager--select-options">
+												<SelectControl
+													label={ __( 'Font Weight', 'generatepress' ) }
+													value={ fonts[ index ].fontWeight }
+													options={ getFontWeights( fonts[ index ].fontFamily ) }
+													onChange={ ( value ) => {
+														const fontValues = [ ...fonts ];
+
+														fontValues[ index ] = {
+															...fontValues[ index ],
+															fontWeight: value,
+														};
+
+														handleChangeComplete( fontValues );
 													} }
-												>
-													<option key="choose" value="">{ __( 'Choose…', 'generatepress' ) }</option>
-													{ availableFonts.map( ( option, i ) =>
-														<option
-															key={ availableFonts[ i ].fontFamily }
-															value={ availableFonts[ i ].fontFamily }
-														>
-															{ availableFonts[ i ].fontFamily }
-														</option>
-													) }
-												</select>
+												/>
+
+												<SelectControl
+													label={ __( 'Text Transform', 'generatepress' ) }
+													value={ fonts[ index ].textTransform }
+													options={ [
+														{ value: '', 			label: __( 'Default', 'generatepress' ) },
+														{ value: 'uppercase', 	label: __( 'Uppercase', 'generatepress' ) },
+														{ value: 'lowercase', 	label: __( 'Lowercase', 'generatepress' ) },
+														{ value: 'capitalize', 	label: __( 'Capitalize', 'generatepress' ) },
+														{ value: 'initial', 	label: __( 'Normal', 'generatepress' ) },
+													] }
+													onChange={ ( value ) => {
+														const fontValues = [ ...fonts ];
+
+														fontValues[ index ] = {
+															...fontValues[ index ],
+															textTransform: value,
+														};
+
+														handleChangeComplete( fontValues );
+													} }
+												/>
 											</div>
-										}
-										<div className="generate-font-manager--footer">
-											<Button
-												isSecondary
-												isSmall
-												onClick={ toggleClose }
-											>
-												{ __( 'Close', 'generatepress' ) }
-											</Button>
-										</div>
-									</BaseControl>
+
+											<UtilityLabel
+												label={ __( 'Font Size', 'generateblocks' ) }
+												value={ fonts[ index ].fontSizeUnit }
+												devices={ [ 'desktop', 'tablet', 'mobile' ] }
+											/>
+
+											<div className="generate-component-input-with-unit">
+												<RangeControl
+													className={ 'generate-range-control-range' }
+													value={ hasNumericValue( fonts[ index ].fontSize ) ? parseFloat( fonts[ index ].fontSize ) : '' }
+													onChange={ ( value ) => {
+														const fontValues = [ ...fonts ];
+
+														fontValues[ index ] = {
+															...fontValues[ index ],
+															fontSize: value,
+														};
+
+														handleChangeComplete( fontValues );
+													} }
+													rangeMin={ 3 }
+													rangeMax={ 100 }
+													step={ 1 }
+													withInputField={ false }
+												/>
+
+												<UnitPicker
+													value={ fonts[ index ].fontSizeUnit }
+													units={ [ 'px', 'em', '%' ] }
+													onClick={ ( value ) => {
+														const fontValues = [ ...fonts ];
+
+														fontValues[ index ] = {
+															...fontValues[ index ],
+															fontSizeUnit: value,
+														};
+
+														handleChangeComplete( fontValues );
+													} }
+												/>
+											</div>
+										</>
+									}
+
+									<div className="generate-font-manager--footer">
+										<Button
+											isSecondary
+											isSmall
+											onClick={ toggleClose }
+										>
+											{ __( 'Close', 'generatepress' ) }
+										</Button>
+									</div>
 								</Popover>
 							}
 						</div>
@@ -167,10 +299,23 @@ const GeneratePressTypographyControlForm = ( props ) => {
 					const fontValues = [ ...props.value ];
 
 					fontValues.push( {
+						selector: '',
+						customSelector: '',
 						fontFamily: '',
-						googleFont: false,
-						googleFontCategory: '',
-						googleFontVariants: '',
+						fontWeight: '',
+						textTransform: '',
+						fontSize: '',
+						fontSizeTablet: '',
+						fontSizeMobile: '',
+						fontSizeUnit: 'px',
+						lineHeight: '',
+						lineHeightTablet: '',
+						lineHeightMobile: '',
+						lineHeightUnit: '',
+						letterSpacing: '',
+						letterSpacingTablet: '',
+						letterSpacingMobile: '',
+						letterSpacingUnit: 'px',
 					} );
 
 					handleChangeComplete( fontValues );

@@ -46,9 +46,13 @@
 }
 
 .generate-customize-control--popover {
-	.components-popover__content {
+	& > .components-popover__content {
 		padding: 15px;
 		width: 280px;
 		box-sizing: border-box;
+	}
+
+	.components-base-control:not(:last-child) {
+		margin-bottom: 15px;
 	}
 }

@@ -4,22 +4,22 @@
     margin-bottom: 10px;
 	position: relative;
 
+	&.generate-font-family--item--default {
+		button {
+			opacity: 1;
+			pointer-events: none;
+		}
+	}
+
 	.generate-font-manager--header {
 		display: flex;
 
 		.generate-font-manager--label {
 			flex-grow: 1;
+			text-transform: uppercase;
+			font-size: 11px;
+			font-weight: 500;
 		}
-	}
-
-	.generate-font-manager--options {
-		margin-top: 15px;
-	}
-
-	.generate-font-manager--footer {
-		margin-top: 15px;
-		padding-top: 15px;
-		border-top: 1px solid #ddd;
 	}
 
 	.components-button.generate-font-manager--delete-font {
@@ -28,6 +28,18 @@
 			width: 20px;
 			height: 20px;
 		}
+	}
+}
+
+.generate-customize-control--font-popover {
+	.generate-font-manager--options {
+		margin-top: 15px;
+	}
+
+	.generate-font-manager--footer {
+		margin-top: 15px;
+		padding-top: 15px;
+		border-top: 1px solid #ddd;
 	}
 
 	.generate-font-manager-google-font--field {
@@ -41,6 +53,24 @@
 
 		& > div {
 			flex-basis: calc(50% - 10px);
+			margin-bottom: 0;
+
+			&:nth-child(even) {
+				margin-left: 5px;
+			}
+
+			&:nth-child(odd) {
+				margin-right: 5px;
+			}
+		}
+	}
+
+	.generate-font-manager--select-options {
+		display: flex;
+		flex-wrap: wrap;
+
+		& > div {
+			flex-basis: calc(50% - 5px);
 
 			&:nth-child(even) {
 				margin-left: 5px;
