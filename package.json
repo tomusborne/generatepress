@@ -10,7 +10,7 @@
     "grunt:build": "grunt build",
     "grunt:watch": "grunt watch",
     "package": "grunt package",
-		"googleFonts": "grunt download-google-fonts"
+    "googleFonts": "grunt download-google-fonts"
   },
   "repository": {
     "type": "git",
