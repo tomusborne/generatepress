@@ -1,12 +1,12 @@
-.components-gblocks-units-control-header__units {
+.components-generate-units-control-header__units {
     display: flex;
     justify-content: space-between;
     margin-bottom: 5px;
     align-items: center;
 }
 
-.components-gblocks-control__units{
-	.components-gblocks-control-buttons__units {
+.components-generate-control__units{
+	.components-generate-control-buttons__units {
 		button.components-button {
 			background: #fff;
 			box-shadow: none !important;
@@ -30,5 +30,41 @@
 				font-weight: bold;
 			}
 		}
+	}
+}
+
+.generate-component-device-field[data-device="desktop"],
+.generate-component-device-field[data-device="tablet"],
+.generate-component-device-field[data-device="mobile"] {
+    display: none;
+}
+
+.preview-desktop {
+	.generate-component-device-field[data-device="desktop"] {
+    	display: block;
+	}
+
+	.components-generate-control__units button.components-generate-control-button__units--desktop {
+		color: black;
+	}
+}
+
+.preview-tablet {
+	.generate-component-device-field[data-device="tablet"] {
+    	display: block;
+	}
+
+	.components-generate-control__units button.components-generate-control-button__units--tablet {
+		color: black;
+	}
+}
+
+.preview-mobile {
+	.generate-component-device-field[data-device="mobile"] {
+    	display: block;
+	}
+
+	.components-generate-control__units button.components-generate-control-button__units--mobile {
+		color: black;
 	}
 }

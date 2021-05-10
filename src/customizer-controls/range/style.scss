@@ -1,13 +1,13 @@
 
-.components-gblocks-range-control--wrapper {
+.components-generate-range-control--wrapper {
 	display: flex;
 	justify-content: space-between;
 
-	.components-gblocks-range-control--range {
+	.components-generate-range-control--range {
 		width: calc(100% - 80px);
 	}
 
-	.components-gblocks-range-control-input {
+	.components-generate-range-control-input {
 		width: 60px;
 	}
 
@@ -17,4 +17,9 @@
 		font-style: normal;
 		color: rgb(117, 117, 117);
 	}
+}
+
+
+.generate-range-control-range > .components-base-control__field {
+    height: 30px;
 }

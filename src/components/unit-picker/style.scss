@@ -4,8 +4,9 @@
 
 .generate-component-input-with-unit {
     display: flex;
+	align-items: center;
 
-	& > div:first-child {
+	& > div:not(.components-generate--control__units) {
 		flex-grow: 1;
 	}
 

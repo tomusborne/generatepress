@@ -1,5 +1,6 @@
 // Import CSS
 import './style.scss';
+import getIcon from '../../utils/get-icon';
 
 import {
 	useState,
@@ -25,13 +26,13 @@ const UtilityLabel = ( props ) => {
 	} = props;
 
 	return (
-		<div className="components-gblocks-units-control-header__units">
-			<div className="components-gblocks-units-control-label__units">
+		<div className="components-generate-units-control-header__units">
+			<div className="components-generate-units-control-label__units">
 				{ label }
 			</div>
 
-			<div className="components-gblocks-control__units">
-				<ButtonGroup className="components-gblocks-control-buttons__units" aria-label={ __( 'Select Units', 'generateblocks-pro' ) }>
+			<div className="components-generate-control__units">
+				<ButtonGroup className="components-generate-control-buttons__units" aria-label={ __( 'Select Units', 'generateblocks-pro' ) }>
 					{ devices.map( ( device ) => {
 						let deviceName = __( 'Desktop', 'generatepress' );
 
@@ -43,8 +44,6 @@ const UtilityLabel = ( props ) => {
 							deviceName = __( 'Mobile', 'generatepress' );
 						}
 
-						const previewedDevice = wp.customize.previewedDevice.get();
-
 						return <Tooltip
 							/* translators: Unit type (px, em, %) */
 							text={ sprintf( __( '%s Preview', 'generateblocks-pro' ), deviceName ) }
@@ -52,10 +51,8 @@ const UtilityLabel = ( props ) => {
 						>
 							<Button
 								key={ device }
-								className={ 'components-gblocks-control-button__units--' + device }
+								className={ 'components-generate-control-button__units--' + device }
 								isSmall
-								isPrimary={ previewedDevice === device }
-								aria-pressed={ previewedDevice === device }
 								/* translators: %s: values associated with CSS syntax, 'Pixel', 'Em', 'Percentage' */
 								aria-label={ deviceName }
 								onClick={ () => {
@@ -63,7 +60,7 @@ const UtilityLabel = ( props ) => {
 									setDevice( device );
 								} }
 							>
-								{ deviceName }
+								{ getIcon( device ) }
 							</Button>
 						</Tooltip>;
 					} ) }

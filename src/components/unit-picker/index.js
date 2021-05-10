@@ -1,4 +1,5 @@
 import './style.scss';
+import getIcon from '../../utils/get-icon';
 
 import {
 	__,
@@ -29,7 +30,7 @@ const GeneratePressUnitPickerControl = ( props ) => {
 				focusOnMount="container"
 				renderToggle={ ( { isOpen, onToggle } ) => (
 					<Button onClick={ onToggle } aria-expanded={ isOpen }>
-						{ value }
+						{ value ? value : getIcon( 'dash' ) }
 					</Button>
 				) }
 				renderContent={ ( { onClose } ) => {
@@ -37,6 +38,11 @@ const GeneratePressUnitPickerControl = ( props ) => {
 						<ButtonGroup className="components-generate--control-buttons__units" aria-label={ __( 'Select Units', 'generateblocks-pro' ) }>
 							{ units.map( ( unit ) => {
 								let unitName = unit;
+								const unitLabel = ! unit ? getIcon( 'dash' ) : unit;
+
+								if ( '' === unit ) {
+									unitName = __( 'No Unit', 'generatepress' );
+								}
 
 								if ( 'px' === unit ) {
 									unitName = _x( 'Pixel', 'A size unit for CSS markup', 'generateblocks-pro' );
@@ -56,7 +62,7 @@ const GeneratePressUnitPickerControl = ( props ) => {
 
 								return <Tooltip
 									/* translators: Unit type (px, em, %) */
-									text={ sprintf( __( '%s Units', 'generateblocks-pro' ), unitName ) }
+									text={ !! unit ? sprintf( __( '%s Units', 'generateblocks-pro' ), unitName ) : unitName }
 									key={ unit }
 								>
 									<Button
@@ -66,13 +72,13 @@ const GeneratePressUnitPickerControl = ( props ) => {
 										isPrimary={ value === unit }
 										aria-pressed={ value === unit }
 										/* translators: %s: values associated with CSS syntax, 'Pixel', 'Em', 'Percentage' */
-										aria-label={ sprintf( __( '%s Units', 'generateblocks-pro' ), unitName ) }
+										aria-label={ !! unit ? sprintf( __( '%s Units', 'generateblocks-pro' ), unitName ) : unitName }
 										onClick={ () => {
 											onClick( unit );
 											onClose();
 										} }
 									>
-										{ unit }
+										{ unitLabel }
 									</Button>
 								</Tooltip>;
 							} ) }

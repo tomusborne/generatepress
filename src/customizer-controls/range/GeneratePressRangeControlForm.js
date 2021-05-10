@@ -26,10 +26,10 @@ const GeneratePressRangeControlForm = ( props ) => {
 				</div>
 			}
 
-			<div className="components-gblocks-range-control--wrapper">
-				<div className="components-gblocks-range-control--range">
+			<div className="components-generate-range-control--wrapper">
+				<div className="components-generate-range-control--range">
 					<RangeControl
-						className={ 'gblocks-range-control-range' }
+						className={ 'generate-range-control-range' }
 						value={ props.value || 0 === props.value ? parseFloat( props.value ) : '' }
 						onChange={ handleChangeComplete }
 						min={ props.choices.rangeMin }
@@ -40,7 +40,7 @@ const GeneratePressRangeControlForm = ( props ) => {
 					/>
 				</div>
 
-				<div className="components-gblocks-range-control-input">
+				<div className="components-generate-range-control-input">
 					<TextControl
 						type="number"
 						placeholder={ '' !== props.choices.placeholder ? props.choices.placeholder : '' }
