@@ -339,7 +339,7 @@ if ( ! function_exists( 'generate_customizer_live_preview' ) ) {
 			'generatepress_live_preview',
 			array(
 				'mobile' => generate_get_media_query( 'mobile' ),
-				'tablet' => generate_get_media_query( 'tablet' ),
+				'tablet' => generate_get_media_query( 'tablet_only' ),
 				'desktop' => generate_get_media_query( 'desktop' ),
 				'contentLeft' => absint( $spacing_settings['content_left'] ),
 				'contentRight' => absint( $spacing_settings['content_right'] ),
