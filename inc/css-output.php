@@ -1176,7 +1176,9 @@ function generate_no_cache_dynamic_css() {
  * @since 3.0.0
  */
 function generate_get_dynamic_css() {
-	$css = generate_base_css() . generate_font_css() . generate_advanced_css() . generate_spacing_css();
+	$typography_css = GeneratePress_Typography::get_css();
+
+	$css = generate_base_css() . generate_font_css() . $typography_css . generate_advanced_css() . generate_spacing_css();
 
 	return apply_filters( 'generate_dynamic_css', $css );
 }
