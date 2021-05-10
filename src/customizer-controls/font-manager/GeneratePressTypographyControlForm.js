@@ -85,8 +85,8 @@ const GeneratePressTypographyControlForm = ( props ) => {
 				},
 			},
 		},
-		'main-navigation': {
-			label: __( 'Main Navigation', 'generatepress' ),
+		'primary-menu-items': {
+			label: __( 'Primary Menu Items', 'generatepress' ),
 			placeholders: {
 				fontSize: {
 					value: '15',
@@ -96,8 +96,8 @@ const GeneratePressTypographyControlForm = ( props ) => {
 				},
 			},
 		},
-		'main-sub-navigation': {
-			label: __( 'Main Sub-Navigation', 'generatepress' ),
+		'primary-sub-menu-items': {
+			label: __( 'Primary Sub-Menu Items', 'generatepress' ),
 			placeholders: {
 				fontSize: {
 					value: '14',
@@ -351,8 +351,18 @@ const GeneratePressTypographyControlForm = ( props ) => {
 										}
 									} }
 								>
-									{ !! fonts[ index ].selector ? getElementLabel( fonts[ index ] ) : props.label }
-									{ !! fonts[ index ].selector && !! fonts[ index ].fontFamily && ' / ' + fonts[ index ].fontFamily }
+									{ ! fonts[ index ].selector &&
+										props.label
+									}
+
+									{ !! fonts[ index ].selector &&
+										<>
+											{ getElementLabel( fonts[ index ] ) }
+											{ !! fonts[ index ].fontFamily && ' / ' + fonts[ index ].fontFamily }
+											{ !! fonts[ index ].fontSize && ' / ' + fonts[ index ].fontSize }
+											{ !! fonts[ index ].fontSize && !! fonts[ index ].fontSizeUnit && fonts[ index ].fontSizeUnit }
+										</>
+									}
 								</Button>
 
 								<Tooltip text={ __( 'Delete Typography Element', 'generatepress' ) }>
