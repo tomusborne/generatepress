@@ -63,26 +63,7 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 				'structure' => 'flexbox',
 				'underline_links' => 'always',
 				'font_manager' => array(),
-				'typography' => array(
-					array(
-						'selector' => '',
-						'fontFamily' => '',
-						'fontWeight' => '',
-						'textTransform' => '',
-						'fontSize' => '',
-						'fontSizeTablet' => '',
-						'fontSizeMobile' => '',
-						'fontSizeUnit' => 'px',
-						'lineHeight' => '',
-						'lineHeightTablet' => '',
-						'lineHeightMobile' => '',
-						'lineHeightUnit' => '',
-						'letterSpacing' => '',
-						'letterSpacingTablet' => '',
-						'letterSpacingMobile' => '',
-						'letterSpacingUnit' => 'px',
-					),
-				),
+				'typography' => array(),
 			)
 		);
 	}
