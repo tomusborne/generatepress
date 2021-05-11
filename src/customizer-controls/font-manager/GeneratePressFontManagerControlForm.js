@@ -41,18 +41,14 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 	return (
 		<div>
 			<div className="customize-control-notifications-container" ref={ props.setNotificationContainer }></div>
-			<div className="generate-font-manager--item generate-font-family--item--default">
-				<div className="generate-font-manager--header">
-					<Button disabled className="generate-font-manager--label">{ __( 'System Default', 'generatepress' ) }</Button>
-				</div>
-			</div>
+
 			{
 				fonts.map( ( font, index ) => {
 					const itemId = index + 1;
 
 					const fontFamilies = [
 						{ value: '', label: __( 'Quick select…', 'generatepress' ) },
-						{ value: 'default', label: __( 'Default', 'generatepress' ) },
+						{ value: 'System Default', label: __( 'System Default', 'generatepress' ) },
 						{ value: 'Arial', label: 'Arial' },
 						{ value: 'Helvetica', label: 'Helvetica' },
 						{ value: 'Times New Roman', label: 'Times New Roman' },
@@ -142,7 +138,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 							{ itemId === isOpen &&
 								<Popover
 									position="bottom center"
-									className="generate-customize-control--popover"
+									className="generate-customize-control--popover generate-customize-control--font-popover"
 									onClose={ toggleClose }
 									focusOnMount="container"
 								>

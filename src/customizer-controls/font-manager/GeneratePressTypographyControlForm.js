@@ -5,6 +5,7 @@ import hasNumericValue from '../../utils/has-numeric-value';
 import RangeControl from '../../components/range-control';
 import UtilityLabel from '../../components/utility-label';
 import UnitPicker from '../../components/unit-picker';
+import elements from './placeholders.js';
 
 import {
 	useState,
@@ -45,235 +46,20 @@ const GeneratePressTypographyControlForm = ( props ) => {
 	const fontManagerControl = wp.customize.control( 'generate_settings[font_manager]' );
 	const availableFonts = fontManagerControl.setting.get();
 
-	const elements = {
-		body: {
-			label: __( 'Body', 'generatepress' ),
-			placeholders: {
-				fontSize: {
-					value: '17',
-					min: 6,
-					max: 25,
-					step: 1,
-				},
-				lineHeight: {
-					value: '1.5',
-					min: 1,
-					max: 5,
-					step: .1,
-				},
-			},
-		},
-		'main-title': {
-			label: __( 'Site Title', 'generatepress' ),
-			placeholders: {
-				fontSize: {
-					value: '25',
-					min: 10,
-					max: 200,
-					step: 1,
-				},
-			},
-		},
-		'site-description': {
-			label: __( 'Site Description', 'generatepress' ),
-			placeholders: {
-				fontSize: {
-					value: '15',
-					min: 6,
-					max: 50,
-					step: 1,
-				},
-			},
-		},
-		'primary-menu-items': {
-			label: __( 'Primary Menu Items', 'generatepress' ),
-			placeholders: {
-				fontSize: {
-					value: '15',
-					min: 6,
-					max: 30,
-					step: 1,
-				},
-			},
-		},
-		'primary-sub-menu-items': {
-			label: __( 'Primary Sub-Menu Items', 'generatepress' ),
-			placeholders: {
-				fontSize: {
-					value: '14',
-					min: 6,
-					max: 30,
-					step: 1,
-				},
-			},
-		},
-		buttons: {
-			label: __( 'Buttons', 'generatepress' ),
-			placeholders: {
-				fontSize: {
-					value: '',
-					min: 5,
-					max: 100,
-					step: 1,
-				},
-			},
-		},
-		'all-headings': {
-			label: __( 'All Headings', 'generatepress' ),
-			placeholders: {
-				fontSize: {
-					value: '',
-					min: 15,
-					max: 100,
-					step: 1,
-				},
-				lineHeight: {
-					value: '',
-					min: 0,
-					max: 5,
-					step: .1,
-				},
-			},
-		},
-		h1: {
-			label: __( 'Heading 1 (H1)', 'generatepress' ),
-			placeholders: {
-				fontSize: {
-					value: 42,
-					min: 15,
-					max: 100,
-					step: 1,
-				},
-				lineHeight: {
-					value: 1.2,
-					min: 0,
-					max: 5,
-					step: .1,
-				},
-			},
-		},
-		h2: {
-			label: __( 'Heading 2 (H2)', 'generatepress' ),
-			placeholders: {
-				fontSize: {
-					value: 35,
-					min: 15,
-					max: 100,
-					step: 1,
-				},
-				lineHeight: {
-					value: 1.2,
-					min: 0,
-					max: 5,
-					step: .1,
-				},
-			},
-		},
-		h3: {
-			label: __( 'Heading 3 (H3)', 'generatepress' ),
-			placeholders: {
-				fontSize: {
-					value: 29,
-					min: 15,
-					max: 100,
-					step: 1,
-				},
-				lineHeight: {
-					value: 1.2,
-					min: 0,
-					max: 5,
-					step: .1,
-				},
-			},
-		},
-		h4: {
-			label: __( 'Heading 4 (H4)', 'generatepress' ),
-			placeholders: {
-				fontSize: {
-					value: 24,
-					min: 15,
-					max: 100,
-					step: 1,
-				},
-				lineHeight: {
-					min: 0,
-					max: 5,
-					step: .1,
-				},
-			},
-		},
-		h5: {
-			label: __( 'Heading 5 (H5)', 'generatepress' ),
-			placeholders: {
-				fontSize: {
-					value: 20,
-					min: 15,
-					max: 100,
-					step: 1,
-				},
-				lineHeight: {
-					min: 0,
-					max: 5,
-					step: .1,
-				},
-			},
-		},
-		h6: {
-			label: __( 'Heading 6 (H6)', 'generatepress' ),
-			placeholders: {
-				fontSize: {
-					min: 15,
-					max: 100,
-					step: 1,
-				},
-				lineHeight: {
-					min: 0,
-					max: 5,
-					step: .1,
-				},
-			},
-		},
-		'top-bar': {
-			label: __( 'Top Bar', 'generatepress' ),
-			placeholders: {
-				fontSize: {
-					value: 13,
-					min: 6,
-					max: 25,
-					step: 1,
-				},
-			},
-		},
-		'widget-titles': {
-			label: __( 'Widget Titles', 'generatepress' ),
-			placeholders: {
-				fontSize: {
-					value: 20,
-					min: 6,
-					max: 30,
-					step: 1,
-				},
-			},
-		},
-		footer: {
-			label: __( 'Footer', 'generatepress' ),
-			placeholders: {
-				fontSize: {
-					value: 15,
-					min: 6,
-					max: 30,
-					step: 1,
-				},
-			},
-		},
-		custom: {
-			label: __( 'Custom', 'generatepress' ),
-			placeholders: {},
-		},
-	};
+	const marginBottomSelectors = [
+		'body',
+		'all-headings',
+		'h1',
+		'h2',
+		'h3',
+		'h4',
+		'h5',
+		'h6',
+		'widget-titles',
+	];
 
 	const elementOptions = [
-		{ value: '', label: __( 'Choose element…', 'generatepress' ) },
+		{ value: '', label: __( '-- Select --', 'generatepress' ) },
 	];
 
 	Object.keys( elements ).forEach( ( element ) => {
@@ -287,7 +73,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 
 	const fontFamilies = [
 		{ value: '', label: __( '-- Select --', 'generatepress' ) },
-		{ value: 'System Font', label: __( 'System Font', 'generatepress' ) },
+		{ value: 'inherit', label: __( 'Inherit', 'generatepress' ) },
 	];
 
 	availableFonts.forEach( ( value, i ) => {
@@ -330,6 +116,10 @@ const GeneratePressTypographyControlForm = ( props ) => {
 		}
 
 		return placeholder;
+	};
+
+	const getRangeProps = ( settings, property, type, fallback ) => {
+		return 'undefined' !== typeof elements[ settings.selector ].placeholders[ property ] ? elements[ settings.selector ].placeholders[ property ][ type ] : fallback;
 	};
 
 	return (
@@ -401,6 +191,28 @@ const GeneratePressTypographyControlForm = ( props ) => {
 												...fontValues[ index ],
 												selector: value,
 											};
+
+											if ( marginBottomSelectors.includes( value ) ) {
+												if ( 'body' === value ) {
+													fontValues[ index ] = {
+														...fontValues[ index ],
+														marginBottomUnit: 'em',
+													};
+												} else {
+													fontValues[ index ] = {
+														...fontValues[ index ],
+														marginBottomUnit: 'px',
+													};
+												}
+											} else if ( fonts[ index ].marginBottom || fonts[ index ].marginBottomTablet || fonts[ index ].marginBottomMobile ) {
+												fontValues[ index ] = {
+													...fontValues[ index ],
+													marginBottom: '',
+													marginBottomTablet: '',
+													marginBottomMobile: '',
+													marginBottomUnit: '',
+												};
+											}
 
 											handleChangeComplete( fontValues );
 										} }
@@ -503,9 +315,9 @@ const GeneratePressTypographyControlForm = ( props ) => {
 
 																handleChangeComplete( fontValues );
 															} }
-															rangeMin={ 'undefined' !== typeof elements[ fonts[ index ].selector ].placeholders.min ? elements[ fonts[ index ].selector ].placeholders.min : 1 }
-															rangeMax={ 'undefined' !== typeof elements[ fonts[ index ].selector ].placeholders.max ? elements[ fonts[ index ].selector ].placeholders.max : 100 }
-															step={ 'undefined' !== typeof elements[ fonts[ index ].selector ].placeholders.step ? elements[ fonts[ index ].selector ].placeholders.step : 1 }
+															rangeMin={ getRangeProps( fonts[ index ], 'fontSize', 'min', 1 ) }
+															rangeMax={ getRangeProps( fonts[ index ], 'fontSize', 'max', 100 ) }
+															step={ getRangeProps( fonts[ index ], 'fontSize', 'step', 1 ) }
 															withInputField={ false }
 															placeholder={ getPlaceholder( fonts[ index ], 'fontSize' ) }
 															initialPosition={ getPlaceholder( fonts[ index ], 'fontSize' ) }
@@ -527,9 +339,9 @@ const GeneratePressTypographyControlForm = ( props ) => {
 
 																handleChangeComplete( fontValues );
 															} }
-															rangeMin={ 'undefined' !== typeof elements[ fonts[ index ].selector ].placeholders.min ? elements[ fonts[ index ].selector ].placeholders.min : 1 }
-															rangeMax={ 'undefined' !== typeof elements[ fonts[ index ].selector ].placeholders.max ? elements[ fonts[ index ].selector ].placeholders.max : 100 }
-															step={ 'undefined' !== typeof elements[ fonts[ index ].selector ].placeholders.step ? elements[ fonts[ index ].selector ].placeholders.step : 1 }
+															rangeMin={ getRangeProps( fonts[ index ], 'fontSize', 'min', 1 ) }
+															rangeMax={ getRangeProps( fonts[ index ], 'fontSize', 'max', 100 ) }
+															step={ getRangeProps( fonts[ index ], 'fontSize', 'step', 1 ) }
 															withInputField={ false }
 															placeholder={ getPlaceholder( fonts[ index ], 'fontSizeTablet' ) }
 															initialPosition={ getPlaceholder( fonts[ index ], 'fontSizeTablet' ) }
@@ -551,9 +363,9 @@ const GeneratePressTypographyControlForm = ( props ) => {
 
 																handleChangeComplete( fontValues );
 															} }
-															rangeMin={ 'undefined' !== typeof elements[ fonts[ index ].selector ].placeholders.min ? elements[ fonts[ index ].selector ].placeholders.min : 1 }
-															rangeMax={ 'undefined' !== typeof elements[ fonts[ index ].selector ].placeholders.max ? elements[ fonts[ index ].selector ].placeholders.max : 100 }
-															step={ 'undefined' !== typeof elements[ fonts[ index ].selector ].placeholders.step ? elements[ fonts[ index ].selector ].placeholders.step : 1 }
+															rangeMin={ getRangeProps( fonts[ index ], 'fontSize', 'min', 1 ) }
+															rangeMax={ getRangeProps( fonts[ index ], 'fontSize', 'max', 100 ) }
+															step={ getRangeProps( fonts[ index ], 'fontSize', 'step', 1 ) }
 															withInputField={ false }
 															placeholder={ getPlaceholder( fonts[ index ], 'fontSizeMobile' ) }
 															initialPosition={ getPlaceholder( fonts[ index ], 'fontSizeMobile' ) }
@@ -599,9 +411,9 @@ const GeneratePressTypographyControlForm = ( props ) => {
 
 																handleChangeComplete( fontValues );
 															} }
-															rangeMin={ 'undefined' !== typeof elements[ fonts[ index ].selector ].placeholders.min ? elements[ fonts[ index ].selector ].placeholders.min : 1 }
-															rangeMax={ 'undefined' !== typeof elements[ fonts[ index ].selector ].placeholders.max ? elements[ fonts[ index ].selector ].placeholders.max : 5 }
-															step={ 'undefined' !== typeof elements[ fonts[ index ].selector ].placeholders.step ? elements[ fonts[ index ].selector ].placeholders.step : .1 }
+															rangeMin={ getRangeProps( fonts[ index ], 'lineHeight', 'min', 1 ) }
+															rangeMax={ getRangeProps( fonts[ index ], 'lineHeight', 'max', 5 ) }
+															step={ getRangeProps( fonts[ index ], 'lineHeight', 'step', .1 ) }
 															withInputField={ false }
 															placeholder={ getPlaceholder( fonts[ index ], 'lineHeight' ) }
 															initialPosition={ getPlaceholder( fonts[ index ], 'lineHeight' ) }
@@ -622,9 +434,9 @@ const GeneratePressTypographyControlForm = ( props ) => {
 
 																handleChangeComplete( fontValues );
 															} }
-															rangeMin={ 'undefined' !== typeof elements[ fonts[ index ].selector ].placeholders.min ? elements[ fonts[ index ].selector ].placeholders.min : 1 }
-															rangeMax={ 'undefined' !== typeof elements[ fonts[ index ].selector ].placeholders.max ? elements[ fonts[ index ].selector ].placeholders.max : 5 }
-															step={ 'undefined' !== typeof elements[ fonts[ index ].selector ].placeholders.step ? elements[ fonts[ index ].selector ].placeholders.step : .1 }
+															rangeMin={ getRangeProps( fonts[ index ], 'lineHeight', 'min', 1 ) }
+															rangeMax={ getRangeProps( fonts[ index ], 'lineHeight', 'max', 5 ) }
+															step={ getRangeProps( fonts[ index ], 'lineHeight', 'step', .1 ) }
 															withInputField={ false }
 															placeholder={ getPlaceholder( fonts[ index ], 'lineHeightTablet' ) }
 															initialPosition={ getPlaceholder( fonts[ index ], 'lineHeightTablet' ) }
@@ -645,9 +457,9 @@ const GeneratePressTypographyControlForm = ( props ) => {
 
 																handleChangeComplete( fontValues );
 															} }
-															rangeMin={ 'undefined' !== typeof elements[ fonts[ index ].selector ].placeholders.min ? elements[ fonts[ index ].selector ].placeholders.min : 1 }
-															rangeMax={ 'undefined' !== typeof elements[ fonts[ index ].selector ].placeholders.max ? elements[ fonts[ index ].selector ].placeholders.max : 5 }
-															step={ 'undefined' !== typeof elements[ fonts[ index ].selector ].placeholders.step ? elements[ fonts[ index ].selector ].placeholders.step : .1 }
+															rangeMin={ getRangeProps( fonts[ index ], 'lineHeight', 'min', 1 ) }
+															rangeMax={ getRangeProps( fonts[ index ], 'lineHeight', 'max', 5 ) }
+															step={ getRangeProps( fonts[ index ], 'lineHeight', 'step', .1 ) }
 															withInputField={ false }
 															placeholder={ getPlaceholder( fonts[ index ], 'lineHeightMobile' ) }
 															initialPosition={ getPlaceholder( fonts[ index ], 'lineHeightMobile' ) }
@@ -693,10 +505,12 @@ const GeneratePressTypographyControlForm = ( props ) => {
 
 																handleChangeComplete( fontValues );
 															} }
-															rangeMin={ -1 }
-															rangeMax={ 10 }
-															step={ .01 }
+															rangeMin={ getRangeProps( fonts[ index ], 'letterSpacing', 'min', -1 ) }
+															rangeMax={ getRangeProps( fonts[ index ], 'letterSpacing', 'max', 10 ) }
+															step={ getRangeProps( fonts[ index ], 'letterSpacing', 'step', .01 ) }
 															withInputField={ false }
+															placeholder={ getPlaceholder( fonts[ index ], 'letterSpacing' ) }
+															initialPosition={ getPlaceholder( fonts[ index ], 'letterSpacing' ) }
 														/>
 													</div>
 
@@ -714,10 +528,12 @@ const GeneratePressTypographyControlForm = ( props ) => {
 
 																handleChangeComplete( fontValues );
 															} }
-															rangeMin={ -1 }
-															rangeMax={ 10 }
-															step={ .01 }
+															rangeMin={ getRangeProps( fonts[ index ], 'letterSpacing', 'min', -1 ) }
+															rangeMax={ getRangeProps( fonts[ index ], 'letterSpacing', 'max', 10 ) }
+															step={ getRangeProps( fonts[ index ], 'letterSpacing', 'step', .01 ) }
 															withInputField={ false }
+															placeholder={ getPlaceholder( fonts[ index ], 'letterSpacingTablet' ) }
+															initialPosition={ getPlaceholder( fonts[ index ], 'letterSpacingTablet' ) }
 														/>
 													</div>
 
@@ -735,10 +551,12 @@ const GeneratePressTypographyControlForm = ( props ) => {
 
 																handleChangeComplete( fontValues );
 															} }
-															rangeMin={ -1 }
-															rangeMax={ 10 }
-															step={ .01 }
+															rangeMin={ getRangeProps( fonts[ index ], 'letterSpacing', 'min', -1 ) }
+															rangeMax={ getRangeProps( fonts[ index ], 'letterSpacing', 'max', 10 ) }
+															step={ getRangeProps( fonts[ index ], 'letterSpacing', 'step', .01 ) }
 															withInputField={ false }
+															placeholder={ getPlaceholder( fonts[ index ], 'letterSpacingMobile' ) }
+															initialPosition={ getPlaceholder( fonts[ index ], 'letterSpacingMobile' ) }
 														/>
 													</div>
 
@@ -758,6 +576,102 @@ const GeneratePressTypographyControlForm = ( props ) => {
 													/>
 												</div>
 											</BaseControl>
+
+											{ marginBottomSelectors.includes( fonts[ index ].selector ) &&
+												<BaseControl>
+													<UtilityLabel
+														label={ 'body' === fonts[ index ].selector ? __( 'Paragraph Bottom Margin', 'generatepress' ) : __( 'Bottom Margin', 'generateblocks' ) }
+														value={ fonts[ index ].marginBottomUnit }
+														devices={ [ 'desktop', 'tablet', 'mobile' ] }
+													/>
+
+													<div className="generate-component-input-with-unit">
+														<div className="generate-component-device-field" data-device="desktop">
+															<RangeControl
+																className={ 'generate-range-control-range' }
+																value={ hasNumericValue( fonts[ index ].marginBottom ) ? parseFloat( fonts[ index ].marginBottom ) : '' }
+																onChange={ ( value ) => {
+																	const fontValues = [ ...fonts ];
+
+																	fontValues[ index ] = {
+																		...fontValues[ index ],
+																		marginBottom: value,
+																	};
+
+																	handleChangeComplete( fontValues );
+																} }
+																rangeMin={ getRangeProps( fonts[ index ], 'marginBottom', 'min', 1 ) }
+																rangeMax={ getRangeProps( fonts[ index ], 'marginBottom', 'max', 5 ) }
+																step={ getRangeProps( fonts[ index ], 'marginBottom', 'step', .1 ) }
+																withInputField={ false }
+																placeholder={ getPlaceholder( fonts[ index ], 'marginBottom' ) }
+																initialPosition={ getPlaceholder( fonts[ index ], 'marginBottom' ) }
+															/>
+														</div>
+
+														<div className="generate-component-device-field" data-device="tablet">
+															<RangeControl
+																className={ 'generate-range-control-range' }
+																value={ hasNumericValue( fonts[ index ].letterSpacingTablet ) ? parseFloat( fonts[ index ].letterSpacingTablet ) : '' }
+																onChange={ ( value ) => {
+																	const fontValues = [ ...fonts ];
+
+																	fontValues[ index ] = {
+																		...fontValues[ index ],
+																		letterSpacingTablet: value,
+																	};
+
+																	handleChangeComplete( fontValues );
+																} }
+																rangeMin={ getRangeProps( fonts[ index ], 'marginBottom', 'min', 1 ) }
+																rangeMax={ getRangeProps( fonts[ index ], 'marginBottom', 'max', 5 ) }
+																step={ getRangeProps( fonts[ index ], 'marginBottom', 'step', .1 ) }
+																withInputField={ false }
+																placeholder={ getPlaceholder( fonts[ index ], 'marginBottomTablet' ) }
+																initialPosition={ getPlaceholder( fonts[ index ], 'marginBottomTablet' ) }
+															/>
+														</div>
+
+														<div className="generate-component-device-field" data-device="mobile">
+															<RangeControl
+																className={ 'generate-range-control-range' }
+																value={ hasNumericValue( fonts[ index ].letterSpacingMobile ) ? parseFloat( fonts[ index ].letterSpacingMobile ) : '' }
+																onChange={ ( value ) => {
+																	const fontValues = [ ...fonts ];
+
+																	fontValues[ index ] = {
+																		...fontValues[ index ],
+																		letterSpacingMobile: value,
+																	};
+
+																	handleChangeComplete( fontValues );
+																} }
+																rangeMin={ getRangeProps( fonts[ index ], 'marginBottom', 'min', 1 ) }
+																rangeMax={ getRangeProps( fonts[ index ], 'marginBottom', 'max', 5 ) }
+																step={ getRangeProps( fonts[ index ], 'marginBottom', 'step', .1 ) }
+																withInputField={ false }
+																placeholder={ getPlaceholder( fonts[ index ], 'marginBottomMobile' ) }
+																initialPosition={ getPlaceholder( fonts[ index ], 'marginBottomMobile' ) }
+															/>
+														</div>
+
+														<UnitPicker
+															value={ fonts[ index ].marginBottomUnit }
+															units={ [ 'px', 'em', '%' ] }
+															onClick={ ( value ) => {
+																const fontValues = [ ...fonts ];
+
+																fontValues[ index ] = {
+																	...fontValues[ index ],
+																	marginBottomUnit: value,
+																};
+
+																handleChangeComplete( fontValues );
+															} }
+														/>
+													</div>
+												</BaseControl>
+											}
 										</>
 									}
 
@@ -805,7 +719,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 					handleChangeComplete( fontValues );
 				} }
 			>
-				{ __( 'Add Element', 'generatepress' ) }
+				{ __( 'Add Typography', 'generatepress' ) }
 			</Button>
 		</div>
 	);

@@ -122,6 +122,10 @@ class GeneratePress_Typography {
 				'letterSpacingTablet' => '',
 				'letterSpacingMobile' => '',
 				'letterSpacingUnit' => 'px',
+				'marginBottom' => '',
+				'marginBottomTablet' => '',
+				'marginBottomMobile' => '',
+				'marginBottomUnit' => 'px',
 			);
 
 			$css = new GeneratePress_CSS();
@@ -149,21 +153,51 @@ class GeneratePress_Typography {
 				$css->add_property( 'font-weight', $options['fontWeight'] );
 				$css->add_property( 'text-transform', $options['textTransform'] );
 				$css->add_property( 'font-size', $options['fontSize'], false, $options['fontSizeUnit'] );
-				$css->add_property( 'line-height', $options['lineHeight'], false, $options['lineHeightUnit'] );
 				$css->add_property( 'letter-spacing', $options['letterSpacing'], false, $options['letterSpacingUnit'] );
+
+				if ( 'body' !== $options['selector'] ) {
+					$css->add_property( 'line-height', $options['lineHeight'], false, $options['lineHeightUnit'] );
+					$css->add_property( 'margin-bottom', $options['marginBottom'], false, $options['marginBottomUnit'] );
+				} else {
+					$css->set_selector( 'body' );
+					$css->add_property( 'line-height', $options['lineHeight'], false, $options['lineHeightUnit'] );
+
+					$css->set_selector( 'p' );
+					$css->add_property( 'margin-bottom', $options['marginBottom'], false, $options['marginBottomUnit'] );
+				}
 
 				$css->start_media_query( generate_get_media_query( 'tablet' ) );
 				$css->set_selector( $selector );
 				$css->add_property( 'font-size', $options['fontSizeTablet'], false, $options['fontSizeUnit'] );
-				$css->add_property( 'line-height', $options['lineHeightTablet'], false, $options['lineHeightUnit'] );
 				$css->add_property( 'letter-spacing', $options['letterSpacingTablet'], false, $options['letterSpacingUnit'] );
+
+				if ( 'body' !== $options['selector'] ) {
+					$css->add_property( 'line-height', $options['lineHeightTablet'], false, $options['lineHeightUnit'] );
+					$css->add_property( 'margin-bottom', $options['marginBottomTablet'], false, $options['marginBottomUnit'] );
+				} else {
+					$css->set_selector( 'body' );
+					$css->add_property( 'line-height', $options['lineHeightTablet'], false, $options['lineHeightUnit'] );
+
+					$css->set_selector( 'p' );
+					$css->add_property( 'margin-bottom', $options['marginBottomTablet'], false, $options['marginBottomUnit'] );
+				}
 				$css->stop_media_query();
 
 				$css->start_media_query( generate_get_media_query( 'mobile' ) );
 				$css->set_selector( $selector );
 				$css->add_property( 'font-size', $options['fontSizeMobile'], false, $options['fontSizeUnit'] );
-				$css->add_property( 'line-height', $options['lineHeightMobile'], false, $options['lineHeightUnit'] );
 				$css->add_property( 'letter-spacing', $options['letterSpacingMobile'], false, $options['letterSpacingUnit'] );
+
+				if ( 'body' !== $options['selector'] ) {
+					$css->add_property( 'line-height', $options['lineHeightMobile'], false, $options['lineHeightUnit'] );
+					$css->add_property( 'margin-bottom', $options['marginBottomMobile'], false, $options['marginBottomUnit'] );
+				} else {
+					$css->set_selector( 'body' );
+					$css->add_property( 'line-height', $options['lineHeightMobile'], false, $options['lineHeightUnit'] );
+
+					$css->set_selector( 'p' );
+					$css->add_property( 'margin-bottom', $options['marginBottomMobile'], false, $options['marginBottomUnit'] );
+				}
 				$css->stop_media_query();
 			}
 
@@ -182,7 +216,7 @@ class GeneratePress_Typography {
 				$selector = 'body, button, input, select, textarea';
 				break;
 
-			case 'site-title':
+			case 'main-title':
 				$selector = '.main-title';
 				break;
 
@@ -198,12 +232,24 @@ class GeneratePress_Typography {
 				$selector = '.main-navigation .main-nav ul ul li a';
 				break;
 
+			case 'primary-menu-toggle':
+				$selector = '.main-navigation .menu-toggle';
+				break;
+
 			case 'buttons':
 				$selector = 'button:not(.menu-toggle),html input[type="button"],input[type="reset"],input[type="submit"],.button,.wp-block-button .wp-block-button__link';
 				break;
 
 			case 'all-headings':
 				$selector = 'h1, h2, h3, h4, h5, h6';
+				break;
+
+			case 'single-content-title':
+				$selector = 'h1.entry-title';
+				break;
+
+			case 'archive-content-title':
+				$selector = 'h2.entry-title';
 				break;
 
 			case 'top-bar':

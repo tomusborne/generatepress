@@ -77,6 +77,10 @@
 				margin-right: 5px;
 			}
 		}
+
+		.components-base-control__field {
+			margin-bottom: 0 !important;
+		}
 	}
 
 	.generate-font-manager--select-options {
@@ -94,5 +98,9 @@
 				margin-right: 5px;
 			}
 		}
+	}
+
+	.components-select-control__input--generate-fontfamily {
+		margin-bottom: 3px;
 	}
 }

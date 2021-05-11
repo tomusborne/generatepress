@@ -40,14 +40,10 @@ const GeneratePressColorControlForm = ( props ) => {
 		setOpen( false );
 	};
 
-	let tooltip = __( 'Choose color', 'generatepress' );
+	let tooltip = __( 'Choose Color', 'generatepress' );
 
-	if ( props.customizerSetting.id.includes( 'hover' ) ) {
-		tooltip = __( 'Choose hover color', 'generatepress' );
-	}
-
-	if ( props.customizerSetting.id.includes( 'current' ) ) {
-		tooltip = __( 'Choose current color', 'generatepress' );
+	if ( props.choices.tooltip ) {
+		tooltip = props.choices.tooltip;
 	}
 
 	return (
@@ -65,29 +61,35 @@ const GeneratePressColorControlForm = ( props ) => {
 				}
 
 				<div className="generate-color-picker-area">
-					{ ! isOpen &&
-						<Tooltip text={ tooltip } position="top center">
-							<Button
-								aria-expanded={ isOpen }
-								className="components-color-palette__item components-circular-option-picker__option"
-								onClick={ toggleVisible }
-								aria-label={ __( 'Custom color picker', 'generatepress' ) }
-								style={ { color: props.value ? props.value : 'transparent' } }
-							/>
-						</Tooltip>
-					}
+					<div className="components-color-palette__item-wrapper components-circular-option-picker__option-wrapper components-color-palette__custom-color">
+						{ ! isOpen &&
+							<Tooltip text={ tooltip } position="top center">
+								<Button
+									aria-expanded={ isOpen }
+									className="components-color-palette__item components-circular-option-picker__option"
+									onClick={ toggleVisible }
+									aria-label={ __( 'Custom color picker', 'generatepress' ) }
+									style={ { color: props.value ? props.value : 'transparent' } }
+								>
+									<span className="components-color-palette__custom-color-gradient" />
+								</Button>
+							</Tooltip>
+						}
 
-					{ isOpen &&
-						<Tooltip text={ tooltip } position="top center">
-							<Button
-								aria-expanded={ isOpen }
-								className="components-color-palette__item components-circular-option-picker__option"
-								onClick={ toggleClose }
-								aria-label={ __( 'Custom color picker', 'generatepress' ) }
-								style={ { color: props.value ? props.value : 'transparent' } }
-							/>
-						</Tooltip>
-					}
+						{ isOpen &&
+							<Tooltip text={ tooltip } position="top center">
+								<Button
+									aria-expanded={ isOpen }
+									className="components-color-palette__item components-circular-option-picker__option"
+									onClick={ toggleClose }
+									aria-label={ __( 'Custom color picker', 'generatepress' ) }
+									style={ { color: props.value ? props.value : 'transparent' } }
+								>
+									<span className="components-color-palette__custom-color-gradient" />
+								</Button>
+							</Tooltip>
+						}
+					</div>
 
 					{ isOpen &&
 						<Popover

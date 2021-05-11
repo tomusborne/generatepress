@@ -62,7 +62,12 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 				'dynamic_css_cache' => true,
 				'structure' => 'flexbox',
 				'underline_links' => 'always',
-				'font_manager' => array(),
+				'font_manager' => array(
+					array(
+						'fontFamily' => 'System Default',
+						'googleFont' => false,
+					),
+				),
 				'typography' => array(),
 			)
 		);
