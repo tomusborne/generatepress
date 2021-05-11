@@ -69,6 +69,7 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 					),
 				),
 				'typography' => array(),
+				'use_legacy_typography' => false,
 			)
 		);
 	}

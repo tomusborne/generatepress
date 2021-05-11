@@ -35,6 +35,10 @@ class GeneratePress_Typography {
 	 *  Constructor
 	 */
 	public function __construct() {
+		if ( generate_get_option( 'use_legacy_typography' ) ) {
+			return;
+		}
+
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_google_fonts' ) );
 	}
 
@@ -105,35 +109,12 @@ class GeneratePress_Typography {
 				$font_families[ $data['fontFamily'] ] = $data;
 			}
 
-			$defaults = array(
-				'selector' => '',
-				'fontFamily' => '',
-				'fontWeight' => '',
-				'textTransform' => '',
-				'fontSize' => '',
-				'fontSizeTablet' => '',
-				'fontSizeMobile' => '',
-				'fontSizeUnit' => 'px',
-				'lineHeight' => '',
-				'lineHeightTablet' => '',
-				'lineHeightMobile' => '',
-				'lineHeightUnit' => '',
-				'letterSpacing' => '',
-				'letterSpacingTablet' => '',
-				'letterSpacingMobile' => '',
-				'letterSpacingUnit' => 'px',
-				'marginBottom' => '',
-				'marginBottomTablet' => '',
-				'marginBottomMobile' => '',
-				'marginBottomUnit' => 'px',
-			);
-
 			$css = new GeneratePress_CSS();
 
 			foreach ( $typography as $key => $data ) {
 				$options = wp_parse_args(
 					$data,
-					$defaults
+					self::get_defaults()
 				);
 
 				$selector = self::get_css_selector( $options['selector'] );
@@ -265,7 +246,35 @@ class GeneratePress_Typography {
 				break;
 		}
 
-		return $selector;
+		return apply_filters( 'generate_typography_css_selector', $selector );
+	}
+
+	/**
+	 * Get the defaults for our CSS options.
+	 */
+	public static function get_defaults() {
+		return array(
+			'selector' => '',
+			'fontFamily' => '',
+			'fontWeight' => '',
+			'textTransform' => '',
+			'fontSize' => '',
+			'fontSizeTablet' => '',
+			'fontSizeMobile' => '',
+			'fontSizeUnit' => 'px',
+			'lineHeight' => '',
+			'lineHeightTablet' => '',
+			'lineHeightMobile' => '',
+			'lineHeightUnit' => '',
+			'letterSpacing' => '',
+			'letterSpacingTablet' => '',
+			'letterSpacingMobile' => '',
+			'letterSpacingUnit' => 'px',
+			'marginBottom' => '',
+			'marginBottomTablet' => '',
+			'marginBottomMobile' => '',
+			'marginBottomUnit' => 'px',
+		);
 	}
 }
 

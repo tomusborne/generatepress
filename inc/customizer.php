@@ -265,6 +265,13 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			'generate_typography_section',
 			array(
 				'title' => esc_attr__( 'Typography v2', 'generatepress' ),
+				'active_callback' => function() {
+					if ( generate_get_option( 'use_legacy_typography' ) ) {
+						return false;
+					}
+
+					return true;
+				},
 			)
 		);
 
@@ -1302,6 +1309,44 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 						)
 					),
 					'settings' => 'generate_settings[structure]',
+				)
+			);
+		}
+
+		$show_legacy_typography_option = true;
+
+		// if ( defined( 'GP_PREMIUM_VERSION' ) && version_compare( GP_PREMIUM_VERSION, '1.11.0-alpha.1', '<' ) ) {
+		// 	$show_legacy_typography_option = false;
+		// }
+
+		$show_flexbox_option = apply_filters( 'generate_show_legacy_typography_customizer_option', $show_flexbox_option );
+
+		if ( $show_legacy_typography_option ) {
+			$wp_customize->add_setting(
+				'generate_settings[use_legacy_typography]',
+				array(
+					'default' => $defaults['use_legacy_typography'],
+					'type' => 'option',
+					'sanitize_callback' => 'generate_sanitize_checkbox',
+				)
+			);
+
+			$wp_customize->add_control(
+				'generate_settings[use_legacy_typography]',
+				array(
+					'type' => 'checkbox',
+					'label' => __( 'Use legacy typography system', 'generatepress' ),
+					'description' => sprintf(
+						'<strong>%1$s</strong> %2$s',
+						__( 'Caution:', 'generatepress' ),
+						sprintf(
+							/* translators: Learn more here */
+							__( 'Changing typography systems will require you to re-set your typography options. Learn more %s.', 'generatepress' ),
+							'<a href="https://docs.generatepress.com/article/switching-from-floats-to-flexbox/" target="_blank" rel="noopener noreferrer">' . __( 'here', 'generatepress' ) . '</a>'
+						)
+					),
+					'section' => 'generate_general_section',
+					'settings' => 'generate_settings[use_legacy_typography]',
 				)
 			);
 		}

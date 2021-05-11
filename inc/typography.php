@@ -17,6 +17,10 @@ if ( ! function_exists( 'generate_enqueue_google_fonts' ) ) {
 	 * @since 0.1
 	 */
 	function generate_enqueue_google_fonts() {
+		if ( ! generate_get_option( 'use_legacy_typography' ) ) {
+			return;
+		}
+
 		$generate_settings = wp_parse_args(
 			get_option( 'generate_settings', array() ),
 			generate_get_default_fonts()
@@ -107,6 +111,10 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 	 * @param std_Class $wp_customize The Customize class.
 	 */
 	function generate_default_fonts_customize_register( $wp_customize ) {
+		if ( ! generate_get_option( 'use_legacy_typography' ) ) {
+			return;
+		}
+
 		if ( function_exists( 'generate_fonts_customize_register' ) ) {
 			// Bail if GP Premium is active.
 			return;
@@ -792,6 +800,10 @@ if ( ! function_exists( 'generate_get_all_google_fonts_ajax' ) ) {
 	 * @since 1.3.0
 	 */
 	function generate_get_all_google_fonts_ajax() {
+		if ( ! generate_get_option( 'use_legacy_typography' ) ) {
+			wp_die();
+		}
+
 		if ( ! isset( $_POST['gp_customize_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['gp_customize_nonce'] ), 'gp_customize_nonce' ) ) {
 			wp_die();
 		}
@@ -1059,6 +1071,10 @@ if ( ! function_exists( 'generate_typography_set_font_data' ) ) {
 	 * @since 1.3.40
 	 */
 	function generate_typography_set_font_data() {
+		if ( ! generate_get_option( 'use_legacy_typography' ) ) {
+			return;
+		}
+
 		// Get our defaults.
 		$defaults = generate_get_default_fonts();
 

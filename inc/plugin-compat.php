@@ -830,4 +830,21 @@ function generate_do_pro_compatibility_setup() {
 		add_action( 'generate_inside_mobile_header', 'generate_enqueue_navigation_script' );
 		add_action( 'generate_inside_slideout_navigation', 'generate_enqueue_navigation_script' );
 	}
+
+	if ( ! generate_get_option( 'use_legacy_typography' ) ) {
+		remove_action( 'wp_enqueue_scripts', 'generate_enqueue_google_fonts', 0 );
+		remove_action( 'wp_enqueue_scripts', 'generate_typography_premium_css', 100 );
+		remove_filter( 'generate_external_dynamic_css_output', 'generate_typography_add_to_external_stylesheet' );
+	}
+}
+
+add_action( 'init', 'generate_do_customizer_compatibility_setup' );
+/**
+ * Make changes to the Customizer in the Pro version.
+ */
+function generate_do_customizer_compatibility_setup() {
+	if ( ! generate_get_option( 'use_legacy_typography' ) ) {
+		remove_action( 'customize_register', 'generate_fonts_customize_register' );
+		remove_action( 'customize_preview_init', 'generate_typography_customizer_live_preview' );
+	}
 }

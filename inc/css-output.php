@@ -1176,9 +1176,13 @@ function generate_no_cache_dynamic_css() {
  * @since 3.0.0
  */
 function generate_get_dynamic_css() {
-	$typography_css = GeneratePress_Typography::get_css();
+	if ( generate_get_option( 'use_legacy_typography' ) ) {
+		$typography_css = generate_font_css();
+	} else {
+		$typography_css = GeneratePress_Typography::get_css();
+	}
 
-	$css = generate_base_css() . generate_font_css() . $typography_css . generate_advanced_css() . generate_spacing_css();
+	$css = generate_base_css() . $typography_css . generate_advanced_css() . generate_spacing_css();
 
 	return apply_filters( 'generate_dynamic_css', $css );
 }
@@ -1220,7 +1224,7 @@ function generate_set_dynamic_css_cache() {
 	$cached_version = get_option( 'generate_dynamic_css_cached_version', '' );
 
 	if ( ! $cached_css || GENERATE_VERSION !== $cached_version ) {
-		$css = generate_base_css() . generate_font_css() . generate_advanced_css() . generate_spacing_css();
+		$css = generate_get_dynamic_css();
 
 		update_option( 'generate_dynamic_css_output', wp_strip_all_tags( $css ) );
 		update_option( 'generate_dynamic_css_cached_version', esc_html( GENERATE_VERSION ) );
@@ -1238,6 +1242,6 @@ function generate_update_dynamic_css_cache() {
 		return;
 	}
 
-	$css = generate_base_css() . generate_font_css() . generate_advanced_css() . generate_spacing_css();
+	$css = generate_get_dynamic_css();
 	update_option( 'generate_dynamic_css_output', wp_strip_all_tags( $css ) );
 }
