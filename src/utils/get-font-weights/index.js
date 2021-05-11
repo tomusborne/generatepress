@@ -1,4 +1,4 @@
-import googleFonts from '../../customizer-controls/font-picker/google-fonts.json';
+import googleFonts from '../../customizer-controls/font-manager/google-fonts.json';
 
 import {
 	__,
