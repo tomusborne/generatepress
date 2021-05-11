@@ -21,7 +21,7 @@ function generate_set_customizer_helpers() {
 }
 
 if ( ! function_exists( 'generate_customize_register' ) ) {
-	add_action( 'customize_register', 'generate_customize_register' );
+	add_action( 'customize_register', 'generate_customize_register', 20 );
 	/**
 	 * Add our base options to the Customizer.
 	 *
@@ -247,11 +247,19 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			)
 		);
 
+		$wp_customize->add_section(
+			'generate_colors_section',
+			array(
+				'title' => esc_attr__( 'Colors v2', 'generatepress' ),
+			)
+		);
+
 		$fields_dir = trailingslashit( get_template_directory() ) . 'inc/customizer/fields';
 		require_once $fields_dir . '/body.php';
 		require_once $fields_dir . '/top-bar.php';
 		require_once $fields_dir . '/header.php';
 		require_once $fields_dir . '/primary-navigation.php';
+		require_once $fields_dir . '/buttons.php';
 
 		$wp_customize->add_section(
 			'generate_typography_section',

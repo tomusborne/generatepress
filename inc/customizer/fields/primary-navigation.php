@@ -9,33 +9,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // No direct access, please.
 }
 
-$wp_customize->add_section(
-	'generate_styling_panel_primary_navigation',
-	array(
-		'title' => __( 'Primary Navigation', 'gp-premium' ),
-		'priority' => 40,
-		'panel' => 'generate_styling_panel',
-	)
-);
-
-$wp_customize->add_control(
-	new GeneratePress_Title_Customize_Control(
-		$wp_customize,
-		'generate_primary_navigation_parent_items',
-		array(
-			'section'  => 'generate_styling_panel_primary_navigation',
-			'type'     => 'generatepress-customizer-title',
-			'title'    => __( 'Parent Items', 'gp-premium' ),
-			'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
-			'priority' => 1,
-		)
-	)
+GeneratePress_Customize_Field::add_title(
+	'generate_primary_navigation_colors_title',
+	[
+		'section' => 'generate_colors_section',
+		'title' => __( 'Primary Navigation', 'generatepress' ),
+	]
 );
 
 GeneratePress_Customize_Field::add_wrapper(
 	'generate_primary_navigation_background_wrapper',
 	[
-		'section' => 'generate_styling_panel_primary_navigation',
+		'section' => 'generate_colors_section',
 		'wrapper_type' => 'color',
 		'wrapper_items' => [
 			'navigation_background_color',
@@ -55,10 +40,11 @@ GeneratePress_Customize_Field::add_field(
 	],
 	[
 		'label' => __( 'Background', 'gp-premium' ),
-		'section' => 'generate_styling_panel_primary_navigation',
+		'section' => 'generate_colors_section',
 		'alpha' => true,
 		'choices' => [
 			'wrapper' => 'navigation_background_color',
+			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
 		],
 		'output' => [
 			[
@@ -78,10 +64,11 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_premium_sanitize_rgba',
 	],
 	[
-		'section' => 'generate_styling_panel_primary_navigation',
+		'section' => 'generate_colors_section',
 		'alpha' => true,
 		'choices' => [
 			'wrapper' => 'navigation_background_hover_color',
+			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
 		],
 		'output' => [
 			[
@@ -101,10 +88,11 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_premium_sanitize_rgba',
 	],
 	[
-		'section' => 'generate_styling_panel_primary_navigation',
+		'section' => 'generate_colors_section',
 		'alpha' => true,
 		'choices' => [
 			'wrapper' => 'navigation_background_current_color',
+			'tooltip' => __( 'Choose Current Color', 'generatepress' ),
 		],
 		'output' => [
 			[
@@ -118,7 +106,7 @@ GeneratePress_Customize_Field::add_field(
 GeneratePress_Customize_Field::add_wrapper(
 	'generate_primary_navigation_text_wrapper',
 	[
-		'section' => 'generate_styling_panel_primary_navigation',
+		'section' => 'generate_colors_section',
 		'wrapper_type' => 'color',
 		'wrapper_items' => [
 			'navigation_text_color',
@@ -138,9 +126,10 @@ GeneratePress_Customize_Field::add_field(
 	],
 	[
 		'label' => __( 'Text', 'gp-premium' ),
-		'section' => 'generate_styling_panel_primary_navigation',
+		'section' => 'generate_colors_section',
 		'choices' => [
 			'wrapper' => 'navigation_text_color',
+			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
 		],
 		'output' => [
 			[
@@ -160,9 +149,10 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_premium_sanitize_rgba',
 	],
 	[
-		'section' => 'generate_styling_panel_primary_navigation',
+		'section' => 'generate_colors_section',
 		'choices' => [
 			'wrapper' => 'navigation_text_hover_color',
+			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
 		],
 		'output' => [
 			[
@@ -182,9 +172,10 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_premium_sanitize_rgba',
 	],
 	[
-		'section' => 'generate_styling_panel_primary_navigation',
+		'section' => 'generate_colors_section',
 		'choices' => [
 			'wrapper' => 'navigation_text_current_color',
+			'tooltip' => __( 'Choose Current Color', 'generatepress' ),
 		],
 		'output' => [
 			[
@@ -195,23 +186,18 @@ GeneratePress_Customize_Field::add_field(
 	]
 );
 
-$wp_customize->add_control(
-	new GeneratePress_Title_Customize_Control(
-		$wp_customize,
-		'generate_primary_navigation_submenu_items',
-		array(
-			'section'  => 'generate_styling_panel_primary_navigation',
-			'type'     => 'generatepress-customizer-title',
-			'title'    => __( 'Sub-Menu Items', 'gp-premium' ),
-			'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
-		)
-	)
+GeneratePress_Customize_Field::add_title(
+	'generate_primary_sub_navigation_colors_title',
+	[
+		'section' => 'generate_colors_section',
+		'title' => __( 'Primary Sub-Navigation', 'generatepress' ),
+	]
 );
 
 GeneratePress_Customize_Field::add_wrapper(
 	'generate_primary_navigation_submenu_background_wrapper',
 	[
-		'section' => 'generate_styling_panel_primary_navigation',
+		'section' => 'generate_colors_section',
 		'wrapper_type' => 'color',
 		'wrapper_items' => [
 			'subnavigation_background_color',
@@ -231,10 +217,11 @@ GeneratePress_Customize_Field::add_field(
 	],
 	[
 		'label' => __( 'Background', 'generatepress' ),
-		'section' => 'generate_styling_panel_primary_navigation',
+		'section' => 'generate_colors_section',
 		'alpha' => true,
 		'choices' => [
 			'wrapper' => 'subnavigation_background_color',
+			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
 		],
 		'output' => [
 			[
@@ -256,10 +243,11 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_premium_sanitize_rgba',
 	],
 	[
-		'section' => 'generate_styling_panel_primary_navigation',
+		'section' => 'generate_colors_section',
 		'alpha' => true,
 		'choices' => [
 			'wrapper' => 'subnavigation_background_hover_color',
+			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
 		],
 		'output' => [
 			[
@@ -281,10 +269,11 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_premium_sanitize_rgba',
 	],
 	[
-		'section' => 'generate_styling_panel_primary_navigation',
+		'section' => 'generate_colors_section',
 		'alpha' => true,
 		'choices' => [
 			'wrapper' => 'subnavigation_background_current_color',
+			'tooltip' => __( 'Choose Current Color', 'generatepress' ),
 		],
 		'output' => [
 			[
@@ -298,7 +287,7 @@ GeneratePress_Customize_Field::add_field(
 GeneratePress_Customize_Field::add_wrapper(
 	'generate_primary_navigation_submenu_text_wrapper',
 	[
-		'section' => 'generate_styling_panel_primary_navigation',
+		'section' => 'generate_colors_section',
 		'wrapper_type' => 'color',
 		'wrapper_items' => [
 			'subnavigation_text_color',
@@ -318,9 +307,10 @@ GeneratePress_Customize_Field::add_field(
 	],
 	[
 		'label' => __( 'Text', 'gp-premium' ),
-		'section' => 'generate_styling_panel_primary_navigation',
+		'section' => 'generate_colors_section',
 		'choices' => [
 			'wrapper' => 'subnavigation_text_color',
+			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
 		],
 		'output' => [
 			[
@@ -340,9 +330,10 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_premium_sanitize_rgba',
 	],
 	[
-		'section' => 'generate_styling_panel_primary_navigation',
+		'section' => 'generate_colors_section',
 		'choices' => [
 			'wrapper' => 'subnavigation_text_hover_color',
+			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
 		],
 		'output' => [
 			[
@@ -362,9 +353,10 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_premium_sanitize_rgba',
 	],
 	[
-		'section' => 'generate_styling_panel_primary_navigation',
+		'section' => 'generate_colors_section',
 		'choices' => [
 			'wrapper' => 'subnavigation_text_current_color',
+			'tooltip' => __( 'Choose Current Color', 'generatepress' ),
 		],
 		'output' => [
 			[
@@ -372,5 +364,43 @@ GeneratePress_Customize_Field::add_field(
 				'property' => 'color',
 			],
 		],
+	]
+);
+
+GeneratePress_Customize_Field::add_title(
+	'generate_navigation_search_colors_title',
+	[
+		'section' => 'generate_colors_section',
+		'title' => __( 'Navigation Search', 'generatepress' ),
+	]
+);
+
+GeneratePress_Customize_Field::add_field(
+	'generate_settings[navigation_search_background_color]',
+	'GeneratePress_Customize_Color_Control',
+	[
+		'default' => $color_defaults['navigation_search_background_color'],
+		'transport' => 'refresh',
+		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+	],
+	[
+		'label' => __( 'Background', 'gp-premium' ),
+		'section' => 'generate_colors_section',
+		'alpha' => true,
+	]
+);
+
+GeneratePress_Customize_Field::add_field(
+	'generate_settings[navigation_search_text_color]',
+	'GeneratePress_Customize_Color_Control',
+	[
+		'default' => $color_defaults['navigation_search_text_color'],
+		'transport' => 'refresh',
+		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+	],
+	[
+		'label' => __( 'Text', 'gp-premium' ),
+		'section' => 'generate_colors_section',
+		'alpha' => true,
 	]
 );

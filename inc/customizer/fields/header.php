@@ -9,13 +9,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // No direct access, please.
 }
 
-$wp_customize->add_section(
-	'generate_styling_panel_header',
-	array(
-		'title' => __( 'Header', 'gp-premium' ),
-		'priority' => 30,
-		'panel' => 'generate_styling_panel',
-	)
+GeneratePress_Customize_Field::add_title(
+	'generate_header_colors_title',
+	[
+		'section' => 'generate_colors_section',
+		'title' => __( 'Header', 'generatepress' ),
+	]
 );
 
 GeneratePress_Customize_Field::add_field(
@@ -59,27 +58,22 @@ GeneratePress_Customize_Field::add_field(
 	]
 );
 
-$wp_customize->add_control(
-	new GeneratePress_Customize_Wrapper_Control(
-		$wp_customize,
-		'generate_header_link_wrapper',
-		array(
-			'section'  => 'generate_styling_panel_header',
-			'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
-			'wrapper_id' => 'generate-header-link-wrapper',
-			'wrapper_class' => 'generate-customize-color-control-wrapper',
-			'wrappers' => array(
-				'header_link_color',
-				'header_link_hover_color',
-			),
-		)
-	)
+GeneratePress_Customize_Field::add_wrapper(
+	'generate_header_link_wrapper',
+	[
+		'section' => 'generate_colors_section',
+		'wrapper_type' => 'color',
+		'wrapper_items' => [
+			'header_link_color',
+			'header_link_hover_color',
+		],
+	]
 );
 
 GeneratePress_Customize_Field::add_wrapper(
 	'generate_header_link_wrapper',
 	[
-		'section' => 'generate_styling_panel_header',
+		'section' => 'generate_colors_section',
 		'wrapper_type' => 'color',
 		'wrapper_items' => [
 			'header_link_color',
@@ -98,9 +92,10 @@ GeneratePress_Customize_Field::add_field(
 	],
 	[
 		'label' => __( 'Link', 'gp-premium' ),
-		'section' => 'generate_styling_panel_header',
+		'section' => 'generate_colors_section',
 		'choices' => [
 			'wrapper' => 'header_link_color',
+			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
 		],
 		'output' => [
 			[
@@ -120,9 +115,10 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_premium_sanitize_rgba',
 	],
 	[
-		'section' => 'generate_styling_panel_header',
+		'section' => 'generate_colors_section',
 		'choices' => [
 			'wrapper' => 'header_link_hover_color',
+			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
 		],
 		'output' => [
 			[
@@ -143,7 +139,7 @@ GeneratePress_Customize_Field::add_field(
 	],
 	[
 		'label' => __( 'Site Title', 'gp-premium' ),
-		'section' => 'generate_styling_panel_header',
+		'section' => 'generate_colors_section',
 		'output' => [
 			[
 				'element'  => '.main-title a, .main-title a:hover',
@@ -163,7 +159,7 @@ GeneratePress_Customize_Field::add_field(
 	],
 	[
 		'label' => __( 'Tagline', 'gp-premium' ),
-		'section' => 'generate_styling_panel_header',
+		'section' => 'generate_colors_section',
 		'output' => [
 			[
 				'element'  => '.site-description',
