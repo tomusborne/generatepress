@@ -5,3 +5,5 @@ import './customizer-controls/select';
 import './customizer-controls/text';
 import './customizer-controls/range';
 import './customizer-controls/font-manager';
+import './customizer-controls/title';
+import './customizer-controls/wrapper';

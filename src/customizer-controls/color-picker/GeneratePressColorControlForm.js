@@ -47,12 +47,13 @@ const GeneratePressColorControlForm = ( props ) => {
 	}
 
 	return (
-		<div>
+		<>
 			<span className="description customize-control-description" dangerouslySetInnerHTML={ { __html: props.description } }></span>
 			<div className="customize-control-notifications-container" ref={ props.setNotificationContainer }></div>
 
 			<BaseControl
 				className="generate-component-color-picker-wrapper"
+				data-toggleId={ !! props.choices.toggleId ? props.choices.toggleId : null }
 			>
 				{ !! props.label &&
 					<div className="generate-color-component-label">
@@ -68,7 +69,7 @@ const GeneratePressColorControlForm = ( props ) => {
 									aria-expanded={ isOpen }
 									className="components-color-palette__item components-circular-option-picker__option"
 									onClick={ toggleVisible }
-									aria-label={ __( 'Custom color picker', 'generatepress' ) }
+									aria-label={ tooltip }
 									style={ { color: props.value ? props.value : 'transparent' } }
 								>
 									<span className="components-color-palette__custom-color-gradient" />
@@ -82,7 +83,7 @@ const GeneratePressColorControlForm = ( props ) => {
 									aria-expanded={ isOpen }
 									className="components-color-palette__item components-circular-option-picker__option"
 									onClick={ toggleClose }
-									aria-label={ __( 'Custom color picker', 'generatepress' ) }
+									aria-label={ tooltip }
 									style={ { color: props.value ? props.value : 'transparent' } }
 								>
 									<span className="components-color-palette__custom-color-gradient" />
@@ -169,7 +170,7 @@ const GeneratePressColorControlForm = ( props ) => {
 					}
 				</div>
 			</BaseControl>
-		</div>
+		</>
 	);
 };
 

@@ -36,15 +36,6 @@
 	}
 }
 
-.generate-customize-control-title {
-    font-size: 16px;
-    font-weight: 500;
-
-	h3 {
-		margin-bottom: 0;
-	}
-}
-
 .generate-customize-control--popover {
 	& > .components-popover__content {
 		padding: 15px;
@@ -55,4 +46,8 @@
 	.components-base-control:not(:last-child) {
 		margin-bottom: 15px;
 	}
+}
+
+.customize-control[data-toggleid] {
+	display: none;
 }

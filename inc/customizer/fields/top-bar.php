@@ -24,7 +24,7 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'default'     => $color_defaults['top_bar_background_color'],
 		'transport'   => 'postMessage',
-		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
 		'label'           => __( 'Background', 'gp-premium' ),
@@ -41,7 +41,7 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'default'     => $color_defaults['top_bar_text_color'],
 		'transport'   => 'postMessage',
-		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
 		'label'           => __( 'Text', 'gp-premium' ),
@@ -56,7 +56,7 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'default'     => $color_defaults['top_bar_link_color'],
 		'transport'   => 'postMessage',
-		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
 		'label'           => __( 'Link', 'gp-premium' ),
@@ -71,7 +71,7 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'default'     => $color_defaults['top_bar_link_color_hover'],
 		'transport'   => 'postMessage',
-		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
 		'label'           => __( 'Link', 'gp-premium' ),

@@ -1,14 +1,9 @@
-import GeneratePressColorControlForm from './GeneratePressColorControlForm';
+import classnames from 'classnames';
 
 import {
 	render,
 	unmountComponentAtNode,
 } from '@wordpress/element';
-
-import {
-	SlotFillProvider,
-	Popover,
-} from '@wordpress/components';
 
 /**
  * GeneratePressColorControl.
@@ -17,7 +12,7 @@ import {
  * @augments wp.customize.Control
  * @augments wp.customize.Class
  */
-const GeneratePressColorControl = wp.customize.Control.extend( {
+const GeneratePressWrapperControl = wp.customize.Control.extend( {
 
 	/**
 	 * After control has been first rendered, start re-rendering when setting changes.
@@ -29,12 +24,7 @@ const GeneratePressColorControl = wp.customize.Control.extend( {
 	ready: function ready() {
 		const control = this;
 
-		// Re-render control when setting changes.
-		control.setting.bind( () => {
-			control.renderContent();
-		} );
-
-		control.rgbaControlNotifications();
+		control.renderContent();
 	},
 
 	/**
@@ -130,43 +120,32 @@ const GeneratePressColorControl = wp.customize.Control.extend( {
 	 */
 	renderContent: function renderContent() {
 		const control = this;
-		const value = control.setting.get();
+		const choices = control.params.choices;
 
-		const form = <SlotFillProvider>
-			<GeneratePressColorControlForm
-				{ ...control.params }
-				value={ value }
-				setNotificationContainer={ control.setNotificationContainer }
-				customizerSetting={ control.setting }
-				control={ control }
-				choices={ control.params.choices }
-				default={ control.params.defaultValue }
-				alpha={ control.params.alpha }
-			/>
-			<Popover.Slot />
-		</SlotFillProvider>;
-
-		let wrapper = control.container[ 0 ];
-
-		if ( control.params.choices.wrapper ) {
-			const wrapperElement = document.getElementById( control.params.choices.wrapper + '--wrapper' );
-
-			if ( wrapperElement ) {
-				// Move this control into the wrapper.
-				wrapper = wrapperElement;
-
-				// Hide the original <li> container.
-				control.container[ 0 ].style.display = 'none';
-			}
-		}
+		const form = () => {
+			return (
+				<div
+					className={ classnames( {
+						'generate-customize-control-wrapper': true,
+						[ choices.class ]: !! choices.class,
+					} ) }
+					id={ choices.id }
+					data-wrapper-type={ choices.type }
+				>
+					{ choices.items.map( ( wrapper ) => {
+						return <div key={ wrapper } id={ wrapper + '--wrapper' }></div>;
+					} ) }
+				</div>
+			);
+		};
 
 		if ( control.params.choices.toggleId ) {
-			wrapper.setAttribute( 'data-toggleId', control.params.choices.toggleId );
+			control.container[ 0 ].setAttribute( 'data-toggleId', control.params.choices.toggleId );
 		}
 
 		render(
-			form,
-			wrapper
+			form(),
+			control.container[ 0 ]
 		);
 	},
 
@@ -189,38 +168,6 @@ const GeneratePressColorControl = wp.customize.Control.extend( {
 			wp.customize.Control.prototype.destroy.call( control );
 		}
 	},
-
-	/**
-	 * Handles notifications.
-	 *
-	 * @return {void}
-	 */
-	rgbaControlNotifications() {
-		const control = this;
-		const code = 'long_title';
-
-		// Make sure we have the message before proceeding.
-		if ( ! window._wpCustomizeControlsL10n.cheatin ) {
-			return;
-		}
-
-		const patternTest = RegExp( /^(\#[\da-f]{3}|\#[\da-f]{6}|\#[\da-f]{8}|rgba\(((\d{1,2}|1\d\d|2([0-4]\d|5[0-5]))\s*,\s*){2}((\d{1,2}|1\d\d|2([0-4]\d|5[0-5]))\s*)(,\s*(0\.\d+|1))\)|hsla\(\s*((\d{1,2}|[1-2]\d{2}|3([0-5]\d|60)))\s*,\s*((\d{1,2}|100)\s*%)\s*,\s*((\d{1,2}|100)\s*%)(,\s*(0\.\d+|1))\)|rgb\(((\d{1,2}|1\d\d|2([0-4]\d|5[0-5]))\s*,\s*){2}((\d{1,2}|1\d\d|2([0-4]\d|5[0-5]))\s*)|hsl\(\s*((\d{1,2}|[1-2]\d{2}|3([0-5]\d|60)))\s*,\s*((\d{1,2}|100)\s*%)\s*,\s*((\d{1,2}|100)\s*%)\))$/ );
-
-		wp.customize( control.id, function( setting ) {
-			setting.bind( function( value ) {
-				value = value.toLowerCase();
-
-				if ( false === patternTest.test( value ) && ! value.includes( 'var' ) && '' !== value ) {
-					setting.notifications.add( code, new wp.customize.Notification( code, {
-						type: 'warning',
-						message: window._wpCustomizeControlsL10n.cheatin,
-					} ) );
-				} else {
-					setting.notifications.remove( code );
-				}
-			} );
-		} );
-	},
 } );
 
-export default GeneratePressColorControl;
+export default GeneratePressWrapperControl;

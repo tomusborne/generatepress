@@ -46,7 +46,7 @@ class GeneratePress_Customize_Field {
 		}
 
 		$control_args['settings'] = isset( $wp_customize->selective_refresh ) ? array() : 'blogname';
-		$control_args['wrapper_id'] = str_replace( '_', '-', $id );
+		$control_args['choices']['id'] = str_replace( '_', '-', $id );
 
 		$wp_customize->add_control(
 			new GeneratePress_Customize_Wrapper_Control(

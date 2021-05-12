@@ -14,6 +14,9 @@ GeneratePress_Customize_Field::add_title(
 	[
 		'section' => 'generate_colors_section',
 		'title' => __( 'Primary Navigation', 'generatepress' ),
+		'choices' => [
+			'toggleId' => 'primary-navigation-colors',
+		],
 	]
 );
 
@@ -21,11 +24,14 @@ GeneratePress_Customize_Field::add_wrapper(
 	'generate_primary_navigation_background_wrapper',
 	[
 		'section' => 'generate_colors_section',
-		'wrapper_type' => 'color',
-		'wrapper_items' => [
-			'navigation_background_color',
-			'navigation_background_hover_color',
-			'navigation_background_current_color',
+		'choices' => [
+			'type' => 'color',
+			'toggleId' => 'primary-navigation-colors',
+			'items' => [
+				'navigation_background_color',
+				'navigation_background_hover_color',
+				'navigation_background_current_color',
+			],
 		],
 	]
 );
@@ -36,13 +42,14 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'default' => $color_defaults['navigation_background_color'],
 		'transport' => 'postMessage',
-		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
 		'label' => __( 'Background', 'gp-premium' ),
 		'section' => 'generate_colors_section',
 		'alpha' => true,
 		'choices' => [
+			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'navigation_background_color',
 			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
 		],
@@ -61,12 +68,13 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'default' => $color_defaults['navigation_background_hover_color'],
 		'transport' => 'postMessage',
-		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
 		'section' => 'generate_colors_section',
 		'alpha' => true,
 		'choices' => [
+			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'navigation_background_hover_color',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
 		],
@@ -85,12 +93,13 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'default' => $color_defaults['navigation_background_current_color'],
 		'transport' => 'postMessage',
-		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
 		'section' => 'generate_colors_section',
 		'alpha' => true,
 		'choices' => [
+			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'navigation_background_current_color',
 			'tooltip' => __( 'Choose Current Color', 'generatepress' ),
 		],
@@ -107,11 +116,14 @@ GeneratePress_Customize_Field::add_wrapper(
 	'generate_primary_navigation_text_wrapper',
 	[
 		'section' => 'generate_colors_section',
-		'wrapper_type' => 'color',
-		'wrapper_items' => [
-			'navigation_text_color',
-			'navigation_text_hover_color',
-			'navigation_text_current_color',
+		'choices' => [
+			'type' => 'color',
+			'toggleId' => 'primary-navigation-colors',
+			'items' => [
+				'navigation_text_color',
+				'navigation_text_hover_color',
+				'navigation_text_current_color',
+			],
 		],
 	]
 );
@@ -122,12 +134,13 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'default' => $color_defaults['navigation_text_color'],
 		'transport' => 'postMessage',
-		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
 		'label' => __( 'Text', 'gp-premium' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
+			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'navigation_text_color',
 			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
 		],
@@ -146,11 +159,12 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'default' => $color_defaults['navigation_text_hover_color'],
 		'transport' => 'postMessage',
-		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
 		'section' => 'generate_colors_section',
 		'choices' => [
+			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'navigation_text_hover_color',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
 		],
@@ -169,11 +183,12 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'default' => $color_defaults['navigation_text_current_color'],
 		'transport' => 'postMessage',
-		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
 		'section' => 'generate_colors_section',
 		'choices' => [
+			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'navigation_text_current_color',
 			'tooltip' => __( 'Choose Current Color', 'generatepress' ),
 		],
@@ -191,6 +206,9 @@ GeneratePress_Customize_Field::add_title(
 	[
 		'section' => 'generate_colors_section',
 		'title' => __( 'Primary Sub-Navigation', 'generatepress' ),
+		'choices' => [
+			'toggleId' => 'primary-sub-navigation-colors',
+		],
 	]
 );
 
@@ -198,11 +216,14 @@ GeneratePress_Customize_Field::add_wrapper(
 	'generate_primary_navigation_submenu_background_wrapper',
 	[
 		'section' => 'generate_colors_section',
-		'wrapper_type' => 'color',
-		'wrapper_items' => [
-			'subnavigation_background_color',
-			'subnavigation_background_hover_color',
-			'subnavigation_background_current_color',
+		'choices' => [
+			'type' => 'color',
+			'toggleId' => 'primary-sub-navigation-colors',
+			'items' => [
+				'subnavigation_background_color',
+				'subnavigation_background_hover_color',
+				'subnavigation_background_current_color',
+			],
 		],
 	]
 );
@@ -213,13 +234,14 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'default' => $color_defaults['subnavigation_background_color'],
 		'transport' => 'postMessage',
-		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
 		'label' => __( 'Background', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'alpha' => true,
 		'choices' => [
+			'toggleId' => 'primary-sub-navigation-colors',
 			'wrapper' => 'subnavigation_background_color',
 			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
 		],
@@ -240,12 +262,13 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'default' => $color_defaults['subnavigation_background_hover_color'],
 		'transport' => 'postMessage',
-		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
 		'section' => 'generate_colors_section',
 		'alpha' => true,
 		'choices' => [
+			'toggleId' => 'primary-sub-navigation-colors',
 			'wrapper' => 'subnavigation_background_hover_color',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
 		],
@@ -266,12 +289,13 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'default' => $color_defaults['subnavigation_background_current_color'],
 		'transport' => 'postMessage',
-		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
 		'section' => 'generate_colors_section',
 		'alpha' => true,
 		'choices' => [
+			'toggleId' => 'primary-sub-navigation-colors',
 			'wrapper' => 'subnavigation_background_current_color',
 			'tooltip' => __( 'Choose Current Color', 'generatepress' ),
 		],
@@ -288,11 +312,14 @@ GeneratePress_Customize_Field::add_wrapper(
 	'generate_primary_navigation_submenu_text_wrapper',
 	[
 		'section' => 'generate_colors_section',
-		'wrapper_type' => 'color',
-		'wrapper_items' => [
-			'subnavigation_text_color',
-			'subnavigation_text_hover_color',
-			'subnavigation_text_current_color',
+		'choices' => [
+			'type' => 'color',
+			'toggleId' => 'primary-sub-navigation-colors',
+			'items' => [
+				'subnavigation_text_color',
+				'subnavigation_text_hover_color',
+				'subnavigation_text_current_color',
+			],
 		],
 	]
 );
@@ -303,12 +330,13 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'default' => $color_defaults['subnavigation_text_color'],
 		'transport' => 'postMessage',
-		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
 		'label' => __( 'Text', 'gp-premium' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
+			'toggleId' => 'primary-sub-navigation-colors',
 			'wrapper' => 'subnavigation_text_color',
 			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
 		],
@@ -327,11 +355,12 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'default' => $color_defaults['subnavigation_text_hover_color'],
 		'transport' => 'postMessage',
-		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
 		'section' => 'generate_colors_section',
 		'choices' => [
+			'toggleId' => 'primary-sub-navigation-colors',
 			'wrapper' => 'subnavigation_text_hover_color',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
 		],
@@ -350,11 +379,12 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'default' => $color_defaults['subnavigation_text_current_color'],
 		'transport' => 'postMessage',
-		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
 		'section' => 'generate_colors_section',
 		'choices' => [
+			'toggleId' => 'primary-sub-navigation-colors',
 			'wrapper' => 'subnavigation_text_current_color',
 			'tooltip' => __( 'Choose Current Color', 'generatepress' ),
 		],
@@ -372,6 +402,9 @@ GeneratePress_Customize_Field::add_title(
 	[
 		'section' => 'generate_colors_section',
 		'title' => __( 'Navigation Search', 'generatepress' ),
+		'choices' => [
+			'toggleId' => 'primary-navigation-search-colors',
+		],
 	]
 );
 
@@ -381,12 +414,15 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'default' => $color_defaults['navigation_search_background_color'],
 		'transport' => 'refresh',
-		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
 		'label' => __( 'Background', 'gp-premium' ),
 		'section' => 'generate_colors_section',
 		'alpha' => true,
+		'choices' => [
+			'toggleId' => 'primary-navigation-search-colors',
+		],
 	]
 );
 
@@ -396,11 +432,14 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'default' => $color_defaults['navigation_search_text_color'],
 		'transport' => 'refresh',
-		'sanitize_callback' => 'generate_premium_sanitize_rgba',
+		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
 		'label' => __( 'Text', 'gp-premium' ),
 		'section' => 'generate_colors_section',
 		'alpha' => true,
+		'choices' => [
+			'toggleId' => 'primary-navigation-search-colors',
+		],
 	]
 );

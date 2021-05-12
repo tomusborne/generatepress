@@ -14,6 +14,9 @@ GeneratePress_Customize_Field::add_title(
 	[
 		'section' => 'generate_colors_section',
 		'title' => __( 'Buttons', 'generatepress' ),
+		'choices' => [
+			'toggleId' => 'button-colors',
+		],
 	]
 );
 
@@ -21,10 +24,13 @@ GeneratePress_Customize_Field::add_wrapper(
 	'generate_buttons_background_wrapper',
 	[
 		'section' => 'generate_colors_section',
-		'wrapper_type' => 'color',
-		'wrapper_items' => [
-			'form_button_background_color',
-			'form_button_background_color_hover',
+		'choices' => [
+			'type' => 'color',
+			'toggleId' => 'button-colors',
+			'items' => [
+				'form_button_background_color',
+				'form_button_background_color_hover',
+			],
 		],
 	]
 );
@@ -37,13 +43,14 @@ GeneratePress_Customize_Field::add_field(
 	'GeneratePress_Customize_Color_Control',
 	[
 		'default' => $color_defaults['form_button_background_color'],
-		'sanitize_callback' => 'generate_sanitize_hex_color',
+		'sanitize_callback' => 'generate_sanitize_rgba_color',
 		'transport' => 'postMessage',
 	],
 	[
 		'label' => __( 'Background', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
+			'toggleId' => 'button-colors',
 			'wrapper' => 'form_button_background_color',
 			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
 		],
@@ -61,12 +68,13 @@ GeneratePress_Customize_Field::add_field(
 	'GeneratePress_Customize_Color_Control',
 	[
 		'default' => $color_defaults['form_button_background_color_hover'],
-		'sanitize_callback' => 'generate_sanitize_hex_color',
+		'sanitize_callback' => 'generate_sanitize_rgba_color',
 		'transport' => 'postMessage',
 	],
 	[
 		'section' => 'generate_colors_section',
 		'choices' => [
+			'toggleId' => 'button-colors',
 			'wrapper' => 'form_button_background_color_hover',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
 		],
@@ -83,10 +91,13 @@ GeneratePress_Customize_Field::add_wrapper(
 	'generate_buttons_text_wrapper',
 	[
 		'section' => 'generate_colors_section',
-		'wrapper_type' => 'color',
-		'wrapper_items' => [
-			'form_button_text_color',
-			'form_button_text_color_hover',
+		'choices' => [
+			'type' => 'color',
+			'toggleId' => 'button-colors',
+			'items' => [
+				'form_button_text_color',
+				'form_button_text_color_hover',
+			],
 		],
 	]
 );
@@ -100,9 +111,10 @@ GeneratePress_Customize_Field::add_field(
 		'transport' => 'postMessage',
 	],
 	[
-		'label' => __( 'Text Color', 'generatepress' ),
+		'label' => __( 'Text', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
+			'toggleId' => 'button-colors',
 			'wrapper' => 'form_button_text_color',
 			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
 		],
@@ -126,6 +138,7 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'section' => 'generate_colors_section',
 		'choices' => [
+			'toggleId' => 'button-colors',
 			'wrapper' => 'form_button_text_color_hover',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
 		],

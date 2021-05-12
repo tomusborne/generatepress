@@ -14,6 +14,9 @@ GeneratePress_Customize_Field::add_title(
 	[
 		'section' => 'generate_colors_section',
 		'title' => __( 'Base', 'generatepress' ),
+		'choices' => [
+			'toggleId' => 'base-colors',
+		],
 	]
 );
 
@@ -26,8 +29,11 @@ GeneratePress_Customize_Field::add_field(
 		'transport' => 'postMessage',
 	],
 	[
-		'label' => __( 'Background Color', 'generatepress' ),
+		'label' => __( 'Background', 'generatepress' ),
 		'section' => 'generate_colors_section',
+		'choices' => [
+			'toggleId' => 'base-colors',
+		],
 		'output' => [
 			[
 				'element'  => 'body',
@@ -46,8 +52,11 @@ GeneratePress_Customize_Field::add_field(
 		'transport' => 'postMessage',
 	],
 	[
-		'label' => __( 'Text Color', 'generatepress' ),
+		'label' => __( 'Text', 'generatepress' ),
 		'section' => 'generate_colors_section',
+		'choices' => [
+			'toggleId' => 'base-colors',
+		],
 		'output' => [
 			[
 				'element'  => 'body',
@@ -61,10 +70,13 @@ GeneratePress_Customize_Field::add_wrapper(
 	'generate_body_link_wrapper',
 	[
 		'section' => 'generate_colors_section',
-		'wrapper_type' => 'color',
-		'wrapper_items' => [
-			'link_color',
-			'link_color_hover',
+		'choices' => [
+			'type' => 'color',
+			'toggleId' => 'base-colors',
+			'items' => [
+				'link_color',
+				'link_color_hover',
+			],
 		],
 	]
 );
@@ -78,11 +90,12 @@ GeneratePress_Customize_Field::add_field(
 		'transport' => 'postMessage',
 	],
 	[
-		'label' => __( 'Link Color', 'generatepress' ),
+		'label' => __( 'Link', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'wrapper' => 'link_color',
 			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
+			'toggleId' => 'base-colors',
 		],
 		'output' => [
 			[
@@ -106,6 +119,7 @@ GeneratePress_Customize_Field::add_field(
 		'choices' => [
 			'wrapper' => 'link_color_hover',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
+			'toggleId' => 'base-colors',
 		],
 		'output' => [
 			[
@@ -128,6 +142,9 @@ if ( '' !== generate_get_option( 'link_color_visited' ) ) {
 		[
 			'label' => __( 'Link Color Visited', 'generatepress' ),
 			'section' => 'generate_colors_section',
+			'choices' => [
+				'toggleId' => 'base-colors',
+			],
 		]
 	);
 }
