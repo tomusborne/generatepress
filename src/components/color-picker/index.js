@@ -25,7 +25,9 @@ const GeneratePressColorPickerControl = ( props ) => {
 
 	const {
 		value,
+		varNameValue,
 		onChange,
+		onVarChange,
 		alpha,
 		choices,
 	} = props;
@@ -42,6 +44,16 @@ const GeneratePressColorPickerControl = ( props ) => {
 
 	if ( choices.tooltip ) {
 		tooltip = choices.tooltip;
+	}
+
+	const showPalette = !! choices.showPalette || 'undefined' === typeof choices.showPalette;
+	const showReset = !! choices.showReset || 'undefined' === typeof choices.showReset;
+
+	let palette = generateCustomizerControls.palette;
+	const localPalette = window.sessionStorage.getItem( 'generateGlobalColors' );
+
+	if ( localPalette ) {
+		palette = JSON.parse( localPalette );
 	}
 
 	return (
@@ -102,54 +114,80 @@ const GeneratePressColorPickerControl = ( props ) => {
 							disableAlpha={ ! alpha }
 						/>
 
-						<div className="generate-color-input-wrapper">
-							<span className="generate-color-input--icon">{ getIcon( 'color' ) }</span>
-							<TextControl
-								id="generate-color-input-field"
-								className="generate-color-input"
-								type={ 'text' }
-								value={ value || '' }
-								onChange={ ( color ) => {
-									onChange( color );
-								} }
-								onBlur={ () => {
-									setColorKey( value );
-								} }
-							/>
+						<div className="generate-color-option-area">
+							{ !! choices.showVarName &&
+								<div className="generate-color-input--css-var-name-wrapper">
+									<TextControl
+										label={ __( 'CSS Variable Name', 'generatepress' ) }
+										type={ 'text' }
+										value={ varNameValue || '' }
+										onChange={ ( variable ) => {
+											onVarChange( variable );
+										} }
+									/>
+								</div>
+							}
 
-							<Button
-								isSmall
-								isSecondary
-								className="components-color-clear-color"
-								onClick={ () => {
-									const defaultValue = ( props.defaultValue ) ? props.defaultValue : '';
+							<div className="generate-color-input-wrapper">
+								<span className="generate-color-input--icon">{ getIcon( 'color' ) }</span>
+								<TextControl
+									id="generate-color-input-field"
+									className="generate-color-input"
+									type={ 'text' }
+									value={ value || '' }
+									onChange={ ( color ) => {
+										onChange( color );
+									} }
+									onBlur={ () => {
+										setColorKey( value );
+									} }
+								/>
 
-									wp.customize.control( props.customizerSetting.id ).setting.set( defaultValue );
-									setColorKey( defaultValue );
+								{ !! showReset &&
+									<Button
+										isSmall
+										isSecondary
+										className="components-color-clear-color"
+										onClick={ () => {
+											const defaultValue = ( props.defaultValue ) ? props.defaultValue : '';
 
-									setTimeout( function() {
-										document.querySelector( '.generate-color-input-wrapper input' ).focus();
-									}, 10 );
-								} }
-							>
-								{ __( 'Default', 'generatepress' ) }
-							</Button>
+											wp.customize.control( props.customizerSetting.id ).setting.set( defaultValue );
+
+											setTimeout( function() {
+												document.querySelector( '.generate-color-input-wrapper input' ).focus();
+											}, 10 );
+										} }
+									>
+										{ __( 'Default', 'generatepress' ) }
+									</Button>
+								}
+							</div>
+
+							{ !! showPalette &&
+								<BaseControl
+									className="generate-component-color-picker-palette"
+								>
+									<ColorPalette
+										colors={ palette }
+										value={ value }
+										onChange={ ( color ) => {
+											if ( 'undefined' === typeof color ) {
+												color = '';
+											}
+
+											onChange( color );
+											setColorKey( color );
+
+											setTimeout( function() {
+												document.querySelector( '.generate-color-input-wrapper input' ).focus();
+											}, 10 );
+										} }
+										disableCustomColors={ true }
+										clearable={ false }
+									/>
+								</BaseControl>
+							}
 						</div>
-					</BaseControl>
-
-					<BaseControl
-						className="generate-component-color-picker-palette"
-					>
-						<ColorPalette
-							colors={ generateCustomizerControls.palette }
-							value={ value }
-							onChange={ ( color ) => {
-								onChange( color );
-								setColorKey( color );
-							} }
-							disableCustomColors={ true }
-							clearable={ false }
-						/>
 					</BaseControl>
 				</Popover>
 			}

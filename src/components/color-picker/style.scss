@@ -1,3 +1,104 @@
+.generate-component-color-picker {
+	.components-color-picker {
+		box-sizing: border-box;
+	}
+
+	.components-color-picker__inputs-wrapper {
+		display: none;
+	}
+
+	.generate-color-input-wrapper {
+		display: flex;
+		padding: 0;
+
+		.generate-color-input {
+			flex-grow: 1;
+		}
+
+		.components-color-clear-color {
+			margin-left: 5px;
+		}
+
+		input {
+			margin-right: 5px;
+		}
+
+		.components-base-control__field {
+			margin-bottom: 0;
+		}
+	}
+
+	& > .components-base-control:first-child {
+		margin-bottom: 0;
+	}
+
+	.components-color-picker__inputs-wrapper {
+		min-width: auto;
+	}
+
+    .generate-component-color-picker-palette {
+        padding: 16px 0 0;
+
+		.components-circular-option-picker {
+		    display: flex;
+		    flex-wrap: wrap;
+
+			.components-circular-option-picker__option-wrapper {
+				margin: 0 8px 8px 0;
+			}
+		}
+    }
+
+	.components-color-palette {
+        margin: 0;
+    }
+
+	.components-color-picker {
+		padding: 5px;
+	}
+
+	.components-color-picker__body {
+	    padding-bottom: 0;
+	}
+
+	.components-popover__content {
+		padding: 10px;
+		width: 295px;
+		box-sizing: border-box;
+	}
+
+	.components-color-clear-color {
+		height: auto;
+	}
+
+	.components-circular-option-picker__option.is-pressed + svg {
+		fill: #fff;
+		background: #000;
+		transform: scale(0.6);
+	}
+}
+
+.generate-component-color-picker[data-x-axis=left] {
+	.components-popover__content {
+		margin-right: -35px !important;
+	}
+}
+
+.generate-customize-control-wrapper {
+	display: flex;
+
+	&.generate-customize-color-control-wrapper {
+		& > div:first-child {
+			flex-grow: 1;
+		}
+
+		& > div:not(:last-child) {
+			margin-right: 5px;
+		}
+	}
+}
+
+
 .generate-component-color-picker-wrapper {
     > .components-base-control__field {
 		position: relative;
@@ -9,8 +110,11 @@
             margin: 0;
         }
 	}
+}
 
-	.generate-color-picker-area button {
+.generate-component-color-picker-palette,
+.generate-color-picker-area {
+	button {
 		width: 28px;
 		height: 28px;
 		position: relative;
@@ -35,24 +139,6 @@
 		display: none;
 	}
 
-	.generate-color-input-wrapper {
-		display: flex;
-		padding: 16px 16px 0;
-
-		.generate-color-input {
-			flex-grow: 1;
-			margin-right: 5px;
-		}
-
-		input {
-			margin-right: 5px;
-		}
-
-		.components-base-control__field {
-			margin-bottom: 0;
-		}
-	}
-
 	& > .components-base-control:first-child {
 		margin-bottom: 0;
 	}
@@ -60,23 +146,6 @@
 	.components-color-picker__inputs-wrapper {
 		min-width: auto;
 	}
-
-    .generate-component-color-picker-palette {
-        padding: 16px 16px 0;
-
-		.components-circular-option-picker {
-		    display: flex;
-		    flex-wrap: wrap;
-
-			.components-circular-option-picker__option-wrapper {
-				margin: 0 8px 8px 0;
-			}
-		}
-    }
-
-	.components-color-palette {
-        margin: 0;
-    }
 
 	.components-color-picker {
 		padding: 5px;
@@ -97,17 +166,6 @@
 	}
 }
 
-.generate-component-color-opacity {
-    display: flex;
-	padding: 0 16px;
-	margin: 10px 0;
-
-	.components-range-control {
-	    flex-grow: 1;
-	    padding-left: 5px;
-	}
-}
-
 .generate-color-input--icon {
     align-items: center;
     justify-content: center;
@@ -123,4 +181,8 @@
 		width: 1em;
 		transform: scale(1.3);
 	}
+}
+
+.generate-color-option-area {
+    padding: 16px 16px 0;
 }

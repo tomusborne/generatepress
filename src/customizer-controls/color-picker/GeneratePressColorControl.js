@@ -210,15 +210,15 @@ const GeneratePressColorControl = wp.customize.Control.extend( {
 			setting.bind( function( value ) {
 				if ( value ) {
 					value = value.toLowerCase();
-				}
 
-				if ( false === patternTest.test( value ) && ! value.includes( 'var' ) && '' !== value ) {
-					setting.notifications.add( code, new wp.customize.Notification( code, {
-						type: 'warning',
-						message: window._wpCustomizeControlsL10n.cheatin,
-					} ) );
-				} else {
-					setting.notifications.remove( code );
+					if ( false === patternTest.test( value ) && ! value.includes( 'var' ) && '' !== value ) {
+						setting.notifications.add( code, new wp.customize.Notification( code, {
+							type: 'warning',
+							message: window._wpCustomizeControlsL10n.cheatin,
+						} ) );
+					} else {
+						setting.notifications.remove( code );
+					}
 				}
 			} );
 		} );

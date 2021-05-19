@@ -20,6 +20,45 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 	 */
 	const handleChangeComplete = ( value ) => {
 		wp.customize.control( props.customizerSetting.id ).setting.set( value );
+
+		let css = ':root {';
+
+		if ( value.length > 0 ) {
+			value.forEach( ( color ) => {
+				const slug = color.name.replace( ' ', '-' ).toLowerCase();
+				css += '--' + slug + ': ' + color.color + ';';
+			} );
+		}
+
+		css += '}';
+
+		const style = document.getElementById( 'generate-global-color-styles' );
+
+		if ( style ) {
+			style.innerHTML = css;
+		} else {
+			document.head.insertAdjacentHTML( 'beforeend', '<style id="generate-global-color-styles">' + css + '</style>' );
+		}
+	};
+
+	const setSessionStorage = ( value ) => {
+		const palette = [];
+
+		if ( value.length > 0 ) {
+			value.forEach( ( color ) => {
+				const slug = color.name.replace( ' ', '-' ).toLowerCase();
+
+				palette.push(
+					{
+						name: color.name,
+						slug,
+						color: 'var(--' + slug + ')',
+					}
+				);
+			} );
+		}
+
+		window.sessionStorage.setItem( 'generateGlobalColors', JSON.stringify( palette ) );
 	};
 
 	const colors = props.value;
@@ -28,12 +67,13 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 		<div>
 			<div className="customize-control-notifications-container" ref={ props.setNotificationContainer }></div>
 
-			<div className="generate-color-manager-wrapper">
+			<div className="generate-component-color-picker-wrapper generate-color-manager-wrapper">
 				{
 					colors.map( ( color, index ) => {
 						const colorProps = {
 							...props,
 							value: colors[ index ].color,
+							varNameValue: colors[ index ].name,
 						};
 
 						return (
@@ -49,6 +89,18 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 										};
 
 										handleChangeComplete( colorValues );
+										setSessionStorage( colorValues );
+									} }
+									onVarChange={ ( value ) => {
+										const colorValues = [ ...colors ];
+
+										colorValues[ index ] = {
+											...colorValues[ index ],
+											name: value,
+										};
+
+										handleChangeComplete( colorValues );
+										setSessionStorage( colorValues );
 									} }
 								/>
 
@@ -78,9 +130,10 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 							className="generate-color-manager--add-color"
 							onClick={ () => {
 								const colorValues = [ ...props.value ];
+								const length = colorValues.length + 1;
 
 								colorValues.push( {
-									label: '',
+									name: 'global-' + length,
 									color: '',
 								} );
 
