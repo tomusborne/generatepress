@@ -70,6 +70,20 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 				),
 				'typography' => array(),
 				'use_legacy_typography' => false,
+				'global_colors' => array(
+					array(
+						'name' => __( 'Background', 'generatepress' ),
+						'color' => '#f7f8f9',
+					),
+					array(
+						'name' => __( 'Foreground', 'generatepress' ),
+						'color' => '#ffffff',
+					),
+					array(
+						'name' => __( 'Primary', 'generatepress' ),
+						'color' => '#1e73be',
+					),
+				),
 			)
 		);
 	}

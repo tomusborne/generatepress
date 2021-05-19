@@ -847,4 +847,6 @@ function generate_do_customizer_compatibility_setup() {
 		remove_action( 'customize_register', 'generate_fonts_customize_register' );
 		remove_action( 'customize_preview_init', 'generate_typography_customizer_live_preview' );
 	}
+
+	remove_action( 'customize_register', 'generate_colors_customize_register' );
 }

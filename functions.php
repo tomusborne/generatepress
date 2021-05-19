@@ -36,6 +36,12 @@ if ( ! function_exists( 'generate_setup' ) ) {
 		add_theme_support( 'align-wide' );
 		add_theme_support( 'responsive-embeds' );
 
+		$color_palette = generate_get_editor_color_palette();
+
+		if ( ! empty( $color_palette ) ) {
+			add_theme_support( 'editor-color-palette', $color_palette );
+		}
+
 		add_theme_support(
 			'custom-logo',
 			array(

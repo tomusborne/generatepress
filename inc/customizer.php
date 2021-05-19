@@ -61,6 +61,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			$wp_customize->register_control_type( 'GeneratePress_Customize_Range_Control' );
 			$wp_customize->register_control_type( 'GeneratePress_Customize_Font_Family_Control' );
 			$wp_customize->register_control_type( 'GeneratePress_Customize_Font_Manager_Control' );
+			$wp_customize->register_control_type( 'GeneratePress_Customize_Color_Manager_Control' );
 			$wp_customize->register_control_type( 'GeneratePress_Customize_Typography_Manager_Control' );
 			$wp_customize->register_control_type( 'GeneratePress_Customize_Wrapper_Control' );
 		}
@@ -245,6 +246,28 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'title' => esc_attr__( 'Colors v2', 'generatepress' ),
 				'priority' => 30,
 			)
+		);
+
+		GeneratePress_Customize_Field::add_title(
+			'generate_color_manager_title',
+			[
+				'section' => 'generate_colors_section',
+				'title' => __( 'Global Colors', 'generatepress' ),
+			]
+		);
+
+		GeneratePress_Customize_Field::add_field(
+			'generate_settings[global_colors]',
+			'GeneratePress_Customize_Color_Manager_Control',
+			[
+				'default' => $defaults['global_colors'],
+				'sanitize_callback' => '',
+				'transport' => 'refresh',
+			],
+			[
+				'label' => __( 'Choose Color', 'generatepress' ),
+				'section' => 'generate_colors_section',
+			]
 		);
 
 		$fields_dir = trailingslashit( get_template_directory() ) . 'inc/customizer/fields';

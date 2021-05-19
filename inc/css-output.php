@@ -240,6 +240,16 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$css->add_property( 'transform', 'rotate(180deg)' );
 		}
 
+		$css->set_selector( ':root' );
+
+		$global_colors = generate_get_global_colors();
+
+		if ( ! empty( $global_colors ) ) {
+			foreach ( (array) $global_colors as $key => $data ) {
+				$css->add_property( '--' . $data['slug'], $data['color'] );
+			}
+		}
+
 		do_action( 'generate_base_css', $css );
 
 		return apply_filters( 'generate_base_css_output', $css->css_output() );

@@ -789,3 +789,48 @@ function generate_do_attr( $context, $attributes = array(), $settings = array() 
 function generate_is_amp() {
 	return function_exists( 'is_amp_endpoint' ) && is_amp_endpoint();
 }
+
+/**
+ * Build our editor color palette based on our global colors.
+ *
+ * @since 3.1.0
+ */
+function generate_get_editor_color_palette() {
+	$global_colors = generate_get_option( 'global_colors' );
+	$editor_palette = array();
+
+	if ( ! empty( $global_colors ) ) {
+		foreach ( (array) $global_colors as $key => $data ) {
+			$slug = str_replace( ' ', '-', strtolower( $data['name'] ) );
+			$editor_palette[] = array(
+				'name' => $data['name'],
+				'slug' => $slug,
+				'color' => 'var(--' . $slug . ')',
+			);
+		}
+	}
+
+	return $editor_palette;
+}
+
+/**
+ * Get our global colors.
+ *
+ * @since 3.1.0
+ */
+function generate_get_global_colors() {
+	$global_colors = generate_get_option( 'global_colors' );
+	$colors = array();
+
+	if ( ! empty( $global_colors ) ) {
+		foreach ( (array) $global_colors as $key => $data ) {
+			$slug = str_replace( ' ', '-', strtolower( $data['name'] ) );
+			$colors[] = array(
+				'slug' => $slug,
+				'color' => $data['color'],
+			);
+		}
+	}
+
+	return $colors;
+}

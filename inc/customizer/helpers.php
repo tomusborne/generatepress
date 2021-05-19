@@ -317,6 +317,19 @@ function generate_do_control_inline_scripts() {
 		array( 'wp-components' ),
 		GENERATE_VERSION
 	);
+
+	$global_colors = generate_get_global_colors();
+	$global_colors_css = ':root {';
+
+	if ( ! empty( $global_colors ) ) {
+		foreach ( (array) $global_colors as $key => $data ) {
+			$global_colors_css .= '--' . $data['slug'] . ':' . $data['color'] . ';';
+		}
+	}
+
+	$global_colors_css .= '}';
+
+	wp_add_inline_style( 'generate-customizer-controls', $global_colors_css );
 }
 
 if ( ! function_exists( 'generate_customizer_live_preview' ) ) {
