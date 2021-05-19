@@ -9,6 +9,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+/**
+ * Helper functions to add Customizer fields.
+ */
 class GeneratePress_Customize_Field {
 	/**
 	 * Instance.

@@ -1288,10 +1288,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 
 		$show_legacy_typography_option = true;
 
-		// if ( defined( 'GP_PREMIUM_VERSION' ) && version_compare( GP_PREMIUM_VERSION, '1.11.0-alpha.1', '<' ) ) {
-		// 	$show_legacy_typography_option = false;
-		// }
-
 		$show_flexbox_option = apply_filters( 'generate_show_legacy_typography_customizer_option', $show_flexbox_option );
 
 		if ( $show_legacy_typography_option ) {

@@ -126,7 +126,7 @@ class GeneratePress_Typography {
 				}
 
 				if ( ! empty( $font_family_args['googleFont'] ) && ! empty( $font_family_args['googleFontCategory'] ) ) {
-					$font_family = $font_family .', ' . $font_family_args['googleFontCategory'];
+					$font_family = $font_family . ', ' . $font_family_args['googleFontCategory'];
 				}
 
 				$css->set_selector( $selector );

@@ -33,6 +33,8 @@ class GeneratePress_Customize_Title_Control extends WP_Customize_Control {
 
 	/**
 	 * Options for this control.
+	 *
+	 * @var array
 	 */
 	public $choices = array();
 
