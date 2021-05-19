@@ -18,7 +18,6 @@ require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-color-cont
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-font-manager-control.php';
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-color-manager-control.php';
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-typography-manager-control.php';
-require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-font-family-control.php';
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-toggle-control.php';
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-select-control.php';
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-text-control.php';

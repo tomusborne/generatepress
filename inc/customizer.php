@@ -59,7 +59,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			$wp_customize->register_control_type( 'GeneratePress_Customize_Text_Control' );
 			$wp_customize->register_control_type( 'GeneratePress_Customize_Title_Control' );
 			$wp_customize->register_control_type( 'GeneratePress_Customize_Range_Control' );
-			$wp_customize->register_control_type( 'GeneratePress_Customize_Font_Family_Control' );
 			$wp_customize->register_control_type( 'GeneratePress_Customize_Font_Manager_Control' );
 			$wp_customize->register_control_type( 'GeneratePress_Customize_Color_Manager_Control' );
 			$wp_customize->register_control_type( 'GeneratePress_Customize_Typography_Manager_Control' );
