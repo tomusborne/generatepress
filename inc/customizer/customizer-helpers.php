@@ -18,11 +18,7 @@ require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-color-cont
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-font-manager-control.php';
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-color-manager-control.php';
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-typography-manager-control.php';
-require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-toggle-control.php';
-require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-select-control.php';
-require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-text-control.php';
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-title-control.php';
-require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-range-slider-control.php';
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-range-control.php';
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-typography-control.php';
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-upsell-section.php';

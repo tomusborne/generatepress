@@ -54,11 +54,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			$wp_customize->register_control_type( 'Generate_Customize_Misc_Control' );
 			$wp_customize->register_control_type( 'Generate_Range_Slider_Control' );
 			$wp_customize->register_control_type( 'GeneratePress_Customize_Color_Control' );
-			$wp_customize->register_control_type( 'GeneratePress_Customize_Toggle_Control' );
-			$wp_customize->register_control_type( 'GeneratePress_Customize_Select_Control' );
-			$wp_customize->register_control_type( 'GeneratePress_Customize_Text_Control' );
 			$wp_customize->register_control_type( 'GeneratePress_Customize_Title_Control' );
-			$wp_customize->register_control_type( 'GeneratePress_Customize_Range_Control' );
 			$wp_customize->register_control_type( 'GeneratePress_Customize_Font_Manager_Control' );
 			$wp_customize->register_control_type( 'GeneratePress_Customize_Color_Manager_Control' );
 			$wp_customize->register_control_type( 'GeneratePress_Customize_Typography_Manager_Control' );
