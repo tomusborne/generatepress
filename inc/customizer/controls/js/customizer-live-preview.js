@@ -131,24 +131,6 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 	} );
 
 	/**
-	 * Live update for content & navigation colors thanks to our preset option.
-	 * We only want to run this if GP Premium isn't already doing it.
-	 */
-	if ( 'undefined' === typeof generate_colors_live_update ) {
-		/**
-		 * Blog post title color
-		 * Empty: Body link color
-		 */
-		generatepress_colors_live_update( 'blog_post_title_color', '.entry-title a, .entry-title a:visited', 'color', '', 'link_color' );
-
-		/**
-		 * Blog post title color on hover
-		 * Empty: Body link color on hover
-		 */
-		generatepress_colors_live_update( 'blog_post_title_hover_color', '.entry-title a:hover', 'color', '', 'link_color_hover' );
-	}
-
-	/**
 	 * Container width
 	 */
 	wp.customize( 'generate_settings[container_width]', function( value ) {

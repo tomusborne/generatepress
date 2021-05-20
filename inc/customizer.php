@@ -345,24 +345,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			]
 		);
 
-		if ( ! function_exists( 'generate_colors_customize_register' ) && ! defined( 'GP_PREMIUM_VERSION' ) ) {
-			$wp_customize->add_control(
-				new Generate_Customize_Misc_Control(
-					$wp_customize,
-					'colors_get_addon_desc',
-					array(
-						'section' => 'body_section',
-						'type' => 'addon',
-						'label' => __( 'Learn More', 'generatepress' ),
-						'description' => __( 'More options are available for this section in our premium version.', 'generatepress' ),
-						'url' => generate_get_premium_url( 'https://generatepress.com/premium/#colors', false ),
-						'priority' => 30,
-						'settings' => ( isset( $wp_customize->selective_refresh ) ) ? array() : 'blogname',
-					)
-				)
-			);
-		}
-
 		if ( ! $wp_customize->get_panel( 'generate_layout_panel' ) ) {
 			$wp_customize->add_panel(
 				'generate_layout_panel',
