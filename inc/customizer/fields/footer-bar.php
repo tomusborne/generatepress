@@ -1,6 +1,6 @@
 <?php
 /**
- * This file handles the customizer fields for the top bar.
+ * This file handles the customizer fields for the footer bar.
  *
  * @package GeneratePress
  */
@@ -10,61 +10,61 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 GeneratePress_Customize_Field::add_title(
-	'generate_top_bar_colors_title',
+	'generate_footer_bar_colors_title',
 	[
 		'section' => 'generate_colors_section',
-		'title' => __( 'Top Bar', 'generatepress' ),
+		'title' => __( 'Footer Bar', 'generatepress' ),
 		'choices' => [
-			'toggleId' => 'top-bar-colors',
+			'toggleId' => 'footer-bar-colors',
 		],
-		'active_callback' => 'generate_is_top_bar_active',
 	]
 );
 
 GeneratePress_Customize_Field::add_field(
-	'generate_settings[top_bar_background_color]',
+	'generate_settings[footer_background_color]',
 	'GeneratePress_Customize_Color_Control',
 	[
-		'default' => $color_defaults['top_bar_background_color'],
-		'transport' => 'postMessage',
+		'default' => $color_defaults['footer_background_color'],
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
+		'transport' => 'postMessage',
 	],
 	[
 		'label' => __( 'Background', 'generatepress' ),
 		'section' => 'generate_colors_section',
-		'settings' => 'generate_settings[top_bar_background_color]',
-		'active_callback' => 'generate_is_top_bar_active',
-		'alpha' => true,
 		'choices' => [
-			'toggleId' => 'top-bar-colors',
+			'toggleId' => 'footer-bar-colors',
+			'wrapper' => 'footer_background_color',
+			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
 		],
 		'output' => [
 			[
-				'element'  => '.top-bar',
+				'element'  => '.site-info',
 				'property' => 'background-color',
 			],
 		],
+		'alpha' => true,
 	]
 );
 
 GeneratePress_Customize_Field::add_field(
-	'generate_settings[top_bar_text_color]',
+	'generate_settings[footer_text_color]',
 	'GeneratePress_Customize_Color_Control',
 	[
-		'default' => $color_defaults['top_bar_text_color'],
+		'default' => $color_defaults['footer_text_color'],
+		'sanitize_callback' => 'generate_sanitize_hex_color',
 		'transport' => 'postMessage',
-		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
 		'label' => __( 'Text', 'generatepress' ),
 		'section' => 'generate_colors_section',
-		'active_callback' => 'generate_is_top_bar_active',
 		'choices' => [
-			'toggleId' => 'top-bar-colors',
+			'toggleId' => 'footer-bar-colors',
+			'wrapper' => 'footer_text_color',
+			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
 		],
 		'output' => [
 			[
-				'element'  => '.top-bar',
+				'element'  => '.site-info',
 				'property' => 'color',
 			],
 		],
@@ -72,40 +72,39 @@ GeneratePress_Customize_Field::add_field(
 );
 
 GeneratePress_Customize_Field::add_wrapper(
-	'generate_top_bar_link_wrapper',
+	'generate_footer_bar_colors_wrapper',
 	[
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'type' => 'color',
-			'toggleId' => 'top-bar-colors',
+			'toggleId' => 'footer-bar-colors',
 			'items' => [
-				'top_bar_link_color',
-				'top_bar_link_color_hover',
+				'footer_link_color',
+				'footer_link_hover_color',
 			],
 		],
 	]
 );
 
 GeneratePress_Customize_Field::add_field(
-	'generate_settings[top_bar_link_color]',
+	'generate_settings[footer_link_color]',
 	'GeneratePress_Customize_Color_Control',
 	[
-		'default' => $color_defaults['top_bar_link_color'],
+		'default' => $color_defaults['footer_link_color'],
+		'sanitize_callback' => 'generate_sanitize_hex_color',
 		'transport' => 'postMessage',
-		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
 		'label' => __( 'Link', 'generatepress' ),
 		'section' => 'generate_colors_section',
-		'active_callback' => 'generate_is_top_bar_active',
 		'choices' => [
-			'wrapper' => 'top_bar_link_color',
+			'toggleId' => 'footer-bar-colors',
+			'wrapper' => 'footer_link_color',
 			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
-			'toggleId' => 'top-bar-colors',
 		],
 		'output' => [
 			[
-				'element'  => '.top-bar a',
+				'element'  => '.site-info a',
 				'property' => 'color',
 			],
 		],
@@ -113,24 +112,23 @@ GeneratePress_Customize_Field::add_field(
 );
 
 GeneratePress_Customize_Field::add_field(
-	'generate_settings[top_bar_link_color_hover]',
+	'generate_settings[footer_link_hover_color]',
 	'GeneratePress_Customize_Color_Control',
 	[
-		'default' => $color_defaults['top_bar_link_color_hover'],
+		'default' => $color_defaults['footer_link_hover_color'],
+		'sanitize_callback' => 'generate_sanitize_hex_color',
 		'transport' => 'postMessage',
-		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
 		'section' => 'generate_colors_section',
-		'active_callback' => 'generate_is_top_bar_active',
 		'choices' => [
-			'wrapper' => 'top_bar_link_color_hover',
+			'toggleId' => 'footer-bar-colors',
+			'wrapper' => 'footer_link_hover_color',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
-			'toggleId' => 'top-bar-colors',
 		],
 		'output' => [
 			[
-				'element'  => '.top-bar a:hover',
+				'element'  => '.site-info a:hover',
 				'property' => 'color',
 			],
 		],

@@ -45,7 +45,7 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
-		'label' => __( 'Background', 'gp-premium' ),
+		'label' => __( 'Navigation Background', 'gp-premium' ),
 		'section' => 'generate_colors_section',
 		'alpha' => true,
 		'choices' => [
@@ -137,7 +137,7 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
-		'label' => __( 'Text', 'gp-premium' ),
+		'label' => __( 'Navigation Text', 'gp-premium' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'toggleId' => 'primary-navigation-colors',
@@ -201,24 +201,13 @@ GeneratePress_Customize_Field::add_field(
 	]
 );
 
-GeneratePress_Customize_Field::add_title(
-	'generate_primary_sub_navigation_colors_title',
-	[
-		'section' => 'generate_colors_section',
-		'title' => __( 'Primary Sub-Navigation', 'generatepress' ),
-		'choices' => [
-			'toggleId' => 'primary-sub-navigation-colors',
-		],
-	]
-);
-
 GeneratePress_Customize_Field::add_wrapper(
 	'generate_primary_navigation_submenu_background_wrapper',
 	[
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'type' => 'color',
-			'toggleId' => 'primary-sub-navigation-colors',
+			'toggleId' => 'primary-navigation-colors',
 			'items' => [
 				'subnavigation_background_color',
 				'subnavigation_background_hover_color',
@@ -237,11 +226,11 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
-		'label' => __( 'Background', 'generatepress' ),
+		'label' => __( 'Sub-Menu Background', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'alpha' => true,
 		'choices' => [
-			'toggleId' => 'primary-sub-navigation-colors',
+			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'subnavigation_background_color',
 			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
 		],
@@ -268,7 +257,7 @@ GeneratePress_Customize_Field::add_field(
 		'section' => 'generate_colors_section',
 		'alpha' => true,
 		'choices' => [
-			'toggleId' => 'primary-sub-navigation-colors',
+			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'subnavigation_background_hover_color',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
 		],
@@ -295,7 +284,7 @@ GeneratePress_Customize_Field::add_field(
 		'section' => 'generate_colors_section',
 		'alpha' => true,
 		'choices' => [
-			'toggleId' => 'primary-sub-navigation-colors',
+			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'subnavigation_background_current_color',
 			'tooltip' => __( 'Choose Current Color', 'generatepress' ),
 		],
@@ -314,7 +303,7 @@ GeneratePress_Customize_Field::add_wrapper(
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'type' => 'color',
-			'toggleId' => 'primary-sub-navigation-colors',
+			'toggleId' => 'primary-navigation-colors',
 			'items' => [
 				'subnavigation_text_color',
 				'subnavigation_text_hover_color',
@@ -333,10 +322,10 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
-		'label' => __( 'Text', 'gp-premium' ),
+		'label' => __( 'Sub-Menu Text', 'gp-premium' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
-			'toggleId' => 'primary-sub-navigation-colors',
+			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'subnavigation_text_color',
 			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
 		],
@@ -360,7 +349,7 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'section' => 'generate_colors_section',
 		'choices' => [
-			'toggleId' => 'primary-sub-navigation-colors',
+			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'subnavigation_text_hover_color',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
 		],
@@ -384,7 +373,7 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'section' => 'generate_colors_section',
 		'choices' => [
-			'toggleId' => 'primary-sub-navigation-colors',
+			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'subnavigation_text_current_color',
 			'tooltip' => __( 'Choose Current Color', 'generatepress' ),
 		],
@@ -405,6 +394,13 @@ GeneratePress_Customize_Field::add_title(
 		'choices' => [
 			'toggleId' => 'primary-navigation-search-colors',
 		],
+		'active_callback' => function() {
+			if ( 'enable' === generate_get_option( 'nav_search' ) ) {
+				return true;
+			}
+
+			return false;
+		},
 	]
 );
 

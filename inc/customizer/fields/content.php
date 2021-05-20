@@ -42,6 +42,7 @@ GeneratePress_Customize_Field::add_field(
 				'property' => 'background-color',
 			],
 		],
+		'alpha' => true,
 	]
 );
 

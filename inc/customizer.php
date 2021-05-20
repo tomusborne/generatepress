@@ -280,7 +280,11 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 
 		require_once $fields_dir . '/buttons.php';
 		require_once $fields_dir . '/content.php';
+		require_once $fields_dir . '/forms.php';
 		require_once $fields_dir . '/sidebar-widgets.php';
+		require_once $fields_dir . '/footer-widgets.php';
+		require_once $fields_dir . '/footer-bar.php';
+		require_once $fields_dir . '/back-to-top.php';
 
 		$wp_customize->add_section(
 			'generate_typography_section',

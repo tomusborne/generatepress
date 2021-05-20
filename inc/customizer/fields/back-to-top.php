@@ -1,6 +1,6 @@
 <?php
 /**
- * This file handles the customizer fields for the Body.
+ * This file handles the customizer fields for the back to top button.
  *
  * @package GeneratePress
  */
@@ -10,39 +10,43 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 GeneratePress_Customize_Field::add_title(
-	'generate_buttons_colors_title',
+	'generate_back_to_top_colors_title',
 	[
 		'section' => 'generate_colors_section',
-		'title' => __( 'Buttons', 'generatepress' ),
+		'title' => __( 'Back to Top', 'generatepress' ),
 		'choices' => [
-			'toggleId' => 'button-colors',
+			'toggleId' => 'back-to-top-colors',
 		],
+		'active_callback' => function() {
+			if ( generate_get_option( 'back_to_top' ) ) {
+				return true;
+			}
+
+			return false;
+		},
 	]
 );
 
 GeneratePress_Customize_Field::add_wrapper(
-	'generate_buttons_background_wrapper',
+	'generate_back_to_top_background_wrapper',
 	[
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'type' => 'color',
-			'toggleId' => 'button-colors',
+			'toggleId' => 'back-to-top-colors',
 			'items' => [
-				'form_button_background_color',
-				'form_button_background_color_hover',
+				'back_to_top_background_color',
+				'back_to_top_background_color_hover',
 			],
 		],
 	]
 );
 
-$buttons_selector = 'button, html input[type="button"], input[type="reset"], input[type="submit"], a.button, a.button:visited, a.wp-block-button__link:not(.has-background)';
-$buttons_hover_selector = 'button:hover, html input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, a.button:hover, button:focus, html input[type="button"]:focus, input[type="reset"]:focus, input[type="submit"]:focus, a.button:focus, a.wp-block-button__link:not(.has-background):active, a.wp-block-button__link:not(.has-background):focus, a.wp-block-button__link:not(.has-background):hover';
-
 GeneratePress_Customize_Field::add_field(
-	'generate_settings[form_button_background_color]',
+	'generate_settings[back_to_top_background_color]',
 	'GeneratePress_Customize_Color_Control',
 	[
-		'default' => $color_defaults['form_button_background_color'],
+		'default' => $color_defaults['back_to_top_background_color'],
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 		'transport' => 'postMessage',
 	],
@@ -50,13 +54,13 @@ GeneratePress_Customize_Field::add_field(
 		'label' => __( 'Background', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
-			'toggleId' => 'button-colors',
-			'wrapper' => 'form_button_background_color',
+			'toggleId' => 'back-to-top-colors',
+			'wrapper' => 'back_to_top_background_color',
 			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
 		],
 		'output' => [
 			[
-				'element'  => $buttons_selector,
+				'element'  => 'a.generate-back-to-top',
 				'property' => 'background-color',
 			],
 		],
@@ -65,23 +69,23 @@ GeneratePress_Customize_Field::add_field(
 );
 
 GeneratePress_Customize_Field::add_field(
-	'generate_settings[form_button_background_color_hover]',
+	'generate_settings[back_to_top_background_color_hover]',
 	'GeneratePress_Customize_Color_Control',
 	[
-		'default' => $color_defaults['form_button_background_color_hover'],
+		'default' => $color_defaults['back_to_top_background_color_hover'],
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 		'transport' => 'postMessage',
 	],
 	[
 		'section' => 'generate_colors_section',
 		'choices' => [
-			'toggleId' => 'button-colors',
-			'wrapper' => 'form_button_background_color_hover',
+			'toggleId' => 'back-to-top-colors',
+			'wrapper' => 'back_to_top_background_color_hover',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
 		],
 		'output' => [
 			[
-				'element'  => $buttons_hover_selector,
+				'element'  => 'a.generate-back-to-top:hover, a.generate-back-to-top:focus',
 				'property' => 'background-color',
 			],
 		],
@@ -90,25 +94,25 @@ GeneratePress_Customize_Field::add_field(
 );
 
 GeneratePress_Customize_Field::add_wrapper(
-	'generate_buttons_text_wrapper',
+	'generate_back_to_top_text_wrapper',
 	[
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'type' => 'color',
-			'toggleId' => 'button-colors',
+			'toggleId' => 'back-to-top-colors',
 			'items' => [
-				'form_button_text_color',
-				'form_button_text_color_hover',
+				'back_to_top_text_color',
+				'back_to_top_text_color_hover',
 			],
 		],
 	]
 );
 
 GeneratePress_Customize_Field::add_field(
-	'generate_settings[form_button_text_color]',
+	'generate_settings[back_to_top_text_color]',
 	'GeneratePress_Customize_Color_Control',
 	[
-		'default' => $color_defaults['form_button_text_color'],
+		'default' => $color_defaults['back_to_top_text_color'],
 		'sanitize_callback' => 'generate_sanitize_hex_color',
 		'transport' => 'postMessage',
 	],
@@ -117,12 +121,12 @@ GeneratePress_Customize_Field::add_field(
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'toggleId' => 'button-colors',
-			'wrapper' => 'form_button_text_color',
+			'wrapper' => 'back_to_top_text_color',
 			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
 		],
 		'output' => [
 			[
-				'element'  => $buttons_selector,
+				'element'  => 'a.generate-back-to-top',
 				'property' => 'color',
 			],
 		],
@@ -130,23 +134,23 @@ GeneratePress_Customize_Field::add_field(
 );
 
 GeneratePress_Customize_Field::add_field(
-	'generate_settings[form_button_text_color_hover]',
+	'generate_settings[back_to_top_text_color_hover]',
 	'GeneratePress_Customize_Color_Control',
 	[
-		'default' => $color_defaults['form_button_text_color_hover'],
+		'default' => $color_defaults['back_to_top_text_color_hover'],
 		'sanitize_callback' => 'generate_sanitize_hex_color',
 		'transport' => 'postMessage',
 	],
 	[
 		'section' => 'generate_colors_section',
 		'choices' => [
-			'toggleId' => 'button-colors',
-			'wrapper' => 'form_button_text_color_hover',
+			'toggleId' => 'back-to-top-colors',
+			'wrapper' => 'back_to_top_text_color_hover',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
 		],
 		'output' => [
 			[
-				'element'  => $buttons_hover_selector,
+				'element'  => 'a.generate-back-to-top:hover, a.generate-back-to-top:focus',
 				'property' => 'color',
 			],
 		],
