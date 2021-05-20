@@ -80,6 +80,8 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 							<div className="generate-color-manager--item" key={ index }>
 								<ColorPicker
 									{ ...colorProps }
+									tooltipPosition="bottom center"
+									tooltipText={ colors[ index ].name }
 									onChange={ ( value ) => {
 										const colorValues = [ ...colors ];
 

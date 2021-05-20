@@ -30,6 +30,8 @@ const GeneratePressColorPickerControl = ( props ) => {
 		onVarChange,
 		alpha,
 		choices,
+		tooltipPosition = 'top center',
+		tooltipText = __( 'Choose Color', 'generatepress' ),
 	} = props;
 
 	const toggleVisible = () => {
@@ -40,7 +42,7 @@ const GeneratePressColorPickerControl = ( props ) => {
 		setOpen( false );
 	};
 
-	let tooltip = __( 'Choose Color', 'generatepress' );
+	let tooltip = tooltipText;
 
 	if ( choices.tooltip ) {
 		tooltip = choices.tooltip;
@@ -60,7 +62,7 @@ const GeneratePressColorPickerControl = ( props ) => {
 		<div className="generate-color-picker-area">
 			<div className="components-color-palette__item-wrapper components-circular-option-picker__option-wrapper components-color-palette__custom-color">
 				{ ! isOpen &&
-					<Tooltip text={ tooltip } position="top center">
+					<Tooltip text={ tooltip } position={ tooltipPosition }>
 						<Button
 							aria-expanded={ isOpen }
 							className="components-color-palette__item components-circular-option-picker__option"
@@ -74,7 +76,7 @@ const GeneratePressColorPickerControl = ( props ) => {
 				}
 
 				{ isOpen &&
-					<Tooltip text={ tooltip } position="top center">
+					<Tooltip text={ tooltip } position={ tooltipPosition }>
 						<Button
 							aria-expanded={ isOpen }
 							className="components-color-palette__item components-circular-option-picker__option"
