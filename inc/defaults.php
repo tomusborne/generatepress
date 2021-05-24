@@ -70,32 +70,7 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 				),
 				'typography' => array(),
 				'use_legacy_typography' => false,
-				'global_colors' => array(
-					array(
-						'name' => __( 'Primary Background', 'generatepress' ),
-						'color' => '#ffffff',
-					),
-					array(
-						'name' => __( 'Secondary Background', 'generatepress' ),
-						'color' => '#f6f6f6',
-					),
-					array(
-						'name' => __( 'Tertiary Background', 'generatepress' ),
-						'color' => '#f0f0f0',
-					),
-					array(
-						'name' => __( 'Primary Text', 'generatepress' ),
-						'color' => '#222222',
-					),
-					array(
-						'name' => __( 'Secondary Text', 'generatepress' ),
-						'color' => '#575760',
-					),
-					array(
-						'name' => __( 'Accent', 'generatepress' ),
-						'color' => '#1e73be',
-					),
-				),
+				'global_colors' => array(),
 			)
 		);
 	}
