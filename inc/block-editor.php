@@ -177,6 +177,18 @@ function generate_do_inline_block_editor_css() {
 		absint( $spacing_settings['content_right'] ) . 'px'
 	);
 
+	$css->set_selector( ':root' );
+
+	$global_colors = generate_get_global_colors();
+
+	if ( ! empty( $global_colors ) ) {
+		foreach ( (array) $global_colors as $key => $data ) {
+			if ( ! empty( $data['slug'] ) && ! empty( $data['color'] ) ) {
+				$css->add_property( '--' . $data['slug'], $data['color'] );
+			}
+		}
+	}
+
 	$css->set_selector( 'body .wp-block, html body.gutenberg-editor-page .editor-post-title__block, html body.gutenberg-editor-page .editor-default-block-appender, html body.gutenberg-editor-page .editor-block-list__block' );
 
 	if ( 'true' === get_post_meta( get_the_ID(), '_generate-full-width-content', true ) ) {
