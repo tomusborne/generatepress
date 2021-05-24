@@ -17,6 +17,7 @@ import {
 
 import {
 	useState,
+	useEffect,
 } from '@wordpress/element';
 
 const GeneratePressColorPickerControl = ( props ) => {
@@ -34,12 +35,21 @@ const GeneratePressColorPickerControl = ( props ) => {
 		tooltipText = __( 'Choose Color', 'generatepress' ),
 	} = props;
 
+	useEffect( () => {
+		if ( ! value ) {
+			setVarLock( false );
+		} else {
+			setVarLock( true );
+		}
+	}, [ value ] );
+
 	const toggleVisible = () => {
 		setOpen( true );
 	};
 
 	const toggleClose = () => {
 		setOpen( false );
+		setVarLock( true );
 	};
 
 	let tooltip = tooltipText;
@@ -121,7 +131,6 @@ const GeneratePressColorPickerControl = ( props ) => {
 								<div className="generate-color-input--css-var-name-wrapper">
 									<TextControl
 										label={ __( 'CSS Variable Name', 'generatepress' ) }
-										id="generate-color-input--css-var-name"
 										disabled={ !! isVarLock }
 										type={ 'text' }
 										value={ varNameValue || '' }
@@ -135,6 +144,10 @@ const GeneratePressColorPickerControl = ( props ) => {
 											<Button
 												onClick={ () => {
 													setVarLock( false );
+
+													setTimeout( function() {
+														document.querySelector( '.generate-color-input--css-var-name-wrapper input' ).focus();
+													}, 10 );
 												} }
 											>
 												{ getIcon( 'unlock' ) }
