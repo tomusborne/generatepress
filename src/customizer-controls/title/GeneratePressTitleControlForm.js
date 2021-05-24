@@ -7,7 +7,13 @@ import {
 
 import {
 	Button,
+	Tooltip,
 } from '@wordpress/components';
+
+import {
+	__,
+	sprintf,
+} from '@wordpress/i18n';
 
 const GeneratePressTitleControlForm = ( props ) => {
 	const [ isToggled, setToggle ] = useState( false );
@@ -26,26 +32,33 @@ const GeneratePressTitleControlForm = ( props ) => {
 		} );
 	};
 
+	/* translators: Open "setting area title" settings. */
+	const tooltipText = !! props.choices.tooltipText ? props.choices.tooltipText : sprintf( __( 'Open %s Settings', 'generatepress' ), props.title );
+
 	return (
 		<>
 			<div className="generate-customize-control-title">
 				{ !! props.choices.toggleId &&
 					<>
-						<Button
-							className="generate-customize-control-title--label"
-							onClick={ onClick }
-						>
-							{ props.title }
-						</Button>
+						<Tooltip text={ tooltipText }>
+							<Button
+								className="generate-customize-control-title--label"
+								onClick={ onClick }
+							>
+								{ props.title }
+							</Button>
+						</Tooltip>
 
-						<Button
-							className="generate-customize-control-title--toggle"
-							isPrimary={ !! isToggled }
-							isSecondary={ ! isToggled }
-							onClick={ onClick }
-						>
-							{ getIcon( 'wrench' ) }
-						</Button>
+						<Tooltip text={ tooltipText }>
+							<Button
+								className="generate-customize-control-title--toggle"
+								isPrimary={ !! isToggled }
+								isSecondary={ ! isToggled }
+								onClick={ onClick }
+							>
+								{ getIcon( 'settings' ) }
+							</Button>
+						</Tooltip>
 					</>
 				}
 
