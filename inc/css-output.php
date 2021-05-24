@@ -246,7 +246,9 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 
 		if ( ! empty( $global_colors ) ) {
 			foreach ( (array) $global_colors as $key => $data ) {
-				$css->add_property( '--' . $data['slug'], $data['color'] );
+				if ( ! empty( $data['slug'] ) && ! empty( $data['color'] ) ) {
+					$css->add_property( '--' . $data['slug'], $data['color'] );
+				}
 			}
 		}
 
