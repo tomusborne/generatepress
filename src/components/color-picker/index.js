@@ -22,6 +22,7 @@ import {
 const GeneratePressColorPickerControl = ( props ) => {
 	const [ isOpen, setOpen ] = useState( false );
 	const [ colorKey, setColorKey ] = useState( false );
+	const [ isVarLock, setVarLock ] = useState( true );
 
 	const {
 		value,
@@ -120,12 +121,26 @@ const GeneratePressColorPickerControl = ( props ) => {
 								<div className="generate-color-input--css-var-name-wrapper">
 									<TextControl
 										label={ __( 'CSS Variable Name', 'generatepress' ) }
+										id="generate-color-input--css-var-name"
+										disabled={ !! isVarLock }
 										type={ 'text' }
 										value={ varNameValue || '' }
 										onChange={ ( variable ) => {
 											onVarChange( variable );
 										} }
 									/>
+
+									{ !! isVarLock &&
+										<Tooltip text={ __( 'Changing this name will remove its color from elements already using it.', 'generatepress' ) }>
+											<Button
+												onClick={ () => {
+													setVarLock( false );
+												} }
+											>
+												{ getIcon( 'unlock' ) }
+											</Button>
+										</Tooltip>
+									}
 								</div>
 							}
 

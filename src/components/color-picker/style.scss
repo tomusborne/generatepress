@@ -186,3 +186,22 @@
 .generate-color-option-area {
     padding: 16px 16px 0;
 }
+
+.generate-color-input--css-var-name-wrapper {
+    position: relative;
+
+	button {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		padding: 0 8px;
+		min-height: 30px;
+		height: auto;
+
+		svg {
+			width: 1em;
+			height: 1em;
+			fill: none;
+		}
+	}
+}
