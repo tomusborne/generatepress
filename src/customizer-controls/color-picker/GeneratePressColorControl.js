@@ -141,7 +141,6 @@ const GeneratePressColorControl = wp.customize.Control.extend( {
 				control={ control }
 				choices={ control.params.choices }
 				default={ control.params.defaultValue }
-				alpha={ control.params.alpha }
 			/>
 			<Popover.Slot />
 		</SlotFillProvider>;

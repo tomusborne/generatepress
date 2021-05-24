@@ -34,8 +34,8 @@ GeneratePress_Customize_Field::add_field(
 		'section' => 'generate_colors_section',
 		'settings' => 'generate_settings[top_bar_background_color]',
 		'active_callback' => 'generate_is_top_bar_active',
-		'alpha' => true,
 		'choices' => [
+			'alpha' => true,
 			'toggleId' => 'top-bar-colors',
 		],
 		'output' => [

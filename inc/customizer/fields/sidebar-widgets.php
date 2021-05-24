@@ -32,6 +32,7 @@ GeneratePress_Customize_Field::add_field(
 		'label' => __( 'Background', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
+			'alpha' => true,
 			'toggleId' => 'sidebar-widget-colors',
 			'wrapper' => 'sidebar_widget_background_color',
 			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
@@ -42,7 +43,6 @@ GeneratePress_Customize_Field::add_field(
 				'property' => 'background-color',
 			],
 		],
-		'alpha' => true,
 	]
 );
 

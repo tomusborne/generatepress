@@ -50,6 +50,7 @@ GeneratePress_Customize_Field::add_field(
 		'label' => __( 'Background', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
+			'alpha' => true,
 			'toggleId' => 'form-colors',
 			'wrapper' => 'form_background_color',
 			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
@@ -60,7 +61,6 @@ GeneratePress_Customize_Field::add_field(
 				'property' => 'background-color',
 			],
 		],
-		'alpha' => true,
 	]
 );
 
@@ -75,6 +75,7 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'section' => 'generate_colors_section',
 		'choices' => [
+			'alpha' => true,
 			'toggleId' => 'form-colors',
 			'wrapper' => 'form_background_color_focus',
 			'tooltip' => __( 'Choose Focus Color', 'generatepress' ),
@@ -85,7 +86,6 @@ GeneratePress_Customize_Field::add_field(
 				'property' => 'background-color',
 			],
 		],
-		'alpha' => true,
 	]
 );
 
@@ -180,6 +180,7 @@ GeneratePress_Customize_Field::add_field(
 		'label' => __( 'Border', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
+			'alpha' => true,
 			'toggleId' => 'form-colors',
 			'wrapper' => 'form_border_color',
 			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
@@ -190,7 +191,6 @@ GeneratePress_Customize_Field::add_field(
 				'property' => 'border-color',
 			],
 		],
-		'alpha' => true,
 	]
 );
 
@@ -205,6 +205,7 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'section' => 'generate_colors_section',
 		'choices' => [
+			'alpha' => true,
 			'toggleId' => 'form-colors',
 			'wrapper' => 'form_border_color_focus',
 			'tooltip' => __( 'Choose Focus Color', 'generatepress' ),
@@ -215,6 +216,5 @@ GeneratePress_Customize_Field::add_field(
 				'property' => 'border-color',
 			],
 		],
-		'alpha' => true,
 	]
 );

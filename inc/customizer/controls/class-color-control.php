@@ -23,15 +23,6 @@ class GeneratePress_Customize_Color_Control extends WP_Customize_Color_Control {
 	public $type = 'generate-color-control';
 
 	/**
-	 * Transparency.
-	 *
-	 * @access public
-	 * @since 1.0.0
-	 * @var boolean
-	 */
-	public $alpha = false;
-
-	/**
 	 * Refresh the parameters passed to the JavaScript via JSON.
 	 *
 	 * @since 3.4.0
@@ -40,7 +31,6 @@ class GeneratePress_Customize_Color_Control extends WP_Customize_Color_Control {
 	public function to_json() {
 		parent::to_json();
 		$this->json['choices'] = $this->choices;
-		$this->json['alpha'] = $this->alpha;
 	}
 
 	/**

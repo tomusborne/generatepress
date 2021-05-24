@@ -32,9 +32,9 @@ GeneratePress_Customize_Field::add_field(
 		'label' => __( 'Background', 'gp-premium' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
+			'alpha' => true,
 			'toggleId' => 'header-colors',
 		],
-		'alpha' => true,
 		'output' => [
 			[
 				'element'  => '.site-header',

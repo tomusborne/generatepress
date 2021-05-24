@@ -47,8 +47,8 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'label' => __( 'Navigation Background', 'gp-premium' ),
 		'section' => 'generate_colors_section',
-		'alpha' => true,
 		'choices' => [
+			'alpha' => true,
 			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'navigation_background_color',
 			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
@@ -72,8 +72,8 @@ GeneratePress_Customize_Field::add_field(
 	],
 	[
 		'section' => 'generate_colors_section',
-		'alpha' => true,
 		'choices' => [
+			'alpha' => true,
 			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'navigation_background_hover_color',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
@@ -97,8 +97,8 @@ GeneratePress_Customize_Field::add_field(
 	],
 	[
 		'section' => 'generate_colors_section',
-		'alpha' => true,
 		'choices' => [
+			'alpha' => true,
 			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'navigation_background_current_color',
 			'tooltip' => __( 'Choose Current Color', 'generatepress' ),
@@ -228,8 +228,8 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'label' => __( 'Sub-Menu Background', 'generatepress' ),
 		'section' => 'generate_colors_section',
-		'alpha' => true,
 		'choices' => [
+			'alpha' => true,
 			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'subnavigation_background_color',
 			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
@@ -255,8 +255,8 @@ GeneratePress_Customize_Field::add_field(
 	],
 	[
 		'section' => 'generate_colors_section',
-		'alpha' => true,
 		'choices' => [
+			'alpha' => true,
 			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'subnavigation_background_hover_color',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
@@ -282,8 +282,8 @@ GeneratePress_Customize_Field::add_field(
 	],
 	[
 		'section' => 'generate_colors_section',
-		'alpha' => true,
 		'choices' => [
+			'alpha' => true,
 			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'subnavigation_background_current_color',
 			'tooltip' => __( 'Choose Current Color', 'generatepress' ),
@@ -415,8 +415,8 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'label' => __( 'Background', 'gp-premium' ),
 		'section' => 'generate_colors_section',
-		'alpha' => true,
 		'choices' => [
+			'alpha' => true,
 			'toggleId' => 'primary-navigation-search-colors',
 		],
 	]
@@ -433,8 +433,8 @@ GeneratePress_Customize_Field::add_field(
 	[
 		'label' => __( 'Text', 'gp-premium' ),
 		'section' => 'generate_colors_section',
-		'alpha' => true,
 		'choices' => [
+			'alpha' => true,
 			'toggleId' => 'primary-navigation-search-colors',
 		],
 	]

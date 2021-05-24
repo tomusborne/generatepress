@@ -28,7 +28,6 @@ const GeneratePressColorPickerControl = ( props ) => {
 		varNameValue,
 		onChange,
 		onVarChange,
-		alpha,
 		choices,
 		tooltipPosition = 'top center',
 		tooltipText = __( 'Choose Color', 'generatepress' ),
@@ -113,7 +112,7 @@ const GeneratePressColorPickerControl = ( props ) => {
 
 								onChange( colorString );
 							} }
-							disableAlpha={ ! alpha }
+							disableAlpha={ ! choices.alpha }
 						/>
 
 						<div className="generate-color-option-area">

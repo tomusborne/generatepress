@@ -263,6 +263,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'label' => __( 'Choose Color', 'generatepress' ),
 				'section' => 'generate_colors_section',
 				'choices' => [
+					'alpha' => true,
 					'showPalette' => false,
 					'showReset' => false,
 					'showVarName' => true,
