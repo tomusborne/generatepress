@@ -127,7 +127,7 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 				}
 
 				<div className="generate-color-manager--item">
-					<Tooltip text={ __( 'Add Color', 'generatepress' ) }>
+					<Tooltip text={ __( 'Add Global Color', 'generatepress' ) }>
 						<Button
 							className="generate-color-manager--add-color"
 							onClick={ () => {
@@ -135,14 +135,14 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 								const length = colorValues.length + 1;
 
 								colorValues.push( {
-									name: 'global-' + length,
+									name: 'global-color-' + length,
 									color: '',
 								} );
 
 								handleChangeComplete( colorValues );
 							} }
 						>
-							+
+							{ getIcon( 'plus' ) }
 						</Button>
 					</Tooltip>
 				</div>

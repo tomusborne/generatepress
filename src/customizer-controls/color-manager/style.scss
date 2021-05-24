@@ -35,6 +35,11 @@
 			}
 		}
 
+		.components-button.generate-color-manager--delete-color:focus {
+			opacity: 1;
+			pointer-events: auto;
+		}
+
 		.components-circular-option-picker__option-wrapper {
 			margin: 0;
 		}
@@ -46,10 +51,13 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			border: 1px dashed #000;
 			border-radius: 100%;
-			font-size: 20px;
-			line-height: 1;
+			background: #fff;
+			border: 1px solid #777;
+
+			svg {
+				width: 20px;
+			}
 		}
 	}
 }
