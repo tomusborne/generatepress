@@ -127,6 +127,8 @@ class GeneratePress_Typography {
 
 				if ( ! empty( $font_family_args['googleFont'] ) && ! empty( $font_family_args['googleFontCategory'] ) ) {
 					$font_family = $font_family . ', ' . $font_family_args['googleFontCategory'];
+				} elseif ( 'System Default' === $font_family ) {
+					$font_family = generate_get_system_default_font();
 				}
 
 				$css->set_selector( $selector );

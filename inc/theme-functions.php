@@ -834,3 +834,12 @@ function generate_get_global_colors() {
 
 	return $colors;
 }
+
+/**
+ * Get our system default font.
+ *
+ * @since 3.1.0
+ */
+function generate_get_system_default_font() {
+	return apply_filters( 'generate_typography_system_stack', '-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"' );
+}
