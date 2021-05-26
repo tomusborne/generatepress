@@ -238,7 +238,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 		$wp_customize->add_section(
 			'generate_colors_section',
 			array(
-				'title' => esc_attr__( 'Colors v2', 'generatepress' ),
+				'title' => esc_attr__( 'Colors', 'generatepress' ),
 				'priority' => 30,
 			)
 		);
@@ -290,7 +290,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 		$wp_customize->add_section(
 			'generate_typography_section',
 			array(
-				'title' => esc_attr__( 'Typography v2', 'generatepress' ),
+				'title' => esc_attr__( 'Typography', 'generatepress' ),
 				'priority' => 35,
 				'active_callback' => function() {
 					if ( generate_get_option( 'use_legacy_typography' ) ) {
