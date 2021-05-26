@@ -550,6 +550,38 @@ function generate_do_pro_compatibility() {
 		}
 	}
 
+	if ( version_compare( GP_PREMIUM_VERSION, '2.1.0-alpha.1', '<' ) ) {
+		if ( function_exists( 'generate_menu_plus_get_defaults' ) ) {
+			$color_settings = wp_parse_args(
+				get_option( 'generate_settings', array() ),
+				generate_get_color_defaults()
+			);
+
+			// Use the header background color for the below elements if a navigation background doesn't exist.
+			if ( '' === $color_settings['navigation_background_color'] ) {
+				$menu_plus_settings = wp_parse_args(
+					get_option( 'generate_menu_plus_settings', array() ),
+					generate_menu_plus_get_defaults()
+				);
+
+				if ( 'false' !== $menu_plus_settings['sticky_menu'] ) {
+					$css->set_selector( '.main-navigation.navigation-stick' );
+					$css->add_property( 'background-color', $color_settings['header_background_color'] );
+				}
+
+				if ( 'enable' === $menu_plus_settings['mobile_header'] ) {
+					$css->set_selector( '.mobile-header-navigation' );
+					$css->add_property( 'background-color', $color_settings['header_background_color'] );
+				}
+
+				if ( 'false' !== $menu_plus_settings['slideout_menu'] ) {
+					$css->set_selector( '.slideout-navigation' );
+					$css->add_property( 'background-color', $color_settings['header_background_color'] );
+				}
+			}
+		}
+	}
+
 	if ( $css->css_output() ) {
 		wp_add_inline_style( 'generate-style', $css->css_output() );
 	}
