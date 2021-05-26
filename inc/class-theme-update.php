@@ -353,10 +353,23 @@ class GeneratePress_Theme_Update {
 
 		$old_defaults = array(
 			'underline_links' => 'never',
+			'navigation_background_color' => '#ffffff',
+			'navigation_background_hover_color' => '#ffffff',
+			'navigation_background_current_color' => '#ffffff',
 			'navigation_text_hover_color' => '#7a8896',
 			'navigation_text_current_color' => '#7a8896',
+			'subnavigation_background_hover_color' => '#eaeaea',
+			'subnavigation_background_current_color' => '#eaeaea',
+			'subnavigation_text_color' => '#515151',
 			'subnavigation_text_hover_color' => '#7a8896',
 			'subnavigation_text_current_color' => '#7a8896',
+			'footer_widget_title_color' => '#000000',
+			'form_background_color' => '#fafafa',
+			'form_text_color' => '#666666',
+			'form_background_color_focus' => '#ffffff',
+			'form_text_color_focus' => '#666666',
+			'form_border_color' => '#cccccc',
+			'form_border_color_focus' => '#bfbfbf',
 		);
 
 		foreach ( $old_defaults as $key => $value ) {
