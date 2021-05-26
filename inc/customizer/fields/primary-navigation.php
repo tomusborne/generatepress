@@ -9,6 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // No direct access, please.
 }
 
+$menu_hover_selectors = '.navigation-search input[type="search"], .navigation-search input[type="search"]:active, .navigation-search input[type="search"]:focus, .main-navigation .main-nav ul li:not([class*="current-menu-"]):hover > a, .main-navigation .main-nav ul li:not([class*="current-menu-"]):focus > a, .main-navigation .main-nav ul li.sfHover:not([class*="current-menu-"]) > a, .main-navigation .menu-bar-item:hover > a, .main-navigation .menu-bar-item.sfHover > a';
+$menu_current_selectors = '.main-navigation .main-nav ul li[class*="current-menu-"] > a';
+$submenu_hover_selectors = '.main-navigation .main-nav ul ul li:not([class*="current-menu-"]):hover > a,.main-navigation .main-nav ul ul li:not([class*="current-menu-"]):focus > a,.main-navigation .main-nav ul ul li:not([class*="current-menu-"]).sfHover > a';
+$submenu_current_selectors = '.main-navigation .main-nav ul ul li[class*="current-menu-"] > a';
+
 GeneratePress_Customize_Field::add_title(
 	'generate_primary_navigation_colors_title',
 	[
@@ -80,7 +85,7 @@ GeneratePress_Customize_Field::add_field(
 		],
 		'output' => [
 			[
-				'element'  => '.navigation-search input[type="search"], .navigation-search input[type="search"]:focus, .main-navigation .main-nav ul li:hover > a, .main-navigation .main-nav ul li:focus > a, .main-navigation .main-nav ul li.sfHover > a, .main-navigation .menu-bar-item:hover a',
+				'element'  => $menu_hover_selectors,
 				'property' => 'background-color',
 			],
 		],
@@ -105,7 +110,7 @@ GeneratePress_Customize_Field::add_field(
 		],
 		'output' => [
 			[
-				'element'  => '.main-navigation .main-nav ul li[class*="current-menu-"] > a, .main-navigation .main-nav ul li[class*="current-menu-"]:hover > a, .main-navigation .main-nav ul li[class*="current-menu-"].sfHover > a',
+				'element'  => $menu_current_selectors,
 				'property' => 'background-color',
 			],
 		],
@@ -170,7 +175,7 @@ GeneratePress_Customize_Field::add_field(
 		],
 		'output' => [
 			[
-				'element'  => '.navigation-search input[type="search"], .navigation-search input[type="search"]:active, .navigation-search input[type="search"]:focus, .main-navigation .main-nav ul li:hover > a, .main-navigation .main-nav ul li:focus > a, .main-navigation .main-nav ul li.sfHover > a, .main-navigation .menu-bar-item:hover a',
+				'element' => $menu_hover_selectors,
 				'property' => 'color',
 			],
 		],
@@ -194,7 +199,7 @@ GeneratePress_Customize_Field::add_field(
 		],
 		'output' => [
 			[
-				'element'  => '.main-navigation .main-nav ul li[class*="current-menu-"] > a, .main-navigation .main-nav ul li[class*="current-menu-"]:hover > a, .main-navigation .main-nav ul li[class*="current-menu-"].sfHover > a',
+				'element'  => $menu_current_selectors,
 				'property' => 'color',
 			],
 		],
@@ -243,8 +248,6 @@ GeneratePress_Customize_Field::add_field(
 	]
 );
 
-$submenu_hover_selectors = '.main-navigation .main-nav ul ul li:hover > a, .main-navigation .main-nav ul ul li:focus > a, .main-navigation .main-nav ul ul li.sfHover > a';
-
 GeneratePress_Customize_Field::add_field(
 	'generate_settings[subnavigation_background_hover_color]',
 	'GeneratePress_Customize_Color_Control',
@@ -269,8 +272,6 @@ GeneratePress_Customize_Field::add_field(
 		],
 	]
 );
-
-$submenu_current_selectors = '.main-navigation .main-nav ul li[class*="current-menu-"] > a, .main-navigation .main-nav ul li[class*="current-menu-"]:hover > a, .main-navigation .main-nav ul li[class*="current-menu-"].sfHover > a';
 
 GeneratePress_Customize_Field::add_field(
 	'generate_settings[subnavigation_background_current_color]',

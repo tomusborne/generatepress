@@ -306,10 +306,10 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->set_selector( '.main-navigation,.main-navigation ul ul' );
 		$css->add_property( 'background-color', $settings['navigation_background_color'] );
 
-		$css->set_selector( '.main-navigation .main-nav ul li a,.menu-toggle, .main-navigation .menu-bar-items' );
+		$css->set_selector( '.main-navigation .main-nav ul li a, .main-navigation .menu-toggle, .main-navigation .menu-bar-items' );
 		$css->add_property( 'color', $settings['navigation_text_color'] );
 
-		$css->set_selector( '.main-navigation .main-nav ul li:hover > a,.main-navigation .main-nav ul li:focus > a, .main-navigation .main-nav ul li.sfHover > a, .main-navigation .menu-bar-item:hover > a, .main-navigation .menu-bar-item.sfHover > a' );
+		$css->set_selector( '.main-navigation .main-nav ul li:not([class*="current-menu-"]):hover > a, .main-navigation .main-nav ul li:not([class*="current-menu-"]):focus > a, .main-navigation .main-nav ul li.sfHover:not([class*="current-menu-"]) > a, .main-navigation .menu-bar-item:hover > a, .main-navigation .menu-bar-item.sfHover > a' );
 		$css->add_property( 'color', $settings['navigation_text_hover_color'] );
 		$css->add_property( 'background-color', $settings['navigation_background_hover_color'] );
 
@@ -322,10 +322,6 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->add_property( 'color', $settings['navigation_text_color'] );
 
 		$css->set_selector( '.main-navigation .main-nav ul li[class*="current-menu-"] > a' );
-		$css->add_property( 'color', $settings['navigation_text_current_color'] );
-		$css->add_property( 'background-color', $settings['navigation_background_current_color'] );
-
-		$css->set_selector( '.main-navigation .main-nav ul li[class*="current-menu-"] > a:hover,.main-navigation .main-nav ul li[class*="current-menu-"].sfHover > a' );
 		$css->add_property( 'color', $settings['navigation_text_current_color'] );
 		$css->add_property( 'background-color', $settings['navigation_background_current_color'] );
 
@@ -354,15 +350,11 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->set_selector( '.main-navigation .main-nav ul ul li a' );
 		$css->add_property( 'color', $settings['subnavigation_text_color'] );
 
-		$css->set_selector( '.main-navigation .main-nav ul ul li:hover > a,.main-navigation .main-nav ul ul li:focus > a,.main-navigation .main-nav ul ul li.sfHover > a' );
+		$css->set_selector( '.main-navigation .main-nav ul ul li:not([class*="current-menu-"]):hover > a,.main-navigation .main-nav ul ul li:not([class*="current-menu-"]):focus > a,.main-navigation .main-nav ul ul li:not([class*="current-menu-"]).sfHover > a' );
 		$css->add_property( 'color', $settings['subnavigation_text_hover_color'] );
 		$css->add_property( 'background-color', $settings['subnavigation_background_hover_color'] );
 
 		$css->set_selector( '.main-navigation .main-nav ul ul li[class*="current-menu-"] > a' );
-		$css->add_property( 'color', $settings['subnavigation_text_current_color'] );
-		$css->add_property( 'background-color', $settings['subnavigation_background_current_color'] );
-
-		$css->set_selector( '.main-navigation .main-nav ul ul li[class*="current-menu-"] > a:hover,.main-navigation .main-nav ul ul li[class*="current-menu-"].sfHover > a' );
 		$css->add_property( 'color', $settings['subnavigation_text_current_color'] );
 		$css->add_property( 'background-color', $settings['subnavigation_background_current_color'] );
 
