@@ -52,11 +52,9 @@ const GeneratePressTitleControlForm = ( props ) => {
 						<Tooltip text={ tooltipText }>
 							<Button
 								className="generate-customize-control-title--toggle"
-								isPrimary={ !! isToggled }
-								isSecondary={ ! isToggled }
 								onClick={ onClick }
 							>
-								{ getIcon( 'settings' ) }
+								{ ! isToggled ? getIcon( 'chevron-down' ) : getIcon( 'chevron-up' ) }
 							</Button>
 						</Tooltip>
 					</>

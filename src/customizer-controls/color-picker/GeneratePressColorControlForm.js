@@ -16,6 +16,8 @@ const GeneratePressColorControlForm = ( props ) => {
 		wp.customize.control( props.customizerSetting.id ).setting.set( color );
 	};
 
+	const showLabel = ! props.choices.hideLabel || 'undefined' === typeof props.choices.hideLabel;
+
 	return (
 		<>
 			<span className="description customize-control-description" dangerouslySetInnerHTML={ { __html: props.description } }></span>
@@ -25,7 +27,7 @@ const GeneratePressColorControlForm = ( props ) => {
 				className="generate-component-color-picker-wrapper"
 				data-toggleId={ !! props.choices.toggleId ? props.choices.toggleId : null }
 			>
-				{ !! props.label &&
+				{ !! props.label && showLabel &&
 					<div className="generate-color-component-label">
 						<span>{ props.label }</span>
 					</div>

@@ -121,12 +121,14 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
+		'label' => __( 'Link Hover', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'active_callback' => 'generate_is_top_bar_active',
 		'choices' => [
 			'wrapper' => 'top_bar_link_color_hover',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
 			'toggleId' => 'top-bar-colors',
+			'hideLabel' => true,
 		],
 		'output' => [
 			[

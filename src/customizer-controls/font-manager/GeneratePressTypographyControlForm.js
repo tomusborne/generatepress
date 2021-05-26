@@ -155,6 +155,19 @@ const GeneratePressTypographyControlForm = ( props ) => {
 									}
 								</Button>
 
+								<Tooltip text={ __( 'Open Typography Settings', 'generatepress' ) }>
+									<Button
+										className="generate-font-manager--open"
+										onClick={ () => {
+											if ( itemId !== isOpen ) {
+												setOpen( itemId );
+											}
+										} }
+									>
+										{ getIcon( 'settings' ) }
+									</Button>
+								</Tooltip>
+
 								<Tooltip text={ __( 'Delete Typography Element', 'generatepress' ) }>
 									<Button
 										className="generate-font-manager--delete-font"

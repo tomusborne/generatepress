@@ -116,11 +116,13 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
+		'label' => __( 'Link Hover', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'toggleId' => 'header-colors',
 			'wrapper' => 'header_link_hover_color',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
+			'hideLabel' => true,
 		],
 		'output' => [
 			[

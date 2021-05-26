@@ -82,6 +82,7 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 									{ ...colorProps }
 									tooltipPosition="bottom center"
 									tooltipText={ colors[ index ].name }
+									hideLabel={ true }
 									onChange={ ( value ) => {
 										const colorValues = [ ...colors ];
 

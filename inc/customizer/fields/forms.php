@@ -73,12 +73,14 @@ GeneratePress_Customize_Field::add_field(
 		'transport' => 'postMessage',
 	],
 	[
+		'label' => __( 'Background Focus', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'alpha' => true,
 			'toggleId' => 'form-colors',
 			'wrapper' => 'form_background_color_focus',
 			'tooltip' => __( 'Choose Focus Color', 'generatepress' ),
+			'hideLabel' => true,
 		],
 		'output' => [
 			[
@@ -138,11 +140,13 @@ GeneratePress_Customize_Field::add_field(
 		'transport' => 'postMessage',
 	],
 	[
+		'label' => __( 'Text Focus', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'toggleId' => 'form-colors',
 			'wrapper' => 'form_text_color_focus',
 			'tooltip' => __( 'Choose Focus Color', 'generatepress' ),
+			'hideLabel' => true,
 		],
 		'output' => [
 			[
@@ -203,12 +207,14 @@ GeneratePress_Customize_Field::add_field(
 		'transport' => 'postMessage',
 	],
 	[
+		'label' => __( 'Border Focus', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'alpha' => true,
 			'toggleId' => 'form-colors',
 			'wrapper' => 'form_border_color_focus',
 			'tooltip' => __( 'Choose Focus Color', 'generatepress' ),
+			'hideLabel' => true,
 		],
 		'output' => [
 			[

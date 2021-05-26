@@ -120,11 +120,13 @@ GeneratePress_Customize_Field::add_field(
 		'transport' => 'postMessage',
 	],
 	[
+		'label' => __( 'Link Hover', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'toggleId' => 'footer-widget-colors',
 			'wrapper' => 'footer_widget_link_hover_color',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
+			'hideLabel' => true,
 		],
 		'output' => [
 			[

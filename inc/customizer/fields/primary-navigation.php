@@ -76,12 +76,14 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
+		'label' => __( 'Navigation Background Hover', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'alpha' => true,
 			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'navigation_background_hover_color',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
+			'hideLabel' => true,
 		],
 		'output' => [
 			[
@@ -101,12 +103,14 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
+		'label' => __( 'Navigation Background Current', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'alpha' => true,
 			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'navigation_background_current_color',
 			'tooltip' => __( 'Choose Current Color', 'generatepress' ),
+			'hideLabel' => true,
 		],
 		'output' => [
 			[
@@ -167,11 +171,13 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
+		'label' => __( 'Navigation Text Hover', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'navigation_text_hover_color',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
+			'hideLabel' => true,
 		],
 		'output' => [
 			[
@@ -191,11 +197,13 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
+		'label' => __( 'Navigation Text Current', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'navigation_text_current_color',
 			'tooltip' => __( 'Choose Current Color', 'generatepress' ),
+			'hideLabel' => true,
 		],
 		'output' => [
 			[
@@ -257,12 +265,14 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
+		'label' => __( 'Sub-Menu Background Hover', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'alpha' => true,
 			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'subnavigation_background_hover_color',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
+			'hideLabel' => true,
 		],
 		'output' => [
 			[
@@ -282,12 +292,14 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
+		'label' => __( 'Sub-Menu Background Current', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'alpha' => true,
 			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'subnavigation_background_current_color',
 			'tooltip' => __( 'Choose Current Color', 'generatepress' ),
+			'hideLabel' => true,
 		],
 		'output' => [
 			[
@@ -348,11 +360,13 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
+		'label' => __( 'Sub-Menu Text Hover', 'gp-premium' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'subnavigation_text_hover_color',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
+			'hideLabel' => true,
 		],
 		'output' => [
 			[
@@ -372,11 +386,13 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
+		'label' => __( 'Sub-Menu Text Current', 'gp-premium' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'toggleId' => 'primary-navigation-colors',
 			'wrapper' => 'subnavigation_text_current_color',
 			'tooltip' => __( 'Choose Current Color', 'generatepress' ),
+			'hideLabel' => true,
 		],
 		'output' => [
 			[

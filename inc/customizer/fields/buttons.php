@@ -73,12 +73,14 @@ GeneratePress_Customize_Field::add_field(
 		'transport' => 'postMessage',
 	],
 	[
+		'label' => __( 'Background Hover', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'alpha' => true,
 			'toggleId' => 'button-colors',
 			'wrapper' => 'form_button_background_color_hover',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
+			'hideLabel' => true,
 		],
 		'output' => [
 			[
@@ -138,11 +140,13 @@ GeneratePress_Customize_Field::add_field(
 		'transport' => 'postMessage',
 	],
 	[
+		'label' => __( 'Text Hover', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'toggleId' => 'button-colors',
 			'wrapper' => 'form_button_text_color_hover',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
+			'hideLabel' => true,
 		],
 		'output' => [
 			[

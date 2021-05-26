@@ -33,6 +33,7 @@ const GeneratePressColorPickerControl = ( props ) => {
 		choices,
 		tooltipPosition = 'top center',
 		tooltipText = __( 'Choose Color', 'generatepress' ),
+		hideLabel = false,
 	} = props;
 
 	useEffect( () => {
@@ -107,7 +108,12 @@ const GeneratePressColorPickerControl = ( props ) => {
 					onClose={ toggleClose }
 					focusOnMount="container"
 				>
-					<BaseControl key={ colorKey }>
+					<BaseControl
+						key={ colorKey }
+						label={ !! props.label && ! hideLabel ? props.label : '' }
+						id="generate-color-input-field"
+						className="generate-color-input-main-label"
+					>
 						<ColorPicker
 							key={ colorKey }
 							color={ value ? value : '' }

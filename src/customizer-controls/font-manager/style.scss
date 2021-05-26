@@ -1,46 +1,42 @@
 .generate-font-manager--item {
-    background: #fff;
-    border: 1px solid #ddd;
     margin-bottom: 10px;
-	position: relative;
-
-	&.generate-font-family--item--default {
-		button {
-			opacity: 1;
-			pointer-events: none;
-		}
-	}
 
 	.generate-font-manager--header {
 		display: flex;
 
 		.generate-font-manager--label {
 			flex-grow: 1;
-			text-transform: uppercase;
-			font-size: 11px;
-			font-weight: 500;
+			padding-left: 0;
+			overflow: hidden;
 			white-space: nowrap;
-    		overflow: hidden;
-
-			&:before {
-				content: "";
-				width: 70px;
-				height: 100%;
-				position: absolute;
-				right: 0;
-				top: 0;
-				background: linear-gradient(90deg, transparent 10%, #fff 50%);
-			}
+			text-overflow: ellipsis;
 		}
 	}
 
-	.components-button.generate-font-manager--delete-font {
+	.components-button:not(.generate-font-manager--label) {
 		z-index: 10;
+		background: #fff;
+		border: 1px solid #777;
+		padding: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 36px;
+		height: 36px;
+		margin-left: 5px;
+		border-radius: 100%;
+		flex-shrink: 0;
 
 		svg {
 			margin-right: 0;
-			width: 20px;
-			height: 20px;
+			width: 1em;
+			height: 1em;
+		}
+
+		&.generate-font-manager--open {
+			svg {
+				fill: none;
+			}
 		}
 	}
 }

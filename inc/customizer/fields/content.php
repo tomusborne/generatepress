@@ -118,11 +118,13 @@ GeneratePress_Customize_Field::add_field(
 		'transport' => 'postMessage',
 	],
 	[
+		'label' => __( 'Link Hover', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'wrapper' => 'content_link_hover_color',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
 			'toggleId' => 'content-colors',
+			'hideLabel' => true,
 		],
 		'output' => [
 			[
@@ -205,11 +207,13 @@ GeneratePress_Customize_Field::add_field(
 		'transport' => 'postMessage',
 	],
 	[
+		'label' => __( 'Archive Content Title Hover', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'wrapper' => 'blog_post_title_hover_color',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
 			'toggleId' => 'content-colors',
+			'hideLabel' => true,
 		],
 		'output' => [
 			[
@@ -292,11 +296,13 @@ GeneratePress_Customize_Field::add_field(
 		'transport' => 'postMessage',
 	],
 	[
+		'label' => __( 'Entry Meta Links Hover', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'wrapper' => 'entry_meta_link_color_hover',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
 			'toggleId' => 'content-colors',
+			'hideLabel' => true,
 		],
 		'output' => [
 			[

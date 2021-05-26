@@ -10,6 +10,16 @@
 	}
 
 	button.generate-customize-control-title--toggle {
+		background: #fff;
+		border-radius: 100%;
+		border: 1px solid #777;
+		padding: 0;
+		width: 28px;
+		height: 28px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
 		svg {
 			width: 1em;
 			height: 1em;

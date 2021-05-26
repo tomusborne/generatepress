@@ -118,6 +118,19 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 									{ !! fonts[ index ].fontFamily ? fonts[ index ].fontFamily : props.label }
 								</Button>
 
+								<Tooltip text={ __( 'Open Font Family Settings', 'generatepress' ) }>
+									<Button
+										className="generate-font-manager--open"
+										onClick={ () => {
+											if ( itemId !== isOpen ) {
+												setOpen( itemId );
+											}
+										} }
+									>
+										{ getIcon( 'settings' ) }
+									</Button>
+								</Tooltip>
+
 								<Tooltip text={ __( 'Delete Font Family', 'generatepress' ) }>
 									<Button
 										className="generate-font-manager--delete-font"
@@ -130,8 +143,9 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 												handleChangeComplete( fontValues );
 											}
 										} }
-										icon={ getIcon( 'x' ) }
-									/>
+									>
+										{ getIcon( 'x' ) }
+									</Button>
 								</Tooltip>
 							</div>
 

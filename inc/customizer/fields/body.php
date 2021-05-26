@@ -115,11 +115,13 @@ GeneratePress_Customize_Field::add_field(
 		'transport' => 'postMessage',
 	],
 	[
+		'label' => __( 'Link Hover', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'wrapper' => 'link_color_hover',
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
 			'toggleId' => 'base-colors',
+			'hideLabel' => true,
 		],
 		'output' => [
 			[
