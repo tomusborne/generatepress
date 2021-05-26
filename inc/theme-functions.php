@@ -782,15 +782,6 @@ function generate_do_attr( $context, $attributes = array(), $settings = array() 
 }
 
 /**
- * Determine if we're using the official AMP plugin or not.
- *
- * @since 3.1.0
- */
-function generate_is_amp() {
-	return function_exists( 'is_amp_endpoint' ) && is_amp_endpoint();
-}
-
-/**
  * Build our editor color palette based on our global colors.
  *
  * @since 3.1.0

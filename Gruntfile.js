@@ -87,13 +87,6 @@ module.exports = function (grunt) {
 					{
                         expand: true,
                         cwd: 'sass/',
-                        src: ['amp.scss'],
-                        dest: 'assets/css',
-                        ext: '.css'
-					},
-					{
-                        expand: true,
-                        cwd: 'sass/',
                         src: ['dashboard.scss'],
                         dest: 'assets/css/admin',
                         ext: '.css'
