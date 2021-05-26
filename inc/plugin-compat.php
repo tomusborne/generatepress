@@ -837,6 +837,16 @@ function generate_pro_compat_customize_register( $wp_customize ) {
 			$wp_customize->get_setting( 'generate_spacing_settings[footer_left]' )->transport = 'refresh';
 		}
 	}
+
+	$wp_customize->add_panel(
+		'generate_colors_panel',
+		array(
+			'priority'       => 35,
+			'theme_supports' => '',
+			'title'          => __( 'Colors (Legacy)', 'gp-premium' ),
+			'description'    => '',
+		)
+	);
 }
 
 add_action( 'wp', 'generate_do_pro_compatibility_setup' );
@@ -880,5 +890,9 @@ function generate_do_customizer_compatibility_setup() {
 		remove_action( 'customize_preview_init', 'generate_typography_customizer_live_preview' );
 	}
 
-	remove_action( 'customize_register', 'generate_colors_customize_register' );
+	if ( version_compare( GP_PREMIUM_VERSION, '2.1.0-alpha.1', '<' ) ) {
+		remove_action( 'customize_register', 'generate_colors_customize_register' );
+		remove_action( 'customize_preview_init', 'generate_colors_customizer_live_preview' );
+		remove_action( 'customize_controls_enqueue_scripts', 'generate_enqueue_color_palettes', 1001 );
+	}
 }
