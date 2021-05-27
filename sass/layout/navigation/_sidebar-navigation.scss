@@ -6,14 +6,20 @@
 	margin: 0;
 }
 
-.sidebar .main-navigation.sub-menu-right ul li:hover ul,
-.sidebar .main-navigation.sub-menu-right ul li.sfHover ul {
-	top: 0;
-	left: 100%;
-}
+.sidebar .main-navigation {
+	ul ul {
+		transition: opacity 350ms ease 100ms, transform 0ms ease 0ms;
+	}
 
-.sidebar .main-navigation.sub-menu-left ul li:hover ul,
-.sidebar .main-navigation.sub-menu-left ul li.sfHover ul {
-	top: 0;
-	right: 100%;
+	&.sub-menu-right ul li:hover ul,
+	&.sub-menu-right ul li.sfHover ul {
+		top: 0;
+		left: 100%;
+	}
+
+	&.sub-menu-left ul li:hover ul,
+	&.sub-menu-left ul li.sfHover ul {
+		top: 0;
+		right: 100%;
+	}
 }
