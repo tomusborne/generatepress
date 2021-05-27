@@ -625,13 +625,13 @@ const GeneratePressTypographyControlForm = ( props ) => {
 														<div className="generate-component-device-field" data-device="tablet">
 															<RangeControl
 																className={ 'generate-range-control-range' }
-																value={ hasNumericValue( fonts[ index ].letterSpacingTablet ) ? parseFloat( fonts[ index ].letterSpacingTablet ) : '' }
+																value={ hasNumericValue( fonts[ index ].marginBottomTablet ) ? parseFloat( fonts[ index ].marginBottomTablet ) : '' }
 																onChange={ ( value ) => {
 																	const fontValues = [ ...fonts ];
 
 																	fontValues[ index ] = {
 																		...fontValues[ index ],
-																		letterSpacingTablet: value,
+																		marginBottomTablet: value,
 																	};
 
 																	handleChangeComplete( fontValues );
@@ -648,13 +648,13 @@ const GeneratePressTypographyControlForm = ( props ) => {
 														<div className="generate-component-device-field" data-device="mobile">
 															<RangeControl
 																className={ 'generate-range-control-range' }
-																value={ hasNumericValue( fonts[ index ].letterSpacingMobile ) ? parseFloat( fonts[ index ].letterSpacingMobile ) : '' }
+																value={ hasNumericValue( fonts[ index ].marginBottomMobile ) ? parseFloat( fonts[ index ].marginBottomMobile ) : '' }
 																onChange={ ( value ) => {
 																	const fontValues = [ ...fonts ];
 
 																	fontValues[ index ] = {
 																		...fontValues[ index ],
-																		letterSpacingMobile: value,
+																		marginBottomMobile: value,
 																	};
 
 																	handleChangeComplete( fontValues );
