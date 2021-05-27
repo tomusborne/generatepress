@@ -266,8 +266,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 						$colors[ $key ]['color'] = generate_sanitize_rgba_color( $data['color'] );
 					}
 
-					error_log(print_r($colors, true));
-
 					return $colors;
 				},
 				'transport' => 'refresh',
@@ -355,8 +353,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 							}
 						}
 					}
-
-					error_log(print_r($fonts, true));
 
 					return $fonts;
 				},
