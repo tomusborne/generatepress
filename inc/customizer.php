@@ -256,7 +256,26 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			'GeneratePress_Customize_Color_Manager_Control',
 			[
 				'default' => $defaults['global_colors'],
-				'sanitize_callback' => '',
+				'sanitize_callback' => function( $colors ) {
+					if ( ! is_array( $colors ) ) {
+						return;
+					}
+
+					foreach ( (array) $colors as $key => $data ) {
+						if ( empty( $data['name'] ) || empty( $data['color'] ) ) {
+							unset( $colors[ $key ] );
+							continue;
+						}
+
+						$slug = str_replace( ' ', '-', strtolower( $data['name'] ) );
+						$colors[ $key ]['name'] = sanitize_text_field( $slug );
+						$colors[ $key ]['color'] = generate_sanitize_rgba_color( $data['color'] );
+					}
+
+					error_log(print_r($colors, true));
+
+					return $colors;
+				},
 				'transport' => 'refresh',
 			],
 			[
@@ -315,7 +334,37 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			'GeneratePress_Customize_Font_Manager_Control',
 			[
 				'default' => $defaults['font_manager'],
-				'sanitize_callback' => '',
+				'sanitize_callback' => function( $fonts ) {
+					if ( ! is_array( $fonts ) ) {
+						return;
+					}
+
+					$options = array(
+						'fontFamily' => 'sanitize_text_field',
+						'googleFont' => 'rest_sanitize_boolean',
+						'googleFontCategory' => 'sanitize_text_field',
+						'googleFontVariants' => 'sanitize_text_field',
+					);
+
+					foreach ( (array) $fonts as $key => $data ) {
+						if ( empty( $data['fontFamily'] ) ) {
+							unset( $fonts[ $key ] );
+							continue;
+						}
+
+						foreach ( $options as $option => $sanitize ) {
+							if ( array_key_exists( $option, $data ) ) {
+								$fonts[ $key ][ $option ] = $sanitize( $data[ $option ] );
+							} else {
+								unset( $fonts[ $key ] );
+							}
+						}
+					}
+
+					error_log(print_r($fonts, true));
+
+					return $fonts;
+				},
 				'transport' => 'refresh',
 			],
 			[
@@ -337,7 +386,48 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			'GeneratePress_Customize_Typography_Manager_Control',
 			[
 				'default' => $defaults['typography'],
-				'sanitize_callback' => '',
+				'sanitize_callback' => function( $settings ) {
+					if ( ! is_array( $settings ) ) {
+						return;
+					}
+
+					$options = array(
+						'selector' => 'sanitize_text_field',
+						'customSelector' => 'sanitize_text_field',
+						'fontFamily' => 'sanitize_text_field',
+						'fontWeight' => 'sanitize_text_field',
+						'textTransform' => 'sanitize_text_field',
+						'fontSize' => 'generate_sanitize_empty_absint',
+						'fontSizeTablet' => 'generate_sanitize_empty_absint',
+						'fontSizeMobile' => 'generate_sanitize_empty_absint',
+						'fontSizeUnit' => 'sanitize_text_field',
+						'lineHeight' => 'generate_sanitize_empty_decimal_integer',
+						'lineHeightTablet' => 'generate_sanitize_empty_decimal_integer',
+						'lineHeightMobile' => 'generate_sanitize_empty_decimal_integer',
+						'lineHeightUnit' => 'sanitize_text_field',
+						'letterSpacing' => 'generate_sanitize_empty_decimal_integer',
+						'letterSpacingTablet' => 'generate_sanitize_empty_decimal_integer',
+						'letterSpacingMobile' => 'generate_sanitize_empty_decimal_integer',
+						'letterSpacingUnit' => 'sanitize_text_field',
+					);
+
+					foreach ( (array) $settings as $key => $data ) {
+						if ( empty( $data['selector'] ) ) {
+							unset( $settings[ $key ] );
+							continue;
+						}
+
+						foreach ( $options as $option => $sanitize ) {
+							if ( array_key_exists( $option, $data ) ) {
+								$settings[ $key ][ $option ] = $sanitize( $data[ $option ] );
+							} else {
+								unset( $settings[ $key ] );
+							}
+						}
+					}
+
+					return $settings;
+				},
 				'transport' => 'refresh',
 			],
 			[
