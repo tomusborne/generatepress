@@ -789,6 +789,11 @@ function generate_do_attr( $context, $attributes = array(), $settings = array() 
 function generate_get_editor_color_palette() {
 	$global_colors = generate_get_option( 'global_colors' );
 	$editor_palette = array();
+	$static_colors = false;
+
+	if ( apply_filters( 'generate_color_palette_use_static_colors', false ) ) {
+		$static_colors = true;
+	}
 
 	if ( ! empty( $global_colors ) ) {
 		foreach ( (array) $global_colors as $key => $data ) {
@@ -796,7 +801,7 @@ function generate_get_editor_color_palette() {
 			$editor_palette[] = array(
 				'name' => $data['name'],
 				'slug' => $slug,
-				'color' => 'var(--' . $slug . ')',
+				'color' => $static_colors ? $data['color'] : 'var(--' . $data['name'] . ')',
 			);
 		}
 	}
