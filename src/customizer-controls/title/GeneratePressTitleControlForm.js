@@ -33,7 +33,7 @@ const GeneratePressTitleControlForm = ( props ) => {
 	};
 
 	/* translators: Open "setting area title" settings. */
-	const tooltipText = !! props.choices.tooltipText ? props.choices.tooltipText : sprintf( __( 'Open %s Settings', 'generatepress' ), props.title );
+	const tooltipText = !! props.choices.tooltipText ? props.choices.tooltipText : sprintf( __( 'Open %s Settings', 'generatepress' ), props.choices.title );
 
 	return (
 		<>
@@ -45,7 +45,7 @@ const GeneratePressTitleControlForm = ( props ) => {
 								className="generate-customize-control-title--label"
 								onClick={ onClick }
 							>
-								{ props.title }
+								{ props.choices.title }
 							</Button>
 						</Tooltip>
 
@@ -61,7 +61,7 @@ const GeneratePressTitleControlForm = ( props ) => {
 				}
 
 				{ ! props.choices.toggleId &&
-					<h3>{ props.title }</h3>
+					<h3>{ props.choices.title }</h3>
 				}
 			</div>
 		</>

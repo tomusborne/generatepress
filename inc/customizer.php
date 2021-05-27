@@ -53,12 +53,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 		if ( method_exists( $wp_customize, 'register_control_type' ) ) {
 			$wp_customize->register_control_type( 'Generate_Customize_Misc_Control' );
 			$wp_customize->register_control_type( 'Generate_Range_Slider_Control' );
-			$wp_customize->register_control_type( 'GeneratePress_Customize_Color_Control' );
-			$wp_customize->register_control_type( 'GeneratePress_Customize_Title_Control' );
-			$wp_customize->register_control_type( 'GeneratePress_Customize_Font_Manager_Control' );
-			$wp_customize->register_control_type( 'GeneratePress_Customize_Color_Manager_Control' );
-			$wp_customize->register_control_type( 'GeneratePress_Customize_Typography_Manager_Control' );
-			$wp_customize->register_control_type( 'GeneratePress_Customize_Wrapper_Control' );
 		}
 
 		if ( method_exists( $wp_customize, 'register_section_type' ) ) {
@@ -253,7 +247,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 
 		GeneratePress_Customize_Field::add_field(
 			'generate_settings[global_colors]',
-			'GeneratePress_Customize_Color_Manager_Control',
+			'GeneratePress_Customize_React_Control',
 			[
 				'default' => $defaults['global_colors'],
 				'sanitize_callback' => function( $colors ) {
@@ -279,6 +273,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'transport' => 'refresh',
 			],
 			[
+				'type' => 'generate-color-manager-control',
 				'label' => __( 'Choose Color', 'generatepress' ),
 				'section' => 'generate_colors_section',
 				'choices' => [
@@ -331,7 +326,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 
 		GeneratePress_Customize_Field::add_field(
 			'generate_settings[font_manager]',
-			'GeneratePress_Customize_Font_Manager_Control',
+			'GeneratePress_Customize_React_Control',
 			[
 				'default' => $defaults['font_manager'],
 				'sanitize_callback' => function( $fonts ) {
@@ -368,6 +363,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'transport' => 'refresh',
 			],
 			[
+				'type' => 'generate-font-manager-control',
 				'label' => __( 'Choose Font', 'generatepress' ),
 				'section' => 'generate_typography_section',
 			]
@@ -383,7 +379,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 
 		GeneratePress_Customize_Field::add_field(
 			'generate_settings[typography]',
-			'GeneratePress_Customize_Typography_Manager_Control',
+			'GeneratePress_Customize_React_Control',
 			[
 				'default' => $defaults['typography'],
 				'sanitize_callback' => function( $settings ) {
@@ -431,6 +427,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'transport' => 'refresh',
 			],
 			[
+				'type' => 'generate-typography-control',
 				'label' => __( 'Configure', 'generatepress' ),
 				'section' => 'generate_typography_section',
 			]

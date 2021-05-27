@@ -12,7 +12,7 @@
  *
  * @see WP_Customize_Control
  */
-class GeneratePress_Customize_Font_Manager_Control extends WP_Customize_Control {
+class GeneratePress_Customize_React_Control extends WP_Customize_Control {
 	/**
 	 * Type.
 	 *
@@ -20,7 +20,7 @@ class GeneratePress_Customize_Font_Manager_Control extends WP_Customize_Control 
 	 * @since 1.0.0
 	 * @var string
 	 */
-	public $type = 'generate-font-manager-control';
+	public $type = 'generate-react-control';
 
 	/**
 	 * Refresh the parameters passed to the JavaScript via JSON.
@@ -41,4 +41,13 @@ class GeneratePress_Customize_Font_Manager_Control extends WP_Customize_Control 
 	 * @return void
 	 */
 	public function content_template() {}
+
+	/**
+	 * Empty PHP template.
+	 *
+	 * @access public
+	 * @since 1.0.0
+	 * @return void
+	 */
+	public function render_content() {}
 }

@@ -50,9 +50,10 @@ class GeneratePress_Customize_Field {
 
 		$control_args['settings'] = isset( $wp_customize->selective_refresh ) ? array() : 'blogname';
 		$control_args['choices']['id'] = str_replace( '_', '-', $id );
+		$control_args['type'] = 'generate-wrapper-control';
 
 		$wp_customize->add_control(
-			new GeneratePress_Customize_Wrapper_Control(
+			new GeneratePress_Customize_React_Control(
 				$wp_customize,
 				$id,
 				$control_args
@@ -74,9 +75,12 @@ class GeneratePress_Customize_Field {
 		}
 
 		$control_args['settings'] = isset( $wp_customize->selective_refresh ) ? array() : 'blogname';
+		$control_args['type'] = 'generate-title-control';
+		$control_args['choices']['title'] = $control_args['title'];
+		unset( $control_args['title'] );
 
 		$wp_customize->add_control(
-			new GeneratePress_Customize_Title_Control(
+			new GeneratePress_Customize_React_Control(
 				$wp_customize,
 				$id,
 				$control_args

@@ -13,12 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once trailingslashit( dirname( __FILE__ ) ) . 'class-customize-field.php';
 
 // Controls.
-require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-wrapper-control.php';
+require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-react-control.php';
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-color-control.php';
-require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-font-manager-control.php';
-require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-color-manager-control.php';
-require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-typography-manager-control.php';
-require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-title-control.php';
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-range-control.php';
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-typography-control.php';
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-upsell-section.php';
