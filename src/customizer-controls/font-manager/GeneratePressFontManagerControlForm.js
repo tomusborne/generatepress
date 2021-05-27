@@ -43,7 +43,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 			<div className="customize-control-notifications-container" ref={ props.setNotificationContainer }></div>
 
 			{
-				fonts.map( ( font, index ) => {
+				!! fonts.length > 0 && fonts.map( ( font, index ) => {
 					const itemId = index + 1;
 
 					const fontFamilies = [

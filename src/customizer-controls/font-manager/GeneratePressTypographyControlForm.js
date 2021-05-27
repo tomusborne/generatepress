@@ -76,14 +76,16 @@ const GeneratePressTypographyControlForm = ( props ) => {
 		{ value: 'inherit', label: __( 'Inherit', 'generatepress' ) },
 	];
 
-	availableFonts.forEach( ( value, i ) => {
-		fontFamilies.push(
-			{
-				value: availableFonts[ i ].fontFamily,
-				label: availableFonts[ i ].fontFamily,
-			}
-		);
-	} );
+	if ( availableFonts.length > 0 ) {
+		availableFonts.forEach( ( value, i ) => {
+			fontFamilies.push(
+				{
+					value: availableFonts[ i ].fontFamily,
+					label: availableFonts[ i ].fontFamily,
+				}
+			);
+		} );
+	}
 
 	const getElementLabel = ( settings ) => {
 		let label = 'undefined' !== typeof elements[ settings.selector ] ? elements[ settings.selector ].label : settings.selector;
