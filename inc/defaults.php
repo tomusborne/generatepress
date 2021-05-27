@@ -94,7 +94,7 @@ if ( ! function_exists( 'generate_get_color_defaults' ) ) {
 				'header_link_hover_color' => '',
 				'site_title_color' => '#222222',
 				'site_tagline_color' => '#757575',
-				'navigation_background_color' => '',
+				'navigation_background_color' => '#ffffff',
 				'navigation_text_color' => '#515151',
 				'navigation_background_hover_color' => '',
 				'navigation_text_hover_color' => '#1e73be',
