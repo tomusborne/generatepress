@@ -1357,40 +1357,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			);
 		}
 
-		$show_legacy_typography_option = true;
-
-		$show_flexbox_option = apply_filters( 'generate_show_legacy_typography_customizer_option', $show_flexbox_option );
-
-		if ( $show_legacy_typography_option ) {
-			$wp_customize->add_setting(
-				'generate_settings[use_legacy_typography]',
-				array(
-					'default' => $defaults['use_legacy_typography'],
-					'type' => 'option',
-					'sanitize_callback' => 'generate_sanitize_checkbox',
-				)
-			);
-
-			$wp_customize->add_control(
-				'generate_settings[use_legacy_typography]',
-				array(
-					'type' => 'checkbox',
-					'label' => __( 'Use legacy typography system', 'generatepress' ),
-					'description' => sprintf(
-						'<strong>%1$s</strong> %2$s',
-						__( 'Caution:', 'generatepress' ),
-						sprintf(
-							/* translators: Learn more here */
-							__( 'Changing typography systems will require you to re-set your typography options. Learn more %s.', 'generatepress' ),
-							'<a href="https://docs.generatepress.com/article/switching-from-floats-to-flexbox/" target="_blank" rel="noopener noreferrer">' . __( 'here', 'generatepress' ) . '</a>'
-						)
-					),
-					'section' => 'generate_general_section',
-					'settings' => 'generate_settings[use_legacy_typography]',
-				)
-			);
-		}
-
 		$wp_customize->add_setting(
 			'generate_settings[icons]',
 			array(
@@ -1478,5 +1444,37 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'section' => 'generate_general_section',
 			)
 		);
+
+		$show_legacy_typography_option = apply_filters( 'generate_show_legacy_typography_customizer_option', true );
+
+		if ( $show_legacy_typography_option ) {
+			$wp_customize->add_setting(
+				'generate_settings[use_legacy_typography]',
+				array(
+					'default' => $defaults['use_legacy_typography'],
+					'type' => 'option',
+					'sanitize_callback' => 'generate_sanitize_checkbox',
+				)
+			);
+
+			$wp_customize->add_control(
+				'generate_settings[use_legacy_typography]',
+				array(
+					'type' => 'checkbox',
+					'label' => __( 'Use legacy typography system', 'generatepress' ),
+					'description' => sprintf(
+						'<strong>%1$s</strong> %2$s',
+						__( 'Caution:', 'generatepress' ),
+						sprintf(
+							/* translators: Learn more here */
+							__( 'Changing typography systems will require you to re-set your typography options. Learn more %s.', 'generatepress' ),
+							'<a href="https://docs.generatepress.com/article/switching-from-floats-to-flexbox/" target="_blank" rel="noopener noreferrer">' . __( 'here', 'generatepress' ) . '</a>'
+						)
+					),
+					'section' => 'generate_general_section',
+					'settings' => 'generate_settings[use_legacy_typography]',
+				)
+			);
+		}
 	}
 }
