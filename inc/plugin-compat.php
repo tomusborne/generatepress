@@ -917,6 +917,10 @@ add_action( 'init', 'generate_do_customizer_compatibility_setup' );
  * Make changes to the Customizer in the Pro version.
  */
 function generate_do_customizer_compatibility_setup() {
+	if ( ! defined( 'GP_PREMIUM_VERSION' ) ) {
+		return;
+	}
+
 	if ( ! generate_get_option( 'use_legacy_typography' ) ) {
 		remove_action( 'customize_register', 'generate_fonts_customize_register' );
 		remove_action( 'customize_preview_init', 'generate_typography_customizer_live_preview' );
