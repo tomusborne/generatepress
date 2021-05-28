@@ -60,8 +60,9 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 			wp_script_add_data( 'generate-classlist', 'conditional', 'lte IE 11' );
 		}
 
-		// Register this for later use if needed.
-		wp_register_script( 'generate-menu', $dir_uri . "/assets/js/menu{$suffix}.js", array(), GENERATE_VERSION, true );
+		if ( generate_has_active_menu() ) {
+			wp_enqueue_script( 'generate-menu', $dir_uri . "/assets/js/menu{$suffix}.js", array(), GENERATE_VERSION, true );
+		}
 
 		wp_localize_script(
 			'generate-menu',
@@ -456,14 +457,4 @@ function generate_do_a11y_scripts() {
 			'!function(){"use strict";if("querySelector"in document&&"addEventListener"in window){var e=document.body;e.addEventListener("mousedown",function(){e.classList.add("using-mouse")}),e.addEventListener("keydown",function(){e.classList.remove("using-mouse")})}}();'
 		);
 	}
-}
-
-add_action( 'generate_inside_navigation', 'generate_enqueue_navigation_script' );
-/**
- * Enqueue our menu script only when needed.
- *
- * @since 3.1.0
- */
-function generate_enqueue_navigation_script() {
-	wp_enqueue_script( 'generate-menu' );
 }

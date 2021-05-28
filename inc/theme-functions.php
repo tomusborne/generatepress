@@ -837,3 +837,19 @@ function generate_get_global_colors() {
 function generate_get_system_default_font() {
 	return apply_filters( 'generate_typography_system_stack', '-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"' );
 }
+
+/**
+ * Check to see if we have a GP menu active.
+ * This is primarily used to know whether we need to enqueue menu.js or not.
+ *
+ * @since 3.1.0
+ */
+function generate_has_active_menu() {
+	$has_active_menu = true;
+
+	if ( ! generate_get_navigation_location() ) {
+		$has_active_menu = false;
+	}
+
+	return apply_filters( 'generate_has_active_menu', $has_active_menu );
+}

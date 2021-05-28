@@ -880,6 +880,38 @@ function generate_do_pro_compatibility_setup() {
 	}
 }
 
+add_filter( 'generate_has_active_menu', 'generate_do_pro_active_menus' );
+/**
+ * Tell GP about our active pro menus.
+ *
+ * @since 3.1.0
+ * @param boolean $has_active_menu Whether we have an active menu.
+ */
+function generate_do_pro_active_menus( $has_active_menu ) {
+	if ( ! defined( 'GP_PREMIUM_VERSION' ) ) {
+		return $has_active_menu;
+	}
+
+	if ( version_compare( GP_PREMIUM_VERSION, '2.1.0-alpha.1', '<' ) ) {
+		if ( function_exists( 'generate_menu_plus_get_defaults' ) ) {
+			$menu_plus_settings = wp_parse_args(
+				get_option( 'generate_menu_plus_settings', array() ),
+				generate_menu_plus_get_defaults()
+			);
+
+			if ( 'disable' !== $menu_plus_settings['mobile_header'] || 'false' !== $menu_plus_settings['slideout_menu'] ) {
+				$has_active_menu = true;
+			}
+		}
+
+		if ( function_exists( 'generate_secondary_nav_get_defaults' ) && has_nav_menu( 'secondary' ) ) {
+			$has_active_menu = true;
+		}
+	}
+
+	return $has_active_menu;
+}
+
 add_action( 'init', 'generate_do_customizer_compatibility_setup' );
 /**
  * Make changes to the Customizer in the Pro version.
