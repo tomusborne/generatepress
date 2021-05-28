@@ -74,6 +74,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 	const fontFamilies = [
 		{ value: '', label: __( '-- Select --', 'generatepress' ) },
 		{ value: 'inherit', label: __( 'Inherit', 'generatepress' ) },
+		{ value: 'System Default', label: __( 'System Default', 'generatepress' ) },
 	];
 
 	if ( availableFonts.length > 0 ) {
