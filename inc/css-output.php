@@ -87,13 +87,8 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 
 			$css->start_media_query( $media_query );
 				$css->set_selector( '.inside-header' );
-				$css->add_property( 'display', '-ms-flexbox' );
 				$css->add_property( 'display', 'flex' );
-
-				$css->add_property( '-ms-flex-direction', 'column' );
 				$css->add_property( 'flex-direction', 'column' );
-
-				$css->add_property( '-ms-flex-align', 'center' );
 				$css->add_property( 'align-items', 'center' );
 
 				$css->set_selector( '.site-logo, .site-branding' );
@@ -108,8 +103,6 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 				// phpcs:ignore Generic.WhiteSpace.ScopeIndent.IncorrectExact -- Indented inside media query.
 				if ( 'nav-float-left' === generate_get_option( 'nav_position_setting' ) ) {
 					$css->set_selector( '.nav-float-left .site-logo,.nav-float-left .site-branding,.nav-float-left .header-widget' );
-					$css->add_property( '-webkit-box-ordinal-group', 'initial' );
-					$css->add_property( '-ms-flex-order', 'initial' );
 					$css->add_property( 'order', 'initial' );
 				} // phpcs:ignore Generic.WhiteSpace.ScopeIndent.IncorrectExact -- Indented inside media query.
 			$css->stop_media_query();
