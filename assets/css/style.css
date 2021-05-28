@@ -731,10 +731,6 @@ a {
 	transform-origin: top left;
 }
 
-.main-navigation ul ul ul {
-	transition: opacity 350ms ease 100ms, transform 0ms ease 0ms;
-}
-
 .main-navigation ul ul a {
 	display: block;
 }
@@ -766,19 +762,16 @@ a {
 	transition: opacity 350ms ease 100ms, transform 0ms ease 0ms;
 }
 
-.main-navigation:not(.toggled) ul ul li:hover > ul,
-.main-navigation:not(.toggled) ul ul li.sfHover > ul {
+.main-navigation:not(.toggled) ul ul ul,
+.main-navigation:not(.toggled) ul ul ul {
 	left: 100%;
 	top: 0;
 }
 
-.main-navigation.sub-menu-left:not(.toggled) ul ul li:hover > ul,
-.main-navigation.sub-menu-left:not(.toggled) ul ul li.sfHover > ul {
+.main-navigation.sub-menu-left:not(.toggled) ul ul ul,
+.main-navigation.sub-menu-left:not(.toggled) ul ul ul {
 	right: 100%;
 	left: auto;
-}
-
-.nav-float-right .main-navigation ul ul ul {
 	top: 0;
 }
 
@@ -812,18 +805,14 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 	margin: 0;
 }
 
-.sidebar .main-navigation ul ul {
-	transition: opacity 350ms ease 100ms, transform 0ms ease 0ms;
-}
-
-.sidebar .main-navigation.sub-menu-right ul li:hover ul,
-.sidebar .main-navigation.sub-menu-right ul li.sfHover ul {
+.sidebar .main-navigation.sub-menu-right ul ul,
+.sidebar .main-navigation.sub-menu-right ul ul {
 	top: 0;
 	left: 100%;
 }
 
-.sidebar .main-navigation.sub-menu-left ul li:hover ul,
-.sidebar .main-navigation.sub-menu-left ul li.sfHover ul {
+.sidebar .main-navigation.sub-menu-left ul ul,
+.sidebar .main-navigation.sub-menu-left ul ul {
 	top: 0;
 	right: 100%;
 }
