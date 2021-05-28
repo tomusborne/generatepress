@@ -262,9 +262,6 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 									'Secondary Nav' => array(
 										'url' => generate_get_premium_url( 'https://generatepress.com/premium/#secondary-nav', false ),
 									),
-									'Sections' => array(
-										'url' => generate_get_premium_url( 'https://generatepress.com/premium/#sections', false ),
-									),
 									'Site Library' => array(
 										'url' => generate_get_premium_url( 'https://generatepress.com/site-library', false ),
 									),
