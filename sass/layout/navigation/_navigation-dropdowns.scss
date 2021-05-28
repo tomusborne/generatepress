@@ -13,10 +13,6 @@
 		transform: scale(0);
 		transform-origin: top left;
 
-		ul {
-			transition: opacity 350ms ease 100ms, transform 0ms ease 0ms;
-		}
-
 		a {
 			display: block;
 		}
@@ -54,22 +50,19 @@
 			transition: opacity 350ms ease 100ms, transform 0ms ease 0ms;
 		}
 
-		ul ul li:hover > ul,
-		ul ul li.sfHover > ul {
+		ul ul ul,
+		ul ul ul {
 			left: 100%;
 			top: 0;
 		}
 	}
 
-	&.sub-menu-left:not(.toggled) ul ul li:hover > ul,
-	&.sub-menu-left:not(.toggled) ul ul li.sfHover > ul {
+	&.sub-menu-left:not(.toggled) ul ul ul,
+	&.sub-menu-left:not(.toggled) ul ul ul {
 		right: 100%;
 		left: auto;
+		top: 0;
 	}
-}
-
-.nav-float-right .main-navigation ul ul ul {
-	top: 0
 }
 
 .menu-item-has-children {
