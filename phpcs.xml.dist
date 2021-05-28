@@ -104,11 +104,6 @@
 
 	<config name="testVersion" value="5.6-"/>
 	<rule ref="PHPCompatibilityWP">
-        <exclude name="PHPCompatibility.Syntax.NewShortArray" />
         <exclude name="PHPCompatibility.FunctionDeclarations.NewClosure.Found" />
     </rule>
-
-	<rule ref="Generic.Arrays.DisallowShortArraySyntax.Found">
-		<severity>0</severity>
-	</rule>
 </ruleset>

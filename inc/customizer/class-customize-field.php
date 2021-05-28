@@ -41,7 +41,7 @@ class GeneratePress_Customize_Field {
 	 * @param string $id The settings ID for this field.
 	 * @param array  $control_args The args for add_control().
 	 */
-	public static function add_wrapper( $id, $control_args = [] ) {
+	public static function add_wrapper( $id, $control_args = array() ) {
 		global $wp_customize;
 
 		if ( ! $id ) {
@@ -67,7 +67,7 @@ class GeneratePress_Customize_Field {
 	 * @param string $id The settings ID for this field.
 	 * @param array  $control_args The args for add_control().
 	 */
-	public static function add_title( $id, $control_args = [] ) {
+	public static function add_title( $id, $control_args = array() ) {
 		global $wp_customize;
 
 		if ( ! $id ) {
@@ -96,7 +96,7 @@ class GeneratePress_Customize_Field {
 	 * @param array  $setting_args The args for add_setting().
 	 * @param array  $control_args The args for add_control().
 	 */
-	public static function add_field( $id, $control_class, $setting_args = [], $control_args = [] ) {
+	public static function add_field( $id, $control_class, $setting_args = array(), $control_args = array() ) {
 		global $wp_customize;
 
 		if ( ! $id ) {

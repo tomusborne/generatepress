@@ -239,16 +239,16 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 
 		GeneratePress_Customize_Field::add_title(
 			'generate_color_manager_title',
-			[
+			array(
 				'section' => 'generate_colors_section',
 				'title' => __( 'Global Colors', 'generatepress' ),
-			]
+			)
 		);
 
 		GeneratePress_Customize_Field::add_field(
 			'generate_settings[global_colors]',
 			'GeneratePress_Customize_React_Control',
-			[
+			array(
 				'default' => $defaults['global_colors'],
 				'sanitize_callback' => function( $colors ) {
 					if ( ! is_array( $colors ) ) {
@@ -269,18 +269,18 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					return $colors;
 				},
 				'transport' => 'refresh',
-			],
-			[
+			),
+			array(
 				'type' => 'generate-color-manager-control',
 				'label' => __( 'Choose Color', 'generatepress' ),
 				'section' => 'generate_colors_section',
-				'choices' => [
+				'choices' => array(
 					'alpha' => true,
 					'showPalette' => false,
 					'showReset' => false,
 					'showVarName' => true,
-				],
-			]
+				),
+			)
 		);
 
 		$fields_dir = trailingslashit( get_template_directory() ) . 'inc/customizer/fields';
@@ -316,16 +316,16 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 
 		GeneratePress_Customize_Field::add_title(
 			'generate_font_manager_title',
-			[
+			array(
 				'section' => 'generate_typography_section',
 				'title' => __( 'Font Manager', 'generatepress' ),
-			]
+			)
 		);
 
 		GeneratePress_Customize_Field::add_field(
 			'generate_settings[font_manager]',
 			'GeneratePress_Customize_React_Control',
-			[
+			array(
 				'default' => $defaults['font_manager'],
 				'sanitize_callback' => function( $fonts ) {
 					if ( ! is_array( $fonts ) ) {
@@ -357,26 +357,26 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					return $fonts;
 				},
 				'transport' => 'refresh',
-			],
-			[
+			),
+			array(
 				'type' => 'generate-font-manager-control',
 				'label' => __( 'Choose Font', 'generatepress' ),
 				'section' => 'generate_typography_section',
-			]
+			)
 		);
 
 		GeneratePress_Customize_Field::add_title(
 			'generate_typography_manager_title',
-			[
+			array(
 				'section' => 'generate_typography_section',
 				'title' => __( 'Typography Manager', 'generatepress' ),
-			]
+			)
 		);
 
 		GeneratePress_Customize_Field::add_field(
 			'generate_settings[typography]',
 			'GeneratePress_Customize_React_Control',
-			[
+			array(
 				'default' => $defaults['typography'],
 				'sanitize_callback' => function( $settings ) {
 					if ( ! is_array( $settings ) ) {
@@ -421,12 +421,12 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					return $settings;
 				},
 				'transport' => 'refresh',
-			],
-			[
+			),
+			array(
 				'type' => 'generate-typography-control',
 				'label' => __( 'Configure', 'generatepress' ),
 				'section' => 'generate_typography_section',
-			]
+			)
 		);
 
 		if ( ! $wp_customize->get_panel( 'generate_layout_panel' ) ) {
