@@ -29,7 +29,7 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
-		'label' => __( 'Background', 'gp-premium' ),
+		'label' => __( 'Background', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'alpha' => true,
@@ -53,7 +53,7 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
-		'label' => __( 'Text', 'gp-premium' ),
+		'label' => __( 'Text', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'toggleId' => 'header-colors',
@@ -91,7 +91,7 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
-		'label' => __( 'Link', 'gp-premium' ),
+		'label' => __( 'Link', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'toggleId' => 'header-colors',
@@ -142,7 +142,7 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
-		'label' => __( 'Site Title', 'gp-premium' ),
+		'label' => __( 'Site Title', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'toggleId' => 'header-colors',
@@ -165,7 +165,7 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
-		'label' => __( 'Tagline', 'gp-premium' ),
+		'label' => __( 'Tagline', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'toggleId' => 'header-colors',

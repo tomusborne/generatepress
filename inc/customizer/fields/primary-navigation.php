@@ -50,7 +50,7 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
-		'label' => __( 'Navigation Background', 'gp-premium' ),
+		'label' => __( 'Navigation Background', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'alpha' => true,
@@ -146,7 +146,7 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
-		'label' => __( 'Navigation Text', 'gp-premium' ),
+		'label' => __( 'Navigation Text', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'toggleId' => 'primary-navigation-colors',
@@ -335,7 +335,7 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
-		'label' => __( 'Sub-Menu Text', 'gp-premium' ),
+		'label' => __( 'Sub-Menu Text', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'toggleId' => 'primary-navigation-colors',
@@ -360,7 +360,7 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
-		'label' => __( 'Sub-Menu Text Hover', 'gp-premium' ),
+		'label' => __( 'Sub-Menu Text Hover', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'toggleId' => 'primary-navigation-colors',
@@ -386,7 +386,7 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
-		'label' => __( 'Sub-Menu Text Current', 'gp-premium' ),
+		'label' => __( 'Sub-Menu Text Current', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'toggleId' => 'primary-navigation-colors',
@@ -430,7 +430,7 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
-		'label' => __( 'Background', 'gp-premium' ),
+		'label' => __( 'Background', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'alpha' => true,
@@ -448,7 +448,7 @@ GeneratePress_Customize_Field::add_field(
 		'sanitize_callback' => 'generate_sanitize_rgba_color',
 	],
 	[
-		'label' => __( 'Text', 'gp-premium' ),
+		'label' => __( 'Text', 'generatepress' ),
 		'section' => 'generate_colors_section',
 		'choices' => [
 			'alpha' => true,

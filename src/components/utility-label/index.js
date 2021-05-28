@@ -32,7 +32,7 @@ const UtilityLabel = ( props ) => {
 			</div>
 
 			<div className="components-generate-control__units">
-				<ButtonGroup className="components-generate-control-buttons__units" aria-label={ __( 'Select Units', 'generateblocks-pro' ) }>
+				<ButtonGroup className="components-generate-control-buttons__units" aria-label={ __( 'Select Units', 'generatepress' ) }>
 					{ devices.map( ( device ) => {
 						let deviceName = __( 'Desktop', 'generatepress' );
 
@@ -46,7 +46,7 @@ const UtilityLabel = ( props ) => {
 
 						return <Tooltip
 							/* translators: Unit type (px, em, %) */
-							text={ sprintf( __( '%s Preview', 'generateblocks-pro' ), deviceName ) }
+							text={ sprintf( __( '%s Preview', 'generatepress' ), deviceName ) }
 							key={ device }
 						>
 							<Button

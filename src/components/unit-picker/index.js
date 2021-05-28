@@ -35,7 +35,7 @@ const GeneratePressUnitPickerControl = ( props ) => {
 				) }
 				renderContent={ ( { onClose } ) => {
 					return (
-						<ButtonGroup className="components-generate--control-buttons__units" aria-label={ __( 'Select Units', 'generateblocks-pro' ) }>
+						<ButtonGroup className="components-generate--control-buttons__units" aria-label={ __( 'Select Units', 'generatepress' ) }>
 							{ units.map( ( unit ) => {
 								let unitName = unit;
 								const unitLabel = ! unit ? getIcon( 'dash' ) : unit;
@@ -45,24 +45,24 @@ const GeneratePressUnitPickerControl = ( props ) => {
 								}
 
 								if ( 'px' === unit ) {
-									unitName = _x( 'Pixel', 'A size unit for CSS markup', 'generateblocks-pro' );
+									unitName = _x( 'Pixel', 'A size unit for CSS markup', 'generatepress' );
 								}
 
 								if ( 'em' === unit ) {
-									unitName = _x( 'Em', 'A size unit for CSS markup', 'generateblocks-pro' );
+									unitName = _x( 'Em', 'A size unit for CSS markup', 'generatepress' );
 								}
 
 								if ( '%' === unit ) {
-									unitName = _x( 'Percentage', 'A size unit for CSS markup', 'generateblocks-pro' );
+									unitName = _x( 'Percentage', 'A size unit for CSS markup', 'generatepress' );
 								}
 
 								if ( 'deg' === unit ) {
-									unitName = _x( 'Degree', 'A size unit for CSS markup', 'generateblocks-pro' );
+									unitName = _x( 'Degree', 'A size unit for CSS markup', 'generatepress' );
 								}
 
 								return <Tooltip
 									/* translators: Unit type (px, em, %) */
-									text={ !! unit ? sprintf( __( '%s Units', 'generateblocks-pro' ), unitName ) : unitName }
+									text={ !! unit ? sprintf( __( '%s Units', 'generatepress' ), unitName ) : unitName }
 									key={ unit }
 								>
 									<Button
@@ -72,7 +72,7 @@ const GeneratePressUnitPickerControl = ( props ) => {
 										isPrimary={ value === unit }
 										aria-pressed={ value === unit }
 										/* translators: %s: values associated with CSS syntax, 'Pixel', 'Em', 'Percentage' */
-										aria-label={ !! unit ? sprintf( __( '%s Units', 'generateblocks-pro' ), unitName ) : unitName }
+										aria-label={ !! unit ? sprintf( __( '%s Units', 'generatepress' ), unitName ) : unitName }
 										onClick={ () => {
 											onClick( unit );
 											onClose();

@@ -311,7 +311,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 
 											<BaseControl>
 												<UtilityLabel
-													label={ __( 'Font Size', 'generateblocks' ) }
+													label={ __( 'Font Size', 'generatepress' ) }
 													value={ fonts[ index ].fontSizeUnit }
 													devices={ [ 'desktop', 'tablet', 'mobile' ] }
 												/>
@@ -407,7 +407,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 
 											<BaseControl>
 												<UtilityLabel
-													label={ __( 'Line Height', 'generateblocks' ) }
+													label={ __( 'Line Height', 'generatepress' ) }
 													value={ fonts[ index ].lineHeightUnit }
 													devices={ [ 'desktop', 'tablet', 'mobile' ] }
 												/>
@@ -501,7 +501,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 
 											<BaseControl>
 												<UtilityLabel
-													label={ __( 'Letter Spacing', 'generateblocks' ) }
+													label={ __( 'Letter Spacing', 'generatepress' ) }
 													value={ fonts[ index ].letterSpacingUnit }
 													devices={ [ 'desktop', 'tablet', 'mobile' ] }
 												/>
@@ -596,7 +596,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 											{ marginBottomSelectors.includes( fonts[ index ].selector ) &&
 												<BaseControl>
 													<UtilityLabel
-														label={ 'body' === fonts[ index ].selector ? __( 'Paragraph Bottom Margin', 'generatepress' ) : __( 'Bottom Margin', 'generateblocks' ) }
+														label={ 'body' === fonts[ index ].selector ? __( 'Paragraph Bottom Margin', 'generatepress' ) : __( 'Bottom Margin', 'generatepress' ) }
 														value={ fonts[ index ].marginBottomUnit }
 														devices={ [ 'desktop', 'tablet', 'mobile' ] }
 													/>
