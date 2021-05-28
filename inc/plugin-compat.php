@@ -843,7 +843,7 @@ function generate_pro_compat_customize_register( $wp_customize ) {
 		array(
 			'priority'       => 35,
 			'theme_supports' => '',
-			'title'          => __( 'Colors (Legacy)', 'gp-premium' ),
+			'title'          => __( 'Colors (Legacy)', 'generatepress' ),
 			'description'    => '',
 		)
 	);
