@@ -25,7 +25,7 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 
 		if ( value.length > 0 ) {
 			value.forEach( ( color ) => {
-				const slug = color.name.replace( ' ', '-' ).toLowerCase();
+				const slug = color.slug.replace( ' ', '-' ).toLowerCase();
 				css += '--' + slug + ': ' + color.color + ';';
 			} );
 		}
@@ -46,13 +46,13 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 
 		if ( value.length > 0 ) {
 			value.forEach( ( color ) => {
-				const slug = color.name.replace( ' ', '-' ).toLowerCase();
+				const slug = color.slug.replace( ' ', '-' ).toLowerCase();
 
 				palette.push(
 					{
-						name: color.name,
+						name: color.name || color.slug,
 						slug,
-						color: 'var(--' + slug + ')',
+						color: 'var(--' + color.slug + ')',
 					}
 				);
 			} );
@@ -73,7 +73,7 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 						const colorProps = {
 							...props,
 							value: colors[ index ].color,
-							varNameValue: colors[ index ].name,
+							varNameValue: colors[ index ].slug,
 						};
 
 						return (
@@ -81,7 +81,7 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 								<ColorPicker
 									{ ...colorProps }
 									tooltipPosition="bottom center"
-									tooltipText={ colors[ index ].name }
+									tooltipText={ colors[ index ].name || colors[ index ].slug }
 									hideLabel={ true }
 									onChange={ ( value ) => {
 										const colorValues = [ ...colors ];
@@ -99,7 +99,7 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 
 										colorValues[ index ] = {
 											...colorValues[ index ],
-											name: value,
+											slug: value,
 										};
 
 										handleChangeComplete( colorValues );
@@ -136,7 +136,7 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 								const length = colorValues.length + 1;
 
 								colorValues.push( {
-									name: 'global-color-' + length,
+									slug: 'global-color-' + length,
 									color: '',
 								} );
 
