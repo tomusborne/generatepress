@@ -799,8 +799,8 @@ function generate_get_editor_color_palette() {
 		foreach ( (array) $global_colors as $key => $data ) {
 			$editor_palette[] = array(
 				'name' => $data['name'],
-				'slug' => $data['name'],
-				'color' => $static_colors ? $data['color'] : 'var(--' . $data['name'] . ')',
+				'slug' => $data['slug'],
+				'color' => $static_colors ? $data['color'] : 'var(--' . $data['slug'] . ')',
 			);
 		}
 	}
@@ -820,7 +820,7 @@ function generate_get_global_colors() {
 	if ( ! empty( $global_colors ) ) {
 		foreach ( (array) $global_colors as $key => $data ) {
 			$colors[] = array(
-				'slug' => $data['name'],
+				'slug' => $data['slug'],
 				'color' => $data['color'],
 			);
 		}
