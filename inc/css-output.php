@@ -69,7 +69,7 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 		}
 
 		if ( apply_filters( 'generate_do_group_inner_container_style', true ) ) {
-			$css->set_selector( '.site-main .wp-block-group__inner-container' );
+			$css->set_selector( '.wp-block-group__inner-container' );
 			$css->add_property( 'max-width', absint( $settings['container_width'] ), false, 'px' );
 			$css->add_property( 'margin-left', 'auto' );
 			$css->add_property( 'margin-right', 'auto' );
