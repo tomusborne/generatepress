@@ -150,7 +150,7 @@ const GeneratePressColorPickerControl = ( props ) => {
 											<Button
 												onClick={ () => {
 													// eslint-disable-next-line
-													window.alert( __( 'Changing this name will break styles that are using it to define it\'s color.' ) );
+													window.alert( __( 'Changing this name will break styles that are using it to define its color.', 'generatepress' ) );
 
 													setVarLock( false );
 
