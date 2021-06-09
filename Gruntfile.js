@@ -286,7 +286,7 @@ module.exports = function (grunt) {
         var request = require('request');
         var fs = require('fs');
 
-        request('https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&key=AIzaSyCMsgO9oLyggmUXxBP85zQiEHJ5m3OAl0U', function (error, response, body) {
+        request('https://www.googleapis.com/webfonts/v1/webfonts?sort=alpha&key=AIzaSyCMsgO9oLyggmUXxBP85zQiEHJ5m3OAl0U', function (error, response, body) {
 
             if (response && response.statusCode == 200) {
 
@@ -299,11 +299,9 @@ module.exports = function (grunt) {
 					}
                 })
 
-                fs.writeFile('src/customizer-controls/font-picker/google-fonts.json', JSON.stringify(fonts, undefined, 4), function (err) {
-                    if (!err) {
-                        console.log("Google Fonts Updated!");
-                        done();
-                    }
+                fs.writeFile('src/customizer-controls/font-manager/google-fonts.json', JSON.stringify(fonts, undefined, 4), function (err) {
+                    console.log(err ?? 'Google Fonts Updated!');
+                    done();
                 });
             }
         });
