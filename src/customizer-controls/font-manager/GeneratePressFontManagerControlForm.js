@@ -164,7 +164,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 										<TextControl
 											id="generate-font-manager-family-name--input"
 											className="generate-font-manager-family-name--input"
-											help={ __( 'Font family name', 'generatepress' ) }
+											label={ __( 'Font family name', 'generatepress' ) }
 											value={currentFontFamily}
 											onChange={ ( value ) => {
 												const fontValues = [ ...fonts ];
