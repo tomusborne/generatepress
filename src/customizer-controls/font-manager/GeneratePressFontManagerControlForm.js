@@ -1,11 +1,9 @@
 import './style.scss';
 import googleFonts from './google-fonts.json';
 import getIcon from '../../utils/get-icon';
-
-import {
-	useState,
-} from '@wordpress/element';
-
+import { useState } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
+import FontPicker from "../../components/font-picker";
 import {
 	TextControl,
 	ToggleControl,
@@ -14,10 +12,6 @@ import {
 	BaseControl,
 	Popover,
 } from '@wordpress/components';
-
-import {
-	__,
-} from '@wordpress/i18n';
 
 const GeneratePressFontManagerControlForm = ( props ) => {
 	const [ isOpen, setOpen ] = useState( 0 );
@@ -47,7 +41,6 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 					const itemId = index + 1;
 
 					const fontFamilies = [
-						{ value: '', label: __( 'Quick select…', 'generatepress' ) },
 						{ value: 'System Default', label: __( 'System Default', 'generatepress' ) },
 						{ value: 'Arial', label: 'Arial' },
 						{ value: 'Helvetica', label: 'Helvetica' },
@@ -92,17 +85,19 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 						}
 					};
 
-					const onFontShortcut = ( event ) => {
+					const onFontShortcut = ( value ) => {
 						const fontValues = [ ...fonts ];
 
 						fontValues[ index ] = {
 							...fontValues[ index ],
-							fontFamily: event.target.value,
+							fontFamily: value,
 						};
 
 						handleChangeComplete( fontValues );
-						onFontChange( event.target.value );
+						onFontChange( value );
 					};
+
+					const currentFontFamily = fonts[ index ].fontFamily || '';
 
 					return (
 						<div className="generate-font-manager--item" key={ index }>
@@ -160,30 +155,17 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 										className="generate-component-font-family-picker-wrapper"
 										id="generate-font-manager-family-name--input"
 									>
-										<select
-											className="components-select-control__input components-select-control__input--generate-fontfamily"
-											onChange={ ( value ) => {
-												onFontShortcut( value );
-											} }
-											onBlur={ () => {
-												// do nothing
-											} }
-										>
-											{ fontFamilies.map( ( option, i ) =>
-												<option
-													key={ `${ option.label }-${ option.value }-${ i }` }
-													value={ option.value }
-												>
-													{ option.label }
-												</option>
-											) }
-										</select>
+										<FontPicker
+											current={currentFontFamily}
+											fontList={fontFamilies}
+											onChange={onFontShortcut}
+										/>
 
 										<TextControl
 											id="generate-font-manager-family-name--input"
 											className="generate-font-manager-family-name--input"
 											help={ __( 'Font family name', 'generatepress' ) }
-											value={ fonts[ index ].fontFamily || '' }
+											value={currentFontFamily}
 											onChange={ ( value ) => {
 												const fontValues = [ ...fonts ];
 
