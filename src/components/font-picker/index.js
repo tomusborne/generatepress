@@ -37,9 +37,6 @@ const GeneratePressFontPicker = ( { current, fontList, onChange } ) => {
             isSearchable={true}
             options={fontList}
             styles={customStyles}
-            value={
-                fontList.some(font => (font.value === current)) ? {label: current, value: current} : undefined
-            }
             onChange={(selected) => onChange(selected.value)}
             instanceId={'input-field'}
             maxMenuHeight={130}
