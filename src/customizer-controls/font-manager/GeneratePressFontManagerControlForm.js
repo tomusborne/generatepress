@@ -48,7 +48,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 						{ value: 'Georgia', label: 'Georgia' },
 					];
 
-					Object.keys( googleFonts ).slice( 0, 20 ).forEach( ( k ) => {
+					Object.keys( googleFonts ).forEach( ( k ) => {
 						fontFamilies.push(
 							{ value: k, label: k }
 						);
