@@ -112,7 +112,7 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 										className="generate-color-manager--delete-color"
 										onClick={ () => {
 											// eslint-disable-next-line
-											if ( window.confirm( __( 'This will permanently delete this color.', 'generatepress' ) ) ) {
+											if ( window.confirm( __( 'This will permanently delete this color. Doing so will break styles that are using it to define their color.', 'generatepress' ) ) ) {
 												const colorValues = [ ...colors ];
 
 												colorValues.splice( index, 1 );

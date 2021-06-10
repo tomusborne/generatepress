@@ -136,7 +136,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 										className="generate-font-manager--delete-font"
 										onClick={ () => {
 											// eslint-disable-next-line
-											if ( window.confirm( __( 'This will permanently delete this font family.', 'generatepress' ) ) ) {
+											if ( window.confirm( __( 'This will permanently delete this font family. Doing so will stop elements from displaying it as their font.', 'generatepress' ) ) ) {
 												const fontValues = [ ...fonts ];
 
 												fontValues.splice( index, 1 );
