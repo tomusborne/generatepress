@@ -353,6 +353,7 @@ class GeneratePress_Theme_Update {
 
 		$old_defaults = array(
 			'underline_links' => 'never',
+			'use_legacy_typography' => true,
 			'background_color' => '#f7f8f9',
 			'text_color' => '#222222',
 			'link_color' => '#1e73be',
