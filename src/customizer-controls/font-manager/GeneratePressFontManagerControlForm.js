@@ -3,7 +3,7 @@ import googleFonts from './google-fonts.json';
 import getIcon from '../../utils/get-icon';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import FontPicker from "../../components/font-picker";
+import FontPicker from '../../components/font-picker';
 import {
 	TextControl,
 	ToggleControl,
@@ -41,15 +41,15 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 				{ value: 'Helvetica', label: 'Helvetica' },
 				{ value: 'Times New Roman', label: 'Times New Roman' },
 				{ value: 'Georgia', label: 'Georgia' },
-			]
+			],
 		},
 		{
 			label: __( 'Google Fonts', 'generatepress' ),
-			options: Object.keys( googleFonts ).map( font => ( { value: font, label: font } ) )
-		}
+			options: Object.keys( googleFonts ).map( ( font ) => ( { value: font, label: font } ) ),
+		},
 	];
 
-	const isValidGoogleFont = font => Object.keys( googleFonts ).includes( font );
+	const isValidGoogleFont = ( font ) => Object.keys( googleFonts ).includes( font );
 
 	return (
 		<div>
@@ -161,17 +161,17 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 										id="generate-font-manager-family-name--input"
 									>
 										<FontPicker
-											current={currentFontFamily}
-											fontList={fontFamilies}
-											onChange={onFontShortcut}
+											current={ currentFontFamily }
+											fontList={ fontFamilies }
+											onChange={ onFontShortcut }
 										/>
 
 										<TextControl
 											id="generate-font-manager-family-name--input"
 											className="generate-font-manager-family-name--input"
 											label={ __( 'Font family name', 'generatepress' ) }
-											value={currentFontFamily}
-											onChange={onFontShortcut}
+											value={ currentFontFamily }
+											onChange={ onFontShortcut }
 										/>
 
 										{ !! fonts[ index ].fontFamily &&
@@ -180,7 +180,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 													className="generate-font-manager-google-font--field"
 													label={ __( 'Google Font', 'generatepress' ) }
 													checked={ !! fonts[ index ].googleFont }
-													disabled={! isValidGoogleFont(currentFontFamily)}
+													disabled={ ! isValidGoogleFont( currentFontFamily ) }
 													onChange={ ( value ) => {
 														const fontValues = [ ...fonts ];
 
