@@ -54,6 +54,8 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 						);
 					} );
 
+					const isValidGoogleFont = font => Object.keys( googleFonts ).includes( font );
+
 					const onFontChange = ( value ) => {
 						const fontValues = [ ...fonts ];
 
@@ -166,16 +168,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 											className="generate-font-manager-family-name--input"
 											label={ __( 'Font family name', 'generatepress' ) }
 											value={currentFontFamily}
-											onChange={ ( value ) => {
-												const fontValues = [ ...fonts ];
-
-												fontValues[ index ] = {
-													...fontValues[ index ],
-													fontFamily: value,
-												};
-
-												handleChangeComplete( fontValues );
-											} }
+											onChange={onFontShortcut}
 										/>
 
 										{ !! fonts[ index ].fontFamily &&
@@ -184,6 +177,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 													className="generate-font-manager-google-font--field"
 													label={ __( 'Google Font', 'generatepress' ) }
 													checked={ !! fonts[ index ].googleFont }
+													disabled={! isValidGoogleFont(currentFontFamily)}
 													onChange={ ( value ) => {
 														const fontValues = [ ...fonts ];
 
