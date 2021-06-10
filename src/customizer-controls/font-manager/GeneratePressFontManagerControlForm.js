@@ -32,6 +32,25 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 
 	const fonts = props.value;
 
+	const fontFamilies = [
+		{
+			label: __( 'System fonts', 'generatepress' ),
+			options: [
+				{ value: 'System Default', label: __( 'System Default', 'generatepress' ) },
+				{ value: 'Arial', label: 'Arial' },
+				{ value: 'Helvetica', label: 'Helvetica' },
+				{ value: 'Times New Roman', label: 'Times New Roman' },
+				{ value: 'Georgia', label: 'Georgia' },
+			]
+		},
+		{
+			label: __( 'Google Fonts', 'generatepress' ),
+			options: Object.keys( googleFonts ).map( font => ( { value: font, label: font } ) )
+		}
+	];
+
+	const isValidGoogleFont = font => Object.keys( googleFonts ).includes( font );
+
 	return (
 		<div>
 			<div className="customize-control-notifications-container" ref={ props.setNotificationContainer }></div>
@@ -39,22 +58,6 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 			{
 				!! fonts.length > 0 && fonts.map( ( font, index ) => {
 					const itemId = index + 1;
-
-					const fontFamilies = [
-						{ value: 'System Default', label: __( 'System Default', 'generatepress' ) },
-						{ value: 'Arial', label: 'Arial' },
-						{ value: 'Helvetica', label: 'Helvetica' },
-						{ value: 'Times New Roman', label: 'Times New Roman' },
-						{ value: 'Georgia', label: 'Georgia' },
-					];
-
-					Object.keys( googleFonts ).forEach( ( k ) => {
-						fontFamilies.push(
-							{ value: k, label: k }
-						);
-					} );
-
-					const isValidGoogleFont = font => Object.keys( googleFonts ).includes( font );
 
 					const onFontChange = ( value ) => {
 						const fontValues = [ ...fonts ];
