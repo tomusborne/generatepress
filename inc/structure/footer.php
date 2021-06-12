@@ -27,7 +27,7 @@ if ( ! function_exists( 'generate_construct_footer' ) ) {
 			}
 		}
 		?>
-		<footer <?php generate_do_attr( 'site-info' ); ?>>
+		<footer <?php generate_do_element_classes( 'site-info', 'site-info' ); ?>>
 			<div class="inside-site-info<?php echo $inside_site_info_class; // phpcs:ignore ?>">
 				<?php
 				/**
