@@ -19,8 +19,19 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 		$dir_uri = get_template_directory_uri();
 
 		if ( generate_is_using_flexbox() ) {
-			// Only load this file in the header if we have a top bar. Otherwise, it's loaded in generate_do_a11y_scripts().
-			if ( is_active_sidebar( 'top-bar' ) ) {
+			if ( is_singular() && comments_open() ) {
+				wp_enqueue_style( 'generate-comments', $dir_uri . "/assets/css/components/comments{$suffix}.css", array(), GENERATE_VERSION, 'all' );
+			}
+
+			if (
+				is_active_sidebar( 'top-bar' ) ||
+				is_active_sidebar( 'footer-bar' ) ||
+				is_active_sidebar( 'footer-1' ) ||
+				is_active_sidebar( 'footer-2' ) ||
+				is_active_sidebar( 'footer-3' ) ||
+				is_active_sidebar( 'footer-4' ) ||
+				is_active_sidebar( 'footer-5' )
+			) {
 				wp_enqueue_style( 'generate-widget-areas', $dir_uri . "/assets/css/components/widget-areas{$suffix}.css", array(), GENERATE_VERSION, 'all' );
 			}
 
@@ -426,30 +437,6 @@ add_action( 'wp_footer', 'generate_do_a11y_scripts' );
  * @since 3.1.0
  */
 function generate_do_a11y_scripts() {
-	$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
-	$dir_uri = get_template_directory_uri();
-
-	if ( generate_is_using_flexbox() ) {
-		if ( is_singular() && comments_open() ) {
-			wp_enqueue_style( 'generate-comments', $dir_uri . "/assets/css/components/comments{$suffix}.css", array(), GENERATE_VERSION, 'all' );
-		}
-
-		// Load this file in the footer if footer widgets exist but no top bar widgets.
-		if (
-			! is_active_sidebar( 'top-bar' ) &&
-			(
-				is_active_sidebar( 'footer-bar' ) ||
-				is_active_sidebar( 'footer-1' ) ||
-				is_active_sidebar( 'footer-2' ) ||
-				is_active_sidebar( 'footer-3' ) ||
-				is_active_sidebar( 'footer-4' ) ||
-				is_active_sidebar( 'footer-5' )
-			)
-		) {
-			wp_enqueue_style( 'generate-widget-areas', $dir_uri . "/assets/css/components/widget-areas{$suffix}.css", array(), GENERATE_VERSION, 'all' );
-		}
-	}
-
 	if ( apply_filters( 'generate_print_a11y_script', true ) ) {
 		// Add our small a11y script inline.
 		printf(
