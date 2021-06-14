@@ -727,8 +727,13 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 			}
 		}
 
-		$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header, .wp-block-group__inner-container' );
+		$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header' );
 		$css->add_property( 'padding', generate_padding_css( $settings['content_top'], $settings['content_right'], $settings['content_bottom'], $settings['content_left'] ), generate_padding_css( $defaults['content_top'], $defaults['content_right'], $defaults['content_bottom'], $defaults['content_left'] ) );
+
+		if ( apply_filters( 'generate_do_group_inner_container_style', true ) ) {
+			$css->set_selector( '.site-main .wp-block-group__inner-container' );
+			$css->add_property( 'padding', generate_padding_css( $settings['content_top'], $settings['content_right'], $settings['content_bottom'], $settings['content_left'] ) );
+		}
 
 		if ( generate_is_using_flexbox() ) {
 			$css->set_selector( '.separate-containers .paging-navigation' );
@@ -875,8 +880,13 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 		}
 
 		$css->start_media_query( generate_get_media_query( 'mobile' ) );
-		$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header, .wp-block-group__inner-container' );
+		$css->set_selector( '.separate-containers .inside-article, .separate-containers .comments-area, .separate-containers .page-header, .separate-containers .paging-navigation, .one-container .site-content, .inside-page-header' );
 		$css->add_property( 'padding', generate_padding_css( $settings['mobile_content_top'], $settings['mobile_content_right'], $settings['mobile_content_bottom'], $settings['mobile_content_left'] ) );
+
+		if ( apply_filters( 'generate_do_group_inner_container_style', true ) ) {
+			$css->set_selector( '.site-main .wp-block-group__inner-container' );
+			$css->add_property( 'padding', generate_padding_css( $settings['mobile_content_top'], $settings['mobile_content_right'], $settings['mobile_content_bottom'], $settings['mobile_content_left'] ) );
+		}
 
 		$css->set_selector( '.inside-top-bar' );
 

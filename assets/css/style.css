@@ -1510,8 +1510,7 @@ ol.comment-list {
 	margin-bottom: 20px;
 }
 
-.inside-page-header,
-.wp-block-group__inner-container {
+.inside-page-header {
 	padding: 40px;
 }
 
