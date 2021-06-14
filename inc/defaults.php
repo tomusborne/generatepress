@@ -78,6 +78,12 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 						'color' => '#575760',
 					),
 					array(
+						/* translators: Contrast number */
+						'name' => sprintf( __( 'Contrast %s', 'generatepress' ), '3' ),
+						'slug' => 'contrast-3',
+						'color' => '#b2b2be',
+					),
+					array(
 						'name' => __( 'Base', 'generatepress' ),
 						'slug' => 'base',
 						'color' => '#f0f0f0',
