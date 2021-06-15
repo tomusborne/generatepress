@@ -24,6 +24,10 @@ import {
 	__,
 } from '@wordpress/i18n';
 
+import {
+	applyFilters,
+} from '@wordpress/hooks';
+
 const GeneratePressTypographyControlForm = ( props ) => {
 	const [ isOpen, setOpen ] = useState( 0 );
 
@@ -58,7 +62,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 		'widget-titles',
 	];
 
-	const elementOptions = [
+	let elementOptions = [
 		{ value: '', label: __( '-- Select --', 'generatepress' ) },
 	];
 
@@ -70,6 +74,8 @@ const GeneratePressTypographyControlForm = ( props ) => {
 			}
 		);
 	} );
+
+	elementOptions = applyFilters( 'generate_typography_element_list', elementOptions );
 
 	const fontFamilies = [
 		{ value: '', label: __( '-- Select --', 'generatepress' ) },

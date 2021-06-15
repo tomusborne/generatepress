@@ -2,7 +2,11 @@ import {
 	__,
 } from '@wordpress/i18n';
 
-export default {
+import {
+	applyFilters,
+} from '@wordpress/hooks';
+
+let elementPlaceholders = {
 	body: {
 		label: __( 'Body', 'generatepress' ),
 		placeholders: {
@@ -300,3 +304,7 @@ export default {
 		placeholders: {},
 	},
 };
+
+elementPlaceholders = applyFilters( 'generate_typography_element_placeholders', elementPlaceholders );
+
+export default elementPlaceholders;
