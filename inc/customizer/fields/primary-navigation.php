@@ -27,7 +27,7 @@ GeneratePress_Customize_Field::add_title(
 	)
 );
 
-// Navigation background group
+// Navigation background group.
 GeneratePress_Customize_Field::add_color_field_group(
 	'primary_navigation_background',
 	'generate_colors_section',
@@ -56,11 +56,11 @@ GeneratePress_Customize_Field::add_color_field_group(
 			'element' => $menu_current_selectors,
 			'property' => 'background-color',
 			'hide_label' => true,
-		)
+		),
 	)
 );
 
-// Navigation text group
+// Navigation text group.
 GeneratePress_Customize_Field::add_color_field_group(
 	'primary_navigation_text',
 	'generate_colors_section',
@@ -89,11 +89,11 @@ GeneratePress_Customize_Field::add_color_field_group(
 			'element' => $menu_current_selectors,
 			'property' => 'color',
 			'hide_label' => true,
-		)
+		),
 	)
 );
 
-// Sub-Menu background group
+// Sub-Menu background group.
 GeneratePress_Customize_Field::add_color_field_group(
 	'primary_navigation_submenu_background',
 	'generate_colors_section',
@@ -122,11 +122,11 @@ GeneratePress_Customize_Field::add_color_field_group(
 			'element' => $submenu_current_selectors,
 			'property' => 'background-color',
 			'hide_label' => true,
-		)
+		),
 	)
 );
 
-// Sub-Menu text group
+// Sub-Menu text group.
 GeneratePress_Customize_Field::add_color_field_group(
 	'primary_navigation_submenu_text',
 	'generate_colors_section',
@@ -155,7 +155,7 @@ GeneratePress_Customize_Field::add_color_field_group(
 			'element' => $menu_current_selectors,
 			'property' => 'color',
 			'hide_label' => true,
-		)
+		),
 	)
 );
 

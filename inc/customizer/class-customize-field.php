@@ -155,10 +155,9 @@ class GeneratePress_Customize_Field {
 	 * @param string $id The ID for the group wrapper.
 	 * @param string $section_id The section ID.
 	 * @param string $toggle_id The Toggle ID.
-	 * @param array $fields The color fields.
+	 * @param array  $fields The color fields.
 	 */
-	public static function add_color_field_group($id, $section_id, $toggle_id, $fields)
-	{
+	public static function add_color_field_group( $id, $section_id, $toggle_id, $fields ) {
 		self::add_wrapper(
 			"generate_{$id}_wrapper",
 			array(
@@ -166,12 +165,12 @@ class GeneratePress_Customize_Field {
 				'choices' => array(
 					'type' => 'color',
 					'toggleId' => $toggle_id,
-					'items' => array_keys($fields),
+					'items' => array_keys( $fields ),
 				),
 			)
 		);
 
-		foreach ($fields as $key => $field) {
+		foreach ( $fields as $key => $field ) {
 			self::add_field(
 				"generate_settings[$key]",
 				'GeneratePress_Customize_Color_Control',
@@ -184,11 +183,11 @@ class GeneratePress_Customize_Field {
 					'label' => $field['label'],
 					'section' => $section_id,
 					'choices' => array(
-						'alpha' => isset($field['alpha']) ? $field['alpha'] : true,
+						'alpha' => isset( $field['alpha'] ) ? $field['alpha'] : true,
 						'toggleId' => $toggle_id,
 						'wrapper' => $key,
 						'tooltip' => $field['tooltip'],
-						'hideLabel' => isset($field['hide_label']) ? $field['hide_label'] : false,
+						'hideLabel' => isset( $field['hide_label'] ) ? $field['hide_label'] : false,
 					),
 					'output' => array(
 						array(
