@@ -148,4 +148,55 @@ class GeneratePress_Customize_Field {
 			$control_args
 		);
 	}
+
+	/**
+	 * Add color field group.
+	 *
+	 * @param string $id The ID for the group wrapper.
+	 * @param string $section_id The section ID.
+	 * @param string $toggle_id The Toggle ID.
+	 * @param array  $fields The color fields.
+	 */
+	public static function add_color_field_group( $id, $section_id, $toggle_id, $fields ) {
+		self::add_wrapper(
+			"generate_{$id}_wrapper",
+			array(
+				'section' => $section_id,
+				'choices' => array(
+					'type' => 'color',
+					'toggleId' => $toggle_id,
+					'items' => array_keys( $fields ),
+				),
+			)
+		);
+
+		foreach ( $fields as $key => $field ) {
+			self::add_field(
+				"generate_settings[$key]",
+				'GeneratePress_Customize_Color_Control',
+				array(
+					'default' => $field['default_value'],
+					'transport' => 'postMessage',
+					'sanitize_callback' => 'generate_sanitize_rgba_color',
+				),
+				array(
+					'label' => $field['label'],
+					'section' => $section_id,
+					'choices' => array(
+						'alpha' => isset( $field['alpha'] ) ? $field['alpha'] : true,
+						'toggleId' => $toggle_id,
+						'wrapper' => $key,
+						'tooltip' => $field['tooltip'],
+						'hideLabel' => isset( $field['hide_label'] ) ? $field['hide_label'] : false,
+					),
+					'output' => array(
+						array(
+							'element'  => $field['element'],
+							'property' => $field['property'],
+						),
+					),
+				)
+			);
+		}
+	}
 }
