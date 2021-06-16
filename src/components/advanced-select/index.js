@@ -1,8 +1,7 @@
 import './style.scss';
-import { __ } from '@wordpress/i18n';
 import Select from 'react-select';
 
-const GeneratePressFontPicker = ( { current, fontList, onChange } ) => {
+const GeneratePressAdvancedSelect = ( { placeholder, options, onChange } ) => {
 	const customStyles = {
 		indicatorSeparator: () => ( {
 			display: 'none',
@@ -31,11 +30,11 @@ const GeneratePressFontPicker = ( { current, fontList, onChange } ) => {
 
 	return (
 		<Select
-			className="generate-font-picker"
-			classNamePrefix="generate-font-picker"
-			placeholder={ __( 'Search font…', 'generatepress' ) }
+			className="generate-advanced-select"
+			classNamePrefix="generate-advanced-select"
+			placeholder={ placeholder }
 			isSearchable={ true }
-			options={ fontList }
+			options={ options }
 			styles={ customStyles }
 			onChange={ ( selected ) => onChange( selected.value ) }
 			instanceId={ 'input-field' }
@@ -45,4 +44,4 @@ const GeneratePressFontPicker = ( { current, fontList, onChange } ) => {
 	);
 };
 
-export default GeneratePressFontPicker;
+export default GeneratePressAdvancedSelect;
