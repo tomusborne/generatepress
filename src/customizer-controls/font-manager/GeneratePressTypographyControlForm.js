@@ -25,6 +25,10 @@ import {
 	__,
 } from '@wordpress/i18n';
 
+import {
+	applyFilters,
+} from '@wordpress/hooks';
+
 const GeneratePressTypographyControlForm = ( props ) => {
 	const [ isOpen, setOpen ] = useState( 0 );
 

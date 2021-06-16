@@ -2,7 +2,11 @@ import {
 	__,
 } from '@wordpress/i18n';
 
-export default {
+import {
+	applyFilters,
+} from '@wordpress/hooks';
+
+const elements = {
 	body: {
 		group: 'base',
 		label: __( 'Body', 'generatepress' ),
@@ -320,3 +324,5 @@ export default {
 		placeholders: {},
 	},
 };
+
+export default applyFilters( 'generate_typography_elements', elements );
