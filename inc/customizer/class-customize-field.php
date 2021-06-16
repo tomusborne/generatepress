@@ -172,7 +172,7 @@ class GeneratePress_Customize_Field {
 
 		foreach ( $fields as $key => $field ) {
 			self::add_field(
-				"generate_settings[$key]",
+				$key,
 				'GeneratePress_Customize_Color_Control',
 				array(
 					'default' => $field['default_value'],

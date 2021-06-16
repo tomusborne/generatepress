@@ -33,7 +33,7 @@ GeneratePress_Customize_Field::add_color_field_group(
 	'generate_colors_section',
 	'primary-navigation-colors',
 	array(
-		'navigation_background_color' => array(
+		'generate_settings[navigation_background_color]' => array(
 			'default_value' => $color_defaults['navigation_background_color'],
 			'label' => __( 'Navigation Background', 'generatepress' ),
 			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
@@ -41,7 +41,7 @@ GeneratePress_Customize_Field::add_color_field_group(
 			'property' => 'background-color',
 			'hide_label' => false,
 		),
-		'navigation_background_hover_color' => array(
+		'generate_settings[navigation_background_hover_color]' => array(
 			'default_value' => $color_defaults['navigation_background_hover_color'],
 			'label' => __( 'Navigation Background Hover', 'generatepress' ),
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
@@ -49,7 +49,7 @@ GeneratePress_Customize_Field::add_color_field_group(
 			'property' => 'background-color',
 			'hide_label' => true,
 		),
-		'navigation_background__current_color' => array(
+		'generate_settings[navigation_background_current_color]' => array(
 			'default_value' => $color_defaults['navigation_background_current_color'],
 			'label' => __( 'Navigation Background Current', 'generatepress' ),
 			'tooltip' => __( 'Choose Current Color', 'generatepress' ),
@@ -66,7 +66,7 @@ GeneratePress_Customize_Field::add_color_field_group(
 	'generate_colors_section',
 	'primary-navigation-colors',
 	array(
-		'navigation_text_color' => array(
+		'generate_settings[navigation_text_color]' => array(
 			'default_value' => $color_defaults['navigation_text_color'],
 			'label' => __( 'Navigation Text', 'generatepress' ),
 			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
@@ -74,7 +74,7 @@ GeneratePress_Customize_Field::add_color_field_group(
 			'property' => 'color',
 			'hide_label' => false,
 		),
-		'navigation_text_hover_color' => array(
+		'generate_settings[navigation_text_hover_color]' => array(
 			'default_value' => $color_defaults['navigation_text_hover_color'],
 			'label' => __( 'Navigation Text Hover', 'generatepress' ),
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
@@ -82,7 +82,7 @@ GeneratePress_Customize_Field::add_color_field_group(
 			'property' => 'color',
 			'hide_label' => true,
 		),
-		'navigation_text_current_color' => array(
+		'generate_settings[navigation_text_current_color]' => array(
 			'default_value' => $color_defaults['navigation_text_current_color'],
 			'label' => __( 'Navigation Text Current', 'generatepress' ),
 			'tooltip' => __( 'Choose Current Color', 'generatepress' ),
@@ -99,7 +99,7 @@ GeneratePress_Customize_Field::add_color_field_group(
 	'generate_colors_section',
 	'primary-navigation-colors',
 	array(
-		'subnavigation_background_color' => array(
+		'generate_settings[subnavigation_background_color]' => array(
 			'default_value' => $color_defaults['subnavigation_background_color'],
 			'label' => __( 'Sub-Menu Background', 'generatepress' ),
 			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
@@ -107,7 +107,7 @@ GeneratePress_Customize_Field::add_color_field_group(
 			'property' => 'background-color',
 			'hide_label' => false,
 		),
-		'subnavigation_background_hover_color' => array(
+		'generate_settings[subnavigation_background_hover_color]' => array(
 			'default_value' => $color_defaults['subnavigation_background_hover_color'],
 			'label' => __( 'Sub-Menu Background Hover', 'generatepress' ),
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
@@ -115,7 +115,7 @@ GeneratePress_Customize_Field::add_color_field_group(
 			'property' => 'background-color',
 			'hide_label' => true,
 		),
-		'subnavigation_background_current_color' => array(
+		'generate_settings[subnavigation_background_current_color]' => array(
 			'default_value' => $color_defaults['subnavigation_background_current_color'],
 			'label' => __( 'Sub-Menu Background Current', 'generatepress' ),
 			'tooltip' => __( 'Choose Current Color', 'generatepress' ),
@@ -132,7 +132,7 @@ GeneratePress_Customize_Field::add_color_field_group(
 	'generate_colors_section',
 	'primary-navigation-colors',
 	array(
-		'subnavigation_text_color' => array(
+		'generate_settings[subnavigation_text_color]' => array(
 			'default_value' => $color_defaults['subnavigation_text_color'],
 			'label' => __( 'Sub-Menu Text', 'generatepress' ),
 			'tooltip' => __( 'Choose Initial Color', 'generatepress' ),
@@ -140,7 +140,7 @@ GeneratePress_Customize_Field::add_color_field_group(
 			'property' => 'color',
 			'hide_label' => false,
 		),
-		'subnavigation_text_hover_color' => array(
+		'generate_settings[subnavigation_text_hover_color]' => array(
 			'default_value' => $color_defaults['subnavigation_text_hover_color'],
 			'label' => __( 'Sub-Menu Text Hover', 'generatepress' ),
 			'tooltip' => __( 'Choose Hover Color', 'generatepress' ),
@@ -148,7 +148,7 @@ GeneratePress_Customize_Field::add_color_field_group(
 			'property' => 'color',
 			'hide_label' => true,
 		),
-		'subnavigation_text_current_color' => array(
+		'generate_settings[subnavigation_text_current_color]' => array(
 			'default_value' => $color_defaults['subnavigation_text_current_color'],
 			'label' => __( 'Sub-Menu Text Current', 'generatepress' ),
 			'tooltip' => __( 'Choose Current Color', 'generatepress' ),
