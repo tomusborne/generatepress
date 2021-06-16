@@ -5,6 +5,7 @@ import hasNumericValue from '../../utils/has-numeric-value';
 import RangeControl from '../../components/range-control';
 import UtilityLabel from '../../components/utility-label';
 import UnitPicker from '../../components/unit-picker';
+import AdvancedSelect from '../../components/advanced-select';
 import elements from './placeholders.js';
 
 import {
@@ -58,15 +59,34 @@ const GeneratePressTypographyControlForm = ( props ) => {
 		'widget-titles',
 	];
 
-	const elementOptions = [
-		{ value: '', label: __( '-- Select --', 'generatepress' ) },
-	];
+	const elementGroups = applyFilters(
+		'generate_typography_element_groups',
+		{
+			base: __( 'Base', 'generatepress' ),
+			header: __( 'Header', 'generatepress' ),
+			primaryNavigation: __( 'Primary Navigation', 'generatepress' ),
+			content: __( 'Content', 'generatepress' ),
+			widgets: __( 'Widgets', 'generatepress' ),
+			footer: __( 'Footer', 'generatepress' ),
+		}
+	);
 
-	Object.keys( elements ).forEach( ( element ) => {
+	// Always at the bottom.
+	elementGroups.other = __( 'Other', 'generatepress' );
+
+	const elementOptions = [];
+
+	Object.keys( elementGroups ).forEach( ( group ) => {
 		elementOptions.push(
 			{
-				value: element,
-				label: elements[ element ].label,
+				label: elementGroups[ group ],
+				options: Object.keys( elements ).filter( ( key ) => {
+					if ( group === elements[ key ].group ) {
+						return true;
+					}
+
+					return false;
+				} ).map( ( item ) => ( { value: item, label: elements[ item ].label } ) ),
 			}
 		);
 	} );
@@ -195,44 +215,48 @@ const GeneratePressTypographyControlForm = ( props ) => {
 									onClose={ toggleClose }
 									focusOnMount="container"
 								>
-									<SelectControl
-										label={ __( 'Element', 'generatepress' ) }
-										help={ __( 'Choose the element to target.', 'generatepress' ) }
-										value={ fonts[ index ].selector }
-										options={ elementOptions }
-										onChange={ ( value ) => {
-											const fontValues = [ ...fonts ];
+									<BaseControl
+										label={ __( 'Target Element', 'generatepress' ) }
+										id="generate-typography-choose-element"
+									>
+										<AdvancedSelect
+											current={ fonts[ index ].selector }
+											options={ elementOptions }
+											placeholder={ __( 'Search elements…', 'generatepress' ) }
+											onChange={ ( value ) => {
+												const fontValues = [ ...fonts ];
 
-											fontValues[ index ] = {
-												...fontValues[ index ],
-												selector: value,
-											};
-
-											if ( marginBottomSelectors.includes( value ) ) {
-												if ( 'body' === value ) {
-													fontValues[ index ] = {
-														...fontValues[ index ],
-														marginBottomUnit: 'em',
-													};
-												} else {
-													fontValues[ index ] = {
-														...fontValues[ index ],
-														marginBottomUnit: 'px',
-													};
-												}
-											} else if ( fonts[ index ].marginBottom || fonts[ index ].marginBottomTablet || fonts[ index ].marginBottomMobile ) {
 												fontValues[ index ] = {
 													...fontValues[ index ],
-													marginBottom: '',
-													marginBottomTablet: '',
-													marginBottomMobile: '',
-													marginBottomUnit: '',
+													selector: value,
 												};
-											}
 
-											handleChangeComplete( fontValues );
-										} }
-									/>
+												if ( marginBottomSelectors.includes( value ) ) {
+													if ( 'body' === value ) {
+														fontValues[ index ] = {
+															...fontValues[ index ],
+															marginBottomUnit: 'em',
+														};
+													} else {
+														fontValues[ index ] = {
+															...fontValues[ index ],
+															marginBottomUnit: 'px',
+														};
+													}
+												} else if ( fonts[ index ].marginBottom || fonts[ index ].marginBottomTablet || fonts[ index ].marginBottomMobile ) {
+													fontValues[ index ] = {
+														...fontValues[ index ],
+														marginBottom: '',
+														marginBottomTablet: '',
+														marginBottomMobile: '',
+														marginBottomUnit: '',
+													};
+												}
+
+												handleChangeComplete( fontValues );
+											} }
+										/>
+									</BaseControl>
 
 									{ !! fonts[ index ].selector &&
 										<>

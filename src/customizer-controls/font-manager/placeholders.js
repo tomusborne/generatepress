@@ -4,6 +4,7 @@ import {
 
 export default {
 	body: {
+		group: 'base',
 		label: __( 'Body', 'generatepress' ),
 		placeholders: {
 			fontSize: {
@@ -28,6 +29,7 @@ export default {
 		},
 	},
 	'main-title': {
+		group: 'header',
 		label: __( 'Site Title', 'generatepress' ),
 		placeholders: {
 			fontSize: {
@@ -39,6 +41,7 @@ export default {
 		},
 	},
 	'site-description': {
+		group: 'header',
 		label: __( 'Site Description', 'generatepress' ),
 		placeholders: {
 			fontSize: {
@@ -50,6 +53,7 @@ export default {
 		},
 	},
 	'primary-menu-items': {
+		group: 'primaryNavigation',
 		label: __( 'Primary Menu Items', 'generatepress' ),
 		placeholders: {
 			fontSize: {
@@ -61,6 +65,7 @@ export default {
 		},
 	},
 	'primary-sub-menu-items': {
+		group: 'primaryNavigation',
 		label: __( 'Primary Sub-Menu Items', 'generatepress' ),
 		placeholders: {
 			fontSize: {
@@ -72,6 +77,7 @@ export default {
 		},
 	},
 	'primary-menu-toggle': {
+		group: 'primaryNavigation',
 		label: __( 'Primary Mobile Menu Toggle', 'generatepress' ),
 		placeholders: {
 			fontSize: {
@@ -83,6 +89,7 @@ export default {
 		},
 	},
 	buttons: {
+		group: 'content',
 		label: __( 'Buttons', 'generatepress' ),
 		placeholders: {
 			fontSize: {
@@ -94,6 +101,7 @@ export default {
 		},
 	},
 	'all-headings': {
+		group: 'content',
 		label: __( 'All Headings', 'generatepress' ),
 		placeholders: {
 			fontSize: {
@@ -115,6 +123,7 @@ export default {
 		},
 	},
 	h1: {
+		group: 'content',
 		label: __( 'Heading 1 (H1)', 'generatepress' ),
 		placeholders: {
 			fontSize: {
@@ -136,6 +145,7 @@ export default {
 		},
 	},
 	'single-content-title': {
+		group: 'content',
 		label: __( 'Single Content Title (H1)', 'generatepress' ),
 		placeholders: {
 			fontSize: {
@@ -147,6 +157,7 @@ export default {
 		},
 	},
 	h2: {
+		group: 'content',
 		label: __( 'Heading 2 (H2)', 'generatepress' ),
 		placeholders: {
 			fontSize: {
@@ -168,6 +179,7 @@ export default {
 		},
 	},
 	'archive-content-title': {
+		group: 'content',
 		label: __( 'Archive Content Title (H2)', 'generatepress' ),
 		placeholders: {
 			fontSize: {
@@ -179,6 +191,7 @@ export default {
 		},
 	},
 	h3: {
+		group: 'content',
 		label: __( 'Heading 3 (H3)', 'generatepress' ),
 		placeholders: {
 			fontSize: {
@@ -200,6 +213,7 @@ export default {
 		},
 	},
 	h4: {
+		group: 'content',
 		label: __( 'Heading 4 (H4)', 'generatepress' ),
 		placeholders: {
 			fontSize: {
@@ -220,6 +234,7 @@ export default {
 		},
 	},
 	h5: {
+		group: 'content',
 		label: __( 'Heading 5 (H5)', 'generatepress' ),
 		placeholders: {
 			fontSize: {
@@ -240,6 +255,7 @@ export default {
 		},
 	},
 	h6: {
+		group: 'content',
 		label: __( 'Heading 6 (H6)', 'generatepress' ),
 		placeholders: {
 			fontSize: {
@@ -259,6 +275,7 @@ export default {
 		},
 	},
 	'top-bar': {
+		group: 'widgets',
 		label: __( 'Top Bar', 'generatepress' ),
 		placeholders: {
 			fontSize: {
@@ -270,6 +287,7 @@ export default {
 		},
 	},
 	'widget-titles': {
+		group: 'widgets',
 		label: __( 'Widget Titles', 'generatepress' ),
 		placeholders: {
 			fontSize: {
@@ -285,7 +303,8 @@ export default {
 		},
 	},
 	footer: {
-		label: __( 'Footer', 'generatepress' ),
+		group: 'footer',
+		label: __( 'Footer Bar', 'generatepress' ),
 		placeholders: {
 			fontSize: {
 				value: 15,
@@ -296,6 +315,7 @@ export default {
 		},
 	},
 	custom: {
+		group: 'other',
 		label: __( 'Custom', 'generatepress' ),
 		placeholders: {},
 	},
