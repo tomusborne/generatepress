@@ -3,7 +3,7 @@ import googleFonts from './google-fonts.json';
 import getIcon from '../../utils/get-icon';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import FontPicker from '../../components/font-picker';
+import AdvancedSelect from '../../components/advanced-select';
 import {
 	TextControl,
 	ToggleControl,
@@ -160,9 +160,10 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 										className="generate-component-font-family-picker-wrapper"
 										id="generate-font-manager-family-name--input"
 									>
-										<FontPicker
+										<AdvancedSelect
 											current={ currentFontFamily }
-											fontList={ fontFamilies }
+											options={ fontFamilies }
+											placeholder={ __( 'Search fonts…', 'generatepress' ) }
 											onChange={ onFontShortcut }
 										/>
 
