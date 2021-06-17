@@ -161,7 +161,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 										id="generate-font-manager-family-name--input"
 									>
 										<AdvancedSelect
-											current={ currentFontFamily }
+											current={ false }
 											options={ fontFamilies }
 											placeholder={ __( 'Search fonts…', 'generatepress' ) }
 											onChange={ onFontShortcut }
