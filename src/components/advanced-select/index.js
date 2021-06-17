@@ -1,7 +1,7 @@
 import './style.scss';
 import Select from 'react-select';
 
-const GeneratePressAdvancedSelect = ( { placeholder, options, onChange } ) => {
+const GeneratePressAdvancedSelect = ( { current, placeholder, options, onChange } ) => {
 	const customStyles = {
 		indicatorSeparator: () => ( {
 			display: 'none',
@@ -28,6 +28,16 @@ const GeneratePressAdvancedSelect = ( { placeholder, options, onChange } ) => {
 		},
 	} );
 
+	const hasValue = options.find( ( item ) => {
+		if ( item.options && item.options.some( ( option ) => ( option.value === current ) ) ) {
+			return true;
+		} else if ( ! item.options && item.value === current ) {
+			return true;
+		}
+
+		return false;
+	} );
+
 	return (
 		<Select
 			className="generate-advanced-select"
@@ -36,6 +46,7 @@ const GeneratePressAdvancedSelect = ( { placeholder, options, onChange } ) => {
 			isSearchable={ true }
 			options={ options }
 			styles={ customStyles }
+			value={ hasValue ? { label: current, value: current } : undefined }
 			onChange={ ( selected ) => onChange( selected.value ) }
 			instanceId={ 'input-field' }
 			maxMenuHeight={ 130 }
