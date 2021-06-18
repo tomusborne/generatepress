@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		if ( generate_show_entry_header() ) :
 			?>
 
-			<header <?php generate_do_attr( 'entry-header' ); ?>>
+			<header class="entry-header">
 				<?php
 				/**
 				 * generate_before_page_title hook.
