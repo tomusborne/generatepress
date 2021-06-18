@@ -90,16 +90,16 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 						}
 					};
 
-					const onFontShortcut = ( value ) => {
+					const onFontShortcut = ( object ) => {
 						const fontValues = [ ...fonts ];
 
 						fontValues[ index ] = {
 							...fontValues[ index ],
-							fontFamily: value,
+							fontFamily: object.value,
 						};
 
 						handleChangeComplete( fontValues );
-						onFontChange( value );
+						onFontChange( object.value );
 					};
 
 					const currentFontFamily = fonts[ index ].fontFamily || '';
@@ -161,7 +161,6 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 										id="generate-font-manager-family-name--input"
 									>
 										<AdvancedSelect
-											current={ currentFontFamily }
 											options={ fontFamilies }
 											placeholder={ __( 'Search fonts…', 'generatepress' ) }
 											onChange={ onFontShortcut }
