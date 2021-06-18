@@ -19,7 +19,8 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 		$dir_uri = get_template_directory_uri();
 
 		if ( generate_is_using_flexbox() ) {
-			if ( is_singular() && comments_open() ) {
+			// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- Intentionally loose.
+			if ( is_singular() && ( comments_open() || '0' != get_comments_number() ) ) {
 				wp_enqueue_style( 'generate-comments', $dir_uri . "/assets/css/components/comments{$suffix}.css", array(), GENERATE_VERSION, 'all' );
 			}
 
