@@ -22,7 +22,8 @@
         "wptrt/wpthemereview": "^0.2.1",
         "php-parallel-lint/php-parallel-lint": "^1.2.0",
         "phpcompatibility/phpcompatibility-wp": "^2.1.0",
-        "wp-cli/i18n-command": "^2.2.5"
+        "wp-cli/i18n-command": "^2.2.5",
+        "brainmaestro/composer-git-hooks": "^2.8"
     },
     "scripts": {
         "php": [
@@ -31,10 +32,24 @@
 		],
         "lint:wpcs": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
         "lint:php": "@php ./vendor/bin/parallel-lint --exclude .git --exclude vendor .",
-        "make-pot": "wp i18n make-pot . languages/_s.pot"
-    },
+        "make-pot": "wp i18n make-pot . languages/_s.pot",
+	  	"post-install-cmd": "cghooks add --ignore-lock",
+	  	"post-update-cmd": "cghooks update"
+	},
     "support": {
         "issues": "https://github.com/tomusborne/generatepress/issues",
         "source": "https://github.com/tomusborne/generatepress"
-    }
+    },
+  	"extra": {
+	  	"hooks": {
+		  	"config": {
+				"stop-on-failure": ["pre-commit"]
+		  	},
+			"pre-commit": [
+			  	"printf \"\\033[36mChecking PHPCS...\\033[0m\\n\"",
+		  		"./vendor/bin/phpcs --standard=phpcs.xml.dist",
+			  	"printf \"\\033[42mCOMMIT CHECK SUCCEEDED\\033[0m\\n\""
+			]
+	  	}
+	}
 }

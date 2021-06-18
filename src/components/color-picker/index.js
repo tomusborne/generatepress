@@ -149,6 +149,9 @@ const GeneratePressColorPickerControl = ( props ) => {
 										<Tooltip text={ __( 'Changing this name will remove its color from elements already using it.', 'generatepress' ) }>
 											<Button
 												onClick={ () => {
+													// eslint-disable-next-line
+													window.alert( __( 'Changing this name will break styles that are using it to define its color.', 'generatepress' ) );
+
 													setVarLock( false );
 
 													setTimeout( function() {
