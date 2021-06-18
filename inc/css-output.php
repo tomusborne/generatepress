@@ -343,7 +343,7 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->set_selector( '.main-navigation .main-nav ul ul li a' );
 		$css->add_property( 'color', $settings['subnavigation_text_color'] );
 
-		$css->set_selector( '.main-navigation .main-nav ul ul li:not([class*="current-menu-"]):hover > a,.main-navigation .main-nav ul ul li:not([class*="current-menu-"]):focus > a,.main-navigation .main-nav ul ul li:not([class*="current-menu-"]).sfHover > a' );
+		$css->set_selector( '.main-navigation .main-nav ul ul li:not([class*="current-menu-"]):hover > a,.main-navigation .main-nav ul ul li:not([class*="current-menu-"]):focus > a, .main-navigation .main-nav ul ul li.sfHover:not([class*="current-menu-"]) > a' );
 		$css->add_property( 'color', $settings['subnavigation_text_hover_color'] );
 		$css->add_property( 'background-color', $settings['subnavigation_background_hover_color'] );
 
