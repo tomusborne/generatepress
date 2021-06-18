@@ -1,7 +1,7 @@
 import './style.scss';
 import Select from 'react-select';
 
-const GeneratePressAdvancedSelect = ( { placeholder, options, onChange } ) => {
+const GeneratePressAdvancedSelect = ( componentProps ) => {
 	const customStyles = {
 		indicatorSeparator: () => ( {
 			display: 'none',
@@ -24,24 +24,23 @@ const GeneratePressAdvancedSelect = ( { placeholder, options, onChange } ) => {
 		spacing: {
 			controlHeight: 30,
 			baseUnit: 3,
-			menuGutter: 0,
+			menuGutter: 3,
 		},
 	} );
 
-	return (
-		<Select
-			className="generate-advanced-select"
-			classNamePrefix="generate-advanced-select"
-			placeholder={ placeholder }
-			isSearchable={ true }
-			options={ options }
-			styles={ customStyles }
-			onChange={ ( selected ) => onChange( selected.value ) }
-			instanceId={ 'input-field' }
-			maxMenuHeight={ 130 }
-			theme={ customTheme }
-		/>
-	);
+	const defaultProps = {
+		className: 'generate-advanced-select',
+		classNamePrefix: 'generate-advanced-select',
+		isSearchable: true,
+		styles: customStyles,
+		instanceId: 'input-field',
+		maxMenuHeight: 130,
+		theme: customTheme,
+	};
+
+	const props = Object.assign( {}, defaultProps, componentProps );
+
+	return ( <Select { ...props } /> );
 };
 
 export default GeneratePressAdvancedSelect;
