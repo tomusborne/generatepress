@@ -40,6 +40,21 @@ const GeneratePressAdvancedSelect = ( componentProps ) => {
 
 	const props = Object.assign( {}, defaultProps, componentProps );
 
+	// Get our label/value object based on the current value.
+	Object.keys( props.options ).forEach( ( key ) => {
+		const groupedOptions = props.options[ key ].options;
+
+		if ( groupedOptions ) {
+			groupedOptions.forEach( ( optionKey ) => {
+				if ( optionKey.value === props.currentValue ) {
+					props.value = { label: optionKey.label, value: props.currentValue };
+				}
+			} );
+		} else if ( props.options[ key ].value === props.currentValue ) {
+			props.value = { label: props.options[ key ].label, value: props.currentValue };
+		}
+	} );
+
 	return ( <Select { ...props } /> );
 };
 

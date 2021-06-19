@@ -226,6 +226,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 										<AdvancedSelect
 											options={ elementOptions }
 											placeholder={ __( 'Search elements…', 'generatepress' ) }
+											currentValue={ fonts[ index ].selector }
 											onChange={ ( object ) => {
 												const value = object.value;
 												const fontValues = [ ...fonts ];
