@@ -1183,10 +1183,10 @@ function generate_no_cache_dynamic_css() {
  * @since 3.0.0
  */
 function generate_get_dynamic_css() {
-	if ( generate_get_option( 'use_legacy_typography' ) ) {
-		$typography_css = generate_font_css();
-	} else {
+	if ( generate_is_using_advanced_typography() ) {
 		$typography_css = GeneratePress_Typography::get_css();
+	} else {
+		$typography_css = generate_font_css();
 	}
 
 	$css = generate_base_css() . $typography_css . generate_advanced_css() . generate_spacing_css();
