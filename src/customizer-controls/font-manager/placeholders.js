@@ -2,10 +2,6 @@ import {
 	__,
 } from '@wordpress/i18n';
 
-import {
-	applyFilters,
-} from '@wordpress/hooks';
-
 const elements = {
 	body: {
 		group: 'base',
@@ -325,4 +321,4 @@ const elements = {
 	},
 };
 
-export default applyFilters( 'generate_typography_elements', elements );
+export default elements;

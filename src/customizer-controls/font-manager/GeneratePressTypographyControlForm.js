@@ -6,7 +6,7 @@ import RangeControl from '../../components/range-control';
 import UtilityLabel from '../../components/utility-label';
 import UnitPicker from '../../components/unit-picker';
 import AdvancedSelect from '../../components/advanced-select';
-import elements from './placeholders.js';
+import typographyElements from './placeholders.js';
 
 import {
 	useState,
@@ -47,7 +47,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 	};
 
 	const fonts = props.value;
-
+	const elements = applyFilters( 'generate_typography_elements', typographyElements );
 	const fontManagerControl = wp.customize.control( 'generate_settings[font_manager]' );
 	const availableFonts = fontManagerControl.setting.get();
 
