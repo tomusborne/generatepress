@@ -115,6 +115,14 @@ function generate_enqueue_backend_block_editor_assets() {
 		}
 	}
 
+	wp_enqueue_script(
+		'generate-block-editor',
+		trailingslashit( get_template_directory_uri() ) . 'assets/dist/block-editor.js',
+		array( 'wp-i18n', 'wp-components', 'wp-element' ),
+		GENERATE_VERSION,
+		true
+	);
+
 	$color_settings = wp_parse_args(
 		get_option( 'generate_settings', array() ),
 		generate_get_color_defaults()
