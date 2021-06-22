@@ -108,7 +108,7 @@ class GeneratePress_Typography {
 		if ( ! empty( $typography ) ) {
 			$font_families = array();
 
-			foreach ( $font_manager as $key => $data ) {
+			foreach ( (array) $font_manager as $key => $data ) {
 				$font_families[ $data['fontFamily'] ] = $data;
 			}
 
@@ -133,19 +133,7 @@ class GeneratePress_Typography {
 				);
 
 				$selector = self::get_css_selector( $options['selector'], $type );
-
-				$font_family_args = array();
-				$font_family = $options['fontFamily'];
-
-				if ( ! empty( $font_families[ $font_family ] ) ) {
-					$font_family_args = $font_families[ $font_family ];
-				}
-
-				if ( ! empty( $font_family_args['googleFont'] ) && ! empty( $font_family_args['googleFontCategory'] ) ) {
-					$font_family = $font_family . ', ' . $font_family_args['googleFontCategory'];
-				} elseif ( 'System Default' === $font_family ) {
-					$font_family = generate_get_system_default_font();
-				}
+				$font_family = self::get_font_family( $options['fontFamily'], $font_families );
 
 				$css->set_selector( $selector );
 				$css->add_property( 'font-family', $font_family );
@@ -319,6 +307,31 @@ class GeneratePress_Typography {
 		}
 
 		return apply_filters( 'generate_typography_css_selector', $selector );
+	}
+
+	/**
+	 * Get our full font family value.
+	 *
+	 * @param string $font_family The font family name.
+	 * @param array  $font_families Data for our font families in the font manager.
+	 */
+	public static function get_font_family( $font_family, $font_families ) {
+		if ( ! $font_family ) {
+			return $font_family;
+		}
+
+		$font_family_args = array();
+		if ( ! empty( $font_families[ $font_family ] ) ) {
+			$font_family_args = $font_families[ $font_family ];
+		}
+
+		if ( ! empty( $font_family_args['googleFont'] ) && ! empty( $font_family_args['googleFontCategory'] ) ) {
+			$font_family = $font_family . ', ' . $font_family_args['googleFontCategory'];
+		} elseif ( 'System Default' === $font_family ) {
+			$font_family = generate_get_system_default_font();
+		}
+
+		return $font_family;
 	}
 
 	/**
