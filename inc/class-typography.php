@@ -97,10 +97,29 @@ class GeneratePress_Typography {
 
 	/**
 	 * Build our typography CSS.
+	 *
+	 * @param string $module The name of the module we're generating CSS for.
 	 */
-	public static function get_css() {
+	public static function get_css( $module = '' ) {
 		$font_manager = generate_get_option( 'font_manager' );
 		$typography = generate_get_option( 'typography' );
+		$exclusions = apply_filters( 'generate_typography_element_exclusions', array() );
+
+		foreach ( $typography as $key => $data ) {
+			if ( $module ) {
+				// Remove all items that don't start with our module string.
+				if ( strpos( $data['selector'], $module ) !== 0 ) {
+					unset( $typography[ $key ] );
+				}
+			} else {
+				foreach ( (array) $exclusions as $exclusion ) {
+					// Remove all items that start with our exclusion string.
+					if ( strpos( $data['selector'], $exclusion ) === 0 ) {
+						unset( $typography[ $key ] );
+					}
+				}
+			}
+		}
 
 		if ( ! empty( $typography ) ) {
 			$font_families = array();
