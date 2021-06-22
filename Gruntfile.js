@@ -90,6 +90,13 @@ module.exports = function (grunt) {
                         src: ['dashboard.scss'],
                         dest: 'assets/css/admin',
                         ext: '.css'
+					},
+					{
+                        expand: true,
+                        cwd: 'sass/',
+                        src: ['editor-typography.scss'],
+                        dest: 'assets/css/admin',
+                        ext: '.css'
 					}
                 ]
             }
