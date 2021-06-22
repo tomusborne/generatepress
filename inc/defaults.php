@@ -64,7 +64,7 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 				'underline_links' => 'always',
 				'font_manager' => array(),
 				'typography' => array(),
-				'use_advanced_typography' => true,
+				'use_dynamic_typography' => true,
 				'global_colors' => array(
 					array(
 						'name' => __( 'Contrast', 'generatepress' ),

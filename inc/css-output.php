@@ -1183,7 +1183,7 @@ function generate_no_cache_dynamic_css() {
  * @since 3.0.0
  */
 function generate_get_dynamic_css() {
-	if ( generate_is_using_advanced_typography() ) {
+	if ( generate_is_using_dynamic_typography() ) {
 		$typography_css = GeneratePress_Typography::get_css();
 	} else {
 		$typography_css = generate_font_css();

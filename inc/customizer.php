@@ -305,7 +305,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'title' => esc_attr__( 'Typography', 'generatepress' ),
 				'priority' => 35,
 				'active_callback' => function() {
-					if ( ! generate_is_using_advanced_typography() ) {
+					if ( ! generate_is_using_dynamic_typography() ) {
 						return false;
 					}
 
@@ -1449,19 +1449,19 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 
 		if ( $show_legacy_typography_option ) {
 			$wp_customize->add_setting(
-				'generate_settings[use_advanced_typography]',
+				'generate_settings[use_dynamic_typography]',
 				array(
-					'default' => $defaults['use_advanced_typography'],
+					'default' => $defaults['use_dynamic_typography'],
 					'type' => 'option',
 					'sanitize_callback' => 'generate_sanitize_checkbox',
 				)
 			);
 
 			$wp_customize->add_control(
-				'generate_settings[use_advanced_typography]',
+				'generate_settings[use_dynamic_typography]',
 				array(
 					'type' => 'checkbox',
-					'label' => __( 'Use advanced typography system', 'generatepress' ),
+					'label' => __( 'Use dynamic typography system', 'generatepress' ),
 					'description' => sprintf(
 						'<strong>%1$s</strong> %2$s',
 						__( 'Caution:', 'generatepress' ),
@@ -1472,7 +1472,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 						)
 					),
 					'section' => 'generate_general_section',
-					'settings' => 'generate_settings[use_advanced_typography]',
+					'settings' => 'generate_settings[use_dynamic_typography]',
 				)
 			);
 		}

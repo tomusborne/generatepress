@@ -35,7 +35,7 @@ class GeneratePress_Typography {
 	 *  Constructor
 	 */
 	public function __construct() {
-		if ( ! generate_is_using_advanced_typography() ) {
+		if ( ! generate_is_using_dynamic_typography() ) {
 			return;
 		}
 

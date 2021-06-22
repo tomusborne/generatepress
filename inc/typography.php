@@ -17,7 +17,7 @@ if ( ! function_exists( 'generate_enqueue_google_fonts' ) ) {
 	 * @since 0.1
 	 */
 	function generate_enqueue_google_fonts() {
-		if ( generate_is_using_advanced_typography() ) {
+		if ( generate_is_using_dynamic_typography() ) {
 			return;
 		}
 
@@ -111,7 +111,7 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 	 * @param std_Class $wp_customize The Customize class.
 	 */
 	function generate_default_fonts_customize_register( $wp_customize ) {
-		if ( generate_is_using_advanced_typography() ) {
+		if ( generate_is_using_dynamic_typography() ) {
 			return;
 		}
 
@@ -800,7 +800,7 @@ if ( ! function_exists( 'generate_get_all_google_fonts_ajax' ) ) {
 	 * @since 1.3.0
 	 */
 	function generate_get_all_google_fonts_ajax() {
-		if ( generate_is_using_advanced_typography() ) {
+		if ( generate_is_using_dynamic_typography() ) {
 			wp_die();
 		}
 
@@ -1071,7 +1071,7 @@ if ( ! function_exists( 'generate_typography_set_font_data' ) ) {
 	 * @since 1.3.40
 	 */
 	function generate_typography_set_font_data() {
-		if ( generate_is_using_advanced_typography() ) {
+		if ( generate_is_using_dynamic_typography() ) {
 			return;
 		}
 

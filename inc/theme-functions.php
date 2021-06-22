@@ -768,10 +768,10 @@ function generate_has_active_menu() {
 }
 
 /**
- * Check to see if we're using advanced typography.
+ * Check to see if we're using dynamic typography.
  *
  * @since 3.1.0
  */
-function generate_is_using_advanced_typography() {
-	return generate_get_option( 'use_advanced_typography' );
+function generate_is_using_dynamic_typography() {
+	return generate_get_option( 'use_dynamic_typography' );
 }
