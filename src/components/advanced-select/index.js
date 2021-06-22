@@ -11,6 +11,11 @@ const GeneratePressAdvancedSelect = ( componentProps ) => {
 			...provided,
 			maxHeight: '30px',
 		} ),
+
+		menuPortal: ( base ) => ( {
+			...base,
+			zIndex: 999999,
+		} ),
 	};
 
 	const customTheme = ( provided ) => ( {
@@ -36,9 +41,25 @@ const GeneratePressAdvancedSelect = ( componentProps ) => {
 		instanceId: 'input-field',
 		maxMenuHeight: 130,
 		theme: customTheme,
+		menuPortalTarget: document.querySelector( 'body' ),
 	};
 
 	const props = Object.assign( {}, defaultProps, componentProps );
+
+	// Get our label/value object based on the current value.
+	Object.keys( props.options ).forEach( ( key ) => {
+		const groupedOptions = props.options[ key ].options;
+
+		if ( groupedOptions ) {
+			groupedOptions.forEach( ( optionKey ) => {
+				if ( optionKey.value === props.currentValue ) {
+					props.value = { label: optionKey.label, value: props.currentValue };
+				}
+			} );
+		} else if ( props.options[ key ].value === props.currentValue ) {
+			props.value = { label: props.options[ key ].label, value: props.currentValue };
+		}
+	} );
 
 	return ( <Select { ...props } /> );
 };
