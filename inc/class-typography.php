@@ -102,16 +102,9 @@ class GeneratePress_Typography {
 	 * @param string $type Either frontend or editor.
 	 */
 	public static function get_css( $type = 'frontend' ) {
-		$font_manager = generate_get_option( 'font_manager' );
 		$typography = generate_get_option( 'typography' );
 
 		if ( ! empty( $typography ) ) {
-			$font_families = array();
-
-			foreach ( (array) $font_manager as $key => $data ) {
-				$font_families[ $data['fontFamily'] ] = $data;
-			}
-
 			$css = new GeneratePress_CSS();
 
 			$body_selector = 'body';
@@ -133,7 +126,7 @@ class GeneratePress_Typography {
 				);
 
 				$selector = self::get_css_selector( $options['selector'], $type );
-				$font_family = self::get_font_family( $options['fontFamily'], $font_families );
+				$font_family = self::get_font_family( $options['fontFamily'] );
 
 				$css->set_selector( $selector );
 				$css->add_property( 'font-family', $font_family );
@@ -313,11 +306,17 @@ class GeneratePress_Typography {
 	 * Get our full font family value.
 	 *
 	 * @param string $font_family The font family name.
-	 * @param array  $font_families Data for our font families in the font manager.
 	 */
-	public static function get_font_family( $font_family, $font_families ) {
+	public static function get_font_family( $font_family ) {
 		if ( ! $font_family ) {
 			return $font_family;
+		}
+
+		$font_manager = generate_get_option( 'font_manager' );
+
+		$font_families = array();
+		foreach ( (array) $font_manager as $key => $data ) {
+			$font_families[ $data['fontFamily'] ] = $data;
 		}
 
 		$font_family_args = array();
