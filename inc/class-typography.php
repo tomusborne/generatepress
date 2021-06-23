@@ -35,7 +35,7 @@ class GeneratePress_Typography {
 	 *  Constructor
 	 */
 	public function __construct() {
-		if ( generate_get_option( 'use_legacy_typography' ) ) {
+		if ( ! generate_is_using_dynamic_typography() ) {
 			return;
 		}
 
@@ -124,12 +124,6 @@ class GeneratePress_Typography {
 		}
 
 		if ( ! empty( $typography ) ) {
-			$font_families = array();
-
-			foreach ( $font_manager as $key => $data ) {
-				$font_families[ $data['fontFamily'] ] = $data;
-			}
-
 			$css = new GeneratePress_CSS();
 
 			$body_selector = 'body';
@@ -151,19 +145,7 @@ class GeneratePress_Typography {
 				);
 
 				$selector = self::get_css_selector( $options['selector'], $type );
-
-				$font_family_args = array();
-				$font_family = $options['fontFamily'];
-
-				if ( ! empty( $font_families[ $font_family ] ) ) {
-					$font_family_args = $font_families[ $font_family ];
-				}
-
-				if ( ! empty( $font_family_args['googleFont'] ) && ! empty( $font_family_args['googleFontCategory'] ) ) {
-					$font_family = $font_family . ', ' . $font_family_args['googleFontCategory'];
-				} elseif ( 'System Default' === $font_family ) {
-					$font_family = generate_get_system_default_font();
-				}
+				$font_family = self::get_font_family( $options['fontFamily'] );
 
 				$css->set_selector( $selector );
 				$css->add_property( 'font-family', $font_family );
@@ -337,6 +319,37 @@ class GeneratePress_Typography {
 		}
 
 		return apply_filters( 'generate_typography_css_selector', $selector );
+	}
+
+	/**
+	 * Get our full font family value.
+	 *
+	 * @param string $font_family The font family name.
+	 */
+	public static function get_font_family( $font_family ) {
+		if ( ! $font_family ) {
+			return $font_family;
+		}
+
+		$font_manager = generate_get_option( 'font_manager' );
+
+		$font_families = array();
+		foreach ( (array) $font_manager as $key => $data ) {
+			$font_families[ $data['fontFamily'] ] = $data;
+		}
+
+		$font_family_args = array();
+		if ( ! empty( $font_families[ $font_family ] ) ) {
+			$font_family_args = $font_families[ $font_family ];
+		}
+
+		if ( ! empty( $font_family_args['googleFont'] ) && ! empty( $font_family_args['googleFontCategory'] ) ) {
+			$font_family = $font_family . ', ' . $font_family_args['googleFontCategory'];
+		} elseif ( 'System Default' === $font_family ) {
+			$font_family = generate_get_system_default_font();
+		}
+
+		return $font_family;
 	}
 
 	/**

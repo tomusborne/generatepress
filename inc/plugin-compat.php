@@ -841,7 +841,7 @@ function generate_do_pro_compatibility_setup() {
 		add_action( 'generate_inside_slideout_navigation', 'generate_enqueue_navigation_script' );
 	}
 
-	if ( ! generate_get_option( 'use_legacy_typography' ) ) {
+	if ( generate_is_using_dynamic_typography() ) {
 		remove_action( 'wp_enqueue_scripts', 'generate_enqueue_google_fonts', 0 );
 		remove_action( 'wp_enqueue_scripts', 'generate_typography_premium_css', 100 );
 		remove_filter( 'generate_external_dynamic_css_output', 'generate_typography_add_to_external_stylesheet' );
@@ -889,7 +889,7 @@ function generate_do_customizer_compatibility_setup() {
 		return;
 	}
 
-	if ( ! generate_get_option( 'use_legacy_typography' ) ) {
+	if ( generate_is_using_dynamic_typography() ) {
 		remove_action( 'customize_register', 'generate_fonts_customize_register' );
 		remove_action( 'customize_preview_init', 'generate_typography_customizer_live_preview' );
 	}
