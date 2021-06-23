@@ -160,3 +160,10 @@ nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
 	content: "\f106";
 	font-family: GeneratePress;
 }
+
+/*--------------------------------------------------------------
+# Search button
+--------------------------------------------------------------*/
+.search-form .search-submit {
+	display: none;
+}
