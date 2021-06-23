@@ -23,23 +23,18 @@ get_header(); ?>
 
 			if ( generate_has_default_loop() ) {
 				if ( have_posts() ) :
-					if ( apply_filters( 'generate_show_search_page_title', true ) ) :
-						?>
-
-						<header class="page-header">
-							<h1 class="page-title">
-								<?php
-								printf(
-									/* translators: 1: Search query name */
-									__( 'Search Results for: %s', 'generatepress' ),
-									'<span>' . get_search_query() . '</span>'
-								);
-								?>
-							</h1>
-						</header>
-
-						<?php
-					endif;
+					// phpcs:ignore -- No escaping needed.
+					echo apply_filters(
+						'generate_search_title_output',
+						sprintf(
+							'<header class="page-header"><h1 class="page-title">%s</h1></header>',
+							sprintf(
+								/* translators: 1: Search query name */
+								__( 'Search Results for: %s', 'generatepress' ),
+								'<span>' . get_search_query() . '</span>'
+							)
+						)
+					);
 
 					/**
 					 * generate_before_loop hook.
