@@ -4,6 +4,7 @@ import {
 
 const elements = {
 	body: {
+		module: 'core',
 		group: 'base',
 		label: __( 'Body', 'generatepress' ),
 		placeholders: {
@@ -29,6 +30,7 @@ const elements = {
 		},
 	},
 	'main-title': {
+		module: 'core',
 		group: 'header',
 		label: __( 'Site Title', 'generatepress' ),
 		placeholders: {
@@ -41,6 +43,7 @@ const elements = {
 		},
 	},
 	'site-description': {
+		module: 'core',
 		group: 'header',
 		label: __( 'Site Description', 'generatepress' ),
 		placeholders: {
@@ -53,6 +56,7 @@ const elements = {
 		},
 	},
 	'primary-menu-items': {
+		module: 'core',
 		group: 'primaryNavigation',
 		label: __( 'Primary Menu Items', 'generatepress' ),
 		placeholders: {
@@ -65,6 +69,7 @@ const elements = {
 		},
 	},
 	'primary-sub-menu-items': {
+		module: 'core',
 		group: 'primaryNavigation',
 		label: __( 'Primary Sub-Menu Items', 'generatepress' ),
 		placeholders: {
@@ -77,6 +82,7 @@ const elements = {
 		},
 	},
 	'primary-menu-toggle': {
+		module: 'core',
 		group: 'primaryNavigation',
 		label: __( 'Primary Mobile Menu Toggle', 'generatepress' ),
 		placeholders: {
@@ -89,6 +95,7 @@ const elements = {
 		},
 	},
 	buttons: {
+		module: 'core',
 		group: 'content',
 		label: __( 'Buttons', 'generatepress' ),
 		placeholders: {
@@ -101,6 +108,7 @@ const elements = {
 		},
 	},
 	'all-headings': {
+		module: 'core',
 		group: 'content',
 		label: __( 'All Headings', 'generatepress' ),
 		placeholders: {
@@ -123,6 +131,7 @@ const elements = {
 		},
 	},
 	h1: {
+		module: 'core',
 		group: 'content',
 		label: __( 'Heading 1 (H1)', 'generatepress' ),
 		placeholders: {
@@ -145,6 +154,7 @@ const elements = {
 		},
 	},
 	'single-content-title': {
+		module: 'core',
 		group: 'content',
 		label: __( 'Single Content Title (H1)', 'generatepress' ),
 		placeholders: {
@@ -157,6 +167,7 @@ const elements = {
 		},
 	},
 	h2: {
+		module: 'core',
 		group: 'content',
 		label: __( 'Heading 2 (H2)', 'generatepress' ),
 		placeholders: {
@@ -179,6 +190,7 @@ const elements = {
 		},
 	},
 	'archive-content-title': {
+		module: 'core',
 		group: 'content',
 		label: __( 'Archive Content Title (H2)', 'generatepress' ),
 		placeholders: {
@@ -191,6 +203,7 @@ const elements = {
 		},
 	},
 	h3: {
+		module: 'core',
 		group: 'content',
 		label: __( 'Heading 3 (H3)', 'generatepress' ),
 		placeholders: {
@@ -213,6 +226,7 @@ const elements = {
 		},
 	},
 	h4: {
+		module: 'core',
 		group: 'content',
 		label: __( 'Heading 4 (H4)', 'generatepress' ),
 		placeholders: {
@@ -234,6 +248,7 @@ const elements = {
 		},
 	},
 	h5: {
+		module: 'core',
 		group: 'content',
 		label: __( 'Heading 5 (H5)', 'generatepress' ),
 		placeholders: {
@@ -255,6 +270,7 @@ const elements = {
 		},
 	},
 	h6: {
+		module: 'core',
 		group: 'content',
 		label: __( 'Heading 6 (H6)', 'generatepress' ),
 		placeholders: {
@@ -275,6 +291,7 @@ const elements = {
 		},
 	},
 	'top-bar': {
+		module: 'core',
 		group: 'widgets',
 		label: __( 'Top Bar', 'generatepress' ),
 		placeholders: {
@@ -287,6 +304,7 @@ const elements = {
 		},
 	},
 	'widget-titles': {
+		module: 'core',
 		group: 'widgets',
 		label: __( 'Widget Titles', 'generatepress' ),
 		placeholders: {
@@ -303,6 +321,7 @@ const elements = {
 		},
 	},
 	footer: {
+		module: 'core',
 		group: 'footer',
 		label: __( 'Footer Bar', 'generatepress' ),
 		placeholders: {
@@ -315,6 +334,7 @@ const elements = {
 		},
 	},
 	custom: {
+		module: 'core',
 		group: 'other',
 		label: __( 'Custom', 'generatepress' ),
 		placeholders: {},

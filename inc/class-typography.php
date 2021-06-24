@@ -102,26 +102,16 @@ class GeneratePress_Typography {
 	 * @param string $type Either frontend or editor.
 	 * @param string $module The name of the module we're generating CSS for.
 	 */
-	public static function get_css( $type = 'frontend', $module = '' ) {
+	public static function get_css( $type = 'frontend', $module = 'core' ) {
 		$font_manager = generate_get_option( 'font_manager' );
 		$typography = generate_get_option( 'typography' );
-		$exclusions = apply_filters( 'generate_typography_element_exclusions', array() );
 
-		foreach ( $typography as $key => $data ) {
-			if ( $module ) {
-				// Remove all items that don't start with our module string.
-				if ( strpos( $data['selector'], $module ) !== 0 ) {
-					unset( $typography[ $key ] );
-				}
-			} else {
-				foreach ( (array) $exclusions as $exclusion ) {
-					// Remove all items that start with our exclusion string.
-					if ( strpos( $data['selector'], $exclusion ) === 0 ) {
-						unset( $typography[ $key ] );
-					}
-				}
+		$typography = array_filter(
+			(array) $typography,
+			function( $data ) use ( $module ) {
+				return ( isset( $data['module'] ) && $data['module'] === $module );
 			}
-		}
+		);
 
 		if ( ! empty( $typography ) ) {
 			$css = new GeneratePress_CSS();

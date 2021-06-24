@@ -230,9 +230,11 @@ const GeneratePressTypographyControlForm = ( props ) => {
 											onChange={ ( object ) => {
 												const value = object.value;
 												const fontValues = [ ...fonts ];
+												const module = elements[ value ].module || 'core';
 
 												fontValues[ index ] = {
 													...fontValues[ index ],
+													module,
 													selector: value,
 												};
 
