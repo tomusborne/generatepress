@@ -103,7 +103,6 @@ class GeneratePress_Typography {
 	 * @param string $module The name of the module we're generating CSS for.
 	 */
 	public static function get_css( $type = 'frontend', $module = 'core' ) {
-		$font_manager = generate_get_option( 'font_manager' );
 		$typography = generate_get_option( 'typography' );
 
 		$typography = array_filter(
