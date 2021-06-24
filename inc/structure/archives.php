@@ -115,3 +115,27 @@ function generate_do_archive_description() {
 	 */
 	do_action( 'generate_after_archive_description' );
 }
+
+add_action( 'generate_before_loop', 'generate_do_search_results_title' );
+/**
+ * Add the search results title to the search results page.
+ *
+ * @since 3.1.0
+ * @param string $template The template we're targeting.
+ */
+function generate_do_search_results_title( $template ) {
+	if ( 'search' === $template ) {
+		// phpcs:ignore -- No escaping needed.
+		echo apply_filters(
+			'generate_search_title_output',
+			sprintf(
+				'<header class="page-header"><h1 class="page-title">%s</h1></header>',
+				sprintf(
+					/* translators: 1: Search query name */
+					__( 'Search Results for: %s', 'generatepress' ),
+					'<span>' . get_search_query() . '</span>'
+				)
+			)
+		);
+	}
+}
