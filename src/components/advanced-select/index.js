@@ -39,7 +39,7 @@ const GeneratePressAdvancedSelect = ( componentProps ) => {
 		isSearchable: true,
 		styles: customStyles,
 		instanceId: 'input-field',
-		maxMenuHeight: 130,
+		maxMenuHeight: 250,
 		theme: customTheme,
 		menuPortalTarget: document.querySelector( 'body' ),
 	};
