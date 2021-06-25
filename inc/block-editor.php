@@ -109,7 +109,7 @@ function generate_enqueue_backend_block_editor_assets() {
 	if ( $show_editor_styles ) {
 		wp_add_inline_style( 'generate-block-editor-styles', wp_strip_all_tags( generate_do_inline_block_editor_css() ) );
 
-		if ( ! generate_get_option( 'use_legacy_typography' ) ) {
+		if ( generate_is_using_dynamic_typography() ) {
 			wp_enqueue_style( 'generate-editor-typography', get_template_directory_uri() . '/assets/css/admin/editor-typography.css', false, GENERATE_VERSION, 'all' );
 			wp_add_inline_style( 'generate-editor-typography', wp_strip_all_tags( GeneratePress_Typography::get_css( 'editor' ) ) );
 		}
@@ -246,7 +246,7 @@ function generate_do_inline_block_editor_css() {
 	$css->add_property( 'color', $color_settings['form_button_text_color_hover'] );
 	$css->add_property( 'background-color', $color_settings['form_button_background_color_hover'] );
 
-	if ( generate_get_option( 'use_legacy_typography' ) ) {
+	if ( ! generate_is_using_dynamic_typography() ) {
 		$body_family = generate_get_font_family_css( 'font_body', 'generate_settings', generate_get_default_fonts() );
 		$h1_family = generate_get_font_family_css( 'font_heading_1', 'generate_settings', generate_get_default_fonts() );
 		$h2_family = generate_get_font_family_css( 'font_heading_2', 'generate_settings', generate_get_default_fonts() );
@@ -259,7 +259,7 @@ function generate_do_inline_block_editor_css() {
 
 	$css->set_selector( 'body.gutenberg-editor-page .block-editor-block-list__block, body .editor-styles-wrapper' );
 
-	if ( generate_get_option( 'use_legacy_typography' ) ) {
+	if ( ! generate_is_using_dynamic_typography() ) {
 		$css->add_property( 'font-family', $body_family );
 		$css->add_property( 'font-size', absint( $font_settings['body_font_size'] ), false, 'px' );
 	}
@@ -278,7 +278,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', generate_get_option( 'text_color' ) );
 	}
 
-	if ( generate_get_option( 'use_legacy_typography' ) ) {
+	if ( ! generate_is_using_dynamic_typography() ) {
 		$css->set_selector( 'body .editor-styles-wrapper, body .editor-styles-wrapper p, body .editor-styles-wrapper .mce-content-body' );
 		$css->add_property( 'line-height', floatval( $font_settings['body_line_height'] ) );
 
@@ -289,7 +289,7 @@ function generate_do_inline_block_editor_css() {
 
 	$css->set_selector( 'body .editor-styles-wrapper h1, .wp-block-heading h1.editor-rich-text__tinymce, .editor-post-title__block .editor-post-title__input' );
 
-	if ( generate_get_option( 'use_legacy_typography' ) ) {
+	if ( ! generate_is_using_dynamic_typography() ) {
 		$css->add_property( 'font-family', 'inherit' === $h1_family || '' === $h1_family ? $body_family : $h1_family );
 		$css->add_property( 'font-weight', $font_settings['heading_1_weight'] );
 		$css->add_property( 'text-transform', $font_settings['heading_1_transform'] );
@@ -314,7 +314,7 @@ function generate_do_inline_block_editor_css() {
 
 	$css->set_selector( 'body .editor-styles-wrapper h2, .wp-block-heading h2.editor-rich-text__tinymce' );
 
-	if ( generate_get_option( 'use_legacy_typography' ) ) {
+	if ( ! generate_is_using_dynamic_typography() ) {
 		$css->add_property( 'font-family', $h2_family );
 		$css->add_property( 'font-weight', $font_settings['heading_2_weight'] );
 		$css->add_property( 'text-transform', $font_settings['heading_2_transform'] );
@@ -334,7 +334,7 @@ function generate_do_inline_block_editor_css() {
 
 	$css->set_selector( 'body .editor-styles-wrapper h3, .wp-block-heading h3.editor-rich-text__tinymce' );
 
-	if ( generate_get_option( 'use_legacy_typography' ) ) {
+	if ( ! generate_is_using_dynamic_typography() ) {
 		$css->add_property( 'font-family', $h3_family );
 		$css->add_property( 'font-weight', $font_settings['heading_3_weight'] );
 		$css->add_property( 'text-transform', $font_settings['heading_3_transform'] );
@@ -354,7 +354,7 @@ function generate_do_inline_block_editor_css() {
 
 	$css->set_selector( 'body .editor-styles-wrapper h4, .wp-block-heading h4.editor-rich-text__tinymce' );
 
-	if ( generate_get_option( 'use_legacy_typography' ) ) {
+	if ( ! generate_is_using_dynamic_typography() ) {
 		$css->add_property( 'font-family', $h4_family );
 		$css->add_property( 'font-weight', $font_settings['heading_4_weight'] );
 		$css->add_property( 'text-transform', $font_settings['heading_4_transform'] );
@@ -382,7 +382,7 @@ function generate_do_inline_block_editor_css() {
 
 	$css->set_selector( 'body .editor-styles-wrapper h5, .wp-block-heading h5.editor-rich-text__tinymce' );
 
-	if ( generate_get_option( 'use_legacy_typography' ) ) {
+	if ( ! generate_is_using_dynamic_typography() ) {
 		$css->add_property( 'font-family', $h5_family );
 		$css->add_property( 'font-weight', $font_settings['heading_5_weight'] );
 		$css->add_property( 'text-transform', $font_settings['heading_5_transform'] );
@@ -410,7 +410,7 @@ function generate_do_inline_block_editor_css() {
 
 	$css->set_selector( 'body .editor-styles-wrapper h6, .wp-block-heading h6.editor-rich-text__tinymce' );
 
-	if ( generate_get_option( 'use_legacy_typography' ) ) {
+	if ( ! generate_is_using_dynamic_typography() ) {
 		$css->add_property( 'font-family', $h6_family );
 		$css->add_property( 'font-weight', $font_settings['heading_6_weight'] );
 		$css->add_property( 'text-transform', $font_settings['heading_6_transform'] );
@@ -438,7 +438,7 @@ function generate_do_inline_block_editor_css() {
 
 	$css->set_selector( '.editor-styles-wrapper a.button, .block-editor-block-list__layout .wp-block-button .wp-block-button__link' );
 
-	if ( generate_get_option( 'use_legacy_typography' ) ) {
+	if ( ! generate_is_using_dynamic_typography() ) {
 		$css->add_property( 'font-family', $buttons_family );
 		$css->add_property( 'font-weight', $font_settings['buttons_font_weight'] );
 		$css->add_property( 'text-transform', $font_settings['buttons_font_transform'] );
