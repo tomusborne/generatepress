@@ -99,10 +99,19 @@ class GeneratePress_Typography {
 	/**
 	 * Build our typography CSS.
 	 *
+	 * @param string $module The name of the module we're generating CSS for.
 	 * @param string $type Either frontend or editor.
 	 */
-	public static function get_css( $type = 'frontend' ) {
+	public static function get_css( $module = 'core', $type = 'frontend' ) {
 		$typography = generate_get_option( 'typography' );
+
+		// Get data for a specific module so CSS can be compiled separately.
+		$typography = array_filter(
+			(array) $typography,
+			function( $data ) use ( $module ) {
+				return ( isset( $data['module'] ) && $data['module'] === $module );
+			}
+		);
 
 		if ( ! empty( $typography ) ) {
 			$css = new GeneratePress_CSS();

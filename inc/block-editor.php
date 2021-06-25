@@ -111,7 +111,7 @@ function generate_enqueue_backend_block_editor_assets() {
 
 		if ( ! generate_get_option( 'use_legacy_typography' ) ) {
 			wp_enqueue_style( 'generate-editor-typography', get_template_directory_uri() . '/assets/css/admin/editor-typography.css', false, GENERATE_VERSION, 'all' );
-			wp_add_inline_style( 'generate-editor-typography', wp_strip_all_tags( GeneratePress_Typography::get_css( 'editor' ) ) );
+			wp_add_inline_style( 'generate-editor-typography', wp_strip_all_tags( GeneratePress_Typography::get_css( 'core', 'editor' ) ) );
 		}
 	}
 
