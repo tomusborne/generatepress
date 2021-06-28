@@ -20,7 +20,6 @@ require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-typography
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-upsell-section.php';
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-upsell-control.php';
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-deprecated.php';
-require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-redirect-control.php';
 
 // Helper functions.
 require_once trailingslashit( dirname( __FILE__ ) ) . 'helpers.php';
