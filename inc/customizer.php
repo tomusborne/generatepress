@@ -53,7 +53,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 		if ( method_exists( $wp_customize, 'register_control_type' ) ) {
 			$wp_customize->register_control_type( 'Generate_Customize_Misc_Control' );
 			$wp_customize->register_control_type( 'Generate_Range_Slider_Control' );
-			$wp_customize->register_control_type( 'Generate_Customize_Redirect_Control' );
 		}
 
 		if ( method_exists( $wp_customize, 'register_section_type' ) ) {
