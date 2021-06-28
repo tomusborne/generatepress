@@ -45,6 +45,8 @@ class Generate_Customize_Redirect_Control extends WP_Customize_Control {
 	public $classes = 'components-button is-tertiary';
 
 	/**
+	 * Refresh the parameters passed to the JavaScript via JSON.
+	 *
 	 * @inheritdoc
 	 */
 	public function to_json() {
@@ -54,11 +56,13 @@ class Generate_Customize_Redirect_Control extends WP_Customize_Control {
 	}
 
 	/**
+	 * An Underscore (JS) template for this control's content (but not its container).
+	 *
 	 * @inheritdoc
 	 */
 	public function content_template() {
-		printf('
-			<a class="{{ data.classes }}" onClick="wp.customize.section( \'{{ data.target_section }}\' ).focus();">
+		printf(
+			'<a class="{{ data.classes }}" onClick="wp.customize.section( \'{{ data.target_section }}\' ).focus();">
  				{{ data.label }} &#8594;
  			</a>'
 		);
