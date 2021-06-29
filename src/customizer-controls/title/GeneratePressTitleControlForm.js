@@ -19,21 +19,27 @@ const GeneratePressTitleControlForm = ( props ) => {
 	const [ isToggled, setToggle ] = useState( false );
 
 	const onClick = () => {
-		const toggleAreas = document.querySelectorAll( '[data-toggleId="' + props.choices.toggleId + '"]' );
+		if ( props.choices.sectionRedirect ) {
+			wp.customize.section( props.choices.toggleId ).focus();
+		} else {
+			const toggleAreas = document.querySelectorAll( '[data-toggleId="' + props.choices.toggleId + '"]' );
 
-		toggleAreas.forEach( ( area ) => {
-			if ( ! isToggled ) {
-				area.style.display = 'block';
-				setToggle( true );
-			} else {
-				area.style.display = '';
-				setToggle( false );
-			}
-		} );
+			toggleAreas.forEach( ( area ) => {
+				if ( ! isToggled ) {
+					area.style.display = 'block';
+					setToggle( true );
+				} else {
+					area.style.display = '';
+					setToggle( false );
+				}
+			} );
+		}
 	};
 
 	/* translators: Open "setting area title" settings. */
 	const tooltipText = !! props.choices.tooltipText ? props.choices.tooltipText : sprintf( __( 'Open %s Settings', 'generatepress' ), props.choices.title );
+
+	const toggleIcon = !! props.choices.sectionRedirect ? 'chevron-right' : 'chevron-down';
 
 	return (
 		<>
@@ -54,7 +60,7 @@ const GeneratePressTitleControlForm = ( props ) => {
 								className="generate-customize-control-title--toggle"
 								onClick={ onClick }
 							>
-								{ ! isToggled ? getIcon( 'chevron-down' ) : getIcon( 'chevron-up' ) }
+								{ ! isToggled ? getIcon( toggleIcon ) : getIcon( 'chevron-up' ) }
 							</Button>
 						</Tooltip>
 					</>
