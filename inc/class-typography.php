@@ -308,7 +308,7 @@ class GeneratePress_Typography {
 			}
 		}
 
-		return apply_filters( 'generate_typography_css_selector', $selector );
+		return apply_filters( 'generate_typography_css_selector', $selector, $type );
 	}
 
 	/**
