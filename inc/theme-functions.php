@@ -683,17 +683,14 @@ function generate_needs_site_branding_container() {
  * @return array Merged and filtered attributes.
  */
 function generate_parse_attr( $context, $attributes = array(), $settings = array() ) {
-	// We used to have a class-only system. Add those classes into the attribute system early.
+	// Initialize an empty class attribute so it's easier to append to in filters.
+	$attributes['class'] = '';
+
+	// We used to have a class-only system. If it's in use, add the classes.
 	$classes = generate_get_element_classes( $context );
 
 	if ( $classes ) {
 		$attributes['class'] = join( ' ', $classes );
-	} else {
-		$defaults = array(
-			'class' => sanitize_html_class( $context ),
-		);
-
-		$attributes = wp_parse_args( $attributes, $defaults );
 	}
 
 	// Contextual filter.
