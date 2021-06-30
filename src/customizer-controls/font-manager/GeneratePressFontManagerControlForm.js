@@ -90,16 +90,20 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 						}
 					};
 
-					const onFontShortcut = ( object ) => {
+					const onFontShortcut = ( value ) => {
+						if ( 'object' === typeof value ) {
+							value = value.value;
+						}
+
 						const fontValues = [ ...fonts ];
 
 						fontValues[ index ] = {
 							...fontValues[ index ],
-							fontFamily: object.value,
+							fontFamily: value,
 						};
 
 						handleChangeComplete( fontValues );
-						onFontChange( object.value );
+						onFontChange( value );
 					};
 
 					const currentFontFamily = fonts[ index ].fontFamily || '';
