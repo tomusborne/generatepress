@@ -12,7 +12,16 @@
 
 	div {
 		margin-bottom: 0;
-		align-items: center;
+	}
+
+	.components-generate-range-control--range {
+		max-height: 30px;
+	}
+
+	.components-generate-range-control-input {
+		input {
+			max-height: 30px;
+		}
 	}
 }
 
