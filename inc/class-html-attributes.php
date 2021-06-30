@@ -35,14 +35,64 @@ class GeneratePress_HTML_Attributes {
 	 *  Constructor
 	 */
 	public function __construct() {
+		add_filter( 'generate_attr_top-bar', array( $this, 'top_bar' ) );
+		add_filter( 'generate_attr_inside-top-bar', array( $this, 'inside_top_bar' ) );
 		add_filter( 'generate_attr_header', array( $this, 'site_header' ) );
+		add_filter( 'generate_attr_inside-header', array( $this, 'inside_site_header' ) );
 		add_filter( 'generate_attr_menu-toggle', array( $this, 'menu_toggle' ) );
 		add_filter( 'generate_attr_navigation', array( $this, 'primary_navigation' ) );
 		add_filter( 'generate_attr_inside-navigation', array( $this, 'primary_inner_navigation' ) );
 		add_filter( 'generate_attr_mobile-menu-control-wrapper', array( $this, 'mobile_menu_control_wrapper' ) );
 		add_filter( 'generate_attr_site-info', array( $this, 'site_info' ) );
 		add_filter( 'generate_attr_entry-header', array( $this, 'entry_header' ) );
+		add_filter( 'generate_attr_page-header', array( $this, 'page_header' ) );
+		add_filter( 'generate_attr_site-content', array( $this, 'site_content' ) );
+		add_filter( 'generate_attr_page', array( $this, 'page' ) );
+		add_filter( 'generate_attr_content', array( $this, 'content' ) );
+		add_filter( 'generate_attr_main', array( $this, 'main' ) );
 		add_filter( 'generate_attr_post-navigation', array( $this, 'post_navigation' ) );
+		add_filter( 'generate_attr_left-sidebar', array( $this, 'left_sidebar' ) );
+		add_filter( 'generate_attr_right-sidebar', array( $this, 'right_sidebar' ) );
+		add_filter( 'generate_attr_footer-widgets-container', array( $this, 'footer_widgets_container' ) );
+		add_filter( 'generate_attr_comment-body', array( $this, 'comment_body' ), 10, 2 );
+		add_filter( 'generate_attr_comment-meta', array( $this, 'comment_meta' ) );
+		add_filter( 'generate_attr_footer-entry-meta', array( $this, 'footer_entry_meta' ) );
+	}
+
+	/**
+	 * Add attributes to our top bar.
+	 *
+	 * @since 3.1.0
+	 * @param array $attributes The existing attributes.
+	 */
+	public function top_bar( $attributes ) {
+		$classes = generate_get_element_classes( 'top_bar' );
+
+		if ( $classes ) {
+			$attributes['class'] .= ' ' . join( ' ', $classes );
+		}
+
+		return $attributes;
+	}
+
+	/**
+	 * Add attributes to our inside top bar container.
+	 *
+	 * @since 3.1.0
+	 * @param array $attributes The existing attributes.
+	 */
+	public function inside_top_bar( $attributes ) {
+		$attributes['class'] .= ' inside-top-bar';
+
+		if ( 'contained' === generate_get_option( 'top_bar_inner_width' ) ) {
+			$attributes['class'] .= ' grid-container';
+
+			if ( ! generate_is_using_flexbox() ) {
+				$attributes['class'] .= ' grid-parent';
+			}
+		}
+
+		return $attributes;
 	}
 
 	/**
@@ -59,13 +109,29 @@ class GeneratePress_HTML_Attributes {
 	}
 
 	/**
+	 * Add attributes to our inside site header container.
+	 *
+	 * @since 3.1.0
+	 * @param array $attributes The existing attributes.
+	 */
+	public function inside_site_header( $attributes ) {
+		$classes = generate_get_element_classes( 'inside_header' );
+
+		if ( $classes ) {
+			$attributes['class'] .= ' ' . join( ' ', $classes );
+		}
+
+		return $attributes;
+	}
+
+	/**
 	 * Add attributes to our menu toggle.
 	 *
 	 * @since 3.1.0
 	 * @param array $attributes The existing attributes.
 	 */
 	public function menu_toggle( $attributes ) {
-		$attributes['class'] = 'menu-toggle';
+		$attributes['class'] .= ' menu-toggle';
 		$attributes['aria-controls'] = 'primary-menu';
 		$attributes['aria-expanded'] = 'false';
 
@@ -95,7 +161,7 @@ class GeneratePress_HTML_Attributes {
 		$classes = generate_get_element_classes( 'inside_navigation' );
 
 		if ( $classes ) {
-			$attributes['class'] = join( ' ', $classes );
+			$attributes['class'] .= ' ' . join( ' ', $classes );
 		}
 
 		return $attributes;
@@ -109,7 +175,7 @@ class GeneratePress_HTML_Attributes {
 	 */
 	public function mobile_menu_control_wrapper( $attributes ) {
 		$attributes['id'] = 'mobile-menu-control-wrapper';
-		$attributes['class'] = 'main-navigation mobile-menu-control-wrapper';
+		$attributes['class'] .= ' main-navigation mobile-menu-control-wrapper';
 		$attributes['aria-label'] = esc_attr__( 'Mobile Toggle', 'generatepress' );
 
 		return $attributes;
@@ -122,7 +188,7 @@ class GeneratePress_HTML_Attributes {
 	 * @param array $attributes The existing attributes.
 	 */
 	public function site_info( $attributes ) {
-		$attributes['class'] = 'site-info';
+		$attributes['class'] .= ' site-info';
 		$attributes['aria-label'] = esc_attr__( 'Site', 'generatepress' );
 
 		return $attributes;
@@ -135,8 +201,21 @@ class GeneratePress_HTML_Attributes {
 	 * @param array $attributes The existing attributes.
 	 */
 	public function entry_header( $attributes ) {
-		$attributes['class'] = 'entry-header';
+		$attributes['class'] .= ' entry-header';
 		$attributes['aria-label'] = esc_attr__( 'Content', 'generatepress' );
+
+		return $attributes;
+	}
+
+	/**
+	 * Add attributes to our page headers.
+	 *
+	 * @since 3.1.0
+	 * @param array $attributes The existing attributes.
+	 */
+	public function page_header( $attributes ) {
+		$attributes['class'] .= ' page-header';
+		$attributes['aria-label'] = esc_attr__( 'Page', 'generatepress' );
 
 		return $attributes;
 	}
@@ -149,12 +228,153 @@ class GeneratePress_HTML_Attributes {
 	 */
 	public function post_navigation( $attributes ) {
 		if ( is_single() ) {
-			$attributes['class'] = 'post-navigation';
+			$attributes['class'] .= ' post-navigation';
 			$attributes['aria-label'] = esc_attr__( 'Single Post', 'generatepress' );
 		} else {
-			$attributes['class'] = 'paging-navigation';
+			$attributes['class'] .= ' paging-navigation';
 			$attributes['aria-label'] = esc_attr__( 'Archive Page', 'generatepress' );
 		}
+
+		return $attributes;
+	}
+
+	/**
+	 * Add attributes to our page container.
+	 *
+	 * @since 3.1.0
+	 * @param array $attributes The existing attributes.
+	 */
+	public function page( $attributes ) {
+		$attributes['id'] = 'page';
+
+		return $attributes;
+	}
+
+	/**
+	 * Add attributes to our site content container.
+	 *
+	 * @since 3.1.0
+	 * @param array $attributes The existing attributes.
+	 */
+	public function site_content( $attributes ) {
+		$attributes['id'] = 'content';
+		$attributes['class'] .= ' site-content';
+
+		return $attributes;
+	}
+
+	/**
+	 * Add attributes to our primary content container.
+	 *
+	 * @since 3.1.0
+	 * @param array $attributes The existing attributes.
+	 */
+	public function content( $attributes ) {
+		$attributes['id'] = 'primary';
+
+		return $attributes;
+	}
+
+	/**
+	 * Add attributes to our primary content container.
+	 *
+	 * @since 3.1.0
+	 * @param array $attributes The existing attributes.
+	 */
+	public function main( $attributes ) {
+		$attributes['id'] = 'main';
+
+		return $attributes;
+	}
+
+	/**
+	 * Add attributes to our left sidebar.
+	 *
+	 * @since 3.1.0
+	 * @param array $attributes The existing attributes.
+	 */
+	public function left_sidebar( $attributes ) {
+		$classes = generate_get_element_classes( 'left_sidebar' );
+
+		if ( $classes ) {
+			$attributes['class'] .= ' ' . join( ' ', $classes );
+		}
+
+		$attributes['id'] = 'left-sidebar';
+
+		return $attributes;
+	}
+
+	/**
+	 * Add attributes to our right sidebar.
+	 *
+	 * @since 3.1.0
+	 * @param array $attributes The existing attributes.
+	 */
+	public function right_sidebar( $attributes ) {
+		$classes = generate_get_element_classes( 'right_sidebar' );
+
+		if ( $classes ) {
+			$attributes['class'] .= ' ' . join( ' ', $classes );
+		}
+
+		$attributes['id'] = 'right-sidebar';
+
+		return $attributes;
+	}
+
+	/**
+	 * Add attributes to our footer widget inner container.
+	 *
+	 * @since 3.1.0
+	 * @param array $attributes The existing attributes.
+	 */
+	public function footer_widgets_container( $attributes ) {
+		$classes = generate_get_element_classes( 'inside_footer' );
+
+		if ( $classes ) {
+			$attributes['class'] .= ' ' . join( ' ', $classes );
+		}
+
+		return $attributes;
+	}
+
+	/**
+	 * Add attributes to our footer widget inner container.
+	 *
+	 * @since 3.1.0
+	 * @param array $attributes The existing attributes.
+	 * @param array $settings Settings passed through the function.
+	 */
+	public function comment_body( $attributes, $settings ) {
+		$attributes['class'] .= ' comment-body';
+		$attributes['id'] = 'div-comment-' . $settings['comment-id'];
+
+		return $attributes;
+	}
+
+	/**
+	 * Add attributes to our comment meta.
+	 *
+	 * @since 3.1.0
+	 * @param array $attributes The existing attributes.
+	 */
+	public function comment_meta( $attributes ) {
+		$attributes['class'] .= ' comment-meta';
+		$attributes['aria-label'] = esc_attr__( 'Comment meta', 'generatepress' );
+
+		return $attributes;
+	}
+
+	/**
+	 * Add attributes to our footer entry meta.
+	 *
+	 * @since 3.1.0
+	 * @param array $attributes The existing attributes.
+	 */
+	public function footer_entry_meta( $attributes ) {
+		$attributes['class'] .= ' entry-meta';
+		$attributes['aria-label'] = esc_attr__( 'Entry meta', 'generatepress' );
 
 		return $attributes;
 	}

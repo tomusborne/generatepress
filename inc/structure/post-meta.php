@@ -547,7 +547,7 @@ if ( ! function_exists( 'generate_footer_meta' ) ) {
 	 */
 	function generate_footer_meta() {
 		?>
-		<footer class="entry-meta">
+		<footer <?php generate_do_attr( 'footer-entry-meta' ); ?>>
 			<?php generate_entry_meta(); ?>
 		</footer>
 		<?php

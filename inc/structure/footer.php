@@ -173,7 +173,7 @@ if ( ! function_exists( 'generate_construct_footer_widgets' ) ) {
 			}
 			?>
 			<div id="footer-widgets" class="site footer-widgets">
-				<div <?php generate_do_element_classes( 'inside_footer' ); ?>>
+				<div <?php generate_do_attr( 'footer-widgets-container' ); ?>>
 					<div class="inside-footer-widgets">
 						<?php
 						if ( $widgets >= 1 ) {

@@ -56,7 +56,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	do_action( 'generate_after_header' );
 	?>
 
-	<div id="page" <?php generate_do_element_classes( 'page' ); ?>>
+	<div <?php generate_do_attr( 'page' ); ?>>
 		<?php
 		/**
 		 * generate_inside_site_container hook.
@@ -65,7 +65,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		 */
 		do_action( 'generate_inside_site_container' );
 		?>
-		<div id="content" class="site-content">
+		<div <?php generate_do_attr( 'site-content' ); ?>>
 			<?php
 			/**
 			 * generate_inside_container hook.
