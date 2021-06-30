@@ -299,13 +299,15 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 		require_once $fields_dir . '/footer-bar.php';
 		require_once $fields_dir . '/back-to-top.php';
 
+		do_action( 'generate_customize_after_controls', $wp_customize );
+
 		$wp_customize->add_section(
 			'generate_typography_section',
 			array(
 				'title' => esc_attr__( 'Typography', 'generatepress' ),
 				'priority' => 35,
 				'active_callback' => function() {
-					if ( generate_get_option( 'use_legacy_typography' ) ) {
+					if ( ! generate_is_using_dynamic_typography() ) {
 						return false;
 					}
 
@@ -1449,19 +1451,19 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 
 		if ( $show_legacy_typography_option ) {
 			$wp_customize->add_setting(
-				'generate_settings[use_legacy_typography]',
+				'generate_settings[use_dynamic_typography]',
 				array(
-					'default' => $defaults['use_legacy_typography'],
+					'default' => $defaults['use_dynamic_typography'],
 					'type' => 'option',
 					'sanitize_callback' => 'generate_sanitize_checkbox',
 				)
 			);
 
 			$wp_customize->add_control(
-				'generate_settings[use_legacy_typography]',
+				'generate_settings[use_dynamic_typography]',
 				array(
 					'type' => 'checkbox',
-					'label' => __( 'Use legacy typography system', 'generatepress' ),
+					'label' => __( 'Use dynamic typography system', 'generatepress' ),
 					'description' => sprintf(
 						'<strong>%1$s</strong> %2$s',
 						__( 'Caution:', 'generatepress' ),
@@ -1472,7 +1474,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 						)
 					),
 					'section' => 'generate_general_section',
-					'settings' => 'generate_settings[use_legacy_typography]',
+					'settings' => 'generate_settings[use_dynamic_typography]',
 				)
 			);
 		}

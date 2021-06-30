@@ -343,7 +343,7 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->set_selector( '.main-navigation .main-nav ul ul li a' );
 		$css->add_property( 'color', $settings['subnavigation_text_color'] );
 
-		$css->set_selector( '.main-navigation .main-nav ul ul li:not([class*="current-menu-"]):hover > a,.main-navigation .main-nav ul ul li:not([class*="current-menu-"]):focus > a,.main-navigation .main-nav ul ul li:not([class*="current-menu-"]).sfHover > a' );
+		$css->set_selector( '.main-navigation .main-nav ul ul li:not([class*="current-menu-"]):hover > a,.main-navigation .main-nav ul ul li:not([class*="current-menu-"]):focus > a, .main-navigation .main-nav ul ul li.sfHover:not([class*="current-menu-"]) > a' );
 		$css->add_property( 'color', $settings['subnavigation_text_hover_color'] );
 		$css->add_property( 'background-color', $settings['subnavigation_background_hover_color'] );
 
@@ -1183,10 +1183,10 @@ function generate_no_cache_dynamic_css() {
  * @since 3.0.0
  */
 function generate_get_dynamic_css() {
-	if ( generate_get_option( 'use_legacy_typography' ) ) {
-		$typography_css = generate_font_css();
-	} else {
+	if ( generate_is_using_dynamic_typography() ) {
 		$typography_css = GeneratePress_Typography::get_css();
+	} else {
+		$typography_css = generate_font_css();
 	}
 
 	$css = generate_base_css() . $typography_css . generate_advanced_css() . generate_spacing_css();
