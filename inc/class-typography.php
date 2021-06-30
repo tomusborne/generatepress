@@ -135,6 +135,11 @@ class GeneratePress_Typography {
 				);
 
 				$selector = self::get_css_selector( $options['selector'], $type );
+
+				if ( 'custom' === $selector ) {
+					$selector = $options['customSelector'];
+				}
+
 				$font_family = self::get_font_family( $options['fontFamily'] );
 
 				$css->set_selector( $selector );
