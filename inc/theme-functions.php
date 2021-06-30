@@ -720,6 +720,11 @@ function generate_get_attr( $context, $attributes = array(), $settings = array()
 			continue;
 		}
 
+		// Remove any whitespace at the start or end of our classes.
+		if ( 'class' === $key ) {
+			$value = trim( $value );
+		}
+
 		if ( true === $value ) {
 			$output .= esc_html( $key ) . ' ';
 		} else {
