@@ -69,6 +69,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 	} );
 
 	const isValidGoogleFont = ( font ) => Object.keys( googleFonts ).includes( font );
+	const fontFamilyExists = ( fontFamily ) => fonts.filter(font => font.fontFamily === fontFamily).length > 0;
 
 	return (
 		<div>
@@ -112,19 +113,15 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 						propagateChanges( fontValues[ index ].fontFamily, previousValue.fontFamily );
 					};
 
+					const onFontSelect = (font) => onFontChange( font.value );
+
 					const onFontShortcut = ( value ) => {
-						if ( 'object' === typeof value ) {
-							value = value.value;
+						if ( fontFamilyExists( value ) ) {
+							alert( __( 'Font already selected', 'generatepress' ) );
+
+							value = '';
 						}
 
-						const fontValues = [ ...fonts ];
-
-						fontValues[ index ] = {
-							...fontValues[ index ],
-							fontFamily: value,
-						};
-
-						handleChangeComplete( fontValues );
 						onFontChange( value );
 					};
 
@@ -189,7 +186,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 										<AdvancedSelect
 											options={ fontFamilies }
 											placeholder={ __( 'Search fonts…', 'generatepress' ) }
-											onChange={ onFontShortcut }
+											onChange={ onFontSelect }
 										/>
 
 										<TextControl
