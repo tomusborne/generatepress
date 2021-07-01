@@ -48,6 +48,12 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 		},
 	];
 
+	fonts.forEach(font => {
+		const index = font.googleFont ? 1 : 0;
+
+		fontFamilies[index].options = fontFamilies[index].options.filter(obj => obj.value !== font.fontFamily);
+	});
+
 	const isValidGoogleFont = ( font ) => Object.keys( googleFonts ).includes( font );
 
 	return (
