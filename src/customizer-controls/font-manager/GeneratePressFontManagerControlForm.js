@@ -26,16 +26,16 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 		wp.customize.control( props.customizerSetting.id ).setting.set( value );
 	};
 
-	const propagateChanges = (currentFontFamily, previousFontFamily) => {
+	const propagateChanges = ( currentFontFamily, previousFontFamily ) => {
 		const typographyControl = wp.customize.control( 'generate_settings[typography]' );
 
-		typographyControl.setting.set(typographyControl.setting.get().map(typography => {
+		typographyControl.setting.set( typographyControl.setting.get().map( ( typography ) => {
 			if ( typography.fontFamily === previousFontFamily ) {
 				typography.fontFamily = currentFontFamily;
 			}
 
 			return typography;
-		}));
+		} ) );
 
 		typographyControl.renderContent();
 	};
@@ -62,11 +62,11 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 		},
 	];
 
-	fonts.forEach(font => {
+	fonts.forEach( ( font ) => {
 		const index = font.googleFont ? 1 : 0;
 
-		fontFamilies[index].options = fontFamilies[index].options.filter(obj => obj.value !== font.fontFamily);
-	});
+		fontFamilies[ index ].options = fontFamilies[ index ].options.filter( ( obj ) => obj.value !== font.fontFamily );
+	} );
 
 	const isValidGoogleFont = ( font ) => Object.keys( googleFonts ).includes( font );
 
