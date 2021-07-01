@@ -26,6 +26,20 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 		wp.customize.control( props.customizerSetting.id ).setting.set( value );
 	};
 
+	const propagateChanges = (currentFontFamily, previousFontFamily) => {
+		const typographyControl = wp.customize.control( 'generate_settings[typography]' );
+
+		typographyControl.setting.set(typographyControl.setting.get().map(typography => {
+			if ( typography.fontFamily === previousFontFamily ) {
+				typography.fontFamily = currentFontFamily;
+			}
+
+			return typography;
+		}));
+
+		typographyControl.renderContent();
+	};
+
 	const toggleClose = () => {
 		setOpen( 0 );
 	};
@@ -66,6 +80,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 
 					const onFontChange = ( value ) => {
 						const fontValues = [ ...fonts ];
+						const previousValue = fontValues[ index ];
 
 						fontValues[ index ] = {
 							...fontValues[ index ],
@@ -93,6 +108,8 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 
 							handleChangeComplete( fontValues );
 						}
+
+						propagateChanges( fontValues[ index ].fontFamily, previousValue.fontFamily );
 					};
 
 					const onFontShortcut = ( value ) => {
