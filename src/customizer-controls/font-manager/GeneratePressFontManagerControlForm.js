@@ -36,7 +36,6 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 		{
 			label: __( 'System fonts', 'generatepress' ),
 			options: [
-				{ value: 'System Default', label: __( 'System Default', 'generatepress' ) },
 				{ value: 'Arial', label: 'Arial' },
 				{ value: 'Helvetica', label: 'Helvetica' },
 				{ value: 'Times New Roman', label: 'Times New Roman' },
