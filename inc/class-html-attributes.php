@@ -44,6 +44,7 @@ class GeneratePress_HTML_Attributes {
 		add_filter( 'generate_attr_inside-navigation', array( $this, 'primary_inner_navigation' ) );
 		add_filter( 'generate_attr_mobile-menu-control-wrapper', array( $this, 'mobile_menu_control_wrapper' ) );
 		add_filter( 'generate_attr_site-info', array( $this, 'site_info' ) );
+		add_filter( 'generate_attr_inside-site-info', array( $this, 'inside_site_info' ) );
 		add_filter( 'generate_attr_entry-header', array( $this, 'entry_header' ) );
 		add_filter( 'generate_attr_page-header', array( $this, 'page_header' ) );
 		add_filter( 'generate_attr_site-content', array( $this, 'site_content' ) );
@@ -190,6 +191,26 @@ class GeneratePress_HTML_Attributes {
 	public function site_info( $attributes ) {
 		$attributes['class'] .= ' site-info';
 		$attributes['aria-label'] = esc_attr__( 'Site', 'generatepress' );
+
+		return $attributes;
+	}
+
+	/**
+	 * Add attributes to our inside site info container.
+	 *
+	 * @since 3.1.0
+	 * @param array $attributes The existing attributes.
+	 */
+	public function inside_site_info( $attributes ) {
+		$attributes['class'] .= ' inside-site-info';
+
+		if ( 'full-width' !== generate_get_option( 'footer_inner_width' ) ) {
+			$attributes['class'] .= ' grid-container';
+
+			if ( ! generate_is_using_flexbox() ) {
+				$attributes['class'] .= ' grid-parent';
+			}
+		}
 
 		return $attributes;
 	}
