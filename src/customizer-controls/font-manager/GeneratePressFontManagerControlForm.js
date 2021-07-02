@@ -117,7 +117,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 						propagateChanges( fontValues[ index ].fontFamily, previousValue.fontFamily );
 					};
 
-					const onFontSelect = ( font ) => onFontChange( font.value );
+					const onFontSelect = ( newFont ) => onFontChange( newFont.value );
 
 					const onFontShortcut = ( value ) => {
 						if ( fontFamilyExists( value ) ) {
