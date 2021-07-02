@@ -13,6 +13,16 @@
 	div {
 		margin-bottom: 0;
 	}
+
+	.components-generate-range-control--range {
+		max-height: 30px;
+	}
+
+	.components-generate-range-control-input {
+		input {
+			max-height: 30px;
+		}
+	}
 }
 
 .generate-component-control--unit-picker {
