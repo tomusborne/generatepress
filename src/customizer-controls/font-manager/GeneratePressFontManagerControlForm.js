@@ -69,7 +69,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 	} );
 
 	const isValidGoogleFont = ( font ) => Object.keys( googleFonts ).includes( font );
-	const fontFamilyExists = ( fontFamily ) => fonts.filter(font => font.fontFamily === fontFamily).length > 0;
+	const fontFamilyExists = ( fontFamily ) => fonts.filter( ( font ) => font.fontFamily === fontFamily ).length > 0;
 
 	return (
 		<div>
@@ -113,10 +113,11 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 						propagateChanges( fontValues[ index ].fontFamily, previousValue.fontFamily );
 					};
 
-					const onFontSelect = (font) => onFontChange( font.value );
+					const onFontSelect = ( font ) => onFontChange( font.value );
 
 					const onFontShortcut = ( value ) => {
 						if ( fontFamilyExists( value ) ) {
+							// eslint-disable-next-line
 							alert( __( 'Font already selected', 'generatepress' ) );
 
 							value = '';
