@@ -124,12 +124,11 @@ const GeneratePressTypographyControl = wp.customize.Control.extend( {
 	 *
 	 * This is called from the Control#embed() method in the parent class.
 	 *
-	 * @param {Array} newSetting Pass a new setting to render if needed.
 	 * @return {void}
 	 */
-	renderContent: function renderContent( newSetting ) {
+	renderContent: function renderContent() {
 		const control = this;
-		const value = newSetting ? newSetting : control.setting.get();
+		const value = control.setting.get();
 
 		const form = <SlotFillProvider>
 			<GeneratePressTypographyControlForm
