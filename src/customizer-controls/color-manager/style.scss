@@ -4,8 +4,12 @@
 
 	.generate-color-manager--item {
 		position: relative;
-		margin-right: 10px;
-		margin-bottom: 10px;
+		margin-right: 5px;
+		margin-bottom: 5px;
+
+		&:last-child {
+			margin-right: 0;
+		}
 
 		.components-button.generate-color-manager--delete-color {
 			position: absolute;

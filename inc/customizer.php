@@ -299,6 +299,8 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 		require_once $fields_dir . '/footer-bar.php';
 		require_once $fields_dir . '/back-to-top.php';
 
+		do_action( 'generate_customize_after_controls', $wp_customize );
+
 		$wp_customize->add_section(
 			'generate_typography_section',
 			array(
@@ -389,9 +391,9 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 						'fontFamily' => 'sanitize_text_field',
 						'fontWeight' => 'sanitize_text_field',
 						'textTransform' => 'sanitize_text_field',
-						'fontSize' => 'generate_sanitize_empty_absint',
-						'fontSizeTablet' => 'generate_sanitize_empty_absint',
-						'fontSizeMobile' => 'generate_sanitize_empty_absint',
+						'fontSize' => 'generate_sanitize_empty_decimal_integer',
+						'fontSizeTablet' => 'generate_sanitize_empty_decimal_integer',
+						'fontSizeMobile' => 'generate_sanitize_empty_decimal_integer',
 						'fontSizeUnit' => 'sanitize_text_field',
 						'lineHeight' => 'generate_sanitize_empty_decimal_integer',
 						'lineHeightTablet' => 'generate_sanitize_empty_decimal_integer',
