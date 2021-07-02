@@ -29,15 +29,16 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 	const propagateChanges = ( currentFontFamily, previousFontFamily ) => {
 		const typographyControl = wp.customize.control( 'generate_settings[typography]' );
 
-		typographyControl.setting.set( typographyControl.setting.get().map( ( typography ) => {
+		const newTypographySetting = typographyControl.setting.get().map( ( typography ) => {
 			if ( typography.fontFamily === previousFontFamily ) {
 				typography.fontFamily = currentFontFamily;
 			}
 
 			return typography;
-		} ) );
+		} );
 
-		typographyControl.renderContent();
+		typographyControl.setting.set( newTypographySetting );
+		typographyControl.renderContent( newTypographySetting );
 	};
 
 	const toggleClose = () => {
