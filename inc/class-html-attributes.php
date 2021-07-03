@@ -48,7 +48,6 @@ class GeneratePress_HTML_Attributes {
 	 */
 	public function parse_attributes( $attributes, $context, $settings ) {
 		switch ( $context ) {
-
 			case 'top-bar':
 				return $this->top_bar( $attributes );
 
@@ -118,6 +117,8 @@ class GeneratePress_HTML_Attributes {
 			case 'footer-entry-meta':
 				return $this->footer_entry_meta( $attributes );
 		}
+
+		return $attributes;
 	}
 
 	/**
