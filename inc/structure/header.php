@@ -378,7 +378,7 @@ if ( ! function_exists( 'generate_pingback_header' ) ) {
 }
 
 if ( ! function_exists( 'generate_add_viewport' ) ) {
-	add_action( 'wp_head', 'generate_add_viewport' );
+	add_action( 'wp_head', 'generate_add_viewport', 1 );
 	/**
 	 * Add viewport to wp_head.
 	 *
