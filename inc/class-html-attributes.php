@@ -35,29 +35,89 @@ class GeneratePress_HTML_Attributes {
 	 *  Constructor
 	 */
 	public function __construct() {
-		add_filter( 'generate_attr_top-bar', array( $this, 'top_bar' ) );
-		add_filter( 'generate_attr_inside-top-bar', array( $this, 'inside_top_bar' ) );
-		add_filter( 'generate_attr_header', array( $this, 'site_header' ) );
-		add_filter( 'generate_attr_inside-header', array( $this, 'inside_site_header' ) );
-		add_filter( 'generate_attr_menu-toggle', array( $this, 'menu_toggle' ) );
-		add_filter( 'generate_attr_navigation', array( $this, 'primary_navigation' ) );
-		add_filter( 'generate_attr_inside-navigation', array( $this, 'primary_inner_navigation' ) );
-		add_filter( 'generate_attr_mobile-menu-control-wrapper', array( $this, 'mobile_menu_control_wrapper' ) );
-		add_filter( 'generate_attr_site-info', array( $this, 'site_info' ) );
-		add_filter( 'generate_attr_inside-site-info', array( $this, 'inside_site_info' ) );
-		add_filter( 'generate_attr_entry-header', array( $this, 'entry_header' ) );
-		add_filter( 'generate_attr_page-header', array( $this, 'page_header' ) );
-		add_filter( 'generate_attr_site-content', array( $this, 'site_content' ) );
-		add_filter( 'generate_attr_page', array( $this, 'page' ) );
-		add_filter( 'generate_attr_content', array( $this, 'content' ) );
-		add_filter( 'generate_attr_main', array( $this, 'main' ) );
-		add_filter( 'generate_attr_post-navigation', array( $this, 'post_navigation' ) );
-		add_filter( 'generate_attr_left-sidebar', array( $this, 'left_sidebar' ) );
-		add_filter( 'generate_attr_right-sidebar', array( $this, 'right_sidebar' ) );
-		add_filter( 'generate_attr_footer-widgets-container', array( $this, 'footer_widgets_container' ) );
-		add_filter( 'generate_attr_comment-body', array( $this, 'comment_body' ), 10, 2 );
-		add_filter( 'generate_attr_comment-meta', array( $this, 'comment_meta' ) );
-		add_filter( 'generate_attr_footer-entry-meta', array( $this, 'footer_entry_meta' ) );
+		add_filter( 'generate_parse_attr', array( $this, 'parse_attributes' ), 10, 3 );
+	}
+
+	/**
+	 * Parse the attributes.
+	 *
+	 * @since 3.1.0
+	 * @param array  $attributes The current attributes.
+	 * @param string $context The context in which attributes are applied.
+	 * @param array  $settings Custom settings passed to the filter.
+	 */
+	public function parse_attributes( $attributes, $context, $settings ) {
+		switch ( $context ) {
+
+			case 'top-bar':
+				return $this->top_bar( $attributes );
+
+			case 'inside-top-bar':
+				return $this->inside_top_bar( $attributes );
+
+			case 'header':
+				return $this->site_header( $attributes );
+
+			case 'inside-header':
+				return $this->inside_site_header( $attributes );
+
+			case 'menu-toggle':
+				return $this->menu_toggle( $attributes );
+
+			case 'navigation':
+				return $this->primary_navigation( $attributes );
+
+			case 'inside-navigation':
+				return $this->primary_inner_navigation( $attributes );
+
+			case 'mobile-menu-control-wrapper':
+				return $this->mobile_menu_control_wrapper( $attributes );
+
+			case 'site-info':
+				return $this->site_info( $attributes );
+
+			case 'inside-site-info':
+				return $this->inside_site_info( $attributes );
+
+			case 'entry-header':
+				return $this->entry_header( $attributes );
+
+			case 'page-header':
+				return $this->page_header( $attributes );
+
+			case 'site-content':
+				return $this->site_content( $attributes );
+
+			case 'page':
+				return $this->page( $attributes );
+
+			case 'content':
+				return $this->content( $attributes );
+
+			case 'main':
+				return $this->main( $attributes );
+
+			case 'post-navigation':
+				return $this->post_navigation( $attributes );
+
+			case 'left-sidebar':
+				return $this->left_sidebar( $attributes );
+
+			case 'right-sidebar':
+				return $this->right_sidebar( $attributes );
+
+			case 'footer-widgets-container':
+				return $this->footer_widgets_container( $attributes );
+
+			case 'comment-body':
+				return $this->comment_body( $attributes, $settings );
+
+			case 'comment-meta':
+				return $this->comment_meta( $attributes );
+
+			case 'footer-entry-meta':
+				return $this->footer_entry_meta( $attributes );
+		}
 	}
 
 	/**
