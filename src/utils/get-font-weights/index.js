@@ -4,7 +4,7 @@ import {
 	__,
 } from '@wordpress/i18n';
 
-export default function getFontWeight( fontFamily ) {
+export default function getFontWeight( fontFamily, availableFonts ) {
 	let weight = [
 		{ value: '', 		label: __( 'Default', 'generatepress' ) },
 		{ value: 'normal', 	label: __( 'Normal', 'generatepress' ) },
@@ -20,26 +20,37 @@ export default function getFontWeight( fontFamily ) {
 		{ value: '900', 	label: '900' },
 	];
 
-	if ( 'undefined' !== typeof googleFonts[ fontFamily ] && 'undefined' !== typeof googleFonts[ fontFamily ].variants ) {
+	if ( 'undefined' !== typeof googleFonts[ fontFamily ] && 'undefined' !== availableFonts.googleFontVariants ) {
 		weight = [
 			{ value: '', label: __( 'Default', 'generatepress' ) },
 			{ value: 'normal', label: __( 'Normal', 'generatepress' ) },
 			{ value: 'bold', label: __( 'Bold', 'generatepress' ) },
 		];
 
-		googleFonts[ fontFamily ].variants.filter( function( k ) {
-			const hasLetters = k.match( /[a-z]/g );
-			const hasNumbers = k.match( /[0-9]/g );
-
-			if ( ( hasLetters && hasNumbers ) || 'italic' === k || 'regular' === k ) {
-				return false;
+		availableFonts.filter( function( font ) {
+			if ( font.fontFamily === fontFamily ) {
+				return true;
 			}
 
-			return true;
-		} ).forEach( ( k ) => {
-			weight.push(
-				{ value: k, label: k }
-			);
+			return false;
+		} ).forEach( ( font ) => {
+			let variants = font.googleFontVariants.replaceAll( ' ', '' );
+			variants = variants.split( ',' );
+
+			variants.filter( function( variant ) {
+				const hasLetters = variant.match( /[a-z]/g );
+				const hasNumbers = variant.match( /[0-9]/g );
+
+				if ( ( hasLetters && hasNumbers ) || 'italic' === variant || 'regular' === variant || '' === variant ) {
+					return false;
+				}
+
+				return true;
+			} ).forEach( ( variant ) => {
+				weight.push(
+					{ value: variant, label: variant }
+				);
+			} );
 		} );
 	}
 

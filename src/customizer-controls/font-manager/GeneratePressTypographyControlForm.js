@@ -304,7 +304,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 												<SelectControl
 													label={ __( 'Font Weight', 'generatepress' ) }
 													value={ fonts[ index ].fontWeight }
-													options={ getFontWeights( fonts[ index ].fontFamily ) }
+													options={ getFontWeights( fonts[ index ].fontFamily, availableFonts ) }
 													onChange={ ( value ) => {
 														const fontValues = [ ...fonts ];
 
