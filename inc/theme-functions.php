@@ -694,7 +694,7 @@ function generate_parse_attr( $context, $attributes = array(), $settings = array
 	}
 
 	// Contextual filter.
-	return apply_filters( 'generate_do_attribute', $attributes, $context, $settings );
+	return apply_filters( 'generate_parse_attr', $attributes, $context, $settings );
 }
 
 /**
@@ -741,7 +741,7 @@ function generate_get_attr( $context, $attributes = array(), $settings = array()
 
 	$output .= $after;
 
-	$output = apply_filters( 'generate_do_attribute_output', $output, $attributes, $context, $settings );
+	$output = apply_filters( 'generate_get_attr_output', $output, $attributes, $context, $settings );
 
 	return trim( $output );
 }
