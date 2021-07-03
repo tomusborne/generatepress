@@ -41,7 +41,7 @@ export default function getFontWeight( fontFamily, availableFonts ) {
 				const hasLetters = variant.match( /[a-z]/g );
 				const hasNumbers = variant.match( /[0-9]/g );
 
-				if ( ( hasLetters && hasNumbers ) || 'italic' === variant || 'regular' === variant ) {
+				if ( ( hasLetters && hasNumbers ) || 'italic' === variant || 'regular' === variant || '' === variant ) {
 					return false;
 				}
 
