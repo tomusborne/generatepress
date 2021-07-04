@@ -26,6 +26,24 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 		wp.customize.control( props.customizerSetting.id ).setting.set( value );
 	};
 
+	const propagateChanges = ( currentFontFamily, previousFontFamily ) => {
+		const typographyControl = wp.customize.control( 'generate_settings[typography]' );
+		const fonts = typographyControl.setting.get();
+		const fontValues = [ ...fonts ];
+
+		fonts.forEach( ( typography, index ) => {
+			if ( typography.fontFamily === previousFontFamily ) {
+				fontValues[ index ] = {
+					...fontValues[ index ],
+					fontFamily: currentFontFamily,
+				};
+			}
+		} );
+
+		typographyControl.setting.set( fontValues );
+		typographyControl.renderContent();
+	};
+
 	const toggleClose = () => {
 		setOpen( 0 );
 	};
@@ -36,7 +54,6 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 		{
 			label: __( 'System fonts', 'generatepress' ),
 			options: [
-				{ value: 'System Default', label: __( 'System Default', 'generatepress' ) },
 				{ value: 'Arial', label: 'Arial' },
 				{ value: 'Helvetica', label: 'Helvetica' },
 				{ value: 'Times New Roman', label: 'Times New Roman' },
@@ -49,7 +66,14 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 		},
 	];
 
+	fonts.forEach( ( font ) => {
+		const index = font.googleFont ? 1 : 0;
+
+		fontFamilies[ index ].options = fontFamilies[ index ].options.filter( ( obj ) => obj.value !== font.fontFamily );
+	} );
+
 	const isValidGoogleFont = ( font ) => Object.keys( googleFonts ).includes( font );
+	const fontFamilyExists = ( fontFamily ) => fonts.filter( ( font ) => font.fontFamily === fontFamily ).length > 0;
 
 	return (
 		<div>
@@ -61,6 +85,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 
 					const onFontChange = ( value ) => {
 						const fontValues = [ ...fonts ];
+						const previousValue = fontValues[ index ];
 
 						fontValues[ index ] = {
 							...fontValues[ index ],
@@ -88,21 +113,20 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 
 							handleChangeComplete( fontValues );
 						}
+
+						propagateChanges( fontValues[ index ].fontFamily, previousValue.fontFamily );
 					};
 
+					const onFontSelect = ( newFont ) => onFontChange( newFont.value );
+
 					const onFontShortcut = ( value ) => {
-						if ( 'object' === typeof value ) {
-							value = value.value;
+						if ( fontFamilyExists( value ) ) {
+							// eslint-disable-next-line
+							alert( __( 'Font already selected', 'generatepress' ) );
+
+							value = '';
 						}
 
-						const fontValues = [ ...fonts ];
-
-						fontValues[ index ] = {
-							...fontValues[ index ],
-							fontFamily: value,
-						};
-
-						handleChangeComplete( fontValues );
 						onFontChange( value );
 					};
 
@@ -167,7 +191,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 										<AdvancedSelect
 											options={ fontFamilies }
 											placeholder={ __( 'Search fonts…', 'generatepress' ) }
-											onChange={ onFontShortcut }
+											onChange={ onFontSelect }
 										/>
 
 										<TextControl
