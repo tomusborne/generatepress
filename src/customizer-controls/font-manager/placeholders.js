@@ -3,6 +3,20 @@ import {
 } from '@wordpress/i18n';
 
 const elements = {
+	html: {
+		module: 'core',
+		group: 'base',
+		label: __( 'HTML', 'generatepress' ),
+		placeholders: {
+			fontSize: {
+				value: '',
+				min: 10,
+				max: 200,
+				step: 1,
+				unit: 'px',
+			},
+		},
+	},
 	body: {
 		module: 'core',
 		group: 'base',
