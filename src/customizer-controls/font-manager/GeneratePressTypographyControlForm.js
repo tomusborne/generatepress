@@ -446,7 +446,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 
 													<UnitPicker
 														value={ fonts[ index ].fontSizeUnit }
-														units={ [ 'px', 'em', '%' ] }
+														units={ [ 'px', 'em', 'rem', '%' ] }
 														onClick={ ( value ) => {
 															const fontValues = [ ...fonts ];
 
@@ -540,7 +540,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 
 													<UnitPicker
 														value={ fonts[ index ].lineHeightUnit }
-														units={ [ '', 'px', 'em' ] }
+														units={ [ '', 'px', 'em', 'rem' ] }
 														onClick={ ( value ) => {
 															const fontValues = [ ...fonts ];
 
@@ -634,7 +634,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 
 													<UnitPicker
 														value={ fonts[ index ].letterSpacingUnit }
-														units={ [ 'px', 'em' ] }
+														units={ [ 'px', 'em', 'rem' ] }
 														onClick={ ( value ) => {
 															const fontValues = [ ...fonts ];
 
@@ -729,7 +729,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 
 														<UnitPicker
 															value={ fonts[ index ].marginBottomUnit }
-															units={ [ 'px', 'em' ] }
+															units={ [ 'px', 'em', 'rem' ] }
 															onClick={ ( value ) => {
 																const fontValues = [ ...fonts ];
 
