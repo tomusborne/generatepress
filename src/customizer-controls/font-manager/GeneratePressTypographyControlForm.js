@@ -142,11 +142,36 @@ const GeneratePressTypographyControlForm = ( props ) => {
 			placeholder = 'undefined' !== typeof settings[ tabletSettingName ] && hasNumericValue( settings[ tabletSettingName ] ) ? settings[ tabletSettingName ] : placeholder;
 		}
 
+		// Ditch the placeholder if our unit isn't the default.
+		if ( placeholder && ! property.includes( 'Tablet' ) && ! property.includes( 'Mobile' ) ) {
+			if ( elements[ settings.selector ].placeholders[ property ].unit !== settings[ property + 'Unit' ] ) {
+				placeholder = '';
+			}
+		}
+
 		return placeholder;
 	};
 
 	const getRangeProps = ( settings, property, type, fallback ) => {
-		return 'undefined' !== typeof elements[ settings.selector ].placeholders[ property ] ? elements[ settings.selector ].placeholders[ property ][ type ] : fallback;
+		let rangeProps = 'undefined' !== typeof elements[ settings.selector ].placeholders[ property ] ? elements[ settings.selector ].placeholders[ property ][ type ] : fallback;
+
+		if ( '%' === settings[ property + 'Unit' ] ) {
+			if ( property.startsWith( 'fontSize' ) && 'max' === type ) {
+				rangeProps = 250;
+			}
+
+			if ( property.startsWith( 'lineHeight' ) ) {
+				if ( 'step' === type ) {
+					rangeProps = 1;
+				}
+
+				if ( 'max' === type ) {
+					rangeProps = 250;
+				}
+			}
+		}
+
+		return rangeProps;
 	};
 
 	return (
@@ -238,19 +263,26 @@ const GeneratePressTypographyControlForm = ( props ) => {
 													selector: value,
 												};
 
-												if ( marginBottomSelectors.includes( value ) ) {
-													if ( 'body' === value ) {
-														fontValues[ index ] = {
-															...fontValues[ index ],
-															marginBottomUnit: 'em',
-														};
-													} else {
-														fontValues[ index ] = {
-															...fontValues[ index ],
-															marginBottomUnit: 'px',
-														};
-													}
-												} else if ( fonts[ index ].marginBottom || fonts[ index ].marginBottomTablet || fonts[ index ].marginBottomMobile ) {
+												const placeholders = elements[ value ].placeholders;
+
+												if ( placeholders ) {
+													// Set our default unit if it exists.
+													Object.keys( placeholders ).forEach( ( placeholder ) => {
+														const unit = elements[ value ].placeholders[ placeholder ].unit;
+
+														if ( unit ) {
+															const unitName = placeholder + 'Unit';
+
+															fontValues[ index ] = {
+																...fontValues[ index ],
+																[ unitName ]: unit,
+															};
+														}
+													} );
+												}
+
+												// Unset any margin values if margin isn't supported.
+												if ( ! marginBottomSelectors.includes( value ) ) {
 													fontValues[ index ] = {
 														...fontValues[ index ],
 														marginBottom: '',
@@ -351,7 +383,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 													<div className="generate-component-device-field" data-device="desktop">
 														<RangeControl
 															className={ 'generate-range-control-range' }
-															value={ hasNumericValue( fonts[ index ].fontSize ) ? parseFloat( fonts[ index ].fontSize ) : '' }
+															value={ hasNumericValue( fonts[ index ].fontSize ) ? parseFloat( fonts[ index ].fontSize ) : getPlaceholder( fonts[ index ], 'fontSize' ) }
 															onChange={ ( value ) => {
 																const fontValues = [ ...fonts ];
 
@@ -366,7 +398,6 @@ const GeneratePressTypographyControlForm = ( props ) => {
 															rangeMax={ getRangeProps( fonts[ index ], 'fontSize', 'max', 100 ) }
 															step={ getRangeProps( fonts[ index ], 'fontSize', 'step', 1 ) }
 															withInputField={ false }
-															placeholder={ getPlaceholder( fonts[ index ], 'fontSize' ) }
 															initialPosition={ getPlaceholder( fonts[ index ], 'fontSize' ) }
 														/>
 													</div>
@@ -375,7 +406,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 														<RangeControl
 															data-generate-control-device="tablet"
 															className={ 'generate-range-control-range' }
-															value={ hasNumericValue( fonts[ index ].fontSizeTablet ) ? parseFloat( fonts[ index ].fontSizeTablet ) : '' }
+															value={ hasNumericValue( fonts[ index ].fontSizeTablet ) ? parseFloat( fonts[ index ].fontSizeTablet ) : getPlaceholder( fonts[ index ], 'fontSizeTablet' ) }
 															onChange={ ( value ) => {
 																const fontValues = [ ...fonts ];
 
@@ -390,7 +421,6 @@ const GeneratePressTypographyControlForm = ( props ) => {
 															rangeMax={ getRangeProps( fonts[ index ], 'fontSize', 'max', 100 ) }
 															step={ getRangeProps( fonts[ index ], 'fontSize', 'step', 1 ) }
 															withInputField={ false }
-															placeholder={ getPlaceholder( fonts[ index ], 'fontSizeTablet' ) }
 															initialPosition={ getPlaceholder( fonts[ index ], 'fontSizeTablet' ) }
 														/>
 													</div>
@@ -399,7 +429,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 														<RangeControl
 															data-generate-control-device="mobile"
 															className={ 'generate-range-control-range' }
-															value={ hasNumericValue( fonts[ index ].fontSizeMobile ) ? parseFloat( fonts[ index ].fontSizeMobile ) : '' }
+															value={ hasNumericValue( fonts[ index ].fontSizeMobile ) ? parseFloat( fonts[ index ].fontSizeMobile ) : getPlaceholder( fonts[ index ], 'fontSizeMobile' ) }
 															onChange={ ( value ) => {
 																const fontValues = [ ...fonts ];
 
@@ -414,14 +444,13 @@ const GeneratePressTypographyControlForm = ( props ) => {
 															rangeMax={ getRangeProps( fonts[ index ], 'fontSize', 'max', 100 ) }
 															step={ getRangeProps( fonts[ index ], 'fontSize', 'step', 1 ) }
 															withInputField={ false }
-															placeholder={ getPlaceholder( fonts[ index ], 'fontSizeMobile' ) }
 															initialPosition={ getPlaceholder( fonts[ index ], 'fontSizeMobile' ) }
 														/>
 													</div>
 
 													<UnitPicker
 														value={ fonts[ index ].fontSizeUnit }
-														units={ [ 'px', 'em', '%' ] }
+														units={ [ 'px', 'em', 'rem', '%' ] }
 														onClick={ ( value ) => {
 															const fontValues = [ ...fonts ];
 
@@ -447,7 +476,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 													<div className="generate-component-device-field" data-device="desktop">
 														<RangeControl
 															className={ 'generate-range-control-range' }
-															value={ hasNumericValue( fonts[ index ].lineHeight ) ? parseFloat( fonts[ index ].lineHeight ) : '' }
+															value={ hasNumericValue( fonts[ index ].lineHeight ) ? parseFloat( fonts[ index ].lineHeight ) : getPlaceholder( fonts[ index ], 'lineHeight' ) }
 															onChange={ ( value ) => {
 																const fontValues = [ ...fonts ];
 
@@ -462,7 +491,6 @@ const GeneratePressTypographyControlForm = ( props ) => {
 															rangeMax={ getRangeProps( fonts[ index ], 'lineHeight', 'max', 5 ) }
 															step={ getRangeProps( fonts[ index ], 'lineHeight', 'step', .1 ) }
 															withInputField={ false }
-															placeholder={ getPlaceholder( fonts[ index ], 'lineHeight' ) }
 															initialPosition={ getPlaceholder( fonts[ index ], 'lineHeight' ) }
 														/>
 													</div>
@@ -470,7 +498,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 													<div className="generate-component-device-field" data-device="tablet">
 														<RangeControl
 															className={ 'generate-range-control-range' }
-															value={ hasNumericValue( fonts[ index ].lineHeightTablet ) ? parseFloat( fonts[ index ].lineHeightTablet ) : '' }
+															value={ hasNumericValue( fonts[ index ].lineHeightTablet ) ? parseFloat( fonts[ index ].lineHeightTablet ) : getPlaceholder( fonts[ index ], 'lineHeightTablet' ) }
 															onChange={ ( value ) => {
 																const fontValues = [ ...fonts ];
 
@@ -485,7 +513,6 @@ const GeneratePressTypographyControlForm = ( props ) => {
 															rangeMax={ getRangeProps( fonts[ index ], 'lineHeight', 'max', 5 ) }
 															step={ getRangeProps( fonts[ index ], 'lineHeight', 'step', .1 ) }
 															withInputField={ false }
-															placeholder={ getPlaceholder( fonts[ index ], 'lineHeightTablet' ) }
 															initialPosition={ getPlaceholder( fonts[ index ], 'lineHeightTablet' ) }
 														/>
 													</div>
@@ -493,7 +520,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 													<div className="generate-component-device-field" data-device="mobile">
 														<RangeControl
 															className={ 'generate-range-control-range' }
-															value={ hasNumericValue( fonts[ index ].lineHeightMobile ) ? parseFloat( fonts[ index ].lineHeightMobile ) : '' }
+															value={ hasNumericValue( fonts[ index ].lineHeightMobile ) ? parseFloat( fonts[ index ].lineHeightMobile ) : getPlaceholder( fonts[ index ], 'lineHeightMobile' ) }
 															onChange={ ( value ) => {
 																const fontValues = [ ...fonts ];
 
@@ -508,14 +535,13 @@ const GeneratePressTypographyControlForm = ( props ) => {
 															rangeMax={ getRangeProps( fonts[ index ], 'lineHeight', 'max', 5 ) }
 															step={ getRangeProps( fonts[ index ], 'lineHeight', 'step', .1 ) }
 															withInputField={ false }
-															placeholder={ getPlaceholder( fonts[ index ], 'lineHeightMobile' ) }
 															initialPosition={ getPlaceholder( fonts[ index ], 'lineHeightMobile' ) }
 														/>
 													</div>
 
 													<UnitPicker
 														value={ fonts[ index ].lineHeightUnit }
-														units={ [ '', 'px', 'em', '%' ] }
+														units={ [ '', 'px', 'em', 'rem' ] }
 														onClick={ ( value ) => {
 															const fontValues = [ ...fonts ];
 
@@ -541,7 +567,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 													<div className="generate-component-device-field" data-device="desktop">
 														<RangeControl
 															className={ 'generate-range-control-range' }
-															value={ hasNumericValue( fonts[ index ].letterSpacing ) ? parseFloat( fonts[ index ].letterSpacing ) : '' }
+															value={ hasNumericValue( fonts[ index ].letterSpacing ) ? parseFloat( fonts[ index ].letterSpacing ) : getPlaceholder( fonts[ index ], 'letterSpacing' ) }
 															onChange={ ( value ) => {
 																const fontValues = [ ...fonts ];
 
@@ -556,7 +582,6 @@ const GeneratePressTypographyControlForm = ( props ) => {
 															rangeMax={ getRangeProps( fonts[ index ], 'letterSpacing', 'max', 10 ) }
 															step={ getRangeProps( fonts[ index ], 'letterSpacing', 'step', .01 ) }
 															withInputField={ false }
-															placeholder={ getPlaceholder( fonts[ index ], 'letterSpacing' ) }
 															initialPosition={ getPlaceholder( fonts[ index ], 'letterSpacing' ) }
 														/>
 													</div>
@@ -564,7 +589,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 													<div className="generate-component-device-field" data-device="tablet">
 														<RangeControl
 															className={ 'generate-range-control-range' }
-															value={ hasNumericValue( fonts[ index ].letterSpacingTablet ) ? parseFloat( fonts[ index ].letterSpacingTablet ) : '' }
+															value={ hasNumericValue( fonts[ index ].letterSpacingTablet ) ? parseFloat( fonts[ index ].letterSpacingTablet ) : getPlaceholder( fonts[ index ], 'letterSpacingTablet' ) }
 															onChange={ ( value ) => {
 																const fontValues = [ ...fonts ];
 
@@ -579,7 +604,6 @@ const GeneratePressTypographyControlForm = ( props ) => {
 															rangeMax={ getRangeProps( fonts[ index ], 'letterSpacing', 'max', 10 ) }
 															step={ getRangeProps( fonts[ index ], 'letterSpacing', 'step', .01 ) }
 															withInputField={ false }
-															placeholder={ getPlaceholder( fonts[ index ], 'letterSpacingTablet' ) }
 															initialPosition={ getPlaceholder( fonts[ index ], 'letterSpacingTablet' ) }
 														/>
 													</div>
@@ -587,7 +611,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 													<div className="generate-component-device-field" data-device="mobile">
 														<RangeControl
 															className={ 'generate-range-control-range' }
-															value={ hasNumericValue( fonts[ index ].letterSpacingMobile ) ? parseFloat( fonts[ index ].letterSpacingMobile ) : '' }
+															value={ hasNumericValue( fonts[ index ].letterSpacingMobile ) ? parseFloat( fonts[ index ].letterSpacingMobile ) : getPlaceholder( fonts[ index ], 'letterSpacingMobile' ) }
 															onChange={ ( value ) => {
 																const fontValues = [ ...fonts ];
 
@@ -602,14 +626,13 @@ const GeneratePressTypographyControlForm = ( props ) => {
 															rangeMax={ getRangeProps( fonts[ index ], 'letterSpacing', 'max', 10 ) }
 															step={ getRangeProps( fonts[ index ], 'letterSpacing', 'step', .01 ) }
 															withInputField={ false }
-															placeholder={ getPlaceholder( fonts[ index ], 'letterSpacingMobile' ) }
 															initialPosition={ getPlaceholder( fonts[ index ], 'letterSpacingMobile' ) }
 														/>
 													</div>
 
 													<UnitPicker
 														value={ fonts[ index ].letterSpacingUnit }
-														units={ [ 'px', 'em', '%' ] }
+														units={ [ 'px', 'em', 'rem' ] }
 														onClick={ ( value ) => {
 															const fontValues = [ ...fonts ];
 
@@ -636,7 +659,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 														<div className="generate-component-device-field" data-device="desktop">
 															<RangeControl
 																className={ 'generate-range-control-range' }
-																value={ hasNumericValue( fonts[ index ].marginBottom ) ? parseFloat( fonts[ index ].marginBottom ) : '' }
+																value={ hasNumericValue( fonts[ index ].marginBottom ) ? parseFloat( fonts[ index ].marginBottom ) : getPlaceholder( fonts[ index ], 'marginBottom' ) }
 																onChange={ ( value ) => {
 																	const fontValues = [ ...fonts ];
 
@@ -651,7 +674,6 @@ const GeneratePressTypographyControlForm = ( props ) => {
 																rangeMax={ getRangeProps( fonts[ index ], 'marginBottom', 'max', 5 ) }
 																step={ getRangeProps( fonts[ index ], 'marginBottom', 'step', .1 ) }
 																withInputField={ false }
-																placeholder={ getPlaceholder( fonts[ index ], 'marginBottom' ) }
 																initialPosition={ getPlaceholder( fonts[ index ], 'marginBottom' ) }
 															/>
 														</div>
@@ -659,7 +681,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 														<div className="generate-component-device-field" data-device="tablet">
 															<RangeControl
 																className={ 'generate-range-control-range' }
-																value={ hasNumericValue( fonts[ index ].marginBottomTablet ) ? parseFloat( fonts[ index ].marginBottomTablet ) : '' }
+																value={ hasNumericValue( fonts[ index ].marginBottomTablet ) ? parseFloat( fonts[ index ].marginBottomTablet ) : getPlaceholder( fonts[ index ], 'marginBottomTablet' ) }
 																onChange={ ( value ) => {
 																	const fontValues = [ ...fonts ];
 
@@ -674,7 +696,6 @@ const GeneratePressTypographyControlForm = ( props ) => {
 																rangeMax={ getRangeProps( fonts[ index ], 'marginBottom', 'max', 5 ) }
 																step={ getRangeProps( fonts[ index ], 'marginBottom', 'step', .1 ) }
 																withInputField={ false }
-																placeholder={ getPlaceholder( fonts[ index ], 'marginBottomTablet' ) }
 																initialPosition={ getPlaceholder( fonts[ index ], 'marginBottomTablet' ) }
 															/>
 														</div>
@@ -682,7 +703,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 														<div className="generate-component-device-field" data-device="mobile">
 															<RangeControl
 																className={ 'generate-range-control-range' }
-																value={ hasNumericValue( fonts[ index ].marginBottomMobile ) ? parseFloat( fonts[ index ].marginBottomMobile ) : '' }
+																value={ hasNumericValue( fonts[ index ].marginBottomMobile ) ? parseFloat( fonts[ index ].marginBottomMobile ) : getPlaceholder( fonts[ index ], 'marginBottomMobile' ) }
 																onChange={ ( value ) => {
 																	const fontValues = [ ...fonts ];
 
@@ -697,14 +718,13 @@ const GeneratePressTypographyControlForm = ( props ) => {
 																rangeMax={ getRangeProps( fonts[ index ], 'marginBottom', 'max', 5 ) }
 																step={ getRangeProps( fonts[ index ], 'marginBottom', 'step', .1 ) }
 																withInputField={ false }
-																placeholder={ getPlaceholder( fonts[ index ], 'marginBottomMobile' ) }
 																initialPosition={ getPlaceholder( fonts[ index ], 'marginBottomMobile' ) }
 															/>
 														</div>
 
 														<UnitPicker
 															value={ fonts[ index ].marginBottomUnit }
-															units={ [ 'px', 'em', '%' ] }
+															units={ [ 'px', 'em', 'rem' ] }
 															onClick={ ( value ) => {
 																const fontValues = [ ...fonts ];
 

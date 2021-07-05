@@ -3,6 +3,20 @@ import {
 } from '@wordpress/i18n';
 
 const elements = {
+	html: {
+		module: 'core',
+		group: 'base',
+		label: 'HTML',
+		placeholders: {
+			fontSize: {
+				value: '',
+				min: 10,
+				max: 200,
+				step: 1,
+				unit: 'px',
+			},
+		},
+	},
 	body: {
 		module: 'core',
 		group: 'base',
@@ -13,12 +27,14 @@ const elements = {
 				min: 6,
 				max: 25,
 				step: 1,
+				unit: 'px',
 			},
 			lineHeight: {
 				value: '1.5',
 				min: 1,
 				max: 5,
 				step: .1,
+				unit: '',
 			},
 			marginBottom: {
 				value: 1.5,
@@ -39,6 +55,7 @@ const elements = {
 				min: 10,
 				max: 200,
 				step: 1,
+				unit: 'px',
 			},
 		},
 	},
@@ -52,6 +69,7 @@ const elements = {
 				min: 6,
 				max: 50,
 				step: 1,
+				unit: 'px',
 			},
 		},
 	},
@@ -65,6 +83,7 @@ const elements = {
 				min: 6,
 				max: 30,
 				step: 1,
+				unit: 'px',
 			},
 		},
 	},
@@ -78,6 +97,7 @@ const elements = {
 				min: 6,
 				max: 30,
 				step: 1,
+				unit: 'px',
 			},
 		},
 	},
@@ -91,6 +111,7 @@ const elements = {
 				min: 6,
 				max: 30,
 				step: 1,
+				unit: 'px',
 			},
 		},
 	},
@@ -140,12 +161,14 @@ const elements = {
 				min: 15,
 				max: 100,
 				step: 1,
+				unit: 'px',
 			},
 			lineHeight: {
 				value: 1.2,
 				min: 0,
 				max: 5,
 				step: .1,
+				unit: 'em',
 			},
 			marginBottom: {
 				value: 20,
@@ -176,12 +199,14 @@ const elements = {
 				min: 15,
 				max: 100,
 				step: 1,
+				unit: 'px',
 			},
 			lineHeight: {
 				value: 1.2,
 				min: 0,
 				max: 5,
 				step: .1,
+				unit: 'em',
 			},
 			marginBottom: {
 				value: 20,
@@ -212,12 +237,14 @@ const elements = {
 				min: 15,
 				max: 100,
 				step: 1,
+				unit: 'px',
 			},
 			lineHeight: {
 				value: 1.2,
 				min: 0,
 				max: 5,
 				step: .1,
+				unit: 'em',
 			},
 			marginBottom: {
 				value: 20,
@@ -235,11 +262,13 @@ const elements = {
 				min: 15,
 				max: 100,
 				step: 1,
+				unit: 'px',
 			},
 			lineHeight: {
 				min: 0,
 				max: 5,
 				step: .1,
+				unit: 'em',
 			},
 			marginBottom: {
 				value: 20,
@@ -257,11 +286,13 @@ const elements = {
 				min: 15,
 				max: 100,
 				step: 1,
+				unit: 'px',
 			},
 			lineHeight: {
 				min: 0,
 				max: 5,
 				step: .1,
+				unit: 'em',
 			},
 			marginBottom: {
 				value: 20,
@@ -278,11 +309,13 @@ const elements = {
 				min: 15,
 				max: 100,
 				step: 1,
+				unit: 'px',
 			},
 			lineHeight: {
 				min: 0,
 				max: 5,
 				step: .1,
+				unit: 'em',
 			},
 			marginBottom: {
 				value: 20,
@@ -300,6 +333,7 @@ const elements = {
 				min: 6,
 				max: 25,
 				step: 1,
+				unit: 'px',
 			},
 		},
 	},
@@ -313,6 +347,7 @@ const elements = {
 				min: 6,
 				max: 30,
 				step: 1,
+				unit: 'px',
 			},
 			marginBottom: {
 				value: 30,
@@ -330,6 +365,7 @@ const elements = {
 				min: 6,
 				max: 30,
 				step: 1,
+				unit: 'px',
 			},
 		},
 	},
