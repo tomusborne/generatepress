@@ -6,7 +6,7 @@ const elements = {
 	html: {
 		module: 'core',
 		group: 'base',
-		label: __( 'HTML', 'generatepress' ),
+		label: 'html',
 		placeholders: {
 			fontSize: {
 				value: '',
