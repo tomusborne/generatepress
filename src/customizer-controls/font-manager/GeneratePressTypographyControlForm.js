@@ -153,7 +153,25 @@ const GeneratePressTypographyControlForm = ( props ) => {
 	};
 
 	const getRangeProps = ( settings, property, type, fallback ) => {
-		return 'undefined' !== typeof elements[ settings.selector ].placeholders[ property ] ? elements[ settings.selector ].placeholders[ property ][ type ] : fallback;
+		let rangeProps = 'undefined' !== typeof elements[ settings.selector ].placeholders[ property ] ? elements[ settings.selector ].placeholders[ property ][ type ] : fallback;
+
+		if ( '%' === settings[ property + 'Unit' ] ) {
+			if ( property.startsWith( 'fontSize' ) && 'max' === type ) {
+				rangeProps = 250;
+			}
+
+			if ( property.startsWith( 'lineHeight' ) ) {
+				if ( 'step' === type ) {
+					rangeProps = 1;
+				}
+
+				if ( 'max' === type ) {
+					rangeProps = 250;
+				}
+			}
+		}
+
+		return rangeProps;
 	};
 
 	return (
