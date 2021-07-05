@@ -142,6 +142,13 @@ const GeneratePressTypographyControlForm = ( props ) => {
 			placeholder = 'undefined' !== typeof settings[ tabletSettingName ] && hasNumericValue( settings[ tabletSettingName ] ) ? settings[ tabletSettingName ] : placeholder;
 		}
 
+		// Ditch the placeholder if our unit isn't the default.
+		if ( placeholder && ! property.includes( 'Tablet' ) && ! property.includes( 'Mobile' ) ) {
+			if ( elements[ settings.selector ].placeholders[ property ].unit !== settings[ property + 'Unit' ] ) {
+				placeholder = '';
+			}
+		}
+
 		return placeholder;
 	};
 
