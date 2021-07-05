@@ -6,7 +6,7 @@ const elements = {
 	html: {
 		module: 'core',
 		group: 'base',
-		label: 'html',
+		label: 'HTML',
 		placeholders: {
 			fontSize: {
 				value: '',
