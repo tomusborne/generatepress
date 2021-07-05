@@ -89,6 +89,7 @@ require $theme_dir . '/inc/typography.php';
 require $theme_dir . '/inc/plugin-compat.php';
 require $theme_dir . '/inc/block-editor.php';
 require $theme_dir . '/inc/class-typography.php';
+require $theme_dir . '/inc/class-html-attributes.php';
 require $theme_dir . '/inc/class-theme-update.php';
 require $theme_dir . '/inc/deprecated.php';
 

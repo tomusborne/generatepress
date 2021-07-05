@@ -34,10 +34,8 @@ if ( ! function_exists( 'generate_content_nav' ) ) {
 		if ( $wp_query->max_num_pages < 2 && ( is_home() || is_archive() || is_search() ) ) {
 			return;
 		}
-
-		$nav_class = ( is_single() ) ? 'post-navigation' : 'paging-navigation';
 		?>
-		<nav id="<?php echo esc_attr( $nav_id ); ?>" class="<?php echo esc_attr( $nav_class ); ?>">
+		<nav <?php generate_do_attr( 'post-navigation', array( 'id' => esc_attr( $nav_id ) ) ); ?>>
 			<span class="screen-reader-text"><?php esc_html_e( 'Post navigation', 'generatepress' ); ?></span>
 
 			<?php
@@ -549,7 +547,7 @@ if ( ! function_exists( 'generate_footer_meta' ) ) {
 	 */
 	function generate_footer_meta() {
 		?>
-		<footer class="entry-meta">
+		<footer <?php generate_do_attr( 'footer-entry-meta' ); ?>>
 			<?php generate_entry_meta(); ?>
 		</footer>
 		<?php

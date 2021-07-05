@@ -21,7 +21,7 @@ if ( ! function_exists( 'generate_archive_title' ) ) {
 			return;
 		}
 		?>
-		<header class="page-header">
+		<header <?php generate_do_attr( 'page-header' ); ?>>
 			<?php
 			/**
 			 * generate_before_archive_title hook.
@@ -129,7 +129,8 @@ function generate_do_search_results_title( $template ) {
 		echo apply_filters(
 			'generate_search_title_output',
 			sprintf(
-				'<header class="page-header"><h1 class="page-title">%s</h1></header>',
+				'<header %s><h1 class="page-title">%s</h1></header>',
+				generate_get_attr( 'page-header' ),
 				sprintf(
 					/* translators: 1: Search query name */
 					__( 'Search Results for: %s', 'generatepress' ),

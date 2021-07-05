@@ -671,6 +671,95 @@ function generate_needs_site_branding_container() {
 }
 
 /**
+ * Merge array of attributes with defaults, and apply contextual filter on array.
+ *
+ * The contextual filter is of the form `generate_attr_{context}`.
+ *
+ * @since 3.1.0
+ *
+ * @param string $context    The context, to build filter name.
+ * @param array  $attributes Optional. Extra attributes to merge with defaults.
+ * @param array  $settings   Optional. Custom data to pass to filter.
+ * @return array Merged and filtered attributes.
+ */
+function generate_parse_attr( $context, $attributes = array(), $settings = array() ) {
+	// Initialize an empty class attribute so it's easier to append to in filters.
+	$attributes['class'] = '';
+
+	// We used to have a class-only system. If it's in use, add the classes.
+	$classes = generate_get_element_classes( $context );
+
+	if ( $classes ) {
+		$attributes['class'] = join( ' ', $classes );
+	}
+
+	// Contextual filter.
+	return apply_filters( 'generate_parse_attr', $attributes, $context, $settings );
+}
+
+/**
+ * Build list of attributes into a string and apply contextual filter on string.
+ *
+ * The contextual filter is of the form `generate_attr_{context}_output`.
+ *
+ * @since 3.1.0
+ *
+ * @param string $context    The context, to build filter name.
+ * @param array  $attributes Optional. Extra attributes to merge with defaults.
+ * @param array  $settings   Optional. Custom data to pass to filter.
+ * @return string String of HTML attributes and values.
+ */
+function generate_get_attr( $context, $attributes = array(), $settings = array() ) {
+	$attributes = generate_parse_attr( $context, $attributes, $settings );
+
+	$output = '';
+
+	// Cycle through attributes, build tag attribute string.
+	foreach ( $attributes as $key => $value ) {
+		if ( ! $value ) {
+			continue;
+		}
+
+		// Remove any whitespace at the start or end of our classes.
+		if ( 'class' === $key ) {
+			$value = trim( $value );
+		}
+
+		if ( true === $value ) {
+			$output .= esc_html( $key ) . ' ';
+		} else {
+			$output .= sprintf( '%s="%s" ', esc_html( $key ), esc_attr( $value ) );
+		}
+	}
+
+	// Before this function existed we had the below to add attributes after the class attribute.
+	$after = apply_filters( 'generate_after_element_class_attribute', '', $context );
+
+	if ( $after ) {
+		$after = ' ' . $after;
+	}
+
+	$output .= $after;
+
+	$output = apply_filters( 'generate_get_attr_output', $output, $attributes, $context, $settings );
+
+	return trim( $output );
+}
+
+/**
+ * Output our string of HTML attributes.
+ *
+ * @since 3.1.0
+ *
+ * @param string $context    The context, to build filter name.
+ * @param array  $attributes Optional. Extra attributes to merge with defaults.
+ * @param array  $settings   Optional. Custom data to pass to filter.
+ */
+function generate_do_attr( $context, $attributes = array(), $settings = array() ) {
+	echo generate_get_attr( $context, $attributes, $settings ); // phpcs:ignore -- Escaping done in function.
+}
+
+/**
  * Build our editor color palette based on our global colors.
  *
  * @since 3.1.0

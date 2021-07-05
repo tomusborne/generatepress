@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	do_action( 'generate_before_content' );
 	?>
 
-	<header class="entry-header">
+	<header <?php generate_do_attr( 'entry-header' ); ?>>
 		<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- HTML is allowed in filter here. ?>
 		<h1 class="entry-title" itemprop="headline"><?php echo apply_filters( 'generate_404_title', __( 'Oops! That page can&rsquo;t be found.', 'generatepress' ) ); ?></h1>
 	</header>

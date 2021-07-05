@@ -31,8 +31,8 @@ if ( ! function_exists( 'generate_comment' ) ) {
 		<?php else : ?>
 
 		<li id="comment-<?php comment_ID(); ?>" <?php comment_class( empty( $args['has_children'] ) ? '' : 'parent' ); ?>>
-			<article id="div-comment-<?php comment_ID(); ?>" <?php generate_do_element_classes( 'comment-body', 'comment-body' ); ?>>
-				<footer class="comment-meta">
+			<article <?php generate_do_attr( 'comment-body', array(), array( 'comment-id' => get_comment_ID() ) ); ?>>
+				<footer <?php generate_do_attr( 'comment-meta' ); ?>>
 					<?php
 					if ( 0 != $args['avatar_size'] ) { // phpcs:ignore
 						echo get_avatar( $comment, $args['avatar_size'] );

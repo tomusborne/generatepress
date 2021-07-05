@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 ?>
-<div id="right-sidebar" <?php generate_do_element_classes( 'right_sidebar' ); ?>>
+<div <?php generate_do_attr( 'right-sidebar' ); ?>>
 	<div class="inside-right-sidebar">
 		<?php
 		/**

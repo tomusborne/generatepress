@@ -16,8 +16,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header(); ?>
 
-	<div id="primary" <?php generate_do_element_classes( 'content' ); ?>>
-		<main id="main" <?php generate_do_element_classes( 'main' ); ?>>
+	<div <?php generate_do_attr( 'content' ); ?>>
+		<main <?php generate_do_attr( 'main' ); ?>>
 			<?php
 			/**
 			 * generate_before_main_content hook.
