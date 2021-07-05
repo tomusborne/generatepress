@@ -11,10 +11,10 @@ labels: 'triage, type: bug'
 ### Steps to reproduce
 1. 
 
-#### Final behavior
+#### Expected behavior
 ...
 
-#### Expected behavior
+#### Actual behavior
 ...
 
 #### References: 
