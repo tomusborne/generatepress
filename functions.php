@@ -14,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Set our theme version.
 define( 'GENERATE_VERSION', '3.1.0-alpha.1' );
 
+function testingLint_($test) { echo 'ops!'; }
+
 if ( ! function_exists( 'generate_setup' ) ) {
 	add_action( 'after_setup_theme', 'generate_setup' );
 	/**
