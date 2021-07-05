@@ -263,19 +263,26 @@ const GeneratePressTypographyControlForm = ( props ) => {
 													selector: value,
 												};
 
-												if ( marginBottomSelectors.includes( value ) ) {
-													if ( 'body' === value ) {
-														fontValues[ index ] = {
-															...fontValues[ index ],
-															marginBottomUnit: 'em',
-														};
-													} else {
-														fontValues[ index ] = {
-															...fontValues[ index ],
-															marginBottomUnit: 'px',
-														};
-													}
-												} else if ( fonts[ index ].marginBottom || fonts[ index ].marginBottomTablet || fonts[ index ].marginBottomMobile ) {
+												const placeholders = elements[ value ].placeholders;
+
+												if ( placeholders ) {
+													// Set our default unit if it exists.
+													Object.keys( placeholders ).forEach( ( placeholder ) => {
+														const unit = elements[ value ].placeholders[ placeholder ].unit;
+
+														if ( unit ) {
+															const unitName = placeholder + 'Unit';
+
+															fontValues[ index ] = {
+																...fontValues[ index ],
+																[ unitName ]: unit,
+															};
+														}
+													} );
+												}
+
+												// Unset any margin values if margin isn't supported.
+												if ( ! marginBottomSelectors.includes( value ) ) {
 													fontValues[ index ] = {
 														...fontValues[ index ],
 														marginBottom: '',
