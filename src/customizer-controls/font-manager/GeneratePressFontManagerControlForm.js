@@ -31,13 +31,21 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 		const fonts = typographyControl.setting.get();
 		const fontValues = [ ...fonts ];
 
-		fonts.forEach( ( typography, index ) => {
-			if ( typography.fontFamily === previousFontFamily ) {
-				fontValues[ index ] = {
-					...fontValues[ index ],
-					fontFamily: currentFontFamily,
-				};
+		fonts.filter( function( font ) {
+			if ( '' === font.fontFamily && '' === previousFontFamily ) {
+				return false;
 			}
+
+			if ( font.fontFamily !== previousFontFamily ) {
+				return false;
+			}
+
+			return true;
+		} ).forEach( ( typography, index ) => {
+			fontValues[ index ] = {
+				...fontValues[ index ],
+				fontFamily: currentFontFamily,
+			};
 		} );
 
 		typographyControl.setting.set( fontValues );
@@ -166,6 +174,9 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 											// eslint-disable-next-line
 											if ( window.confirm( __( 'This will permanently delete this font family. Doing so will stop elements from displaying it as their font.', 'generatepress' ) ) ) {
 												const fontValues = [ ...fonts ];
+												const previousValue = fontValues[ index ];
+
+												propagateChanges( '', previousValue.fontFamily );
 
 												fontValues.splice( index, 1 );
 												handleChangeComplete( fontValues );
