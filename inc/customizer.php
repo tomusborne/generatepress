@@ -367,6 +367,46 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			)
 		);
 
+		GeneratePress_Customize_Field::add_field(
+			'generate_settings[google_font_display]',
+			'',
+			array(
+				'default' => $defaults['google_font_display'],
+				'sanitize_callback' => 'generate_sanitize_choices',
+				'transport' => 'refresh',
+			),
+			array(
+				'type' => 'select',
+				'label' => __( 'Google font-display', 'generatepress' ),
+				'description' => sprintf(
+					'<a href="%s" target="_blank" rel="noreferrer noopener">%s</a>',
+					'https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display',
+					esc_html__( 'Learn about font-display', 'generatepress' )
+				),
+				'section' => 'generate_typography_section',
+				'choices' => array(
+					'auto' => esc_html__( 'Auto', 'generatepress' ),
+					'block' => esc_html__( 'Block', 'generatepress' ),
+					'swap' => esc_html__( 'Swap', 'generatepress' ),
+					'fallback' => esc_html__( 'Fallback', 'generatepress' ),
+					'optional' => esc_html__( 'Optional', 'generatepress' ),
+				),
+				'active_callback' => function() {
+					$font_manager = generate_get_option( 'font_manager' );
+					$has_google_font = false;
+
+					foreach ( (array) $font_manager as $key => $data ) {
+						if ( ! empty( $data['googleFont'] ) ) {
+							$has_google_font = true;
+							break;
+						}
+					}
+
+					return $has_google_font;
+				},
+			)
+		);
+
 		GeneratePress_Customize_Field::add_title(
 			'generate_typography_manager_title',
 			array(

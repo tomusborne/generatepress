@@ -87,7 +87,7 @@ class GeneratePress_Typography {
 				array(
 					'family' => implode( '|', $data ),
 					'subset' => null,
-					'display' => 'swap',
+					'display' => generate_get_option( 'google_font_display' ),
 				)
 			);
 
