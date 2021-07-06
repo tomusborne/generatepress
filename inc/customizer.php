@@ -341,6 +341,8 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 						'googleFontVariants' => 'sanitize_text_field',
 					);
 
+					$new_settings = array();
+
 					foreach ( (array) $fonts as $key => $data ) {
 						if ( empty( $data['fontFamily'] ) ) {
 							unset( $fonts[ $key ] );
@@ -349,14 +351,12 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 
 						foreach ( $options as $option => $sanitize ) {
 							if ( array_key_exists( $option, $data ) ) {
-								$fonts[ $key ][ $option ] = $sanitize( $data[ $option ] );
-							} else {
-								unset( $fonts[ $key ] );
+								$new_settings[ $key ][ $option ] = $sanitize( $data[ $option ] );
 							}
 						}
 					}
 
-					return $fonts;
+					return $new_settings;
 				},
 				'transport' => 'refresh',
 			),
@@ -403,7 +403,14 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 						'letterSpacingTablet' => 'generate_sanitize_empty_decimal_integer',
 						'letterSpacingMobile' => 'generate_sanitize_empty_decimal_integer',
 						'letterSpacingUnit' => 'sanitize_text_field',
+						'marginBottom' => 'generate_sanitize_empty_decimal_integer',
+						'marginBottomTablet' => 'generate_sanitize_empty_decimal_integer',
+						'marginBottomMobile' => 'generate_sanitize_empty_decimal_integer',
+						'marginBottomUnit' => 'sanitize_text_field',
+						'module' => 'sanitize_text_field',
 					);
+
+					$new_settings = array();
 
 					foreach ( (array) $settings as $key => $data ) {
 						if ( empty( $data['selector'] ) ) {
@@ -413,14 +420,12 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 
 						foreach ( $options as $option => $sanitize ) {
 							if ( array_key_exists( $option, $data ) ) {
-								$settings[ $key ][ $option ] = $sanitize( $data[ $option ] );
-							} else {
-								unset( $settings[ $key ] );
+								$new_settings[ $key ][ $option ] = $sanitize( $data[ $option ] );
 							}
 						}
 					}
 
-					return $settings;
+					return $new_settings;
 				},
 				'transport' => 'refresh',
 			),
