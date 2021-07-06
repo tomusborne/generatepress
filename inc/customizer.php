@@ -337,6 +337,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					$options = array(
 						'fontFamily' => 'sanitize_text_field',
 						'googleFont' => 'rest_sanitize_boolean',
+						'googleFontApi' => 'absint',
 						'googleFontCategory' => 'sanitize_text_field',
 						'googleFontVariants' => 'sanitize_text_field',
 					);
