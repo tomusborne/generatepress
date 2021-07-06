@@ -889,12 +889,12 @@ function generate_do_customizer_compatibility_setup() {
 		return;
 	}
 
-	if ( generate_is_using_dynamic_typography() ) {
-		remove_action( 'customize_register', 'generate_fonts_customize_register' );
-		remove_action( 'customize_preview_init', 'generate_typography_customizer_live_preview' );
-	}
-
 	if ( version_compare( GP_PREMIUM_VERSION, '2.1.0-alpha.1', '<' ) ) {
+		if ( generate_is_using_dynamic_typography() ) {
+			remove_action( 'customize_register', 'generate_fonts_customize_register' );
+			remove_action( 'customize_preview_init', 'generate_typography_customizer_live_preview' );
+		}
+
 		remove_action( 'customize_register', 'generate_colors_customize_register' );
 		remove_action( 'customize_preview_init', 'generate_colors_customizer_live_preview' );
 		remove_action( 'customize_controls_enqueue_scripts', 'generate_enqueue_color_palettes', 1001 );
