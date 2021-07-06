@@ -898,5 +898,8 @@ function generate_do_customizer_compatibility_setup() {
 		remove_action( 'customize_register', 'generate_colors_customize_register' );
 		remove_action( 'customize_preview_init', 'generate_colors_customizer_live_preview' );
 		remove_action( 'customize_controls_enqueue_scripts', 'generate_enqueue_color_palettes', 1001 );
+		remove_action( 'customize_register', 'generate_colors_secondary_nav_customizer', 1000 );
+		remove_action( 'customize_register', 'generate_slideout_navigation_color_controls', 150 );
+		remove_action( 'customize_register', 'generate_colors_wc_customizer', 100 );
 	}
 }
