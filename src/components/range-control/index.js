@@ -61,15 +61,6 @@ export default class RangeControlInput extends Component {
 							step={ step }
 							value={ hasNumericValue( value ) ? value : '' }
 							onChange={ ( newVal ) => onChange( newVal ) }
-							onBlur={ () => {
-								if ( hasNumericValue( value ) ) {
-									onChange( parseFloat( value ) );
-								}
-							} }
-							onClick={ ( e ) => {
-								// Make sure onBlur fires in Firefox.
-								e.currentTarget.focus();
-							} }
 						/>
 					</div>
 				</div>
