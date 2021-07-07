@@ -9,7 +9,7 @@ import {
 } from '@wordpress/components';
 
 const GeneratePressControl = {
-	extend: ( FormComponent, controlExtend = {} ) => wp.customize.Control.extend( Object.assign({}, {
+	extend: ( FormComponent, controlExtend = {} ) => wp.customize.Control.extend( Object.assign( {}, {
 
 		/**
 		 * After control has been first rendered, start re-rendering when setting changes.
@@ -111,6 +111,26 @@ const GeneratePressControl = {
 			control.notifications.render();
 		},
 
+		getWrapper: function getWrapper() {
+			const control = this;
+
+			let wrapper = control.container[ 0 ];
+
+			if ( control.params.choices.wrapper ) {
+				const wrapperElement = document.getElementById( control.params.choices.wrapper + '--wrapper' );
+
+				if ( wrapperElement ) {
+					// Move this control into the wrapper.
+					wrapper = wrapperElement;
+
+					// Hide the original <li> container.
+					control.container.hide();
+				}
+			}
+
+			return wrapper;
+		},
+
 		/**
 		 * Render the control into the DOM.
 		 *
@@ -135,19 +155,7 @@ const GeneratePressControl = {
 				<Popover.Slot />
 			</SlotFillProvider>;
 
-			let wrapper = control.container[ 0 ];
-
-			if ( control.params.choices.wrapper ) {
-				const wrapperElement = document.getElementById( control.params.choices.wrapper + '--wrapper' );
-
-				if ( wrapperElement ) {
-					// Move this control into the wrapper.
-					wrapper = wrapperElement;
-
-					// Hide the original <li> container.
-					control.container.hide();
-				}
-			}
+			const wrapper = control.getWrapper();
 
 			render(
 				form,

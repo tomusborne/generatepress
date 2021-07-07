@@ -1,7 +1,7 @@
-import GeneratePressControl from "../../components/GeneratePressControl";
+import GeneratePressControl from '../../components/GeneratePressControl';
 
-import GeneratePressFontManagerControlForm from "./GeneratePressFontManagerControlForm";
-import GeneratePressTypographyControlForm from "./GeneratePressTypographyControlForm";
+import GeneratePressFontManagerControlForm from './GeneratePressFontManagerControlForm';
+import GeneratePressTypographyControlForm from './GeneratePressTypographyControlForm';
 
 const GeneratePressFontManagerControl = GeneratePressControl.extend( GeneratePressFontManagerControlForm );
 const GeneratePressTypographyControl = GeneratePressControl.extend( GeneratePressTypographyControlForm );
