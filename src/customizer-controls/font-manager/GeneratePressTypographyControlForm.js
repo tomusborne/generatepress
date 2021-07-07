@@ -6,7 +6,16 @@ import RangeControl from '../../components/range-control';
 import UtilityLabel from '../../components/utility-label';
 import UnitPicker from '../../components/unit-picker';
 import AdvancedSelect from '../../components/advanced-select';
-import typographyElements from './placeholders.js';
+import {
+	getElements,
+	getElementLabel,
+	getPlaceholder,
+	getRangeProps,
+	selectorHasMarginBottom,
+	getElementOptions,
+	getFontFamilies,
+	getAvailableFonts,
+} from './utils';
 
 import {
 	useState,
@@ -24,10 +33,6 @@ import {
 import {
 	__,
 } from '@wordpress/i18n';
-
-import {
-	applyFilters,
-} from '@wordpress/hooks';
 
 const GeneratePressTypographyControlForm = ( props ) => {
 	const [ isOpen, setOpen ] = useState( 0 );
@@ -47,132 +52,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 	};
 
 	const fonts = props.value;
-	const elements = applyFilters( 'generate_typography_elements', typographyElements );
-	const fontManagerControl = wp.customize.control( 'generate_settings[font_manager]' );
-	const availableFonts = fontManagerControl.setting.get();
-
-	const marginBottomSelectors = [
-		'body',
-		'all-headings',
-		'h1',
-		'h2',
-		'h3',
-		'h4',
-		'h5',
-		'h6',
-		'widget-titles',
-	];
-
-	const elementGroups = applyFilters(
-		'generate_typography_element_groups',
-		{
-			base: __( 'Base', 'generatepress' ),
-			header: __( 'Header', 'generatepress' ),
-			primaryNavigation: __( 'Primary Navigation', 'generatepress' ),
-			content: __( 'Content', 'generatepress' ),
-			widgets: __( 'Widgets', 'generatepress' ),
-			footer: __( 'Footer', 'generatepress' ),
-		}
-	);
-
-	// Always at the bottom.
-	elementGroups.other = __( 'Other', 'generatepress' );
-
-	const elementOptions = [];
-
-	Object.keys( elementGroups ).forEach( ( group ) => {
-		elementOptions.push(
-			{
-				label: elementGroups[ group ],
-				options: Object.keys( elements ).filter( ( key ) => {
-					if ( group === elements[ key ].group ) {
-						return true;
-					}
-
-					return false;
-				} ).map( ( item ) => ( { value: item, label: elements[ item ].label } ) ),
-			}
-		);
-	} );
-
-	const fontFamilies = [
-		{ value: '', label: __( '-- Select --', 'generatepress' ) },
-		{ value: 'inherit', label: __( 'Inherit', 'generatepress' ) },
-		{ value: 'System Default', label: __( 'System Default', 'generatepress' ) },
-	];
-
-	if ( availableFonts.length > 0 ) {
-		availableFonts.forEach( ( value, i ) => {
-			fontFamilies.push(
-				{
-					value: availableFonts[ i ].fontFamily,
-					label: availableFonts[ i ].fontFamily,
-				}
-			);
-		} );
-	}
-
-	const getElementLabel = ( settings ) => {
-		let label = 'undefined' !== typeof elements[ settings.selector ] ? elements[ settings.selector ].label : settings.selector;
-
-		if ( 'custom' === settings.selector && !! settings.customSelector ) {
-			label = settings.customSelector;
-		}
-
-		return label;
-	};
-
-	const getPlaceholder = ( settings, property ) => {
-		let placeholder = 'undefined' !== typeof elements[ settings.selector ].placeholders[ property ] ? elements[ settings.selector ].placeholders[ property ].value : '';
-
-		if ( property.includes( 'Tablet' ) ) {
-			const desktopSettingName = property.replace( 'Tablet', '' );
-
-			placeholder = 'undefined' !== typeof elements[ settings.selector ].placeholders[ desktopSettingName ] ? elements[ settings.selector ].placeholders[ desktopSettingName ].value : placeholder;
-			placeholder = 'undefined' !== typeof settings[ desktopSettingName ] && hasNumericValue( settings[ desktopSettingName ] ) ? settings[ desktopSettingName ] : placeholder;
-		}
-
-		if ( property.includes( 'Mobile' ) ) {
-			const tabletSettingName = property.replace( 'Mobile', 'Tablet' );
-			const desktopSettingName = property.replace( 'Mobile', '' );
-
-			placeholder = 'undefined' !== typeof elements[ settings.selector ].placeholders[ desktopSettingName ] ? elements[ settings.selector ].placeholders[ desktopSettingName ].value : placeholder;
-			placeholder = 'undefined' !== typeof elements[ settings.selector ].placeholders[ tabletSettingName ] ? elements[ settings.selector ].placeholders[ tabletSettingName ].value : placeholder;
-			placeholder = 'undefined' !== typeof settings[ desktopSettingName ] && hasNumericValue( settings[ desktopSettingName ] ) ? settings[ desktopSettingName ] : placeholder;
-			placeholder = 'undefined' !== typeof settings[ tabletSettingName ] && hasNumericValue( settings[ tabletSettingName ] ) ? settings[ tabletSettingName ] : placeholder;
-		}
-
-		// Ditch the placeholder if our unit isn't the default.
-		if ( placeholder && ! property.includes( 'Tablet' ) && ! property.includes( 'Mobile' ) ) {
-			if ( elements[ settings.selector ].placeholders[ property ].unit !== settings[ property + 'Unit' ] ) {
-				placeholder = '';
-			}
-		}
-
-		return placeholder;
-	};
-
-	const getRangeProps = ( settings, property, type, fallback ) => {
-		let rangeProps = 'undefined' !== typeof elements[ settings.selector ].placeholders[ property ] ? elements[ settings.selector ].placeholders[ property ][ type ] : fallback;
-
-		if ( '%' === settings[ property + 'Unit' ] ) {
-			if ( property.startsWith( 'fontSize' ) && 'max' === type ) {
-				rangeProps = 250;
-			}
-
-			if ( property.startsWith( 'lineHeight' ) ) {
-				if ( 'step' === type ) {
-					rangeProps = 1;
-				}
-
-				if ( 'max' === type ) {
-					rangeProps = 250;
-				}
-			}
-		}
-
-		return rangeProps;
-	};
+	const elements = getElements();
 
 	return (
 		<div>
@@ -249,7 +129,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 										id="generate-typography-choose-element"
 									>
 										<AdvancedSelect
-											options={ elementOptions }
+											options={ getElementOptions() }
 											placeholder={ __( 'Search elements…', 'generatepress' ) }
 											currentValue={ fonts[ index ].selector }
 											onChange={ ( object ) => {
@@ -282,7 +162,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 												}
 
 												// Unset any margin values if margin isn't supported.
-												if ( ! marginBottomSelectors.includes( value ) ) {
+												if ( ! selectorHasMarginBottom( value ) ) {
 													fontValues[ index ] = {
 														...fontValues[ index ],
 														marginBottom: '',
@@ -319,7 +199,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 											<SelectControl
 												label={ __( 'Font Family', 'generatepress' ) }
 												value={ fonts[ index ].fontFamily }
-												options={ fontFamilies }
+												options={ getFontFamilies() }
 												onChange={ ( value ) => {
 													const fontValues = [ ...fonts ];
 
@@ -336,7 +216,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 												<SelectControl
 													label={ __( 'Font Weight', 'generatepress' ) }
 													value={ fonts[ index ].fontWeight }
-													options={ getFontWeights( fonts[ index ].fontFamily, availableFonts ) }
+													options={ getFontWeights( fonts[ index ].fontFamily, getAvailableFonts() ) }
 													onChange={ ( value ) => {
 														const fontValues = [ ...fonts ];
 
@@ -647,7 +527,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 												</div>
 											</BaseControl>
 
-											{ marginBottomSelectors.includes( fonts[ index ].selector ) &&
+											{ selectorHasMarginBottom( fonts[ index ].selector ) &&
 												<BaseControl>
 													<UtilityLabel
 														label={ 'body' === fonts[ index ].selector ? __( 'Paragraph Bottom Margin', 'generatepress' ) : __( 'Bottom Margin', 'generatepress' ) }
