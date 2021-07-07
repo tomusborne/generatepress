@@ -51,3 +51,15 @@
 .customize-control[data-toggleid] {
 	display: none;
 }
+
+#customize-control-generate_settings-google_font_display {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+
+	.description {
+		order: 10;
+		margin-bottom: 0;
+		margin-top: 5px;
+	}
+}

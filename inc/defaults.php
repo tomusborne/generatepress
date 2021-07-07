@@ -64,6 +64,7 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 				'underline_links' => 'always',
 				'font_manager' => array(),
 				'typography' => array(),
+				'google_font_display' => 'auto',
 				'use_dynamic_typography' => true,
 				'global_colors' => array(
 					array(
