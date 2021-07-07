@@ -825,12 +825,6 @@ function generate_do_pro_compatibility_setup() {
 		}
 	}
 
-	if ( version_compare( GP_PREMIUM_VERSION, '2.1.0-alpha.1', '<' ) ) {
-		add_action( 'generate_inside_secondary_navigation', 'generate_enqueue_navigation_script' );
-		add_action( 'generate_inside_mobile_header', 'generate_enqueue_navigation_script' );
-		add_action( 'generate_inside_slideout_navigation', 'generate_enqueue_navigation_script' );
-	}
-
 	if ( generate_is_using_dynamic_typography() ) {
 		remove_action( 'wp_enqueue_scripts', 'generate_enqueue_google_fonts', 0 );
 		remove_action( 'wp_enqueue_scripts', 'generate_typography_premium_css', 100 );
