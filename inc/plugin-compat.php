@@ -805,16 +805,6 @@ function generate_pro_compat_customize_register( $wp_customize ) {
 			$wp_customize->get_setting( 'generate_spacing_settings[footer_left]' )->transport = 'refresh';
 		}
 	}
-
-	$wp_customize->add_panel(
-		'generate_colors_panel',
-		array(
-			'priority'       => 35,
-			'theme_supports' => '',
-			'title'          => __( 'Colors (Legacy)', 'generatepress' ),
-			'description'    => '',
-		)
-	);
 }
 
 add_action( 'wp', 'generate_do_pro_compatibility_setup' );
@@ -833,12 +823,6 @@ function generate_do_pro_compatibility_setup() {
 		if ( function_exists( 'generate_premium_do_elements' ) && ! is_singular() ) {
 			add_filter( 'generate_show_title', '__return_true', 20 );
 		}
-	}
-
-	if ( version_compare( GP_PREMIUM_VERSION, '2.1.0-alpha.1', '<' ) ) {
-		add_action( 'generate_inside_secondary_navigation', 'generate_enqueue_navigation_script' );
-		add_action( 'generate_inside_mobile_header', 'generate_enqueue_navigation_script' );
-		add_action( 'generate_inside_slideout_navigation', 'generate_enqueue_navigation_script' );
 	}
 
 	if ( generate_is_using_dynamic_typography() ) {
