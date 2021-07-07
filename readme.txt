@@ -95,6 +95,12 @@ MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
 
 == Changelog ==
 
+= 3.0.4 =
+
+Release date: July 12, 2021
+
+* Tweak: Apply default Group block padding to blocks in the content area only.
+
 = 3.0.3 =
 
 Release date: March 2, 2021
