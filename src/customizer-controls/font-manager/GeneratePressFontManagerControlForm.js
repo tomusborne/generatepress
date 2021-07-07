@@ -293,6 +293,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 					fontValues.push( {
 						fontFamily: '',
 						googleFont: false,
+						googleFontApi: 1,
 						googleFontCategory: '',
 						googleFontVariants: '',
 					} );
