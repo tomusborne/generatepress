@@ -805,16 +805,6 @@ function generate_pro_compat_customize_register( $wp_customize ) {
 			$wp_customize->get_setting( 'generate_spacing_settings[footer_left]' )->transport = 'refresh';
 		}
 	}
-
-	$wp_customize->add_panel(
-		'generate_colors_panel',
-		array(
-			'priority'       => 35,
-			'theme_supports' => '',
-			'title'          => __( 'Colors (Legacy)', 'generatepress' ),
-			'description'    => '',
-		)
-	);
 }
 
 add_action( 'wp', 'generate_do_pro_compatibility_setup' );
