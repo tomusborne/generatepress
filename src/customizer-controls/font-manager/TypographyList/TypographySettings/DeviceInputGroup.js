@@ -2,6 +2,7 @@ import UtilityLabel from '../../../../components/utility-label';
 import { BaseControl } from '@wordpress/components';
 import RangeControl from '../../../../components/range-control';
 import UnitPicker from '../../../../components/unit-picker';
+import hasNumericValue from "../../../../utils/has-numeric-value";
 
 const DeviceInputGroup = ( props ) => {
 	const {
@@ -38,7 +39,7 @@ const DeviceInputGroup = ( props ) => {
 						step={ step }
 						rangeMin={ rangeMin }
 						rangeMax={ rangeMax }
-						value={ desktopValue }
+						value={ hasNumericValue( desktopValue ) ? parseFloat( desktopValue ) : desktopInitial }
 						initialPosition={ desktopInitial }
 						onChange={ desktopOnChange }
 						withInputField={ false }
@@ -52,7 +53,7 @@ const DeviceInputGroup = ( props ) => {
 						step={ step }
 						rangeMin={ rangeMin }
 						rangeMax={ rangeMax }
-						value={ tabletValue }
+						value={ hasNumericValue( tabletValue ) ? parseFloat( tabletValue ) : tabletInitial }
 						initialPosition={ tabletInitial }
 						onChange={ tabletOnChange }
 						withInputField={ false }
@@ -66,7 +67,7 @@ const DeviceInputGroup = ( props ) => {
 						step={ step }
 						rangeMin={ rangeMin }
 						rangeMax={ rangeMax }
-						value={ mobileValue }
+						value={ hasNumericValue( mobileValue ) ? parseFloat( mobileValue ) : mobileInitial }
 						initialPosition={ mobileInitial }
 						onChange={ mobileOnChange }
 						withInputField={ false }
