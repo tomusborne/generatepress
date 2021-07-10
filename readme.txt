@@ -95,6 +95,38 @@ MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
 
 == Changelog ==
 
+= 3.1.0 =
+
+Release date: TBA
+
+* New: Global color system
+* New: Add all theme color options to free theme
+* New: Re-build color options in the Customizer
+* New: Dynamic typography system
+* New: Underline links option
+* New: Only load menu.js when needed
+* New: generate_has_active_menu filter
+* New: generate_before_loop hook
+* New: Dynamic HTML attribute system
+* New: Admin dashboard header
+* New: generate_search_title_output filter
+* New: generate_after_comment_author_name hook
+* New: generate_show_comment_entry_meta filter
+* Tweak: Improve sub-menu functionality to decrease CLS
+* Tweak: Only allow vertical comment form resizing
+* Tweak: Move a11y javascript inline to the footer
+* Tweak: Add aria-label attributes to elements that need them
+* Tweak: Remove theme structure option for people using flexbox
+* Tweak: Remove search result title from template
+* Tweak: Add search result title using generate_before_loop hook
+* Tweak: Remove aria-required attribute from comment form
+* Tweak: Add required attribute to comment author/email fields if required
+* Tweak: Move viewport head meta below the title meta
+* Tweak: Optimize SVG icon HTML
+* Tweak: Move generate_svg_icon_element before the "replace" icon definition
+* Fix: Missing search form button icon when using font icons
+* Fix: Load comments CSS if comments exists even if new comments are disabled
+
 = 3.0.4 =
 
 Release date: July 12, 2021
