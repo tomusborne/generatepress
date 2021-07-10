@@ -299,6 +299,9 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 					} );
 
 					handleChangeComplete( fontValues );
+
+					const itemCount = wp.customize.control( props.customizerSetting.id ).setting.get().length;
+					setOpen( itemCount );
 				} }
 			>
 				{ __( 'Add Font', 'generatepress' ) }
