@@ -54,11 +54,12 @@
 
 .sortable-item-wrapper {
   margin-bottom: 10px;
+  border: 1px dashed transparent;
 }
 
 .sortable-chosen {
   	&.sortable-ghost.sortable-item-wrapper {
-	    border: 1px dashed #c3c4c7;
+	    border-color: #c3c4c7;
 	}
 
   	&.sortable-ghost .sortable-item-content {
@@ -67,10 +68,6 @@
 }
 
 .sortable-drag {
-    &.sortable-item-wrapper {
-	    border: none;
-    }
-
     .sortable-item-content {
 	    opacity: 1 !important;
     }

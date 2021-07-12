@@ -7,7 +7,15 @@ const TypographyList = ( props ) => {
 	const [ sortableFonts, setSortableFonts ] = useState( fontList );
 
 	const onDragEnd = useCallback( () => {
-		setFonts( sortableFonts );
+		setFonts( sortableFonts.map( ( font ) => {
+			const newFont = { ...font };
+
+			delete newFont.index;
+			delete newFont.chosen;
+			delete newFont.selected;
+
+			return newFont;
+		} ) );
 	}, [ sortableFonts, setFonts ] );
 
 	return (
