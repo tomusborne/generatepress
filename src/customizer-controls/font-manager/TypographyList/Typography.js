@@ -2,6 +2,7 @@ import Label from './Typography/Label';
 import SettingsButton from './Typography/SettingsButton';
 import DeleteButton from './Typography/DeleteButton';
 import TypographySettings from './TypographySettings';
+import getIcon from '../../../utils/get-icon';
 
 const Typography = ( props ) => {
 	const {
@@ -16,10 +17,15 @@ const Typography = ( props ) => {
 		onChangeElement,
 	} = props;
 
+	const dragStyles = font.chosen ? {
+		backgroundColor: '#c3c4c7',
+	} : {};
+
 	return (
-		<div className="generate-font-manager--item">
+		<div className="generate-font-manager--item" style={ dragStyles }>
 
 			<div className="generate-font-manager--header" style={ { pointerEvents: !! isOpen ? 'none' : '' } }>
+				<div className="generate-font-manager--drag-handle" >{ getIcon( 'drag-handle' ) }</div>
 				<Label
 					font={ font }
 					itemId={ itemId }

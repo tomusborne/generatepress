@@ -1,8 +1,8 @@
 .generate-font-manager--item {
-    margin-bottom: 10px;
 
 	.generate-font-manager--header {
 		display: flex;
+	    align-items: center;
 
 		.generate-font-manager--label {
 			flex-grow: 1;
@@ -10,6 +10,18 @@
 			overflow: hidden;
 			white-space: nowrap;
 			text-overflow: ellipsis;
+		}
+
+	  	.generate-font-manager--drag-handle {
+		    cursor: move;
+		  	margin-top: 5px;
+		  	padding: 4px;
+
+		    svg {
+			    margin-right: 0;
+			    width: 1em;
+			    height: 1em;
+		    }
 		}
 	}
 
@@ -38,6 +50,30 @@
 			}
 		}
 	}
+}
+
+.sortable-item-wrapper {
+  margin-bottom: 10px;
+}
+
+.sortable-chosen {
+  	&.sortable-ghost.sortable-item-wrapper {
+	    border: 1px dashed #c3c4c7;
+	}
+
+  	&.sortable-ghost .sortable-item-content {
+	    opacity: 0;
+	}
+}
+
+.sortable-drag {
+    &.sortable-item-wrapper {
+	    border: none;
+    }
+
+    .sortable-item-content {
+	    opacity: 1 !important;
+    }
 }
 
 .generate-customize-control--font-popover {
