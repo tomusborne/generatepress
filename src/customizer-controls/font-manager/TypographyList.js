@@ -14,8 +14,9 @@ const TypographyList = ( props ) => {
 		}
 
 		return (
-			<div key={ group }>
-				<span style={ { fontSize: '15px', fontWeight: 600, marginBottom: '10px' } }>{ groupLabel }</span>
+			<div className="generate-font-manager-group" key={ group }>
+				<h4 className="generate-font-manager-group__label">{ groupLabel }</h4>
+
 				{ fonts.map( ( font ) => (
 					<Typography
 						key={ font.index }
