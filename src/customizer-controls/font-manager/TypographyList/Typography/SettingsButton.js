@@ -10,6 +10,8 @@ const SettingsButton = ( { itemId, setOpen, isOpen } ) => {
 				onClick={ () => {
 					if ( itemId !== isOpen ) {
 						setOpen( itemId );
+					} else {
+						setOpen( false );
 					}
 				} }
 			>

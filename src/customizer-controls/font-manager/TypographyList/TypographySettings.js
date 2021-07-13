@@ -1,4 +1,4 @@
-import { Button, Popover } from '@wordpress/components';
+import { Button } from '@wordpress/components';
 import TargetElement from './TypographySettings/TargetElement';
 import CustomSelector from './TypographySettings/CustomSelector';
 import FontFamily from './TypographySettings/FontFamily';
@@ -20,12 +20,7 @@ const TypographySettings = ( props ) => {
 	} = props;
 
 	return (
-		<Popover
-			position="bottom center"
-			className="generate-customize-control--popover generate-customize-control--font-popover"
-			onClose={ toggleClose }
-			focusOnMount="container"
-		>
+		<div className="generate-customize-control--font-dropdown">
 			<TargetElement
 				index={ font.index }
 				value={ font.selector }
@@ -83,7 +78,7 @@ const TypographySettings = ( props ) => {
 				</Button>
 			</div>
 
-		</Popover>
+		</div>
 	);
 };
 
