@@ -28,7 +28,7 @@ const Typography = ( props ) => {
 					label={ label }
 				/>
 				<SettingsButton itemId={ itemId } setOpen={ setOpen } isOpen={ isOpen } />
-				<DeleteButton onClick={ deleteFont } />
+				<DeleteButton onClick={ deleteFont.bind( null, font.index ) } />
 			</div>
 
 			{ itemId === isOpen &&
