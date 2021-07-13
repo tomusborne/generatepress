@@ -166,7 +166,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 											}
 										} }
 									>
-										{ getIcon( 'settings' ) }
+										{ itemId === isOpen ? getIcon( 'chevron-up' ) : getIcon( 'chevron-down' ) }
 									</Button>
 								</Tooltip>
 
