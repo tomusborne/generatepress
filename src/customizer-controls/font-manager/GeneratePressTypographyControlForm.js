@@ -24,15 +24,14 @@ const GeneratePressTypographyControlForm = ( props ) => {
 		setFonts( fontValues );
 	};
 
-	const onChangeElement = ( { value }, index ) => {
+	const onChangeElement = ( { value, group, module }, index ) => {
 		const fontValues = [ ...fonts ];
-
-		const module = elements[ value ].module || 'core';
 
 		fontValues[ index ] = {
 			...fontValues[ index ],
-			module,
 			selector: value,
+			module,
+			group,
 		};
 
 		const placeholders = elements[ value ].placeholders;
