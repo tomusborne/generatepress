@@ -194,7 +194,7 @@ class GeneratePress_Dashboard {
 			wp_enqueue_style(
 				'generate-dashboard',
 				get_template_directory_uri() . '/assets/dist/style-dashboard.css',
-				array(),
+				array( 'wp-components' ),
 				GENERATE_VERSION
 			);
 

@@ -8,6 +8,7 @@ import {
 import {
 	Placeholder,
 	Spinner,
+	Button,
 } from '@wordpress/components';
 
 import {
@@ -53,9 +54,14 @@ const StartCustomizing = () => {
 								{ !! customizeItems[ item ].description && <div className="generatepress-start-customizing__description">{ customizeItems[ item ].description }</div> }
 								{ !! customizeItems[ item ].action &&
 									<div className="generatepress-start-customizing__action">
-										<a className="button-component" href={ customizeItems[ item ].action }>
+										<Button
+											isPrimary
+											onClick={ () => {
+												// Do something.
+											} }
+										>
 											{ customizeItems[ item ].actionLabel || __( 'Go to options', 'generatepress' ) }
-										</a>
+										</Button>
 									</div>
 								}
 							</div>
