@@ -4,8 +4,8 @@
   "description": "A super lightweight WordPress theme.",
   "main": "Gruntfile.js",
   "scripts": {
-    "build": "wp-scripts build src/customizer.js src/block-editor.js --output-path=assets/dist",
-    "start": "wp-scripts start src/customizer.js src/block-editor.js --output-path=assets/dist",
+    "build": "wp-scripts build src/customizer.js src/block-editor.js src/dashboard.js --output-path=assets/dist",
+    "start": "wp-scripts start src/customizer.js src/block-editor.js src/dashboard.js --output-path=assets/dist",
     "grunt:style": "grunt style",
     "grunt:build": "grunt build",
     "grunt:watch": "grunt watch",

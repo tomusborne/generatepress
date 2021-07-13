@@ -95,7 +95,7 @@ require $theme_dir . '/inc/deprecated.php';
 
 if ( is_admin() ) {
 	require $theme_dir . '/inc/meta-box.php';
-	require $theme_dir . '/inc/dashboard.php';
+	require $theme_dir . '/inc/class-dashboard.php';
 }
 
 /**

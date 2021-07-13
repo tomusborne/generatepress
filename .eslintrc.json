@@ -9,7 +9,8 @@
 		"ajaxurl": "readonly",
 		"generatepressMenu": "readonly",
 		"generatepressNavSearch": "readonly",
-		"generateCustomizerControls": "readonly"
+		"generateCustomizerControls": "readonly",
+		"generateDashboard": "readonly"
 	},
 	"env": {
 	  "browser": true,
