@@ -1,46 +1,37 @@
 import './style.scss';
-import { useState } from '@wordpress/element';
+import { useState, useEffect } from '@wordpress/element';
 import { Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import TypographyList from './TypographyList';
 import { getElements, selectorHasMarginBottom } from './utils';
 
 const GeneratePressTypographyControlForm = ( props ) => {
+	const [ fonts, setFonts ] = useState( props.value );
 	const [ isOpen, setOpen ] = useState( 0 );
 
-	/**
-	 * Save the value when changing the control.
-	 *
-	 * @param {Object} value - The value.
-	 * @return {void}
-	 */
-	const handleChangeComplete = ( value ) => {
-		wp.customize.control( props.customizerSetting.id ).setting.set( value );
-	};
+	useEffect( () => {
+		wp.customize.control( props.customizerSetting.id ).setting.set( fonts );
+	}, [ fonts ] );
 
-	const toggleClose = () => {
-		setOpen( 0 );
-	};
+	const toggleClose = () => setOpen( 0 );
 
-	const fonts = props.value;
 	const elements = getElements();
 
 	const deleteFont = ( fontIndex ) => {
 		const fontValues = [ ...fonts ];
 
 		fontValues.splice( fontIndex, 1 );
-		handleChangeComplete( fontValues );
+		setFonts( fontValues );
 	};
 
-	const onChangeElement = ( { value }, index ) => {
+	const onChangeElement = ( { value, group, module }, index ) => {
 		const fontValues = [ ...fonts ];
-
-		const module = elements[ value ].module || 'core';
 
 		fontValues[ index ] = {
 			...fontValues[ index ],
-			module,
 			selector: value,
+			module,
+			group,
 		};
 
 		const placeholders = elements[ value ].placeholders;
@@ -72,7 +63,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 			};
 		}
 
-		handleChangeComplete( fontValues );
+		setFonts( fontValues );
 	};
 
 	const onChangeFontValue = ( property, value, index ) => {
@@ -81,7 +72,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 		fontValues[ index ] = { ...fontValues[ index ] };
 		fontValues[ index ][ property ] = value;
 
-		handleChangeComplete( fontValues );
+		setFonts( fontValues );
 	};
 
 	return (
@@ -124,10 +115,9 @@ const GeneratePressTypographyControlForm = ( props ) => {
 						letterSpacingUnit: 'px',
 					} );
 
-					handleChangeComplete( fontValues );
+					setFonts( fontValues );
 
-					const itemCount = wp.customize.control( props.customizerSetting.id ).setting.get().length;
-					setOpen( itemCount );
+					setOpen( fontValues.length );
 				} }
 			>
 				{ __( 'Add Typography', 'generatepress' ) }

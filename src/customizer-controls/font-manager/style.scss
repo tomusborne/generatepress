@@ -3,6 +3,7 @@
 
 	.generate-font-manager--header {
 		display: flex;
+		align-items: center;
 
 		.generate-font-manager--label {
 			flex-grow: 1;
@@ -20,8 +21,9 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		width: 36px;
-		height: 36px;
+		width: 30px;
+		height: 30px;
+		min-width: 30px;
 		margin-left: 5px;
 		border-radius: 100%;
 		flex-shrink: 0;
@@ -97,5 +99,25 @@
 
 	.components-select-control__input--generate-fontfamily {
 		margin-bottom: 3px;
+	}
+}
+
+.customize-control-generate-typography-control {
+	margin-top: 10px;
+}
+
+.generate-font-manager-group {
+    margin-bottom: 20px;
+
+	&__label {
+		margin-top: 0;
+		color: #000;
+		text-transform: uppercase;
+		font-size: 11px;
+		margin-bottom: 10px;
+	}
+
+	.generate-font-manager--item:last-child {
+		margin-bottom: 0;
 	}
 }

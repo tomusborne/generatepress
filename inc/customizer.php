@@ -449,6 +449,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 						'marginBottomMobile' => 'generate_sanitize_empty_decimal_integer',
 						'marginBottomUnit' => 'sanitize_text_field',
 						'module' => 'sanitize_text_field',
+						'group' => 'sanitize_text_field',
 					);
 
 					$new_settings = array();
