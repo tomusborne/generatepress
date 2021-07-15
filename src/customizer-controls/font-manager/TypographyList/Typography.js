@@ -19,7 +19,7 @@ const Typography = ( props ) => {
 	return (
 		<div className="generate-font-manager--item">
 
-			<div className="generate-font-manager--header" style={ { pointerEvents: !! isOpen ? 'none' : '' } }>
+			<div className="generate-font-manager--header">
 				<Label
 					font={ font }
 					itemId={ itemId }
@@ -28,7 +28,7 @@ const Typography = ( props ) => {
 					label={ label }
 				/>
 				<SettingsButton itemId={ itemId } setOpen={ setOpen } isOpen={ isOpen } />
-				<DeleteButton onClick={ deleteFont.bind( null, font.index ) } />
+				<DeleteButton onClick={ deleteFont.bind( null, font.index ) } isOpen={ isOpen } itemId={ itemId } />
 			</div>
 
 			{ itemId === isOpen &&

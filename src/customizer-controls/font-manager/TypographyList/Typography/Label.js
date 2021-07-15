@@ -8,6 +8,8 @@ const Label = ( { itemId, setOpen, isOpen, font, label } ) => {
 			onClick={ () => {
 				if ( itemId !== isOpen ) {
 					setOpen( itemId );
+				} else {
+					setOpen( false );
 				}
 			} }
 		>
