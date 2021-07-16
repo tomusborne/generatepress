@@ -5,7 +5,7 @@ import {
 export default {
 	siteIdentity: {
 		title: __( 'Site Identity', 'generatepress' ),
-		description: __( 'Set your site name, description, logo and more.', 'generatepress' ),
+		description: __( 'Set options like your site title, description, logo, logo width, and more.', 'generatepress' ),
 		icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" /></svg>,
 		action: {
 			url: generateDashboard.customizeSectionUrls.siteIdentitySection,
@@ -35,27 +35,28 @@ export default {
 			url: generateDashboard.customizeSectionUrls.layoutSection,
 		},
 	},
-	themeBuilder: {
-		pro: true,
-		title: __( 'Theme Builder', 'generatepress' ),
-		description: __( 'Design and build your theme elements in the block editor.', 'generatepress' ),
-		icon: <svg viewBox="0 0 16 16" fill="currentColor" height="16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V2zm8.5 0v8H15V2H8.5zm0 9v3H15v-3H8.5zm-1-9H1v3h6.5V2zM1 14h6.5V6H1v8z"></path></svg>,
-		action: {
-			label: __( 'Learn more', 'generatepress' ),
-			url: 'https://generatepress.com/premium#theme-builder',
-			external: true,
-		},
-	},
-	siteLibrary: {
-		pro: true,
-		title: __( 'Site Library', 'generatepress' ),
-		description: __( 'Start your site with a professionally-built starter site.', 'generatepress' ),
-		icon: <svg viewBox="0 0 16 16" fill="currentColor" height="16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z"></path></svg>,
-		action: {
-			label: __( 'Learn more', 'generatepress' ),
-			url: 'https://generatepress.com/premium#site-library',
-			external: true,
-		},
-	},
+	// themeBuilder: {
+	// 	pro: true,
+	// 	key: 'generate_package_elements',
+	// 	title: __( 'Theme Builder', 'generatepress' ),
+	// 	description: __( 'Design and build your theme elements in the block editor.', 'generatepress' ),
+	// 	icon: <svg viewBox="0 0 16 16" fill="currentColor" height="16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V2zm8.5 0v8H15V2H8.5zm0 9v3H15v-3H8.5zm-1-9H1v3h6.5V2zM1 14h6.5V6H1v8z"></path></svg>,
+	// 	action: {
+	// 		label: __( 'Learn more', 'generatepress' ),
+	// 		url: 'https://generatepress.com/premium#theme-builder',
+	// 		external: true,
+	// 	},
+	// },
+	// siteLibrary: {
+	// 	pro: true,
+	// 	title: __( 'Site Library', 'generatepress' ),
+	// 	description: __( 'Start your site with a professionally-built starter site.', 'generatepress' ),
+	// 	icon: <svg viewBox="0 0 16 16" fill="currentColor" height="16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z"></path></svg>,
+	// 	action: {
+	// 		label: __( 'Learn more', 'generatepress' ),
+	// 		url: 'https://generatepress.com/premium#site-library',
+	// 		external: true,
+	// 	},
+	// },
 };
 

@@ -45,40 +45,47 @@ const StartCustomizing = () => {
 
 	const customizeItems = applyFilters( 'generate_dashboard_customize_items', allCustomizeItems );
 
+	const ItemAction = ( item ) => {
+		const buttonAttributes = {
+			className: 'components-button is-primary',
+			href: customizeItems[ item ].action.url,
+			target: !! customizeItems[ item ].action.external ? '_blank' : null,
+			rel: !! customizeItems[ item ].action.external ? 'noreferrer noopener' : null,
+		};
+
+		return (
+			<>
+				{ !! customizeItems[ item ].action &&
+					<a { ...buttonAttributes }>
+						{ customizeItems[ item ].action.label || __( 'Open options', 'generatepress' ) }
+					</a>
+				}
+			</>
+		);
+	};
+
 	return (
 		<>
 			<h2>{ __( 'Start Customizing', 'generatepress' ) }</h2>
 
 			{ !! customizeItems > 0 &&
-				<div className="generatepress-start-customizing">
+				<div className="generatepress-feature-list">
 					{ Object.keys( customizeItems ).map( ( item, index ) => {
-						const buttonAttributes = {
-							className: 'components-button is-primary',
-							href: customizeItems[ item ].action.url,
-							target: !! customizeItems[ item ].action.external ? '_blank' : null,
-							rel: !! customizeItems[ item ].action.external ? 'noreferrer noopener' : null,
-						};
-
 						return (
-							<div className="generatepress-start-customizing__item" key={ index }>
-								{ !! customizeItems[ item ].icon && <div className="generatepress-start-customizing__icon">{ customizeItems[ item ].icon }</div> }
-								<div className="generatepress-start-customizing__content">
+							<div className="generatepress-feature-list__item" key={ index }>
+								<div className="generatepress-feature-list__content">
 									{ !! customizeItems[ item ].title &&
-										<div className="generatepress-start-customizing__title">
+										<div className="generatepress-feature-list__title">
 											{ customizeItems[ item ].title }
-											{ !! customizeItems[ item ].pro && <span className="generatepress-start-customizing__pro">{ __( 'Pro', 'generatepress' ) }</span> }
+											{ !! customizeItems[ item ].pro && <span className="generatepress-feature-list__pro">{ __( 'Pro', 'generatepress' ) }</span> }
 										</div>
 									}
 
-									{ !! customizeItems[ item ].description && <div className="generatepress-start-customizing__description">{ customizeItems[ item ].description }</div> }
+									{ !! customizeItems[ item ].description && <div className="generatepress-feature-list__description">{ customizeItems[ item ].description }</div> }
+								</div>
 
-									{ !! customizeItems[ item ].action &&
-										<div className="generatepress-start-customizing__action">
-											<a { ...buttonAttributes }>
-												{ customizeItems[ item ].action.label || __( 'Go to options', 'generatepress' ) }
-											</a>
-										</div>
-									}
+								<div className="generatepress-feature-list__action">
+									{ applyFilters( 'generate_dashboard_customize_item_action', ItemAction( item ), customizeItems[ item ] ) }
 								</div>
 							</div>
 						);
