@@ -32,6 +32,6 @@ const SetResponsiveClasses = () => {
 	return null;
 };
 
-if ( select( 'core/edit-post' ).__experimentalGetPreviewDeviceType ) {
+if ( select( 'core/edit-post' ) && select( 'core/edit-post' ).__experimentalGetPreviewDeviceType ) {
 	registerPlugin( 'generatepress-responsive-classes', { render: SetResponsiveClasses } );
 }
