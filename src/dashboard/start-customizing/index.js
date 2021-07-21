@@ -37,7 +37,7 @@ const StartCustomizing = () => {
 
 	if ( ! isLoaded ) {
 		return (
-			<Placeholder className="generatepress-dashboard-placeholder">
+			<Placeholder className="generatepress-dashboard__placeholder">
 				<Spinner />
 			</Placeholder>
 		);
@@ -66,33 +66,36 @@ const StartCustomizing = () => {
 
 	return (
 		<>
-			<h2>{ __( 'Start Customizing', 'generatepress' ) }</h2>
-
 			{ !! customizeItems > 0 &&
-				<div className="generatepress-feature-list">
-					{ Object.keys( customizeItems ).map( ( item, index ) => {
-						return (
-							<div className="generatepress-feature-list__item" key={ index }>
-								<div className="generatepress-feature-list__content">
-									{ !! customizeItems[ item ].title &&
-										<div className="generatepress-feature-list__title">
-											{ customizeItems[ item ].title }
-											{ !! customizeItems[ item ].pro && <span className="generatepress-feature-list__pro">{ __( 'Pro', 'generatepress' ) }</span> }
-										</div>
-									}
+				<>
+					<div className="generatepress-dashboard__section-title">
+						<h2>{ __( 'Start Customizing', 'generatepress' ) }</h2>
+					</div>
 
-									{ !! customizeItems[ item ].description && <div className="generatepress-feature-list__description">{ customizeItems[ item ].description }</div> }
+					<div className="generatepress-dashboard__section">
+						{ Object.keys( customizeItems ).map( ( item, index ) => {
+							return (
+								<div className="generatepress-dashboard__section-item" key={ index }>
+									<div className="generatepress-dashboard__section-item-content">
+										{ !! customizeItems[ item ].title &&
+											<div className="generatepress-dashboard__section-item-title">
+												{ customizeItems[ item ].title }
+											</div>
+										}
+
+										{ !! customizeItems[ item ].description && <div className="generatepress-dashboard__section-item-description">{ customizeItems[ item ].description }</div> }
+									</div>
+
+									<div className="generatepress-dashboard__section-item-action">
+										{ applyFilters( 'generate_dashboard_customize_item_action', ItemAction( item ), customizeItems[ item ] ) }
+									</div>
 								</div>
+							);
+						} ) }
 
-								<div className="generatepress-feature-list__action">
-									{ applyFilters( 'generate_dashboard_customize_item_action', ItemAction( item ), customizeItems[ item ] ) }
-								</div>
-							</div>
-						);
-					} ) }
-
-					{ applyFilters( 'generate_dashboard_inside_start_customizing' ) }
-				</div>
+						{ applyFilters( 'generate_dashboard_inside_start_customizing' ) }
+					</div>
+				</>
 			}
 		</>
 	);
