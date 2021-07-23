@@ -47,6 +47,7 @@ class GeneratePress_Dashboard {
 		add_action( 'in_admin_header', array( $this, 'add_header' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( 'generate_admin_dashboard', array( $this, 'start_customizing' ) );
+		add_action( 'generate_admin_dashboard', array( $this, 'go_pro' ), 15 );
 	}
 
 	/**
@@ -239,6 +240,13 @@ class GeneratePress_Dashboard {
 	 */
 	public function start_customizing() {
 		echo '<div id="generatepress-dashboard-app"></div>';
+	}
+
+	/**
+	 * Add the container for our start customizing app.
+	 */
+	public function go_pro() {
+		echo '<div id="generatepress-dashboard-go-pro"></div>';
 	}
 }
 

@@ -90,6 +90,16 @@
 		}
 	}
 
+	&__section-description {
+		margin-top: -10px;
+		margin-bottom: 20px;
+
+		p {
+			font-size: 15px;
+			margin: 0;
+		}
+	}
+
 	&__section {
 		color: #555;
 		margin-bottom: 50px;
