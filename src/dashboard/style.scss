@@ -160,6 +160,10 @@
 			color: red;
 		}
 	}
+
+	&__reset-button.is-primary {
+		background-color: darkred;
+	}
 }
 
 @media (max-width: 768px) {
