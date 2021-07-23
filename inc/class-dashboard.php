@@ -211,6 +211,7 @@ class GeneratePress_Dashboard {
 				'generate-dashboard',
 				'generateDashboard',
 				array(
+					'hasPremium' => defined( 'GP_PREMIUM_VERSION' ),
 					'customizeSectionUrls' => array(
 						'siteIdentitySection' => admin_url( 'customize.php?autofocus[section]=title_tagline' ),
 						'colorsSection' => admin_url( 'customize.php?autofocus[section]=generate_colors_section' ),

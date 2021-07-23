@@ -31,6 +31,10 @@ const GoPro = () => {
 		}
 	} );
 
+	if ( generateDashboard.hasPremium ) {
+		return null;
+	}
+
 	if ( ! isLoaded ) {
 		return (
 			<Placeholder className="generatepress-dashboard__placeholder">
