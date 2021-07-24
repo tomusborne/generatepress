@@ -55,7 +55,7 @@ const GoPro = () => {
 						<p>{ __( 'Take GeneratePress to the next level with more options, professionally designed starter sites, and block-based theme building.', 'gp-premium' ) }</p>
 					</div>
 
-					<div className="generatepress-dashboard__premium">
+					<div className="generatepress-dashboard__section generatepress-dashboard__premium">
 						{ Object.keys( proItems ).map( ( item, index ) => {
 							const buttonAttributes = {
 								className: 'components-button is-primary',

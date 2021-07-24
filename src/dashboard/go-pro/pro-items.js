@@ -4,45 +4,41 @@ import {
 
 export default {
 	themeBuilder: {
-		pro: true,
 		title: __( 'Theme Builder', 'generatepress' ),
 		description: __( 'Design and build your theme elements in the block editor.', 'generatepress' ),
-		icon: <svg viewBox="0 0 16 16" fill="currentColor" height="16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V2zm8.5 0v8H15V2H8.5zm0 9v3H15v-3H8.5zm-1-9H1v3h6.5V2zM1 14h6.5V6H1v8z"></path></svg>,
+		icon: <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z" /></svg>,
 		action: {
-			label: __( 'Learn more', 'generatepress' ),
+			label: __( 'Explore our theme builder', 'generatepress' ),
 			url: 'https://generatepress.com/premium#theme-builder',
 			external: true,
 		},
 	},
 	siteLibrary: {
-		pro: true,
 		title: __( 'Site Library', 'generatepress' ),
 		description: __( 'Start your site with a professionally-built starter site.', 'generatepress' ),
-		icon: <svg viewBox="0 0 16 16" fill="currentColor" height="16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z"></path></svg>,
+		icon: <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2zM22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" /></svg>,
 		action: {
-			label: __( 'Learn more', 'generatepress' ),
+			label: __( 'Explore starter sites', 'generatepress' ),
 			url: 'https://generatepress.com/premium#site-library',
 			external: true,
 		},
 	},
 	moreOptions: {
-		pro: true,
 		title: __( 'More Options', 'generatepress' ),
-		description: __( 'Add more options like our advanced hook system, mobile header, sticky navigation, infinite scroll, masonry and more!', 'generatepress' ),
-		icon: <svg viewBox="0 0 16 16" fill="currentColor" height="16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z"></path></svg>,
+		description: __( 'Add more options like our advanced hook system, mobile header, sticky navigation, infinite scroll, masonry and much more.', 'generatepress' ),
+		icon: <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6" /></svg>,
 		action: {
-			label: __( 'Learn more', 'generatepress' ),
+			label: __( 'Explore more options', 'generatepress' ),
 			url: 'https://generatepress.com/premium',
 			external: true,
 		},
 	},
 	support: {
-		pro: true,
 		title: __( 'Premium Support', 'generatepress' ),
-		description: __( 'Gain access to our famous support forum. Our team is always happy to help!', 'generatepress' ),
-		icon: <svg viewBox="0 0 16 16" fill="currentColor" height="16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z"></path></svg>,
+		description: __( 'We take support seriously. Gain access to our premium support forums and take advantage of our industry-leading support.', 'generatepress' ),
+		icon: <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="4" /><path d="M4.93 4.93l4.24 4.24M14.83 14.83l4.24 4.24M14.83 9.17l4.24-4.24M14.83 9.17l3.53-3.53M4.93 19.07l4.24-4.24" /></svg>,
 		action: {
-			label: __( 'Learn more', 'generatepress' ),
+			label: __( 'Explore our support forums', 'generatepress' ),
 			url: 'https://generatepress.com/support',
 			external: true,
 		},

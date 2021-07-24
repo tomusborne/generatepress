@@ -27,13 +27,19 @@
 		justify-content: center;
 		border-radius: 100%;
 		margin-bottom: 25px;
+
+		svg {
+			width: 25px;
+			height: 25px;
+		}
 	}
 
 	&__premium-item-title {
 		font-weight: 500;
-		margin-bottom: 1em;
+		margin-bottom: 10px;
 		display: flex;
 		align-items: center;
+		font-size: 17px;
 	}
 
 	&__premium-item-description {
