@@ -10,10 +10,12 @@ const SettingsButton = ( { itemId, setOpen, isOpen } ) => {
 				onClick={ () => {
 					if ( itemId !== isOpen ) {
 						setOpen( itemId );
+					} else {
+						setOpen( false );
 					}
 				} }
 			>
-				{ getIcon( 'settings' ) }
+				{ itemId === isOpen ? getIcon( 'chevron-up' ) : getIcon( 'chevron-down' ) }
 			</Button>
 		</Tooltip>
 	);

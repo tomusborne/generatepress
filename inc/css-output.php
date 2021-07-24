@@ -243,6 +243,16 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 					$css->add_property( '--' . $data['slug'], $data['color'] );
 				}
 			}
+
+			foreach ( (array) $global_colors as $key => $data ) {
+				if ( ! empty( $data['slug'] ) && ! empty( $data['color'] ) ) {
+					$css->set_selector( '.has-' . $data['slug'] . '-color' );
+					$css->add_property( 'color', $data['color'] );
+
+					$css->set_selector( '.has-' . $data['slug'] . '-background-color' );
+					$css->add_property( 'background-color', $data['color'] );
+				}
+			}
 		}
 
 		do_action( 'generate_base_css', $css );
