@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/tomusborne/generatepress#readme",
   "devDependencies": {
+    "@wordpress/api-fetch": "^5.2.0",
     "@wordpress/components": "^13.0.3",
     "@wordpress/data": "^5.1.3",
     "@wordpress/element": "^2.20.3",
