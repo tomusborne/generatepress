@@ -48,6 +48,7 @@ class GeneratePress_Dashboard {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 		add_action( 'generate_admin_dashboard', array( $this, 'start_customizing' ) );
 		add_action( 'generate_admin_dashboard', array( $this, 'go_pro' ), 15 );
+		add_action( 'generate_admin_dashboard', array( $this, 'reset' ), 100 );
 	}
 
 	/**
@@ -248,6 +249,13 @@ class GeneratePress_Dashboard {
 	 */
 	public function go_pro() {
 		echo '<div id="generatepress-dashboard-go-pro"></div>';
+	}
+
+	/**
+	 * Add the container for our reset app.
+	 */
+	public function reset() {
+		echo '<div id="generatepress-reset"></div>';
 	}
 }
 
