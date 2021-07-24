@@ -162,7 +162,11 @@
 	}
 
 	&__reset-button.is-primary {
-		background-color: darkred;
+		background-color: #e02a2a;
+
+		&:hover:not(:disabled) {
+			background-color: darkred;
+		}
 	}
 }
 
