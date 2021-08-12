@@ -208,7 +208,7 @@ class GeneratePress_Dashboard {
 				true
 			);
 
-			wp_set_script_translations( 'generate-dashboard', 'generatepress', GP_PREMIUM_DIR_PATH . 'langs' );
+			wp_set_script_translations( 'generate-dashboard', 'generatepress' );
 
 			wp_localize_script(
 				'generate-dashboard',
