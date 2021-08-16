@@ -93,7 +93,7 @@ class GeneratePress_Theme_Update {
 			self::v_3_0_0();
 		}
 
-		if ( version_compare( $saved_version, '3.1.0-beta.1', '<' ) ) {
+		if ( version_compare( $saved_version, '3.1.0-alpha.1', '<' ) ) {
 			self::v_3_1_0();
 		}
 
