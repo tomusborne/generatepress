@@ -108,7 +108,7 @@ Release date: TBA
 * New: generate_has_active_menu filter
 * New: generate_before_loop hook
 * New: Dynamic HTML attribute system
-* New: Admin dashboard header
+* New: React-based Dashboard
 * New: generate_search_title_output filter
 * New: generate_after_comment_author_name hook
 * New: generate_show_comment_entry_meta filter
