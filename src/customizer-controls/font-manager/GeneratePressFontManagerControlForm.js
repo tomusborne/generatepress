@@ -10,7 +10,6 @@ import {
 	Button,
 	Tooltip,
 	BaseControl,
-	Popover,
 } from '@wordpress/components';
 
 const GeneratePressFontManagerControlForm = ( props ) => {
@@ -142,12 +141,14 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 
 					return (
 						<div className="generate-font-manager--item" key={ index }>
-							<div className="generate-font-manager--header" style={ { pointerEvents: !! isOpen ? 'none' : '' } }>
+							<div className="generate-font-manager--header">
 								<Button
 									className="generate-font-manager--label"
 									onClick={ () => {
 										if ( itemId !== isOpen ) {
 											setOpen( itemId );
+										} else {
+											setOpen( false );
 										}
 									} }
 								>
@@ -160,10 +161,12 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 										onClick={ () => {
 											if ( itemId !== isOpen ) {
 												setOpen( itemId );
+											} else {
+												setOpen( false );
 											}
 										} }
 									>
-										{ getIcon( 'settings' ) }
+										{ itemId === isOpen ? getIcon( 'chevron-up' ) : getIcon( 'chevron-down' ) }
 									</Button>
 								</Tooltip>
 
@@ -182,6 +185,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 												handleChangeComplete( fontValues );
 											}
 										} }
+										style={ { opacity: itemId === isOpen ? 0.2 : '', pointerEvents: !! isOpen ? 'none' : '' } }
 									>
 										{ getIcon( 'x' ) }
 									</Button>
@@ -189,12 +193,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 							</div>
 
 							{ itemId === isOpen &&
-								<Popover
-									position="bottom center"
-									className="generate-customize-control--popover generate-customize-control--font-popover"
-									onClose={ toggleClose }
-									focusOnMount="container"
-								>
+								<div className="generate-customize-control--font-dropdown">
 									<BaseControl
 										className="generate-component-font-family-picker-wrapper"
 										id="generate-font-manager-family-name--input"
@@ -278,7 +277,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 											</Button>
 										</div>
 									</BaseControl>
-								</Popover>
+								</div>
 							}
 						</div>
 					);

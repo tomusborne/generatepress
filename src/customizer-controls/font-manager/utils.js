@@ -113,7 +113,12 @@ const getElementOptions = () => {
 					}
 
 					return false;
-				} ).map( ( item ) => ( { value: item, label: elements[ item ].label } ) ),
+				} ).map( ( item ) => ( {
+					value: item,
+					label: elements[ item ].label,
+					group: elements[ item ].group,
+					module: elements[ item ].module || 'core',
+				} ) ),
 			}
 		);
 	} );
@@ -146,6 +151,28 @@ const getFontFamilies = () => {
 	return fontFamilies;
 };
 
+// Helper function to be able to map objects to an array of components
+const objectMapToArray = ( object, callback ) => {
+	return Object.values( Object.fromEntries(
+		Object.entries( object ).map( ( [ key, value ] ) => [ key, callback( value, key ) ] )
+	) );
+};
+
+// Group by an array of object by given key
+const groupBy = function( arr, key, common ) {
+	return arr.reduce( ( grouped, obj, index ) => {
+		const group = obj[ key ] || common;
+
+		// Original index
+		obj.index = index;
+
+		grouped[ group ] = grouped[ group ] || [];
+		grouped[ group ].push( obj );
+
+		return grouped;
+	}, {} );
+};
+
 export {
 	getElements,
 	getElementLabel,
@@ -155,4 +182,7 @@ export {
 	getElementOptions,
 	getFontFamilies,
 	getAvailableFonts,
+	getElementGroups,
+	objectMapToArray,
+	groupBy,
 };

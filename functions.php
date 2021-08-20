@@ -91,11 +91,12 @@ require $theme_dir . '/inc/block-editor.php';
 require $theme_dir . '/inc/class-typography.php';
 require $theme_dir . '/inc/class-html-attributes.php';
 require $theme_dir . '/inc/class-theme-update.php';
+require $theme_dir . '/inc/class-rest.php';
 require $theme_dir . '/inc/deprecated.php';
 
 if ( is_admin() ) {
 	require $theme_dir . '/inc/meta-box.php';
-	require $theme_dir . '/inc/dashboard.php';
+	require $theme_dir . '/inc/class-dashboard.php';
 }
 
 /**

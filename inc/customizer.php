@@ -256,12 +256,12 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					}
 
 					foreach ( (array) $colors as $key => $data ) {
-						if ( empty( $data['name'] ) || empty( $data['color'] ) ) {
+						if ( empty( $data['slug'] ) || empty( $data['color'] ) ) {
 							unset( $colors[ $key ] );
 							continue;
 						}
 
-						$slug = str_replace( ' ', '-', strtolower( $data['name'] ) );
+						$slug = str_replace( ' ', '-', strtolower( $data['slug'] ) );
 						$colors[ $key ]['name'] = sanitize_text_field( $slug );
 						$colors[ $key ]['color'] = generate_sanitize_rgba_color( $data['color'] );
 					}
@@ -449,6 +449,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 						'marginBottomMobile' => 'generate_sanitize_empty_decimal_integer',
 						'marginBottomUnit' => 'sanitize_text_field',
 						'module' => 'sanitize_text_field',
+						'group' => 'sanitize_text_field',
 					);
 
 					$new_settings = array();

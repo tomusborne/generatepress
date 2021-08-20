@@ -3,6 +3,7 @@
 
 	.generate-font-manager--header {
 		display: flex;
+		align-items: center;
 
 		.generate-font-manager--label {
 			flex-grow: 1;
@@ -11,36 +12,35 @@
 			white-space: nowrap;
 			text-overflow: ellipsis;
 		}
-	}
 
-	.components-button:not(.generate-font-manager--label) {
-		background: #fff;
-		border: 1px solid #777;
-		padding: 0;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 36px;
-		height: 36px;
-		margin-left: 5px;
-		border-radius: 100%;
-		flex-shrink: 0;
+		.components-button:not(.generate-font-manager--label) {
+			background: #fff;
+			border: 1px solid #777;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 30px;
+			height: 30px;
+			min-width: 30px;
+			margin-left: 5px;
+			border-radius: 100%;
+			flex-shrink: 0;
 
-		svg {
-			margin-right: 0;
-			width: 1em;
-			height: 1em;
-		}
-
-		&.generate-font-manager--open {
 			svg {
-				fill: none;
+				margin-right: 0;
+				width: 1em;
+				height: 1em;
+			}
+
+			&.generate-font-manager--open {
+				svg {
+					fill: none;
+				}
 			}
 		}
 	}
-}
 
-.generate-customize-control--font-popover {
 	.generate-font-manager--options {
 		margin-top: 15px;
 	}
@@ -97,5 +97,53 @@
 
 	.components-select-control__input--generate-fontfamily {
 		margin-bottom: 3px;
+	}
+}
+
+.customize-control-generate-typography-control {
+	margin-top: 10px;
+}
+
+.generate-font-manager-group {
+    margin-bottom: 20px;
+
+	&__label {
+		margin-top: 0;
+		color: #000;
+		text-transform: uppercase;
+		font-size: 11px;
+		margin-bottom: 10px;
+	}
+
+	.generate-font-manager--item:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.generate-customize-control--font-dropdown {
+    background: #fff;
+    padding: 15px;
+    margin-top: 10px;
+    position: relative;
+
+	&:before {
+		content: "";
+		position: absolute;
+		left: 11px;
+		top: -10px;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 0 10px 10px 10px;
+		border-color: transparent transparent #fff transparent;
+		z-index: 10;
+	}
+
+	& > .components-base-control:not(:last-child) {
+		margin-bottom: 15px;
+	}
+
+	& > .components-base-control:last-child .components-base-control__field {
+		margin-bottom: 0;
 	}
 }

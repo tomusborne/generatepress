@@ -33,158 +33,6 @@ if ( ! function_exists( 'generate_options_styles' ) ) {
 	}
 }
 
-/**
- * Get a list of our Dashboard pages.
- *
- * @since 3.1.0
- */
-function generate_get_dashboard_pages() {
-	return apply_filters(
-		'generate_dashboard_screens',
-		array(
-			'appearance_page_generate-options',
-		)
-	);
-}
-
-add_filter( 'admin_body_class', 'generate_set_admin_body_classes' );
-/**
- * Add admin body classes when needed.
- *
- * @since 1.2.0
- * @param string $classes The existing classes.
- */
-function generate_set_admin_body_classes( $classes ) {
-	$dashboard_pages = generate_get_dashboard_pages();
-	$current_screen = get_current_screen();
-
-	if ( in_array( $current_screen->id, $dashboard_pages ) ) {
-		$classes .= ' generate-dashboard-page';
-	}
-
-	return $classes;
-}
-
-/**
- * Build our Dashboard header.
- *
- * @since 3.1.0
- */
-function generate_do_dashboard_header() {
-	?>
-	<div class="gpress-dashboard-header">
-		<div class="gpress-dashboard-header-title">
-			<h1>
-				<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600"><path d="M485.2 427.8l-99.1-46.2 15.8-34c5.6-11.9 8.8-24.3 10-36.7 3.3-33.7-9-67.3-33.2-91.1-8.9-8.7-19.3-16.1-31.3-21.7-11.9-5.6-24.3-8.8-36.7-10-33.7-3.3-67.4 9-91.1 33.2-8.7 8.9-16.1 19.3-21.7 31.3l-15.8 34-30.4 65.2c-.7 1.5-.1 3.3 1.5 4l65.2 30.4 34 15.8 34 15.8 68 31.7 74.7 34.8c-65 45.4-152.1 55.2-228.7 17.4C90.2 447.4 44.1 313.3 97.3 202.6c53.3-110.8 186-158.5 297.8-106.3 88.1 41.1 137.1 131.9 129.1 223.4-.1 1.3.6 2.4 1.7 3l65.6 30.6c1.8.8 3.9-.3 4.2-2.2 22.6-130.7-44-265.4-170.5-323.5-150.3-69-327-4.1-396.9 145.8-70 150.1-5.1 328.5 145.1 398.5 114.1 53.2 244.5 28.4 331.3-52.3 17.9-16.6 33.9-35.6 47.5-56.8 1-1.5.4-3.6-1.3-4.3l-65.7-30.7zm-235-109.6l15.8-34c8.8-18.8 31.1-26.9 49.8-18.1s26.9 31 18.1 49.8l-15.8 34-34-15.8-33.9-15.9z" fill="currentColor" /></svg>
-				<?php echo esc_html( get_admin_page_title() ); ?>
-			</h1>
-		</div>
-
-		<?php generate_do_dashboard_navigation(); ?>
-	</div>
-	<?php
-}
-
-/**
- * Build our Dashboard menu.
- *
- * @since 3.1.0
- */
-function generate_do_dashboard_navigation() {
-	$screen = get_current_screen();
-
-	$tabs = apply_filters(
-		'generate_dashboard_tabs',
-		array(
-			'dashboard' => array(
-				'name' => __( 'Dashboard', 'generate' ),
-				'url' => admin_url( 'themes.php?page=generate-options' ),
-				'class' => 'appearance_page_generate-options' === $screen->id ? 'active' : '',
-			),
-		)
-	);
-
-	if ( ! defined( 'GP_PREMIUM_VERSION' ) ) {
-		$tabs['premium'] = array(
-			'name' => __( 'Premium', 'generatepress' ),
-			'url' => 'https://generatepress.com/premium',
-			'class' => '',
-			'external' => true,
-		);
-	}
-
-	$tabs['support'] = array(
-		'name' => __( 'Support', 'generatepress' ),
-		'url' => 'https://generatepress.com/support',
-		'class' => '',
-		'external' => true,
-	);
-
-	$tabs['documentation'] = array(
-		'name' => __( 'Documentation', 'generatepress' ),
-		'url' => 'https://docs.generatepress.com',
-		'class' => '',
-		'external' => true,
-	);
-	?>
-	<div class="gpress-dashboard-navigation">
-		<?php
-		foreach ( $tabs as $tab ) {
-			printf(
-				'<a href="%1$s" class="%2$s"%4$s>%3$s</a>',
-				esc_url( $tab['url'] ),
-				esc_attr( $tab['class'] ),
-				esc_html( $tab['name'] ),
-				! empty( $tab['external'] ) ? 'target="_blank" rel="noreferrer noopener"' : ''
-			);
-		}
-		?>
-	</div>
-	<?php
-}
-
-add_action( 'in_admin_header', 'generate_do_dashboard_headers' );
-/**
- * Add our Dashboard headers.
- *
- * @since 3.1.0
- */
-function generate_do_dashboard_headers() {
-	$dashboard_pages = generate_get_dashboard_pages();
-	$current_screen = get_current_screen();
-
-	if ( in_array( $current_screen->id, $dashboard_pages ) ) {
-		generate_do_dashboard_header();
-
-		/**
-		 * generate_dashboard_after_header hook.
-		 *
-		 * @since 2.0
-		 */
-		do_action( 'generate_dashboard_after_header' );
-	}
-}
-
-add_action( 'admin_enqueue_scripts', 'generate_enqueue_dashboard_scripts' );
-/**
- * Add our scripts to the page.
- *
- * @since 3.1.0
- */
-function generate_enqueue_dashboard_scripts() {
-	$dashboard_pages = generate_get_dashboard_pages();
-	$current_screen = get_current_screen();
-
-	if ( in_array( $current_screen->id, $dashboard_pages ) ) {
-		wp_enqueue_style(
-			'generate-dashboard',
-			get_template_directory_uri() . '/assets/css/admin/dashboard.css',
-			array(),
-			GENERATE_VERSION
-		);
-	}
-}
-
 if ( ! function_exists( 'generate_settings_page' ) ) {
 	/**
 	 * Builds the content of our GP dashboard page
@@ -195,6 +43,30 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 		?>
 		<div class="wrap">
 			<div class="metabox-holder">
+				<div class="gp-masthead clearfix">
+					<div class="gp-container">
+						<div class="gp-title">
+							<a href="<?php echo generate_get_premium_url( 'https://generatepress.com' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in function. ?>" target="_blank">GeneratePress</a> <span class="gp-version"><?php echo esc_html( GENERATE_VERSION ); ?></span>
+						</div>
+						<div class="gp-masthead-links">
+							<?php if ( ! defined( 'GP_PREMIUM_VERSION' ) ) : ?>
+								<a style="font-weight: bold;" href="<?php echo generate_get_premium_url( 'https://generatepress.com/premium/' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in function. ?>" target="_blank"><?php esc_html_e( 'Premium', 'generatepress' ); ?></a>
+							<?php endif; ?>
+							<a href="<?php echo esc_url( 'https://generatepress.com/support' ); ?>" target="_blank"><?php esc_html_e( 'Support', 'generatepress' ); ?></a>
+							<a href="<?php echo esc_url( 'https://docs.generatepress.com' ); ?>" target="_blank"><?php esc_html_e( 'Documentation', 'generatepress' ); ?></a>
+						</div>
+					</div>
+				</div>
+
+				<?php
+				/**
+				 * generate_dashboard_after_header hook.
+				 *
+				 * @since 2.0
+				 */
+				do_action( 'generate_dashboard_after_header' );
+				?>
+
 				<div class="gp-container">
 					<div class="postbox-container clearfix" style="float: none;">
 						<div class="grid-container grid-parent">
@@ -261,6 +133,9 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 									),
 									'Secondary Nav' => array(
 										'url' => generate_get_premium_url( 'https://generatepress.com/premium/#secondary-nav', false ),
+									),
+									'Sections' => array(
+										'url' => generate_get_premium_url( 'https://generatepress.com/premium/#sections', false ),
 									),
 									'Site Library' => array(
 										'url' => generate_get_premium_url( 'https://generatepress.com/site-library', false ),
