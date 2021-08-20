@@ -49,7 +49,7 @@ function generate_register_layout_meta_box() {
 	$blog_id = get_option( 'page_for_posts' );
 
 	// No need for the Layout metabox on the blog page.
-	if ( $blog_id && (int) $blog_id === (int) $post->ID ) {
+	if ( isset( $post->ID ) && $blog_id && (int) $blog_id === (int) $post->ID ) {
 		return;
 	}
 
