@@ -94,6 +94,13 @@ require $theme_dir . '/inc/class-theme-update.php';
 require $theme_dir . '/inc/class-rest.php';
 require $theme_dir . '/inc/deprecated.php';
 
+/**
+ * Require all theme migrations
+ */
+require $theme_dir . '/inc/migrations/class-migration-manager.php';
+require $theme_dir . '/inc/migrations/class-abstract-migration.php';
+require $theme_dir . '/inc/migrations/class-typography-system-migration.php';
+
 if ( is_admin() ) {
 	require $theme_dir . '/inc/meta-box.php';
 	require $theme_dir . '/inc/class-dashboard.php';

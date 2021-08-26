@@ -97,6 +97,9 @@ class GeneratePress_Theme_Update {
 			self::v_3_1_0();
 		}
 
+		// Run the migrations.
+		GeneratePress_Migration_Manager::migrate();
+
 		// Delete our CSS cache.
 		delete_option( 'generate_dynamic_css_output' );
 		delete_option( 'generate_dynamic_css_cached_version' );
