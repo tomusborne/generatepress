@@ -279,15 +279,19 @@
 	} );
 
 	api( 'generate_settings[use_dynamic_typography]', function( value ) {
-		value.bind( function( newval ) {
-			console.log(api.instance( 'generate_settings[typography]' ).get());
-			if ( newval ) {
-				api.instance( 'generate_settings[font_manager]' ).set( generatepressCustomizeControls.mappedTypographyData.fonts );
-				api.instance( 'generate_settings[typography]' ).set( generatepressCustomizeControls.mappedTypographyData.typography );
+		var fontManager = api.control( 'generate_settings[font_manager]' );
+		var typographyManager = api.control( 'generate_settings[typography]' );
 
+		value.bind( function( newval ) {
+			if ( newval ) {
+				if ( fontManager.setting.get().length === 0 ) {
+					fontManager.setting.set( generatepressCustomizeControls.mappedTypographyData.fonts );
+				}
+
+				if ( typographyManager.setting.get().length === 0 ) {
+					typographyManager.setting.set( generatepressCustomizeControls.mappedTypographyData.typography );
+				}
 			}
-			console.log(newval);
-			console.log( generatepressCustomizeControls.mappedTypographyData );
 		} );
 	} );
 }( wp.customize ) );
