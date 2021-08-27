@@ -10,7 +10,8 @@
 		"generatepressMenu": "readonly",
 		"generatepressNavSearch": "readonly",
 		"generateCustomizerControls": "readonly",
-		"generateDashboard": "readonly"
+		"generateDashboard": "readonly",
+		"generatepressCustomizeControls": "readonly"
 	},
 	"env": {
 	  "browser": true,
