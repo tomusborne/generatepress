@@ -35,10 +35,6 @@ class GeneratePress_Typography {
 	 *  Constructor
 	 */
 	public function __construct() {
-		if ( ! generate_is_using_dynamic_typography() ) {
-			return;
-		}
-
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_google_fonts' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_google_fonts' ) );
 	}
@@ -47,6 +43,10 @@ class GeneratePress_Typography {
 	 * Enqueue Google Fonts if they're set.
 	 */
 	public function enqueue_google_fonts() {
+		if ( ! generate_is_using_dynamic_typography() ) {
+			return;
+		}
+
 		$fonts = generate_get_option( 'font_manager' );
 
 		if ( empty( $fonts ) ) {
