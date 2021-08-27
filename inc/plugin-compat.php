@@ -805,6 +805,16 @@ function generate_pro_compat_customize_register( $wp_customize ) {
 			$wp_customize->get_setting( 'generate_spacing_settings[footer_left]' )->transport = 'refresh';
 		}
 	}
+
+	if ( $wp_customize->get_panel( 'generate_typography_panel' ) ) {
+		$wp_customize->get_panel( 'generate_typography_panel' )->active_callback = function() {
+			if ( generate_is_using_dynamic_typography() ) {
+				return false;
+			}
+
+			return true;
+		};
+	}
 }
 
 add_action( 'wp', 'generate_do_pro_compatibility_setup' );
