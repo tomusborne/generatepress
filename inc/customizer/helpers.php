@@ -301,7 +301,7 @@ function generate_do_control_inline_scripts() {
 			'mappedTypographyData' => array(
 				'typography' => GeneratePress_Typography_Migration::get_mapped_typography_data(),
 				'fonts' => GeneratePress_Typography_Migration::get_mapped_font_data(),
-			)
+			),
 		)
 	);
 
