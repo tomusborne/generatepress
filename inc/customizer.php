@@ -1503,6 +1503,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					'default' => $defaults['use_dynamic_typography'],
 					'type' => 'option',
 					'sanitize_callback' => 'generate_sanitize_checkbox',
+					'transport' => 'postMessage',
 				)
 			);
 
