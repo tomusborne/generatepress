@@ -1511,15 +1511,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				array(
 					'type' => 'checkbox',
 					'label' => __( 'Use dynamic typography system', 'generatepress' ),
-					'description' => sprintf(
-						'<strong>%1$s</strong> %2$s',
-						__( 'Caution:', 'generatepress' ),
-						sprintf(
-							/* translators: Learn more here */
-							__( 'Changing typography systems will require you to re-set your typography options. Learn more %s.', 'generatepress' ),
-							'<a href="https://docs.generatepress.com/article/switching-from-floats-to-flexbox/" target="_blank" rel="noopener noreferrer">' . __( 'here', 'generatepress' ) . '</a>'
-						)
-					),
+					'description' => __( 'Enabling this option will migrate your current typography settings to the dynamic typography system.', 'generatepress' ),
 					'section' => 'generate_general_section',
 					'settings' => 'generate_settings[use_dynamic_typography]',
 				)
