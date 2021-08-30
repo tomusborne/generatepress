@@ -1494,7 +1494,17 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			)
 		);
 
-		$show_legacy_typography_option = apply_filters( 'generate_show_legacy_typography_customizer_option', true );
+		$show_legacy_typography_option = true;
+
+		if ( defined( 'GP_PREMIUM_VERSION' ) && version_compare( GP_PREMIUM_VERSION, '2.1.0-alpha.1', '<' ) ) {
+			$show_legacy_typography_option = false;
+		}
+
+		if ( generate_is_using_dynamic_typography() ) {
+			$show_legacy_typography_option = false;
+		}
+
+		$show_legacy_typography_option = apply_filters( 'generate_show_legacy_typography_customizer_option', $show_flexbox_option );
 
 		if ( $show_legacy_typography_option ) {
 			$wp_customize->add_setting(
