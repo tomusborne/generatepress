@@ -208,8 +208,8 @@ class GeneratePress_Typography_Migration {
 			}
 
 			if ( 'h1' === $key || 'h2' === $key || 'h3' === $key ) {
-				if ( self::has_saved_value( $legacy_id . '_margin_bottom', $settings, $defaults ) ) {
-					$typography_mapping[ $key ]['marginBottom'] = $settings[ $legacy_id . '_margin_bottom' ];
+				if ( self::has_saved_value( $data['legacy_prefix'] . '_margin_bottom', $settings, $defaults ) ) {
+					$typography_mapping[ $key ]['marginBottom'] = $settings[ $data['legacy_prefix'] . '_margin_bottom' ];
 					$typography_mapping[ $key ]['marginBottomUnit'] = 'px';
 				}
 			}
