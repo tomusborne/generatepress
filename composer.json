@@ -27,7 +27,7 @@
     },
     "scripts": {
         "php": [
-            "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs --standard=phpcs.xml.dist",
+            "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs --standard=phpcs.xml.dist --runtime-set testVersion 5.6-",
             "@php ./vendor/bin/parallel-lint --exclude .git --exclude vendor ."
 		],
         "lint:wpcs": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
