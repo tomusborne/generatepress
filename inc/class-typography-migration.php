@@ -247,6 +247,12 @@ class GeneratePress_Typography_Migration {
 			}
 
 			if ( self::has_saved_value( 'font_' . $data['legacy_prefix'], $settings, $defaults ) ) {
+				$has_font = array_search( $settings[ 'font_' . $data['legacy_prefix'] ], array_column( $font_mapping, 'fontFamily' ) );
+
+				if ( $has_font ) {
+					continue;
+				}
+
 				$font_mapping[ $key ]['fontFamily'] = $settings[ 'font_' . $data['legacy_prefix'] ];
 
 				$local_fonts = generate_typography_default_fonts();
