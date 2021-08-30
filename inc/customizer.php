@@ -1511,7 +1511,11 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				array(
 					'type' => 'checkbox',
 					'label' => __( 'Use dynamic typography system', 'generatepress' ),
-					'description' => __( 'Enabling this option will migrate your current typography settings to the dynamic typography system.', 'generatepress' ),
+					'description' => sprintf(
+						/* translators: Learn more here */
+						__( 'Switching to our dynamic typography system can change how your fonts display. Review your website thoroughly before publishing this change. Learn more %s.', 'generatepress' ),
+						'<a href="https://docs.generatepress.com/article/switching-to-dynamic-typography/" target="_blank" rel="noopener noreferrer">' . __( 'here', 'generatepress' ) . '</a>'
+					),
 					'section' => 'generate_general_section',
 					'settings' => 'generate_settings[use_dynamic_typography]',
 				)
