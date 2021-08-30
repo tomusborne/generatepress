@@ -1504,7 +1504,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			$show_legacy_typography_option = false;
 		}
 
-		$show_legacy_typography_option = apply_filters( 'generate_show_legacy_typography_customizer_option', $show_flexbox_option );
+		$show_legacy_typography_option = apply_filters( 'generate_show_legacy_typography_customizer_option', $show_legacy_typography_option );
 
 		if ( $show_legacy_typography_option ) {
 			$wp_customize->add_setting(
