@@ -277,4 +277,21 @@
 			}
 		} );
 	} );
+
+	api( 'generate_settings[use_dynamic_typography]', function( value ) {
+		var fontManager = api.control( 'generate_settings[font_manager]' );
+		var typographyManager = api.control( 'generate_settings[typography]' );
+
+		value.bind( function( newval ) {
+			if ( newval ) {
+				if ( fontManager.setting.get().length === 0 ) {
+					fontManager.setting.set( generatepressCustomizeControls.mappedTypographyData.fonts );
+				}
+
+				if ( typographyManager.setting.get().length === 0 ) {
+					typographyManager.setting.set( generatepressCustomizeControls.mappedTypographyData.typography );
+				}
+			}
+		} );
+	} );
 }( wp.customize ) );

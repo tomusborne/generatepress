@@ -135,6 +135,13 @@ if ( ! function_exists( 'generate_default_fonts_customize_register' ) ) {
 				'title' => __( 'Typography', 'generatepress' ),
 				'capability' => 'edit_theme_options',
 				'priority' => 30,
+				'active_callback' => function() {
+					if ( generate_is_using_dynamic_typography() ) {
+						return false;
+					}
+
+					return true;
+				},
 			)
 		);
 

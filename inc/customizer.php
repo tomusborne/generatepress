@@ -1494,7 +1494,17 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 			)
 		);
 
-		$show_legacy_typography_option = apply_filters( 'generate_show_legacy_typography_customizer_option', true );
+		$show_legacy_typography_option = true;
+
+		if ( defined( 'GP_PREMIUM_VERSION' ) && version_compare( GP_PREMIUM_VERSION, '2.1.0-alpha.1', '<' ) ) {
+			$show_legacy_typography_option = false;
+		}
+
+		if ( generate_is_using_dynamic_typography() ) {
+			$show_legacy_typography_option = false;
+		}
+
+		$show_legacy_typography_option = apply_filters( 'generate_show_legacy_typography_customizer_option', $show_legacy_typography_option );
 
 		if ( $show_legacy_typography_option ) {
 			$wp_customize->add_setting(
@@ -1512,13 +1522,9 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 					'type' => 'checkbox',
 					'label' => __( 'Use dynamic typography system', 'generatepress' ),
 					'description' => sprintf(
-						'<strong>%1$s</strong> %2$s',
-						__( 'Caution:', 'generatepress' ),
-						sprintf(
-							/* translators: Learn more here */
-							__( 'Changing typography systems will require you to re-set your typography options. Learn more %s.', 'generatepress' ),
-							'<a href="https://docs.generatepress.com/article/switching-from-floats-to-flexbox/" target="_blank" rel="noopener noreferrer">' . __( 'here', 'generatepress' ) . '</a>'
-						)
+						/* translators: Learn more here */
+						__( 'Switching to our dynamic typography system can change how your fonts display. Review your website thoroughly before publishing this change. Learn more %s.', 'generatepress' ),
+						'<a href="https://docs.generatepress.com/article/switching-to-dynamic-typography/" target="_blank" rel="noopener noreferrer">' . __( 'here', 'generatepress' ) . '</a>'
 					),
 					'section' => 'generate_general_section',
 					'settings' => 'generate_settings[use_dynamic_typography]',
