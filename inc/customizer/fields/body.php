@@ -76,6 +76,7 @@ GeneratePress_Customize_Field::add_wrapper(
 			'items' => array(
 				'link_color',
 				'link_color_hover',
+				'link_color_visited',
 			),
 		),
 	)
@@ -134,7 +135,7 @@ GeneratePress_Customize_Field::add_field(
 
 if ( '' !== generate_get_option( 'link_color_visited' ) ) {
 	GeneratePress_Customize_Field::add_field(
-		'generate_settings[link_color_hover]',
+		'generate_settings[link_color_visited]',
 		'GeneratePress_Customize_Color_Control',
 		array(
 			'default' => $defaults['link_color_visited'],
@@ -145,7 +146,10 @@ if ( '' !== generate_get_option( 'link_color_visited' ) ) {
 			'label' => __( 'Link Color Visited', 'generatepress' ),
 			'section' => 'generate_colors_section',
 			'choices' => array(
+				'wrapper' => 'link_color_visited',
+				'tooltip' => __( 'Choose Visited Color', 'generatepress' ),
 				'toggleId' => 'base-colors',
+				'hideLabel' => true,
 			),
 		)
 	);
