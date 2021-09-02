@@ -98,7 +98,18 @@ const getElementGroups = () => {
 };
 
 const getElementOptions = () => {
-	const elements = getElements();
+	const allTypography = wp.customize.control( 'generate_settings[typography]' ).setting.get();
+
+	const elements = Object.fromEntries(
+		Object.entries( getElements() ).filter( ( [ element ] ) => {
+			if ( allTypography.some( ( e ) => e.selector === element ) ) {
+				return false;
+			}
+
+			return true;
+		} )
+	);
+
 	const elementGroups = getElementGroups();
 
 	const elementOptions = [];
