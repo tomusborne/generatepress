@@ -102,7 +102,7 @@ const getElementOptions = () => {
 
 	const elements = Object.fromEntries(
 		Object.entries( getElements() ).filter( ( [ element ] ) => {
-			if ( allTypography.some( ( e ) => e.selector === element ) ) {
+			if ( allTypography.some( ( e ) => e.selector === element ) && 'custom' !== element ) {
 				return false;
 			}
 
