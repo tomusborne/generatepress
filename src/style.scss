@@ -17,8 +17,8 @@
 		flex-grow: 1;
 	}
 
-	& > div:not(:last-child) {
-		margin-right: 5px;
+	& > div:not(:first-child):not(:empty) {
+		margin-left: 5px;
 	}
 }
 
