@@ -299,8 +299,7 @@ module.exports = function (grunt) {
 					}
                 })
 
-                fs.writeFile('src/customizer-controls/font-manager/google-fonts.json', JSON.stringify(fonts, undefined, 4), function (err) {
-                    console.log(err ?? 'Google Fonts Updated!');
+                fs.writeFile('src/customizer-controls/font-manager/google-fonts.json', JSON.stringify(fonts, undefined, 4), function () {
                     done();
                 });
             }
