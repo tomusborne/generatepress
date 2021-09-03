@@ -30,17 +30,14 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 		const fonts = typographyControl.setting.get();
 		const fontValues = [ ...fonts ];
 
-		fonts.filter( function( font ) {
-			if ( '' === font.fontFamily && '' === previousFontFamily ) {
-				return false;
+		fonts.forEach( ( typography, index ) => {
+			if (
+				( '' === typography.fontFamily && '' === previousFontFamily ) ||
+				typography.fontFamily !== previousFontFamily
+			) {
+				return;
 			}
 
-			if ( font.fontFamily !== previousFontFamily ) {
-				return false;
-			}
-
-			return true;
-		} ).forEach( ( typography, index ) => {
 			fontValues[ index ] = {
 				...fontValues[ index ],
 				fontFamily: currentFontFamily,

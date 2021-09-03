@@ -6,8 +6,13 @@ import TypographyList from './TypographyList';
 import { getElements, selectorHasMarginBottom } from './utils';
 
 const GeneratePressTypographyControlForm = ( props ) => {
-	const [ fonts, setFonts ] = useState( props.value );
+	const propValues = props.value;
+	const [ fonts, setFonts ] = useState( [] );
 	const [ isOpen, setOpen ] = useState( 0 );
+
+	useEffect( () => {
+		setFonts( propValues );
+	}, [ propValues ] );
 
 	useEffect( () => {
 		wp.customize.control( props.customizerSetting.id ).setting.set( fonts );
