@@ -93,6 +93,10 @@ MIT License: https://github.com/woocommerce/selectWoo/blob/master/LICENSE.md
 By Brian Grinstead, http://briangrinstead.com
 MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
 
+= React Select =
+By Jed Watson
+MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
+
 == Changelog ==
 
 = 3.1.0 =
