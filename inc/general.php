@@ -108,6 +108,17 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 
 		if ( 'enable' === generate_get_option( 'back_to_top' ) ) {
 			wp_enqueue_script( 'generate-back-to-top', $dir_uri . "/assets/js/back-to-top{$suffix}.js", array(), GENERATE_VERSION, true );
+
+			wp_localize_script(
+				'generate-back-to-top',
+				'generatepressBackToTop',
+				apply_filters(
+					'generate_back_to_top_js_args',
+					array(
+						'smooth' => true,
+					)
+				)
+			);
 		}
 
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {

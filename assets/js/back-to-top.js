@@ -55,7 +55,12 @@
 			// Scroll back to top when clicked.
 			goTopBtn.addEventListener( 'click', function( e ) {
 				e.preventDefault();
-				smoothScroll( document.body, goTopBtn.getAttribute( 'data-scroll-speed' ) || 400 );
+
+				if ( generatepressBackToTop.smooth ) {
+					smoothScroll( document.body, goTopBtn.getAttribute( 'data-scroll-speed' ) || 400 );
+				} else {
+					window.scrollTo( 0, 0 );
+				}
 			}, false );
 		}
 	}
