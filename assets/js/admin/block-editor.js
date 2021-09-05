@@ -48,45 +48,9 @@ jQuery( document ).ready( function( $ ) {
 			$( 'head' ).append( '<style id="wide-width">.edit-post-visual-editor .editor-block-list__block[data-align=wide]{max-width:' + content_width + 'px}' );
 		}
 	} );
-
-	var disable_content_title_input = $( '#meta-generate-disable-headline' );
-	var disable_content_title_button = $( 'button.content-title-visibility' );
-	var body = $( 'body' );
-
-	if ( 'false' === generate_block_editor.content_title ) {
-		body.addClass( 'content-title-hidden' );
-	}
-
-	disable_content_title_input.on( 'change', function() {
-		if ( this.checked ) {
-			body.addClass( 'content-title-hidden' );
-		} else {
-			body.removeClass( 'content-title-hidden' );
-		}
-	} );
-
-	$( document ).on( 'click', 'button.content-title-visibility', function() {
-		var _this = $( this );
-
-		if ( disable_content_title_input.prop( 'checked' ) ) {
-			disable_content_title_input.prop( 'checked', false );
-			body.removeClass( 'content-title-hidden' );
-		} else {
-			disable_content_title_input.prop( 'checked', true );
-			body.addClass( 'content-title-hidden' );
-		}
-	} );
 } );
 
 jQuery( window ).on( 'load', function() {
-	var post_title_block = jQuery( '.editor-post-title__block' ),
-		disable_title_option = jQuery( '#meta-generate-disable-headline' );
-
-	if ( post_title_block && disable_title_option.length > 0 ) {
-		post_title_block.append( '<button class="content-title-visibility disable-content-title" title="' + generate_block_editor.disable_content_title + '" aria-hidden="true"></button>' );
-		post_title_block.append( '<button class="content-title-visibility show-content-title" title="' + generate_block_editor.show_content_title + '" aria-hidden="true"></button>' );
-	}
-
 	// This is a fallback in case the core editor check for the dark theme fails.
 	// If the background is using a gradient or rgba, the WP method can be wrong.
 	// So instead, we check for text color, as it's a better indicator of the true background color.

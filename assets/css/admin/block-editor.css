@@ -99,49 +99,6 @@ body .block-editor-default-block-appender textarea.editor-default-block-appender
 }
 
 /*--------------------------------------------------------------
-# Content Title
---------------------------------------------------------------*/
-
-button.content-title-visibility {
-	position: absolute;
-	right: 0;
-	font-size: 30px;
-	line-height: 30px;
-	top: calc(50% - 15px);
-	opacity: 0.4;
-	background: none;
-	border: none;
-	cursor: pointer;
-	display: none;
-}
-
-button.show-content-title:before {
-	content: "\f530";
-}
-
-button.disable-content-title:before {
-	content: "\f177";
-}
-
-body:not(.content-title-hidden) .editor-post-title__block:hover button.disable-content-title,
-.content-title-hidden .editor-post-title__block:hover button.show-content-title {
-	display: block;
-}
-
-button.content-title-visibility:before {
-	font-family: dashicons;
-}
-
-.content-title-hidden .editor-post-title textarea {
-	opacity: 0.4;
-}
-
-.edit-post-text-editor .editor-post-title__block .editor-post-title__input {
-	color: initial;
-	opacity: 1;
-}
-
-/*--------------------------------------------------------------
 # Columns
 --------------------------------------------------------------*/
 
