@@ -303,6 +303,10 @@ class GeneratePress_Typography {
 					$selector = '.editor-styles-wrapper h1, .editor-styles-wrapper .editor-post-title__input';
 					break;
 
+				case 'single-content-title':
+					$selector = '.editor-styles-wrapper .editor-post-title__input';
+					break;
+
 				case 'h2':
 				case 'h3':
 				case 'h4':

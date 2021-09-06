@@ -301,7 +301,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'margin-bottom', $font_settings['paragraph_margin'], false, 'em' );
 	}
 
-	$css->set_selector( 'body .editor-styles-wrapper h1, .wp-block-heading h1.editor-rich-text__tinymce, .editor-post-title__block .editor-post-title__input' );
+	$css->set_selector( 'body .editor-styles-wrapper h1, .wp-block-heading h1.editor-rich-text__tinymce, .editor-styles-wrapper .editor-post-title__input' );
 
 	if ( ! generate_is_using_dynamic_typography() ) {
 		$css->add_property( 'font-family', 'inherit' === $h1_family || '' === $h1_family ? $body_family : $h1_family );
@@ -322,7 +322,7 @@ function generate_do_inline_block_editor_css() {
 	}
 
 	if ( $color_settings['content_title_color'] ) {
-		$css->set_selector( '.editor-post-title__block .editor-post-title__input' );
+		$css->set_selector( '.editor-styles-wrapper .editor-post-title__input' );
 		$css->add_property( 'color', $color_settings['content_title_color'] );
 	}
 
