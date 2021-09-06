@@ -11,7 +11,8 @@
 		"generatepressNavSearch": "readonly",
 		"generateCustomizerControls": "readonly",
 		"generateDashboard": "readonly",
-		"generatepressCustomizeControls": "readonly"
+		"generatepressCustomizeControls": "readonly",
+		"generatepressBackToTop": "readonly"
 	},
 	"env": {
 	  "browser": true,
