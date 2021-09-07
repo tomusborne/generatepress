@@ -206,7 +206,8 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$css->add_property( 'opacity', '1' );
 			$css->add_property( 'visibility', 'visible' );
 			$css->add_property( 'pointer-events', 'auto' );
-			$css->add_property( 'transform', 'scale(1)' );
+			$css->add_property( 'height', 'auto' );
+			$css->add_property( 'overflow', 'visible' );
 
 			$css->set_selector( '.dropdown-click .main-navigation.sub-menu-left .sub-menu.toggled-on, .dropdown-click .main-navigation.sub-menu-left ul li.sfHover > ul.toggled-on' );
 			$css->add_property( 'right', '0' );
@@ -219,6 +220,7 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$css->add_property( 'position', 'absolute' );
 			$css->add_property( 'float', 'none' );
 			$css->add_property( 'width', '100%' );
+			$css->add_property( 'left', '-99999px' );
 
 			$css->set_selector( '.dropdown-click .widget-area .main-navigation ul ul.toggled-on' );
 			$css->add_property( 'position', 'relative' );
