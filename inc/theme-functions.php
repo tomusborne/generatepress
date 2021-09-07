@@ -692,7 +692,7 @@ function generate_parse_attr( $context, $attributes = array(), $settings = array
 	$classes = generate_get_element_classes( $context );
 
 	if ( $classes ) {
-		$attributes['class'] = join( ' ', $classes );
+		$attributes['class'] .= join( ' ', $classes );
 	}
 
 	// Contextual filter.
