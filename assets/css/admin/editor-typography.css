@@ -17,6 +17,7 @@
 	font-family: inherit;
 	font-size: 42px;
 	margin-bottom: 20px;
+	margin-top: 0;
 	line-height: 1.2em;
 	font-weight: normal;
 	text-transform: none;
@@ -26,6 +27,7 @@
 	font-family: inherit;
 	font-size: 35px;
 	margin-bottom: 20px;
+	margin-top: 0;
 	line-height: 1.2em;
 	font-weight: normal;
 	text-transform: none;
@@ -35,18 +37,17 @@
 	font-family: inherit;
 	font-size: 29px;
 	margin-bottom: 20px;
+	margin-top: 0;
 	line-height: 1.2em;
 	font-weight: normal;
 	text-transform: none;
 }
 
 .editor-styles-wrapper h4 {
-	font-family: inherit;
 	font-size: 24px;
 }
 
 .editor-styles-wrapper h5 {
-	font-family: inherit;
 	font-size: 20px;
 }
 
@@ -55,4 +56,5 @@
 .editor-styles-wrapper h6 {
 	font-family: inherit;
 	margin-bottom: 20px;
+	margin-top: 0;
 }
