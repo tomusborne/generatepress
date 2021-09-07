@@ -684,7 +684,9 @@ function generate_needs_site_branding_container() {
  */
 function generate_parse_attr( $context, $attributes = array(), $settings = array() ) {
 	// Initialize an empty class attribute so it's easier to append to in filters.
-	$attributes['class'] = '';
+	if ( ! isset( $attributes['class'] ) ) {
+		$attributes['class'] = '';
+	}
 
 	// We used to have a class-only system. If it's in use, add the classes.
 	$classes = generate_get_element_classes( $context );
