@@ -1207,6 +1207,10 @@ a {
 	position: relative;
 }
 
+.main-navigation.sub-menu-left ul ul {
+	box-shadow: -1px 1px 0 rgba(0, 0, 0, 0.1);
+}
+
 .main-navigation.sub-menu-left .sub-menu {
 	right: 0;
 }
