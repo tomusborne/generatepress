@@ -38,8 +38,14 @@
 		}
 	}
 
-	&.sub-menu-left .sub-menu {
-		right: 0;
+	&.sub-menu-left {
+		ul ul {
+			box-shadow: -1px 1px 0 rgba(0, 0, 0, 0.1);
+		}
+
+		.sub-menu {
+			right: 0;
+		}
 	}
 }
 
