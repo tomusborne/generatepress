@@ -76,6 +76,12 @@ nav.toggled {
 		ul ul {
 			transition: 0s;
 			visibility: hidden;
+			box-shadow: none;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+			li:last-child > ul {
+				border-bottom: 0;
+			}
 
 			&.toggled-on {
 				position: relative;

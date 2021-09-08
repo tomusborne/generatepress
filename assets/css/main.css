@@ -665,6 +665,10 @@ a {
 	position: relative;
 }
 
+.main-navigation.sub-menu-left ul ul {
+	box-shadow: -1px 1px 0 rgba(0, 0, 0, 0.1);
+}
+
 .main-navigation.sub-menu-left .sub-menu {
 	right: 0;
 }
@@ -1497,6 +1501,12 @@ nav.toggled ul ul.sub-menu {
 .main-navigation.toggled .main-nav ul ul {
 	transition: 0s;
 	visibility: hidden;
+	box-shadow: none;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.main-navigation.toggled .main-nav ul ul li:last-child > ul {
+	border-bottom: 0;
 }
 
 .main-navigation.toggled .main-nav ul ul.toggled-on {
