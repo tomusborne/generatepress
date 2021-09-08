@@ -208,6 +208,7 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$css->add_property( 'pointer-events', 'auto' );
 			$css->add_property( 'height', 'auto' );
 			$css->add_property( 'overflow', 'visible' );
+			$css->add_property( 'float', 'none' );
 
 			$css->set_selector( '.dropdown-click .main-navigation.sub-menu-left .sub-menu.toggled-on, .dropdown-click .main-navigation.sub-menu-left ul li.sfHover > ul.toggled-on' );
 			$css->add_property( 'right', '0' );
