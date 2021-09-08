@@ -116,7 +116,6 @@ Release date: TBA
 * New: generate_search_title_output filter
 * New: generate_after_comment_author_name hook
 * New: generate_show_comment_entry_meta filter
-* Tweak: Improve sub-menu functionality to decrease CLS
 * Tweak: Only allow vertical comment form resizing
 * Tweak: Move a11y javascript inline to the footer
 * Tweak: Add aria-label attributes to elements that need them

@@ -631,16 +631,19 @@ a {
 .main-navigation ul ul {
 	display: block;
 	box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
+	float: left;
 	position: absolute;
+	left: -99999px;
 	opacity: 0;
 	z-index: 99999;
 	width: 200px;
 	text-align: left;
 	top: auto;
-	transition: opacity 350ms ease 100ms, transform 0ms ease 450ms;
+	transition: opacity 80ms linear;
+	transition-delay: 0s;
 	pointer-events: none;
-	transform: scale(0);
-	transform-origin: top left;
+	height: 0;
+	overflow: hidden;
 }
 
 .main-navigation ul ul a {
@@ -668,22 +671,27 @@ a {
 
 .main-navigation:not(.toggled) ul li:hover > ul,
 .main-navigation:not(.toggled) ul li.sfHover > ul {
+	left: auto;
 	opacity: 1;
+	transition-delay: 150ms;
 	pointer-events: auto;
-	transform: scale(1);
-	transition: opacity 350ms ease 100ms, transform 0ms ease 0ms;
+	height: auto;
+	overflow: visible;
 }
 
-.main-navigation:not(.toggled) ul ul ul,
-.main-navigation:not(.toggled) ul ul ul {
+.main-navigation:not(.toggled) ul ul li:hover > ul,
+.main-navigation:not(.toggled) ul ul li.sfHover > ul {
 	left: 100%;
 	top: 0;
 }
 
-.main-navigation.sub-menu-left:not(.toggled) ul ul ul,
-.main-navigation.sub-menu-left:not(.toggled) ul ul ul {
+.main-navigation.sub-menu-left:not(.toggled) ul ul li:hover > ul,
+.main-navigation.sub-menu-left:not(.toggled) ul ul li.sfHover > ul {
 	right: 100%;
 	left: auto;
+}
+
+.nav-float-right .main-navigation ul ul ul {
 	top: 0;
 }
 
@@ -717,14 +725,14 @@ nav ul ul .menu-item-has-children .dropdown-menu-toggle,
 	margin: 0;
 }
 
-.sidebar .main-navigation.sub-menu-right ul ul,
-.sidebar .main-navigation.sub-menu-right ul ul {
+.sidebar .main-navigation.sub-menu-right ul li:hover ul,
+.sidebar .main-navigation.sub-menu-right ul li.sfHover ul {
 	top: 0;
 	left: 100%;
 }
 
-.sidebar .main-navigation.sub-menu-left ul ul,
-.sidebar .main-navigation.sub-menu-left ul ul {
+.sidebar .main-navigation.sub-menu-left ul li:hover ul,
+.sidebar .main-navigation.sub-menu-left ul li.sfHover ul {
 	top: 0;
 	right: 100%;
 }
@@ -1498,7 +1506,7 @@ nav.toggled ul ul.sub-menu {
 	right: auto !important;
 	width: 100%;
 	pointer-events: auto;
-	transform: scale(1);
+	height: auto;
 	opacity: 1;
 	display: block;
 	visibility: visible;
