@@ -198,6 +198,11 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$css->add_property( 'left', '0' );
 			$css->add_property( 'top', 'auto' );
 			$css->add_property( 'position', 'relative' );
+			$css->add_property( 'box-shadow', 'none' );
+			$css->add_property( 'border-bottom', '1px solid rgba(0,0,0,0.05)' );
+
+			$css->set_selector( '.dropdown-click .main-navigation ul ul li:last-child > ul.toggled-on' );
+			$css->add_property( 'border-bottom', '0' );
 
 			$css->set_selector( '.dropdown-click .main-navigation ul.toggled-on, .dropdown-click .main-navigation ul li.sfHover > ul.toggled-on' );
 			$css->add_property( 'display', 'block' );
