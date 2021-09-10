@@ -1195,8 +1195,7 @@ object {
 /*--------------------------------------------------------------
 ## Post Loop Block
 --------------------------------------------------------------*/
-.wp-block-post-template,
-.wp-block-query-loop {
+.wp-block-post-template {
 	margin-left: 0;
 }
 
