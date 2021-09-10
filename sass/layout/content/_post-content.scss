@@ -221,3 +221,11 @@ iframe,
 object {
 	max-width: 100%;
 }
+
+/*--------------------------------------------------------------
+## Post Loop Block
+--------------------------------------------------------------*/
+.wp-block-post-template,
+.wp-block-query-loop {
+	margin-left: 0;
+}
