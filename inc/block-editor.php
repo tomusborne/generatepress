@@ -200,6 +200,16 @@ function generate_do_inline_block_editor_css() {
 				$css->add_property( '--' . $data['slug'], $data['color'] );
 			}
 		}
+
+		foreach ( (array) $global_colors as $key => $data ) {
+			if ( ! empty( $data['slug'] ) && ! empty( $data['color'] ) ) {
+				$css->set_selector( '.has-' . $data['slug'] . '-color' );
+				$css->add_property( 'color', $data['color'] );
+
+				$css->set_selector( '.has-' . $data['slug'] . '-background-color' );
+				$css->add_property( 'background-color', $data['color'] );
+			}
+		}
 	}
 
 	$css->set_selector( 'body .wp-block, html body.gutenberg-editor-page .editor-post-title__block, html body.gutenberg-editor-page .editor-default-block-appender, html body.gutenberg-editor-page .editor-block-list__block' );
