@@ -12,6 +12,13 @@
 	margin-bottom: 1.5em;
 }
 
+.editor-styles-wrapper h1, .editor-styles-wrapper h2, .editor-styles-wrapper h3, .editor-styles-wrapper h4, .editor-styles-wrapper h5, .editor-styles-wrapper h6 {
+	font-family: inherit;
+	font-size: 100%;
+	font-style: inherit;
+	font-weight: inherit;
+}
+
 .editor-styles-wrapper h1,
 .editor-styles-wrapper .editor-post-title__input {
 	font-family: inherit;
