@@ -18,7 +18,7 @@ const MarginBottom = ( { font, onChange } ) => {
 			} }
 
 			step={ getRangeProps( font, 'marginBottom', 'step', .1 ) }
-			rangeMin={ getRangeProps( font, 'marginBottom', 'min', 1 ) }
+			rangeMin={ getRangeProps( font, 'marginBottom', 'min', -1 ) }
 			rangeMax={ getRangeProps( font, 'marginBottom', 'max', 5 ) }
 
 			desktopValue={ font.marginBottom }

@@ -39,7 +39,7 @@ const elements = {
 			marginBottom: {
 				value: 1.5,
 				unit: 'em',
-				min: 1,
+				min: -1,
 				max: 5,
 				step: .1,
 			},

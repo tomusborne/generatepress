@@ -126,6 +126,20 @@ function generate_sanitize_empty_decimal_integer( $input ) {
 }
 
 /**
+ * Sanitize integers that can use negative decimals.
+ *
+ * @since 3.1.0
+ * @param string $input The value to check.
+ */
+function generate_sanitize_empty_negative_decimal_integer( $input ) {
+	if ( '' === $input ) {
+		return '';
+	}
+
+	return floatval( $input );
+}
+
+/**
  * Sanitize a positive number, but allow an empty value.
  *
  * @since 2.2
