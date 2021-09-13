@@ -18,24 +18,36 @@ const MarginBottom = ( { font, onChange } ) => {
 			} }
 
 			step={ getRangeProps( font, 'marginBottom', 'step', .1 ) }
-			rangeMin={ getRangeProps( font, 'marginBottom', 'min', 1 ) }
+			rangeMin={ getRangeProps( font, 'marginBottom', 'min', 0 ) }
 			rangeMax={ getRangeProps( font, 'marginBottom', 'max', 5 ) }
 
 			desktopValue={ font.marginBottom }
 			desktopInitial={ getPlaceholder( font, 'marginBottom' ) }
 			desktopOnChange={ ( newValue ) => {
+				if ( 0 > newValue ) {
+					newValue = 0;
+				}
+
 				onChange( 'marginBottom', newValue, font.index );
 			} }
 
 			tabletValue={ font.marginBottomTablet }
 			tabletInitial={ getPlaceholder( font, 'marginBottomTablet' ) }
 			tabletOnChange={ ( newValue ) => {
+				if ( 0 > newValue ) {
+					newValue = 0;
+				}
+
 				onChange( 'marginBottomTablet', newValue, font.index );
 			} }
 
 			mobileValue={ font.marginBottomMobile }
 			mobileInitial={ getPlaceholder( font, 'marginBottomMobile' ) }
 			mobileOnChange={ ( newValue ) => {
+				if ( 0 > newValue ) {
+					newValue = 0;
+				}
+
 				onChange( 'marginBottomMobile', newValue, font.index );
 			} }
 		/>
