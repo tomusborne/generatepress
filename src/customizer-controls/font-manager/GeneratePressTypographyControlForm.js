@@ -16,12 +16,8 @@ const GeneratePressTypographyControlForm = ( props ) => {
 	}, [ propValues ] );
 
 	useEffect( () => {
-		let transport = 'refresh';
-
 		// Prevents the Customizer iframe refreshing on load.
-		if ( ! isUserInteraction ) {
-			transport = 'postMessage';
-		}
+		const transport = isUserInteraction ? 'refresh' : 'postMessage';
 
 		wp.customize.control( props.customizerSetting.id ).setting.transport = transport;
 		wp.customize.control( props.customizerSetting.id ).setting.set( fonts );
