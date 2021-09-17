@@ -9,12 +9,17 @@ const GeneratePressTypographyControlForm = ( props ) => {
 	const propValues = props.value;
 	const [ fonts, setFonts ] = useState( [] );
 	const [ isOpen, setOpen ] = useState( 0 );
+	const [ isUserInteraction, setIsUserInteraction ] = useState( false );
 
 	useEffect( () => {
 		setFonts( propValues );
 	}, [ propValues ] );
 
 	useEffect( () => {
+		// Prevents the Customizer iframe refreshing on load.
+		const transport = isUserInteraction ? 'refresh' : 'postMessage';
+
+		wp.customize.control( props.customizerSetting.id ).setting.transport = transport;
 		wp.customize.control( props.customizerSetting.id ).setting.set( fonts );
 	}, [ fonts ] );
 
@@ -22,11 +27,16 @@ const GeneratePressTypographyControlForm = ( props ) => {
 
 	const elements = getElements();
 
+	const updateFonts = ( fontValues ) => {
+		setIsUserInteraction( true );
+		setFonts( fontValues );
+	};
+
 	const deleteFont = ( fontIndex ) => {
 		const fontValues = [ ...fonts ];
 
 		fontValues.splice( fontIndex, 1 );
-		setFonts( fontValues );
+		updateFonts( fontValues );
 	};
 
 	const onChangeElement = ( { value, group, module }, index ) => {
@@ -68,7 +78,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 			};
 		}
 
-		setFonts( fontValues );
+		updateFonts( fontValues );
 	};
 
 	const onChangeFontValue = ( property, value, index ) => {
@@ -77,7 +87,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 		fontValues[ index ] = { ...fontValues[ index ] };
 		fontValues[ index ][ property ] = value;
 
-		setFonts( fontValues );
+		updateFonts( fontValues );
 	};
 
 	return (
@@ -120,7 +130,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 						letterSpacingUnit: 'px',
 					} );
 
-					setFonts( fontValues );
+					updateFonts( fontValues );
 
 					setOpen( fontValues.length );
 				} }
