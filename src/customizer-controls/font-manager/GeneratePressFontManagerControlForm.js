@@ -76,7 +76,6 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 		fontFamilies[ index ].options = fontFamilies[ index ].options.filter( ( obj ) => obj.value !== font.fontFamily );
 	} );
 
-	const isValidGoogleFont = ( font ) => Object.keys( googleFonts ).includes( font );
 	const fontFamilyExists = ( fontFamily ) => fonts.filter( ( font ) => font.fontFamily === fontFamily ).length > 0;
 
 	return (
