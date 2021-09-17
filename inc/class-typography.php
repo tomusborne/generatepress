@@ -91,7 +91,7 @@ class GeneratePress_Typography {
 				)
 			);
 
-			$google_fonts_uri = add_query_arg( $font_args, '//fonts.googleapis.com/css' );
+			$google_fonts_uri = add_query_arg( $font_args, 'https://fonts.googleapis.com/css' );
 			wp_enqueue_style( 'generate-google-fonts', $google_fonts_uri, array(), GENERATE_VERSION );
 		}
 	}

@@ -240,7 +240,9 @@ if ( ! function_exists( 'generate_resource_hints' ) ) {
 	 * @return array $urls           URLs to print for resource hints.
 	 */
 	function generate_resource_hints( $urls, $relation_type ) {
-		if ( wp_style_is( 'generate-fonts', 'queue' ) && 'preconnect' === $relation_type ) {
+		$handle = generate_is_using_dynamic_typography() ? 'generate-google-fonts' : 'generate-fonts';
+
+		if ( wp_style_is( $handle, 'queue' ) && 'preconnect' === $relation_type ) {
 			if ( version_compare( $GLOBALS['wp_version'], '4.7-alpha', '>=' ) ) {
 				$urls[] = array(
 					'href' => 'https://fonts.gstatic.com',
