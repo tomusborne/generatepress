@@ -129,6 +129,7 @@ Release date: TBA
 * Tweak: Move generate_svg_icon_element before the "replace" icon definition
 * Tweak: Change sub-menu box-shadow direction when sub-menu opens left
 * Tweak: Replace sub-menu box-shadow with border when opening down
+* Tweak: Remove query loop block margin
 * Fix: Missing search form button icon when using font icons
 * Fix: Load comments CSS if comments exists even if new comments are disabled
 * Fix: Sub-menu overlap using dropdown click
