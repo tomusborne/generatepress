@@ -215,7 +215,6 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 													className="generate-font-manager-google-font--field"
 													label={ __( 'Google Font', 'generatepress' ) }
 													checked={ !! fonts[ index ].googleFont }
-													disabled={ ! isValidGoogleFont( currentFontFamily ) }
 													onChange={ ( value ) => {
 														const fontValues = [ ...fonts ];
 
