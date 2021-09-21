@@ -262,7 +262,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 							continue;
 						}
 
-						$slug = preg_replace( '/[^a-z0-9-\s]+/i', '', $slug );
+						$slug = preg_replace( '/[^a-z0-9-\s]+/i', '', $data['slug'] );
 						$slug = strtolower( $slug );
 						$new_settings[ $key ]['name'] = sanitize_text_field( $slug );
 						$new_settings[ $key ]['slug'] = sanitize_text_field( $slug );
