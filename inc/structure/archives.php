@@ -98,14 +98,14 @@ add_action( 'generate_after_archive_title', 'generate_do_archive_description' );
  * @since 2.3
  */
 function generate_do_archive_description() {
-	$term_description = term_description();
+	$term_description = get_the_archive_description();
 
 	if ( ! empty( $term_description ) ) {
-		printf( '<div class="taxonomy-description">%s</div>', $term_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	}
-
-	if ( get_the_author_meta( 'description' ) && is_author() ) {
-		echo '<div class="author-info">' . get_the_author_meta( 'description' ) . '</div>';  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		if ( is_author() ) {
+			printf( '<div class="author-info">%s</div>', $term_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		} else {
+			printf( '<div class="taxonomy-description">%s</div>', $term_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		}
 	}
 
 	/**
