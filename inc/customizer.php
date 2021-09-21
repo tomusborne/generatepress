@@ -348,7 +348,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 
 					foreach ( (array) $fonts as $key => $data ) {
 						if ( empty( $data['fontFamily'] ) ) {
-							unset( $fonts[ $key ] );
 							continue;
 						}
 
