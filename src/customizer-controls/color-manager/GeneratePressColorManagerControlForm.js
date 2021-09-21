@@ -101,6 +101,7 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 										value = value
 											.replace( /([a-z])([A-Z])/g, '$1-$2' )
 											.replace( /[\s_]+/g, '-' )
+											.replace( /[^a-z0-9-\s]+/g, '' )
 											.toLowerCase();
 
 										colorValues[ index ] = {
