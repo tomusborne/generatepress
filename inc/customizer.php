@@ -255,18 +255,21 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 						return;
 					}
 
+					$new_settings = array();
+
 					foreach ( (array) $colors as $key => $data ) {
 						if ( empty( $data['slug'] ) || empty( $data['color'] ) ) {
-							unset( $colors[ $key ] );
 							continue;
 						}
 
-						$slug = str_replace( ' ', '-', strtolower( $data['slug'] ) );
-						$colors[ $key ]['name'] = sanitize_text_field( $slug );
-						$colors[ $key ]['color'] = generate_sanitize_rgba_color( $data['color'] );
+						$slug = preg_replace( '/[^a-z0-9-\s]+/i', '', $data['slug'] );
+						$slug = strtolower( $slug );
+						$new_settings[ $key ]['name'] = sanitize_text_field( $slug );
+						$new_settings[ $key ]['slug'] = sanitize_text_field( $slug );
+						$new_settings[ $key ]['color'] = generate_sanitize_rgba_color( $data['color'] );
 					}
 
-					return $colors;
+					return $new_settings;
 				},
 				'transport' => 'refresh',
 			),
@@ -346,7 +349,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 
 					foreach ( (array) $fonts as $key => $data ) {
 						if ( empty( $data['fontFamily'] ) ) {
-							unset( $fonts[ $key ] );
 							continue;
 						}
 

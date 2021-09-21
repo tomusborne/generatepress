@@ -97,6 +97,13 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 									onVarChange={ ( value ) => {
 										const colorValues = [ ...colors ];
 
+										// Convert value to kebab-case.
+										value = value
+											.replace( /([a-z])([A-Z])/g, '$1-$2' )
+											.replace( /[\s_]+/g, '-' )
+											.replace( /[^a-z0-9-\s]+/g, '' )
+											.toLowerCase();
+
 										colorValues[ index ] = {
 											...colorValues[ index ],
 											slug: value,
