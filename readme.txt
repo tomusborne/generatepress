@@ -130,6 +130,7 @@ Release date: TBA
 * Tweak: Change sub-menu box-shadow direction when sub-menu opens left
 * Tweak: Replace sub-menu box-shadow with border when opening down
 * Tweak: Remove query loop block margin
+* Tweak: Use get_the_archive_description() instead of term_description()
 * Fix: Missing search form button icon when using font icons
 * Fix: Load comments CSS if comments exists even if new comments are disabled
 * Fix: Sub-menu overlap using dropdown click
