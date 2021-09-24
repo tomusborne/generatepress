@@ -53,6 +53,10 @@ const GeneratePressColorPickerControl = ( props ) => {
 		setVarLock( true );
 	};
 
+	const isHex = ( hex ) => {
+		return /^([0-9A-F]{3}){1,2}$/i.test( hex );
+	};
+
 	let tooltip = tooltipText;
 
 	if ( choices.tooltip ) {
@@ -174,6 +178,10 @@ const GeneratePressColorPickerControl = ( props ) => {
 									type={ 'text' }
 									value={ value || '' }
 									onChange={ ( color ) => {
+										if ( ! color.startsWith( '#' ) && isHex( color ) ) {
+											color = '#' + color;
+										}
+
 										onChange( color );
 									} }
 									onBlur={ () => {
