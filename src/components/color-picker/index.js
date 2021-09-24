@@ -171,7 +171,6 @@ const GeneratePressColorPickerControl = ( props ) => {
 							}
 
 							<div className="generate-color-input-wrapper">
-								<span className="generate-color-input--icon">{ getIcon( 'color' ) }</span>
 								<TextControl
 									id="generate-color-input-field"
 									className="generate-color-input"

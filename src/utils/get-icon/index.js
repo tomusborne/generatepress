@@ -27,10 +27,6 @@ export default function getIcon( icon ) {
 		return <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1em" height="1em" viewBox="0 0 24 24"><path d="M4.5 12.75a.75.75 0 01.75-.75h13.5a.75.75 0 010 1.5H5.25a.75.75 0 01-.75-.75z" fill="currentColor" /></svg>;
 	}
 
-	if ( 'color' === icon ) {
-		return <svg aria-hidden="true" viewBox="0 0 32 32"><circle cx="10" cy="12" r="2" fill="currentColor" /><circle cx="16" cy="9" r="2" fill="currentColor" /><circle cx="22" cy="12" r="2" fill="currentColor" /><circle cx="23" cy="18" r="2" fill="currentColor" /><circle cx="19" cy="23" r="2" fill="currentColor" /><path fill="currentColor" d="M16.54 2A14 14 0 002 16a4.82 4.82 0 006.09 4.65l1.12-.31a3 3 0 013.79 2.9V27a3 3 0 003 3 14 14 0 0014-14.54A14.05 14.05 0 0016.54 2zm8.11 22.31A11.93 11.93 0 0116 28a1 1 0 01-1-1v-3.76a5 5 0 00-5-5 5.07 5.07 0 00-1.33.18l-1.12.31A2.82 2.82 0 014 16 12 12 0 0116.47 4 12.18 12.18 0 0128 15.53a11.89 11.89 0 01-3.35 8.79z" /></svg>;
-	}
-
 	if ( 'plus' === icon ) {
 		return <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></svg>;
 	}
