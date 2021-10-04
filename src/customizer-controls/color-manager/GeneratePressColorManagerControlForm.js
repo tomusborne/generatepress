@@ -61,7 +61,7 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 		window.sessionStorage.setItem( 'generateGlobalColors', JSON.stringify( palette ) );
 	};
 
-	const colors = props.value;
+	const colors = props.value || [];
 
 	return (
 		<div>
