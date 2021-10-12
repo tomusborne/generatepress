@@ -79,6 +79,18 @@ class GeneratePress_Typography_Migration {
 				'module' => 'core',
 			),
 			array(
+				'selector' => 'single-content-title',
+				'legacy_prefix' => 'single_post_title',
+				'group' => 'content',
+				'module' => 'core',
+			),
+			array(
+				'selector' => 'archive-content-title',
+				'legacy_prefix' => 'archive_post_title',
+				'group' => 'content',
+				'module' => 'core',
+			),
+			array(
 				'selector' => 'footer',
 				'legacy_prefix' => 'footer',
 				'group' => 'footer',
