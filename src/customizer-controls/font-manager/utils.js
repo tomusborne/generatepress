@@ -100,15 +100,15 @@ const getElementGroups = () => {
 const getElementOptions = () => {
 	const allTypography = wp.customize.control( 'generate_settings[typography]' ).setting.get();
 
-	const elements = Object.fromEntries(
-		Object.entries( getElements() ).filter( ( [ element ] ) => {
-			if ( allTypography.some( ( e ) => e.selector === element ) && 'custom' !== element ) {
-				return false;
-			}
-
+	const hasValue = ( element ) => {
+		if ( allTypography.some( ( e ) => e.selector === element ) || 'custom' === element ) {
 			return true;
-		} )
-	);
+		}
+
+		return false;
+	};
+
+	const elements = getElements();
 
 	const elementGroups = getElementGroups();
 
@@ -129,6 +129,7 @@ const getElementOptions = () => {
 					label: elements[ item ].label,
 					group: elements[ item ].group,
 					module: elements[ item ].module || 'core',
+					isDisabled: hasValue( item ),
 				} ) ),
 			}
 		);
