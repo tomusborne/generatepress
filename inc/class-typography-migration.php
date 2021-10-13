@@ -155,15 +155,19 @@ class GeneratePress_Typography_Migration {
 
 	/**
 	 * Check if we have a saved value.
-	 * This is necessary because the Customizer outputs default values as static values
-	 * for some reason, so it's impossible to tell if we have an actual value or not.
 	 *
 	 * @param string $id The option ID.
 	 * @param array  $settings The saved settings.
 	 * @param array  $defaults The defaults.
 	 */
 	public static function has_saved_value( $id, $settings, $defaults ) {
-		return isset( $settings[ $id ] ) && isset( $defaults[ $id ] ) && $defaults[ $id ] !== $settings[ $id ];
+		return isset( $settings[ $id ] )
+			&& isset( $defaults[ $id ] )
+			&& $defaults[ $id ] !== $settings[ $id ] // Need this because the Customizer treats defaults as saved values.
+			&& (
+				! empty( $settings[ $id ] )
+				|| 0 === $settings[ $id ]
+			);
 	}
 
 	/**
