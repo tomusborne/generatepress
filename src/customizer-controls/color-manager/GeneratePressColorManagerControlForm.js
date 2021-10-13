@@ -46,12 +46,10 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 
 		if ( value.length > 0 ) {
 			value.forEach( ( color ) => {
-				const slug = color.slug.replace( ' ', '-' ).toLowerCase();
-
 				palette.push(
 					{
-						name: color.name || color.slug,
-						slug,
+						name: color.slug,
+						slug: color.slug,
 						color: 'var(--' + color.slug + ')',
 					}
 				);
@@ -81,7 +79,7 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 								<ColorPicker
 									{ ...colorProps }
 									tooltipPosition="bottom center"
-									tooltipText={ colors[ index ].name || colors[ index ].slug }
+									tooltipText={ colors[ index ].slug }
 									hideLabel={ true }
 									onChange={ ( value ) => {
 										const colorValues = [ ...colors ];

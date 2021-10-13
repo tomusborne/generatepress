@@ -12,7 +12,7 @@ const GeneratePressAdvancedSelect = ( componentProps ) => {
 			maxHeight: '30px',
 		} ),
 
-		menuPortal: ( base ) => ( {
+		menu: ( base ) => ( {
 			...base,
 			zIndex: 999999,
 		} ),
@@ -41,7 +41,7 @@ const GeneratePressAdvancedSelect = ( componentProps ) => {
 		instanceId: 'input-field',
 		maxMenuHeight: 250,
 		theme: customTheme,
-		menuPortalTarget: document.querySelector( 'body' ),
+		menuPlacement: 'auto',
 	};
 
 	const props = Object.assign( {}, defaultProps, componentProps );
