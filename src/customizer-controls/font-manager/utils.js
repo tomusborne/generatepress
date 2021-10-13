@@ -99,19 +99,9 @@ const getElementGroups = () => {
 
 const getElementOptions = () => {
 	const allTypography = wp.customize.control( 'generate_settings[typography]' ).setting.get();
-
-	const hasValue = ( element ) => {
-		if ( allTypography.some( ( e ) => e.selector === element ) || 'custom' === element ) {
-			return true;
-		}
-
-		return false;
-	};
-
+	const hasValue = ( value ) => ( allTypography.some( ( e ) => e.selector === value ) && 'custom' !== value );
 	const elements = getElements();
-
 	const elementGroups = getElementGroups();
-
 	const elementOptions = [];
 
 	Object.keys( elementGroups ).forEach( ( group ) => {
