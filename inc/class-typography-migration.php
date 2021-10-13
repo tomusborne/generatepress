@@ -79,6 +79,18 @@ class GeneratePress_Typography_Migration {
 				'module' => 'core',
 			),
 			array(
+				'selector' => 'single-content-title',
+				'legacy_prefix' => 'single_post_title',
+				'group' => 'content',
+				'module' => 'core',
+			),
+			array(
+				'selector' => 'archive-content-title',
+				'legacy_prefix' => 'archive_post_title',
+				'group' => 'content',
+				'module' => 'core',
+			),
+			array(
 				'selector' => 'footer',
 				'legacy_prefix' => 'footer',
 				'group' => 'footer',
@@ -162,6 +174,16 @@ class GeneratePress_Typography_Migration {
 		$defaults = generate_get_default_fonts();
 		$typography_mapping = array();
 
+		// These options don't have "font" in their IDs.
+		$no_font_in_ids = array(
+			'single_post_title',
+			'archive_post_title',
+		);
+
+		for ( $headings = 1; $headings < 7; $headings++ ) {
+			$no_font_in_ids[] = 'heading_' . $headings;
+		}
+
 		foreach ( self::get_option_prefixes() as $key => $data ) {
 			$legacy_setting_ids = array(
 				'fontFamily' => 'font_' . $data['legacy_prefix'],
@@ -174,6 +196,11 @@ class GeneratePress_Typography_Migration {
 
 			if ( 'slideout' === $data['legacy_prefix'] ) {
 				$legacy_setting_ids['fontSizeMobile'] = $data['legacy_prefix'] . '_mobile_font_size';
+			}
+
+			if ( in_array( $data['legacy_prefix'], $no_font_in_ids ) ) {
+				$legacy_setting_ids['fontWeight'] = $data['legacy_prefix'] . '_weight';
+				$legacy_setting_ids['textTransform'] = $data['legacy_prefix'] . '_transform';
 			}
 
 			foreach ( $legacy_setting_ids as $name => $id ) {
