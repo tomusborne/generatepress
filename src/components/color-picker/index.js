@@ -44,6 +44,22 @@ const GeneratePressColorPickerControl = ( props ) => {
 		}
 	}, [ value ] );
 
+	useEffect( () => {
+		const timeout = setTimeout( () => {
+			setColorKey( value );
+
+			const colorInput = document.querySelector( '.generate-color-input-wrapper input' );
+
+			if ( colorInput ) {
+				colorInput.focus();
+			}
+		}, 350 );
+
+		return () => {
+			clearTimeout( timeout );
+		};
+	}, [ value ] );
+
 	const toggleVisible = () => {
 		setOpen( true );
 	};
@@ -198,9 +214,6 @@ const GeneratePressColorPickerControl = ( props ) => {
 										}
 
 										onChange( color );
-									} }
-									onBlur={ () => {
-										setColorKey( value );
 									} }
 								/>
 
