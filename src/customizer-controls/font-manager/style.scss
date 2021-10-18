@@ -98,13 +98,14 @@
 	.components-select-control__input--generate-fontfamily {
 		margin-bottom: 3px;
 	}
-}
 
-.customize-control-generate-typography-control {
-	margin-top: 10px;
+	.generate-advanced-select__menu {
+		position: relative !important;
+	}
 }
 
 .generate-font-manager-group {
+	margin-top: 10px;
     margin-bottom: 20px;
 
 	&__label {
