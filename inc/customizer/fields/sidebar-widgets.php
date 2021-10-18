@@ -17,6 +17,9 @@ GeneratePress_Customize_Field::add_title(
 		'choices' => array(
 			'toggleId' => 'sidebar-widget-colors',
 		),
+		'active_callback' => function() {
+			return 'no-sidebar' !== generate_get_layout();
+		},
 	)
 );
 

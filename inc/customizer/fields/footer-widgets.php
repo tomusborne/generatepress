@@ -17,6 +17,19 @@ GeneratePress_Customize_Field::add_title(
 		'choices' => array(
 			'toggleId' => 'footer-widget-colors',
 		),
+		'active_callback' => function() {
+			$widgets = generate_get_footer_widgets();
+
+			if ( empty( $widgets ) ) {
+				return false;
+			}
+
+			if ( ! is_active_sidebar( 'footer-1' ) && ! is_active_sidebar( 'footer-2' ) && ! is_active_sidebar( 'footer-3' ) && ! is_active_sidebar( 'footer-4' ) && ! is_active_sidebar( 'footer-5' ) ) {
+				return false;
+			}
+
+			return true;
+		},
 	)
 );
 

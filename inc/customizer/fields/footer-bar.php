@@ -17,6 +17,7 @@ GeneratePress_Customize_Field::add_title(
 		'choices' => array(
 			'toggleId' => 'footer-bar-colors',
 		),
+		'active_callback' => 'generate_is_footer_bar_active',
 	)
 );
 

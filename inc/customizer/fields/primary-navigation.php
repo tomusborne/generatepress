@@ -24,6 +24,13 @@ GeneratePress_Customize_Field::add_title(
 		'choices' => array(
 			'toggleId' => 'primary-navigation-colors',
 		),
+		'active_callback' => function() {
+			if ( '' === generate_get_navigation_location() || 'hide' === generate_get_navigation_location() ) {
+				return false;
+			}
+
+			return true;
+		},
 	)
 );
 
