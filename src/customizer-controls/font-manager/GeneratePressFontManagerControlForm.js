@@ -181,9 +181,8 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 												handleChangeComplete( fontValues );
 											}
 										} }
-										style={ { opacity: itemId === isOpen ? 0.2 : '', pointerEvents: !! isOpen ? 'none' : '' } }
 									>
-										{ getIcon( 'x' ) }
+										{ getIcon( 'trash' ) }
 									</Button>
 								</Tooltip>
 							</div>

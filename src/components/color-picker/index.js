@@ -24,6 +24,7 @@ const GeneratePressColorPickerControl = ( props ) => {
 	const [ isOpen, setOpen ] = useState( false );
 	const [ colorKey, setColorKey ] = useState( false );
 	const [ isVarLock, setVarLock ] = useState( true );
+	const [ isManualInput, setManualInput ] = useState( false );
 
 	const {
 		value,
@@ -45,6 +46,10 @@ const GeneratePressColorPickerControl = ( props ) => {
 	}, [ value ] );
 
 	useEffect( () => {
+		if ( ! isManualInput ) {
+			return;
+		}
+
 		const timeout = setTimeout( () => {
 			setColorKey( value );
 
@@ -57,6 +62,7 @@ const GeneratePressColorPickerControl = ( props ) => {
 
 		return () => {
 			clearTimeout( timeout );
+			setManualInput( false );
 		};
 	}, [ value ] );
 
@@ -214,6 +220,7 @@ const GeneratePressColorPickerControl = ( props ) => {
 										}
 
 										onChange( color );
+										setManualInput( true );
 									} }
 								/>
 
