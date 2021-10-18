@@ -13,7 +13,7 @@ GeneratePress_Customize_Field::add_title(
 	'generate_body_colors_title',
 	array(
 		'section' => 'generate_colors_section',
-		'title' => __( 'Base', 'generatepress' ),
+		'title' => __( 'Body', 'generatepress' ),
 		'choices' => array(
 			'toggleId' => 'base-colors',
 		),
