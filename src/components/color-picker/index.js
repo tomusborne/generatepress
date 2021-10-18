@@ -80,7 +80,7 @@ const GeneratePressColorPickerControl = ( props ) => {
 	};
 
 	const getPaletteValue = ( colorValue ) => {
-		if ( colorValue.startsWith( 'var(' ) ) {
+		if ( String( colorValue ).startsWith( 'var(' ) ) {
 			const variableName = colorValue.match( /\(([^)]+)\)/ );
 
 			if ( variableName ) {
