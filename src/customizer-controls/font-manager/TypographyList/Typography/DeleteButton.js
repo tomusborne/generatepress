@@ -2,7 +2,7 @@ import { Button, Tooltip } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import getIcon from '../../../../utils/get-icon';
 
-const DeleteButton = ( { onClick, isOpen, itemId } ) => {
+const DeleteButton = ( { onClick } ) => {
 	const deleteMessage = __( 'This will permanently delete this typography element.', 'generatepress' );
 
 	return (
@@ -15,8 +15,7 @@ const DeleteButton = ( { onClick, isOpen, itemId } ) => {
 						onClick();
 					}
 				} }
-				icon={ getIcon( 'x' ) }
-				style={ { opacity: itemId === isOpen ? 0.2 : '', pointerEvents: !! isOpen ? 'none' : '' } }
+				icon={ getIcon( 'trash' ) }
 			/>
 		</Tooltip>
 	);
