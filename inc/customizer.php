@@ -269,6 +269,9 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 						$new_settings[ $key ]['color'] = generate_sanitize_rgba_color( $data['color'] );
 					}
 
+					// Reset array keys starting at 0.
+					$new_settings = array_values( $new_settings );
+
 					return $new_settings;
 				},
 				'transport' => 'refresh',
@@ -358,6 +361,9 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 							}
 						}
 					}
+
+					// Reset array keys starting at 0.
+					$new_settings = array_values( $new_settings );
 
 					return $new_settings;
 				},
@@ -458,7 +464,6 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 
 					foreach ( (array) $settings as $key => $data ) {
 						if ( empty( $data['selector'] ) ) {
-							unset( $settings[ $key ] );
 							continue;
 						}
 
@@ -468,6 +473,9 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 							}
 						}
 					}
+
+					// Reset array keys starting at 0.
+					$new_settings = array_values( $new_settings );
 
 					return $new_settings;
 				},
