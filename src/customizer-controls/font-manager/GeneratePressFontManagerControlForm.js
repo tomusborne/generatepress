@@ -52,7 +52,12 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 		setOpen( 0 );
 	};
 
-	const fonts = props.value;
+	let fonts = props.value || [];
+
+	// Temporary fix for a bug that returned an object instead of an array.
+	if ( 'object' === typeof fonts ) {
+		fonts = Object.values( fonts );
+	}
 
 	const fontFamilies = [
 		{
