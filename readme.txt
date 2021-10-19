@@ -14,15 +14,15 @@ GeneratePress is a lightweight WordPress theme built with a focus on speed and u
 
 GeneratePress is a lightweight WordPress theme built with a focus on speed and usability. Performance is important to us, which is why a fresh GeneratePress install adds less than 10kb (gzipped) to your page size.
 
-We take full advantage of the new block editor (Gutenberg), which gives you more control over creating your content.
+We take full advantage of the block editor (Gutenberg), which gives you more control over creating your content.
 
 If you use page builders, GeneratePress is the right theme for you. It is completely compatible with all major page builders, including Beaver Builder and Elementor.
 
 Thanks to our emphasis on WordPress coding standards, we can boast full compatibility with all well-coded plugins, including WooCommerce.
 
-GeneratePress is fully responsive, uses valid HTML/CSS and is translated into over 25 languages by our amazing community of users.
+GeneratePress is fully responsive, uses valid HTML/CSS, and is translated into over 25 languages by our amazing community of users.
 
-A few of our many features include microdata integration, 9 widget areas, 5 navigation locations, 5 sidebar layouts, dropdown menus (click or hover) and navigation color presets.
+A few of our many features include 60+ color controls, powerful dynamic typography, 5 navigation locations, 5 sidebar layouts, dropdown menus (click or hover), and 9 widget areas.
 
 Learn more and check out our [powerful premium version](https://generatepress.com).
 
