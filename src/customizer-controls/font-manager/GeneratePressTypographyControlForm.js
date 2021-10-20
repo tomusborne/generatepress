@@ -12,7 +12,11 @@ const GeneratePressTypographyControlForm = ( props ) => {
 	const [ isUserInteraction, setIsUserInteraction ] = useState( false );
 
 	useEffect( () => {
-		setFonts( propValues );
+		if ( Array.isArray( propValues ) ) {
+			setFonts( propValues );
+		} else if ( 'object' === typeof propValues ) {
+			setFonts( Object.values( propValues ) );
+		}
 	}, [ propValues ] );
 
 	useEffect( () => {
