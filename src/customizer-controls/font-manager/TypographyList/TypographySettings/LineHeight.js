@@ -16,6 +16,7 @@ const LineHeight = ( { font, onChange } ) => {
 			step={ getRangeProps( font, 'lineHeight', 'step', .1 ) }
 			rangeMin={ getRangeProps( font, 'lineHeight', 'min', 1 ) }
 			rangeMax={ getRangeProps( font, 'lineHeight', 'max', 5 ) }
+			inputMin={ 0 }
 
 			desktopValue={ font.lineHeight }
 			desktopInitial={ getPlaceholder( font, 'lineHeight' ) }

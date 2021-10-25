@@ -16,6 +16,7 @@ const FontSize = ( { font, onChange } ) => {
 			step={ getRangeProps( font, 'fontSize', 'step', 1 ) }
 			rangeMin={ getRangeProps( font, 'fontSize', 'min', 1 ) }
 			rangeMax={ getRangeProps( font, 'fontSize', 'max', 100 ) }
+			inputMin={ 0 }
 
 			desktopValue={ font.fontSize }
 			desktopInitial={ getPlaceholder( font, 'fontSize' ) }
