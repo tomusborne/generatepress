@@ -20,6 +20,7 @@ const MarginBottom = ( { font, onChange } ) => {
 			step={ getRangeProps( font, 'marginBottom', 'step', .1 ) }
 			rangeMin={ getRangeProps( font, 'marginBottom', 'min', 0 ) }
 			rangeMax={ getRangeProps( font, 'marginBottom', 'max', 5 ) }
+			inputMin={ 0 }
 
 			desktopValue={ font.marginBottom }
 			desktopInitial={ getPlaceholder( font, 'marginBottom' ) }
