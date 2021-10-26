@@ -120,7 +120,7 @@ class GeneratePress_Dashboard {
 			'generate_dashboard_tabs',
 			array(
 				'dashboard' => array(
-					'name' => __( 'Dashboard', 'generate' ),
+					'name' => __( 'Dashboard', 'generatepress' ),
 					'url' => admin_url( 'themes.php?page=generate-options' ),
 					'class' => 'appearance_page_generate-options' === $screen->id ? 'active' : '',
 				),
