@@ -4,9 +4,9 @@ Donate link: https://generatepress.com/ongoing-development/
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options
-Requires at least: 4.5
+Requires at least: 5.2
 Tested up to: 5.8
-Stable tag: 3.0.4
+Stable tag: 3.1.0
 
 GeneratePress is a lightweight WordPress theme built with a focus on speed and usability.
 
@@ -14,15 +14,15 @@ GeneratePress is a lightweight WordPress theme built with a focus on speed and u
 
 GeneratePress is a lightweight WordPress theme built with a focus on speed and usability. Performance is important to us, which is why a fresh GeneratePress install adds less than 10kb (gzipped) to your page size.
 
-We take full advantage of the new block editor (Gutenberg), which gives you more control over creating your content.
+We take full advantage of the block editor (Gutenberg), which gives you more control over creating your content.
 
 If you use page builders, GeneratePress is the right theme for you. It is completely compatible with all major page builders, including Beaver Builder and Elementor.
 
 Thanks to our emphasis on WordPress coding standards, we can boast full compatibility with all well-coded plugins, including WooCommerce.
 
-GeneratePress is fully responsive, uses valid HTML/CSS and is translated into over 25 languages by our amazing community of users.
+GeneratePress is fully responsive, uses valid HTML/CSS, and is translated into over 25 languages by our amazing community of users.
 
-A few of our many features include microdata integration, 9 widget areas, 5 navigation locations, 5 sidebar layouts, dropdown menus (click or hover) and navigation color presets.
+A few of our many features include 60+ color controls, powerful dynamic typography, 5 navigation locations, 5 sidebar layouts, dropdown menus (click or hover), and 9 widget areas.
 
 Learn more and check out our [powerful premium version](https://generatepress.com).
 
@@ -93,7 +93,47 @@ MIT License: https://github.com/woocommerce/selectWoo/blob/master/LICENSE.md
 By Brian Grinstead, http://briangrinstead.com
 MIT License: https://github.com/bgrins/TinyColor/blob/master/LICENSE
 
+= React Select =
+By Jed Watson
+MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
+
 == Changelog ==
+
+= 3.1.0 =
+
+Release date: October 26, 2021
+
+* New: Global color system
+* New: Add all theme color options to free theme
+* New: Re-build color options in the Customizer
+* New: Dynamic typography system
+* New: Underline links option
+* New: Only load menu.js when needed
+* New: generate_has_active_menu filter
+* New: generate_before_loop hook
+* New: Dynamic HTML attribute system
+* New: React-based Dashboard
+* New: generate_search_title_output filter
+* New: generate_after_comment_author_name hook
+* New: generate_show_comment_entry_meta filter
+* Tweak: Only allow vertical comment form resizing
+* Tweak: Move a11y javascript inline to the footer
+* Tweak: Add aria-label attributes to elements that need them
+* Tweak: Remove theme structure option for people using flexbox
+* Tweak: Remove search result title from template
+* Tweak: Add search result title using generate_before_loop hook
+* Tweak: Remove aria-required attribute from comment form
+* Tweak: Add required attribute to comment author/email fields if required
+* Tweak: Move viewport head meta below the title meta
+* Tweak: Optimize SVG icon HTML
+* Tweak: Move generate_svg_icon_element before the "replace" icon definition
+* Tweak: Change sub-menu box-shadow direction when sub-menu opens left
+* Tweak: Replace sub-menu box-shadow with border when opening down
+* Tweak: Remove query loop block margin
+* Tweak: Use get_the_archive_description() instead of term_description()
+* Fix: Missing search form button icon when using font icons
+* Fix: Load comments CSS if comments exists even if new comments are disabled
+* Fix: Sub-menu overlap using dropdown click
 
 = 3.0.4 =
 

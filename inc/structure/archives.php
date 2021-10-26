@@ -21,7 +21,7 @@ if ( ! function_exists( 'generate_archive_title' ) ) {
 			return;
 		}
 		?>
-		<header class="page-header">
+		<header <?php generate_do_attr( 'page-header' ); ?>>
 			<?php
 			/**
 			 * generate_before_archive_title hook.
@@ -98,14 +98,14 @@ add_action( 'generate_after_archive_title', 'generate_do_archive_description' );
  * @since 2.3
  */
 function generate_do_archive_description() {
-	$term_description = term_description();
+	$term_description = get_the_archive_description();
 
 	if ( ! empty( $term_description ) ) {
-		printf( '<div class="taxonomy-description">%s</div>', $term_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	}
-
-	if ( get_the_author_meta( 'description' ) && is_author() ) {
-		echo '<div class="author-info">' . get_the_author_meta( 'description' ) . '</div>';  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		if ( is_author() ) {
+			printf( '<div class="author-info">%s</div>', $term_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		} else {
+			printf( '<div class="taxonomy-description">%s</div>', $term_description ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		}
 	}
 
 	/**
@@ -114,4 +114,29 @@ function generate_do_archive_description() {
 	 * @since 0.1
 	 */
 	do_action( 'generate_after_archive_description' );
+}
+
+add_action( 'generate_before_loop', 'generate_do_search_results_title' );
+/**
+ * Add the search results title to the search results page.
+ *
+ * @since 3.1.0
+ * @param string $template The template we're targeting.
+ */
+function generate_do_search_results_title( $template ) {
+	if ( 'search' === $template ) {
+		// phpcs:ignore -- No escaping needed.
+		echo apply_filters(
+			'generate_search_title_output',
+			sprintf(
+				'<header %s><h1 class="page-title">%s</h1></header>',
+				generate_get_attr( 'page-header' ),
+				sprintf(
+					/* translators: 1: Search query name */
+					__( 'Search Results for: %s', 'generatepress' ),
+					'<span>' . get_search_query() . '</span>'
+				)
+			)
+		);
+	}
 }

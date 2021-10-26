@@ -41,8 +41,8 @@ if ( ! function_exists( 'generate_woocommerce_start' ) ) {
 	 */
 	function generate_woocommerce_start() {
 		?>
-		<div id="primary" <?php generate_do_element_classes( 'content' ); ?>>
-			<main id="main" <?php generate_do_element_classes( 'main' ); ?>>
+		<div <?php generate_do_attr( 'content' ); ?>>
+			<main <?php generate_do_attr( 'main' ); ?>>
 				<?php
 				/**
 				 * generate_before_main_content hook.
@@ -805,6 +805,16 @@ function generate_pro_compat_customize_register( $wp_customize ) {
 			$wp_customize->get_setting( 'generate_spacing_settings[footer_left]' )->transport = 'refresh';
 		}
 	}
+
+	if ( $wp_customize->get_panel( 'generate_typography_panel' ) ) {
+		$wp_customize->get_panel( 'generate_typography_panel' )->active_callback = function() {
+			if ( generate_is_using_dynamic_typography() ) {
+				return false;
+			}
+
+			return true;
+		};
+	}
 }
 
 add_action( 'wp', 'generate_do_pro_compatibility_setup' );
@@ -823,5 +833,67 @@ function generate_do_pro_compatibility_setup() {
 		if ( function_exists( 'generate_premium_do_elements' ) && ! is_singular() ) {
 			add_filter( 'generate_show_title', '__return_true', 20 );
 		}
+	}
+
+	if ( generate_is_using_dynamic_typography() ) {
+		remove_action( 'wp_enqueue_scripts', 'generate_enqueue_google_fonts', 0 );
+		remove_action( 'wp_enqueue_scripts', 'generate_typography_premium_css', 100 );
+		remove_filter( 'generate_external_dynamic_css_output', 'generate_typography_add_to_external_stylesheet' );
+	}
+}
+
+add_filter( 'generate_has_active_menu', 'generate_do_pro_active_menus' );
+/**
+ * Tell GP about our active pro menus.
+ *
+ * @since 3.1.0
+ * @param boolean $has_active_menu Whether we have an active menu.
+ */
+function generate_do_pro_active_menus( $has_active_menu ) {
+	if ( ! defined( 'GP_PREMIUM_VERSION' ) ) {
+		return $has_active_menu;
+	}
+
+	if ( version_compare( GP_PREMIUM_VERSION, '2.1.0-alpha.1', '<' ) ) {
+		if ( function_exists( 'generate_menu_plus_get_defaults' ) ) {
+			$menu_plus_settings = wp_parse_args(
+				get_option( 'generate_menu_plus_settings', array() ),
+				generate_menu_plus_get_defaults()
+			);
+
+			if ( 'disable' !== $menu_plus_settings['mobile_header'] || 'false' !== $menu_plus_settings['slideout_menu'] ) {
+				$has_active_menu = true;
+			}
+		}
+
+		if ( function_exists( 'generate_secondary_nav_get_defaults' ) && has_nav_menu( 'secondary' ) ) {
+			$has_active_menu = true;
+		}
+	}
+
+	return $has_active_menu;
+}
+
+add_action( 'init', 'generate_do_customizer_compatibility_setup' );
+/**
+ * Make changes to the Customizer in the Pro version.
+ */
+function generate_do_customizer_compatibility_setup() {
+	if ( ! defined( 'GP_PREMIUM_VERSION' ) ) {
+		return;
+	}
+
+	if ( version_compare( GP_PREMIUM_VERSION, '2.1.0-alpha.1', '<' ) ) {
+		if ( generate_is_using_dynamic_typography() ) {
+			remove_action( 'customize_register', 'generate_fonts_customize_register' );
+			remove_action( 'customize_preview_init', 'generate_typography_customizer_live_preview' );
+		}
+
+		remove_action( 'customize_register', 'generate_colors_customize_register' );
+		remove_action( 'customize_preview_init', 'generate_colors_customizer_live_preview' );
+		remove_action( 'customize_controls_enqueue_scripts', 'generate_enqueue_color_palettes', 1001 );
+		remove_action( 'customize_register', 'generate_colors_secondary_nav_customizer', 1000 );
+		remove_action( 'customize_register', 'generate_slideout_navigation_color_controls', 150 );
+		remove_action( 'customize_register', 'generate_colors_wc_customizer', 100 );
 	}
 }

@@ -14,7 +14,8 @@
 .comments-link:before,
 .nav-previous .prev:before,
 .nav-next .next:before,
-.generate-back-to-top:before {
+.generate-back-to-top:before,
+.search-form .search-submit:before {
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	font-style: normal;
@@ -159,4 +160,15 @@ nav:not(.toggled) ul ul .dropdown-menu-toggle:before {
 .generate-back-to-top:before {
 	content: "\f106";
 	font-family: GeneratePress;
+}
+
+/*--------------------------------------------------------------
+# Search button
+--------------------------------------------------------------*/
+.search-form .search-submit:before {
+	content: "\f002";
+	font-family: GeneratePress;
+	width: 1.28571429em;
+	text-align: center;
+	display: inline-block;
 }

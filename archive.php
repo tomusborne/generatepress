@@ -11,8 +11,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header(); ?>
 
-	<div id="primary" <?php generate_do_element_classes( 'content' ); ?>>
-		<main id="main" <?php generate_do_element_classes( 'main' ); ?>>
+	<div <?php generate_do_attr( 'content' ); ?>>
+		<main <?php generate_do_attr( 'main' ); ?>>
 			<?php
 			/**
 			 * generate_before_main_content hook.
@@ -32,6 +32,13 @@ get_header(); ?>
 					 * @hooked generate_archive_title - 10
 					 */
 					do_action( 'generate_archive_title' );
+
+					/**
+					 * generate_before_loop hook.
+					 *
+					 * @since 3.1.0
+					 */
+					do_action( 'generate_before_loop', 'archive' );
 
 					while ( have_posts() ) :
 

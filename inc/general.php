@@ -19,7 +19,8 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 		$dir_uri = get_template_directory_uri();
 
 		if ( generate_is_using_flexbox() ) {
-			if ( is_singular() && comments_open() ) {
+			// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison -- Intentionally loose.
+			if ( is_singular() && ( comments_open() || '0' != get_comments_number() ) ) {
 				wp_enqueue_style( 'generate-comments', $dir_uri . "/assets/css/components/comments{$suffix}.css", array(), GENERATE_VERSION, 'all' );
 			}
 
@@ -71,17 +72,12 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 			wp_script_add_data( 'generate-classlist', 'conditional', 'lte IE 11' );
 		}
 
-		if ( apply_filters( 'generate_combine_js', true ) && $suffix ) {
-			wp_enqueue_script( 'generate-main', $dir_uri . "/assets/js/main{$suffix}.js", array(), GENERATE_VERSION, true );
-			$script_handle = 'generate-main';
-		} else {
+		if ( generate_has_active_menu() ) {
 			wp_enqueue_script( 'generate-menu', $dir_uri . "/assets/js/menu{$suffix}.js", array(), GENERATE_VERSION, true );
-			wp_enqueue_script( 'generate-a11y', $dir_uri . "/assets/js/a11y{$suffix}.js", array(), GENERATE_VERSION, true );
-			$script_handle = 'generate-menu';
 		}
 
 		wp_localize_script(
-			$script_handle,
+			'generate-menu',
 			'generatepressMenu',
 			apply_filters(
 				'generate_localize_js_args',
@@ -112,6 +108,17 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 
 		if ( 'enable' === generate_get_option( 'back_to_top' ) ) {
 			wp_enqueue_script( 'generate-back-to-top', $dir_uri . "/assets/js/back-to-top{$suffix}.js", array(), GENERATE_VERSION, true );
+
+			wp_localize_script(
+				'generate-back-to-top',
+				'generatepressBackToTop',
+				apply_filters(
+					'generate_back_to_top_js_args',
+					array(
+						'smooth' => true,
+					)
+				)
+			);
 		}
 
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -233,7 +240,9 @@ if ( ! function_exists( 'generate_resource_hints' ) ) {
 	 * @return array $urls           URLs to print for resource hints.
 	 */
 	function generate_resource_hints( $urls, $relation_type ) {
-		if ( wp_style_is( 'generate-fonts', 'queue' ) && 'preconnect' === $relation_type ) {
+		$handle = generate_is_using_dynamic_typography() ? 'generate-google-fonts' : 'generate-fonts';
+
+		if ( wp_style_is( $handle, 'queue' ) && 'preconnect' === $relation_type ) {
 			if ( version_compare( $GLOBALS['wp_version'], '4.7-alpha', '>=' ) ) {
 				$urls[] = array(
 					'href' => 'https://fonts.gstatic.com',
@@ -433,4 +442,20 @@ function generate_set_microdata_markup( $output, $context ) {
 	}
 
 	return $output;
+}
+
+add_action( 'wp_footer', 'generate_do_a11y_scripts' );
+/**
+ * Enqueue scripts in the footer.
+ *
+ * @since 3.1.0
+ */
+function generate_do_a11y_scripts() {
+	if ( apply_filters( 'generate_print_a11y_script', true ) ) {
+		// Add our small a11y script inline.
+		printf(
+			'<script id="generate-a11y">%s</script>',
+			'!function(){"use strict";if("querySelector"in document&&"addEventListener"in window){var e=document.body;e.addEventListener("mousedown",function(){e.classList.add("using-mouse")}),e.addEventListener("keydown",function(){e.classList.remove("using-mouse")})}}();'
+		);
+	}
 }

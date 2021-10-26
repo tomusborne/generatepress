@@ -23,8 +23,8 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 		 */
 		do_action( 'generate_before_navigation' );
 		?>
-		<nav id="site-navigation" <?php generate_do_element_classes( 'navigation' ); ?>>
-			<div <?php generate_do_element_classes( 'inside_navigation' ); ?>>
+		<nav <?php generate_do_attr( 'navigation' ); ?>>
+			<div <?php generate_do_attr( 'inside-navigation' ); ?>>
 				<?php
 				/**
 				 * generate_inside_navigation hook.
@@ -36,7 +36,7 @@ if ( ! function_exists( 'generate_navigation_position' ) ) {
 				 */
 				do_action( 'generate_inside_navigation' );
 				?>
-				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+				<button <?php generate_do_attr( 'menu-toggle' ); ?>>
 					<?php
 					/**
 					 * generate_inside_mobile_menu hook.
@@ -116,7 +116,7 @@ function generate_do_header_mobile_menu_toggle() {
 		return;
 	}
 	?>
-	<nav id="mobile-menu-control-wrapper" <?php generate_do_element_classes( 'mobile-navigation-toggle', array( 'main-navigation', 'mobile-menu-control-wrapper' ) ); ?>>
+	<nav <?php generate_do_attr( 'mobile-menu-control-wrapper' ); ?>>
 		<?php
 		/**
 		 * generate_inside_mobile_menu_control_wrapper hook.
@@ -125,7 +125,7 @@ function generate_do_header_mobile_menu_toggle() {
 		 */
 		do_action( 'generate_inside_mobile_menu_control_wrapper' );
 		?>
-		<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" data-nav="site-navigation">
+		<button <?php generate_do_attr( 'menu-toggle', array( 'data-nav' => 'site-navigation' ) ); ?>>
 			<?php
 			/**
 			 * generate_inside_mobile_menu hook.

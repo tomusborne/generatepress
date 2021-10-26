@@ -274,74 +274,50 @@ function generate_get_svg_icon( $icon, $replace = false ) {
 	$output = '';
 
 	if ( 'menu-bars' === $icon ) {
-		$output = '<svg viewBox="0 0 512 512" aria-hidden="true" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em">
-						<path d="M0 96c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24zm0 160c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24zm0 160c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24z" />
-					</svg>';
+		$output = '<svg viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M0 96c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24zm0 160c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24zm0 160c0-13.255 10.745-24 24-24h464c13.255 0 24 10.745 24 24s-10.745 24-24 24H24c-13.255 0-24-10.745-24-24z" /></svg>';
 	}
 
 	if ( 'close' === $icon ) {
-		$output = '<svg viewBox="0 0 512 512" aria-hidden="true" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em">
-						<path d="M71.029 71.029c9.373-9.372 24.569-9.372 33.942 0L256 222.059l151.029-151.03c9.373-9.372 24.569-9.372 33.942 0 9.372 9.373 9.372 24.569 0 33.942L289.941 256l151.03 151.029c9.372 9.373 9.372 24.569 0 33.942-9.373 9.372-24.569 9.372-33.942 0L256 289.941l-151.029 151.03c-9.373 9.372-24.569 9.372-33.942 0-9.372-9.373-9.372-24.569 0-33.942L222.059 256 71.029 104.971c-9.372-9.373-9.372-24.569 0-33.942z" />
-					</svg>';
+		$output = '<svg viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M71.029 71.029c9.373-9.372 24.569-9.372 33.942 0L256 222.059l151.029-151.03c9.373-9.372 24.569-9.372 33.942 0 9.372 9.373 9.372 24.569 0 33.942L289.941 256l151.03 151.029c9.372 9.373 9.372 24.569 0 33.942-9.373 9.372-24.569 9.372-33.942 0L256 289.941l-151.029 151.03c-9.373 9.372-24.569 9.372-33.942 0-9.372-9.373-9.372-24.569 0-33.942L222.059 256 71.029 104.971c-9.372-9.373-9.372-24.569 0-33.942z" /></svg>';
 	}
 
 	if ( 'search' === $icon ) {
-		$output = '<svg viewBox="0 0 512 512" aria-hidden="true" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em">
-						<path fill-rule="evenodd" clip-rule="evenodd" d="M208 48c-88.366 0-160 71.634-160 160s71.634 160 160 160 160-71.634 160-160S296.366 48 208 48zM0 208C0 93.125 93.125 0 208 0s208 93.125 208 208c0 48.741-16.765 93.566-44.843 129.024l133.826 134.018c9.366 9.379 9.355 24.575-.025 33.941-9.379 9.366-24.575 9.355-33.941-.025L337.238 370.987C301.747 399.167 256.839 416 208 416 93.125 416 0 322.875 0 208z"/>
-					</svg>';
+		$output = '<svg viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path fill-rule="evenodd" clip-rule="evenodd" d="M208 48c-88.366 0-160 71.634-160 160s71.634 160 160 160 160-71.634 160-160S296.366 48 208 48zM0 208C0 93.125 93.125 0 208 0s208 93.125 208 208c0 48.741-16.765 93.566-44.843 129.024l133.826 134.018c9.366 9.379 9.355 24.575-.025 33.941-9.379 9.366-24.575 9.355-33.941-.025L337.238 370.987C301.747 399.167 256.839 416 208 416 93.125 416 0 322.875 0 208z" /></svg>';
 	}
 
 	if ( 'categories' === $icon ) {
-		$output = '<svg viewBox="0 0 512 512" aria-hidden="true" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em">
-						<path d="M0 112c0-26.51 21.49-48 48-48h110.014a48 48 0 0 1 43.592 27.907l12.349 26.791A16 16 0 0 0 228.486 128H464c26.51 0 48 21.49 48 48v224c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112z" fill-rule="nonzero"/>
-					</svg>';
+		$output = '<svg viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M0 112c0-26.51 21.49-48 48-48h110.014a48 48 0 0143.592 27.907l12.349 26.791A16 16 0 00228.486 128H464c26.51 0 48 21.49 48 48v224c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V112z" /></svg>';
 	}
 
 	if ( 'tags' === $icon ) {
-		$output = '<svg viewBox="0 0 512 512" aria-hidden="true" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em">
-						<path d="M20 39.5c-8.836 0-16 7.163-16 16v176c0 4.243 1.686 8.313 4.687 11.314l224 224c6.248 6.248 16.378 6.248 22.626 0l176-176c6.244-6.244 6.25-16.364.013-22.615l-223.5-224A15.999 15.999 0 0 0 196.5 39.5H20zm56 96c0-13.255 10.745-24 24-24s24 10.745 24 24-10.745 24-24 24-24-10.745-24-24z"/>
-						<path d="M259.515 43.015c4.686-4.687 12.284-4.687 16.97 0l228 228c4.686 4.686 4.686 12.284 0 16.97l-180 180c-4.686 4.687-12.284 4.687-16.97 0-4.686-4.686-4.686-12.284 0-16.97L479.029 279.5 259.515 59.985c-4.686-4.686-4.686-12.284 0-16.97z" fill-rule="nonzero"/>
-					</svg>';
+		$output = '<svg viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M20 39.5c-8.836 0-16 7.163-16 16v176c0 4.243 1.686 8.313 4.687 11.314l224 224c6.248 6.248 16.378 6.248 22.626 0l176-176c6.244-6.244 6.25-16.364.013-22.615l-223.5-224A15.999 15.999 0 00196.5 39.5H20zm56 96c0-13.255 10.745-24 24-24s24 10.745 24 24-10.745 24-24 24-24-10.745-24-24z"/><path d="M259.515 43.015c4.686-4.687 12.284-4.687 16.97 0l228 228c4.686 4.686 4.686 12.284 0 16.97l-180 180c-4.686 4.687-12.284 4.687-16.97 0-4.686-4.686-4.686-12.284 0-16.97L479.029 279.5 259.515 59.985c-4.686-4.686-4.686-12.284 0-16.97z" /></svg>';
 	}
 
 	if ( 'comments' === $icon ) {
-		$output = '<svg viewBox="0 0 512 512" aria-hidden="true" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em">
-						<path d="M132.838 329.973a435.298 435.298 0 0 0 16.769-9.004c13.363-7.574 26.587-16.142 37.419-25.507 7.544.597 15.27.925 23.098.925 54.905 0 105.634-15.311 143.285-41.28 23.728-16.365 43.115-37.692 54.155-62.645 54.739 22.205 91.498 63.272 91.498 110.286 0 42.186-29.558 79.498-75.09 102.828 23.46 49.216 75.09 101.709 75.09 101.709s-115.837-38.35-154.424-78.46c-9.956 1.12-20.297 1.758-30.793 1.758-88.727 0-162.927-43.071-181.007-100.61z" fill-rule="nonzero"/>
-						<path d="M383.371 132.502c0 70.603-82.961 127.787-185.216 127.787-10.496 0-20.837-.639-30.793-1.757-38.587 40.093-154.424 78.429-154.424 78.429s51.63-52.472 75.09-101.67c-45.532-23.321-75.09-60.619-75.09-102.79C12.938 61.9 95.9 4.716 198.155 4.716 300.41 4.715 383.37 61.9 383.37 132.502z" fill-rule="nonzero" />
-					</svg>';
+		$output = '<svg viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M132.838 329.973a435.298 435.298 0 0016.769-9.004c13.363-7.574 26.587-16.142 37.419-25.507 7.544.597 15.27.925 23.098.925 54.905 0 105.634-15.311 143.285-41.28 23.728-16.365 43.115-37.692 54.155-62.645 54.739 22.205 91.498 63.272 91.498 110.286 0 42.186-29.558 79.498-75.09 102.828 23.46 49.216 75.09 101.709 75.09 101.709s-115.837-38.35-154.424-78.46c-9.956 1.12-20.297 1.758-30.793 1.758-88.727 0-162.927-43.071-181.007-100.61z"/><path d="M383.371 132.502c0 70.603-82.961 127.787-185.216 127.787-10.496 0-20.837-.639-30.793-1.757-38.587 40.093-154.424 78.429-154.424 78.429s51.63-52.472 75.09-101.67c-45.532-23.321-75.09-60.619-75.09-102.79C12.938 61.9 95.9 4.716 198.155 4.716 300.41 4.715 383.37 61.9 383.37 132.502z" /></svg>';
 	}
 
 	if ( 'arrow' === $icon ) {
-		$output = '<svg viewBox="0 0 330 512" aria-hidden="true" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em">
-						<path d="M305.913 197.085c0 2.266-1.133 4.815-2.833 6.514L171.087 335.593c-1.7 1.7-4.249 2.832-6.515 2.832s-4.815-1.133-6.515-2.832L26.064 203.599c-1.7-1.7-2.832-4.248-2.832-6.514s1.132-4.816 2.832-6.515l14.162-14.163c1.7-1.699 3.966-2.832 6.515-2.832 2.266 0 4.815 1.133 6.515 2.832l111.316 111.317 111.316-111.317c1.7-1.699 4.249-2.832 6.515-2.832s4.815 1.133 6.515 2.832l14.162 14.163c1.7 1.7 2.833 4.249 2.833 6.515z" fill-rule="nonzero"/>
-					</svg>';
+		$output = '<svg viewBox="0 0 330 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M305.913 197.085c0 2.266-1.133 4.815-2.833 6.514L171.087 335.593c-1.7 1.7-4.249 2.832-6.515 2.832s-4.815-1.133-6.515-2.832L26.064 203.599c-1.7-1.7-2.832-4.248-2.832-6.514s1.132-4.816 2.832-6.515l14.162-14.163c1.7-1.699 3.966-2.832 6.515-2.832 2.266 0 4.815 1.133 6.515 2.832l111.316 111.317 111.316-111.317c1.7-1.699 4.249-2.832 6.515-2.832s4.815 1.133 6.515 2.832l14.162 14.163c1.7 1.7 2.833 4.249 2.833 6.515z" /></svg>';
 	}
 
 	if ( 'arrow-right' === $icon ) {
-		$output = '<svg viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
-						<path d="M178.425 256.001c0 2.266-1.133 4.815-2.832 6.515L43.599 394.509c-1.7 1.7-4.248 2.833-6.514 2.833s-4.816-1.133-6.515-2.833l-14.163-14.162c-1.699-1.7-2.832-3.966-2.832-6.515 0-2.266 1.133-4.815 2.832-6.515l111.317-111.316L16.407 144.685c-1.699-1.7-2.832-4.249-2.832-6.515s1.133-4.815 2.832-6.515l14.163-14.162c1.7-1.7 4.249-2.833 6.515-2.833s4.815 1.133 6.514 2.833l131.994 131.993c1.7 1.7 2.832 4.249 2.832 6.515z" fill-rule="nonzero"/>
-					</svg>';
+		$output = '<svg viewBox="0 0 192 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><path d="M178.425 256.001c0 2.266-1.133 4.815-2.832 6.515L43.599 394.509c-1.7 1.7-4.248 2.833-6.514 2.833s-4.816-1.133-6.515-2.833l-14.163-14.162c-1.699-1.7-2.832-3.966-2.832-6.515 0-2.266 1.133-4.815 2.832-6.515l111.317-111.316L16.407 144.685c-1.699-1.7-2.832-4.249-2.832-6.515s1.133-4.815 2.832-6.515l14.163-14.162c1.7-1.7 4.249-2.833 6.515-2.833s4.815 1.133 6.514 2.833l131.994 131.993c1.7 1.7 2.832 4.249 2.832 6.515z" fill-rule="nonzero" /></svg>';
 	}
 
 	if ( 'arrow-left' === $icon ) {
-		$output = '<svg viewBox="0 0 192 512" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
-						<path d="M178.425 138.212c0 2.265-1.133 4.813-2.832 6.512L64.276 256.001l111.317 111.277c1.7 1.7 2.832 4.247 2.832 6.513 0 2.265-1.133 4.813-2.832 6.512L161.43 394.46c-1.7 1.7-4.249 2.832-6.514 2.832-2.266 0-4.816-1.133-6.515-2.832L16.407 262.514c-1.699-1.7-2.832-4.248-2.832-6.513 0-2.265 1.133-4.813 2.832-6.512l131.994-131.947c1.7-1.699 4.249-2.831 6.515-2.831 2.265 0 4.815 1.132 6.514 2.831l14.163 14.157c1.7 1.7 2.832 3.965 2.832 6.513z" fill-rule="nonzero"/>
-					</svg>';
+		$output = '<svg viewBox="0 0 192 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><path d="M178.425 138.212c0 2.265-1.133 4.813-2.832 6.512L64.276 256.001l111.317 111.277c1.7 1.7 2.832 4.247 2.832 6.513 0 2.265-1.133 4.813-2.832 6.512L161.43 394.46c-1.7 1.7-4.249 2.832-6.514 2.832-2.266 0-4.816-1.133-6.515-2.832L16.407 262.514c-1.699-1.7-2.832-4.248-2.832-6.513 0-2.265 1.133-4.813 2.832-6.512l131.994-131.947c1.7-1.699 4.249-2.831 6.515-2.831 2.265 0 4.815 1.132 6.514 2.831l14.163 14.157c1.7 1.7 2.832 3.965 2.832 6.513z" fill-rule="nonzero" /></svg>';
 	}
 
 	if ( 'arrow-up' === $icon ) {
-		$output = '<svg viewBox="0 0 330 512" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414">
-						<path d="M305.863 314.916c0 2.266-1.133 4.815-2.832 6.514l-14.157 14.163c-1.699 1.7-3.964 2.832-6.513 2.832-2.265 0-4.813-1.133-6.512-2.832L164.572 224.276 53.295 335.593c-1.699 1.7-4.247 2.832-6.512 2.832-2.265 0-4.814-1.133-6.513-2.832L26.113 321.43c-1.699-1.7-2.831-4.248-2.831-6.514s1.132-4.816 2.831-6.515L158.06 176.408c1.699-1.7 4.247-2.833 6.512-2.833 2.265 0 4.814 1.133 6.513 2.833L303.03 308.4c1.7 1.7 2.832 4.249 2.832 6.515z" fill-rule="nonzero"/>
-					</svg>';
-	}
-
-	if ( $replace ) {
-		$output .= '<svg viewBox="0 0 512 512" aria-hidden="true" role="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1em" height="1em">
-						<path d="M71.029 71.029c9.373-9.372 24.569-9.372 33.942 0L256 222.059l151.029-151.03c9.373-9.372 24.569-9.372 33.942 0 9.372 9.373 9.372 24.569 0 33.942L289.941 256l151.03 151.029c9.372 9.373 9.372 24.569 0 33.942-9.373 9.372-24.569 9.372-33.942 0L256 289.941l-151.029 151.03c-9.373 9.372-24.569 9.372-33.942 0-9.372-9.373-9.372-24.569 0-33.942L222.059 256 71.029 104.971c-9.372-9.373-9.372-24.569 0-33.942z" />
-					</svg>';
+		$output = '<svg viewBox="0 0 330 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><path d="M305.863 314.916c0 2.266-1.133 4.815-2.832 6.514l-14.157 14.163c-1.699 1.7-3.964 2.832-6.513 2.832-2.265 0-4.813-1.133-6.512-2.832L164.572 224.276 53.295 335.593c-1.699 1.7-4.247 2.832-6.512 2.832-2.265 0-4.814-1.133-6.513-2.832L26.113 321.43c-1.699-1.7-2.831-4.248-2.831-6.514s1.132-4.816 2.831-6.515L158.06 176.408c1.699-1.7 4.247-2.833 6.512-2.833 2.265 0 4.814 1.133 6.513 2.833L303.03 308.4c1.7 1.7 2.832 4.249 2.832 6.515z" fill-rule="nonzero" /></svg>';
 	}
 
 	$output = apply_filters( 'generate_svg_icon_element', $output, $icon );
+
+	if ( $replace ) {
+		$output .= '<svg viewBox="0 0 512 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M71.029 71.029c9.373-9.372 24.569-9.372 33.942 0L256 222.059l151.029-151.03c9.373-9.372 24.569-9.372 33.942 0 9.372 9.373 9.372 24.569 0 33.942L289.941 256l151.03 151.029c9.372 9.373 9.372 24.569 0 33.942-9.373 9.372-24.569 9.372-33.942 0L256 289.941l-151.029 151.03c-9.373 9.372-24.569 9.372-33.942 0-9.372-9.373-9.372-24.569 0-33.942L222.059 256 71.029 104.971c-9.372-9.373-9.372-24.569 0-33.942z" /></svg>';
+	}
 
 	$classes = array(
 		'gp-icon',
@@ -379,7 +355,7 @@ function generate_do_svg_icon( $icon, $replace = false ) {
  */
 function generate_get_media_query( $name ) {
 	$desktop = apply_filters( 'generate_desktop_media_query', '(min-width:1025px)' );
-	$tablet = apply_filters( 'generate_tablet_media_query', '(min-width: 769px) and (max-width: 1024px)' );
+	$tablet_only = apply_filters( 'generate_tablet_media_query', '(min-width: 769px) and (max-width: 1024px)' );
 	$mobile = apply_filters( 'generate_mobile_media_query', '(max-width:768px)' );
 	$mobile_menu = apply_filters( 'generate_mobile_menu_media_query', $mobile );
 
@@ -387,7 +363,8 @@ function generate_get_media_query( $name ) {
 		'generate_media_queries',
 		array(
 			'desktop' => $desktop,
-			'tablet' => $tablet,
+			'tablet_only' => $tablet_only,
+			'tablet' => '(max-width: 1024px)',
 			'mobile' => $mobile,
 			'mobile-menu' => $mobile_menu,
 		)
@@ -691,4 +668,177 @@ function generate_needs_site_branding_container() {
 	}
 
 	return $container;
+}
+
+/**
+ * Merge array of attributes with defaults, and apply contextual filter on array.
+ *
+ * The contextual filter is of the form `generate_attr_{context}`.
+ *
+ * @since 3.1.0
+ *
+ * @param string $context    The context, to build filter name.
+ * @param array  $attributes Optional. Extra attributes to merge with defaults.
+ * @param array  $settings   Optional. Custom data to pass to filter.
+ * @return array Merged and filtered attributes.
+ */
+function generate_parse_attr( $context, $attributes = array(), $settings = array() ) {
+	// Initialize an empty class attribute so it's easier to append to in filters.
+	if ( ! isset( $attributes['class'] ) ) {
+		$attributes['class'] = '';
+	}
+
+	// We used to have a class-only system. If it's in use, add the classes.
+	$classes = generate_get_element_classes( $context );
+
+	if ( $classes ) {
+		$attributes['class'] .= join( ' ', $classes );
+	}
+
+	// Contextual filter.
+	return apply_filters( 'generate_parse_attr', $attributes, $context, $settings );
+}
+
+/**
+ * Build list of attributes into a string and apply contextual filter on string.
+ *
+ * The contextual filter is of the form `generate_attr_{context}_output`.
+ *
+ * @since 3.1.0
+ *
+ * @param string $context    The context, to build filter name.
+ * @param array  $attributes Optional. Extra attributes to merge with defaults.
+ * @param array  $settings   Optional. Custom data to pass to filter.
+ * @return string String of HTML attributes and values.
+ */
+function generate_get_attr( $context, $attributes = array(), $settings = array() ) {
+	$attributes = generate_parse_attr( $context, $attributes, $settings );
+
+	$output = '';
+
+	// Cycle through attributes, build tag attribute string.
+	foreach ( $attributes as $key => $value ) {
+		if ( ! $value ) {
+			continue;
+		}
+
+		// Remove any whitespace at the start or end of our classes.
+		if ( 'class' === $key ) {
+			$value = trim( $value );
+		}
+
+		if ( true === $value ) {
+			$output .= esc_html( $key ) . ' ';
+		} else {
+			$output .= sprintf( '%s="%s" ', esc_html( $key ), esc_attr( $value ) );
+		}
+	}
+
+	// Before this function existed we had the below to add attributes after the class attribute.
+	$after = apply_filters( 'generate_after_element_class_attribute', '', $context );
+
+	if ( $after ) {
+		$after = ' ' . $after;
+	}
+
+	$output .= $after;
+
+	$output = apply_filters( 'generate_get_attr_output', $output, $attributes, $context, $settings );
+
+	return trim( $output );
+}
+
+/**
+ * Output our string of HTML attributes.
+ *
+ * @since 3.1.0
+ *
+ * @param string $context    The context, to build filter name.
+ * @param array  $attributes Optional. Extra attributes to merge with defaults.
+ * @param array  $settings   Optional. Custom data to pass to filter.
+ */
+function generate_do_attr( $context, $attributes = array(), $settings = array() ) {
+	echo generate_get_attr( $context, $attributes, $settings ); // phpcs:ignore -- Escaping done in function.
+}
+
+/**
+ * Build our editor color palette based on our global colors.
+ *
+ * @since 3.1.0
+ */
+function generate_get_editor_color_palette() {
+	$global_colors = generate_get_option( 'global_colors' );
+	$editor_palette = array();
+	$static_colors = false;
+
+	if ( apply_filters( 'generate_color_palette_use_static_colors', false ) ) {
+		$static_colors = true;
+	}
+
+	if ( ! empty( $global_colors ) ) {
+		foreach ( (array) $global_colors as $key => $data ) {
+			$editor_palette[] = array(
+				'name' => $data['name'],
+				'slug' => $data['slug'],
+				'color' => $static_colors ? $data['color'] : 'var(--' . $data['slug'] . ')',
+			);
+		}
+	}
+
+	return $editor_palette;
+}
+
+/**
+ * Get our global colors.
+ *
+ * @since 3.1.0
+ */
+function generate_get_global_colors() {
+	$global_colors = generate_get_option( 'global_colors' );
+	$colors = array();
+
+	if ( ! empty( $global_colors ) ) {
+		foreach ( (array) $global_colors as $key => $data ) {
+			$colors[] = array(
+				'slug' => $data['slug'],
+				'color' => $data['color'],
+			);
+		}
+	}
+
+	return $colors;
+}
+
+/**
+ * Get our system default font.
+ *
+ * @since 3.1.0
+ */
+function generate_get_system_default_font() {
+	return apply_filters( 'generate_typography_system_stack', '-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"' );
+}
+
+/**
+ * Check to see if we have a GP menu active.
+ * This is primarily used to know whether we need to enqueue menu.js or not.
+ *
+ * @since 3.1.0
+ */
+function generate_has_active_menu() {
+	$has_active_menu = true;
+
+	if ( ! generate_get_navigation_location() ) {
+		$has_active_menu = false;
+	}
+
+	return apply_filters( 'generate_has_active_menu', $has_active_menu );
+}
+
+/**
+ * Check to see if we're using dynamic typography.
+ *
+ * @since 3.1.0
+ */
+function generate_is_using_dynamic_typography() {
+	return generate_get_option( 'use_dynamic_typography' );
 }

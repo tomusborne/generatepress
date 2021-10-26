@@ -1,0 +1,25 @@
+.generate-advanced-select {
+
+	&__control {
+	  margin-bottom: 12px;
+	}
+
+	&__value-container {
+	  padding: 0 6px!important;
+
+	  & > div {
+		padding: 0;
+		margin: 0;
+	  }
+	}
+
+	&__input {
+	  input[type="text"]:focus {
+		box-shadow: none;
+	  }
+	}
+
+	&__option--is-selected {
+		color: rgba(255,255,255,0.5) !important;
+	}
+  }

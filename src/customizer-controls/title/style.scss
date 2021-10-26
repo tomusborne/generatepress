@@ -1,0 +1,35 @@
+.generate-customize-control-title {
+	display: flex;
+	justify-content: space-between;
+
+	button.generate-customize-control-title--label {
+		font-size: 14px;
+		font-weight: 500;
+		padding: 0;
+		height: auto;
+	}
+
+	button.generate-customize-control-title--toggle {
+		background: #fff;
+		border-radius: 100%;
+		border: 1px solid #777;
+		padding: 0;
+		width: 28px;
+		height: 28px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		svg {
+			width: 1em;
+			height: 1em;
+			fill: none;
+		}
+	}
+
+	h3 {
+		font-size: 14px !important;
+		font-weight: 500;
+		margin-bottom: 0;
+	}
+}

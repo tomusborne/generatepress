@@ -421,10 +421,7 @@ input {
 	transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
 }
 
-a,
-a:visited,
-a:hover,
-a:focus {
+a {
 	text-decoration: none;
 }
 
@@ -666,6 +663,10 @@ a:focus {
 .main-navigation .main-nav ul li.menu-item-has-children > a {
 	padding-right: 0;
 	position: relative;
+}
+
+.main-navigation.sub-menu-left ul ul {
+	box-shadow: -1px 1px 0 rgba(0, 0, 0, 0.1);
 }
 
 .main-navigation.sub-menu-left .sub-menu {
@@ -1100,6 +1101,13 @@ object {
 }
 
 /*--------------------------------------------------------------
+## Post Loop Block
+--------------------------------------------------------------*/
+.wp-block-post-template {
+	margin-left: 0;
+}
+
+/*--------------------------------------------------------------
 # Widgets
 --------------------------------------------------------------*/
 .widget-area .widget {
@@ -1500,6 +1508,12 @@ nav.toggled ul ul.sub-menu {
 .main-navigation.toggled .main-nav ul ul {
 	transition: 0s;
 	visibility: hidden;
+	box-shadow: none;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.main-navigation.toggled .main-nav ul ul li:last-child > ul {
+	border-bottom: 0;
 }
 
 .main-navigation.toggled .main-nav ul ul.toggled-on {

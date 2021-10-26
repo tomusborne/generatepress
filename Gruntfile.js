@@ -83,6 +83,13 @@ module.exports = function (grunt) {
                         src: ['main-rtl.scss'],
                         dest: 'assets/css',
                         ext: '.css'
+					},
+					{
+                        expand: true,
+                        cwd: 'sass/',
+                        src: ['editor-typography.scss'],
+                        dest: 'assets/css/admin',
+                        ext: '.css'
 					}
                 ]
             }
@@ -113,10 +120,6 @@ module.exports = function (grunt) {
             js: {
                 files: [
                     {
-                        src: 'assets/js/a11y.js',
-                        dest: 'assets/js/a11y.min.js',
-                    },
-                    {
                         src: 'assets/js/back-to-top.js',
                         dest: 'assets/js/back-to-top.min.js',
                     },
@@ -132,10 +135,6 @@ module.exports = function (grunt) {
                         src: 'assets/js/navigation-search.js',
                         dest: 'assets/js/navigation-search.min.js',
 					},
-					{
-                        src: 'assets/js/main.js',
-                        dest: 'assets/js/main.min.js',
-                    },
                 ]
             }
         },
@@ -190,22 +189,16 @@ module.exports = function (grunt) {
             }
         },
 
-        concat: {
-            options: {
-                separator: '\n'
-            },
-            dist: {
-                files: [
-					{
-                        src: [
-                            'assets/js/menu.js',
-                            'assets/js/a11y.js',
-                        ],
-                        dest: 'assets/js/main.js',
-                    },
-                ]
+		watch: {
+			options: {
+				debounceDelay: 500,
+				livereload: true
+			},
+			sass: {
+                files: ['sass/**/*'],
+                tasks: ['style']
             }
-        },
+		},
 
         copy: {
             main: {
@@ -236,6 +229,7 @@ module.exports = function (grunt) {
                     '!composer.lock',
                     '!package-lock.json',
                     '!phpcs.xml.dist',
+                    '!src/**',
                 ],
                 dest: 'generatepress/'
             }
@@ -274,6 +268,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-contrib-watch');
 
     // SASS compile
     grunt.registerTask('scss', ['sass']);
@@ -282,10 +277,35 @@ module.exports = function (grunt) {
     grunt.registerTask('style', ['scss', 'postcss:style']);
 
     // Style and min
-    grunt.registerTask('build', ['style', 'concat', 'uglify:js', 'cssmin:css']);
+    grunt.registerTask('build', ['style', 'uglify:js', 'cssmin:css']);
 
     // Grunt release - Create installable package of the local files
 	grunt.registerTask('package', ['clean:zip', 'copy:main', 'compress:main', 'clean:main']);
+
+	grunt.registerTask('download-google-fonts', function () {
+        var done = this.async();
+        var request = require('request');
+        var fs = require('fs');
+
+        request('https://www.googleapis.com/webfonts/v1/webfonts?sort=alpha&key=AIzaSyCMsgO9oLyggmUXxBP85zQiEHJ5m3OAl0U', function (error, response, body) {
+
+            if (response && response.statusCode == 200) {
+
+				var fonts = {};
+
+                JSON.parse(body).items.forEach(function (font) {
+					fonts[ font.family ] = {
+						'variants': font.variants,
+						'category': font.category,
+					}
+                })
+
+                fs.writeFile('src/customizer-controls/font-manager/google-fonts.json', JSON.stringify(fonts, undefined, 4), function () {
+                    done();
+                });
+            }
+        });
+    });
 
     grunt.util.linefeed = '\n';
 };

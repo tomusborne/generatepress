@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		do_action( 'generate_before_content' );
 		?>
 
-		<header class="entry-header">
+		<header <?php generate_do_attr( 'entry-header' ); ?>>
 			<h1 class="entry-title"><?php _e( 'Nothing Found', 'generatepress' ); ?></h1>
 		</header>
 

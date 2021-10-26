@@ -93,6 +93,25 @@ class GeneratePress_Theme_Update {
 			self::v_3_0_0();
 		}
 
+		if ( version_compare( $saved_version, '3.1.0-alpha.1', '<' ) ) {
+			self::v_3_1_0();
+		}
+
+		// Delete our CSS cache.
+		delete_option( 'generate_dynamic_css_output' );
+		delete_option( 'generate_dynamic_css_cached_version' );
+
+		// Reset our dynamic CSS file updated time so it regenerates.
+		$dynamic_css_data = get_option( 'generatepress_dynamic_css_data', array() );
+
+		if ( ! empty( $dynamic_css_data ) ) {
+			if ( isset( $dynamic_css_data['updated_time'] ) ) {
+				unset( $dynamic_css_data['updated_time'] );
+			}
+
+			update_option( 'generatepress_dynamic_css_data', $dynamic_css_data );
+		}
+
 		// Last thing to do is update our version.
 		update_option( 'generate_db_version', GENERATE_VERSION );
 	}
@@ -320,6 +339,68 @@ class GeneratePress_Theme_Update {
 
 				update_option( 'generatepress_dynamic_css_data', $dynamic_css_data );
 			}
+		}
+	}
+
+	/**
+	 * Update sites using old defaults.
+	 *
+	 * @since 3.1.0
+	 */
+	public static function v_3_1_0() {
+		$settings = get_option( 'generate_settings', array() );
+		$update_options = false;
+
+		$old_defaults = array(
+			'underline_links' => 'never',
+			'use_dynamic_typography' => false,
+			'background_color' => '#f7f8f9',
+			'text_color' => '#222222',
+			'link_color' => '#1e73be',
+			'link_color_hover' => '#000000',
+			'header_background_color' => '#ffffff',
+			'site_title_color' => '#222222',
+			'site_tagline_color' => '#757575',
+			'navigation_background_color' => '#ffffff',
+			'navigation_background_hover_color' => '#ffffff',
+			'navigation_background_current_color' => '#ffffff',
+			'navigation_text_color' => '#515151',
+			'navigation_text_hover_color' => '#7a8896',
+			'navigation_text_current_color' => '#7a8896',
+			'subnavigation_background_color' => '#eaeaea',
+			'subnavigation_background_hover_color' => '#eaeaea',
+			'subnavigation_background_current_color' => '#eaeaea',
+			'subnavigation_text_color' => '#515151',
+			'subnavigation_text_hover_color' => '#7a8896',
+			'subnavigation_text_current_color' => '#7a8896',
+			'content_background_color' => '#ffffff',
+			'blog_post_title_color' => '#222222',
+			'blog_post_title_hover_color' => '#55555e',
+			'entry_meta_text_color' => '#595959',
+			'sidebar_widget_background_color' => '#ffffff',
+			'footer_widget_background_color' => '#ffffff',
+			'footer_widget_title_color' => '#000000',
+			'footer_background_color' => '#55555e',
+			'footer_text_color' => '#ffffff',
+			'footer_link_color' => '#ffffff',
+			'footer_link_hover_color' => '#d3d3d3',
+			'form_background_color' => '#fafafa',
+			'form_text_color' => '#666666',
+			'form_background_color_focus' => '#ffffff',
+			'form_text_color_focus' => '#666666',
+			'form_border_color' => '#cccccc',
+			'form_border_color_focus' => '#bfbfbf',
+		);
+
+		foreach ( $old_defaults as $key => $value ) {
+			if ( ! isset( $settings[ $key ] ) ) {
+				$settings[ $key ] = $value;
+				$update_options = true;
+			}
+		}
+
+		if ( $update_options ) {
+			update_option( 'generate_settings', $settings );
 		}
 	}
 }

@@ -26,14 +26,13 @@
     },
     "scripts": {
         "php": [
-            "phpcs -p .",
-            "parallel-lint --exclude .git --exclude vendor .",
-            "phpcs -p . --standard=PHPCompatibilityWP --extensions=php --runtime-set testVersion 5.2- --ignore=*/vendor/,*/node_modules/"
+            "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs --standard=phpcs.xml.dist --runtime-set testVersion 5.6-",
+            "@php ./vendor/bin/parallel-lint --exclude .git --exclude vendor ."
 		],
         "lint:wpcs": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
         "lint:php": "@php ./vendor/bin/parallel-lint --exclude .git --exclude vendor .",
         "make-pot": "wp i18n make-pot . languages/_s.pot"
-    },
+	},
     "support": {
         "issues": "https://github.com/tomusborne/generatepress/issues",
         "source": "https://github.com/tomusborne/generatepress"

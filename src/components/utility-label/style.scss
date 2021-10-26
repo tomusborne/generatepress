@@ -1,0 +1,70 @@
+.components-generate-units-control-header__units {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    align-items: center;
+}
+
+.components-generate-control__units{
+	.components-generate-control-buttons__units {
+		button.components-button {
+			background: #fff;
+			box-shadow: none !important;
+			color: #929da7;
+			font-size: 10px;
+			padding: 0 5px;
+			position: relative;
+			text-align: center;
+			text-shadow: none;
+			border: 0;
+			border-radius: 0 !important;
+			line-height: 20px;
+    		padding: 0 5px;
+    		height: auto;
+
+			&.is-primary {
+				background: #fff !important;
+				color: #000 !important;
+				cursor: default;
+				z-index: 1;
+				font-weight: bold;
+			}
+		}
+	}
+}
+
+.generate-component-device-field[data-device="desktop"],
+.generate-component-device-field[data-device="tablet"],
+.generate-component-device-field[data-device="mobile"] {
+    display: none;
+}
+
+.preview-desktop {
+	.generate-component-device-field[data-device="desktop"] {
+    	display: block;
+	}
+
+	.components-generate-control__units button.components-generate-control-button__units--desktop {
+		color: black;
+	}
+}
+
+.preview-tablet {
+	.generate-component-device-field[data-device="tablet"] {
+    	display: block;
+	}
+
+	.components-generate-control__units button.components-generate-control-button__units--tablet {
+		color: black;
+	}
+}
+
+.preview-mobile {
+	.generate-component-device-field[data-device="mobile"] {
+    	display: block;
+	}
+
+	.components-generate-control__units button.components-generate-control-button__units--mobile {
+		color: black;
+	}
+}

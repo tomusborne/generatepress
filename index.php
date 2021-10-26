@@ -17,8 +17,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header(); ?>
 
-	<div id="primary" <?php generate_do_element_classes( 'content' ); ?>>
-		<main id="main" <?php generate_do_element_classes( 'main' ); ?>>
+	<div <?php generate_do_attr( 'content' ); ?>>
+		<main <?php generate_do_attr( 'main' ); ?>>
 			<?php
 			/**
 			 * generate_before_main_content hook.
@@ -29,6 +29,13 @@ get_header(); ?>
 
 			if ( generate_has_default_loop() ) {
 				if ( have_posts() ) :
+
+					/**
+					 * generate_before_loop hook.
+					 *
+					 * @since 3.1.0
+					 */
+					do_action( 'generate_before_loop', 'index' );
 
 					while ( have_posts() ) :
 

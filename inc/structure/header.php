@@ -18,8 +18,8 @@ if ( ! function_exists( 'generate_construct_header' ) ) {
 	 */
 	function generate_construct_header() {
 		?>
-		<header id="masthead" <?php generate_do_element_classes( 'header' ); ?>>
-			<div <?php generate_do_element_classes( 'inside_header' ); ?>>
+		<header <?php generate_do_attr( 'header' ); ?>>
+			<div <?php generate_do_attr( 'inside-header' ); ?>>
 				<?php
 				/**
 				 * generate_before_header_content hook.
@@ -343,19 +343,9 @@ if ( ! function_exists( 'generate_top_bar' ) ) {
 		if ( ! is_active_sidebar( 'top-bar' ) ) {
 			return;
 		}
-
-		$inside_top_bar_class = '';
-
-		if ( 'contained' === generate_get_option( 'top_bar_inner_width' ) ) {
-			$inside_top_bar_class = ' grid-container grid-parent';
-
-			if ( generate_is_using_flexbox() ) {
-				$inside_top_bar_class = ' grid-container';
-			}
-		}
 		?>
-		<div <?php generate_do_element_classes( 'top_bar' ); ?>>
-			<div class="inside-top-bar<?php echo $inside_top_bar_class; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- False positive. ?>">
+		<div <?php generate_do_attr( 'top-bar' ); ?>>
+			<div <?php generate_do_attr( 'inside-top-bar' ); ?>>
 				<?php dynamic_sidebar( 'top-bar' ); ?>
 			</div>
 		</div>
@@ -378,7 +368,7 @@ if ( ! function_exists( 'generate_pingback_header' ) ) {
 }
 
 if ( ! function_exists( 'generate_add_viewport' ) ) {
-	add_action( 'wp_head', 'generate_add_viewport' );
+	add_action( 'wp_head', 'generate_add_viewport', 1 );
 	/**
 	 * Add viewport to wp_head.
 	 *

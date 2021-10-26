@@ -2,14 +2,27 @@
 <ruleset name="GeneratePress">
 	<description>Rules for GeneratePress</description>
 
+	<!-- Exclude patterns. -->
+	<exclude-pattern>/vendor/*</exclude-pattern>
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+	<exclude-pattern>/assets/dist/*</exclude-pattern>
+
+	<!-- Pass some flags to PHPCS:
+		 p flag: Show progress of the run.
+		 s flag: Show sniff codes in all reports.
+		 v flag: Print verbose output.
+		 n flag: Do not print warnings.
+	-->
+	<arg value="psv"/>
+
+	<!-- Run in parallel, it's faster. -->
+	<arg name="parallel" value="8"/>
+
+	<!-- Only check the PHP, CSS and SCSS files. JS files are checked separately with JSCS and JSHint. -->
 	<arg name="extensions" value="php"/>
 
 	<!-- Check all files in this directory and the directories below it. -->
 	<file>.</file>
-
-	<!-- Exclude patterns. -->
-	<exclude-pattern>/vendor/*</exclude-pattern>
-	<exclude-pattern>/node_modules/*</exclude-pattern>
 
 	<!-- Include the WordPress-Extra standard. -->
 	<rule ref="WordPress-Extra">
@@ -36,11 +49,12 @@
 	<!-- Let's also check that everything is properly documented. -->
 	<rule ref="WordPress-Docs"/>
 	<rule ref="WPThemeReview"/>
-	<rule ref="PHPCompatibility"/>
 
-	<config name="testVersion" value="5.6-"/>
-
-	<config name="minimum_supported_wp_version" value="4.5.0"/>
+	<rule ref="WordPress.WP.DeprecatedFunctions">
+		<properties>
+			<property name="minimum_supported_version" value="4.5" />
+		</properties>
+	</rule>
 
 	<!-- We want to allow exceptions for the filename naming, since we are working with a theme. -->
 	<!-- See https://github.com/WordPress/WordPress-Coding-Standards/wiki/Customizable-sniff-properties#themes-allow-filename-exceptions -->
@@ -88,4 +102,9 @@
 		</properties>
 	</rule>
 
+	<config name="testVersion" value="5.6-"/>
+	<rule ref="PHPCompatibilityWP">
+        <exclude name="PHPCompatibility.FunctionDeclarations.NewClosure.Found" />
+		<exclude name="PHPCompatibility.FunctionUse.NewFunctions.preg_filterFound" />
+    </rule>
 </ruleset>

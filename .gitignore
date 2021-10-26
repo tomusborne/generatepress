@@ -3,9 +3,8 @@ node_modules
 generatepress.zip
 generatepress
 *.zip
-.editorconfig
-.gitattributes
 vendor
 cghooks.lock
 composer.lock
 package-lock.json
+.DS_Store
