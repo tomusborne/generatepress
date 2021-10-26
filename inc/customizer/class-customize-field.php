@@ -103,13 +103,28 @@ class GeneratePress_Customize_Field {
 			return;
 		}
 
-		if ( ! isset( $setting_args['type'] ) ) {
-			$setting_args['type'] = 'option';
-		}
+		$settings = wp_parse_args(
+			$setting_args,
+			array(
+				'type' => 'option',
+				'capability' => 'edit_theme_options',
+				'default' => '',
+				'transport' => 'refresh',
+				'validate_callback' => '',
+				'sanitize_callback' => '',
+			)
+		);
 
 		$wp_customize->add_setting(
 			$id,
-			$setting_args
+			array(
+				'type' => $settings['type'],
+				'capability' => $settings['capability'],
+				'default' => $settings['default'],
+				'transport' => $settings['transport'],
+				'validate_callback' => $settings['validate_callback'],
+				'sanitize_callback' => $settings['sanitize_callback'],
+			)
 		);
 
 		$control_args['settings'] = $id;
