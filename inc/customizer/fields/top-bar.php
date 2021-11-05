@@ -17,7 +17,6 @@ GeneratePress_Customize_Field::add_title(
 		'choices' => array(
 			'toggleId' => 'top-bar-colors',
 		),
-		'active_callback' => 'generate_is_top_bar_active',
 	)
 );
 
