@@ -220,7 +220,7 @@ class GeneratePress_Dashboard {
 							'siteIdentitySection' => admin_url( 'customize.php?autofocus[section]=title_tagline' ),
 							'colorsSection' => admin_url( 'customize.php?autofocus[section]=generate_colors_section' ),
 							'typographySection' => admin_url( 'customize.php?autofocus[section]=generate_typography_section' ),
-							'layoutSection' => admin_url( 'customize.php?autofocus[section]=generate_layout_panel' ),
+							'layoutSection' => admin_url( 'customize.php?autofocus[panel]=generate_layout_panel' ),
 						),
 					)
 				);
