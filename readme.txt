@@ -99,6 +99,14 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 
 == Changelog ==
 
+= 3.1.1 =
+
+Release date: January 18, 2022
+
+* Fix: Color picker UI in WP 5.9
+* Fix: Translations using javascript
+* Fix: Layout panel link inside the Start Customizing Dashboard
+
 = 3.1.0 =
 
 Release date: October 26, 2021
