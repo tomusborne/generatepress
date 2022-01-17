@@ -7,6 +7,23 @@
 		display: none;
 	}
 
+	.react-colorful {
+		width: 100% !important;
+
+		.react-colorful__saturation {
+			height: 150px;
+		}
+
+		.react-colorful__hue,
+		.react-colorful__alpha {
+			width: calc(100% - 40px);
+		}
+
+		& + div {
+			display: none;
+		}
+	}
+
 	.generate-color-input-wrapper {
 		display: flex;
 		padding: 0;
@@ -43,8 +60,14 @@
 		    display: flex;
 		    flex-wrap: wrap;
 
-			.components-circular-option-picker__option-wrapper {
-				margin: 0 8px 8px 0;
+			.components-circular-option-picker__swatches {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 6px;
+
+				.components-circular-option-picker__option-wrapper {
+					margin: 0;
+				}
 			}
 		}
     }
@@ -55,6 +78,7 @@
 
 	.components-color-picker {
 		padding: 5px;
+		width: 100%;
 	}
 
 	.components-color-picker__body {

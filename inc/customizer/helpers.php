@@ -328,6 +328,10 @@ function generate_do_control_inline_scripts() {
 		true
 	);
 
+	if ( function_exists( 'wp_set_script_translations' ) ) {
+		wp_set_script_translations( 'generate-customizer-controls', 'generatepress' );
+	}
+
 	$color_palette = get_theme_support( 'editor-color-palette' );
 	$colors = array();
 
