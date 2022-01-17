@@ -113,7 +113,7 @@ const GeneratePressColorPickerControl = ( props ) => {
 
 	return (
 		<div className="generate-color-picker-area">
-			<div className="components-color-palette__item-wrapper components-circular-option-picker__option-wrapper components-color-palette__custom-color">
+			<div className="components-circular-option-picker__option-wrapper">
 				{ ! isOpen &&
 					<Tooltip text={ tooltip } position={ tooltipPosition }>
 						<Button
