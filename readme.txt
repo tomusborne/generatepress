@@ -103,6 +103,8 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 
 Release date: TBA
 
+* Fix: Align-full alignment in the editor
+
 = 3.1.1 =
 
 Release date: January 17, 2022
