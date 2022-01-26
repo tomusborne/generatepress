@@ -220,7 +220,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'max-width', $content_width_calc );
 	}
 
-	$css->set_selector( 'html body.gutenberg-editor-page .block-editor-block-list__block[data-align="full"]' );
+	$css->set_selector( 'body .wp-block[data-align="full"]' );
 	$css->add_property( 'max-width', 'none' );
 
 	$css->set_selector( '.wp-block[data-align="wide"]' );
