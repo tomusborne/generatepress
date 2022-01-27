@@ -104,6 +104,7 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 Release date: TBA
 
 * Fix: Align-full alignment in the editor
+* Fix: Missing editor text colors in responsive views
 
 = 3.1.1 =
 
