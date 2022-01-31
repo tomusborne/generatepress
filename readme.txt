@@ -6,7 +6,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options
 Requires at least: 5.2
 Tested up to: 5.9
-Stable tag: 3.1.1
+Stable tag: 3.1.2
 
 GeneratePress is a lightweight WordPress theme built with a focus on speed and usability.
 
@@ -98,6 +98,13 @@ By Jed Watson
 MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 
 == Changelog ==
+
+= 3.1.2 =
+
+Release date: January 31, 2022
+
+* Fix: Align-full alignment in the editor
+* Fix: Missing editor text colors in responsive views
 
 = 3.1.1 =
 
