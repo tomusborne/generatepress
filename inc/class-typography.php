@@ -288,7 +288,7 @@ class GeneratePress_Typography {
 		if ( 'editor' === $type ) {
 			switch ( $selector ) {
 				case 'body':
-					$selector = 'body .editor-styles-wrapper';
+					$selector = 'html .editor-styles-wrapper';
 					break;
 
 				case 'buttons':
