@@ -103,6 +103,8 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 
 Release date: TBA
 
+* Fix: Adjust editor block width selector to fix compatibility with GP Premium
+
 = 3.1.2 =
 
 Release date: January 31, 2022
