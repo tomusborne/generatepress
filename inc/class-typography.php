@@ -120,8 +120,8 @@ class GeneratePress_Typography {
 			$paragraph_selector = 'p';
 
 			if ( 'editor' === $type ) {
-				$body_selector = '.editor-styles-wrapper';
-				$paragraph_selector = '.editor-styles-wrapper p';
+				$body_selector = 'html .editor-styles-wrapper';
+				$paragraph_selector = 'html .editor-styles-wrapper p';
 			}
 
 			foreach ( $typography as $key => $data ) {

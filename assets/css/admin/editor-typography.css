@@ -1,4 +1,4 @@
-.editor-styles-wrapper {
+html .editor-styles-wrapper {
 	font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	font-weight: normal;
 	text-transform: none;
@@ -6,8 +6,8 @@
 	line-height: 1.5;
 }
 
-.editor-styles-wrapper p {
-	line-height: 1.5;
+html .editor-styles-wrapper p {
+	line-height: inherit;
 	margin-top: 0;
 	margin-bottom: 1.5em;
 }
