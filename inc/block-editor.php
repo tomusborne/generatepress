@@ -212,7 +212,7 @@ function generate_do_inline_block_editor_css() {
 		}
 	}
 
-	$css->set_selector( '.editor-styles-wrapper .wp-block, html body.gutenberg-editor-page .editor-post-title__block, html body.gutenberg-editor-page .editor-default-block-appender, html body.gutenberg-editor-page .editor-block-list__block' );
+	$css->set_selector( 'body .wp-block, html body.gutenberg-editor-page .editor-post-title__block, html body.gutenberg-editor-page .editor-default-block-appender, html body.gutenberg-editor-page .editor-block-list__block' );
 
 	if ( 'true' === get_post_meta( get_the_ID(), '_generate-full-width-content', true ) ) {
 		$css->add_property( 'max-width', '100%' );
