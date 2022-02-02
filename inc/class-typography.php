@@ -118,14 +118,10 @@ class GeneratePress_Typography {
 
 			$body_selector = 'body';
 			$paragraph_selector = 'p';
-			$tablet_prefix = '';
-			$mobile_prefix = '';
 
 			if ( 'editor' === $type ) {
 				$body_selector = '.editor-styles-wrapper';
 				$paragraph_selector = '.editor-styles-wrapper p';
-				$tablet_prefix = '.gp-is-device-tablet ';
-				$mobile_prefix = '.gp-is-device-mobile ';
 			}
 
 			foreach ( $typography as $key => $data ) {
@@ -160,16 +156,7 @@ class GeneratePress_Typography {
 					$css->add_property( 'margin-bottom', $options['marginBottom'], false, $options['marginBottomUnit'] );
 				}
 
-				if ( 'frontend' === $type ) {
-					$css->start_media_query( generate_get_media_query( 'tablet' ) );
-				}
-
-				if ( 'editor' === $type ) {
-					// Add the tablet prefix to each class.
-					$selector = explode( ', ', $selector );
-					$selector = preg_filter( '/^/', $tablet_prefix, $selector );
-					$selector = implode( ', ', $selector );
-				}
+				$css->start_media_query( generate_get_media_query( 'tablet' ) );
 
 				$css->set_selector( $selector );
 				$css->add_property( 'font-size', $options['fontSizeTablet'], false, $options['fontSizeUnit'] );
@@ -179,24 +166,16 @@ class GeneratePress_Typography {
 					$css->add_property( 'line-height', $options['lineHeightTablet'], false, $options['lineHeightUnit'] );
 					$css->add_property( 'margin-bottom', $options['marginBottomTablet'], false, $options['marginBottomUnit'] );
 				} else {
-					$css->set_selector( $tablet_prefix . $body_selector );
+					$css->set_selector( $body_selector );
 					$css->add_property( 'line-height', $options['lineHeightTablet'], false, $options['lineHeightUnit'] );
 
-					$css->set_selector( $tablet_prefix . $paragraph_selector );
+					$css->set_selector( $paragraph_selector );
 					$css->add_property( 'margin-bottom', $options['marginBottomTablet'], false, $options['marginBottomUnit'] );
 				}
 
-				if ( 'frontend' === $type ) {
-					$css->stop_media_query();
-				}
+				$css->stop_media_query();
 
-				if ( 'frontend' === $type ) {
-					$css->start_media_query( generate_get_media_query( 'mobile' ) );
-				}
-
-				if ( 'editor' === $type ) {
-					$selector = str_replace( '.gp-is-device-tablet', '.gp-is-device-mobile', $selector );
-				}
+				$css->start_media_query( generate_get_media_query( 'mobile' ) );
 
 				$css->set_selector( $selector );
 				$css->add_property( 'font-size', $options['fontSizeMobile'], false, $options['fontSizeUnit'] );
@@ -206,16 +185,14 @@ class GeneratePress_Typography {
 					$css->add_property( 'line-height', $options['lineHeightMobile'], false, $options['lineHeightUnit'] );
 					$css->add_property( 'margin-bottom', $options['marginBottomMobile'], false, $options['marginBottomUnit'] );
 				} else {
-					$css->set_selector( $mobile_prefix . $body_selector );
+					$css->set_selector( $body_selector );
 					$css->add_property( 'line-height', $options['lineHeightMobile'], false, $options['lineHeightUnit'] );
 
-					$css->set_selector( $mobile_prefix . $paragraph_selector );
+					$css->set_selector( $paragraph_selector );
 					$css->add_property( 'margin-bottom', $options['marginBottomMobile'], false, $options['marginBottomUnit'] );
 				}
 
-				if ( 'frontend' === $type ) {
-					$css->stop_media_query();
-				}
+				$css->stop_media_query();
 			}
 
 			return $css->css_output();
