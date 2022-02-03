@@ -161,7 +161,7 @@ function generate_enqueue_backend_block_editor_assets() {
 			'disable_content_title' => esc_html__( 'Disable Content Title', 'generatepress' ),
 			'show_content_title' => esc_html__( 'Show Content Title', 'generatepress' ),
 			'text_color' => $text_color,
-			'show_editor_styles' => $show_editor_styles,
+			'show_editor_styles' => apply_filters( 'generate_show_block_editor_styles', true ),
 		)
 	);
 }
