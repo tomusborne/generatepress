@@ -92,6 +92,34 @@ function generate_get_block_editor_content_width() {
 	return apply_filters( 'generate_block_editor_content_width', $content_width );
 }
 
+add_filter( 'block_editor_settings_all', 'generate_add_inline_block_editor_styles' );
+/**
+ * Add dynamic inline styles to the block editor content.
+ *
+ * @param array $editor_settings The existing editor settings.
+ */
+function generate_add_inline_block_editor_styles( $editor_settings ) {
+	$show_editor_styles = apply_filters( 'generate_show_block_editor_styles', true );
+
+	if ( $show_editor_styles ) {
+		if ( generate_is_using_dynamic_typography() ) {
+			$google_fonts_uri = GeneratePress_Typography::get_google_fonts_uri();
+
+			if ( $google_fonts_uri ) {
+				// Need to use @import for now until this is ready: https://github.com/WordPress/gutenberg/pull/35950.
+				$google_fonts_import = sprintf(
+					'@import "%s";',
+					$google_fonts_uri
+				);
+
+				$editor_settings['styles'][] = array( 'css' => $google_fonts_import );
+			}
+		}
+	}
+
+	return $editor_settings;
+}
+
 add_action( 'enqueue_block_editor_assets', 'generate_enqueue_google_fonts' );
 add_action( 'enqueue_block_editor_assets', 'generate_enqueue_backend_block_editor_assets' );
 /**
@@ -106,6 +134,7 @@ function generate_enqueue_backend_block_editor_assets() {
 	$show_editor_styles = apply_filters( 'generate_show_block_editor_styles', true );
 
 	if ( $show_editor_styles ) {
+		// Using wp-edit-blocks for now until we do this: https://github.com/tomusborne/generatepress/pull/343.
 		wp_add_inline_style( 'wp-edit-blocks', wp_strip_all_tags( generate_do_inline_block_editor_css() ) );
 
 		if ( generate_is_using_dynamic_typography() ) {
