@@ -68,8 +68,17 @@ if ( ! function_exists( 'generate_setup' ) ) {
 			$content_width = 1200; /* pixels */
 		}
 
-		// This theme styles the visual editor to resemble the theme style.
-		add_editor_style( 'assets/css/admin/editor-style.css' );
+		// Add editor styles to the block editor.
+		add_theme_support( 'editor-styles' );
+
+		$editor_styles = apply_filters(
+			'generate_editor_styles',
+			array(
+				'assets/css/admin/block-editor.css',
+			)
+		);
+
+		add_editor_style( $editor_styles );
 	}
 }
 
