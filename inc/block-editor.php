@@ -135,11 +135,11 @@ function generate_enqueue_backend_block_editor_assets() {
 
 	if ( $show_editor_styles ) {
 		// Using wp-edit-blocks for now until we do this: https://github.com/tomusborne/generatepress/pull/343.
+		wp_add_inline_style( 'wp-edit-blocks', wp_strip_all_tags( generate_do_inline_block_editor_css() ) );
+
 		if ( generate_is_using_dynamic_typography() ) {
 			wp_add_inline_style( 'wp-edit-blocks', wp_strip_all_tags( GeneratePress_Typography::get_css( 'core', 'editor' ) ) );
 		}
-
-		wp_add_inline_style( 'wp-edit-blocks', wp_strip_all_tags( generate_do_inline_block_editor_css() ) );
 	}
 
 	wp_enqueue_script(
