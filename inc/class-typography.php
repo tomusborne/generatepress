@@ -37,6 +37,7 @@ class GeneratePress_Typography {
 	public function __construct() {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_google_fonts' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_google_fonts' ) );
+		add_filter( 'generate_editor_styles', array( $this, 'add_editor_styles' ) );
 	}
 
 	/**
@@ -354,6 +355,19 @@ class GeneratePress_Typography {
 			'marginBottomMobile' => '',
 			'marginBottomUnit' => 'px',
 		);
+	}
+
+	/**
+	 * Add editor styles to the block editor.
+	 *
+	 * @param array $editor_styles Existing styles.
+	 */
+	public function add_editor_styles( $editor_styles ) {
+		if ( generate_is_using_dynamic_typography() ) {
+			$editor_styles[] = 'assets/css/admin/editor-typography.css';
+		}
+
+		return $editor_styles;
 	}
 }
 

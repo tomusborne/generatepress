@@ -100,18 +100,16 @@ add_action( 'enqueue_block_editor_assets', 'generate_enqueue_backend_block_edito
  * @since 2.2
  */
 function generate_enqueue_backend_block_editor_assets() {
-	wp_enqueue_style( 'generate-block-editor-styles', get_template_directory_uri() . '/assets/css/admin/block-editor.css', false, GENERATE_VERSION, 'all' );
 	wp_enqueue_script( 'generate-block-editor-tinycolor', get_template_directory_uri() . '/assets/js/admin/tinycolor.js', false, GENERATE_VERSION, true );
 	wp_enqueue_script( 'generate-block-editor-scripts', get_template_directory_uri() . '/assets/js/admin/block-editor.js', array( 'jquery', 'generate-block-editor-tinycolor' ), GENERATE_VERSION, true );
 
 	$show_editor_styles = apply_filters( 'generate_show_block_editor_styles', true );
 
 	if ( $show_editor_styles ) {
-		wp_add_inline_style( 'generate-block-editor-styles', wp_strip_all_tags( generate_do_inline_block_editor_css() ) );
+		wp_add_inline_style( 'wp-edit-blocks', wp_strip_all_tags( generate_do_inline_block_editor_css() ) );
 
 		if ( generate_is_using_dynamic_typography() ) {
-			wp_enqueue_style( 'generate-editor-typography', get_template_directory_uri() . '/assets/css/admin/editor-typography.css', false, GENERATE_VERSION, 'all' );
-			wp_add_inline_style( 'generate-editor-typography', wp_strip_all_tags( GeneratePress_Typography::get_css( 'core', 'editor' ) ) );
+			wp_add_inline_style( 'wp-edit-blocks', wp_strip_all_tags( GeneratePress_Typography::get_css( 'core', 'editor' ) ) );
 		}
 	}
 
