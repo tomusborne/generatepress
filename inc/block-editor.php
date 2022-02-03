@@ -111,6 +111,18 @@ function generate_enqueue_backend_block_editor_assets() {
 
 		if ( generate_is_using_dynamic_typography() ) {
 			wp_enqueue_style( 'generate-editor-typography', get_template_directory_uri() . '/assets/css/admin/editor-typography.css', false, GENERATE_VERSION, 'all' );
+
+			$google_fonts_uri = GeneratePress_Typography::get_google_fonts_uri();
+
+			if ( $google_fonts_uri ) {
+				$google_fonts_import = sprintf(
+					'@import "%s";',
+					$google_fonts_uri
+				);
+
+				wp_add_inline_style( 'generate-editor-typography', $google_fonts_import );
+			}
+
 			wp_add_inline_style( 'generate-editor-typography', wp_strip_all_tags( GeneratePress_Typography::get_css( 'core', 'editor' ) ) );
 		}
 	}

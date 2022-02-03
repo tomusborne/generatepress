@@ -36,7 +36,6 @@ class GeneratePress_Typography {
 	 */
 	public function __construct() {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_google_fonts' ) );
-		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_google_fonts' ) );
 	}
 
 	/**
