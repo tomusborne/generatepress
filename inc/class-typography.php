@@ -40,19 +40,16 @@ class GeneratePress_Typography {
 	}
 
 	/**
-	 * Enqueue Google Fonts if they're set.
+	 * Generate our Google Fonts URI.
 	 */
-	public function enqueue_google_fonts() {
-		if ( ! generate_is_using_dynamic_typography() ) {
-			return;
-		}
-
+	public static function get_google_fonts_uri() {
 		$fonts = generate_get_option( 'font_manager' );
 
 		if ( empty( $fonts ) ) {
 			return;
 		}
 
+		$google_fonts_uri = '';
 		$data = array();
 
 		foreach ( $fonts as $font ) {
@@ -92,6 +89,22 @@ class GeneratePress_Typography {
 			);
 
 			$google_fonts_uri = add_query_arg( $font_args, 'https://fonts.googleapis.com/css' );
+		}
+
+		return $google_fonts_uri;
+	}
+
+	/**
+	 * Enqueue Google Fonts if they're set.
+	 */
+	public function enqueue_google_fonts() {
+		if ( ! generate_is_using_dynamic_typography() ) {
+			return;
+		}
+
+		$google_fonts_uri = self::get_google_fonts_uri();
+
+		if ( $google_fonts_uri ) {
 			wp_enqueue_style( 'generate-google-fonts', $google_fonts_uri, array(), GENERATE_VERSION );
 		}
 	}
