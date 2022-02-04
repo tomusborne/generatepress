@@ -69,11 +69,6 @@ body .block-editor-block-list__block hr {
 	width: auto;
 }
 
-body .block-editor-block-list__block,
-body .block-editor-block-list__block p {
-	font-size: inherit;
-}
-
 body .block-editor-default-block-appender input[type=text].editor-default-block-appender__content,
 body .block-editor-default-block-appender textarea.editor-default-block-appender__content {
 	font-family: inherit;
