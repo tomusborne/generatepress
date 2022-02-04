@@ -6,21 +6,21 @@ body {
 	line-height: 1.5;
 }
 
-p {
-	line-height: inherit;
+body p {
+	line-height: 1.5;
 	margin-top: 0;
 	margin-bottom: 1.5em;
 }
 
-h1, h2, h3, h4, h5, h6 {
+body h1, body h2, body h3, body h4, body h5, body h6 {
 	font-family: inherit;
 	font-size: 100%;
 	font-style: inherit;
 	font-weight: inherit;
 }
 
-h1,
-.editor-post-title__input {
+body h1,
+body .editor-post-title__input {
 	font-family: inherit;
 	font-size: 42px;
 	margin-bottom: 20px;
@@ -30,7 +30,7 @@ h1,
 	text-transform: none;
 }
 
-h2 {
+body h2 {
 	font-family: inherit;
 	font-size: 35px;
 	margin-bottom: 20px;
@@ -40,7 +40,7 @@ h2 {
 	text-transform: none;
 }
 
-h3 {
+body h3 {
 	font-family: inherit;
 	font-size: 29px;
 	margin-bottom: 20px;
@@ -50,17 +50,17 @@ h3 {
 	text-transform: none;
 }
 
-h4 {
+body h4 {
 	font-size: 24px;
 }
 
-h5 {
+body h5 {
 	font-size: 20px;
 }
 
-h4,
-h5,
-h6 {
+body h4,
+body h5,
+body h6 {
 	font-family: inherit;
 	margin-bottom: 20px;
 	margin-top: 0;
