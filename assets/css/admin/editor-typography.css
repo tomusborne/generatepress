@@ -8,6 +8,7 @@ body {
 
 p {
 	line-height: inherit;
+	font-size: inherit;
 	margin-top: 0;
 	margin-bottom: 1.5em;
 }
