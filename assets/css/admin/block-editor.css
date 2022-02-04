@@ -14,7 +14,7 @@
 	color: inherit; /* editor only */
 }
 
-.block-editor-block-list__block blockquote {
+body .block-editor-block-list__block blockquote {
 	border-left: 5px solid rgba(0, 0, 0, 0.05);
 	padding: 20px;
 	font-size: 1.2em;
@@ -24,12 +24,12 @@
 	color: inherit; /* editor only */
 }
 
-.wp-block-quote:not(.is-large):not(.is-style-large) {
+body .wp-block-quote:not(.is-large):not(.is-style-large) {
 	border-left: 5px solid rgba(0, 0, 0, 0.05);
 	padding: 20px;
 }
 
-.block-editor-block-list__block blockquote p:last-child {
+body .block-editor-block-list__block blockquote p:last-child {
 	margin: 0;
 }
 
@@ -39,7 +39,7 @@
 	border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.block-editor-block-list__block table {
+body .block-editor-block-list__block table {
 	border-collapse: separate;
 	border-spacing: 0;
 	border-width: 1px 0 0 1px;
@@ -60,7 +60,7 @@
 	border-width: 0 1px 1px 0;
 }
 
-.block-editor-block-list__block hr {
+body .block-editor-block-list__block hr {
 	background-color: rgba(0, 0, 0, 0.1);
 	border: 0;
 	height: 1px;
@@ -69,13 +69,13 @@
 	width: auto;
 }
 
-.block-editor-block-list__block,
-.block-editor-block-list__block p {
+body .block-editor-block-list__block,
+body .block-editor-block-list__block p {
 	font-size: inherit;
 }
 
-.block-editor-default-block-appender input[type=text].editor-default-block-appender__content,
-.block-editor-default-block-appender textarea.editor-default-block-appender__content {
+body .block-editor-default-block-appender input[type=text].editor-default-block-appender__content,
+body .block-editor-default-block-appender textarea.editor-default-block-appender__content {
 	font-family: inherit;
 	font-size: inherit;
 }
