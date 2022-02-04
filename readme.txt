@@ -104,8 +104,8 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 Release date: February 8, 2022
 
 * Fix: Adjust editor block width selector to fix compatibility with GP Premium
-* Fix: Typography selectors in the editor
-* Fix: Google Fonts API request in the editor when viewing tablet or mobile
+* Fix: Missing editor styles when viewing tablet/mobile previews in Firefox
+* Fix: Missing Google Fonts API request when viewing tablet/mobile previews in the editor
 
 = 3.1.2 =
 
