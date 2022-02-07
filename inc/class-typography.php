@@ -290,11 +290,11 @@ class GeneratePress_Typography {
 					break;
 
 				case 'h1':
-					$selector = 'html .editor-styles-wrapper h1, .editor-styles-wrapper .editor-post-title__input';
+					$selector = 'html .editor-styles-wrapper h1, html .editor-styles-wrapper .editor-post-title__input';
 					break;
 
 				case 'single-content-title':
-					$selector = '.editor-styles-wrapper .editor-post-title__input';
+					$selector = 'html .editor-styles-wrapper .editor-post-title__input';
 					break;
 
 				case 'h2':
