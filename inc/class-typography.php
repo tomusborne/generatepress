@@ -286,15 +286,15 @@ class GeneratePress_Typography {
 					break;
 
 				case 'all-headings':
-					$selector = '.editor-styles-wrapper h1, .editor-styles-wrapper h2, .editor-styles-wrapper h3, .editor-styles-wrapper h4, .editor-styles-wrapper h5, .editor-styles-wrapper h6';
+					$selector = 'html .editor-styles-wrapper h1, html .editor-styles-wrapper h2, html .editor-styles-wrapper h3, html .editor-styles-wrapper h4, html .editor-styles-wrapper h5, html .editor-styles-wrapper h6';
 					break;
 
 				case 'h1':
-					$selector = '.editor-styles-wrapper h1, .editor-styles-wrapper .editor-post-title__input';
+					$selector = 'html .editor-styles-wrapper h1, html .editor-styles-wrapper .editor-post-title__input';
 					break;
 
 				case 'single-content-title':
-					$selector = '.editor-styles-wrapper .editor-post-title__input';
+					$selector = 'html .editor-styles-wrapper .editor-post-title__input';
 					break;
 
 				case 'h2':
@@ -302,7 +302,7 @@ class GeneratePress_Typography {
 				case 'h4':
 				case 'h5':
 				case 'h6':
-					$selector = '.editor-styles-wrapper ' . $selector;
+					$selector = 'html .editor-styles-wrapper ' . $selector;
 					break;
 			}
 		}
