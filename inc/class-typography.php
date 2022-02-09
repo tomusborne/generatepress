@@ -36,23 +36,25 @@ class GeneratePress_Typography {
 	 */
 	public function __construct() {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_google_fonts' ) );
-		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_google_fonts' ) );
+		add_filter( 'generate_editor_styles', array( $this, 'add_editor_styles' ) );
+
+		// Load fonts the old way in versions before 5.8 as block_editor_settings_all didn't exist.
+		if ( version_compare( $GLOBALS['wp_version'], '5.8', '<' ) ) {
+			add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_google_fonts' ) );
+		}
 	}
 
 	/**
-	 * Enqueue Google Fonts if they're set.
+	 * Generate our Google Fonts URI.
 	 */
-	public function enqueue_google_fonts() {
-		if ( ! generate_is_using_dynamic_typography() ) {
-			return;
-		}
-
+	public static function get_google_fonts_uri() {
 		$fonts = generate_get_option( 'font_manager' );
 
 		if ( empty( $fonts ) ) {
 			return;
 		}
 
+		$google_fonts_uri = '';
 		$data = array();
 
 		foreach ( $fonts as $font ) {
@@ -92,6 +94,22 @@ class GeneratePress_Typography {
 			);
 
 			$google_fonts_uri = add_query_arg( $font_args, 'https://fonts.googleapis.com/css' );
+		}
+
+		return $google_fonts_uri;
+	}
+
+	/**
+	 * Enqueue Google Fonts if they're set.
+	 */
+	public function enqueue_google_fonts() {
+		if ( ! generate_is_using_dynamic_typography() ) {
+			return;
+		}
+
+		$google_fonts_uri = self::get_google_fonts_uri();
+
+		if ( $google_fonts_uri ) {
 			wp_enqueue_style( 'generate-google-fonts', $google_fonts_uri, array(), GENERATE_VERSION );
 		}
 	}
@@ -118,14 +136,10 @@ class GeneratePress_Typography {
 
 			$body_selector = 'body';
 			$paragraph_selector = 'p';
-			$tablet_prefix = '';
-			$mobile_prefix = '';
 
 			if ( 'editor' === $type ) {
-				$body_selector = '.editor-styles-wrapper';
-				$paragraph_selector = '.editor-styles-wrapper p';
-				$tablet_prefix = '.gp-is-device-tablet ';
-				$mobile_prefix = '.gp-is-device-mobile ';
+				$body_selector = 'html .editor-styles-wrapper';
+				$paragraph_selector = 'html .editor-styles-wrapper p';
 			}
 
 			foreach ( $typography as $key => $data ) {
@@ -160,16 +174,7 @@ class GeneratePress_Typography {
 					$css->add_property( 'margin-bottom', $options['marginBottom'], false, $options['marginBottomUnit'] );
 				}
 
-				if ( 'frontend' === $type ) {
-					$css->start_media_query( generate_get_media_query( 'tablet' ) );
-				}
-
-				if ( 'editor' === $type ) {
-					// Add the tablet prefix to each class.
-					$selector = explode( ', ', $selector );
-					$selector = preg_filter( '/^/', $tablet_prefix, $selector );
-					$selector = implode( ', ', $selector );
-				}
+				$css->start_media_query( generate_get_media_query( 'tablet' ) );
 
 				$css->set_selector( $selector );
 				$css->add_property( 'font-size', $options['fontSizeTablet'], false, $options['fontSizeUnit'] );
@@ -179,24 +184,16 @@ class GeneratePress_Typography {
 					$css->add_property( 'line-height', $options['lineHeightTablet'], false, $options['lineHeightUnit'] );
 					$css->add_property( 'margin-bottom', $options['marginBottomTablet'], false, $options['marginBottomUnit'] );
 				} else {
-					$css->set_selector( $tablet_prefix . $body_selector );
+					$css->set_selector( $body_selector );
 					$css->add_property( 'line-height', $options['lineHeightTablet'], false, $options['lineHeightUnit'] );
 
-					$css->set_selector( $tablet_prefix . $paragraph_selector );
+					$css->set_selector( $paragraph_selector );
 					$css->add_property( 'margin-bottom', $options['marginBottomTablet'], false, $options['marginBottomUnit'] );
 				}
 
-				if ( 'frontend' === $type ) {
-					$css->stop_media_query();
-				}
+				$css->stop_media_query();
 
-				if ( 'frontend' === $type ) {
-					$css->start_media_query( generate_get_media_query( 'mobile' ) );
-				}
-
-				if ( 'editor' === $type ) {
-					$selector = str_replace( '.gp-is-device-tablet', '.gp-is-device-mobile', $selector );
-				}
+				$css->start_media_query( generate_get_media_query( 'mobile' ) );
 
 				$css->set_selector( $selector );
 				$css->add_property( 'font-size', $options['fontSizeMobile'], false, $options['fontSizeUnit'] );
@@ -206,16 +203,14 @@ class GeneratePress_Typography {
 					$css->add_property( 'line-height', $options['lineHeightMobile'], false, $options['lineHeightUnit'] );
 					$css->add_property( 'margin-bottom', $options['marginBottomMobile'], false, $options['marginBottomUnit'] );
 				} else {
-					$css->set_selector( $mobile_prefix . $body_selector );
+					$css->set_selector( $body_selector );
 					$css->add_property( 'line-height', $options['lineHeightMobile'], false, $options['lineHeightUnit'] );
 
-					$css->set_selector( $mobile_prefix . $paragraph_selector );
+					$css->set_selector( $paragraph_selector );
 					$css->add_property( 'margin-bottom', $options['marginBottomMobile'], false, $options['marginBottomUnit'] );
 				}
 
-				if ( 'frontend' === $type ) {
-					$css->stop_media_query();
-				}
+				$css->stop_media_query();
 			}
 
 			return $css->css_output();
@@ -288,7 +283,7 @@ class GeneratePress_Typography {
 		if ( 'editor' === $type ) {
 			switch ( $selector ) {
 				case 'body':
-					$selector = 'body .editor-styles-wrapper';
+					$selector = 'html .editor-styles-wrapper';
 					break;
 
 				case 'buttons':
@@ -296,15 +291,15 @@ class GeneratePress_Typography {
 					break;
 
 				case 'all-headings':
-					$selector = '.editor-styles-wrapper h1, .editor-styles-wrapper h2, .editor-styles-wrapper h3, .editor-styles-wrapper h4, .editor-styles-wrapper h5, .editor-styles-wrapper h6';
+					$selector = 'html .editor-styles-wrapper h1, html .editor-styles-wrapper h2, html .editor-styles-wrapper h3, html .editor-styles-wrapper h4, html .editor-styles-wrapper h5, html .editor-styles-wrapper h6';
 					break;
 
 				case 'h1':
-					$selector = '.editor-styles-wrapper h1, .editor-styles-wrapper .editor-post-title__input';
+					$selector = 'html .editor-styles-wrapper h1, html .editor-styles-wrapper .editor-post-title__input';
 					break;
 
 				case 'single-content-title':
-					$selector = '.editor-styles-wrapper .editor-post-title__input';
+					$selector = 'html .editor-styles-wrapper .editor-post-title__input';
 					break;
 
 				case 'h2':
@@ -312,7 +307,7 @@ class GeneratePress_Typography {
 				case 'h4':
 				case 'h5':
 				case 'h6':
-					$selector = '.editor-styles-wrapper ' . $selector;
+					$selector = 'html .editor-styles-wrapper ' . $selector;
 					break;
 			}
 		}
@@ -377,6 +372,19 @@ class GeneratePress_Typography {
 			'marginBottomMobile' => '',
 			'marginBottomUnit' => 'px',
 		);
+	}
+
+	/**
+	 * Add editor styles to the block editor.
+	 *
+	 * @param array $editor_styles Existing styles.
+	 */
+	public function add_editor_styles( $editor_styles ) {
+		if ( generate_is_using_dynamic_typography() ) {
+			$editor_styles[] = 'assets/css/admin/editor-typography.css';
+		}
+
+		return $editor_styles;
 	}
 }
 

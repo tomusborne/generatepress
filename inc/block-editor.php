@@ -92,6 +92,34 @@ function generate_get_block_editor_content_width() {
 	return apply_filters( 'generate_block_editor_content_width', $content_width );
 }
 
+add_filter( 'block_editor_settings_all', 'generate_add_inline_block_editor_styles' );
+/**
+ * Add dynamic inline styles to the block editor content.
+ *
+ * @param array $editor_settings The existing editor settings.
+ */
+function generate_add_inline_block_editor_styles( $editor_settings ) {
+	$show_editor_styles = apply_filters( 'generate_show_block_editor_styles', true );
+
+	if ( $show_editor_styles ) {
+		if ( generate_is_using_dynamic_typography() ) {
+			$google_fonts_uri = GeneratePress_Typography::get_google_fonts_uri();
+
+			if ( $google_fonts_uri ) {
+				// Need to use @import for now until this is ready: https://github.com/WordPress/gutenberg/pull/35950.
+				$google_fonts_import = sprintf(
+					'@import "%s";',
+					$google_fonts_uri
+				);
+
+				$editor_settings['styles'][] = array( 'css' => $google_fonts_import );
+			}
+		}
+	}
+
+	return $editor_settings;
+}
+
 add_action( 'enqueue_block_editor_assets', 'generate_enqueue_google_fonts' );
 add_action( 'enqueue_block_editor_assets', 'generate_enqueue_backend_block_editor_assets' );
 /**
@@ -100,18 +128,17 @@ add_action( 'enqueue_block_editor_assets', 'generate_enqueue_backend_block_edito
  * @since 2.2
  */
 function generate_enqueue_backend_block_editor_assets() {
-	wp_enqueue_style( 'generate-block-editor-styles', get_template_directory_uri() . '/assets/css/admin/block-editor.css', false, GENERATE_VERSION, 'all' );
 	wp_enqueue_script( 'generate-block-editor-tinycolor', get_template_directory_uri() . '/assets/js/admin/tinycolor.js', false, GENERATE_VERSION, true );
 	wp_enqueue_script( 'generate-block-editor-scripts', get_template_directory_uri() . '/assets/js/admin/block-editor.js', array( 'jquery', 'generate-block-editor-tinycolor' ), GENERATE_VERSION, true );
 
 	$show_editor_styles = apply_filters( 'generate_show_block_editor_styles', true );
 
 	if ( $show_editor_styles ) {
-		wp_add_inline_style( 'generate-block-editor-styles', wp_strip_all_tags( generate_do_inline_block_editor_css() ) );
+		// Using wp-edit-blocks for now until we do this: https://github.com/tomusborne/generatepress/pull/343.
+		wp_add_inline_style( 'wp-edit-blocks', wp_strip_all_tags( generate_do_inline_block_editor_css() ) );
 
 		if ( generate_is_using_dynamic_typography() ) {
-			wp_enqueue_style( 'generate-editor-typography', get_template_directory_uri() . '/assets/css/admin/editor-typography.css', false, GENERATE_VERSION, 'all' );
-			wp_add_inline_style( 'generate-editor-typography', wp_strip_all_tags( GeneratePress_Typography::get_css( 'core', 'editor' ) ) );
+			wp_add_inline_style( 'wp-edit-blocks', wp_strip_all_tags( GeneratePress_Typography::get_css( 'core', 'editor' ) ) );
 		}
 	}
 
@@ -212,7 +239,7 @@ function generate_do_inline_block_editor_css() {
 		}
 	}
 
-	$css->set_selector( '.editor-styles-wrapper .wp-block, html body.gutenberg-editor-page .editor-post-title__block, html body.gutenberg-editor-page .editor-default-block-appender, html body.gutenberg-editor-page .editor-block-list__block' );
+	$css->set_selector( 'body .wp-block, html body.gutenberg-editor-page .editor-post-title__block, html body.gutenberg-editor-page .editor-default-block-appender, html body.gutenberg-editor-page .editor-block-list__block' );
 
 	if ( 'true' === get_post_meta( get_the_ID(), '_generate-full-width-content', true ) ) {
 		$css->add_property( 'max-width', '100%' );
@@ -281,7 +308,7 @@ function generate_do_inline_block_editor_css() {
 		$buttons_family = generate_get_font_family_css( 'font_buttons', 'generate_settings', generate_get_default_fonts() );
 	}
 
-	$css->set_selector( 'body.gutenberg-editor-page .block-editor-block-list__block, .editor-styles-wrapper' );
+	$css->set_selector( 'body.gutenberg-editor-page .block-editor-block-list__block, html .editor-styles-wrapper' );
 
 	if ( ! generate_is_using_dynamic_typography() ) {
 		$css->add_property( 'font-family', $body_family );
@@ -303,15 +330,15 @@ function generate_do_inline_block_editor_css() {
 	}
 
 	if ( ! generate_is_using_dynamic_typography() ) {
-		$css->set_selector( '.editor-styles-wrapper, .editor-styles-wrapper p, .editor-styles-wrapper .mce-content-body' );
+		$css->set_selector( 'html .editor-styles-wrapper, html .editor-styles-wrapper p, html .editor-styles-wrapper .mce-content-body' );
 		$css->add_property( 'line-height', floatval( $font_settings['body_line_height'] ) );
 
-		$css->set_selector( '.editor-styles-wrapper p' );
+		$css->set_selector( 'html .editor-styles-wrapper p' );
 		$css->add_property( 'margin-top', '0px' );
 		$css->add_property( 'margin-bottom', $font_settings['paragraph_margin'], false, 'em' );
 	}
 
-	$css->set_selector( '.editor-styles-wrapper h1, .wp-block-heading h1.editor-rich-text__tinymce, .editor-styles-wrapper .editor-post-title__input' );
+	$css->set_selector( 'html .editor-styles-wrapper h1, .wp-block-heading h1.editor-rich-text__tinymce, .editor-styles-wrapper .editor-post-title__input' );
 
 	if ( ! generate_is_using_dynamic_typography() ) {
 		$css->add_property( 'font-family', 'inherit' === $h1_family || '' === $h1_family ? $body_family : $h1_family );
@@ -336,7 +363,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', $color_settings['content_title_color'] );
 	}
 
-	$css->set_selector( '.editor-styles-wrapper h2, .wp-block-heading h2.editor-rich-text__tinymce' );
+	$css->set_selector( 'html .editor-styles-wrapper h2, .wp-block-heading h2.editor-rich-text__tinymce' );
 
 	if ( ! generate_is_using_dynamic_typography() ) {
 		$css->add_property( 'font-family', $h2_family );
@@ -356,7 +383,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', generate_get_option( 'text_color' ) );
 	}
 
-	$css->set_selector( '.editor-styles-wrapper h3, .wp-block-heading h3.editor-rich-text__tinymce' );
+	$css->set_selector( 'html .editor-styles-wrapper h3, .wp-block-heading h3.editor-rich-text__tinymce' );
 
 	if ( ! generate_is_using_dynamic_typography() ) {
 		$css->add_property( 'font-family', $h3_family );
@@ -376,7 +403,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', generate_get_option( 'text_color' ) );
 	}
 
-	$css->set_selector( '.editor-styles-wrapper h4, .wp-block-heading h4.editor-rich-text__tinymce' );
+	$css->set_selector( 'html .editor-styles-wrapper h4, .wp-block-heading h4.editor-rich-text__tinymce' );
 
 	if ( ! generate_is_using_dynamic_typography() ) {
 		$css->add_property( 'font-family', $h4_family );
@@ -404,7 +431,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', generate_get_option( 'text_color' ) );
 	}
 
-	$css->set_selector( '.editor-styles-wrapper h5, .wp-block-heading h5.editor-rich-text__tinymce' );
+	$css->set_selector( 'html .editor-styles-wrapper h5, .wp-block-heading h5.editor-rich-text__tinymce' );
 
 	if ( ! generate_is_using_dynamic_typography() ) {
 		$css->add_property( 'font-family', $h5_family );
@@ -432,7 +459,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', generate_get_option( 'text_color' ) );
 	}
 
-	$css->set_selector( '.editor-styles-wrapper h6, .wp-block-heading h6.editor-rich-text__tinymce' );
+	$css->set_selector( 'html .editor-styles-wrapper h6, .wp-block-heading h6.editor-rich-text__tinymce' );
 
 	if ( ! generate_is_using_dynamic_typography() ) {
 		$css->add_property( 'font-family', $h6_family );
