@@ -1,4 +1,4 @@
-.editor-styles-wrapper {
+body {
 	font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	font-weight: normal;
 	text-transform: none;
@@ -6,21 +6,22 @@
 	line-height: 1.5;
 }
 
-.editor-styles-wrapper p {
-	line-height: 1.5;
+p {
+	line-height: inherit;
+	font-size: inherit;
 	margin-top: 0;
 	margin-bottom: 1.5em;
 }
 
-.editor-styles-wrapper h1, .editor-styles-wrapper h2, .editor-styles-wrapper h3, .editor-styles-wrapper h4, .editor-styles-wrapper h5, .editor-styles-wrapper h6 {
+h1, h2, h3, h4, h5, h6 {
 	font-family: inherit;
 	font-size: 100%;
 	font-style: inherit;
 	font-weight: inherit;
 }
 
-.editor-styles-wrapper h1,
-.editor-styles-wrapper .editor-post-title__input {
+h1,
+.editor-post-title__input {
 	font-family: inherit;
 	font-size: 42px;
 	margin-bottom: 20px;
@@ -30,7 +31,7 @@
 	text-transform: none;
 }
 
-.editor-styles-wrapper h2 {
+h2 {
 	font-family: inherit;
 	font-size: 35px;
 	margin-bottom: 20px;
@@ -40,7 +41,7 @@
 	text-transform: none;
 }
 
-.editor-styles-wrapper h3 {
+h3 {
 	font-family: inherit;
 	font-size: 29px;
 	margin-bottom: 20px;
@@ -50,17 +51,17 @@
 	text-transform: none;
 }
 
-.editor-styles-wrapper h4 {
+h4 {
 	font-size: 24px;
 }
 
-.editor-styles-wrapper h5 {
+h5 {
 	font-size: 20px;
 }
 
-.editor-styles-wrapper h4,
-.editor-styles-wrapper h5,
-.editor-styles-wrapper h6 {
+h4,
+h5,
+h6 {
 	font-family: inherit;
 	margin-bottom: 20px;
 	margin-top: 0;

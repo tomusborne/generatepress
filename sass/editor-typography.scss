@@ -1,67 +1,68 @@
-.editor-styles-wrapper {
+body {
 	font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	font-weight: normal;
 	text-transform: none;
 	font-size: 17px;
 	line-height: 1.5;
+}
 
-	p {
-		line-height: 1.5;
-		margin-top: 0;
-		margin-bottom: 1.5em;
-	}
+p {
+	line-height: inherit;
+	font-size: inherit;
+	margin-top: 0;
+	margin-bottom: 1.5em;
+}
 
-	h1, h2, h3, h4, h5, h6 {
-		font-family: inherit;
-		font-size: 100%;
-		font-style: inherit;
-		font-weight: inherit;
-	}
+h1, h2, h3, h4, h5, h6 {
+	font-family: inherit;
+	font-size: 100%;
+	font-style: inherit;
+	font-weight: inherit;
+}
 
-	h1,
-	.editor-post-title__input {
-		font-family: inherit;
-		font-size: 42px;
-		margin-bottom: 20px;
-		margin-top: 0;
-		line-height: 1.2em;
-		font-weight: normal;
-		text-transform: none;
-	}
+h1,
+.editor-post-title__input {
+	font-family: inherit;
+	font-size: 42px;
+	margin-bottom: 20px;
+	margin-top: 0;
+	line-height: 1.2em;
+	font-weight: normal;
+	text-transform: none;
+}
 
-	h2 {
-		font-family: inherit;
-		font-size: 35px;
-		margin-bottom: 20px;
-		margin-top: 0;
-		line-height: 1.2em;
-		font-weight: normal;
-		text-transform: none;
-	}
+h2 {
+	font-family: inherit;
+	font-size: 35px;
+	margin-bottom: 20px;
+	margin-top: 0;
+	line-height: 1.2em;
+	font-weight: normal;
+	text-transform: none;
+}
 
-	h3 {
-		font-family: inherit;
-		font-size: 29px;
-		margin-bottom: 20px;
-		margin-top: 0;
-		line-height: 1.2em;
-		font-weight: normal;
-		text-transform: none;
-	}
+h3 {
+	font-family: inherit;
+	font-size: 29px;
+	margin-bottom: 20px;
+	margin-top: 0;
+	line-height: 1.2em;
+	font-weight: normal;
+	text-transform: none;
+}
 
-	h4 {
-		font-size: 24px;
-	}
+h4 {
+	font-size: 24px;
+}
 
-	h5 {
-		font-size: 20px;
-	}
+h5 {
+	font-size: 20px;
+}
 
-	h4,
-	h5,
-	h6 {
-		font-family: inherit;
-		margin-bottom: 20px;
-		margin-top: 0;
-	}
+h4,
+h5,
+h6 {
+	font-family: inherit;
+	margin-bottom: 20px;
+	margin-top: 0;
 }
