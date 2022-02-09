@@ -102,6 +102,20 @@ function generate_add_inline_block_editor_styles( $editor_settings ) {
 	$show_editor_styles = apply_filters( 'generate_show_block_editor_styles', true );
 
 	if ( $show_editor_styles ) {
+		if ( generate_is_using_dynamic_typography() ) {
+			$google_fonts_uri = GeneratePress_Typography::get_google_fonts_uri();
+
+			if ( $google_fonts_uri ) {
+				// Need to use @import for now until this is ready: https://github.com/WordPress/gutenberg/pull/35950.
+				$google_fonts_import = sprintf(
+					'@import "%s";',
+					$google_fonts_uri
+				);
+
+				$editor_settings['styles'][] = array( 'css' => $google_fonts_import );
+			}
+		}
+
 		$editor_settings['styles'][] = array( 'css' => wp_strip_all_tags( generate_do_inline_block_editor_css() ) );
 
 		if ( generate_is_using_dynamic_typography() ) {
