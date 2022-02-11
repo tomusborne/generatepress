@@ -103,6 +103,8 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 
 Release date: TBA
 
+* Fix: Missing link underlines in the editor
+
 = 3.1.3 =
 
 Release date: February 9, 2022
