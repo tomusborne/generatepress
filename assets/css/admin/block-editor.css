@@ -10,7 +10,6 @@
 	margin-bottom: 1.5em;
 	padding: 20px;
 	overflow: auto;
-	max-width: 100%;
 	color: inherit; /* editor only */
 }
 
