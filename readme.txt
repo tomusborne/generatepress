@@ -104,6 +104,7 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 Release date: TBA
 
 * Fix: Missing link underlines in the editor
+* Fix: Code block width in the editor
 
 = 3.1.3 =
 
