@@ -1,7 +1,7 @@
 import './style.scss';
 import { useCallback, useEffect, useState } from '@wordpress/element';
 import useColors from './hooks/useColors';
-import { isObject } from 'lodash';
+import { isObject, findIndex } from 'lodash';
 import ColorsList from './components/ColorsList';
 
 const GeneratePressColorManagerControlForm = ( props ) => {
@@ -79,7 +79,15 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 	}, [ JSON.stringify( colors ), initialized ] );
 
 	const onClickAddColor = useCallback( () => {
-		addColor( `global-color-${ colors.length + 1 }` );
+		function getNewSlug( count ) {
+			const slug = `global-color-${ count + 1 }`;
+
+			return ( -1 === findIndex( colors, { slug } ) )
+				? slug
+				: getNewSlug( count + 1 );
+		}
+
+		addColor( getNewSlug( colors.length ) );
 	}, [ colors.length ] );
 
 	return (
