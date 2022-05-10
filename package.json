@@ -48,7 +48,8 @@
     "grunt-sass": "^3.1.0",
     "node-sass": "^5.0.0",
     "postcss": "^8.2.13",
-    "react-select": "^4.3.1"
+    "react-select": "^4.3.1",
+    "use-debounce": "^8.0.1"
   },
   "dependencies": {
     "classnames": "^2.3.1",
