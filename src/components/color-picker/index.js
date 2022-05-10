@@ -30,8 +30,8 @@ const GeneratePressColorPickerControl = ( props ) => {
 	const {
 		value,
 		varNameValue,
-		onChange,
-		onVarChange,
+		onChange = () => undefined,
+		onVarChange = () => undefined,
 		choices,
 		tooltipPosition = 'top center',
 		tooltipText = __( 'Choose Color', 'generatepress' ),
