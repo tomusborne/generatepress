@@ -19,6 +19,7 @@ import {
 	useState,
 	useEffect,
 } from '@wordpress/element';
+import { useDebouncedCallback } from 'use-debounce';
 
 const GeneratePressColorPickerControl = ( props ) => {
 	const [ isOpen, setOpen ] = useState( false );
@@ -29,8 +30,8 @@ const GeneratePressColorPickerControl = ( props ) => {
 	const {
 		value,
 		varNameValue,
-		onChange,
-		onVarChange,
+		onChange = () => undefined,
+		onVarChange = () => undefined,
 		choices,
 		tooltipPosition = 'top center',
 		tooltipText = __( 'Choose Color', 'generatepress' ),
@@ -111,6 +112,15 @@ const GeneratePressColorPickerControl = ( props ) => {
 		palette = JSON.parse( localPalette );
 	}
 
+	const [ varValue, setVarValue ] = useState( varNameValue || '' );
+
+	const debouncedOnChange = useDebouncedCallback( ( value ) => ( onChange( value ) ), 400 );
+	const debouncedOnVarChange = useDebouncedCallback( ( value ) => ( onVarChange( value ) ), 400 );
+
+	useEffect( () => {
+		debouncedOnVarChange( varValue );
+	}, [ varValue ] );
+
 	return (
 		<div className="generate-color-picker-area">
 			<div className="components-circular-option-picker__option-wrapper">
@@ -169,7 +179,7 @@ const GeneratePressColorPickerControl = ( props ) => {
 									colorString = `rgba(${ r }, ${ g }, ${ b }, ${ a })`;
 								}
 
-								onChange( colorString );
+								debouncedOnChange( colorString );
 							} }
 							disableAlpha={ ! choices.alpha }
 						/>
@@ -181,10 +191,8 @@ const GeneratePressColorPickerControl = ( props ) => {
 										label={ __( 'CSS Variable Name', 'generatepress' ) }
 										disabled={ !! isVarLock }
 										type={ 'text' }
-										value={ varNameValue || '' }
-										onChange={ ( variable ) => {
-											onVarChange( variable );
-										} }
+										value={ varValue }
+										onChange={ setVarValue }
 									/>
 
 									{ !! isVarLock &&
