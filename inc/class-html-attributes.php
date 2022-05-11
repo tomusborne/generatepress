@@ -311,7 +311,7 @@ class GeneratePress_HTML_Attributes {
 	public function post_navigation( $attributes ) {
 		if ( is_single() ) {
 			$attributes['class'] .= ' post-navigation';
-			$attributes['aria-label'] = esc_attr__( 'Single Post', 'generatepress' );
+			$attributes['aria-label'] = esc_attr__( 'Posts', 'generatepress' );
 		} else {
 			$attributes['class'] .= ' paging-navigation';
 			$attributes['aria-label'] = esc_attr__( 'Archive Page', 'generatepress' );
