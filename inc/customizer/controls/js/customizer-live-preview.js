@@ -499,4 +499,24 @@ function generatepress_typography_live_update( id, selector, property, unit, med
 			}
 		}
 	} );
+
+	wp.customize( 'generate_settings[global_colors]', function( value ) {
+		value.bind( function( newval ) {
+			var globalColors = '';
+
+			newval.forEach( function( item ) {
+				globalColors += '--' + item.slug + ':' + item.color + ';';
+			} );
+
+			if ( $( 'style#global_colors' ).length ) {
+				$( 'style#global_colors' ).html( ':root{' + globalColors + '}' );
+			} else {
+				$( 'head' ).append( '<style id="global_colors">:root{' + globalColors + '}</style>' );
+
+				setTimeout( function() {
+					$( 'style#global_colors' ).not( ':last' ).remove();
+				}, 100 );
+			}
+		} );
+	} );
 }( jQuery ) );
