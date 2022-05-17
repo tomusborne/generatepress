@@ -3,6 +3,8 @@ import { useCallback, useEffect, useState } from '@wordpress/element';
 import useColors from './hooks/useColors';
 import { isObject, findIndex } from 'lodash';
 import ColorsList from './components/ColorsList';
+import { SimpleDndList } from '../../components/dnd';
+import ColorPlaceholder from './components/ColorPlaceholder';
 
 const GeneratePressColorManagerControlForm = ( props ) => {
 	const {
@@ -15,6 +17,8 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 	} = useColors();
 
 	const [ initialized, setInitialized ] = useState( false );
+	const [ isReordering, setIsReordering ] = useState( false );
+	const [ reorderColors, setReorderColors ] = useState( [] );
 
 	// Set saved colors on first render
 	useEffect( () => {
@@ -90,18 +94,50 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 		addColor( getNewSlug( colors.length ) );
 	}, [ colors.length ] );
 
+	function onClickReorder( event ) {
+		event.preventDefault();
+
+		if ( isReordering ) {
+			setColors( reorderColors );
+		}
+
+		setIsReordering( ! isReordering );
+	}
+
 	return (
 		<>
 			<div className="customize-control-notifications-container" ref={ props.setNotificationContainer } />
 
-			<ColorsList
-				colors={ colors }
-				choices={ props.choices }
-				onChangeColor={ updateColorValue }
-				onChangeSlug={ updateColorSlug }
-				onClickAddColor={ onClickAddColor }
-				onClickDeleteColor={ deleteColor }
-			/>
+			<a
+				href="#"
+				style={ { marginBottom: '12px', display: 'inline-block' } }
+				onClick={ onClickReorder }
+			>
+				{ isReordering ? 'Save colors' : 'Edit colors' }
+			</a>
+
+			{ ! isReordering
+				? (
+					<ColorsList
+						colors={ colors }
+						choices={ props.choices }
+						onChangeColor={ updateColorValue }
+						onChangeSlug={ updateColorSlug }
+						onClickAddColor={ onClickAddColor }
+						onClickDeleteColor={ deleteColor }
+					/>
+				)
+				: (
+					<SimpleDndList
+						listData={ colors }
+						idKey={ 'slug' }
+						listClassName={ 'generate-color-manager-dnd-list' }
+						itemClassName={ 'generate-color-manager-dnd-list-item' }
+						InnerComponent={ ColorPlaceholder }
+						onChangeData={ setReorderColors }
+					/>
+				)
+			}
 		</>
 	);
 };
