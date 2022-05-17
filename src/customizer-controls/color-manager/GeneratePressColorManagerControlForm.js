@@ -18,7 +18,7 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 
 	const [ initialized, setInitialized ] = useState( false );
 	const [ isReordering, setIsReordering ] = useState( false );
-	const [ reorderColors, setReorderColors ] = useState( [] );
+	const [ reorderedColors, setReorderedColors ] = useState( [] );
 
 	// Set saved colors on first render
 	useEffect( () => {
@@ -98,7 +98,8 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 		event.preventDefault();
 
 		if ( isReordering ) {
-			setColors( reorderColors );
+			setColors( reorderedColors );
+			window.sessionStorage.setItem( 'generateGlobalColors', JSON.stringify( reorderedColors ) );
 		}
 
 		setIsReordering( ! isReordering );
@@ -134,7 +135,7 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 						listClassName={ 'generate-color-manager-dnd-list' }
 						itemClassName={ 'generate-color-manager-dnd-list-item' }
 						InnerComponent={ ColorPlaceholder }
-						onChangeData={ setReorderColors }
+						onChangeData={ setReorderedColors }
 					/>
 				)
 			}
