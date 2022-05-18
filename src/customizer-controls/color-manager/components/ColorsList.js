@@ -1,6 +1,6 @@
 import { kebabCase, toLower } from 'lodash';
 import ColorPicker from '../../../components/color-picker';
-import { AddColorButton, DeleteColorButton } from './buttons';
+import { DeleteColorButton } from './buttons';
 import { useCallback } from '@wordpress/element';
 
 export default function ColorsList( {
@@ -9,7 +9,6 @@ export default function ColorsList( {
 	onChangeColor,
 	onChangeSlug,
 	onClickDeleteColor,
-	onClickAddColor,
 } ) {
 
 	const checkSlugNotUsed = useCallback( ( slug ) => (
@@ -41,10 +40,6 @@ export default function ColorsList( {
 					<DeleteColorButton onClick={ () => ( onClickDeleteColor( color.slug ) ) } />
 				</div>
 			) ) }
-
-			<div className="generate-color-manager--item">
-				<AddColorButton onClick={ onClickAddColor } />
-			</div>
 		</div>
 	);
 }

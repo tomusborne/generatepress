@@ -33,7 +33,7 @@ export default function DndItem( props ) {
 		},
 	} ), [ getIndex, onDrop ] );
 
-	const opacity = isDragging ? 0 : 1;
+	const opacity = isDragging ? '0.2' : 1;
 
 	return (
 		<div

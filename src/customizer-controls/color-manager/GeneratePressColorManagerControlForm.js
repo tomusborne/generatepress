@@ -5,6 +5,8 @@ import { isObject, findIndex } from 'lodash';
 import ColorsList from './components/ColorsList';
 import { SimpleDndList } from '../../components/dnd';
 import ColorPlaceholder from './components/ColorPlaceholder';
+import { AddColorButton, ColorManagerButton } from './components/buttons';
+import { __ } from '@wordpress/i18n';
 
 const GeneratePressColorManagerControlForm = ( props ) => {
 	const {
@@ -109,13 +111,23 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 		<>
 			<div className="customize-control-notifications-container" ref={ props.setNotificationContainer } />
 
-			<a
-				href="#"
-				style={ { marginBottom: '12px', display: 'inline-block' } }
-				onClick={ onClickReorder }
-			>
-				{ isReordering ? 'Save colors' : 'Edit colors' }
-			</a>
+			<div className="generate-color-manager-wrapper">
+				<div className="generate-color-manager--item">
+					<AddColorButton onClick={ onClickAddColor } disabled={ isReordering } />
+				</div>
+
+				<div className="generate-color-manager--item">
+					<ColorManagerButton
+						id={ 'add-color' }
+						icon={ isReordering ? 'check' : 'reorder' }
+						text={ isReordering
+							? __( 'Finish re-ordering', 'generateblocks' )
+							: __( 'Re-order colors', 'generateblocks' )
+						}
+						onClick={ onClickReorder }
+					/>
+				</div>
+			</div>
 
 			{ ! isReordering
 				? (
@@ -124,7 +136,6 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 						choices={ props.choices }
 						onChangeColor={ updateColorValue }
 						onChangeSlug={ updateColorSlug }
-						onClickAddColor={ onClickAddColor }
 						onClickDeleteColor={ deleteColor }
 					/>
 				)
