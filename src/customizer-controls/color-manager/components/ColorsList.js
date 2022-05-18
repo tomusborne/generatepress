@@ -12,15 +12,16 @@ export default function ColorsList( {
 	onClickDeleteColor,
 } ) {
 
-	const checkSlugNotUsed = useCallback( ( slug ) => (
-		colors.some( ( color ) => ( slug === color.slug ) )
+	const checkSlugNotUsed = useCallback( ( slug, index ) => (
+		colors.some( ( color, idx ) => ( slug === color.slug && idx !== index ) )
 	), [ JSON.stringify( colors ) ] );
 
 	return (
 		<div className="generate-component-color-picker-wrapper generate-color-manager-wrapper">
-			{ colors && colors.map( ( color ) => (
+			{ colors && colors.map( ( color, index ) => (
 				<div key={ color.slug } className="generate-color-manager--item">
 					<ColorPicker
+						index={ index }
 						tooltipPosition={ 'bottom center' }
 						tooltipText={ color.slug || '' }
 						hideLabel={ true }

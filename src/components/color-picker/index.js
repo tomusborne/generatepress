@@ -28,6 +28,7 @@ const GeneratePressColorPickerControl = ( props ) => {
 	const [ isManualInput, setManualInput ] = useState( false );
 
 	const {
+		index,
 		value,
 		varNameValue,
 		onChange = () => undefined,
@@ -200,8 +201,12 @@ const GeneratePressColorPickerControl = ( props ) => {
 										type={ 'text' }
 										value={ varValue }
 										onChange={ ( text ) => {
-											setInvalidSlug( checkSlugNotUsed( text ) );
+											setInvalidSlug( checkSlugNotUsed( text, index ) );
 											setVarValue( text );
+										} }
+										onBlur={ () => {
+											setVarValue( varNameValue );
+											setInvalidSlug( checkSlugNotUsed( varNameValue, index ) );
 										} }
 									/>
 
