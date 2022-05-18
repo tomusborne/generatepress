@@ -1,6 +1,8 @@
 .generate-color-manager-dnd-list {
   	display: flex;
   	flex-wrap: wrap;
+  	border: 1px dashed #959595;
+  	padding: 10px 5px 5px;
 
   	.generate-color-manager-dnd-list-item {
 	  	display: inline-block;

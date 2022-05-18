@@ -1,6 +1,8 @@
 import { kebabCase, toLower } from 'lodash';
 import ColorPicker from '../../../components/color-picker';
-import { AddColorButton, DeleteColorButton } from './buttons';
+import { DeleteColorButton } from './buttons';
+import { useCallback } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
 
 export default function ColorsList( {
 	colors,
@@ -8,19 +10,25 @@ export default function ColorsList( {
 	onChangeColor,
 	onChangeSlug,
 	onClickDeleteColor,
-	onClickAddColor,
 } ) {
+
+	const checkSlugNotUsed = useCallback( ( slug, index ) => (
+		colors.some( ( color, idx ) => ( slug === color.slug && idx !== index ) )
+	), [ JSON.stringify( colors ) ] );
+
 	return (
 		<div className="generate-component-color-picker-wrapper generate-color-manager-wrapper">
-			{ colors && colors.map( ( color ) => (
+			{ colors && colors.map( ( color, index ) => (
 				<div key={ color.slug } className="generate-color-manager--item">
 					<ColorPicker
+						index={ index }
 						tooltipPosition={ 'bottom center' }
 						tooltipText={ color.slug || '' }
 						hideLabel={ true }
 						choices={ choices }
 						value={ color.color }
 						varNameValue={ color.slug }
+						checkSlugNotUsed={ checkSlugNotUsed }
 						onChange={ ( newColor ) => {
 							onChangeColor( color.slug, newColor );
 						} }
@@ -31,13 +39,13 @@ export default function ColorsList( {
 						} }
 					/>
 
-					<DeleteColorButton onClick={ () => ( onClickDeleteColor( color.slug ) ) } />
+					<DeleteColorButton onClick={ () => {
+						if ( window.confirm( __( 'This will permanently delete this color. Doing so will break styles that are using it to define their color.', 'generatepress' ) ) ) {
+							onClickDeleteColor( color.slug );
+						}
+					} } />
 				</div>
 			) ) }
-
-			<div className="generate-color-manager--item">
-				<AddColorButton onClick={ onClickAddColor } />
-			</div>
 		</div>
 	);
 }
