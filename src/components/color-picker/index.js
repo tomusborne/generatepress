@@ -32,6 +32,7 @@ const GeneratePressColorPickerControl = ( props ) => {
 		varNameValue,
 		onChange = () => undefined,
 		onVarChange = () => undefined,
+		checkSlugNotUsed = () => undefined,
 		choices,
 		tooltipPosition = 'top center',
 		tooltipText = __( 'Choose Color', 'generatepress' ),
@@ -113,13 +114,18 @@ const GeneratePressColorPickerControl = ( props ) => {
 	}
 
 	const [ varValue, setVarValue ] = useState( varNameValue || '' );
+	const [ invalidSlug, setInvalidSlug ] = useState( false );
 
-	const debouncedOnChange = useDebouncedCallback( ( value ) => ( onChange( value ) ), 400 );
-	const debouncedOnVarChange = useDebouncedCallback( ( value ) => ( onVarChange( value ) ), 400 );
+	const debouncedOnChange = useDebouncedCallback( ( value ) => ( onChange( value ) ), 750 );
+	const debouncedOnVarChange = useDebouncedCallback( ( value ) => ( onVarChange( value ) ), 750 );
 
 	useEffect( () => {
-		debouncedOnVarChange( varValue );
-	}, [ varValue ] );
+		if ( invalidSlug ) {
+			debouncedOnVarChange.cancel();
+		} else {
+			debouncedOnVarChange( varValue );
+		}
+	}, [ varValue, invalidSlug ] );
 
 	return (
 		<div className="generate-color-picker-area">
@@ -190,9 +196,13 @@ const GeneratePressColorPickerControl = ( props ) => {
 									<TextControl
 										label={ __( 'CSS Variable Name', 'generatepress' ) }
 										disabled={ !! isVarLock }
+										help={ invalidSlug ? __('Variable name already used.') : undefined }
 										type={ 'text' }
 										value={ varValue }
-										onChange={ setVarValue }
+										onChange={ ( text ) => {
+											setInvalidSlug( checkSlugNotUsed( text ) );
+											setVarValue( text );
+										} }
 									/>
 
 									{ !! isVarLock &&
