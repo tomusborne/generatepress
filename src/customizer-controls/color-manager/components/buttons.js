@@ -3,7 +3,7 @@ import getIcon from '../../../utils/get-icon';
 import { __ } from '@wordpress/i18n';
 
 export function ColorManagerButton( { id, text, onClick, icon, disabled } ) {
-	const classname = `generate-color-manager--${id}`;
+	const classname = `generate-color-manager--${ id }`;
 	return (
 		<Tooltip text={ text }>
 			<Button className={ classname } onClick={ onClick } disabled={ disabled }>
