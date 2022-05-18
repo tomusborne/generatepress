@@ -2,6 +2,7 @@ import { kebabCase, toLower } from 'lodash';
 import ColorPicker from '../../../components/color-picker';
 import { DeleteColorButton } from './buttons';
 import { useCallback } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
 
 export default function ColorsList( {
 	colors,
@@ -37,7 +38,11 @@ export default function ColorsList( {
 						} }
 					/>
 
-					<DeleteColorButton onClick={ () => ( onClickDeleteColor( color.slug ) ) } />
+					<DeleteColorButton onClick={ () => {
+						if ( window.confirm( __( 'This will permanently delete this color. Doing so will break styles that are using it to define their color.', 'generatepress' ) ) ) {
+							onClickDeleteColor( color.slug );
+						}
+					} } />
 				</div>
 			) ) }
 		</div>
