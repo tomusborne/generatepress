@@ -116,6 +116,9 @@ class GeneratePress_HTML_Attributes {
 
 			case 'footer-entry-meta':
 				return $this->footer_entry_meta( $attributes );
+
+			case 'woocommerce-content':
+				return $this->woocommerce_content( $attributes );
 		}
 
 		return $attributes;
@@ -457,6 +460,34 @@ class GeneratePress_HTML_Attributes {
 	public function footer_entry_meta( $attributes ) {
 		$attributes['class'] .= ' entry-meta';
 		$attributes['aria-label'] = esc_attr__( 'Entry meta', 'generatepress' );
+
+		return $attributes;
+	}
+
+	/**
+	 * Add attributes to our WooCommerce content container.
+	 *
+	 * @since 3.2.0
+	 * @param array $attributes The existing attributes.
+	 */
+	public function woocommerce_content( $attributes ) {
+		if ( is_singular() ) {
+			$attributes['id'] = 'post-' . get_the_ID();
+			$attributes['class'] = esc_attr( implode( ' ', get_post_class( '', get_the_ID() ) ) );
+
+			if ( 'microdata' === generate_get_schema_type() ) {
+				$type = apply_filters( 'generate_article_itemtype', 'CreativeWork' );
+
+				$attributes['itemtype'] = sprintf(
+					'itemtype="https://schema.org/%s"',
+					$type
+				);
+
+				$attributes['itemscope'] = true;
+			}
+		} else {
+			$attributes['class'] = 'woocommerce-archive-wrapper';
+		}
 
 		return $attributes;
 	}
