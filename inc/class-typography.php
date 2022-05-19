@@ -75,6 +75,7 @@ class GeneratePress_Typography {
 			$variants = apply_filters( 'generate_google_font_variants', $variants, $font['fontFamily'] );
 
 			$name = str_replace( ' ', '+', $font['fontFamily'] );
+			$name = str_replace( '"', '', $name );
 
 			if ( $variants ) {
 				$data[] = $name . ':' . implode( ',', $variants );
@@ -338,6 +339,10 @@ class GeneratePress_Typography {
 		}
 
 		if ( ! empty( $font_family_args['googleFont'] ) && ! empty( $font_family_args['googleFontCategory'] ) ) {
+			if ( preg_match( '/\b(?<!-)\d+(?!-)\b/', $font_family ) ) {
+				$font_family = '"' . $font_family . '"';
+			}
+
 			$font_family = $font_family . ', ' . $font_family_args['googleFontCategory'];
 		} elseif ( 'System Default' === $font_family ) {
 			$font_family = generate_get_system_default_font();
