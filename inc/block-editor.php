@@ -231,10 +231,10 @@ function generate_do_inline_block_editor_css() {
 		foreach ( (array) $global_colors as $key => $data ) {
 			if ( ! empty( $data['slug'] ) && ! empty( $data['color'] ) ) {
 				$css->set_selector( '.has-' . $data['slug'] . '-color' );
-				$css->add_property( 'color', $data['color'] );
+				$css->add_property( 'color', 'var(--' . $data['slug'] . ')' );
 
 				$css->set_selector( '.has-' . $data['slug'] . '-background-color' );
-				$css->add_property( 'background-color', $data['color'] );
+				$css->add_property( 'background-color', 'var(--' . $data['slug'] . ')' );
 			}
 		}
 	}
