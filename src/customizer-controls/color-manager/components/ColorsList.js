@@ -1,42 +1,41 @@
-import { kebabCase, toLower } from 'lodash';
-import ColorPicker from '../../../components/color-picker';
+import GlobalColorPicker from '../../../components/color-picker/GlobalColorPicker';
 import { DeleteColorButton } from './buttons';
-import { useCallback } from '@wordpress/element';
+import { memo, useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+
+const MemoizedColorPicker = memo( GlobalColorPicker, ( prev, next ) => {
+	return (
+		prev.value === next.value &&
+		prev.variableName === next.variableName
+	);
+} );
 
 export default function ColorsList( {
 	colors,
-	choices,
 	onChangeColor,
 	onChangeSlug,
 	onClickDeleteColor,
 } ) {
 
-	const checkSlugNotUsed = useCallback( ( slug, index ) => (
-		colors.some( ( color, idx ) => ( slug === color.slug && idx !== index ) )
+	const checkVariableNameIsAvailable = useCallback( ( slug, index ) => (
+		! colors.some( ( color, idx ) => ( slug === color.slug && idx !== index ) )
 	), [ JSON.stringify( colors ) ] );
 
 	return (
 		<div className="generate-component-color-picker-wrapper generate-color-manager-wrapper">
 			{ colors && colors.map( ( color, index ) => (
-				<div key={ color.slug } className="generate-color-manager--item">
-					<ColorPicker
+				<div key={ String( index ) } className="generate-color-manager--item">
+					<MemoizedColorPicker
 						index={ index }
-						tooltipPosition={ 'bottom center' }
-						tooltipText={ color.slug || '' }
-						hideLabel={ true }
-						choices={ choices }
 						value={ color.color }
-						varNameValue={ color.slug }
-						checkSlugNotUsed={ checkSlugNotUsed }
+						variableName={ color.slug }
 						onChange={ ( newColor ) => {
 							onChangeColor( color.slug, newColor );
 						} }
-						onVarChange={ ( slugValue ) => {
-							const newSlug = toLower( kebabCase( slugValue ) );
-
-							onChangeSlug( color.slug, newSlug );
+						onChangeVariableName={ ( slugValue ) => {
+							onChangeSlug( color.slug, slugValue );
 						} }
+						checkVariableNameIsAvailable={ checkVariableNameIsAvailable }
 					/>
 
 					<DeleteColorButton onClick={ () => {
