@@ -8,6 +8,7 @@ export default function GlobalColorPicker( props ) {
 	const [ isVariableNameDisabled, setVariableNameDisabled ] = useState( !! value );
 	const [ localVariableName, setLocalVariableName ] = useState( '' );
 	const [ isVariableNameValid, setVariableNameValid ] = useState( false );
+	const [ variableNameHasSpecialChars, setVariableNameHasSpecialChars ] = useState( false );
 	const [ variableNameHelpText, setHelpText ] = useState( '' );
 
 	useEffect( () => {
@@ -16,6 +17,9 @@ export default function GlobalColorPicker( props ) {
 
 	useEffect( () => {
 		setVariableNameValid( checkVariableNameIsAvailable( toLower( localVariableName ), index ) );
+
+		const regex = new RegExp("[^a-z0-9\\-]");
+		setVariableNameHasSpecialChars( regex.test( localVariableName ) );
 	}, [ localVariableName ] );
 
 	useEffect( () => {
@@ -23,6 +27,14 @@ export default function GlobalColorPicker( props ) {
 
 		setHelpText( message );
 	}, [ isVariableNameValid ] );
+
+	useEffect( () => {
+		if ( variableNameHasSpecialChars ) {
+			setHelpText( __( 'Variable name will be converted to kebab and lower case.', 'generateblocks') );
+		} else if ( isVariableNameValid && ! variableNameHasSpecialChars ) {
+			setHelpText( '' );
+		}
+	}, [ variableNameHasSpecialChars, isVariableNameValid ] );
 
 	const updateVariableName = useCallback( () => {
 		if ( isVariableNameValid ) {
