@@ -55,7 +55,7 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 		if ( style ) {
 			style.innerHTML = css;
 		} else {
-			document.head.insertAdjacentHTML( 'beforeend', '<style id="generate-global-color-styles">' + css + '</style>' );
+			document.body.insertAdjacentHTML( 'beforeend', '<style id="generate-global-color-styles">' + css + '</style>' );
 		}
 	};
 
