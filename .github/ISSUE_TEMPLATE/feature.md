@@ -1,17 +1,13 @@
 ---
-name: Feature
-about: Use for features, refactoring, enhancements, improvements.
+name: Feature requests
+about: Use for features, enhancements, improvements.
 title: ''
-labels: 'triage, type: feature'
+labels: 'feature'
 ---
 
 ### Description
-...
+Describe your feature request.
 
-### Steps for testing
-1.
+---
 
-#### References:
-...
-
------
+#### References

@@ -1,23 +1,22 @@
 ---
-name: Bug
+name: Bug reports
 about: Use for bugs, and weird behaviors.
 title: ''
-labels: 'triage, type: bug'
+labels: 'bug'
 ---
 
 ### Description
-...
+Describe the bug the best you can.
 
 ### Steps to reproduce
-1. 
-
-#### Expected behavior
-...
+1. ...
 
 #### Actual behavior
 ...
 
-#### References: 
+#### Expected behavior
 ...
 
------
+---
+
+#### References
