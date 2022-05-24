@@ -30,7 +30,7 @@ export default function GlobalColorPicker( props ) {
 
 	useEffect( () => {
 		if ( variableNameHasSpecialChars ) {
-			setHelpText( __( 'Variable name will be converted to kebab and lower case.', 'generateblocks') );
+			setHelpText( __( 'Variable name will be converted to kebab-case.', 'generateblocks') );
 		} else if ( isVariableNameValid && ! variableNameHasSpecialChars ) {
 			setHelpText( '' );
 		}
