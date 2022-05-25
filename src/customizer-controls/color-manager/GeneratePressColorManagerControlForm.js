@@ -3,6 +3,10 @@ import { useCallback, useEffect, useState } from '@wordpress/element';
 import useColors from './hooks/useColors';
 import { isObject, findIndex } from 'lodash';
 import ColorsList from './components/ColorsList';
+import { SimpleDndList } from '../../components/dnd';
+import ColorPlaceholder from './components/ColorPlaceholder';
+import { AddColorButton, ColorManagerButton } from './components/buttons';
+import { __ } from '@wordpress/i18n';
 
 const GeneratePressColorManagerControlForm = ( props ) => {
 	const {
@@ -15,6 +19,8 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 	} = useColors();
 
 	const [ initialized, setInitialized ] = useState( false );
+	const [ isReordering, setIsReordering ] = useState( false );
+	const [ reorderedColors, setReorderedColors ] = useState( [] );
 
 	// Set saved colors on first render
 	useEffect( () => {
@@ -49,7 +55,7 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 		if ( style ) {
 			style.innerHTML = css;
 		} else {
-			document.head.insertAdjacentHTML( 'beforeend', '<style id="generate-global-color-styles">' + css + '</style>' );
+			document.body.insertAdjacentHTML( 'beforeend', '<style id="generate-global-color-styles">' + css + '</style>' );
 		}
 	};
 
@@ -90,18 +96,60 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 		addColor( getNewSlug( colors.length ) );
 	}, [ colors.length ] );
 
+	function onClickReorder( event ) {
+		event.preventDefault();
+
+		if ( isReordering ) {
+			setColors( reorderedColors );
+			window.sessionStorage.setItem( 'generateGlobalColors', JSON.stringify( reorderedColors ) );
+		}
+
+		setIsReordering( ! isReordering );
+	}
+
 	return (
 		<>
 			<div className="customize-control-notifications-container" ref={ props.setNotificationContainer } />
 
-			<ColorsList
-				colors={ colors }
-				choices={ props.choices }
-				onChangeColor={ updateColorValue }
-				onChangeSlug={ updateColorSlug }
-				onClickAddColor={ onClickAddColor }
-				onClickDeleteColor={ deleteColor }
-			/>
+			<div className="generate-color-manager-wrapper">
+				<div className="generate-color-manager--item">
+					<AddColorButton onClick={ onClickAddColor } disabled={ isReordering } />
+				</div>
+
+				<div className="generate-color-manager--item">
+					<ColorManagerButton
+						id={ 'add-color' }
+						icon={ isReordering ? 'check' : 'reorder' }
+						text={ isReordering
+							? __( 'Finish re-ordering', 'generateblocks' )
+							: __( 'Re-order colors', 'generateblocks' )
+						}
+						onClick={ onClickReorder }
+					/>
+				</div>
+			</div>
+
+			{ ! isReordering
+				? (
+					<ColorsList
+						colors={ colors }
+						choices={ props.choices }
+						onChangeColor={ updateColorValue }
+						onChangeSlug={ updateColorSlug }
+						onClickDeleteColor={ deleteColor }
+					/>
+				)
+				: (
+					<SimpleDndList
+						listData={ colors }
+						idKey={ 'slug' }
+						listClassName={ 'generate-color-manager-dnd-list' }
+						itemClassName={ 'generate-color-manager-dnd-list-item' }
+						InnerComponent={ ColorPlaceholder }
+						onChangeData={ setReorderedColors }
+					/>
+				)
+			}
 		</>
 	);
 };
