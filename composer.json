@@ -36,5 +36,10 @@
     "support": {
         "issues": "https://github.com/tomusborne/generatepress/issues",
         "source": "https://github.com/tomusborne/generatepress"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }

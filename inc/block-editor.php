@@ -257,6 +257,9 @@ function generate_do_inline_block_editor_css() {
 		}
 
 		if ( 'hover' === $underline_links ) {
+			$css->set_selector( '.wp-block a' );
+			$css->add_property( 'text-decoration', 'none' );
+
 			$css->set_selector( '.wp-block a:hover, .wp-block a:focus' );
 			$css->add_property( 'text-decoration', 'underline' );
 		}
@@ -270,6 +273,9 @@ function generate_do_inline_block_editor_css() {
 		}
 
 		$css->set_selector( 'a.button, .wp-block-button__link' );
+		$css->add_property( 'text-decoration', 'none' );
+	} else {
+		$css->set_selector( '.wp-block a' );
 		$css->add_property( 'text-decoration', 'none' );
 	}
 
