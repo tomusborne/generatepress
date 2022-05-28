@@ -145,6 +145,10 @@ function generate_enqueue_backend_block_editor_assets() {
 		true
 	);
 
+	wp_register_style( 'generate-block-editor', false, array(), true, true );
+	wp_add_inline_style( 'generate-block-editor', generate_do_inline_block_editor_css( 'block-editor' ) );
+	wp_enqueue_style( 'generate-block-editor' );
+
 	$color_settings = wp_parse_args(
 		get_option( 'generate_settings', array() ),
 		generate_get_color_defaults()
@@ -181,36 +185,13 @@ function generate_enqueue_backend_block_editor_assets() {
 }
 
 /**
- * Write our CSS for the block editor.
+ * Write our CSS that applies to blocks within the editor.
  *
  * @since 2.2
+ * @param string $for Is this CSS for the block content or the block editor.
  */
-function generate_do_inline_block_editor_css() {
-	$color_settings = wp_parse_args(
-		get_option( 'generate_settings', array() ),
-		generate_get_color_defaults()
-	);
-
-	$font_settings = wp_parse_args(
-		get_option( 'generate_settings', array() ),
-		generate_get_default_fonts()
-	);
-
+function generate_do_inline_block_editor_css( $for = 'block-content' ) {
 	$css = new GeneratePress_CSS();
-
-	$content_width = generate_get_block_editor_content_width();
-
-	$spacing_settings = wp_parse_args(
-		get_option( 'generate_spacing_settings', array() ),
-		generate_spacing_get_defaults()
-	);
-
-	$content_width_calc = sprintf(
-		'calc(%1$s - %2$s - %3$s)',
-		absint( $content_width ) . 'px',
-		absint( $spacing_settings['content_left'] ) . 'px',
-		absint( $spacing_settings['content_right'] ) . 'px'
-	);
 
 	$css->set_selector( ':root' );
 
@@ -233,6 +214,35 @@ function generate_do_inline_block_editor_css() {
 			}
 		}
 	}
+
+	// If this CSS is for the editor only (not the block content), we can return here.
+	if ( 'block-editor' === $for ) {
+		return $css->css_output();
+	}
+
+	$color_settings = wp_parse_args(
+		get_option( 'generate_settings', array() ),
+		generate_get_color_defaults()
+	);
+
+	$font_settings = wp_parse_args(
+		get_option( 'generate_settings', array() ),
+		generate_get_default_fonts()
+	);
+
+	$content_width = generate_get_block_editor_content_width();
+
+	$spacing_settings = wp_parse_args(
+		get_option( 'generate_spacing_settings', array() ),
+		generate_spacing_get_defaults()
+	);
+
+	$content_width_calc = sprintf(
+		'calc(%1$s - %2$s - %3$s)',
+		absint( $content_width ) . 'px',
+		absint( $spacing_settings['content_left'] ) . 'px',
+		absint( $spacing_settings['content_right'] ) . 'px'
+	);
 
 	$css->set_selector( 'body .wp-block' );
 
