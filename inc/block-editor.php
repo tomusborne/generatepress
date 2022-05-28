@@ -185,10 +185,10 @@ function generate_enqueue_backend_block_editor_assets() {
 }
 
 /**
- * Write our CSS that applies to blocks within the editor.
+ * Write our CSS for the block editor.
  *
  * @since 2.2
- * @param string $for Is this CSS for the block content or the block editor.
+ * @param string $for Define whether this CSS for the block content or the block editor.
  */
 function generate_do_inline_block_editor_css( $for = 'block-content' ) {
 	$css = new GeneratePress_CSS();
