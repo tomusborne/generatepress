@@ -339,7 +339,8 @@ class GeneratePress_Typography {
 		}
 
 		if ( ! empty( $font_family_args['googleFont'] ) && ! empty( $font_family_args['googleFontCategory'] ) ) {
-			if ( preg_match( '/\b(?<!-)\d+(?!-)\b/', $font_family ) ) {
+			// Add quotations around font names with standalone numbers.
+			if ( preg_match( '/(?<!\S)\d+(?!\S)/', $font_family ) ) {
 				$font_family = '"' . $font_family . '"';
 			}
 
