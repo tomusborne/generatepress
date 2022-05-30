@@ -1,14 +1,10 @@
 jQuery( document ).ready( function( $ ) {
-	var container_width_elements = 'body .wp-block,\
-									html body.gutenberg-editor-page .editor-post-title__block,\
-	 								html body.gutenberg-editor-page .editor-default-block-appender,\
-									html body.gutenberg-editor-page .editor-block-list__block,\
-									.edit-post-visual-editor .editor-block-list__block[data-align=wide]';
+	var container_width_elements = '.editor-styles-wrapper .wp-block';
 
 	$( 'select[name="_generate-full-width-content"]' ).on( 'change', function() {
 		if ( 'true' === this.value ) {
 			$( 'style#container_width' ).remove();
-			$( 'head' ).append( '<style id="container_width">' + container_width_elements + '{max-width: 100%;}</style>' );
+			$( 'body' ).append( '<style id="container_width">' + container_width_elements + '{max-width: 100%;}</style>' );
 		} else {
 			$( 'style#container_width' ).remove();
 		}
@@ -42,10 +38,10 @@ jQuery( document ).ready( function( $ ) {
 			calc = 'max-width: calc(' + content_width + 'px - ' + right_content_padding + ' - ' + left_content_padding + ')';
 
 			$( 'style#content-width' ).remove();
-			$( 'head' ).append( '<style id="content-width">' + container_width_elements + '{' + calc + '}</style>' );
+			$( 'body' ).append( '<style id="content-width">' + container_width_elements + '{' + calc + '}</style>' );
 
 			$( 'style#wide-width' ).remove();
-			$( 'head' ).append( '<style id="wide-width">.edit-post-visual-editor .editor-block-list__block[data-align=wide]{max-width:' + content_width + 'px}' );
+			$( 'body' ).append( '<style id="wide-width">.edit-post-visual-editor .editor-block-list__block[data-align=wide]{max-width:' + content_width + 'px}' );
 		}
 	} );
 
