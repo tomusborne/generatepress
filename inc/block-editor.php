@@ -77,9 +77,7 @@ function generate_get_block_editor_content_width() {
 
 	$left_sidebar_width = apply_filters( 'generate_left_sidebar_width', '25' );
 
-	$layout = $custom_layout
-		? $custom_layout
-		: generate_get_block_editor_sidebar_layout();
+	$layout = generate_get_block_editor_sidebar_layout();
 
 	if ( 'left-sidebar' === $layout ) {
 		$content_width = $container_width * ( ( 100 - $left_sidebar_width ) / 100 );
