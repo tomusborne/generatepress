@@ -32,6 +32,17 @@ function generate_setup_woocommerce() {
 	add_action( 'woocommerce_sidebar', 'generate_construct_sidebars' );
 }
 
+/**
+ * Get the tag name for our WooCommerce wrappers.
+ *
+ * @since 3.2.0
+ */
+function generate_get_woocommerce_wrapper_tagname() {
+	echo is_singular()
+		? 'article'
+		: 'div';
+}
+
 if ( ! function_exists( 'generate_woocommerce_start' ) ) {
 	add_action( 'woocommerce_before_main_content', 'generate_woocommerce_start', 10 );
 	/**
@@ -51,7 +62,7 @@ if ( ! function_exists( 'generate_woocommerce_start' ) ) {
 				 */
 				do_action( 'generate_before_main_content' );
 				?>
-				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> <?php generate_do_microdata( 'article' ); ?>>
+				<<?php generate_get_woocommerce_wrapper_tagname(); ?> <?php generate_do_attr( 'woocommerce-content' ); ?>>
 					<div class="inside-article">
 						<?php
 						/**
@@ -93,7 +104,7 @@ if ( ! function_exists( 'generate_woocommerce_end' ) ) {
 						do_action( 'generate_after_content' );
 						?>
 					</div>
-				</article>
+				</<?php generate_get_woocommerce_wrapper_tagname(); ?>>
 				<?php
 				/**
 				 * generate_after_main_content hook.

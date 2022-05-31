@@ -1,7 +1,3 @@
-.wp-block a {
-	text-decoration: none;
-}
-
 .block-editor-block-list__layout pre {
 	background: rgba(0, 0, 0, 0.05);
 	font-family: inherit;
@@ -10,7 +6,6 @@
 	margin-bottom: 1.5em;
 	padding: 20px;
 	overflow: auto;
-	max-width: 100%;
 	color: inherit; /* editor only */
 }
 
@@ -67,11 +62,6 @@ body .block-editor-block-list__block hr {
 	margin-bottom: 40px;
 	margin-top: 40px;
 	width: auto;
-}
-
-body .block-editor-block-list__block,
-body .block-editor-block-list__block p {
-	font-size: inherit;
 }
 
 body .block-editor-default-block-appender input[type=text].editor-default-block-appender__content,
