@@ -274,7 +274,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 
 					return $new_settings;
 				},
-				'transport' => 'refresh',
+				'transport' => 'postMessage',
 			),
 			array(
 				'type' => 'generate-color-manager-control',

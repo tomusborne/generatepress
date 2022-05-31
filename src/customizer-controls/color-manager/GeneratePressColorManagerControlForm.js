@@ -1,24 +1,42 @@
 import './style.scss';
-import getIcon from '../../utils/get-icon';
-import ColorPicker from '../../components/color-picker';
-
-import {
-	Button,
-	Tooltip,
-} from '@wordpress/components';
-
-import {
-	__,
-} from '@wordpress/i18n';
+import { useCallback, useEffect, useState } from '@wordpress/element';
+import useColors from './hooks/useColors';
+import { isObject, findIndex } from 'lodash';
+import ColorsList from './components/ColorsList';
+import { SimpleDndList } from '../../components/dnd';
+import ColorPlaceholder from './components/ColorPlaceholder';
+import { AddColorButton, ColorManagerButton } from './components/buttons';
+import { __ } from '@wordpress/i18n';
 
 const GeneratePressColorManagerControlForm = ( props ) => {
+	const {
+		colors,
+		setColors,
+		addColor,
+		deleteColor,
+		updateColorValue,
+		updateColorSlug,
+	} = useColors();
+
+	const [ initialized, setInitialized ] = useState( false );
+	const [ isReordering, setIsReordering ] = useState( false );
+	const [ reorderedColors, setReorderedColors ] = useState( [] );
+
+	// Set saved colors on first render
+	useEffect( () => {
+		const initialColors = isObject( props.value ) ? Object.values( props.value ) : props.value;
+
+		setColors( initialColors );
+		setInitialized( true );
+	}, [] );
+
 	/**
 	 * Save the value when changing the control.
 	 *
 	 * @param {Object} value - The value.
 	 * @return {void}
 	 */
-	const handleChangeComplete = ( value ) => {
+	const handleDocumentChange = ( value ) => {
 		wp.customize.control( props.customizerSetting.id ).setting.set( value );
 
 		let css = ':root {';
@@ -37,7 +55,7 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 		if ( style ) {
 			style.innerHTML = css;
 		} else {
-			document.head.insertAdjacentHTML( 'beforeend', '<style id="generate-global-color-styles">' + css + '</style>' );
+			document.body.insertAdjacentHTML( 'beforeend', '<style id="generate-global-color-styles">' + css + '</style>' );
 		}
 	};
 
@@ -59,105 +77,80 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 		window.sessionStorage.setItem( 'generateGlobalColors', JSON.stringify( palette ) );
 	};
 
-	let colors = props.value || [];
+	useEffect( () => {
+		if ( initialized ) {
+			setSessionStorage( colors );
+			handleDocumentChange( colors );
+		}
+	}, [ JSON.stringify( colors ), initialized ] );
 
-	if ( 'object' === typeof colors ) {
-		colors = Object.values( colors );
+	const onClickAddColor = useCallback( () => {
+		function getNewSlug( count ) {
+			const slug = `global-color-${ count + 1 }`;
+
+			return ( -1 === findIndex( colors, { slug } ) )
+				? slug
+				: getNewSlug( count + 1 );
+		}
+
+		addColor( getNewSlug( colors.length ) );
+	}, [ colors.length ] );
+
+	function onClickReorder( event ) {
+		event.preventDefault();
+
+		if ( isReordering ) {
+			setColors( reorderedColors );
+			window.sessionStorage.setItem( 'generateGlobalColors', JSON.stringify( reorderedColors ) );
+		}
+
+		setIsReordering( ! isReordering );
 	}
 
 	return (
-		<div>
-			<div className="customize-control-notifications-container" ref={ props.setNotificationContainer }></div>
+		<>
+			<div className="customize-control-notifications-container" ref={ props.setNotificationContainer } />
 
-			<div className="generate-component-color-picker-wrapper generate-color-manager-wrapper">
-				{
-					colors.map( ( color, index ) => {
-						const colorProps = {
-							...props,
-							value: colors[ index ].color,
-							varNameValue: colors[ index ].slug,
-						};
-
-						return (
-							<div className="generate-color-manager--item" key={ index }>
-								<ColorPicker
-									{ ...colorProps }
-									tooltipPosition="bottom center"
-									tooltipText={ colors[ index ].slug }
-									hideLabel={ true }
-									onChange={ ( value ) => {
-										const colorValues = [ ...colors ];
-
-										colorValues[ index ] = {
-											...colorValues[ index ],
-											color: value,
-										};
-
-										handleChangeComplete( colorValues );
-										setSessionStorage( colorValues );
-									} }
-									onVarChange={ ( value ) => {
-										const colorValues = [ ...colors ];
-
-										// Convert value to kebab-case.
-										value = value
-											.replace( /([a-z])([A-Z])/g, '$1-$2' )
-											.replace( /[\s_]+/g, '-' )
-											.replace( /[^a-z0-9-\s]+/g, '' )
-											.toLowerCase();
-
-										colorValues[ index ] = {
-											...colorValues[ index ],
-											slug: value,
-										};
-
-										handleChangeComplete( colorValues );
-										setSessionStorage( colorValues );
-									} }
-								/>
-
-								<Tooltip text={ __( 'Delete Color', 'generatepress' ) }>
-									<Button
-										className="generate-color-manager--delete-color"
-										onClick={ () => {
-											// eslint-disable-next-line
-											if ( window.confirm( __( 'This will permanently delete this color. Doing so will break styles that are using it to define their color.', 'generatepress' ) ) ) {
-												const colorValues = [ ...colors ];
-
-												colorValues.splice( index, 1 );
-												handleChangeComplete( colorValues );
-											}
-										} }
-										icon={ getIcon( 'x' ) }
-									/>
-								</Tooltip>
-							</div>
-						);
-					} )
-				}
+			<div className="generate-color-manager-wrapper">
+				<div className="generate-color-manager--item">
+					<AddColorButton onClick={ onClickAddColor } disabled={ isReordering } />
+				</div>
 
 				<div className="generate-color-manager--item">
-					<Tooltip text={ __( 'Add Global Color', 'generatepress' ) }>
-						<Button
-							className="generate-color-manager--add-color"
-							onClick={ () => {
-								const colorValues = [ ...props.value ];
-								const length = colorValues.length + 1;
-
-								colorValues.push( {
-									slug: 'global-color-' + length,
-									color: '',
-								} );
-
-								handleChangeComplete( colorValues );
-							} }
-						>
-							{ getIcon( 'plus' ) }
-						</Button>
-					</Tooltip>
+					<ColorManagerButton
+						id={ 'add-color' }
+						icon={ isReordering ? 'check' : 'reorder' }
+						text={ isReordering
+							? __( 'Finish re-ordering', 'generateblocks' )
+							: __( 'Re-order colors', 'generateblocks' )
+						}
+						onClick={ onClickReorder }
+					/>
 				</div>
 			</div>
-		</div>
+
+			{ ! isReordering
+				? (
+					<ColorsList
+						colors={ colors }
+						choices={ props.choices }
+						onChangeColor={ updateColorValue }
+						onChangeSlug={ updateColorSlug }
+						onClickDeleteColor={ deleteColor }
+					/>
+				)
+				: (
+					<SimpleDndList
+						listData={ colors }
+						idKey={ 'slug' }
+						listClassName={ 'generate-color-manager-dnd-list' }
+						itemClassName={ 'generate-color-manager-dnd-list-item' }
+						InnerComponent={ ColorPlaceholder }
+						onChangeData={ setReorderedColors }
+					/>
+				)
+			}
+		</>
 	);
 };
 

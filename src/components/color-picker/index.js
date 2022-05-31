@@ -19,6 +19,7 @@ import {
 	useState,
 	useEffect,
 } from '@wordpress/element';
+import { useDebouncedCallback } from 'use-debounce';
 
 const GeneratePressColorPickerControl = ( props ) => {
 	const [ isOpen, setOpen ] = useState( false );
@@ -27,10 +28,12 @@ const GeneratePressColorPickerControl = ( props ) => {
 	const [ isManualInput, setManualInput ] = useState( false );
 
 	const {
+		index,
 		value,
 		varNameValue,
-		onChange,
-		onVarChange,
+		onChange = () => undefined,
+		onVarChange = () => undefined,
+		checkSlugNotUsed = () => undefined,
 		choices,
 		tooltipPosition = 'top center',
 		tooltipText = __( 'Choose Color', 'generatepress' ),
@@ -111,6 +114,20 @@ const GeneratePressColorPickerControl = ( props ) => {
 		palette = JSON.parse( localPalette );
 	}
 
+	const [ varValue, setVarValue ] = useState( varNameValue || '' );
+	const [ invalidSlug, setInvalidSlug ] = useState( false );
+
+	const debouncedOnChange = useDebouncedCallback( ( value ) => ( onChange( value ) ), 750 );
+	const debouncedOnVarChange = useDebouncedCallback( ( value ) => ( onVarChange( value ) ), 750 );
+
+	useEffect( () => {
+		if ( invalidSlug ) {
+			debouncedOnVarChange.cancel();
+		} else {
+			debouncedOnVarChange( varValue );
+		}
+	}, [ varValue, invalidSlug ] );
+
 	return (
 		<div className="generate-color-picker-area">
 			<div className="components-circular-option-picker__option-wrapper">
@@ -169,7 +186,7 @@ const GeneratePressColorPickerControl = ( props ) => {
 									colorString = `rgba(${ r }, ${ g }, ${ b }, ${ a })`;
 								}
 
-								onChange( colorString );
+								debouncedOnChange( colorString );
 							} }
 							disableAlpha={ ! choices.alpha }
 						/>
@@ -180,10 +197,16 @@ const GeneratePressColorPickerControl = ( props ) => {
 									<TextControl
 										label={ __( 'CSS Variable Name', 'generatepress' ) }
 										disabled={ !! isVarLock }
+										help={ invalidSlug ? __('Variable name already used.') : undefined }
 										type={ 'text' }
-										value={ varNameValue || '' }
-										onChange={ ( variable ) => {
-											onVarChange( variable );
+										value={ varValue }
+										onChange={ ( text ) => {
+											setInvalidSlug( checkSlugNotUsed( text, index ) );
+											setVarValue( text );
+										} }
+										onBlur={ () => {
+											setVarValue( varNameValue );
+											setInvalidSlug( checkSlugNotUsed( varNameValue, index ) );
 										} }
 									/>
 
