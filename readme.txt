@@ -125,7 +125,6 @@ Release date: January 31, 2022
 
 Release date: January 17, 2022
 
-* New: generate_resource_hint_type filter
 * Fix: Color picker UI in WP 5.9
 * Fix: Translations using javascript
 * Fix: Layout panel link inside the Start Customizing Dashboard
