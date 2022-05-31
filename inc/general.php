@@ -241,17 +241,17 @@ if ( ! function_exists( 'generate_resource_hints' ) ) {
 	 */
 	function generate_resource_hints( $urls, $relation_type ) {
 		$handle = generate_is_using_dynamic_typography() ? 'generate-google-fonts' : 'generate-fonts';
-		$generate_hint_type = apply_filters( 'generate_resource_hint_type', 'preconnect' );
+		$hint_type = apply_filters( 'generate_resource_hint_type', 'preconnect' );
 		$has_crossorigin_support = version_compare( $GLOBALS['wp_version'], '4.7-alpha', '>=' );
 
 		if ( wp_style_is( $handle, 'queue' ) ) {
-
-			if ( $relation_type === $generate_hint_type ) {
-				if ( $has_crossorigin_support && 'preconnect' === $generate_hint_type ) {
+			if ( $relation_type === $hint_type ) {
+				if ( $has_crossorigin_support && 'preconnect' === $hint_type ) {
 					$urls[] = array(
 						'href' => 'https://fonts.gstatic.com',
 						'crossorigin',
 					);
+
 					$urls[] = array(
 						'href' => 'https://fonts.googleapis.com',
 						'crossorigin',
@@ -262,7 +262,7 @@ if ( ! function_exists( 'generate_resource_hints' ) ) {
 				}
 			}
 
-			if ( 'dns-prefetch' !== $generate_hint_type ) {
+			if ( 'dns-prefetch' !== $hint_type ) {
 				$googleapis_index = array_search( 'fonts.googleapis.com', $urls );
 
 				if ( false !== $googleapis_index ) {
