@@ -12,7 +12,8 @@
 		"generateCustomizerControls": "readonly",
 		"generateDashboard": "readonly",
 		"generatepressCustomizeControls": "readonly",
-		"generatepressBackToTop": "readonly"
+		"generatepressBackToTop": "readonly",
+		"generatepressBlockEditor": "readonly"
 	},
 	"env": {
 	  "browser": true,

@@ -140,14 +140,10 @@ function generate_enqueue_backend_block_editor_assets() {
 	wp_enqueue_script(
 		'generate-block-editor',
 		trailingslashit( get_template_directory_uri() ) . 'assets/dist/block-editor.js',
-		array( 'wp-i18n', 'wp-components', 'wp-element' ),
+		array( 'wp-data', 'wp-dom-ready', 'wp-plugins', 'wp-polyfill' ),
 		GENERATE_VERSION,
 		true
 	);
-
-	wp_register_style( 'generate-block-editor', false, array(), true, true );
-	wp_add_inline_style( 'generate-block-editor', generate_do_inline_block_editor_css( 'block-editor' ) );
-	wp_enqueue_style( 'generate-block-editor' );
 
 	$color_settings = wp_parse_args(
 		get_option( 'generate_settings', array() ),
@@ -166,18 +162,26 @@ function generate_enqueue_backend_block_editor_assets() {
 	}
 
 	wp_localize_script(
+		'generate-block-editor',
+		'generatepressBlockEditor',
+		array(
+			'globalSidebarLayout' => generate_get_block_editor_sidebar_layout( false ),
+			'containerWidth' => generate_get_option( 'container_width' ),
+			'contentPaddingRight' => absint( $spacing_settings['content_right'] ) . 'px',
+			'contentPaddingLeft' => absint( $spacing_settings['content_left'] ) . 'px',
+			'rightSidebarWidth' => apply_filters( 'generate_right_sidebar_width', '25' ),
+			'leftSidebarWidth' => apply_filters( 'generate_left_sidebar_width', '25' ),
+		)
+	);
+
+	wp_register_style( 'generate-block-editor', false, array(), true, true );
+	wp_add_inline_style( 'generate-block-editor', generate_do_inline_block_editor_css( 'block-editor' ) );
+	wp_enqueue_style( 'generate-block-editor' );
+
+	wp_localize_script(
 		'generate-block-editor-scripts',
 		'generate_block_editor',
 		array(
-			'global_sidebar_layout' => generate_get_block_editor_sidebar_layout( false ),
-			'container_width' => generate_get_option( 'container_width' ),
-			'right_sidebar_width' => apply_filters( 'generate_right_sidebar_width', '25' ),
-			'left_sidebar_width' => apply_filters( 'generate_left_sidebar_width', '25' ),
-			'content_padding_right' => absint( $spacing_settings['content_right'] ) . 'px',
-			'content_padding_left' => absint( $spacing_settings['content_left'] ) . 'px',
-			'content_title' => generate_get_block_editor_show_content_title() ? 'true' : 'false',
-			'disable_content_title' => esc_html__( 'Disable Content Title', 'generatepress' ),
-			'show_content_title' => esc_html__( 'Show Content Title', 'generatepress' ),
 			'text_color' => $text_color,
 			'show_editor_styles' => apply_filters( 'generate_show_block_editor_styles', true ),
 		)
@@ -244,13 +248,16 @@ function generate_do_inline_block_editor_css( $for = 'block-content' ) {
 		absint( $spacing_settings['content_right'] ) . 'px'
 	);
 
-	$css->set_selector( 'body .wp-block' );
+	$css->set_selector( 'body' );
+	$css->add_property(
+		'--content-width',
+		'true' === get_post_meta( get_the_ID(), '_generate-full-width-content', true )
+			? '100%'
+			: $content_width_calc
+	);
 
-	if ( 'true' === get_post_meta( get_the_ID(), '_generate-full-width-content', true ) ) {
-		$css->add_property( 'max-width', '100%' );
-	} else {
-		$css->add_property( 'max-width', $content_width_calc );
-	}
+	$css->set_selector( 'body .wp-block' );
+	$css->add_property( 'max-width', 'var(--content-width)' );
 
 	$css->set_selector( '.wp-block[data-align="full"]' );
 	$css->add_property( 'max-width', 'none' );
