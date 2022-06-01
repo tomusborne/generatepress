@@ -47,10 +47,15 @@ function getContentWidth( layout, contentContainer = '' ) {
 
 const ContentWidth = () => {
 	domReady( () => {
-		const body = document.querySelector( '.editor-styles-wrapper' );
 		const sidebarLayout = document.getElementById( 'generate-sidebar-layout' );
 		const fullWidth = document.getElementById( '_generate-full-width-content' );
+
+		if ( ! sidebarLayout || ! fullWidth ) {
+			return;
+		}
+
 		const currentSidebarLayout = sidebarLayout?.value || generatepressBlockEditor.globalSidebarLayout;
+		const body = document.querySelector( '.editor-styles-wrapper' );
 
 		body?.style?.setProperty( '--content-width', getContentWidth( currentSidebarLayout, fullWidth?.value ) );
 
