@@ -52,9 +52,18 @@ if ( ! function_exists( 'generate_comment' ) ) {
 						do_action( 'generate_after_comment_author_name' );
 
 						if ( apply_filters( 'generate_show_comment_entry_meta', true ) ) :
+							$has_comment_date_link = apply_filters( 'generate_add_comment_date_link', true );
+
 							?>
 							<div class="entry-meta comment-metadata">
-								<a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
+								<?php
+								if ( $has_comment_date_link ) {
+									printf(
+										'<a href="%s">',
+										esc_url( get_comment_link( $comment->comment_ID ) )
+									);
+								}
+								?>
 									<time datetime="<?php comment_time( 'c' ); ?>" itemprop="datePublished">
 										<?php
 											printf(
@@ -65,8 +74,13 @@ if ( ! function_exists( 'generate_comment' ) ) {
 											);
 										?>
 									</time>
-								</a>
-								<?php edit_comment_link( __( 'Edit', 'generatepress' ), '<span class="edit-link">| ', '</span>' ); ?>
+								<?php
+								if ( $has_comment_date_link ) {
+									echo '</a>';
+								}
+
+								edit_comment_link( __( 'Edit', 'generatepress' ), '<span class="edit-link">| ', '</span>' );
+								?>
 							</div>
 							<?php
 						endif;
