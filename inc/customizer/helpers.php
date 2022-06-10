@@ -351,6 +351,7 @@ function generate_do_control_inline_scripts() {
 		'generateCustomizerControls',
 		array(
 			'palette' => $colors,
+			'showGoogleFonts' => apply_filters( 'generate_font_manager_show_google_fonts', true ),
 		)
 	);
 
