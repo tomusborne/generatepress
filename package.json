@@ -11,7 +11,8 @@
     "grunt:watch": "grunt watch",
     "package": "grunt package",
     "googleFonts": "grunt download-google-fonts",
-    "lint:php": "composer php"
+    "lint:php": "composer php",
+    "clean": "git checkout -- assets/dist && git clean -fd assets/dist"
   },
   "repository": {
     "type": "git",
