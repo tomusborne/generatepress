@@ -1,5 +1,5 @@
 import { kebabCase, toLower } from 'lodash';
-import ColorPicker from './ColorPicker';
+import ColorPicker from './index';
 import { useCallback, useEffect, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
