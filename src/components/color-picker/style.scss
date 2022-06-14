@@ -10,17 +10,13 @@
 	.react-colorful {
 		width: 100% !important;
 
+		.react-colorful__pointer {
+			width: 20px;
+			height: 20px;
+		}
+
 		.react-colorful__saturation {
 			height: 150px;
-		}
-
-		.react-colorful__hue,
-		.react-colorful__alpha {
-			width: calc(100% - 40px);
-		}
-
-		& + div {
-			display: none;
 		}
 	}
 
