@@ -1,4 +1,7 @@
-import { ColorPicker } from '@wordpress/components';
+import { RgbStringColorPicker, RgbaStringColorPicker } from 'react-colorful';
+import { colord } from 'colord';
+import { useMemo } from '@wordpress/element';
+import { useDebouncedCallback } from 'use-debounce';
 
 export default function PanelColorPicker( { value, showAlpha, onChange } ) {
 
@@ -15,25 +18,24 @@ export default function PanelColorPicker( { value, showAlpha, onChange } ) {
 			}
 		}
 
-		return colorValue;
+		return colord( colorValue ).toRgbString();
 	};
 
-	return (
-		<ColorPicker
-			color={ getPaletteValue( value ) || '' }
-			onChangeComplete={ ( color ) => {
-				let colorString;
+	const Picker = showAlpha ? RgbaStringColorPicker : RgbStringColorPicker;
+	const rgbColor = useMemo( () => getPaletteValue( value ), [ value ] );
+	const debounced = useDebouncedCallback( onChange, 100 );
 
-				if ( 'undefined' === typeof color.rgb || color.rgb.a === 1 ) {
-					colorString = color.hex;
-				} else {
-					const { r, g, b, a } = color.rgb;
-					colorString = `rgba(${ r }, ${ g }, ${ b }, ${ a })`;
+	return (
+		<Picker
+			color={ rgbColor }
+			onChange={ ( nextColor ) => {
+				if ( colord( nextColor ).isValid() ) {
+					const alphaValue = colord( nextColor ).alpha();
+					nextColor = 1 === alphaValue ? colord( nextColor ).toHex() : nextColor;
 				}
 
-				onChange( colorString );
+				debounced( nextColor );
 			} }
-			disableAlpha={ ! showAlpha }
 		/>
 	);
 }
