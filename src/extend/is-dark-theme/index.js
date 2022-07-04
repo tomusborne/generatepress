@@ -11,10 +11,14 @@ const IsDarkTheme = () => {
 				const variableName = textColor.match( /\(([^)]+)\)/ );
 
 				if ( variableName ) {
-					const variableValue = getComputedStyle( document.querySelector( '.editor-styles-wrapper' ) )?.getPropertyValue( variableName[ 1 ] );
+					const wrapper = document.querySelector( '.editor-styles-wrapper' );
 
-					if ( variableValue ) {
-						textColor = variableValue;
+					if ( wrapper ) {
+						const variableValue = getComputedStyle( wrapper )?.getPropertyValue( variableName[ 1 ] );
+
+						if ( variableValue ) {
+							textColor = variableValue;
+						}
 					}
 				}
 			}
