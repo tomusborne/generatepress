@@ -13,11 +13,9 @@ html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
 	border: 1px solid transparent;
-	background: #55555e;
 	cursor: pointer; /* Improves usability and consistency of cursor style between image-type 'input' and others */
 	-webkit-appearance: button; /* Corrects inability to style clickable 'input' types in iOS */
 	padding: 10px 20px;
-	color: #FFF;
 }
 
 input[type="checkbox"],
@@ -68,4 +66,21 @@ textarea {
 input[type="file"] {
 	max-width: 100%;
 	box-sizing: border-box;
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"],
+a.button,
+a.wp-block-button__link:not(.has-background) {
+	color: var(--gp-button-text-color);
+	background-color: var(--gp-button-background-color);
+
+	&:hover,
+	&:focus,
+	&:active {
+		color: var(--gp-button-text-color-hover);
+		background-color: var(--gp-button-background-color-hover);
+	}
 }

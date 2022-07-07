@@ -185,9 +185,18 @@ function generate_enqueue_backend_block_editor_assets() {
  * @param string $for Define whether this CSS for the block content or the block editor.
  */
 function generate_do_inline_block_editor_css( $for = 'block-content' ) {
+	$color_settings = wp_parse_args(
+		get_option( 'generate_settings', array() ),
+		generate_get_color_defaults()
+	);
+
 	$css = new GeneratePress_CSS();
 
 	$css->set_selector( ':root' );
+	$css->add_property( '--gp-button-text-color', $color_settings['form_button_text_color'] );
+	$css->add_property( '--gp-button-background-color', $color_settings['form_button_background_color'] );
+	$css->add_property( '--gp-button-text-color-hover', $color_settings['form_button_text_color_hover'] );
+	$css->add_property( '--gp-button-background-color-hover', $color_settings['form_button_background_color_hover'] );
 
 	$global_colors = generate_get_global_colors();
 
@@ -213,11 +222,6 @@ function generate_do_inline_block_editor_css( $for = 'block-content' ) {
 	if ( 'block-editor' === $for ) {
 		return $css->css_output();
 	}
-
-	$color_settings = wp_parse_args(
-		get_option( 'generate_settings', array() ),
-		generate_get_color_defaults()
-	);
 
 	$font_settings = wp_parse_args(
 		get_option( 'generate_settings', array() ),

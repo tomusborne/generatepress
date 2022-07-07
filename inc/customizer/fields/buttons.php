@@ -35,9 +35,6 @@ GeneratePress_Customize_Field::add_wrapper(
 	)
 );
 
-$buttons_selector = 'button, html input[type="button"], input[type="reset"], input[type="submit"], a.button, a.button:visited, a.wp-block-button__link:not(.has-background)';
-$buttons_hover_selector = 'button:hover, html input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, a.button:hover, button:focus, html input[type="button"]:focus, input[type="reset"]:focus, input[type="submit"]:focus, a.button:focus, a.wp-block-button__link:not(.has-background):active, a.wp-block-button__link:not(.has-background):focus, a.wp-block-button__link:not(.has-background):hover';
-
 GeneratePress_Customize_Field::add_field(
 	'generate_settings[form_button_background_color]',
 	'GeneratePress_Customize_Color_Control',
@@ -57,8 +54,8 @@ GeneratePress_Customize_Field::add_field(
 		),
 		'output' => array(
 			array(
-				'element'  => $buttons_selector,
-				'property' => 'background-color',
+				'element'  => ':root',
+				'property' => '--gp-button-background-color',
 			),
 		),
 	)
@@ -84,8 +81,8 @@ GeneratePress_Customize_Field::add_field(
 		),
 		'output' => array(
 			array(
-				'element'  => $buttons_hover_selector,
-				'property' => 'background-color',
+				'element'  => ':root',
+				'property' => '--gp-button-background-color-hover',
 			),
 		),
 	)
@@ -124,8 +121,8 @@ GeneratePress_Customize_Field::add_field(
 		),
 		'output' => array(
 			array(
-				'element'  => $buttons_selector,
-				'property' => 'color',
+				'element'  => ':root',
+				'property' => '--gp-button-text-color',
 			),
 		),
 	)
@@ -150,8 +147,8 @@ GeneratePress_Customize_Field::add_field(
 		),
 		'output' => array(
 			array(
-				'element'  => $buttons_hover_selector,
-				'property' => 'color',
+				'element'  => ':root',
+				'property' => '--gp-button-text-color-hover',
 			),
 		),
 	)
