@@ -4,7 +4,6 @@ import { useMemo } from '@wordpress/element';
 import { useDebouncedCallback } from 'use-debounce';
 
 export default function PanelColorPicker( { value, showAlpha, onChange } ) {
-
 	const getPaletteValue = ( colorValue ) => {
 		if ( String( colorValue ).startsWith( 'var(' ) ) {
 			const variableName = colorValue.match( /\(([^)]+)\)/ );
