@@ -41,6 +41,7 @@ const GeneratePressColorControlForm = ( props ) => {
 					showVariableName={ false }
 					showPalette={ true }
 					variableNameIsDisabled={ true }
+					label={ props.label }
 					onChange={ ( value ) => {
 						handleChangeComplete( value );
 					} }

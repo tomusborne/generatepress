@@ -13,7 +13,6 @@ export default function ColorPicker( props ) {
 		value,
 		variableName,
 		label,
-		hideLabel,
 		tooltipText,
 		tooltipPosition,
 		showAlpha,
@@ -59,13 +58,13 @@ export default function ColorPicker( props ) {
 				className="generate-component-color-picker"
 				onClose={ debouncedClosePanel }
 				focusOnMount="container"
+				__unstableShift={ true }
 			>
 				<BaseControl
-					label={ ! hideLabel ? label : undefined }
+					label={ !! label ? label : '' }
 					id="generate-color-input-field"
 					className="generate-color-input-main-label"
 				>
-
 					<PanelColorPicker
 						value={ value }
 						onChange={ onChange }
