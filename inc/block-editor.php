@@ -170,7 +170,7 @@ function generate_enqueue_backend_block_editor_assets() {
 			'leftSidebarWidth' => apply_filters( 'generate_left_sidebar_width', '25' ),
 			'text_color' => $text_color,
 			'show_editor_styles' => apply_filters( 'generate_show_block_editor_styles', true ),
-			'contentAreaType' => apply_filters( 'generate_block_editor_content_type', '' ),
+			'contentAreaType' => apply_filters( 'generate_block_editor_content_area_type', '' ),
 			'customContentWidth' => apply_filters( 'generate_block_editor_container_width', '' ),
 		)
 	);
