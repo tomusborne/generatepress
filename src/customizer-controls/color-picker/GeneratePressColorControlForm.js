@@ -1,9 +1,7 @@
 import './style.scss';
+import { __ } from '@wordpress/i18n';
+import { BaseControl } from '@wordpress/components';
 import ColorPicker from '../../components/color-picker';
-
-import {
-	BaseControl,
-} from '@wordpress/components';
 
 const GeneratePressColorControlForm = ( props ) => {
 	/**
@@ -34,9 +32,21 @@ const GeneratePressColorControlForm = ( props ) => {
 				}
 
 				<ColorPicker
-					{ ...props }
+					value={ props.value }
+					hideLabel={ true }
+					tooltipText={ props?.choices?.tooltip || __( 'Choose Color', 'generatepress' ) }
+					tooltipPosition={ 'top center' }
+					showAlpha={ true }
+					showReset={ true }
+					showVariableName={ false }
+					showPalette={ true }
+					variableNameIsDisabled={ true }
+					label={ props.label }
 					onChange={ ( value ) => {
 						handleChangeComplete( value );
+					} }
+					onClickReset={ () => {
+						handleChangeComplete( props.defaultValue );
 					} }
 				/>
 			</BaseControl>

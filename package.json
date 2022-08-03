@@ -11,7 +11,8 @@
     "grunt:watch": "grunt watch",
     "package": "grunt package",
     "googleFonts": "grunt download-google-fonts",
-    "lint:php": "composer php"
+    "lint:php": "composer php",
+    "clean": "git checkout -- assets/dist && git clean -fd assets/dist"
   },
   "repository": {
     "type": "git",
@@ -56,7 +57,9 @@
   },
   "dependencies": {
     "classnames": "^2.3.1",
+    "colord": "^2.9.2",
     "grunt-cli": "^1.4.2",
+    "react-colorful": "5.5.1",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1"
   },

@@ -10,17 +10,13 @@
 	.react-colorful {
 		width: 100% !important;
 
+		.react-colorful__pointer {
+			width: 20px;
+			height: 20px;
+		}
+
 		.react-colorful__saturation {
 			height: 150px;
-		}
-
-		.react-colorful__hue,
-		.react-colorful__alpha {
-			width: calc(100% - 40px);
-		}
-
-		& + div {
-			display: none;
 		}
 	}
 
@@ -150,6 +146,10 @@
 		&:focus:after {
 			width: 28px;
 			height: 28px;
+			top: 0;
+			left: 0;
+			border: 0;
+			box-shadow: inset 0 0 0 2px #757575;
 		}
 	}
 }
@@ -208,7 +208,7 @@
 }
 
 .generate-color-option-area {
-    padding: 16px 16px 0;
+    padding: 16px 0 0;
 }
 
 .generate-color-input--css-var-name-wrapper {

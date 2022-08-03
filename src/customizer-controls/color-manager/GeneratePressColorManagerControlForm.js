@@ -133,7 +133,6 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 				? (
 					<ColorsList
 						colors={ colors }
-						choices={ props.choices }
 						onChangeColor={ updateColorValue }
 						onChangeSlug={ updateColorSlug }
 						onClickDeleteColor={ deleteColor }
