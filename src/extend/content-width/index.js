@@ -4,7 +4,9 @@ import domReady from '@wordpress/dom-ready';
 function getContentWidth( layout, contentContainer = '' ) {
 	let contentWidth = '';
 	let unit = 'px';
-	const containerWidth = generatepressBlockEditor.containerWidth;
+	const containerWidth = generatepressBlockEditor.customContentWidth
+		? parseInt( generatepressBlockEditor.customContentWidth )
+		: generatepressBlockEditor.containerWidth;
 	const leftSidebarWidth = generatepressBlockEditor.leftSidebarWidth;
 	const rightSidebarWidth = generatepressBlockEditor.rightSidebarWidth;
 
@@ -28,7 +30,7 @@ function getContentWidth( layout, contentContainer = '' ) {
 	}
 
 	// Account for our full width content option.
-	if ( 'true' === contentContainer ) {
+	if ( 'true' === contentContainer && ! generatepressBlockEditor.customContentWidth ) {
 		if ( 'left-sidebar' === layout ) {
 			contentWidth = 100 - leftSidebarWidth;
 		} else if ( 'right-sidebar' === layout ) {
@@ -54,13 +56,14 @@ const ContentWidth = () => {
 			return;
 		}
 
+		const contentContainer = fullWidth?.value ? fullWidth?.value : generatepressBlockEditor.contentAreaType;
 		const currentSidebarLayout = sidebarLayout?.value || generatepressBlockEditor.globalSidebarLayout;
 		const body = document.querySelector( '.editor-styles-wrapper' );
 
-		body?.style?.setProperty( '--content-width', getContentWidth( currentSidebarLayout, fullWidth?.value ) );
+		body?.style?.setProperty( '--content-width', getContentWidth( currentSidebarLayout, contentContainer ) );
 
 		sidebarLayout.onchange = ( event ) => {
-			body?.style?.setProperty( '--content-width', getContentWidth( event.target.value || generatepressBlockEditor.globalSidebarLayout, fullWidth?.value ) );
+			body?.style?.setProperty( '--content-width', getContentWidth( event.target.value || generatepressBlockEditor.globalSidebarLayout, contentContainer ) );
 		};
 
 		fullWidth.onchange = ( event ) => {
