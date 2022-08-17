@@ -10,13 +10,11 @@
 			var coords = goTopBtn.getAttribute( 'data-start-scroll' );
 
 			if ( scrolled > coords ) {
-				goTopBtn.style.opacity = '1';
-				goTopBtn.style.visibility = 'visible';
+				goTopBtn.classList.add( 'generate-back-to-top__show' );
 			}
 
 			if ( scrolled < coords ) {
-				goTopBtn.style.opacity = '0';
-				goTopBtn.style.visibility = 'hidden';
+				goTopBtn.classList.remove( 'generate-back-to-top__show' );
 			}
 		};
 
