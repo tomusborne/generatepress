@@ -4,6 +4,7 @@ import CustomSelector from './TypographySettings/CustomSelector';
 import FontFamily from './TypographySettings/FontFamily';
 import FontWeight from './TypographySettings/FontWeight';
 import TextTransform from './TypographySettings/TextTransform';
+import FontStyle from './TypographySettings/FontStyle';
 import FontSize from './TypographySettings/FontSize';
 import LineHeight from './TypographySettings/LineHeight';
 import LetterSpacing from './TypographySettings/LetterSpacing';
@@ -54,6 +55,12 @@ const TypographySettings = ( props ) => {
 						<TextTransform
 							index={ font.index }
 							value={ font.textTransform }
+							onChange={ onChangeFontValue }
+						/>
+
+						<FontStyle
+							index={ font.index }
+							value={ font.fontStyle }
 							onChange={ onChangeFontValue }
 						/>
 					</div>
