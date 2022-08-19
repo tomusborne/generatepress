@@ -9,6 +9,7 @@ import FontSize from './TypographySettings/FontSize';
 import LineHeight from './TypographySettings/LineHeight';
 import LetterSpacing from './TypographySettings/LetterSpacing';
 import MarginBottom from './TypographySettings/MarginBottom';
+import TextDecoration from './TypographySettings/textDecoration';
 import { selectorHasMarginBottom } from '../utils';
 import { __ } from '@wordpress/i18n';
 
@@ -61,6 +62,12 @@ const TypographySettings = ( props ) => {
 						<FontStyle
 							index={ font.index }
 							value={ font.fontStyle }
+							onChange={ onChangeFontValue }
+						/>
+
+						<TextDecoration
+							index={ font.index }
+							value={ font.textDecoration }
 							onChange={ onChangeFontValue }
 						/>
 					</div>

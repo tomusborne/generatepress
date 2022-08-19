@@ -156,6 +156,7 @@ class GeneratePress_Typography {
 				$css->add_property( 'font-weight', $options['fontWeight'] );
 				$css->add_property( 'text-transform', $options['textTransform'] );
 				$css->add_property( 'font-style', $options['fontStyle'] );
+				$css->add_property( 'text-decoration', $options['textDecoration'] );
 				$css->add_property( 'font-size', $options['fontSize'], false, $options['fontSizeUnit'] );
 				$css->add_property( 'letter-spacing', $options['letterSpacing'], false, $options['letterSpacingUnit'] );
 
@@ -321,6 +322,7 @@ class GeneratePress_Typography {
 			'fontFamily' => '',
 			'fontWeight' => '',
 			'textTransform' => '',
+			'textDecoration' => '',
 			'fontStyle' => '',
 			'fontSize' => '',
 			'fontSizeTablet' => '',

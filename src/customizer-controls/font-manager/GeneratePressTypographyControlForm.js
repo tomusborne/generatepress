@@ -120,6 +120,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 						fontFamily: '',
 						fontWeight: '',
 						textTransform: '',
+						textDecoration: '',
 						fontStyle: '',
 						fontSize: '',
 						fontSizeTablet: '',
