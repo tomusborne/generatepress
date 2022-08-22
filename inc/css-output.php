@@ -125,6 +125,12 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$css->add_property( 'text-align', 'center' );
 			$css->add_property( 'z-index', '10' );
 			$css->add_property( 'transition', 'opacity 300ms ease-in-out' );
+			$css->add_property( 'opacity', '0.1' ); // Can't be 0 or we face double-tap issues on iOS.
+			$css->add_property( 'transform', 'translateY(1000px)' ); // Can't use visibility or we face the same issue as above.
+
+			$css->set_selector( '.generate-back-to-top__show' );
+			$css->add_property( 'opacity', '1' );
+			$css->add_property( 'transform', 'translateY(0)' );
 		}
 
 		if ( 'enable' === generate_get_option( 'nav_search' ) ) {
