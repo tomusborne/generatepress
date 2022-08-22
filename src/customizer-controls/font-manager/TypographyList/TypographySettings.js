@@ -4,10 +4,12 @@ import CustomSelector from './TypographySettings/CustomSelector';
 import FontFamily from './TypographySettings/FontFamily';
 import FontWeight from './TypographySettings/FontWeight';
 import TextTransform from './TypographySettings/TextTransform';
+import FontStyle from './TypographySettings/FontStyle';
 import FontSize from './TypographySettings/FontSize';
 import LineHeight from './TypographySettings/LineHeight';
 import LetterSpacing from './TypographySettings/LetterSpacing';
 import MarginBottom from './TypographySettings/MarginBottom';
+import TextDecoration from './TypographySettings/textDecoration';
 import { selectorHasMarginBottom } from '../utils';
 import { __ } from '@wordpress/i18n';
 
@@ -54,6 +56,18 @@ const TypographySettings = ( props ) => {
 						<TextTransform
 							index={ font.index }
 							value={ font.textTransform }
+							onChange={ onChangeFontValue }
+						/>
+
+						<FontStyle
+							index={ font.index }
+							value={ font.fontStyle }
+							onChange={ onChangeFontValue }
+						/>
+
+						<TextDecoration
+							index={ font.index }
+							value={ font.textDecoration }
 							onChange={ onChangeFontValue }
 						/>
 					</div>
