@@ -289,6 +289,12 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 
 		$css = new GeneratePress_CSS();
 
+		$css->set_selector( ':root' );
+		$css->add_property( '--gp-button-text-color', $settings['form_button_text_color'] );
+		$css->add_property( '--gp-button-background-color', $settings['form_button_background_color'] );
+		$css->add_property( '--gp-button-text-color-hover', $settings['form_button_text_color_hover'] );
+		$css->add_property( '--gp-button-background-color-hover', $settings['form_button_background_color_hover'] );
+
 		$css->set_selector( '.top-bar' );
 		$css->add_property( 'background-color', $settings['top_bar_background_color'] );
 		$css->add_property( 'color', $settings['top_bar_text_color'] );
@@ -469,14 +475,6 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->add_property( 'color', $settings['form_text_color_focus'] );
 		$css->add_property( 'background-color', $settings['form_background_color_focus'] );
 		$css->add_property( 'border-color', $settings['form_border_color_focus'] );
-
-		$css->set_selector( 'button,html input[type="button"],input[type="reset"],input[type="submit"],a.button,a.wp-block-button__link:not(.has-background)' );
-		$css->add_property( 'color', $settings['form_button_text_color'] );
-		$css->add_property( 'background-color', $settings['form_button_background_color'] );
-
-		$css->set_selector( 'button:hover,html input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover,a.button:hover,button:focus,html input[type="button"]:focus,input[type="reset"]:focus,input[type="submit"]:focus,a.button:focus,a.wp-block-button__link:not(.has-background):active,a.wp-block-button__link:not(.has-background):focus,a.wp-block-button__link:not(.has-background):hover' );
-		$css->add_property( 'color', $settings['form_button_text_color_hover'] );
-		$css->add_property( 'background-color', $settings['form_button_background_color_hover'] );
 
 		$css->set_selector( 'a.generate-back-to-top' );
 		$css->add_property( 'background-color', $settings['back_to_top_background_color'] );

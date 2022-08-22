@@ -477,3 +477,18 @@ function generate_do_a11y_scripts() {
 		);
 	}
 }
+
+add_filter( 'generateblocks_default_block_styles', 'generate_set_gb_button_styles' );
+/**
+ * Set the default colors for GenerateBlocks buttons.
+ *
+ * @param array $styles The default styles.
+ */
+function generate_set_gb_button_styles( $styles ) {
+	$styles['button']['backgroundColor'] = 'var(--gp-button-background-color)';
+	$styles['button']['textColor'] = 'var(--gp-button-text-color)';
+	$styles['button']['backgroundColorHover'] = 'var(--gp-button-background-color-hover)';
+	$styles['button']['textColorHover'] = 'var(--gp-button-text-color-hover)';
+
+	return $styles;
+}
