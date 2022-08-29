@@ -230,7 +230,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 											<div className="generate-font-manager--options">
 												<ToggleControl
 													className="generate-font-manager-google-font--field"
-													label={ __( 'Google Font', 'generatepress' ) }
+													label={ __( 'Use Google Fonts API', 'generatepress' ) }
 													checked={ !! fonts[ index ].googleFont }
 													onChange={ ( value ) => {
 														const fontValues = [ ...fonts ];
