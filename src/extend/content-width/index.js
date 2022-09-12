@@ -63,7 +63,9 @@ const ContentWidth = () => {
 		body?.style?.setProperty( '--content-width', getContentWidth( currentSidebarLayout, contentContainer ) );
 
 		sidebarLayout.onchange = ( event ) => {
-			body?.style?.setProperty( '--content-width', getContentWidth( event.target.value || generatepressBlockEditor.globalSidebarLayout, contentContainer ) );
+			// We need to check fullWidth again in case it has changed since load.
+			const latestContentContainer = fullWidth?.value ? fullWidth?.value : generatepressBlockEditor.contentAreaType;
+			body?.style?.setProperty( '--content-width', getContentWidth( event.target.value || generatepressBlockEditor.globalSidebarLayout, latestContentContainer ) );
 		};
 
 		fullWidth.onchange = ( event ) => {
