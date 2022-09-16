@@ -527,7 +527,7 @@ function generate_do_inline_block_editor_css( $for = 'block-content' ) {
 		}
 	}
 
-	$css->set_selector( '.block-editor-block-list__block a, .block-editor-block-list__block a:visited' );
+	$css->set_selector( 'a, a:visited' );
 
 	if ( $color_settings['content_link_color'] ) {
 		$css->add_property( 'color', $color_settings['content_link_color'] );
@@ -535,7 +535,7 @@ function generate_do_inline_block_editor_css( $for = 'block-content' ) {
 		$css->add_property( 'color', generate_get_option( 'link_color' ) );
 	}
 
-	$css->set_selector( '.block-editor-block-list__block a:hover, .block-editor-block-list__block a:focus, .block-editor-block-list__block a:active' );
+	$css->set_selector( 'a:hover, a:focus, a:active' );
 
 	if ( $color_settings['content_link_hover_color'] ) {
 		$css->add_property( 'color', $color_settings['content_link_hover_color'] );
