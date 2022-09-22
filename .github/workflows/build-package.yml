@@ -27,7 +27,7 @@ jobs:
         run: npm run build
 
       - name: NPM grunt build
-        run: npm run grunt build
+        run: npm run grunt:build
 
       - name: Grunt action-package
         run: npm run action-package
