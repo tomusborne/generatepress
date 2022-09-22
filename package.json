@@ -11,7 +11,8 @@
     "grunt:watch": "grunt watch",
     "package": "grunt package",
     "googleFonts": "grunt download-google-fonts",
-    "lint:php": "composer php"
+    "lint:php": "composer php",
+    "action-package": "grunt action-package"
   },
   "repository": {
     "type": "git",

@@ -230,8 +230,9 @@ module.exports = function (grunt) {
                     '!package-lock.json',
                     '!phpcs.xml.dist',
                     '!src/**',
+					'!*.zip',
                 ],
-                dest: 'generatepress/'
+                dest: 'package/generatepress/'
             }
         },
 
@@ -243,18 +244,18 @@ module.exports = function (grunt) {
                     level: 5
                 },
                 files: [
-                    {
-                        src: [
-                            './generatepress/**'
-                        ]
-
-                    }
+					{
+						expand: true,
+						cwd: 'package/',
+						src: [ 'generatepress/**' ],
+						dest: '/',
+					},
                 ]
             }
         },
 
         clean: {
-            main: ["generatepress"],
+            main: ["package"],
             zip: ["*.zip"]
         },
     });
@@ -281,6 +282,7 @@ module.exports = function (grunt) {
 
     // Grunt release - Create installable package of the local files
 	grunt.registerTask('package', ['clean:zip', 'copy:main', 'compress:main', 'clean:main']);
+	grunt.registerTask( 'action-package', [ 'clean:main', 'copy:main' ] );
 
 	grunt.registerTask('download-google-fonts', function () {
         var done = this.async();
