@@ -31,16 +31,7 @@ function getContentWidth( layout, contentContainer = '' ) {
 
 	// Account for our full width content option.
 	if ( 'true' === contentContainer && ! generatepressBlockEditor.customContentWidth ) {
-		if ( 'left-sidebar' === layout ) {
-			contentWidth = 100 - leftSidebarWidth;
-		} else if ( 'right-sidebar' === layout ) {
-			contentWidth = 100 - rightSidebarWidth;
-		} else if ( 'no-sidebar' === layout ) {
-			contentWidth = 100;
-		} else {
-			contentWidth = 100 - leftSidebarWidth - rightSidebarWidth;
-		}
-
+		contentWidth = 100;
 		unit = '%';
 	}
 
