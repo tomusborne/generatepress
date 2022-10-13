@@ -822,9 +822,6 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 
 			$css->set_selector( '.both-right .inside-right-sidebar,.both-left .inside-right-sidebar' );
 			$css->add_property( 'margin-left', absint( $settings['separator'] / 2 ), absint( $defaults['separator'] / 2 ), 'px' );
-
-			$css->set_selector( '.one-container.archive .post:not(:last-child), .one-container.blog .post:not(:last-child)' );
-			$css->add_property( 'padding-bottom', absint( $settings['content_bottom'] ), absint( $defaults['content_bottom'] ), 'px' );
 		} else {
 			$css->set_selector( '.both-right.separate-containers .inside-left-sidebar' );
 			$css->add_property( 'margin-right', absint( $settings['separator'] / 2 ), absint( $defaults['separator'] / 2 ), 'px' );
@@ -1147,6 +1144,16 @@ function generate_no_cache_dynamic_css() {
 
 		$css->set_selector( '.site-content .content-area' );
 		$css->add_property( 'width', absint( $content_width ) . '%' );
+
+		if ( apply_filters( 'generate_do_one_container_post_bottom_padding', true ) ) {
+			$spacing_settings = wp_parse_args(
+				get_option( 'generate_spacing_settings', array() ),
+				generate_spacing_get_defaults()
+			);
+
+			$css->set_selector( '.one-container.archive .post:not(:last-child), .one-container.blog .post:not(:last-child)' );
+			$css->add_property( 'padding-bottom', absint( $spacing_settings['content_bottom'] ), false, 'px' );
+		}
 	}
 
 	$css->start_media_query( generate_get_media_query( 'mobile-menu' ) );
