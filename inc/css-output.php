@@ -823,7 +823,7 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 			$css->set_selector( '.both-right .inside-right-sidebar,.both-left .inside-right-sidebar' );
 			$css->add_property( 'margin-left', absint( $settings['separator'] / 2 ), absint( $defaults['separator'] / 2 ), 'px' );
 
-			$css->set_selector( '.one-container.archive .post:not(:last-child), .one-container.blog .post:not(:last-child)' );
+			$css->set_selector( '.one-container.archive .post:not(:last-child):not(.is-loop-template-item), .one-container.blog .post:not(:last-child):not(.is-loop-template-item)' );
 			$css->add_property( 'padding-bottom', absint( $settings['content_bottom'] ), absint( $defaults['content_bottom'] ), 'px' );
 		} else {
 			$css->set_selector( '.both-right.separate-containers .inside-left-sidebar' );
