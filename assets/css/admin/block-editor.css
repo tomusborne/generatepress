@@ -151,19 +151,3 @@ button.content-title-visibility:before {
 .wp-block-shortcode .block-editor-plain-text {
 	color: initial;
 }
-
-/**
- * Buttons
- */
-a.button, a.button:visited, .wp-block-button__link:not(.has-background) {
-	color: var(--gp-button-text-color);
-	background-color: var(--gp-button-background-color);
-	padding: 10px 20px;
-	border: 0;
-	border-radius: 0;
-}
-
-a.button:hover, a.button:active, a.button:focus, .wp-block-button__link:not(.has-background):active, .wp-block-button__link:not(.has-background):focus, .wp-block-button__link:not(.has-background):hover {
-	color: var(--gp-button-text-color-hover);
-	background-color: var(--gp-button-background-color-hover);
-}

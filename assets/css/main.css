@@ -384,6 +384,8 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
+	background: #55555e;
+	color: #fff;
 	border: 1px solid transparent;
 	cursor: pointer;
 	-webkit-appearance: button;
@@ -408,36 +410,6 @@ select {
 
 textarea {
 	width: 100%;
-}
-
-button,
-html input[type="button"],
-input[type="reset"],
-input[type="submit"],
-a.button,
-a.wp-block-button__link:not(.has-background) {
-	color: var(--gp-button-text-color);
-	background-color: var(--gp-button-background-color);
-}
-
-button:hover, button:focus, button:active,
-html input[type="button"]:hover,
-html input[type="button"]:focus,
-html input[type="button"]:active,
-input[type="reset"]:hover,
-input[type="reset"]:focus,
-input[type="reset"]:active,
-input[type="submit"]:hover,
-input[type="submit"]:focus,
-input[type="submit"]:active,
-a.button:hover,
-a.button:focus,
-a.button:active,
-a.wp-block-button__link:not(.has-background):hover,
-a.wp-block-button__link:not(.has-background):focus,
-a.wp-block-button__link:not(.has-background):active {
-	color: var(--gp-button-text-color-hover);
-	background-color: var(--gp-button-background-color-hover);
 }
 
 /*--------------------------------------------------------------
