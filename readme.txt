@@ -105,7 +105,6 @@ Release date: TBA
 
 * Feature: Re-order global colors in the Customizer
 * Feature: Add live preview to global color changes in Customizer
-* Feature: Use CSS variables for button colors
 * Feature: Add font-style option to Typography
 * Feature: Add text-decoration option to Typography
 * Feature: Add generate_font_manager_show_google_fonts PHP filter
