@@ -125,6 +125,12 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			$css->add_property( 'text-align', 'center' );
 			$css->add_property( 'z-index', '10' );
 			$css->add_property( 'transition', 'opacity 300ms ease-in-out' );
+			$css->add_property( 'opacity', '0.1' ); // Can't be 0 or we face double-tap issues on iOS.
+			$css->add_property( 'transform', 'translateY(1000px)' ); // Can't use visibility or we face the same issue as above.
+
+			$css->set_selector( '.generate-back-to-top__show' );
+			$css->add_property( 'opacity', '1' );
+			$css->add_property( 'transform', 'translateY(0)' );
 		}
 
 		if ( 'enable' === generate_get_option( 'nav_search' ) ) {
@@ -255,10 +261,10 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 			foreach ( (array) $global_colors as $key => $data ) {
 				if ( ! empty( $data['slug'] ) && ! empty( $data['color'] ) ) {
 					$css->set_selector( '.has-' . $data['slug'] . '-color' );
-					$css->add_property( 'color', $data['color'] );
+					$css->add_property( 'color', 'var(--' . $data['slug'] . ')' );
 
 					$css->set_selector( '.has-' . $data['slug'] . '-background-color' );
-					$css->add_property( 'background-color', $data['color'] );
+					$css->add_property( 'background-color', 'var(--' . $data['slug'] . ')' );
 				}
 			}
 		}
@@ -819,7 +825,7 @@ if ( ! function_exists( 'generate_spacing_css' ) ) {
 			$css->set_selector( '.both-right .inside-right-sidebar,.both-left .inside-right-sidebar' );
 			$css->add_property( 'margin-left', absint( $settings['separator'] / 2 ), absint( $defaults['separator'] / 2 ), 'px' );
 
-			$css->set_selector( '.one-container.archive .post:not(:last-child), .one-container.blog .post:not(:last-child)' );
+			$css->set_selector( '.one-container.archive .post:not(:last-child):not(.is-loop-template-item), .one-container.blog .post:not(:last-child):not(.is-loop-template-item)' );
 			$css->add_property( 'padding-bottom', absint( $settings['content_bottom'] ), absint( $defaults['content_bottom'] ), 'px' );
 		} else {
 			$css->set_selector( '.both-right.separate-containers .inside-left-sidebar' );

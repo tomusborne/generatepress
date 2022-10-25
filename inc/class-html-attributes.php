@@ -116,6 +116,9 @@ class GeneratePress_HTML_Attributes {
 
 			case 'footer-entry-meta':
 				return $this->footer_entry_meta( $attributes );
+
+			case 'woocommerce-content':
+				return $this->woocommerce_content( $attributes );
 		}
 
 		return $attributes;
@@ -311,7 +314,7 @@ class GeneratePress_HTML_Attributes {
 	public function post_navigation( $attributes ) {
 		if ( is_single() ) {
 			$attributes['class'] .= ' post-navigation';
-			$attributes['aria-label'] = esc_attr__( 'Single Post', 'generatepress' );
+			$attributes['aria-label'] = esc_attr__( 'Posts', 'generatepress' );
 		} else {
 			$attributes['class'] .= ' paging-navigation';
 			$attributes['aria-label'] = esc_attr__( 'Archive Page', 'generatepress' );
@@ -457,6 +460,34 @@ class GeneratePress_HTML_Attributes {
 	public function footer_entry_meta( $attributes ) {
 		$attributes['class'] .= ' entry-meta';
 		$attributes['aria-label'] = esc_attr__( 'Entry meta', 'generatepress' );
+
+		return $attributes;
+	}
+
+	/**
+	 * Add attributes to our WooCommerce content container.
+	 *
+	 * @since 3.2.0
+	 * @param array $attributes The existing attributes.
+	 */
+	public function woocommerce_content( $attributes ) {
+		if ( is_singular() ) {
+			$attributes['id'] = 'post-' . get_the_ID();
+			$attributes['class'] = esc_attr( implode( ' ', get_post_class( '', get_the_ID() ) ) );
+
+			if ( 'microdata' === generate_get_schema_type() ) {
+				$type = apply_filters( 'generate_article_itemtype', 'CreativeWork' );
+
+				$attributes['itemtype'] = sprintf(
+					'itemtype="https://schema.org/%s"',
+					$type
+				);
+
+				$attributes['itemscope'] = true;
+			}
+		} else {
+			$attributes['class'] = 'woocommerce-archive-wrapper';
+		}
 
 		return $attributes;
 	}

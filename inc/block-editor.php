@@ -115,6 +115,12 @@ function generate_add_inline_block_editor_styles( $editor_settings ) {
 				$editor_settings['styles'][] = array( 'css' => $google_fonts_import );
 			}
 		}
+
+		$editor_settings['styles'][] = array( 'css' => wp_strip_all_tags( generate_do_inline_block_editor_css() ) );
+
+		if ( generate_is_using_dynamic_typography() ) {
+			$editor_settings['styles'][] = array( 'css' => wp_strip_all_tags( GeneratePress_Typography::get_css( 'core' ) ) );
+		}
 	}
 
 	return $editor_settings;
@@ -128,24 +134,10 @@ add_action( 'enqueue_block_editor_assets', 'generate_enqueue_backend_block_edito
  * @since 2.2
  */
 function generate_enqueue_backend_block_editor_assets() {
-	wp_enqueue_script( 'generate-block-editor-tinycolor', get_template_directory_uri() . '/assets/js/admin/tinycolor.js', false, GENERATE_VERSION, true );
-	wp_enqueue_script( 'generate-block-editor-scripts', get_template_directory_uri() . '/assets/js/admin/block-editor.js', array( 'jquery', 'generate-block-editor-tinycolor' ), GENERATE_VERSION, true );
-
-	$show_editor_styles = apply_filters( 'generate_show_block_editor_styles', true );
-
-	if ( $show_editor_styles ) {
-		// Using wp-edit-blocks for now until we do this: https://github.com/tomusborne/generatepress/pull/343.
-		wp_add_inline_style( 'wp-edit-blocks', wp_strip_all_tags( generate_do_inline_block_editor_css() ) );
-
-		if ( generate_is_using_dynamic_typography() ) {
-			wp_add_inline_style( 'wp-edit-blocks', wp_strip_all_tags( GeneratePress_Typography::get_css( 'core', 'editor' ) ) );
-		}
-	}
-
 	wp_enqueue_script(
 		'generate-block-editor',
 		trailingslashit( get_template_directory_uri() ) . 'assets/dist/block-editor.js',
-		array( 'wp-i18n', 'wp-components', 'wp-element' ),
+		array( 'wp-data', 'wp-dom-ready', 'wp-element', 'wp-plugins', 'wp-polyfill' ),
 		GENERATE_VERSION,
 		true
 	);
@@ -167,55 +159,35 @@ function generate_enqueue_backend_block_editor_assets() {
 	}
 
 	wp_localize_script(
-		'generate-block-editor-scripts',
-		'generate_block_editor',
+		'generate-block-editor',
+		'generatepressBlockEditor',
 		array(
-			'global_sidebar_layout' => generate_get_block_editor_sidebar_layout( false ),
-			'container_width' => generate_get_option( 'container_width' ),
-			'right_sidebar_width' => apply_filters( 'generate_right_sidebar_width', '25' ),
-			'left_sidebar_width' => apply_filters( 'generate_left_sidebar_width', '25' ),
-			'content_padding_right' => absint( $spacing_settings['content_right'] ) . 'px',
-			'content_padding_left' => absint( $spacing_settings['content_left'] ) . 'px',
-			'content_title' => generate_get_block_editor_show_content_title() ? 'true' : 'false',
-			'disable_content_title' => esc_html__( 'Disable Content Title', 'generatepress' ),
-			'show_content_title' => esc_html__( 'Show Content Title', 'generatepress' ),
+			'globalSidebarLayout' => generate_get_block_editor_sidebar_layout( false ),
+			'containerWidth' => generate_get_option( 'container_width' ),
+			'contentPaddingRight' => absint( $spacing_settings['content_right'] ) . 'px',
+			'contentPaddingLeft' => absint( $spacing_settings['content_left'] ) . 'px',
+			'rightSidebarWidth' => apply_filters( 'generate_right_sidebar_width', '25' ),
+			'leftSidebarWidth' => apply_filters( 'generate_left_sidebar_width', '25' ),
 			'text_color' => $text_color,
-			'show_editor_styles' => $show_editor_styles,
+			'show_editor_styles' => apply_filters( 'generate_show_block_editor_styles', true ),
+			'contentAreaType' => apply_filters( 'generate_block_editor_content_area_type', '' ),
+			'customContentWidth' => apply_filters( 'generate_block_editor_container_width', '' ),
 		)
 	);
+
+	wp_register_style( 'generate-block-editor', false, array(), true, true );
+	wp_add_inline_style( 'generate-block-editor', generate_do_inline_block_editor_css( 'block-editor' ) );
+	wp_enqueue_style( 'generate-block-editor' );
 }
 
 /**
  * Write our CSS for the block editor.
  *
  * @since 2.2
+ * @param string $for Define whether this CSS for the block content or the block editor.
  */
-function generate_do_inline_block_editor_css() {
-	$color_settings = wp_parse_args(
-		get_option( 'generate_settings', array() ),
-		generate_get_color_defaults()
-	);
-
-	$font_settings = wp_parse_args(
-		get_option( 'generate_settings', array() ),
-		generate_get_default_fonts()
-	);
-
+function generate_do_inline_block_editor_css( $for = 'block-content' ) {
 	$css = new GeneratePress_CSS();
-
-	$content_width = generate_get_block_editor_content_width();
-
-	$spacing_settings = wp_parse_args(
-		get_option( 'generate_spacing_settings', array() ),
-		generate_spacing_get_defaults()
-	);
-
-	$content_width_calc = sprintf(
-		'calc(%1$s - %2$s - %3$s)',
-		absint( $content_width ) . 'px',
-		absint( $spacing_settings['content_left'] ) . 'px',
-		absint( $spacing_settings['content_right'] ) . 'px'
-	);
 
 	$css->set_selector( ':root' );
 
@@ -231,23 +203,55 @@ function generate_do_inline_block_editor_css() {
 		foreach ( (array) $global_colors as $key => $data ) {
 			if ( ! empty( $data['slug'] ) && ! empty( $data['color'] ) ) {
 				$css->set_selector( '.has-' . $data['slug'] . '-color' );
-				$css->add_property( 'color', $data['color'] );
+				$css->add_property( 'color', 'var(--' . $data['slug'] . ')' );
 
 				$css->set_selector( '.has-' . $data['slug'] . '-background-color' );
-				$css->add_property( 'background-color', $data['color'] );
+				$css->add_property( 'background-color', 'var(--' . $data['slug'] . ')' );
 			}
 		}
 	}
 
-	$css->set_selector( 'body .wp-block, html body.gutenberg-editor-page .editor-post-title__block, html body.gutenberg-editor-page .editor-default-block-appender, html body.gutenberg-editor-page .editor-block-list__block' );
-
-	if ( 'true' === get_post_meta( get_the_ID(), '_generate-full-width-content', true ) ) {
-		$css->add_property( 'max-width', '100%' );
-	} else {
-		$css->add_property( 'max-width', $content_width_calc );
+	// If this CSS is for the editor only (not the block content), we can return here.
+	if ( 'block-editor' === $for ) {
+		return $css->css_output();
 	}
 
-	$css->set_selector( '.editor-styles-wrapper .wp-block[data-align="full"]' );
+	$color_settings = wp_parse_args(
+		get_option( 'generate_settings', array() ),
+		generate_get_color_defaults()
+	);
+
+	$font_settings = wp_parse_args(
+		get_option( 'generate_settings', array() ),
+		generate_get_default_fonts()
+	);
+
+	$content_width = generate_get_block_editor_content_width();
+
+	$spacing_settings = wp_parse_args(
+		get_option( 'generate_spacing_settings', array() ),
+		generate_spacing_get_defaults()
+	);
+
+	$content_width_calc = sprintf(
+		'calc(%1$s - %2$s - %3$s)',
+		absint( $content_width ) . 'px',
+		absint( $spacing_settings['content_left'] ) . 'px',
+		absint( $spacing_settings['content_right'] ) . 'px'
+	);
+
+	$css->set_selector( 'body' );
+	$css->add_property(
+		'--content-width',
+		'true' === get_post_meta( get_the_ID(), '_generate-full-width-content', true )
+			? '100%'
+			: $content_width_calc
+	);
+
+	$css->set_selector( 'body .wp-block' );
+	$css->add_property( 'max-width', 'var(--content-width)' );
+
+	$css->set_selector( '.wp-block[data-align="full"]' );
 	$css->add_property( 'max-width', 'none' );
 
 	$css->set_selector( '.wp-block[data-align="wide"]' );
@@ -262,6 +266,9 @@ function generate_do_inline_block_editor_css() {
 		}
 
 		if ( 'hover' === $underline_links ) {
+			$css->set_selector( '.wp-block a' );
+			$css->add_property( 'text-decoration', 'none' );
+
 			$css->set_selector( '.wp-block a:hover, .wp-block a:focus' );
 			$css->add_property( 'text-decoration', 'underline' );
 		}
@@ -276,6 +283,9 @@ function generate_do_inline_block_editor_css() {
 
 		$css->set_selector( 'a.button, .wp-block-button__link' );
 		$css->add_property( 'text-decoration', 'none' );
+	} else {
+		$css->set_selector( '.wp-block a' );
+		$css->add_property( 'text-decoration', 'none' );
 	}
 
 	if ( apply_filters( 'generate_do_group_inner_container_style', true ) ) {
@@ -286,14 +296,14 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'padding', generate_padding_css( $spacing_settings['content_top'], $spacing_settings['content_right'], $spacing_settings['content_bottom'], $spacing_settings['content_left'] ) );
 	}
 
-	$css->set_selector( '.editor-styles-wrapper a.button, .editor-styles-wrapper a.button:visited, .wp-block-button__link:not(.has-background)' );
+	$css->set_selector( 'a.button, a.button:visited, .wp-block-button__link:not(.has-background)' );
 	$css->add_property( 'color', $color_settings['form_button_text_color'] );
 	$css->add_property( 'background-color', $color_settings['form_button_background_color'] );
 	$css->add_property( 'padding', '10px 20px' );
 	$css->add_property( 'border', '0' );
 	$css->add_property( 'border-radius', '0' );
 
-	$css->set_selector( '.editor-styles-wrapper a.button:hover, .editor-styles-wrapper a.button:active, .editor-styles-wrapper a.button:focus, .wp-block-button__link:not(.has-background):active, .wp-block-button__link:not(.has-background):focus, .wp-block-button__link:not(.has-background):hover' );
+	$css->set_selector( 'a.button:hover, a.button:active, a.button:focus, .wp-block-button__link:not(.has-background):active, .wp-block-button__link:not(.has-background):focus, .wp-block-button__link:not(.has-background):hover' );
 	$css->add_property( 'color', $color_settings['form_button_text_color_hover'] );
 	$css->add_property( 'background-color', $color_settings['form_button_background_color_hover'] );
 
@@ -308,7 +318,7 @@ function generate_do_inline_block_editor_css() {
 		$buttons_family = generate_get_font_family_css( 'font_buttons', 'generate_settings', generate_get_default_fonts() );
 	}
 
-	$css->set_selector( 'body.gutenberg-editor-page .block-editor-block-list__block, html .editor-styles-wrapper' );
+	$css->set_selector( 'body' );
 
 	if ( ! generate_is_using_dynamic_typography() ) {
 		$css->add_property( 'font-family', $body_family );
@@ -330,15 +340,15 @@ function generate_do_inline_block_editor_css() {
 	}
 
 	if ( ! generate_is_using_dynamic_typography() ) {
-		$css->set_selector( 'html .editor-styles-wrapper, html .editor-styles-wrapper p, html .editor-styles-wrapper .mce-content-body' );
+		$css->set_selector( 'body, p' );
 		$css->add_property( 'line-height', floatval( $font_settings['body_line_height'] ) );
 
-		$css->set_selector( 'html .editor-styles-wrapper p' );
+		$css->set_selector( 'p' );
 		$css->add_property( 'margin-top', '0px' );
 		$css->add_property( 'margin-bottom', $font_settings['paragraph_margin'], false, 'em' );
 	}
 
-	$css->set_selector( 'html .editor-styles-wrapper h1, .wp-block-heading h1.editor-rich-text__tinymce, .editor-styles-wrapper .editor-post-title__input' );
+	$css->set_selector( 'h1' );
 
 	if ( ! generate_is_using_dynamic_typography() ) {
 		$css->add_property( 'font-family', 'inherit' === $h1_family || '' === $h1_family ? $body_family : $h1_family );
@@ -363,7 +373,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', $color_settings['content_title_color'] );
 	}
 
-	$css->set_selector( 'html .editor-styles-wrapper h2, .wp-block-heading h2.editor-rich-text__tinymce' );
+	$css->set_selector( 'h2' );
 
 	if ( ! generate_is_using_dynamic_typography() ) {
 		$css->add_property( 'font-family', $h2_family );
@@ -383,7 +393,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', generate_get_option( 'text_color' ) );
 	}
 
-	$css->set_selector( 'html .editor-styles-wrapper h3, .wp-block-heading h3.editor-rich-text__tinymce' );
+	$css->set_selector( 'h3' );
 
 	if ( ! generate_is_using_dynamic_typography() ) {
 		$css->add_property( 'font-family', $h3_family );
@@ -403,7 +413,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', generate_get_option( 'text_color' ) );
 	}
 
-	$css->set_selector( 'html .editor-styles-wrapper h4, .wp-block-heading h4.editor-rich-text__tinymce' );
+	$css->set_selector( 'h4' );
 
 	if ( ! generate_is_using_dynamic_typography() ) {
 		$css->add_property( 'font-family', $h4_family );
@@ -431,7 +441,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', generate_get_option( 'text_color' ) );
 	}
 
-	$css->set_selector( 'html .editor-styles-wrapper h5, .wp-block-heading h5.editor-rich-text__tinymce' );
+	$css->set_selector( 'h5' );
 
 	if ( ! generate_is_using_dynamic_typography() ) {
 		$css->add_property( 'font-family', $h5_family );
@@ -459,7 +469,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', generate_get_option( 'text_color' ) );
 	}
 
-	$css->set_selector( 'html .editor-styles-wrapper h6, .wp-block-heading h6.editor-rich-text__tinymce' );
+	$css->set_selector( 'h6' );
 
 	if ( ! generate_is_using_dynamic_typography() ) {
 		$css->add_property( 'font-family', $h6_family );
@@ -487,7 +497,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', generate_get_option( 'text_color' ) );
 	}
 
-	$css->set_selector( '.editor-styles-wrapper a.button, .block-editor-block-list__layout .wp-block-button .wp-block-button__link' );
+	$css->set_selector( 'a.button, .block-editor-block-list__layout .wp-block-button .wp-block-button__link' );
 
 	if ( ! generate_is_using_dynamic_typography() ) {
 		$css->add_property( 'font-family', $buttons_family );
@@ -505,7 +515,7 @@ function generate_do_inline_block_editor_css() {
 		$css->set_selector( '.block-editor__container .edit-post-visual-editor' );
 		$css->add_property( 'background-color', generate_get_option( 'background_color' ) );
 
-		$css->set_selector( '.block-editor__container .editor-styles-wrapper' );
+		$css->set_selector( 'body' );
 
 		if ( $color_settings['content_background_color'] ) {
 			$css->add_property( 'background-color', $color_settings['content_background_color'] );
@@ -513,7 +523,7 @@ function generate_do_inline_block_editor_css() {
 			$css->add_property( 'background-color', generate_get_option( 'background_color' ) );
 		}
 	} else {
-		$css->set_selector( 'body .editor-styles-wrapper' );
+		$css->set_selector( 'body' );
 		$css->add_property( 'background-color', generate_get_option( 'background_color' ) );
 
 		if ( $color_settings['content_background_color'] ) {
@@ -524,7 +534,7 @@ function generate_do_inline_block_editor_css() {
 		}
 	}
 
-	$css->set_selector( '.block-editor-block-list__block a, .block-editor-block-list__block a:visited' );
+	$css->set_selector( 'a, a:visited' );
 
 	if ( $color_settings['content_link_color'] ) {
 		$css->add_property( 'color', $color_settings['content_link_color'] );
@@ -532,7 +542,7 @@ function generate_do_inline_block_editor_css() {
 		$css->add_property( 'color', generate_get_option( 'link_color' ) );
 	}
 
-	$css->set_selector( '.block-editor-block-list__block a:hover, .block-editor-block-list__block a:focus, .block-editor-block-list__block a:active' );
+	$css->set_selector( 'a:hover, a:focus, a:active' );
 
 	if ( $color_settings['content_link_hover_color'] ) {
 		$css->add_property( 'color', $color_settings['content_link_hover_color'] );

@@ -562,26 +562,10 @@ function generate_do_template_part( $template ) {
 	if ( apply_filters( 'generate_do_template_part', true, $template ) ) {
 		if ( 'archive' === $template || 'index' === $template ) {
 			get_template_part( 'content', get_post_format() );
-		}
-
-		if ( 'page' === $template ) {
-			get_template_part( 'content', 'page' );
-		}
-
-		if ( 'single' === $template ) {
-			get_template_part( 'content', 'single' );
-		}
-
-		if ( 'search' === $template ) {
-			get_template_part( 'content', 'search' );
-		}
-
-		if ( '404' === $template ) {
-			get_template_part( 'content', '404' );
-		}
-
-		if ( 'none' === $template ) {
+		} elseif ( 'none' === $template ) {
 			get_template_part( 'no-results' );
+		} else {
+			get_template_part( 'content', $template );
 		}
 	}
 

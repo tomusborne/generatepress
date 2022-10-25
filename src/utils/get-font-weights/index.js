@@ -34,7 +34,8 @@ export default function getFontWeight( fontFamily, availableFonts ) {
 
 			return false;
 		} ).forEach( ( font ) => {
-			let variants = font.googleFontVariants.replaceAll( ' ', '' );
+			const fontVariants = font.googleFontVariants ? font.googleFontVariants : '';
+			let variants = fontVariants.replaceAll( ' ', '' );
 			variants = variants.split( ',' );
 
 			variants.filter( function( variant ) {

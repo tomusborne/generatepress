@@ -4,6 +4,7 @@ import getIcon from '../../utils/get-icon';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import AdvancedSelect from '../../components/advanced-select';
+import { applyFilters } from '@wordpress/hooks';
 import {
 	TextControl,
 	ToggleControl,
@@ -59,21 +60,34 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 		fonts = Object.values( fonts );
 	}
 
+	const systemFontOptions = applyFilters(
+		'generate_font_manager_system_fonts',
+		[
+			{ value: 'Arial', label: 'Arial' },
+			{ value: 'Helvetica', label: 'Helvetica' },
+			{ value: 'Times New Roman', label: 'Times New Roman' },
+			{ value: 'Georgia', label: 'Georgia' },
+		]
+	);
+
+	const googleFontOptions = applyFilters(
+		'generate_font_manager_google_fonts',
+		Object.keys( googleFonts ).map( ( font ) => ( { value: font, label: font } ) )
+	);
+
 	const fontFamilies = [
 		{
 			label: __( 'System fonts', 'generatepress' ),
-			options: [
-				{ value: 'Arial', label: 'Arial' },
-				{ value: 'Helvetica', label: 'Helvetica' },
-				{ value: 'Times New Roman', label: 'Times New Roman' },
-				{ value: 'Georgia', label: 'Georgia' },
-			],
-		},
-		{
-			label: __( 'Google Fonts', 'generatepress' ),
-			options: Object.keys( googleFonts ).map( ( font ) => ( { value: font, label: font } ) ),
+			options: systemFontOptions,
 		},
 	];
+
+	if ( generateCustomizerControls.showGoogleFonts && googleFontOptions.length > 0 ) {
+		fontFamilies.push( {
+			label: __( 'Google Fonts', 'generatepress' ),
+			options: Object.keys( googleFonts ).map( ( font ) => ( { value: font, label: font } ) ),
+		} );
+	}
 
 	fonts.forEach( ( font ) => {
 		const index = font.googleFont ? 1 : 0;
@@ -216,7 +230,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 											<div className="generate-font-manager--options">
 												<ToggleControl
 													className="generate-font-manager-google-font--field"
-													label={ __( 'Google Font', 'generatepress' ) }
+													label={ __( 'Use Google Fonts API', 'generatepress' ) }
 													checked={ !! fonts[ index ].googleFont }
 													onChange={ ( value ) => {
 														const fontValues = [ ...fonts ];

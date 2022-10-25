@@ -43,8 +43,8 @@
 		margin: 0px $element-padding 0px $element-padding;
 	}
 
-	&.archive .post:not(:last-child),
-	&.blog .post:not(:last-child) {
+	&.archive .post:not(:last-child):not(.is-loop-template-item),
+	&.blog .post:not(:last-child):not(.is-loop-template-item) {
 		padding-bottom: $element-padding;
 	}
 

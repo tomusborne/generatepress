@@ -5,8 +5,8 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options
 Requires at least: 5.2
-Tested up to: 5.9
-Stable tag: 3.1.3
+Tested up to: 6.1
+Stable tag: 3.2.0
 
 GeneratePress is a lightweight WordPress theme built with a focus on speed and usability.
 
@@ -98,6 +98,32 @@ By Jed Watson
 MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 
 == Changelog ==
+
+= 3.2.0 =
+
+Release date: October 25, 2022
+
+* Feature: Re-order global colors in the Customizer
+* Feature: Add live preview to global color changes in Customizer
+* Feature: Add font-style option to Typography
+* Feature: Add text-decoration option to Typography
+* Feature: Add generate_font_manager_show_google_fonts PHP filter
+* Feature: Add generate_font_manager_system_fonts JS filter
+* Feature: Add generate_font_manager_google_fonts JS filter
+* Feature: Add generate_add_comment_date_link PHP filter
+* Fix: Missing link underlines in the editor
+* Fix: Code block width in the editor
+* Fix: WooCommerce archive wrapper HTML attributes
+* Fix: Google font API requests using a standalone numbers
+* Fix: Customizer shortcut links in the GP Dashboard
+* Fix: Check for logo dimension data
+* Fix: Back to top iOS double-click issues
+* Tweak: Use block_editor_settings_all to add editor CSS
+* Tweak: Remove title attributes from logo and logo link
+* Tweak: Remove excess screen reader text from post navigation
+* Tweak: Improve editor width calculations based on your layouts
+* Tweak: Improve check for is-dark-theme class
+* Tweak: Change Google Font label in Font Manager
 
 = 3.1.3 =
 
@@ -667,4 +693,4 @@ Release date: December 6, 2017
 
 = Earlier versions =
 
-For the changelog of earlier versions, please refer to our [development log](https://generatepress.com/category/development/).
+For the changelog of earlier versions, please refer to our [development log](https://generatepress.com/category/changelog/).

@@ -274,7 +274,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 
 					return $new_settings;
 				},
-				'transport' => 'refresh',
+				'transport' => 'postMessage',
 			),
 			array(
 				'type' => 'generate-color-manager-control',
@@ -440,6 +440,8 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 						'fontFamily' => 'sanitize_text_field',
 						'fontWeight' => 'sanitize_text_field',
 						'textTransform' => 'sanitize_text_field',
+						'textDecoration' => 'sanitize_text_field',
+						'fontStyle' => 'sanitize_text_field',
 						'fontSize' => 'generate_sanitize_empty_decimal_integer',
 						'fontSizeTablet' => 'generate_sanitize_empty_decimal_integer',
 						'fontSizeMobile' => 'generate_sanitize_empty_decimal_integer',

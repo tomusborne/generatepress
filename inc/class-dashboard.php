@@ -217,10 +217,10 @@ class GeneratePress_Dashboard {
 					array(
 						'hasPremium' => defined( 'GP_PREMIUM_VERSION' ),
 						'customizeSectionUrls' => array(
-							'siteIdentitySection' => admin_url( 'customize.php?autofocus[section]=title_tagline' ),
-							'colorsSection' => admin_url( 'customize.php?autofocus[section]=generate_colors_section' ),
-							'typographySection' => admin_url( 'customize.php?autofocus[section]=generate_typography_section' ),
-							'layoutSection' => admin_url( 'customize.php?autofocus[panel]=generate_layout_panel' ),
+							'siteIdentitySection' => add_query_arg( rawurlencode( 'autofocus[section]' ), 'title_tagline', wp_customize_url() ),
+							'colorsSection' => add_query_arg( rawurlencode( 'autofocus[section]' ), 'generate_colors_section', wp_customize_url() ),
+							'typographySection' => add_query_arg( rawurlencode( 'autofocus[section]' ), 'generate_typography_section', wp_customize_url() ),
+							'layoutSection' => add_query_arg( rawurlencode( 'autofocus[panel]' ), 'generate_layout_panel', wp_customize_url() ),
 						),
 					)
 				);

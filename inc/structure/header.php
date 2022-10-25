@@ -112,7 +112,6 @@ if ( ! function_exists( 'generate_construct_logo' ) ) {
 				'class' => 'header-image is-logo-image',
 				'alt'   => esc_attr( apply_filters( 'generate_logo_title', get_bloginfo( 'name', 'display' ) ) ),
 				'src'   => $logo_url,
-				'title' => esc_attr( apply_filters( 'generate_logo_title', get_bloginfo( 'name', 'display' ) ) ),
 			)
 		);
 
@@ -134,8 +133,13 @@ if ( ! function_exists( 'generate_construct_logo' ) ) {
 				$data = wp_get_attachment_metadata( get_theme_mod( 'custom_logo' ) );
 
 				if ( ! empty( $data ) ) {
-					$attr['width'] = $data['width'];
-					$attr['height'] = $data['height'];
+					if ( isset( $data['width'] ) ) {
+						$attr['width'] = $data['width'];
+					}
+
+					if ( isset( $data['height'] ) ) {
+						$attr['height'] = $data['height'];
+					}
 				}
 			}
 		}
@@ -152,12 +156,11 @@ if ( ! function_exists( 'generate_construct_logo' ) ) {
 			'generate_logo_output',
 			sprintf(
 				'<div class="site-logo">
-					<a href="%1$s" title="%2$s" rel="home">
-						<img %3$s />
+					<a href="%1$s" rel="home">
+						<img %2$s />
 					</a>
 				</div>',
 				esc_url( apply_filters( 'generate_logo_href', home_url( '/' ) ) ),
-				esc_attr( apply_filters( 'generate_logo_title', get_bloginfo( 'name', 'display' ) ) ),
 				$html_attr
 			),
 			$logo_url,
