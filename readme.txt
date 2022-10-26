@@ -103,6 +103,8 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 
 Release date: TBD
 
+* Fix: WooCommerce single product schema itemtype
+
 = 3.2.0 =
 
 Release date: October 25, 2022
