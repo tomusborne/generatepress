@@ -479,7 +479,7 @@ class GeneratePress_HTML_Attributes {
 				$type = apply_filters( 'generate_article_itemtype', 'CreativeWork' );
 
 				$attributes['itemtype'] = sprintf(
-					'itemtype="https://schema.org/%s"',
+					'https://schema.org/%s',
 					$type
 				);
 
