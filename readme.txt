@@ -101,7 +101,7 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 
 = 3.2.1 =
 
-Release date: TBD
+Release date: October 27, 2022
 
 * Fix: WooCommerce single product schema itemtype
 * Fix: Post title font properties in the editor
