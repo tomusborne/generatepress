@@ -90,7 +90,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 	}
 
 	fonts.forEach( ( font ) => {
-		const index = font.googleFont ? 1 : 0;
+		const index = font.googleFont && generateCustomizerControls.showGoogleFonts && googleFontOptions.length > 0 ? 1 : 0;
 
 		fontFamilies[ index ].options = fontFamilies[ index ].options.filter( ( obj ) => obj.value !== font.fontFamily );
 	} );
@@ -116,7 +116,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 
 						handleChangeComplete( fontValues );
 
-						if ( typeof googleFonts[ value ] !== 'undefined' ) {
+						if ( typeof googleFonts[ value ] !== 'undefined' && generateCustomizerControls.showGoogleFonts ) {
 							fontValues[ index ] = {
 								...fontValues[ index ],
 								googleFont: true,
@@ -226,7 +226,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 											onChange={ onFontShortcut }
 										/>
 
-										{ !! fonts[ index ].fontFamily &&
+										{ !! fonts[ index ].fontFamily && !! generateCustomizerControls.showGoogleFonts &&
 											<div className="generate-font-manager--options">
 												<ToggleControl
 													className="generate-font-manager-google-font--field"

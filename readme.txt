@@ -105,6 +105,7 @@ Release date: October 27, 2022
 
 * Fix: WooCommerce single product schema itemtype
 * Fix: Post title font properties in the editor
+* Fix: Error in Customizer when Google Fonts disabled
 
 = 3.2.0 =
 
