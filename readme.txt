@@ -103,6 +103,8 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 
 Release date: TBD
 
+* Fix: Typography system state update infinite loop
+
 = 3.2.1 =
 
 Release date: October 27, 2022
