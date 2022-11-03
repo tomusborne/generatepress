@@ -26,7 +26,7 @@ const GeneratePressUnitPickerControl = ( props ) => {
 			<Dropdown
 				className="generate-component-control--unit-picker"
 				contentClassName="generate-component-control--unit-picker-area"
-				position="middle center"
+				position="bottom left"
 				focusOnMount="container"
 				renderToggle={ ( { isOpen, onToggle } ) => (
 					<Button onClick={ onToggle } aria-expanded={ isOpen }>
