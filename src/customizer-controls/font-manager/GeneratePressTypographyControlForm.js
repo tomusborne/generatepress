@@ -17,7 +17,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 		} else if ( 'object' === typeof propValues ) {
 			setFonts( Object.values( propValues ) );
 		}
-	}, [ propValues ] );
+	}, [] );
 
 	useEffect( () => {
 		// Prevents the Customizer iframe refreshing on load.

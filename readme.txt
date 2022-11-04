@@ -103,6 +103,9 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 
 Release date: TBD
 
+* Fix: Typography system unit picker popover position
+* Fix: Typography system state update possible infinite loop
+
 = 3.2.1 =
 
 Release date: October 27, 2022
