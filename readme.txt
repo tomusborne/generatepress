@@ -103,7 +103,8 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 
 Release date: TBD
 
-* Fix: Typography system state update infinite loop
+* Fix: Typography system unit picker popover position
+* Fix: Typography system state update possible infinite loop
 
 = 3.2.1 =
 
