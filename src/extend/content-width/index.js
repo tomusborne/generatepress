@@ -24,9 +24,7 @@ function getContentWidth( layout, contentContainer = '' ) {
 	// Account for padding if necessary.
 	if ( '' === contentContainer ) {
 		const contentPadding = parseInt( generatepressBlockEditor.contentPaddingRight ) + parseInt( generatepressBlockEditor.contentPaddingLeft );
-
-		// We multiply the padding by 2 to account for border-box.
-		contentWidth = Number( contentWidth ) - ( contentPadding * 2 );
+		contentWidth = Number( contentWidth ) - contentPadding;
 	}
 
 	// Account for our full width content option.
