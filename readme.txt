@@ -105,6 +105,7 @@ Release date: November 8, 2022
 
 * Fix: Typography system unit picker popover position
 * Fix: Typography system state update possible infinite loop
+* Fix: Editor content width when using large content padding values
 
 = 3.2.1 =
 
