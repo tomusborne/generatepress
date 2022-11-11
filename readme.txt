@@ -101,6 +101,8 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 
 = 3.3.0 =
 
+* Feature: Allow sub-menus to open using the spacebar
+
 = 3.2.2 =
 
 * Fix: Typography system unit picker popover position
