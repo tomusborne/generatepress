@@ -59,6 +59,7 @@ export default function ColorPicker( props ) {
 				onClose={ debouncedClosePanel }
 				focusOnMount="container"
 				__unstableShift={ true }
+				shift={ true }
 			>
 				<BaseControl
 					label={ !! label ? label : '' }
