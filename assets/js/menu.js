@@ -200,7 +200,7 @@
 		for ( i = 0; i < dropdownToggles.length; i++ ) {
 			dropdownToggles[ i ].addEventListener( 'click', toggleSubNav, false );
 			dropdownToggles[ i ].addEventListener( 'keypress', function( e ) {
-				if ( 'Enter' === e.key ) { // 13 is enter
+				if ( 'Enter' === e.key || ' ' === e.key ) {
 					toggleSubNav( e, this );
 				}
 			}, false );
