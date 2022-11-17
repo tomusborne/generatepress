@@ -101,7 +101,7 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 
 = 3.2.3 =
 
-Release date: November 16, 2022
+Release date: November 17, 2022
 
 = 3.2.2 =
 
