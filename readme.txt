@@ -103,6 +103,8 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 
 Release date: November 17, 2022
 
+* Fix: Global color picker positioning
+
 = 3.2.2 =
 
 Release date: November 8, 2022
