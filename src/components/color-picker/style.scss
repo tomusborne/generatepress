@@ -98,6 +98,14 @@
 	}
 }
 
+@media screen and (max-width: 1666px) {
+	.generate-component-color-picker {
+		.components-popover__content {
+			width: 265px;
+		}
+	}
+}
+
 .generate-component-color-picker[data-x-axis=left] {
 	.components-popover__content {
 		margin-right: -35px !important;
