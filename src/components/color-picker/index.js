@@ -41,6 +41,11 @@ export default function ColorPicker( props ) {
 
 	// This fixes useState getting called twice on close.
 	const debouncedClosePanel = useDebouncedCallback( closePanel, 100 );
+	const popoverProps = {};
+
+	if ( generateCustomizerControls.colorPickerShouldShift ) {
+		popoverProps.shift = true;
+	}
 
 	return (
 		<div className="generate-color-picker-area">
@@ -58,7 +63,7 @@ export default function ColorPicker( props ) {
 				className="generate-component-color-picker"
 				onClose={ debouncedClosePanel }
 				focusOnMount="container"
-				__unstableShift={ true }
+				{ ...popoverProps }
 			>
 				<BaseControl
 					label={ !! label ? label : '' }
