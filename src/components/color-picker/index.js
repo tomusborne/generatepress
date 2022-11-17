@@ -54,11 +54,12 @@ export default function ColorPicker( props ) {
 
 			{ isPanelOpen &&
 			<Popover
-				position="bottom center"
+				position="bottom left"
 				className="generate-component-color-picker"
 				onClose={ debouncedClosePanel }
 				focusOnMount="container"
 				shift={ true }
+				flip={ false }
 			>
 				<BaseControl
 					label={ !! label ? label : '' }
