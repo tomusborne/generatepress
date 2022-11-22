@@ -103,6 +103,8 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 
 Release date: November 22, 2022
 
+Fix: Kebab-case formatting for global colors variable names
+
 = 3.2.3 =
 
 Release date: November 17, 2022
