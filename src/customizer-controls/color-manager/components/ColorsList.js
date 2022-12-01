@@ -6,7 +6,8 @@ import { __ } from '@wordpress/i18n';
 const MemoizedColorPicker = memo( GlobalColorPicker, ( prev, next ) => {
 	return (
 		prev.value === next.value &&
-		prev.variableName === next.variableName
+		prev.variableName === next.variableName &&
+		prev.checkVariableNameIsAvailable === next.checkVariableNameIsAvailable
 	);
 } );
 
@@ -16,7 +17,6 @@ export default function ColorsList( {
 	onChangeSlug,
 	onClickDeleteColor,
 } ) {
-
 	const checkVariableNameIsAvailable = useCallback( ( slug, index ) => (
 		! colors.some( ( color, idx ) => ( slug === color.slug && idx !== index ) )
 	), [ JSON.stringify( colors ) ] );
