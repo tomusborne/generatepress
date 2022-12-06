@@ -131,87 +131,89 @@ class GeneratePress_Typography {
 			}
 		);
 
-		if ( ! empty( $typography ) ) {
-			$css = new GeneratePress_CSS();
+		if ( empty( $typography ) ) {
+			return '';
+		}
 
-			$body_selector = 'body';
-			$paragraph_selector = 'p';
+		$css = new GeneratePress_CSS();
 
-			foreach ( $typography as $key => $data ) {
-				$options = wp_parse_args(
-					$data,
-					self::get_defaults()
-				);
+		$body_selector = 'body';
+		$paragraph_selector = 'p';
 
-				$selector = self::get_css_selector( $options['selector'] );
+		foreach ( $typography as $key => $data ) {
+			$options = wp_parse_args(
+				$data,
+				self::get_defaults()
+			);
 
-				if ( 'custom' === $selector ) {
-					$selector = $options['customSelector'];
-				}
+			$selector = self::get_css_selector( $options['selector'] );
 
-				$font_family = self::get_font_family( $options['fontFamily'] );
-
-				$css->set_selector( $selector );
-				$css->add_property( 'font-family', $font_family );
-				$css->add_property( 'font-weight', $options['fontWeight'] );
-				$css->add_property( 'text-transform', $options['textTransform'] );
-				$css->add_property( 'font-style', $options['fontStyle'] );
-				$css->add_property( 'text-decoration', $options['textDecoration'] );
-				$css->add_property( 'font-size', $options['fontSize'], false, $options['fontSizeUnit'] );
-				$css->add_property( 'letter-spacing', $options['letterSpacing'], false, $options['letterSpacingUnit'] );
-
-				if ( 'body' !== $options['selector'] ) {
-					$css->add_property( 'line-height', $options['lineHeight'], false, $options['lineHeightUnit'] );
-					$css->add_property( 'margin-bottom', $options['marginBottom'], false, $options['marginBottomUnit'] );
-				} else {
-					$css->set_selector( $body_selector );
-					$css->add_property( 'line-height', $options['lineHeight'], false, $options['lineHeightUnit'] );
-
-					$css->set_selector( $paragraph_selector );
-					$css->add_property( 'margin-bottom', $options['marginBottom'], false, $options['marginBottomUnit'] );
-				}
-
-				$css->start_media_query( generate_get_media_query( 'tablet' ) );
-
-				$css->set_selector( $selector );
-				$css->add_property( 'font-size', $options['fontSizeTablet'], false, $options['fontSizeUnit'] );
-				$css->add_property( 'letter-spacing', $options['letterSpacingTablet'], false, $options['letterSpacingUnit'] );
-
-				if ( 'body' !== $options['selector'] ) {
-					$css->add_property( 'line-height', $options['lineHeightTablet'], false, $options['lineHeightUnit'] );
-					$css->add_property( 'margin-bottom', $options['marginBottomTablet'], false, $options['marginBottomUnit'] );
-				} else {
-					$css->set_selector( $body_selector );
-					$css->add_property( 'line-height', $options['lineHeightTablet'], false, $options['lineHeightUnit'] );
-
-					$css->set_selector( $paragraph_selector );
-					$css->add_property( 'margin-bottom', $options['marginBottomTablet'], false, $options['marginBottomUnit'] );
-				}
-
-				$css->stop_media_query();
-
-				$css->start_media_query( generate_get_media_query( 'mobile' ) );
-
-				$css->set_selector( $selector );
-				$css->add_property( 'font-size', $options['fontSizeMobile'], false, $options['fontSizeUnit'] );
-				$css->add_property( 'letter-spacing', $options['letterSpacingMobile'], false, $options['letterSpacingUnit'] );
-
-				if ( 'body' !== $options['selector'] ) {
-					$css->add_property( 'line-height', $options['lineHeightMobile'], false, $options['lineHeightUnit'] );
-					$css->add_property( 'margin-bottom', $options['marginBottomMobile'], false, $options['marginBottomUnit'] );
-				} else {
-					$css->set_selector( $body_selector );
-					$css->add_property( 'line-height', $options['lineHeightMobile'], false, $options['lineHeightUnit'] );
-
-					$css->set_selector( $paragraph_selector );
-					$css->add_property( 'margin-bottom', $options['marginBottomMobile'], false, $options['marginBottomUnit'] );
-				}
-
-				$css->stop_media_query();
+			if ( 'custom' === $selector ) {
+				$selector = $options['customSelector'];
 			}
 
-			return $css->css_output();
+			$font_family = self::get_font_family( $options['fontFamily'] );
+
+			$css->set_selector( $selector );
+			$css->add_property( 'font-family', $font_family );
+			$css->add_property( 'font-weight', $options['fontWeight'] );
+			$css->add_property( 'text-transform', $options['textTransform'] );
+			$css->add_property( 'font-style', $options['fontStyle'] );
+			$css->add_property( 'text-decoration', $options['textDecoration'] );
+			$css->add_property( 'font-size', $options['fontSize'], false, $options['fontSizeUnit'] );
+			$css->add_property( 'letter-spacing', $options['letterSpacing'], false, $options['letterSpacingUnit'] );
+
+			if ( 'body' !== $options['selector'] ) {
+				$css->add_property( 'line-height', $options['lineHeight'], false, $options['lineHeightUnit'] );
+				$css->add_property( 'margin-bottom', $options['marginBottom'], false, $options['marginBottomUnit'] );
+			} else {
+				$css->set_selector( $body_selector );
+				$css->add_property( 'line-height', $options['lineHeight'], false, $options['lineHeightUnit'] );
+
+				$css->set_selector( $paragraph_selector );
+				$css->add_property( 'margin-bottom', $options['marginBottom'], false, $options['marginBottomUnit'] );
+			}
+
+			$css->start_media_query( generate_get_media_query( 'tablet' ) );
+
+			$css->set_selector( $selector );
+			$css->add_property( 'font-size', $options['fontSizeTablet'], false, $options['fontSizeUnit'] );
+			$css->add_property( 'letter-spacing', $options['letterSpacingTablet'], false, $options['letterSpacingUnit'] );
+
+			if ( 'body' !== $options['selector'] ) {
+				$css->add_property( 'line-height', $options['lineHeightTablet'], false, $options['lineHeightUnit'] );
+				$css->add_property( 'margin-bottom', $options['marginBottomTablet'], false, $options['marginBottomUnit'] );
+			} else {
+				$css->set_selector( $body_selector );
+				$css->add_property( 'line-height', $options['lineHeightTablet'], false, $options['lineHeightUnit'] );
+
+				$css->set_selector( $paragraph_selector );
+				$css->add_property( 'margin-bottom', $options['marginBottomTablet'], false, $options['marginBottomUnit'] );
+			}
+
+			$css->stop_media_query();
+
+			$css->start_media_query( generate_get_media_query( 'mobile' ) );
+
+			$css->set_selector( $selector );
+			$css->add_property( 'font-size', $options['fontSizeMobile'], false, $options['fontSizeUnit'] );
+			$css->add_property( 'letter-spacing', $options['letterSpacingMobile'], false, $options['letterSpacingUnit'] );
+
+			if ( 'body' !== $options['selector'] ) {
+				$css->add_property( 'line-height', $options['lineHeightMobile'], false, $options['lineHeightUnit'] );
+				$css->add_property( 'margin-bottom', $options['marginBottomMobile'], false, $options['marginBottomUnit'] );
+			} else {
+				$css->set_selector( $body_selector );
+				$css->add_property( 'line-height', $options['lineHeightMobile'], false, $options['lineHeightUnit'] );
+
+				$css->set_selector( $paragraph_selector );
+				$css->add_property( 'margin-bottom', $options['marginBottomMobile'], false, $options['marginBottomUnit'] );
+			}
+
+			$css->stop_media_query();
 		}
+
+		return $css->css_output();
 	}
 
 	/**
