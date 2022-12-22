@@ -115,6 +115,8 @@ if ( ! function_exists( 'generate_construct_logo' ) ) {
 			)
 		);
 
+		$data = false;
+		
 		if ( '' !== $retina_logo_url ) {
 			$attr['srcset'] = $logo_url . ' 1x, ' . $retina_logo_url . ' 2x';
 
