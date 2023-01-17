@@ -543,7 +543,7 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->add_property( 'margin-bottom', floatval( $settings['paragraph_margin'] ), $defaults['paragraph_margin'], 'em' );
 
 		if ( apply_filters( 'generate_do_wp_block_margin_bottom', true ) ) {
-			$css->set_selector( '.entry-content > [class*="wp-block-"]:not(:last-child)' );
+			$css->set_selector( '.entry-content > [class*="wp-block-"]:not(:last-child):not(.wp-block-heading)' );
 			$css->add_property( 'margin-bottom', floatval( $settings['paragraph_margin'] ), false, 'em' );
 		}
 
