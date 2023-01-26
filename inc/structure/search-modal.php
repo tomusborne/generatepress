@@ -107,7 +107,7 @@ function generate_do_search_fields() {
 		<label class="screen-reader-text"><?php echo _x( 'Search for:', 'label' ); ?></label>
 		<div class="search-modal-fields">
 			<input type="search" class="search-field" placeholder="<?php echo esc_attr_x( 'Search &hellip;', 'placeholder' ); ?>" value="<?php echo get_search_query(); ?>" name="s" />
-			<button><?php echo generate_get_svg_icon( 'search' ); // phpcs:ignore -- Escaped in function. ?></button>
+			<button aria-label="<?php esc_attr_e( 'Search', 'generatepress' ); ?>"><?php echo generate_get_svg_icon( 'search' ); // phpcs:ignore -- Escaped in function. ?></button>
 		</div>
 		<?php do_action( 'generate_inside_search_modal_form' ); ?>
 	</form>
