@@ -18,12 +18,10 @@ function generate_do_search_modal() {
 		return;
 	}
 	?>
-	<div class="gp-modal" id="gp-search" aria-hidden="true">
+	<div class="gp-modal" id="gp-search">
 		<div class="gp-modal__overlay" tabindex="-1" data-gpmodal-close>
-			<div class="gp-modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title" >
-				<div class="gp-modal__content" id="modal-1-content">
-					<?php do_action( 'generate_inside_search_modal' ); ?>
-				</div>
+			<div class="gp-modal__container">
+				<?php do_action( 'generate_inside_search_modal' ); ?>
 			</div>
 		</div>
 	</div>

@@ -48,7 +48,6 @@ class Modal {
 	showModal() {
 		this.modal.classList.add( 'gp-modal--transition' );
 		this.activeElement = document.activeElement;
-		this.modal.setAttribute( 'aria-hidden', 'false' );
 		this.modal.classList.add( this.config.openClass );
 		this.scrollBehaviour( 'disable' );
 		this.addEventListeners();
@@ -59,7 +58,6 @@ class Modal {
 	closeModal() {
 		const modal = this.modal;
 		modal.classList.add( 'gp-modal--transition' );
-		modal.setAttribute( 'aria-hidden', 'true' );
 		this.removeEventListeners();
 		this.scrollBehaviour( 'enable' );
 
