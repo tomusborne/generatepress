@@ -62,7 +62,7 @@ function generate_do_search_modal_css( $css ) {
 		return;
 	}
 
-	$css->set_selector( '.search-modal-container' );
+	$css->set_selector( '.search-modal-fields' );
 	$css->add_property( 'display', 'flex' );
 
 	$css->set_selector( '#gp-search .gp-modal__container' );
@@ -83,17 +83,12 @@ function generate_do_search_modal_css( $css ) {
 	$css->add_property( 'background-color', 'transparent' );
 	$css->add_property( 'border', 0 );
 	$css->add_property( 'appearance', 'none' );
-	$css->add_property( 'padding-right', '60px' );
 	$css->add_property( 'color', 'currentColor' );
 
 	$css->set_selector( '.search-modal-fields' );
 	$css->add_property( 'position', 'relative' );
 
 	$css->set_selector( '.search-modal-fields button, .search-modal-fields button:active, .search-modal-fields button:focus, .search-modal-fields button:hover' );
-	$css->add_property( 'position', 'absolute' );
-	$css->add_property( 'top', 0 );
-	$css->add_property( 'right', 0 );
-	$css->add_property( 'bottom', 0 );
 	$css->add_property( 'background-color', 'transparent' );
 	$css->add_property( 'border', 0 );
 	$css->add_property( 'color', 'currentColor' );
