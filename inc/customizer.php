@@ -1009,6 +1009,31 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				),
 				'settings' => 'generate_settings[nav_search]',
 				'priority' => 23,
+				'active_callback' => function() {
+					return 'enable' === generate_get_option( 'nav_search' );
+				},
+			)
+		);
+
+		$wp_customize->add_setting(
+			'generate_settings[nav_search_modal]',
+			array(
+				'default' => $defaults['nav_search_modal'],
+				'type' => 'option',
+				'sanitize_callback' => 'generate_sanitize_checkbox',
+			)
+		);
+
+		$wp_customize->add_control(
+			'generate_settings[nav_search_modal]',
+			array(
+				'type' => 'checkbox',
+				'label' => esc_html__( 'Enable navigation search modal', 'generatepress' ),
+				'section' => 'generate_layout_navigation',
+				'priority' => 23,
+				'active_callback' => function() {
+					return 'disable' === generate_get_option( 'nav_search' );
+				},
 			)
 		);
 

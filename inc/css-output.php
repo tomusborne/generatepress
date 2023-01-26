@@ -1276,3 +1276,57 @@ function generate_update_dynamic_css_cache() {
 	$css = generate_get_dynamic_css();
 	update_option( 'generate_dynamic_css_output', wp_strip_all_tags( $css ) );
 }
+
+add_action( 'generate_base_css', 'generate_do_modal_css' );
+/**
+ * Do the modal CSS.
+ *
+ * @param Object $css The existing CSS object.
+ */
+function generate_do_modal_css( $css ) {
+	if ( ! apply_filters( 'generate_enable_modal_script', false ) ) {
+		return;
+	}
+
+	$css->set_selector( '.gp-modal:not(.gp-modal--open):not(.gp-modal--transition)' );
+	$css->add_property( 'display', 'none' );
+
+	$css->set_selector( '.gp-modal--transition:not(.gp-modal--open)' );
+	$css->add_property( 'pointer-events', 'none' );
+
+	$css->set_selector( '.gp-modal-overlay:not(.gp-modal-overlay--open):not(.gp-modal--transition)' );
+	$css->add_property( 'display', 'none' );
+
+	$css->set_selector( '.gp-modal__overlay' );
+	$css->add_property( 'display', 'none' );
+	$css->add_property( 'position', 'fixed' );
+	$css->add_property( 'top', '0' );
+	$css->add_property( 'left', '0' );
+	$css->add_property( 'right', '0' );
+	$css->add_property( 'bottom', '0' );
+	$css->add_property( 'background', 'rgba(0,0,0,0.2)' );
+	$css->add_property( 'display', 'flex' );
+	$css->add_property( 'justify-content', 'center' );
+	$css->add_property( 'align-items', 'center' );
+	$css->add_property( 'z-index', '100' );
+	$css->add_property( 'backdrop-filter', 'blur(3px)' );
+	$css->add_property( 'transition', 'opacity 500ms ease' );
+	$css->add_property( 'opacity', 0 );
+
+	$css->set_selector( '.gp-modal--open:not(.gp-modal--transition) .gp-modal__overlay' );
+	$css->add_property( 'opacity', 1 );
+
+	$css->set_selector( '.gp-modal__container' );
+	$css->add_property( 'width', '500px' );
+	$css->add_property( 'max-width', '100%' );
+	$css->add_property( 'max-height', '100vh' );
+	$css->add_property( 'overflow-y', 'auto' );
+	$css->add_property( 'transform', 'scale(0.9)' );
+	$css->add_property( 'transition', 'transform 500ms ease' );
+	$css->add_property( 'margin', '0 20px' );
+
+	$css->set_selector( '.gp-modal--open:not(.gp-modal--transition) .gp-modal__container' );
+	$css->add_property( 'transform', 'scale(1)' );
+
+	return $css;
+}

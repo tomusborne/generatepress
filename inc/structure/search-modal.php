@@ -1,0 +1,122 @@
+<?php
+/**
+ * Post meta elements.
+ *
+ * @package GeneratePress
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
+add_action( 'wp_footer', 'generate_do_search_modal' );
+/**
+ * Create the search modal HTML.
+ */
+function generate_do_search_modal() {
+	if ( ! generate_get_option( 'nav_search_modal' ) ) {
+		return;
+	}
+	?>
+	<div class="gp-modal" id="gp-search" aria-hidden="true">
+		<div class="gp-modal__overlay" tabindex="-1" data-gpmodal-close>
+			<div class="gp-modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title" >
+				<div class="gp-modal__content" id="modal-1-content">
+					<?php do_action( 'generate_inside_search_modal' ); ?>
+				</div>
+			</div>
+		</div>
+	</div>
+	<?php
+}
+
+add_action( 'generate_menu_bar_items', 'generate_do_search_modal_trigger' );
+/**
+ * Create the search modal trigger.
+ */
+function generate_do_search_modal_trigger() {
+	if ( ! generate_get_option( 'nav_search_modal' ) ) {
+		return;
+	}
+	?>
+	<span class="menu-bar-item">
+		<a href="#" role="button" aria-label="<?php _e( 'Open search', 'generatepress' ); ?>" data-gpmodal-trigger="gp-search"><?php echo generate_get_svg_icon( 'search', true ); // phpcs:ignore -- Escaped in function. ?></a>
+	</span>
+	<?php
+}
+
+add_filter( 'generate_enable_modal_script', 'generate_enable_search_modal' );
+/**
+ * Enable the search modal.
+ */
+function generate_enable_search_modal() {
+	return generate_get_option( 'nav_search_modal' );
+}
+
+add_action( 'generate_base_css', 'generate_do_search_modal_css' );
+/**
+ * Do the modal CSS.
+ *
+ * @param Object $css The existing CSS object.
+ */
+function generate_do_search_modal_css( $css ) {
+	if ( ! generate_get_option( 'nav_search_modal' ) ) {
+		return;
+	}
+
+	$css->set_selector( '.search-modal-container' );
+	$css->add_property( 'display', 'flex' );
+
+	$css->set_selector( '#gp-search .gp-modal__container' );
+	$css->add_property( 'background-color', '#ffffff' );
+	$css->add_property( 'border-radius', '10px' );
+	$css->add_property( 'box-shadow', '0 5px 5px rgba(0,0,0,0.1)' );
+
+	$css->set_selector( '#gp-search .gp-modal__overlay' );
+	$css->add_property( 'align-items', 'flex-start' );
+	$css->add_property( 'padding-top', '25vh' );
+
+	$css->set_selector( '.search-modal' );
+	$css->add_property( 'flex', '1' );
+
+	$css->set_selector( '.search-modal .search-field, .search-modal .search-field:focus' );
+	$css->add_property( 'width', '100%' );
+	$css->add_property( 'height', '60px' );
+	$css->add_property( 'background-color', 'transparent' );
+	$css->add_property( 'border', 0 );
+	$css->add_property( 'appearance', 'none' );
+	$css->add_property( 'padding-right', '60px' );
+	$css->add_property( 'color', 'currentColor' );
+
+	$css->set_selector( '.search-modal-fields' );
+	$css->add_property( 'position', 'relative' );
+
+	$css->set_selector( '.search-modal-fields button, .search-modal-fields button:active, .search-modal-fields button:focus, .search-modal-fields button:hover' );
+	$css->add_property( 'position', 'absolute' );
+	$css->add_property( 'top', 0 );
+	$css->add_property( 'right', 0 );
+	$css->add_property( 'bottom', 0 );
+	$css->add_property( 'background-color', 'transparent' );
+	$css->add_property( 'border', 0 );
+	$css->add_property( 'color', 'currentColor' );
+	$css->add_property( 'width', '60px' );
+
+	return $css;
+}
+
+add_action( 'generate_inside_search_modal', 'generate_do_search_fields' );
+/**
+ * Add our search fields to the modal.
+ */
+function generate_do_search_fields() {
+	?>
+	<form role="search" method="get" class="search-modal" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+		<label class="screen-reader-text"><?php echo _x( 'Search for:', 'label' ); ?></label>
+		<div class="search-modal-fields">
+			<input type="search" class="search-field" placeholder="<?php echo esc_attr_x( 'Search &hellip;', 'placeholder' ); ?>" value="<?php echo get_search_query(); ?>" name="s" />
+			<button><?php echo generate_get_svg_icon( 'search' ); // phpcs:ignore -- Escaped in function. ?></button>
+		</div>
+		<?php do_action( 'generate_inside_search_modal_form' ); ?>
+	</form>
+	<?php
+}
