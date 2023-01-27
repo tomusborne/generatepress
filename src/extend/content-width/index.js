@@ -58,13 +58,17 @@ const ContentWidth = () => {
 		const sidebarSelect = document.getElementById( 'generate-sidebar-layout' );
 		const contentWidthSelect = document.getElementById( '_generate-full-width-content' );
 
-		sidebarSelect.onchange = ( event ) => {
-			setSidebarLayout( event.target.value || generatepressBlockEditor.globalSidebarLayout );
-		};
+		if ( sidebarSelect ) {
+			sidebarSelect.onchange = ( event ) => {
+				setSidebarLayout( event.target.value || generatepressBlockEditor.globalSidebarLayout );
+			};
+		}
 
-		contentWidthSelect.onchange = ( event ) => {
-			setFullWidth( event.target.value || generatepressBlockEditor.contentAreaType );
-		};
+		if ( contentWidthSelect ) {
+			contentWidthSelect.onchange = ( event ) => {
+				setFullWidth( event.target.value || generatepressBlockEditor.contentAreaType );
+			};
+		}
 	} );
 
 	return null;
