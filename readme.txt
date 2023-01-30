@@ -103,6 +103,7 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 
 * Tweak: Allow sub-menus to open using the spacebar
 * Fix: PHP 8.1 filter_input notice
+* Fix: Comment fields PHP 8.1 notice
 
 = 3.2.4 =
 

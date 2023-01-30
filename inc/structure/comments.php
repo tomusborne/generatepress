@@ -156,8 +156,8 @@ function generate_set_comment_form_defaults( $defaults ) {
 		esc_html__( 'Comment', 'generatepress' )
 	);
 
-	$defaults['comment_notes_before'] = null;
-	$defaults['comment_notes_after']  = null;
+	$defaults['comment_notes_before'] = '';
+	$defaults['comment_notes_after']  = '';
 	$defaults['id_form']              = 'commentform';
 	$defaults['id_submit']            = 'submit';
 	$defaults['title_reply']          = apply_filters( 'generate_leave_comment', __( 'Leave a Comment', 'generatepress' ) );
