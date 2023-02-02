@@ -208,8 +208,25 @@ if ( ! function_exists( 'generate_sanitize_hex_color' ) ) {
 			return $color;
 		}
 
+		// Sanitize CSS variables.
 		if ( strpos( $color, 'var(' ) !== false ) {
 			return sanitize_text_field( $color );
+		}
+
+		// Sanitize rgb() values.
+		if ( strpos( $color, 'rgb(' ) !== false ) {
+			$color = str_replace( ' ', '', $color );
+
+			sscanf( $color, 'rgb(%d,%d,%d)', $red, $green, $blue );
+			return 'rgb(' . $red . ',' . $green . ',' . $blue . ')';
+		}
+
+		// Sanitize rgba() values.
+		if ( strpos( $color, 'rgba' ) !== false ) {
+			$color = str_replace( ' ', '', $color );
+			sscanf( $color, 'rgba(%d,%d,%d,%f)', $red, $green, $blue, $alpha );
+
+			return 'rgba(' . $red . ',' . $green . ',' . $blue . ',' . $alpha . ')';
 		}
 
 		return '';
