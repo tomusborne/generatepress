@@ -18,7 +18,7 @@ function generate_do_search_modal() {
 		return;
 	}
 	?>
-	<div class="gp-modal" id="gp-search">
+	<div class="gp-modal gp-search-modal" id="gp-search">
 		<div class="gp-modal__overlay" tabindex="-1" data-gpmodal-close>
 			<div class="gp-modal__container">
 				<?php do_action( 'generate_inside_search_modal' ); ?>
@@ -65,19 +65,19 @@ function generate_do_search_modal_css( $css ) {
 	$css->set_selector( '.search-modal-fields' );
 	$css->add_property( 'display', 'flex' );
 
-	$css->set_selector( '#gp-search .gp-modal__container' );
+	$css->set_selector( '.gp-search-modal .gp-modal__container' );
 	$css->add_property( 'background-color', '#ffffff' );
 	$css->add_property( 'border-radius', '10px' );
 	$css->add_property( 'box-shadow', '0 5px 5px rgba(0,0,0,0.1)' );
 
-	$css->set_selector( '#gp-search .gp-modal__overlay' );
+	$css->set_selector( '.gp-search-modal .gp-modal__overlay' );
 	$css->add_property( 'align-items', 'flex-start' );
 	$css->add_property( 'padding-top', '25vh' );
 
-	$css->set_selector( '.search-modal' );
+	$css->set_selector( '.search-modal-form' );
 	$css->add_property( 'flex', '1' );
 
-	$css->set_selector( '.search-modal .search-field, .search-modal .search-field:focus' );
+	$css->set_selector( '.search-modal-form .search-field, .search-modal-form .search-field:focus' );
 	$css->add_property( 'width', '100%' );
 	$css->add_property( 'height', '60px' );
 	$css->add_property( 'background-color', 'transparent' );
@@ -103,7 +103,7 @@ add_action( 'generate_inside_search_modal', 'generate_do_search_fields' );
  */
 function generate_do_search_fields() {
 	?>
-	<form role="search" method="get" class="search-modal" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+	<form role="search" method="get" class="search-modal-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 		<label class="screen-reader-text"><?php echo _x( 'Search for:', 'label' ); ?></label>
 		<div class="search-modal-fields">
 			<input type="search" class="search-field" placeholder="<?php echo esc_attr_x( 'Search &hellip;', 'placeholder' ); ?>" value="<?php echo get_search_query(); ?>" name="s" />
