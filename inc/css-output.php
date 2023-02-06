@@ -260,10 +260,10 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 
 			foreach ( (array) $global_colors as $key => $data ) {
 				if ( ! empty( $data['slug'] ) && ! empty( $data['color'] ) ) {
-					$css->set_selector( '.has-' . $data['slug'] . '-color' );
+					$css->set_selector( ':root .has-' . $data['slug'] . '-color' );
 					$css->add_property( 'color', 'var(--' . $data['slug'] . ')' );
 
-					$css->set_selector( '.has-' . $data['slug'] . '-background-color' );
+					$css->set_selector( ':root .has-' . $data['slug'] . '-background-color' );
 					$css->add_property( 'background-color', 'var(--' . $data['slug'] . ')' );
 				}
 			}
@@ -543,7 +543,7 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->add_property( 'margin-bottom', floatval( $settings['paragraph_margin'] ), $defaults['paragraph_margin'], 'em' );
 
 		if ( apply_filters( 'generate_do_wp_block_margin_bottom', true ) ) {
-			$css->set_selector( '.entry-content > [class*="wp-block-"]:not(:last-child)' );
+			$css->set_selector( '.entry-content > [class*="wp-block-"]:not(:last-child):not(.wp-block-heading)' );
 			$css->add_property( 'margin-bottom', floatval( $settings['paragraph_margin'] ), false, 'em' );
 		}
 

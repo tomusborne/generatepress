@@ -1,4 +1,5 @@
 import { registerPlugin } from '@wordpress/plugins';
+import { useEffect, useState } from '@wordpress/element';
 import domReady from '@wordpress/dom-ready';
 
 function getContentWidth( layout, contentContainer = '' ) {
@@ -37,29 +38,37 @@ function getContentWidth( layout, contentContainer = '' ) {
 }
 
 const ContentWidth = () => {
-	domReady( () => {
-		const sidebarLayout = document.getElementById( 'generate-sidebar-layout' );
-		const fullWidth = document.getElementById( '_generate-full-width-content' );
+	const [ sidebarLayout, setSidebarLayout ] = useState( '' );
+	const [ fullWidth, setFullWidth ] = useState( '' );
+	const bodyClasses = document.body.className;
 
-		if ( ! sidebarLayout || ! fullWidth ) {
-			return;
+	useEffect( () => {
+		setSidebarLayout( document.getElementById( 'generate-sidebar-layout' )?.value || generatepressBlockEditor.globalSidebarLayout );
+		setFullWidth( document.getElementById( '_generate-full-width-content' )?.value || generatepressBlockEditor.contentAreaType );
+	}, [] );
+
+	// We use bodyClasses to update the content width on device change.
+	// See https://github.com/tomusborne/generatepress/issues/493.
+	useEffect( () => {
+		const body = document.querySelector( '.editor-styles-wrapper' );
+		body?.style?.setProperty( '--content-width', getContentWidth( sidebarLayout, fullWidth ) );
+	}, [ sidebarLayout, fullWidth, bodyClasses ] );
+
+	domReady( () => {
+		const sidebarSelect = document.getElementById( 'generate-sidebar-layout' );
+		const contentWidthSelect = document.getElementById( '_generate-full-width-content' );
+
+		if ( sidebarSelect ) {
+			sidebarSelect.onchange = ( event ) => {
+				setSidebarLayout( event.target.value || generatepressBlockEditor.globalSidebarLayout );
+			};
 		}
 
-		const contentContainer = fullWidth?.value ? fullWidth?.value : generatepressBlockEditor.contentAreaType;
-		const currentSidebarLayout = sidebarLayout?.value || generatepressBlockEditor.globalSidebarLayout;
-		const body = document.querySelector( '.editor-styles-wrapper' );
-
-		body?.style?.setProperty( '--content-width', getContentWidth( currentSidebarLayout, contentContainer ) );
-
-		sidebarLayout.onchange = ( event ) => {
-			// We need to check fullWidth again in case it has changed since load.
-			const latestContentContainer = fullWidth?.value ? fullWidth?.value : generatepressBlockEditor.contentAreaType;
-			body?.style?.setProperty( '--content-width', getContentWidth( event.target.value || generatepressBlockEditor.globalSidebarLayout, latestContentContainer ) );
-		};
-
-		fullWidth.onchange = ( event ) => {
-			body?.style?.setProperty( '--content-width', getContentWidth( sidebarLayout?.value || generatepressBlockEditor.globalSidebarLayout, event.target.value ) );
-		};
+		if ( contentWidthSelect ) {
+			contentWidthSelect.onchange = ( event ) => {
+				setFullWidth( event.target.value || generatepressBlockEditor.contentAreaType );
+			};
+		}
 	} );
 
 	return null;
