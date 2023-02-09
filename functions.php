@@ -120,3 +120,4 @@ require $theme_dir . '/inc/structure/header.php';
 require $theme_dir . '/inc/structure/navigation.php';
 require $theme_dir . '/inc/structure/post-meta.php';
 require $theme_dir . '/inc/structure/sidebars.php';
+require $theme_dir . '/inc/structure/search-modal.php';
