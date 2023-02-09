@@ -65,17 +65,14 @@ function generate_do_search_modal_css( $css ) {
 	$css->set_selector( '.search-modal-fields' );
 	$css->add_property( 'display', 'flex' );
 
-	$css->set_selector( '.gp-search-modal .gp-modal__container' );
-	$css->add_property( 'background-color', '#ffffff' );
-	$css->add_property( 'border-radius', '10px' );
-	$css->add_property( 'box-shadow', '0 5px 5px rgba(0,0,0,0.1)' );
-
 	$css->set_selector( '.gp-search-modal .gp-modal__overlay' );
 	$css->add_property( 'align-items', 'flex-start' );
 	$css->add_property( 'padding-top', '25vh' );
 
 	$css->set_selector( '.search-modal-form' );
-	$css->add_property( 'flex', '1' );
+	$css->add_property( 'width', '500px' );
+	$css->add_property( 'margin', '0 20px' );
+	$css->add_property( 'background-color', '#ffffff' );
 
 	$css->set_selector( '.search-modal-form .search-field, .search-modal-form .search-field:focus' );
 	$css->add_property( 'width', '100%' );
@@ -84,9 +81,6 @@ function generate_do_search_modal_css( $css ) {
 	$css->add_property( 'border', 0 );
 	$css->add_property( 'appearance', 'none' );
 	$css->add_property( 'color', 'currentColor' );
-
-	$css->set_selector( '.search-modal-fields' );
-	$css->add_property( 'position', 'relative' );
 
 	$css->set_selector( '.search-modal-fields button, .search-modal-fields button:active, .search-modal-fields button:focus, .search-modal-fields button:hover' );
 	$css->add_property( 'background-color', 'transparent' );
@@ -104,10 +98,10 @@ add_action( 'generate_inside_search_modal', 'generate_do_search_fields' );
 function generate_do_search_fields() {
 	?>
 	<form role="search" method="get" class="search-modal-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-		<label class="screen-reader-text"><?php echo _x( 'Search for:', 'label' ); ?></label>
+		<label class="screen-reader-text"><?php echo apply_filters( 'generate_search_label', _x( 'Search for:', 'label', 'generatepress' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></label>
 		<div class="search-modal-fields">
-			<input type="search" class="search-field" placeholder="<?php echo esc_attr_x( 'Search &hellip;', 'placeholder' ); ?>" value="<?php echo get_search_query(); ?>" name="s" />
-			<button aria-label="<?php esc_attr_e( 'Search', 'generatepress' ); ?>"><?php echo generate_get_svg_icon( 'search' ); // phpcs:ignore -- Escaped in function. ?></button>
+			<input type="search" class="search-field" placeholder="<?php echo esc_attr( apply_filters( 'generate_search_placeholder', _x( 'Search &hellip;', 'placeholder', 'generatepress' ) ) ); ?>" value="<?php echo get_search_query(); ?>" name="s" />
+			<button aria-label="<?php echo esc_attr( apply_filters( 'generate_search_button', _x( 'Search', 'submit button', 'generatepress' ) ) ); ?>"><?php echo generate_get_svg_icon( 'search' ); // phpcs:ignore -- Escaped in function. ?></button>
 		</div>
 		<?php do_action( 'generate_inside_search_modal_form' ); ?>
 	</form>

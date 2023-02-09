@@ -1308,7 +1308,7 @@ function generate_do_modal_css( $css ) {
 	$css->add_property( 'display', 'flex' );
 	$css->add_property( 'justify-content', 'center' );
 	$css->add_property( 'align-items', 'center' );
-	$css->add_property( 'z-index', '100' );
+	$css->add_property( 'z-index', '10000' );
 	$css->add_property( 'backdrop-filter', 'blur(3px)' );
 	$css->add_property( 'transition', 'opacity 500ms ease' );
 	$css->add_property( 'opacity', 0 );
@@ -1317,13 +1317,10 @@ function generate_do_modal_css( $css ) {
 	$css->add_property( 'opacity', 1 );
 
 	$css->set_selector( '.gp-modal__container' );
-	$css->add_property( 'width', '500px' );
 	$css->add_property( 'max-width', '100%' );
 	$css->add_property( 'max-height', '100vh' );
-	$css->add_property( 'overflow-y', 'auto' );
 	$css->add_property( 'transform', 'scale(0.9)' );
 	$css->add_property( 'transition', 'transform 500ms ease' );
-	$css->add_property( 'margin', '0 20px' );
 
 	$css->set_selector( '.gp-modal--open:not(.gp-modal--transition) .gp-modal__container' );
 	$css->add_property( 'transform', 'scale(1)' );

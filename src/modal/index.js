@@ -21,7 +21,10 @@ function Modal( { targetModal, openTrigger, triggers = [] } ) {
 	 */
 	function registerTriggers( ...allTriggers ) {
 		allTriggers.filter( Boolean ).forEach( ( trigger ) => {
-			trigger.addEventListener( 'click', () => showModal() );
+			trigger.addEventListener( 'click', ( e ) => {
+				e.preventDefault();
+				showModal();
+			} );
 
 			trigger.addEventListener( 'keydown', ( e ) => {
 				// "Spacebar" for IE11.
