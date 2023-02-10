@@ -39,6 +39,7 @@ export default function ColorsList( {
 					/>
 
 					<DeleteColorButton onClick={ () => {
+						// eslint-disable-next-line
 						if ( window.confirm( __( 'This will permanently delete this color. Doing so will break styles that are using it to define their color.', 'generatepress' ) ) ) {
 							onClickDeleteColor( color.slug );
 						}

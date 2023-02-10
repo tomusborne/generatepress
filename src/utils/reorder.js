@@ -1,9 +1,9 @@
 /**
  * Reorder array items.
  *
- * @param list The array to reorder.
- * @param fromIndex The current index.
- * @param toIndex The index to swap position.
+ * @param {Array} list The array to reorder.
+ * @param {number} fromIndex The current index.
+ * @param {number} toIndex The index to swap position.
  *
  * @return { Array } The reordered array.
  */
