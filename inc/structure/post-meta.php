@@ -396,6 +396,10 @@ function generate_get_footer_entry_meta_items() {
 		$items[] = 'post-navigation';
 	}
 
+	if ( ! is_singular() ) {
+		$items = array_diff( (array) $items, array( 'post-navigation' ) );
+	}
+
 	// Disable post meta items based on their individual filters.
 	$items = generate_disable_post_meta_items( $items );
 

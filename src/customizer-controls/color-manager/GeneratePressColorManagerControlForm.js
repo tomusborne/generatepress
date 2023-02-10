@@ -121,8 +121,8 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 						id={ 'add-color' }
 						icon={ isReordering ? 'check' : 'reorder' }
 						text={ isReordering
-							? __( 'Finish re-ordering', 'generateblocks' )
-							: __( 'Re-order colors', 'generateblocks' )
+							? __( 'Finish re-ordering', 'generatepress' )
+							: __( 'Re-order colors', 'generatepress' )
 						}
 						onClick={ onClickReorder }
 					/>

@@ -38,14 +38,14 @@ export default function GlobalColorPicker( props ) {
 	}, [ localVariableName ] );
 
 	useEffect( () => {
-		const message = isVariableNameValid ? '' : __( 'Variable name already used.', 'generateblocks');
+		const message = isVariableNameValid ? '' : __( 'Variable name already used.', 'generatepress' );
 
 		setHelpText( message );
 	}, [ isVariableNameValid ] );
 
 	useEffect( () => {
 		if ( variableNameHasSpecialChars ) {
-			setHelpText( __( 'Variable name will be converted to kebab-case.', 'generateblocks') );
+			setHelpText( __( 'Variable name will be converted to kebab-case.', 'generatepress' ) );
 		} else if ( isVariableNameValid && ! variableNameHasSpecialChars ) {
 			setHelpText( '' );
 		}

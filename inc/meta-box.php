@@ -228,7 +228,9 @@ function generate_save_layout_meta_data( $post_id ) {
 	}
 
 	$sidebar_layout_key   = '_generate-sidebar-layout-meta';
-	$sidebar_layout_value = filter_input( INPUT_POST, $sidebar_layout_key, FILTER_SANITIZE_STRING );
+	$sidebar_layout_value = isset( $_POST[ $sidebar_layout_key ] )
+		? sanitize_text_field( wp_unslash( $_POST[ $sidebar_layout_key ] ) )
+		: '';
 
 	if ( $sidebar_layout_value ) {
 		update_post_meta( $post_id, $sidebar_layout_key, $sidebar_layout_value );
@@ -237,7 +239,9 @@ function generate_save_layout_meta_data( $post_id ) {
 	}
 
 	$footer_widget_key   = '_generate-footer-widget-meta';
-	$footer_widget_value = filter_input( INPUT_POST, $footer_widget_key, FILTER_SANITIZE_STRING );
+	$footer_widget_value = isset( $_POST[ $footer_widget_key ] )
+		? sanitize_text_field( wp_unslash( $_POST[ $footer_widget_key ] ) )
+		: '';
 
 	// Check for empty string to allow 0 as a value.
 	if ( '' !== $footer_widget_value ) {
@@ -247,7 +251,9 @@ function generate_save_layout_meta_data( $post_id ) {
 	}
 
 	$page_builder_container_key   = '_generate-full-width-content';
-	$page_builder_container_value = filter_input( INPUT_POST, $page_builder_container_key, FILTER_SANITIZE_STRING );
+	$page_builder_container_value = isset( $_POST[ $page_builder_container_key ] )
+		? sanitize_text_field( wp_unslash( $_POST[ $page_builder_container_key ] ) )
+		: '';
 
 	if ( $page_builder_container_value ) {
 		update_post_meta( $post_id, $page_builder_container_key, $page_builder_container_value );
@@ -258,7 +264,9 @@ function generate_save_layout_meta_data( $post_id ) {
 	// We only need this if the Disable Elements module doesn't exist.
 	if ( ! defined( 'GENERATE_DE_VERSION' ) ) {
 		$disable_content_title_key   = '_generate-disable-headline';
-		$disable_content_title_value = filter_input( INPUT_POST, $disable_content_title_key, FILTER_SANITIZE_STRING );
+		$disable_content_title_value = isset( $_POST[ $disable_content_title_key ] )
+			? sanitize_text_field( wp_unslash( $_POST[ $disable_content_title_key ] ) )
+			: '';
 
 		if ( $disable_content_title_value ) {
 			update_post_meta( $post_id, $disable_content_title_key, $disable_content_title_value );
