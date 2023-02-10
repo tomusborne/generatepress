@@ -12,6 +12,7 @@
     "package": "grunt package",
     "googleFonts": "grunt download-google-fonts",
     "lint:php": "composer php",
+    "lint:js": "wp-scripts lint-js ./src",
     "clean": "git checkout -- assets/dist && git clean -fd assets/dist",
     "action-package": "grunt action-package"
   },

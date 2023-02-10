@@ -55,7 +55,7 @@ jobs:
 
       - name: Lint
         if: steps.js-files.outputs.any_changed == 'true'
-        run: npm run lint:js ./src
+        run: npm run lint:js
 
   js-commit-dist:
     name: Commit dist files
