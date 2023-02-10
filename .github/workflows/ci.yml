@@ -190,7 +190,7 @@ jobs:
           PR_TITLE: ${{ github.event.pull_request.title }}
 
       - name: Check style header
-        run: 'cat style.css | grep -w " * Version: ${PR_TITLE:9}"'
+        run: 'cat style.css | grep -w "Version: ${PR_TITLE:9}"'
         env:
           PR_TITLE: ${{ github.event.pull_request.title }}
 
