@@ -101,9 +101,19 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 
 = 3.3.0 =
 
-* Tweak: Allow sub-menus to open using the spacebar
+* Feature: Add navigation search modal
 * Fix: PHP 8.1 filter_input notice
 * Fix: Comment fields PHP 8.1 notice
+* Fix: Empty footer post meta
+* Fix: PHP 8.1 warning in GeneratePress_Typography:get_css
+* Fix: Color picker callback update not re-rendering the component
+* Fix: Don't apply block margin to core Heading
+* Fix: Editor width when changing previews
+* Fix: Allow rgb() color values
+* Fix: JS error when toggling empty mobile menu
+* Fix: PHP notice when using SVG as normal and retina logo
+* Tweak: Allow sub-menus to open using the spacebar
+* Tweak: Increase .has- class specificity
 
 = 3.2.4 =
 
