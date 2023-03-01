@@ -248,6 +248,7 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 		}
 
 		$css->set_selector( ':root' );
+		$css->add_property( '--gp-search-modal-bg-color', '#ffffff' );
 
 		$global_colors = generate_get_global_colors();
 

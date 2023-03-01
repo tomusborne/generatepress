@@ -72,7 +72,7 @@ function generate_do_search_modal_css( $css ) {
 	$css->set_selector( '.search-modal-form' );
 	$css->add_property( 'width', '500px' );
 	$css->add_property( 'margin', '0 20px' );
-	$css->add_property( 'background-color', '#ffffff' );
+	$css->add_property( 'background-color', 'var(--gp-search-modal-bg-color)' );
 
 	$css->set_selector( '.search-modal-form .search-field, .search-modal-form .search-field:focus' );
 	$css->add_property( 'width', '100%' );
