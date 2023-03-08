@@ -304,6 +304,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 		require_once $fields_dir . '/footer-widgets.php';
 		require_once $fields_dir . '/footer-bar.php';
 		require_once $fields_dir . '/back-to-top.php';
+		require_once $fields_dir . '/search-modal.php';
 
 		do_action( 'generate_customize_after_controls', $wp_customize );
 

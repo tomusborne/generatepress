@@ -248,7 +248,6 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 		}
 
 		$css->set_selector( ':root' );
-		$css->add_property( '--gp-search-modal-bg-color', '#ffffff' );
 
 		$global_colors = generate_get_global_colors();
 
@@ -486,6 +485,11 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->set_selector( 'a.generate-back-to-top:hover,a.generate-back-to-top:focus' );
 		$css->add_property( 'background-color', $settings['back_to_top_background_color_hover'] );
 		$css->add_property( 'color', $settings['back_to_top_text_color_hover'] );
+
+		$css->set_selector( ':root' );
+		$css->add_property( '--gp-search-modal-bg-color', $settings['search_modal_bg_color'] );
+		$css->add_property( '--gp-search-modal-text-color', $settings['search_modal_text_color'] );
+		$css->add_property( '--gp-search-modal-overlay-bg-color', $settings['search_modal_overlay_bg_color'] );
 
 		$css->start_media_query( generate_get_media_query( 'mobile-menu' ) );
 		$css->set_selector( '.main-navigation .menu-bar-item:hover > a, .main-navigation .menu-bar-item.sfHover > a' );
