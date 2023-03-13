@@ -1326,6 +1326,7 @@ function generate_do_modal_css( $css ) {
 	$css->add_property( 'max-height', '100vh' );
 	$css->add_property( 'transform', 'scale(0.9)' );
 	$css->add_property( 'transition', 'transform 500ms ease' );
+	$css->add_property( 'padding', '0 10px' );
 
 	$css->set_selector( '.gp-modal--open:not(.gp-modal--transition) .gp-modal__container' );
 	$css->add_property( 'transform', 'scale(1)' );
