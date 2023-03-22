@@ -115,32 +115,21 @@ if ( ! function_exists( 'generate_construct_logo' ) ) {
 			)
 		);
 
+		$data = get_theme_mod( 'custom_logo' ) && ( '' !== $retina_logo_url || generate_is_using_flexbox() )
+			? wp_get_attachment_metadata( get_theme_mod( 'custom_logo' ) )
+			: false;
+
 		if ( '' !== $retina_logo_url ) {
 			$attr['srcset'] = $logo_url . ' 1x, ' . $retina_logo_url . ' 2x';
+		}
 
-			// Add dimensions to image if retina is set. This fixes a container width bug in Firefox.
-			if ( function_exists( 'the_custom_logo' ) && get_theme_mod( 'custom_logo' ) ) {
-				$data = wp_get_attachment_metadata( get_theme_mod( 'custom_logo' ) );
-
-				if ( ! empty( $data ) ) {
-					$attr['width'] = $data['width'];
-					$attr['height'] = $data['height'];
-				}
+		if ( $data ) {
+			if ( isset( $data['width'] ) ) {
+				$attr['width'] = $data['width'];
 			}
-		} elseif ( generate_is_using_flexbox() ) {
-			// Add this to flexbox version only until we can verify it won't conflict with existing installs.
-			if ( function_exists( 'the_custom_logo' ) && get_theme_mod( 'custom_logo' ) ) {
-				$data = wp_get_attachment_metadata( get_theme_mod( 'custom_logo' ) );
 
-				if ( ! empty( $data ) ) {
-					if ( isset( $data['width'] ) ) {
-						$attr['width'] = $data['width'];
-					}
-
-					if ( isset( $data['height'] ) ) {
-						$attr['height'] = $data['height'];
-					}
-				}
+			if ( isset( $data['height'] ) ) {
+				$attr['height'] = $data['height'];
 			}
 		}
 

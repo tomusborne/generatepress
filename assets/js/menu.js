@@ -50,7 +50,7 @@
 			i;
 
 		var enableDropdownArrows = function( nav ) {
-			if ( body.classList.contains( 'dropdown-hover' ) ) {
+			if ( nav && body.classList.contains( 'dropdown-hover' ) ) {
 				var dropdownItems = nav.querySelectorAll( 'li.menu-item-has-children' );
 
 				for ( i = 0; i < dropdownItems.length; i++ ) {
@@ -63,7 +63,7 @@
 		};
 
 		var disableDropdownArrows = function( nav ) {
-			if ( body.classList.contains( 'dropdown-hover' ) ) {
+			if ( nav && body.classList.contains( 'dropdown-hover' ) ) {
 				var dropdownItems = nav.querySelectorAll( 'li.menu-item-has-children' );
 
 				for ( i = 0; i < dropdownItems.length; i++ ) {
@@ -119,7 +119,11 @@
 			if ( parentContainer.classList.contains( 'toggled' ) ) {
 				parentContainer.classList.remove( 'toggled' );
 				htmlEl.classList.remove( 'mobile-menu-open' );
-				nav.setAttribute( 'aria-hidden', 'true' );
+
+				if ( nav ) {
+					nav.setAttribute( 'aria-hidden', 'true' );
+				}
+
 				_this.setAttribute( 'aria-expanded', 'false' );
 
 				if ( isExternalToggle ) {
@@ -132,7 +136,11 @@
 			} else {
 				parentContainer.classList.add( 'toggled' );
 				htmlEl.classList.add( 'mobile-menu-open' );
-				nav.setAttribute( 'aria-hidden', 'false' );
+
+				if ( nav ) {
+					nav.setAttribute( 'aria-hidden', 'false' );
+				}
+
 				_this.setAttribute( 'aria-expanded', 'true' );
 
 				if ( isExternalToggle ) {
@@ -200,7 +208,7 @@
 		for ( i = 0; i < dropdownToggles.length; i++ ) {
 			dropdownToggles[ i ].addEventListener( 'click', toggleSubNav, false );
 			dropdownToggles[ i ].addEventListener( 'keypress', function( e ) {
-				if ( 'Enter' === e.key ) { // 13 is enter
+				if ( 'Enter' === e.key || ' ' === e.key ) {
 					toggleSubNav( e, this );
 				}
 			}, false );
@@ -231,8 +239,8 @@
 						if ( ! remoteNav ) {
 							// Navigation is toggled, but .menu-toggle isn't visible on the page (display: none).
 							var closestNav = openedMobileMenus[ i ].getElementsByTagName( 'ul' )[ 0 ],
-								closestNavItems = closestNav.getElementsByTagName( 'li' ),
-								closestSubMenus = closestNav.getElementsByTagName( 'ul' );
+								closestNavItems = closestNav ? closestNav.getElementsByTagName( 'li' ) : [],
+								closestSubMenus = closestNav ? closestNav.getElementsByTagName( 'ul' ) : [];
 						}
 
 						document.activeElement.blur();

@@ -260,10 +260,10 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 
 			foreach ( (array) $global_colors as $key => $data ) {
 				if ( ! empty( $data['slug'] ) && ! empty( $data['color'] ) ) {
-					$css->set_selector( '.has-' . $data['slug'] . '-color' );
+					$css->set_selector( ':root .has-' . $data['slug'] . '-color' );
 					$css->add_property( 'color', 'var(--' . $data['slug'] . ')' );
 
-					$css->set_selector( '.has-' . $data['slug'] . '-background-color' );
+					$css->set_selector( ':root .has-' . $data['slug'] . '-background-color' );
 					$css->add_property( 'background-color', 'var(--' . $data['slug'] . ')' );
 				}
 			}
@@ -486,6 +486,11 @@ if ( ! function_exists( 'generate_advanced_css' ) ) {
 		$css->add_property( 'background-color', $settings['back_to_top_background_color_hover'] );
 		$css->add_property( 'color', $settings['back_to_top_text_color_hover'] );
 
+		$css->set_selector( ':root' );
+		$css->add_property( '--gp-search-modal-bg-color', $settings['search_modal_bg_color'] );
+		$css->add_property( '--gp-search-modal-text-color', $settings['search_modal_text_color'] );
+		$css->add_property( '--gp-search-modal-overlay-bg-color', $settings['search_modal_overlay_bg_color'] );
+
 		$css->start_media_query( generate_get_media_query( 'mobile-menu' ) );
 		$css->set_selector( '.main-navigation .menu-bar-item:hover > a, .main-navigation .menu-bar-item.sfHover > a' );
 		$css->add_property( 'background', 'none' );
@@ -543,7 +548,7 @@ if ( ! function_exists( 'generate_font_css' ) ) {
 		$css->add_property( 'margin-bottom', floatval( $settings['paragraph_margin'] ), $defaults['paragraph_margin'], 'em' );
 
 		if ( apply_filters( 'generate_do_wp_block_margin_bottom', true ) ) {
-			$css->set_selector( '.entry-content > [class*="wp-block-"]:not(:last-child)' );
+			$css->set_selector( '.entry-content > [class*="wp-block-"]:not(:last-child):not(.wp-block-heading)' );
 			$css->add_property( 'margin-bottom', floatval( $settings['paragraph_margin'] ), false, 'em' );
 		}
 
@@ -1275,4 +1280,56 @@ function generate_update_dynamic_css_cache() {
 
 	$css = generate_get_dynamic_css();
 	update_option( 'generate_dynamic_css_output', wp_strip_all_tags( $css ) );
+}
+
+add_action( 'generate_base_css', 'generate_do_modal_css' );
+/**
+ * Do the modal CSS.
+ *
+ * @param Object $css The existing CSS object.
+ */
+function generate_do_modal_css( $css ) {
+	if ( ! apply_filters( 'generate_enable_modal_script', false ) ) {
+		return;
+	}
+
+	$css->set_selector( '.gp-modal:not(.gp-modal--open):not(.gp-modal--transition)' );
+	$css->add_property( 'display', 'none' );
+
+	$css->set_selector( '.gp-modal--transition:not(.gp-modal--open)' );
+	$css->add_property( 'pointer-events', 'none' );
+
+	$css->set_selector( '.gp-modal-overlay:not(.gp-modal-overlay--open):not(.gp-modal--transition)' );
+	$css->add_property( 'display', 'none' );
+
+	$css->set_selector( '.gp-modal__overlay' );
+	$css->add_property( 'display', 'none' );
+	$css->add_property( 'position', 'fixed' );
+	$css->add_property( 'top', '0' );
+	$css->add_property( 'left', '0' );
+	$css->add_property( 'right', '0' );
+	$css->add_property( 'bottom', '0' );
+	$css->add_property( 'background', 'rgba(0,0,0,0.2)' );
+	$css->add_property( 'display', 'flex' );
+	$css->add_property( 'justify-content', 'center' );
+	$css->add_property( 'align-items', 'center' );
+	$css->add_property( 'z-index', '10000' );
+	$css->add_property( 'backdrop-filter', 'blur(3px)' );
+	$css->add_property( 'transition', 'opacity 500ms ease' );
+	$css->add_property( 'opacity', 0 );
+
+	$css->set_selector( '.gp-modal--open:not(.gp-modal--transition) .gp-modal__overlay' );
+	$css->add_property( 'opacity', 1 );
+
+	$css->set_selector( '.gp-modal__container' );
+	$css->add_property( 'max-width', '100%' );
+	$css->add_property( 'max-height', '100vh' );
+	$css->add_property( 'transform', 'scale(0.9)' );
+	$css->add_property( 'transition', 'transform 500ms ease' );
+	$css->add_property( 'padding', '0 10px' );
+
+	$css->set_selector( '.gp-modal--open:not(.gp-modal--transition) .gp-modal__container' );
+	$css->add_property( 'transform', 'scale(1)' );
+
+	return $css;
 }

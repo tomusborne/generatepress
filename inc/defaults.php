@@ -41,6 +41,7 @@ if ( ! function_exists( 'generate_get_defaults' ) ) {
 				'nav_dropdown_type' => 'hover',
 				'nav_dropdown_direction' => is_rtl() ? 'left' : 'right',
 				'nav_search' => 'disable',
+				'nav_search_modal' => false,
 				'content_layout_setting' => 'separate-containers',
 				'layout_setting' => 'right-sidebar',
 				'blog_layout_setting' => 'right-sidebar',
@@ -188,6 +189,9 @@ if ( ! function_exists( 'generate_get_color_defaults' ) ) {
 				'back_to_top_background_color_hover' => 'rgba( 0,0,0,0.6 )',
 				'back_to_top_text_color' => '#ffffff',
 				'back_to_top_text_color_hover' => '#ffffff',
+				'search_modal_bg_color' => 'var(--base-3)',
+				'search_modal_text_color' => 'var(--contrast)',
+				'search_modal_overlay_bg_color' => 'rgba(0,0,0,0.2)',
 			)
 		);
 	}

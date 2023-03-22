@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Set our theme version.
-define( 'GENERATE_VERSION', '3.2.4' );
+define( 'GENERATE_VERSION', '3.3.0' );
 
 if ( ! function_exists( 'generate_setup' ) ) {
 	add_action( 'after_setup_theme', 'generate_setup' );
@@ -120,3 +120,4 @@ require $theme_dir . '/inc/structure/header.php';
 require $theme_dir . '/inc/structure/navigation.php';
 require $theme_dir . '/inc/structure/post-meta.php';
 require $theme_dir . '/inc/structure/sidebars.php';
+require $theme_dir . '/inc/structure/search-modal.php';

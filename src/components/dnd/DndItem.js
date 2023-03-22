@@ -46,5 +46,4 @@ export default function DndItem( props ) {
 			}
 		</div>
 	);
-
 }
