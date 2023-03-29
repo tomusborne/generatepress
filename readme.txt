@@ -101,6 +101,8 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 
 = 3.3.1 =
 
+* Fix: Mobile menu toggle alignment when navigation above/below header
+
 = 3.3.0 =
 
 * Feature: Add navigation search modal
