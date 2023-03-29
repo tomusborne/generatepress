@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Set our theme version.
-define( 'GENERATE_VERSION', '3.3.0' );
+define( 'GENERATE_VERSION', '3.3.1' );
 
 if ( ! function_exists( 'generate_setup' ) ) {
 	add_action( 'after_setup_theme', 'generate_setup' );
