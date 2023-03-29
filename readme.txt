@@ -103,7 +103,7 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 
 = 3.3.0 =
 
-* Feature: Add navigation search modal
+* Feature: Add the navigation search modal
 * Fix: PHP 8.1 filter_input notice
 * Fix: Comment fields PHP 8.1 notice
 * Fix: Empty footer post meta
