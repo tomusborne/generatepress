@@ -1011,7 +1011,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'settings' => 'generate_settings[nav_search]',
 				'priority' => 23,
 				'active_callback' => function() {
-					return 'enable' === generate_get_option( 'nav_search' );
+					return 'enable' === generate_get_option( 'nav_search' ) || 'floats' === generate_get_option( 'structure' ) || 'font' === generate_get_option( 'icons' );
 				},
 			)
 		);
@@ -1033,7 +1033,7 @@ if ( ! function_exists( 'generate_customize_register' ) ) {
 				'section' => 'generate_layout_navigation',
 				'priority' => 23,
 				'active_callback' => function() {
-					return 'disable' === generate_get_option( 'nav_search' );
+					return 'disable' === generate_get_option( 'nav_search' ) && 'flexbox' === generate_get_option( 'structure' ) && 'svg' === generate_get_option( 'icons' );
 				},
 			)
 		);

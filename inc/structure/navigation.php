@@ -491,7 +491,7 @@ function generate_add_menu_bar_items() {
 		add_action( 'generate_menu_bar_items', 'generate_do_navigation_search_button' );
 	}
 
-	if ( generate_get_option( 'nav_search_modal' ) ) {
+	if ( generate_get_option( 'nav_search_modal' ) && 'flexbox' === generate_get_option( 'structure' ) && 'svg' === generate_get_option( 'icons' ) ) {
 		add_action( 'generate_menu_bar_items', 'generate_do_search_modal_trigger' );
 	}
 }
