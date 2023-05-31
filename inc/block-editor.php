@@ -369,7 +369,7 @@ function generate_do_inline_block_editor_css( $for = 'block-content' ) {
 	}
 
 	if ( $color_settings['content_title_color'] ) {
-		$css->set_selector( '.editor-styles-wrapper .editor-post-title__input' );
+		$css->set_selector( '.edit-post-visual-editor__post-title-wrapper h1' );
 		$css->add_property( 'color', $color_settings['content_title_color'] );
 	}
 
