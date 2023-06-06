@@ -1,22 +1,13 @@
 import DeviceInputGroup from './DeviceInputGroup';
 import { __ } from '@wordpress/i18n';
-import { getPlaceholder, getRangeProps } from '../../utils';
+import { getPlaceholder } from '../../utils';
 
 const LineHeight = ( { font, onChange } ) => {
 	return (
 		<DeviceInputGroup
 			label={ __( 'Line Height', 'generatepress' ) }
-
-			unitValue={ font.lineHeightUnit }
 			units={ [ '', 'px', 'em', 'rem' ] }
-			onChangeUnit={ ( newValue ) => {
-				onChange( 'lineHeightUnit', newValue, font.index );
-			} }
-
-			step={ getRangeProps( font, 'lineHeight', 'step', .1 ) }
-			rangeMin={ getRangeProps( font, 'lineHeight', 'min', 1 ) }
-			rangeMax={ getRangeProps( font, 'lineHeight', 'max', 5 ) }
-			inputMin={ 0 }
+			defaultUnit="em"
 
 			desktopValue={ font.lineHeight }
 			desktopInitial={ getPlaceholder( font, 'lineHeight' ) }

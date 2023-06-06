@@ -3,7 +3,8 @@ import { useState, useEffect } from '@wordpress/element';
 import { Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import TypographyList from './TypographyList';
-import { getElements, selectorHasMarginBottom } from './utils';
+import { selectorHasMarginBottom } from './utils';
+import { isEmpty } from 'lodash';
 
 const GeneratePressTypographyControlForm = ( props ) => {
 	const propValues = props.value;
@@ -27,9 +28,51 @@ const GeneratePressTypographyControlForm = ( props ) => {
 		wp.customize.control( props.customizerSetting.id ).setting.set( fonts );
 	}, [ fonts ] );
 
-	const toggleClose = () => setOpen( 0 );
+	/**
+	 * Migrate our number fields with separate units to single values with
+	 * the units included.
+	 *
+	 * @since 3.4.0
+	 */
+	useEffect( () => {
+		const numberFields = [ 'fontSize', 'lineHeight', 'letterSpacing', 'marginBottom' ];
+		const fontValues = [ ...fonts ];
+		let updateValues = false;
 
-	const elements = getElements();
+		fontValues.forEach( ( font, index ) => {
+			const newValues = {};
+
+			numberFields.forEach( ( field ) => {
+				const unit = font[ field + 'Unit' ] || '';
+
+				[ '', 'Tablet', 'Mobile' ].forEach( ( device ) => {
+					const fieldName = field + device;
+
+					if ( 'number' === typeof font[ fieldName ] ) {
+						newValues[ fieldName ] = String( font[ fieldName ] + unit );
+					}
+				} );
+
+				if ( font[ field + 'Unit' ] ) {
+					newValues[ field + 'Unit' ] = '';
+				}
+			} );
+
+			if ( ! isEmpty( newValues ) ) {
+				fontValues[ index ] = {
+					...fontValues[ index ],
+					...newValues,
+				};
+				updateValues = true;
+			}
+		} );
+
+		if ( updateValues ) {
+			setFonts( fontValues );
+		}
+	}, [ fonts ] );
+
+	const toggleClose = () => setOpen( 0 );
 
 	const updateFonts = ( fontValues ) => {
 		setIsUserInteraction( true );
@@ -52,24 +95,6 @@ const GeneratePressTypographyControlForm = ( props ) => {
 			module,
 			group,
 		};
-
-		const placeholders = elements[ value ].placeholders;
-
-		if ( placeholders ) {
-			// Set our default unit if it exists.
-			Object.keys( placeholders ).forEach( ( placeholder ) => {
-				const unit = elements[ value ].placeholders[ placeholder ].unit;
-
-				if ( unit ) {
-					const unitName = placeholder + 'Unit';
-
-					fontValues[ index ] = {
-						...fontValues[ index ],
-						[ unitName ]: unit,
-					};
-				}
-			} );
-		}
 
 		// Unset any margin values if margin isn't supported.
 		if ( ! selectorHasMarginBottom( value ) ) {
@@ -125,15 +150,12 @@ const GeneratePressTypographyControlForm = ( props ) => {
 						fontSize: '',
 						fontSizeTablet: '',
 						fontSizeMobile: '',
-						fontSizeUnit: 'px',
 						lineHeight: '',
 						lineHeightTablet: '',
 						lineHeightMobile: '',
-						lineHeightUnit: '',
 						letterSpacing: '',
 						letterSpacingTablet: '',
 						letterSpacingMobile: '',
-						letterSpacingUnit: 'px',
 					} );
 
 					updateFonts( fontValues );

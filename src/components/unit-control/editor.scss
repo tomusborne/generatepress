@@ -1,0 +1,77 @@
+.gblocks-unit-control {
+	&__disabled {
+		.gblocks-unit-control__input > *:not(.gblocks-unit-control__override-action):not(.popover-slot) {
+			opacity: 0.5;
+		}
+	}
+
+	&__override-action {
+		position: absolute;
+		right: 28px;
+		top: 0;
+		bottom: 0;
+		display: flex;
+		align-items: center;
+
+		button.components-button {
+			width: 20px;
+			height: 20px;
+			min-width: 20px;
+			padding: 0;
+			border-radius: 100%;
+			justify-content: center !important;
+
+			svg {
+				width: 15px;
+				margin: 0 !important;
+			}
+		}
+	}
+
+	&__input {
+		display: flex;
+		align-items: flex-start;
+		position: relative;
+
+		.components-base-control:first-child {
+			flex-grow: 1;
+		}
+
+		.components-base-control,
+		.components-base-control__field {
+			margin-bottom: 0;
+		}
+
+		select {
+			appearance: none;
+			background: transparent;
+			border-radius: 0px 2px 2px 0px;
+			box-sizing: border-box;
+			color: rgb(85, 93, 102);
+			display: block;
+			font-size: 8px;
+			letter-spacing: -0.5px;
+			outline: none;
+			padding: 2px 3px;
+			text-transform: uppercase;
+			width: 25px;
+			cursor: pointer;
+			height: 100%;
+			margin: 0;
+			border: 0;
+
+			&:disabled {
+				background: none;
+				color: rgb(85, 93, 102);
+				border-color: rgb(85, 93, 102);
+			}
+		}
+	}
+
+	&__unit-select {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+	}
+}
