@@ -37,6 +37,7 @@ class GeneratePress_Typography {
 	public function __construct() {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_google_fonts' ) );
 		add_filter( 'generate_editor_styles', array( $this, 'add_editor_styles' ) );
+		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_editor_scripts' ) );
 
 		// Load fonts the old way in versions before 5.8 as block_editor_settings_all didn't exist.
 		if ( version_compare( $GLOBALS['wp_version'], '5.8', '<' ) ) {
@@ -118,9 +119,10 @@ class GeneratePress_Typography {
 	/**
 	 * Build our typography CSS.
 	 *
-	 * @param string $module The name of the module we're generating CSS for.
+	 * @param string $module            The name of the module we're generating CSS for.
+	 * @param string $specific_selector Target a specific selector to get the CSS for.
 	 */
-	public static function get_css( $module = 'core' ) {
+	public static function get_css( $module = 'core', $specific_selector = '' ) {
 		$typography = generate_get_option( 'typography' );
 
 		// Get data for a specific module so CSS can be compiled separately.
@@ -150,6 +152,14 @@ class GeneratePress_Typography {
 
 			if ( 'custom' === $selector ) {
 				$selector = $options['customSelector'];
+			}
+
+			if (
+				$specific_selector &&
+				$options['selector'] !== $specific_selector &&
+				$options['customSelector'] !== $specific_selector
+			) {
+				continue;
 			}
 
 			$font_family = self::get_font_family( $options['fontFamily'] );
@@ -356,6 +366,31 @@ class GeneratePress_Typography {
 		}
 
 		return $editor_styles;
+	}
+
+	/**
+	 * Add scripts to the block editor.
+	 */
+	public function enqueue_editor_scripts() {
+		$html_typography = self::get_css( 'core', 'html' );
+
+		if ( $html_typography ) {
+			// The editor uses the `body` selector for things like `font-size` and
+			// replaces the `body` selector with `editor-styles-wrapper`. This should make
+			// it so our `html` selector appears as `body` in the editor and overwrites the
+			// common.css file.
+			$desktop_css = str_replace( 'html', 'body:not(.editor-styles-wrapper)', $html_typography );
+
+			wp_add_inline_style(
+				// wp-edit-blocks is enqueued in the editor, including the iframes.
+				// This may break one day, but it's the only way to add CSS into the iframes
+				// without WordPress replacing selectors like `html` and `body`.
+				'wp-edit-blocks',
+				// We add `$desktop_css` to apply to the `<body>` element on desktop and
+				// then we add `$html_typography` to apply to the `<html>` element in the device previews.
+				$desktop_css . $html_typography
+			);
+		}
 	}
 }
 
