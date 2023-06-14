@@ -52,7 +52,9 @@ export default function UnitControl( props ) {
 	const getNumericValue = ( values ) => values.length > 0 ? values[ 0 ] : '';
 	const defaultUnitValue = defaultUnit ? defaultUnit : units[ 0 ];
 	const getUnitValue = ( values ) => values.length > 1 ? values[ 1 ] : defaultUnitValue;
-	const startsWithNumber = ( number ) => /^\d/.test( number );
+
+	// Test if the value starts with a number or a decimal.
+	const startsWithNumber = ( number ) => /^[0-9.]/.test( number );
 
 	const setPlaceholders = () => {
 		if ( ! value ) {
