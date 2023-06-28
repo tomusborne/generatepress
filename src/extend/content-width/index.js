@@ -38,14 +38,9 @@ function getContentWidth( layout, contentContainer = '' ) {
 }
 
 const ContentWidth = () => {
-	const [ sidebarLayout, setSidebarLayout ] = useState( '' );
-	const [ fullWidth, setFullWidth ] = useState( '' );
+	const [ sidebarLayout, setSidebarLayout ] = useState( generatepressBlockEditor.sidebarLayout );
+	const [ fullWidth, setFullWidth ] = useState( generatepressBlockEditor.contentAreaType );
 	const bodyClasses = document.body.className;
-
-	useEffect( () => {
-		setSidebarLayout( document.getElementById( 'generate-sidebar-layout' )?.value || generatepressBlockEditor.globalSidebarLayout );
-		setFullWidth( document.getElementById( '_generate-full-width-content' )?.value || generatepressBlockEditor.contentAreaType );
-	}, [] );
 
 	// We use bodyClasses to update the content width on device change.
 	// See https://github.com/tomusborne/generatepress/issues/493.

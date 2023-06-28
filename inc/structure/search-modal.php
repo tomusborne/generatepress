@@ -28,7 +28,6 @@ function generate_do_search_modal() {
 	<?php
 }
 
-add_action( 'generate_menu_bar_items', 'generate_do_search_modal_trigger' );
 /**
  * Create the search modal trigger.
  */
