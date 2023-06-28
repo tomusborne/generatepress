@@ -16,7 +16,7 @@ function Modal( { targetModal, openTrigger, triggers = [] } ) {
 	/**
 	 * Loops through all openTriggers and binds click event
 	 *
-	 * @param  {Array} allTriggers [Array of node elements]
+	 * @param {Array} allTriggers [Array of node elements]
 	 * @return {void}
 	 */
 	function registerTriggers( ...allTriggers ) {
