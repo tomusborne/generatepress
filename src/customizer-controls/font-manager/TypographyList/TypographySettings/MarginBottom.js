@@ -10,7 +10,6 @@ const MarginBottom = ( { font, onChange } ) => {
 					? __( 'Paragraph Bottom Margin', 'generatepress' )
 					: __( 'Bottom Margin', 'generatepress' )
 			}
-			units={ [ 'px', 'em', 'rem' ] }
 			defaultUnit="em"
 
 			desktopValue={ font.marginBottom }

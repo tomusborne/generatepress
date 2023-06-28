@@ -6,7 +6,7 @@ const LineHeight = ( { font, onChange } ) => {
 	return (
 		<DeviceInputGroup
 			label={ __( 'Line Height', 'generatepress' ) }
-			units={ [ '', 'px', 'em', 'rem' ] }
+			units={ [ '' ] }
 			defaultUnit="em"
 
 			desktopValue={ font.lineHeight }

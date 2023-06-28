@@ -10,12 +10,15 @@ import classnames from 'classnames';
  */
 
 import './editor.scss';
+import UnitDropdown from './unit-dropdown';
+import unitList from './unit-list';
 
 export default function UnitControl( props ) {
 	const {
 		label,
-		units = [ 'px', 'em', '%', 'rem' ],
+		units = [],
 		defaultUnit = '',
+		unitCount = 7,
 		id,
 		disabled = false,
 		overrideValue = null,
@@ -28,6 +31,7 @@ export default function UnitControl( props ) {
 		onFocus = () => null,
 	} = props;
 
+	const visibleUnits = units.concat( unitList ).slice( 0, unitCount );
 	const [ unitValue, setUnitValue ] = useState( '' );
 	const [ numericValue, setNumericValue ] = useState( '' );
 	const [ placeholderValue, setPlaceholderValue ] = useState( '' );
@@ -36,7 +40,7 @@ export default function UnitControl( props ) {
 	const inputRef = useRef( false );
 
 	const splitValues = ( values ) => {
-		const unitRegex = units.join( '|' );
+		const unitRegex = unitList.join( '|' );
 		const splitRegex = new RegExp( `(${ unitRegex })` );
 
 		// Allow numbers with no units.
@@ -49,12 +53,23 @@ export default function UnitControl( props ) {
 			: [];
 	};
 
-	const getNumericValue = ( values ) => values.length > 0 ? values[ 0 ] : '';
-	const defaultUnitValue = defaultUnit ? defaultUnit : units[ 0 ];
-	const getUnitValue = ( values ) => values.length > 1 ? values[ 1 ] : defaultUnitValue;
+	const getNumericValue = ( values ) => values.length > 0 ? values[ 0 ].trim() : '';
+	const defaultUnitValue = defaultUnit ? defaultUnit : visibleUnits[ 0 ];
+	const getUnitValue = ( values ) => {
+		if ( values.length > 1 ) {
+			// Return the unit if we have it.
+			return values[ 1 ];
+		} else if ( values.length > 0 ) {
+			// Return no unit if we have a value but no unit.
+			return '';
+		} else if ( ! values.length ) {
+			// Return the default unit if we have no value or unit.
+			return defaultUnitValue;
+		}
+	};
 
-	// Test if the value starts with a number or a decimal.
-	const startsWithNumber = ( number ) => /^[0-9.]/.test( number );
+	// Test if the value starts with a number, decimal or a single dash.
+	const startsWithNumber = ( number ) => /^([-]?\d|[-]?\.)/.test( number );
 
 	const setPlaceholders = () => {
 		if ( ! value ) {
@@ -143,25 +158,24 @@ export default function UnitControl( props ) {
 					ref={ inputRef }
 				/>
 
-				{ !! overrideAction && <div className="gblocks-unit-control__override-action">{ overrideAction() } </div> }
+				<div className="gblocks-unit-control__input--action">
+					{ !! overrideAction && <div className="gblocks-unit-control__override-action">{ overrideAction() } </div> }
 
-				{ (
-					startsWithNumber( numericValue ) ||
-					(
-						! numericValue &&
-						( ! placeholderValue || startsWithNumber( placeholderValue ) )
-					)
-				) &&
-					<span className="gblocks-unit-control__unit-select">
-						<select
+					{ (
+						startsWithNumber( numericValue ) ||
+						(
+							! numericValue &&
+							( ! placeholderValue || startsWithNumber( placeholderValue ) )
+						)
+					) &&
+						<UnitDropdown
 							value={ unitValue }
-							disabled={ disabled || 1 === units.length }
-							onChange={ ( e ) => setUnitValue( e.target.value ) }
-						>
-							{ units.map( ( unitOption ) => <option key={ unitOption } value={ unitOption }>{ '' === unitOption ? '—' : unitOption }</option> ) }
-						</select>
-					</span>
-				}
+							disabled={ disabled || 1 === visibleUnits.length }
+							units={ visibleUnits }
+							onChange={ ( newValue ) => setUnitValue( newValue ) }
+						/>
+					}
+				</div>
 			</div>
 		</BaseControl>
 	);

@@ -6,7 +6,6 @@ const LetterSpacing = ( { font, onChange } ) => {
 	return (
 		<DeviceInputGroup
 			label={ __( 'Letter Spacing', 'generatepress' ) }
-			units={ [ 'px', 'em', 'rem' ] }
 			defaultUnit="em"
 
 			desktopValue={ font.letterSpacing }

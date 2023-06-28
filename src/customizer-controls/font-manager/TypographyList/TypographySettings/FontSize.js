@@ -6,7 +6,6 @@ const FontSize = ( { font, onChange } ) => {
 	return (
 		<DeviceInputGroup
 			label={ __( 'Font size', 'generatepress' ) }
-			units={ [ 'px', 'em', 'rem', '%' ] }
 			desktopValue={ font.fontSize }
 			desktopInitial={ getPlaceholder( font, 'fontSize' ) }
 			desktopOnChange={ ( newValue ) => {
