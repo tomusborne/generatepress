@@ -40,14 +40,14 @@ function getContentWidth( layout, contentContainer = '' ) {
 const ContentWidth = () => {
 	const [ sidebarLayout, setSidebarLayout ] = useState( generatepressBlockEditor.sidebarLayout );
 	const [ fullWidth, setFullWidth ] = useState( generatepressBlockEditor.contentAreaType );
-	const bodyClasses = document.body.className;
+	const editorWrapperStyles = document.querySelector( '.editor-styles-wrapper' )?.style;
 
-	// We use bodyClasses to update the content width on device change.
+	// We use editorWrapperStyles to update the content width when changing devices or code editor to visual editor.
 	// See https://github.com/tomusborne/generatepress/issues/493.
 	useEffect( () => {
 		const body = document.querySelector( '.editor-styles-wrapper' );
 		body?.style?.setProperty( '--content-width', getContentWidth( sidebarLayout, fullWidth ) );
-	}, [ sidebarLayout, fullWidth, bodyClasses ] );
+	}, [ sidebarLayout, fullWidth, JSON.stringify( editorWrapperStyles ) ] );
 
 	domReady( () => {
 		const sidebarSelect = document.getElementById( 'generate-sidebar-layout' );
