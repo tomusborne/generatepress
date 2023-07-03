@@ -43,11 +43,6 @@ export default function UnitControl( props ) {
 		const unitRegex = unitList.join( '|' );
 		const splitRegex = new RegExp( `(${ unitRegex })` );
 
-		// Allow numbers with no units.
-		if ( ! isNaN( values ) ) {
-			return [ values, '' ];
-		}
-
 		return values
 			? values.toString().split( splitRegex ).filter( ( singleValue ) => '' !== singleValue )
 			: [];
