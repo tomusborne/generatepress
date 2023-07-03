@@ -44,7 +44,7 @@ export default function UnitControl( props ) {
 		const splitRegex = new RegExp( `(${ unitRegex })` );
 
 		return values
-			? values.toString().split( splitRegex ).filter( ( singleValue ) => '' !== singleValue )
+			? values.toString().toLowerCase().split( splitRegex ).filter( ( singleValue ) => '' !== singleValue )
 			: [];
 	};
 
