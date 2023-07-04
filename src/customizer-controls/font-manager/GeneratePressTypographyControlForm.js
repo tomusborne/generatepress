@@ -13,11 +13,16 @@ const GeneratePressTypographyControlForm = ( props ) => {
 	const [ isUserInteraction, setIsUserInteraction ] = useState( false );
 
 	useEffect( () => {
+		let newFonts = [];
+
 		if ( Array.isArray( propValues ) ) {
-			setFonts( propValues );
+			newFonts = propValues;
 		} else if ( 'object' === typeof propValues ) {
-			setFonts( Object.values( propValues ) );
+			newFonts = Object.values( propValues );
 		}
+
+		setFonts( newFonts );
+		migrateOldUnits( newFonts );
 	}, [] );
 
 	useEffect( () => {
@@ -32,11 +37,12 @@ const GeneratePressTypographyControlForm = ( props ) => {
 	 * Migrate our number fields with separate units to single values with
 	 * the units included.
 	 *
+	 * @param {Array} fontValues The existing font values.
+	 *
 	 * @since 3.4.0
 	 */
-	useEffect( () => {
+	function migrateOldUnits( fontValues = [] ) {
 		const numberFields = [ 'fontSize', 'lineHeight', 'letterSpacing', 'marginBottom' ];
-		const fontValues = [ ...fonts ];
 		let updateValues = false;
 
 		fontValues.forEach( ( font, index ) => {
@@ -70,7 +76,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 		if ( updateValues ) {
 			setFonts( fontValues );
 		}
-	}, [ fonts ] );
+	}
 
 	const toggleClose = () => setOpen( 0 );
 
