@@ -54,12 +54,12 @@ const GeneratePressTypographyControlForm = ( props ) => {
 				[ '', 'Tablet', 'Mobile' ].forEach( ( device ) => {
 					const fieldName = field + device;
 
-					if ( 'number' === typeof font[ fieldName ] ) {
+					if ( ! isNaN( font[ fieldName ] ) && unit ) {
 						newValues[ fieldName ] = String( font[ fieldName ] + unit );
 					}
 				} );
 
-				if ( font[ field + 'Unit' ] ) {
+				if ( unit ) {
 					newValues[ field + 'Unit' ] = '';
 				}
 			} );
