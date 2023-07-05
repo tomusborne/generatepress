@@ -54,7 +54,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 				[ '', 'Tablet', 'Mobile' ].forEach( ( device ) => {
 					const fieldName = field + device;
 
-					if ( ! isNaN( font[ fieldName ] ) && unit ) {
+					if ( 'number' === typeof font[ fieldName ] ) {
 						newValues[ fieldName ] = String( font[ fieldName ] + unit );
 					}
 				} );
