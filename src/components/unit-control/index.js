@@ -9,7 +9,7 @@ import classnames from 'classnames';
  * Internal dependencies
  */
 
-import './editor.scss';
+import './style.scss';
 import UnitDropdown from './unit-dropdown';
 import unitList from './unit-list';
 
