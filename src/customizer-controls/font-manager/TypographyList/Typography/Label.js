@@ -20,7 +20,6 @@ const Label = ( { itemId, setOpen, isOpen, font, label } ) => {
 				{ getElementLabel( font ) }
 				{ !! font.fontFamily && ' / ' + font.fontFamily }
 				{ !! font.fontSize && ' / ' + font.fontSize }
-				{ !! font.fontSize && !! font.fontSizeUnit && font.fontSizeUnit }
 			</>
 			}
 		</Button>
