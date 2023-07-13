@@ -112,6 +112,7 @@ if ( ! function_exists( 'generate_construct_logo' ) ) {
 				'class' => 'header-image is-logo-image',
 				'alt'   => esc_attr( apply_filters( 'generate_logo_title', get_bloginfo( 'name', 'display' ) ) ),
 				'src'   => $logo_url,
+				'decoding' => 'async',
 			)
 		);
 
@@ -131,6 +132,13 @@ if ( ! function_exists( 'generate_construct_logo' ) ) {
 			if ( isset( $data['height'] ) ) {
 				$attr['height'] = $data['height'];
 			}
+		}
+
+		if ( function_exists( 'wp_get_loading_optimization_attributes' ) ) {
+			$attr = array_merge(
+				$attr,
+				wp_get_loading_optimization_attributes( 'img', $attr, 'generate_construct_logo' )
+			);
 		}
 
 		$attr = array_map( 'esc_attr', $attr );
