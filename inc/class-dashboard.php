@@ -204,7 +204,7 @@ class GeneratePress_Dashboard {
 				wp_enqueue_script(
 					'generate-dashboard',
 					get_template_directory_uri() . '/assets/dist/dashboard.js',
-					array( 'wp-api', 'wp-i18n', 'wp-components', 'wp-element', 'wp-api-fetch' ),
+					array( 'wp-api', 'wp-i18n', 'wp-components', 'wp-element', 'wp-api-fetch', 'wp-hooks', 'wp-polyfill' ),
 					GENERATE_VERSION,
 					true
 				);
