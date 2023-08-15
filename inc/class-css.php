@@ -103,7 +103,7 @@ if ( ! class_exists( 'GeneratePress_CSS' ) ) {
 			}
 
 			// Add our unit to our value if it exists.
-			if ( $unit && '' !== $unit ) {
+			if ( $unit && '' !== $unit && is_numeric( $value ) ) {
 				$value = $value . $unit;
 				if ( '' !== $og_default ) {
 					$og_default = $og_default . $unit;

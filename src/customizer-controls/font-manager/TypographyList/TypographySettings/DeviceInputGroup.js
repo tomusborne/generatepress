@@ -1,20 +1,13 @@
 import UtilityLabel from '../../../../components/utility-label';
 import { BaseControl } from '@wordpress/components';
-import RangeControl from '../../../../components/range-control';
-import UnitPicker from '../../../../components/unit-picker';
-import hasNumericValue from '../../../../utils/has-numeric-value';
+import UnitControl from '../../../../components/unit-control';
+import { useState } from '@wordpress/element';
 
 const DeviceInputGroup = ( props ) => {
 	const {
 		label,
-		unitValue,
 		units,
-		onChangeUnit,
-		step,
-		rangeMin,
-		rangeMax,
-		inputMin = null,
-		inputMax = null,
+		defaultUnit = '',
 		desktopValue,
 		desktopInitial,
 		desktopOnChange,
@@ -26,67 +19,49 @@ const DeviceInputGroup = ( props ) => {
 		mobileOnChange,
 	} = props;
 
+	const [ device, setDevice ] = useState( 'desktop' );
+
 	return (
 		<BaseControl>
 			<UtilityLabel
 				label={ label }
-				value={ unitValue }
 				devices={ [ 'desktop', 'tablet', 'mobile' ] }
+				onClick={ ( deviceType ) => setDevice( deviceType ) }
 			/>
 
 			<div className="generate-component-input-with-unit">
 				<div className="generate-component-device-field" data-device="desktop">
-					<RangeControl
-						className={ 'generate-range-control-range' }
-						step={ step }
-						rangeMin={ rangeMin }
-						rangeMax={ rangeMax }
-						inputMin={ inputMin }
-						inputMax={ inputMax }
-						value={ hasNumericValue( desktopValue ) ? parseFloat( desktopValue ) : desktopInitial }
-						initialPosition={ desktopInitial }
+					<UnitControl
+						key={ device }
+						units={ units }
+						value={ desktopValue }
+						placeholder={ desktopInitial }
 						onChange={ desktopOnChange }
-						withInputField={ false }
+						defaultUnit={ defaultUnit }
 					/>
 				</div>
 
 				<div className="generate-component-device-field" data-device="tablet">
-					<RangeControl
-						data-generate-control-device="tablet"
-						className={ 'generate-range-control-range' }
-						step={ step }
-						rangeMin={ rangeMin }
-						rangeMax={ rangeMax }
-						inputMin={ inputMin }
-						inputMax={ inputMax }
-						value={ hasNumericValue( tabletValue ) ? parseFloat( tabletValue ) : tabletInitial }
-						initialPosition={ tabletInitial }
+					<UnitControl
+						key={ device }
+						units={ units }
+						value={ tabletValue }
+						placeholder={ tabletInitial }
 						onChange={ tabletOnChange }
-						withInputField={ false }
+						defaultUnit={ defaultUnit }
 					/>
 				</div>
 
 				<div className="generate-component-device-field" data-device="mobile">
-					<RangeControl
-						data-generate-control-device="mobile"
-						className={ 'generate-range-control-range' }
-						step={ step }
-						rangeMin={ rangeMin }
-						rangeMax={ rangeMax }
-						inputMin={ inputMin }
-						inputMax={ inputMax }
-						value={ hasNumericValue( mobileValue ) ? parseFloat( mobileValue ) : mobileInitial }
-						initialPosition={ mobileInitial }
+					<UnitControl
+						key={ device }
+						units={ units }
+						value={ mobileValue }
+						placeholder={ mobileInitial }
 						onChange={ mobileOnChange }
-						withInputField={ false }
+						defaultUnit={ defaultUnit }
 					/>
 				</div>
-
-				<UnitPicker
-					value={ unitValue }
-					units={ units }
-					onClick={ onChangeUnit }
-				/>
 			</div>
 		</BaseControl>
 	);
