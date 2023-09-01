@@ -194,9 +194,7 @@ if ( ! function_exists( 'generate_construct_site_title' ) ) {
 			'generate_site_title_output',
 			sprintf(
 				'<%1$s class="main-title"%4$s>
-					<a href="%2$s" rel="home">
-						%3$s
-					</a>
+					<a href="%2$s" rel="home">%3$s</a>
 				</%1$s>',
 				( is_front_page() && is_home() ) ? 'h1' : 'p',
 				esc_url( apply_filters( 'generate_site_title_href', home_url( '/' ) ) ),
@@ -209,9 +207,7 @@ if ( ! function_exists( 'generate_construct_site_title' ) ) {
 		$site_tagline = apply_filters(
 			'generate_site_description_output',
 			sprintf(
-				'<p class="site-description"%2$s>
-					%1$s
-				</p>',
+				'<p class="site-description"%2$s>%1$s</p>',
 				html_entity_decode( get_bloginfo( 'description', 'display' ) ), // phpcs:ignore
 				'microdata' === generate_get_schema_type() ? ' itemprop="description"' : ''
 			)
