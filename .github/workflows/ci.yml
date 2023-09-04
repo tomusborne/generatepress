@@ -106,7 +106,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: ['5.6', '7.4', '8.1']
+        php-versions: ['7.4', '8.1']
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
