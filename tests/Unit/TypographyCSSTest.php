@@ -36,7 +36,9 @@ final class TypographyCSSTest extends GPTestCase {
 						'fontSize' => '13px',
 						'fontSizeUnit' => '',
 						'lineHeight' => '1.5',
+						'lineHeightUnit' => '',
 						'letterSpacing' => '1px',
+						'letterSpacingUnit' => '',
 					],
 				]
 			);
