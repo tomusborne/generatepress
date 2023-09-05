@@ -58,36 +58,36 @@ jobs:
         run: npm run lint:js
 
   js-tests:
-  name: JS Tests
-  runs-on: ubuntu-latest
-  steps:
-    - name: Checkout repo
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
+    name: JS Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-    - name: Check changed files
-      id: 'js-files'
-      uses: tj-actions/changed-files@v35.4.3
-      with:
-        files: |
-          src/**/*.js
-          src/**/*.json
+      - name: Check changed files
+        id: 'js-files'
+        uses: tj-actions/changed-files@v35.4.3
+        with:
+          files: |
+            src/**/*.js
+            src/**/*.json
 
-    - name: Setup node
-      if: steps.js-files.outputs.any_changed == 'true'
-      uses: actions/setup-node@v3
-      with:
-        node-version: 16
-        cache: 'npm'
+      - name: Setup node
+        if: steps.js-files.outputs.any_changed == 'true'
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
 
-    - name: Download deps
-      if: steps.js-files.outputs.any_changed == 'true'
-      uses: bahmutov/npm-install@v1
+      - name: Download deps
+        if: steps.js-files.outputs.any_changed == 'true'
+        uses: bahmutov/npm-install@v1
 
-    - name: Run tests
-      if: steps.js-files.outputs.any_changed == 'true'
-      run: npm run test:unit
+      - name: Run tests
+        if: steps.js-files.outputs.any_changed == 'true'
+        run: npm run test:unit
 
   js-commit-dist:
     name: Commit dist files
