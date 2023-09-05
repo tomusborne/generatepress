@@ -11,6 +11,9 @@ class GPTestCase extends TestCase {
 		parent::setUp();
 		Monkey\setUp();
 
+		global $wp_version;
+        $wp_version = 'mocked_version';
+
 		Monkey\Functions\stubs(
 			[
 				'wp_parse_args'        => static function ( $settings, $defaults ) {
@@ -27,6 +30,10 @@ class GPTestCase extends TestCase {
 				'get_option' => static function( $option, $default ) {
 					return $default;
 				},
+				'is_rtl' => static function() {
+					return false;
+				},
+				'__' => null,
 			]
 		);
 	}
