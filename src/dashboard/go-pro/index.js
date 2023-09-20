@@ -52,7 +52,7 @@ const GoPro = () => {
 					</div>
 
 					<div className="generatepress-dashboard__section-description">
-						<p>{ __( 'Take GeneratePress to the next level with more options, professionally designed starter sites, and block-based theme building.', 'gp-premium' ) }</p>
+						<p>{ __( 'Take GeneratePress to the next level with more options, professionally designed starter sites, and block-based theme building.', 'generatepress' ) }</p>
 					</div>
 
 					<div className="generatepress-dashboard__section generatepress-dashboard__premium">
