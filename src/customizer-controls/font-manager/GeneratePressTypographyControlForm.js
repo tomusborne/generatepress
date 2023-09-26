@@ -3,7 +3,7 @@ import { useState, useEffect } from '@wordpress/element';
 import { Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import TypographyList from './TypographyList';
-import { selectorHasMarginBottom } from './utils';
+import { getMigratedUnits, selectorHasMarginBottom } from './utils';
 import { isEmpty } from 'lodash';
 
 const GeneratePressTypographyControlForm = ( props ) => {
@@ -42,27 +42,10 @@ const GeneratePressTypographyControlForm = ( props ) => {
 	 * @since 3.4.0
 	 */
 	function migrateOldUnits( fontValues = [] ) {
-		const numberFields = [ 'fontSize', 'lineHeight', 'letterSpacing', 'marginBottom' ];
 		let updateValues = false;
 
 		fontValues.forEach( ( font, index ) => {
-			const newValues = {};
-
-			numberFields.forEach( ( field ) => {
-				const unit = font[ field + 'Unit' ] || '';
-
-				[ '', 'Tablet', 'Mobile' ].forEach( ( device ) => {
-					const fieldName = field + device;
-
-					if ( 'number' === typeof font[ fieldName ] ) {
-						newValues[ fieldName ] = String( font[ fieldName ] + unit );
-					}
-				} );
-
-				if ( unit ) {
-					newValues[ field + 'Unit' ] = '';
-				}
-			} );
+			const newValues = getMigratedUnits( font );
 
 			if ( ! isEmpty( newValues ) ) {
 				fontValues[ index ] = {

@@ -14,7 +14,8 @@
     "lint:php": "composer php",
     "lint:js": "wp-scripts lint-js ./src",
     "clean": "git checkout -- assets/dist && git clean -fd assets/dist",
-    "action-package": "grunt action-package"
+    "action-package": "grunt action-package",
+    "test:unit": "wp-scripts test-unit-js"
   },
   "repository": {
     "type": "git",

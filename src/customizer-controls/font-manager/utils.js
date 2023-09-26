@@ -143,6 +143,29 @@ const groupBy = function( arr, key, common ) {
 	}, {} );
 };
 
+function getMigratedUnits( font ) {
+	const numberFields = [ 'fontSize', 'lineHeight', 'letterSpacing', 'marginBottom' ];
+	const newValues = {};
+
+	numberFields.forEach( ( field ) => {
+		const unit = font[ field + 'Unit' ] || '';
+
+		[ '', 'Tablet', 'Mobile' ].forEach( ( device ) => {
+			const fieldName = field + device;
+
+			if ( 'number' === typeof font[ fieldName ] ) {
+				newValues[ fieldName ] = String( font[ fieldName ] + unit );
+			}
+		} );
+
+		if ( unit ) {
+			newValues[ field + 'Unit' ] = '';
+		}
+	} );
+
+	return newValues;
+}
+
 export {
 	getElements,
 	getElementLabel,
@@ -154,4 +177,5 @@ export {
 	getElementGroups,
 	objectMapToArray,
 	groupBy,
+	getMigratedUnits,
 };
