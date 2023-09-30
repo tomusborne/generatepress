@@ -456,7 +456,7 @@ if ( ! function_exists( 'generate_excerpt_more' ) ) {
 				__( 'Read more', 'generatepress' ),
 				sprintf(
 					/* translators: Aria-label describing the read more button */
-					_x( 'More on %s', 'more on post title', 'generatepress' ),
+					_x( 'Read more about %s', 'more about post title', 'generatepress' ),
 					the_title_attribute( 'echo=0' )
 				)
 			)
@@ -484,7 +484,7 @@ if ( ! function_exists( 'generate_content_more' ) ) {
 				__( 'Read more', 'generatepress' ),
 				sprintf(
 					/* translators: Aria-label describing the read more button */
-					_x( 'More on %s', 'more on post title', 'generatepress' ),
+					_x( 'Read more about %s', 'more about post title', 'generatepress' ),
 					the_title_attribute( 'echo=0' )
 				)
 			)
