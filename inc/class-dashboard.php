@@ -138,7 +138,7 @@ class GeneratePress_Dashboard {
 
 		$tabs['support'] = array(
 			'name' => __( 'Support', 'generatepress' ),
-			'url' => 'https://generatepress.com/support',
+			'url' => 'https://generate.support/',
 			'class' => '',
 			'external' => true,
 		);
