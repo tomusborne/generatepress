@@ -49,7 +49,7 @@ GeneratePress has extensive documentation you can find [here](https://docs.gener
 = Do you offer support? =
 Definitely. We offer support for the free theme in the [WordPress.org forums](https://wordpress.org/support/theme/generatepress).
 
-Premium customers have access to our very own [support forum](https://generatepress.com/support).
+Premium customers have access to our very own [support forum](https://generate.support/).
 
 We try to answer all questions - free or premium - within 24 hours.
 
