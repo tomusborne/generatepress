@@ -52,7 +52,7 @@ if ( ! function_exists( 'generate_settings_page' ) ) {
 							<?php if ( ! defined( 'GP_PREMIUM_VERSION' ) ) : ?>
 								<a style="font-weight: bold;" href="<?php echo generate_get_premium_url( 'https://generatepress.com/premium/' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in function. ?>" target="_blank"><?php esc_html_e( 'Premium', 'generatepress' ); ?></a>
 							<?php endif; ?>
-							<a href="<?php echo esc_url( 'https://generatepress.com/support' ); ?>" target="_blank"><?php esc_html_e( 'Support', 'generatepress' ); ?></a>
+							<a href="<?php echo esc_url( 'https://generate.support/' ); ?>" target="_blank"><?php esc_html_e( 'Support', 'generatepress' ); ?></a>
 							<a href="<?php echo esc_url( 'https://docs.generatepress.com' ); ?>" target="_blank"><?php esc_html_e( 'Documentation', 'generatepress' ); ?></a>
 						</div>
 					</div>
