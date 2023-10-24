@@ -45,6 +45,7 @@
 		<exclude name="Generic.Files.LineEndings" />
 		<exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning" />
 		<exclude name="Generic.Commenting.DocComment.ShortNotCapital" />
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
 	</rule>
 
 	<!-- Let's also check that everything is properly documented. -->
@@ -104,6 +105,13 @@
 	</rule>
 
 	<config name="testVersion" value="7.4-"/>
+
+	<!--
+		This is needed due to this bug: https://github.com/squizlabs/PHP_CodeSniffer/issues/2197
+		For some reason the WPThemeReview ruleset ignores testVersion: https://github.com/WPTT/WPThemeReview/issues/228
+	-->
+	<rule ref="php-config.xml"/>
+
 	<rule ref="PHPCompatibilityWP">
         <exclude name="PHPCompatibility.FunctionDeclarations.NewClosure.Found" />
 		<exclude name="PHPCompatibility.FunctionUse.NewFunctions.preg_filterFound" />

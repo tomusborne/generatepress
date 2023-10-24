@@ -164,7 +164,7 @@ jobs:
 
       - name: Lint
         if: steps.php-files.outputs.any_changed == 'true'
-        run: composer run-script php
+        run: composer run-script lint
 
   php-tests:
     name: PHP Tests

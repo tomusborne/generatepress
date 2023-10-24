@@ -117,6 +117,10 @@ function generate_add_inline_block_editor_styles( $editor_settings ) {
 		}
 
 		$editor_settings['styles'][] = array( 'css' => wp_strip_all_tags( generate_do_inline_block_editor_css() ) );
+		$editor_settings['styles'][] = array(
+			'css' => wp_strip_all_tags( GeneratePress_CSS_Variables::get_css() ),
+			'source' => 'gp_css_variables',
+		);
 
 		if ( generate_is_using_dynamic_typography() ) {
 			$editor_settings['styles'][] = array( 'css' => wp_strip_all_tags( GeneratePress_Typography::get_css( 'core' ) ) );
@@ -180,6 +184,7 @@ function generate_enqueue_backend_block_editor_assets() {
 
 	wp_register_style( 'generate-block-editor', false, array(), true, true );
 	wp_add_inline_style( 'generate-block-editor', generate_do_inline_block_editor_css( 'block-editor' ) );
+	wp_add_inline_style( 'generate-block-editor', GeneratePress_CSS_Variables::get_css() );
 	wp_enqueue_style( 'generate-block-editor' );
 }
 
@@ -197,12 +202,6 @@ function generate_do_inline_block_editor_css( $for = 'block-content' ) {
 	$global_colors = generate_get_global_colors();
 
 	if ( ! empty( $global_colors ) ) {
-		foreach ( (array) $global_colors as $key => $data ) {
-			if ( ! empty( $data['slug'] ) && ! empty( $data['color'] ) ) {
-				$css->add_property( '--' . $data['slug'], $data['color'] );
-			}
-		}
-
 		foreach ( (array) $global_colors as $key => $data ) {
 			if ( ! empty( $data['slug'] ) && ! empty( $data['color'] ) ) {
 				$css->set_selector( '.has-' . $data['slug'] . '-color' );

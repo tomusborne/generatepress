@@ -22,6 +22,14 @@ class GeneratePress_Typography {
 	private static $instance;
 
 	/**
+	 * The properties we've output variables for.
+	 *
+	 * @access private
+	 * @var $properties_added An array of properties that have been added.
+	 */
+	private static $properties_added = [];
+
+	/**
 	 * Initiator
 	 */
 	public static function get_instance() {
@@ -117,6 +125,126 @@ class GeneratePress_Typography {
 	}
 
 	/**
+	 * Build an array of CSS variables.
+	 */
+	public static function build_css_variables() {
+		$typography = generate_get_option( 'typography' );
+
+		if ( empty( $typography ) ) {
+			return [];
+		}
+
+		$variables = array();
+		$variable_names = [
+			'fontFamily'     => 'font-family',
+			'fontWeight'     => 'font-weight',
+			'textTransform'  => 'text-transform',
+			'fontStyle'      => 'font-style',
+			'textDecoration' => 'text-decoration',
+			'fontSize'       => 'font-size',
+			'letterSpacing'  => 'letter-spacing',
+			'lineHeight'     => 'line-height',
+			'marginBottom'   => 'margin-bottom',
+		];
+
+		foreach ( $typography as $key => $data ) {
+			$options = wp_parse_args(
+				$data,
+				self::get_defaults()
+			);
+			$devices = [ '', 'Tablet', 'Mobile' ];
+
+			foreach ( $variable_names as $name => $property ) {
+				foreach ( $devices as $device ) {
+					$option_name = $name . $device;
+
+					if ( ! isset( $options[ $option_name ] ) ) {
+						continue;
+					}
+
+					$value = $options[ $option_name ];
+
+					if ( isset( $options[ $name . 'Unit' ] ) && is_numeric( $value ) ) {
+						$value .= $options[ $name . 'Unit' ];
+					}
+
+					if ( 'fontFamily' === $name ) {
+						$value = self::get_font_family( $options[ $option_name ] );
+					}
+
+					if ( empty( $value ) && ! is_numeric( $value ) ) {
+						continue;
+					}
+
+					$array_key = '' === $device
+						? 'main'
+						: strtolower( $device );
+
+					$variables[ $array_key ][ 'gp-' . esc_attr( $options['selector'] ) . '--' . $property ] = $value;
+				}
+			}
+		}
+
+		return $variables;
+	}
+
+	/**
+	 * Get our CSS variable value.
+	 *
+	 * @param string $property The CSS property.
+	 * @param string $selector The selector we're targeting.
+	 * @param string $device The device we're targeting.
+	 */
+	public static function get_css_variable( $property, $selector, $device ) {
+		$variables = GeneratePress_CSS_Variables::get_variable_data();
+
+		if ( ! isset( $variables[ $device ][ "gp-{$selector}--{$property}" ] ) ) {
+			return;
+		}
+
+		if ( in_array( "{$selector}-{$property}", self::$properties_added ) ) {
+			return;
+		}
+
+		self::$properties_added[] = "{$selector}-{$property}";
+
+		return "var(--gp-{$selector}--{$property})";
+	}
+
+	/**
+	 * Build our CSS data.
+	 *
+	 * @param Object $css The existing CSS object.
+	 * @param string $selector The selector the for the CSS output.
+	 * @param string $raw_selector The selector as it's saved in the database.
+	 * @param string $device The device we're targeting.
+	 */
+	private static function do_css_output( $css, $selector, $raw_selector, $device = 'main' ) {
+		$body_selector = 'body';
+		$paragraph_selector = 'p';
+
+		$css->set_selector( $selector );
+		$css->add_property( 'font-family', self::get_css_variable( 'font-family', $raw_selector, $device ) );
+		$css->add_property( 'font-weight', self::get_css_variable( 'font-weight', $raw_selector, $device ) );
+		$css->add_property( 'text-transform', self::get_css_variable( 'text-transform', $raw_selector, $device ) );
+		$css->add_property( 'font-style', self::get_css_variable( 'font-style', $raw_selector, $device ) );
+		$css->add_property( 'text-decoration', self::get_css_variable( 'font-style', $raw_selector, $device ) );
+		$css->add_property( 'font-size', self::get_css_variable( 'font-size', $raw_selector, $device ) );
+		$css->add_property( 'letter-spacing', self::get_css_variable( 'letter-spacing', $raw_selector, $device ) );
+
+		if ( 'body' !== $raw_selector ) {
+			$css->add_property( 'line-height', self::get_css_variable( 'line-height', $raw_selector, $device ) );
+			$css->add_property( 'margin-bottom', self::get_css_variable( 'margin-bottom', $raw_selector, $device ) );
+		} else {
+			$css->set_selector( $body_selector );
+			$css->add_property( 'line-height', self::get_css_variable( 'line-height', $raw_selector, $device ) );
+
+			$css->set_selector( $paragraph_selector );
+			$css->add_property( 'margin-bottom', self::get_css_variable( 'margin-bottom', $raw_selector, $device ) );
+		}
+	}
+
+	/**
 	 * Build our typography CSS.
 	 *
 	 * @param string $module            The name of the module we're generating CSS for.
@@ -139,16 +267,14 @@ class GeneratePress_Typography {
 
 		$css = new GeneratePress_CSS();
 
-		$body_selector = 'body';
-		$paragraph_selector = 'p';
-
 		foreach ( $typography as $key => $data ) {
 			$options = wp_parse_args(
 				$data,
 				self::get_defaults()
 			);
 
-			$selector = self::get_css_selector( $options['selector'] );
+			$raw_selector = $options['selector'];
+			$selector = self::get_css_selector( $raw_selector );
 
 			if ( 'custom' === $selector ) {
 				$selector = $options['customSelector'];
@@ -156,70 +282,20 @@ class GeneratePress_Typography {
 
 			if (
 				$specific_selector &&
-				$options['selector'] !== $specific_selector &&
+				$raw_selector !== $specific_selector &&
 				$options['customSelector'] !== $specific_selector
 			) {
 				continue;
 			}
 
-			$font_family = self::get_font_family( $options['fontFamily'] );
-
-			$css->set_selector( $selector );
-			$css->add_property( 'font-family', $font_family );
-			$css->add_property( 'font-weight', $options['fontWeight'] );
-			$css->add_property( 'text-transform', $options['textTransform'] );
-			$css->add_property( 'font-style', $options['fontStyle'] );
-			$css->add_property( 'text-decoration', $options['textDecoration'] );
-			$css->add_property( 'font-size', $options['fontSize'], false, $options['fontSizeUnit'] );
-			$css->add_property( 'letter-spacing', $options['letterSpacing'], false, $options['letterSpacingUnit'] );
-
-			if ( 'body' !== $options['selector'] ) {
-				$css->add_property( 'line-height', $options['lineHeight'], false, $options['lineHeightUnit'] );
-				$css->add_property( 'margin-bottom', $options['marginBottom'], false, $options['marginBottomUnit'] );
-			} else {
-				$css->set_selector( $body_selector );
-				$css->add_property( 'line-height', $options['lineHeight'], false, $options['lineHeightUnit'] );
-
-				$css->set_selector( $paragraph_selector );
-				$css->add_property( 'margin-bottom', $options['marginBottom'], false, $options['marginBottomUnit'] );
-			}
+			self::do_css_output( $css, $selector, $raw_selector );
 
 			$css->start_media_query( generate_get_media_query( 'tablet' ) );
-
-			$css->set_selector( $selector );
-			$css->add_property( 'font-size', $options['fontSizeTablet'], false, $options['fontSizeUnit'] );
-			$css->add_property( 'letter-spacing', $options['letterSpacingTablet'], false, $options['letterSpacingUnit'] );
-
-			if ( 'body' !== $options['selector'] ) {
-				$css->add_property( 'line-height', $options['lineHeightTablet'], false, $options['lineHeightUnit'] );
-				$css->add_property( 'margin-bottom', $options['marginBottomTablet'], false, $options['marginBottomUnit'] );
-			} else {
-				$css->set_selector( $body_selector );
-				$css->add_property( 'line-height', $options['lineHeightTablet'], false, $options['lineHeightUnit'] );
-
-				$css->set_selector( $paragraph_selector );
-				$css->add_property( 'margin-bottom', $options['marginBottomTablet'], false, $options['marginBottomUnit'] );
-			}
-
+			self::do_css_output( $css, $selector, $raw_selector, 'tablet' );
 			$css->stop_media_query();
 
 			$css->start_media_query( generate_get_media_query( 'mobile' ) );
-
-			$css->set_selector( $selector );
-			$css->add_property( 'font-size', $options['fontSizeMobile'], false, $options['fontSizeUnit'] );
-			$css->add_property( 'letter-spacing', $options['letterSpacingMobile'], false, $options['letterSpacingUnit'] );
-
-			if ( 'body' !== $options['selector'] ) {
-				$css->add_property( 'line-height', $options['lineHeightMobile'], false, $options['lineHeightUnit'] );
-				$css->add_property( 'margin-bottom', $options['marginBottomMobile'], false, $options['marginBottomUnit'] );
-			} else {
-				$css->set_selector( $body_selector );
-				$css->add_property( 'line-height', $options['lineHeightMobile'], false, $options['lineHeightUnit'] );
-
-				$css->set_selector( $paragraph_selector );
-				$css->add_property( 'margin-bottom', $options['marginBottomMobile'], false, $options['marginBottomUnit'] );
-			}
-
+			self::do_css_output( $css, $selector, $raw_selector, 'mobile' );
 			$css->stop_media_query();
 		}
 

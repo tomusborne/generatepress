@@ -102,6 +102,9 @@ require $theme_dir . '/inc/class-typography-migration.php';
 require $theme_dir . '/inc/class-html-attributes.php';
 require $theme_dir . '/inc/class-theme-update.php';
 require $theme_dir . '/inc/class-rest.php';
+require $theme_dir . '/inc/class-singleton.php';
+require $theme_dir . '/inc/class-css-variables.php';
+require $theme_dir . '/inc/class-colors.php';
 require $theme_dir . '/inc/deprecated.php';
 
 if ( is_admin() ) {
