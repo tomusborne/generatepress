@@ -133,6 +133,15 @@ if ( ! function_exists( 'generate_construct_logo' ) ) {
 			}
 		}
 
+		global $wp_version;
+
+		if ( version_compare( $wp_version, '6.4', '>=' ) ) {
+			$attr = array_merge(
+				$attr,
+				wp_get_loading_optimization_attributes( 'img', $attr, 'generate_construct_logo' )
+			);
+		}
+
 		$attr = array_map( 'esc_attr', $attr );
 
 		$html_attr = '';
