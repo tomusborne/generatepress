@@ -101,8 +101,16 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 
 = 3.4.0 =
 
+* Important: Require PHP 7.4 or later
+* Feature: Allow CSS variables and string-based values in Typography
 * Fix: Mobile menu toggle alignment when navigation above/below header
 * Fix: Disable nav search modal if using floats or font icons
+* Fix: Remove unnecessary white-space from .site-title and .site-description elements
+* Fix: `html` typography selector in the editor
+* Fix: Content title color in editor
+* Fix: Content width jump when loading editor
+* Fix: Editor losing content width switching code/visual editor
+* Fix: Remove prohibited attribute from header element
 
 = 3.3.1 =
 
@@ -110,7 +118,7 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 
 = 3.3.0 =
 
-* Feature: Add the navigation search modal
+* Feature: Add navigation search modal
 * Fix: PHP 8.1 filter_input notice
 * Fix: Comment fields PHP 8.1 notice
 * Fix: Empty footer post meta
