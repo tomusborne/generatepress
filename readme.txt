@@ -4,7 +4,7 @@ Donate link: https://generatepress.com/ongoing-development/
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options
-Requires at least: 5.2
+Requires at least: 7.4
 Tested up to: 6.3
 Stable tag: 3.3.1
 
@@ -98,6 +98,19 @@ By Jed Watson
 MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 
 == Changelog ==
+
+= 3.4.0 =
+
+* Important: Require PHP 7.4 or later
+* Feature: Allow CSS variables and string-based values in Typography
+* Fix: Mobile menu toggle alignment when navigation above/below header
+* Fix: Disable nav search modal if using floats or font icons
+* Fix: Remove unnecessary white-space from .site-title and .site-description elements
+* Fix: `html` typography selector in the editor
+* Fix: Content title color in editor
+* Fix: Content width jump when loading editor
+* Fix: Editor losing content width switching code/visual editor
+* Fix: Remove prohibited attribute from header element
 
 = 3.3.1 =
 
