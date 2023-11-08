@@ -16,7 +16,7 @@ export default function UnitDropdown( { value, onChange, units = [], disabled } 
 		<>
 			<DropdownMenu
 				className="gblocks-unit-control-units"
-				label={ __( 'Select a unit', 'generateblocks' ) }
+				label={ __( 'Select a unit', 'generatepress' ) }
 				icon={ null }
 				toggleProps={ {
 					children: value || String.fromCharCode( 0x2014 ),
@@ -49,7 +49,7 @@ export default function UnitDropdown( { value, onChange, units = [], disabled } 
 								onClick={ () => {
 									window.open( 'https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units', '_blank' ).focus();
 								} }
-								label={ __( 'Learn more about units', 'generateblocks' ) }
+								label={ __( 'Learn more about units', 'generatepress' ) }
 								showTooltip={ true }
 							>
 								{ getIcon( 'info' ) }
