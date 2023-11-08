@@ -375,18 +375,23 @@ class GeneratePress_Typography {
 		$html_typography = self::get_css( 'core', 'html' );
 
 		if ( $html_typography ) {
-			// The editor uses the `body` selector for things like `font-size` and
-			// replaces the `body` selector with `editor-styles-wrapper`. This should make
-			// it so our `html` selector appears as `body` in the editor and overwrites the
-			// common.css file.
-			$desktop_css = str_replace( 'html', 'body:not(.editor-styles-wrapper)', $html_typography );
+			/**
+			 * We don't want to apply our `html` `font-size` to the `<html>` element in the editor,
+			 * or it will apply to text everywhere, including the inspector controls.
+			 */
+			$desktop_css = str_replace( 'html', '.is-desktop-preview', $html_typography );
 
 			wp_add_inline_style(
-				// wp-edit-blocks is enqueued in the editor, including the iframes.
-				// This may break one day, but it's the only way to add CSS into the iframes
-				// without WordPress replacing selectors like `html` and `body`.
+				/**
+				 * `wp-edit-blocks` is enqueued in the editor, including the iframes.
+				 * This is not ideal, as we should use the `block_editor_settings_all` filter to add editor CSS.
+				 * However, that filter prepends all selectors with `.editor-styles-wrapper`, which breaks the above
+				 * selector, as it appears above that element in the DOM.
+				 *
+				 * Related: https://github.com/tomusborne/generatepress/issues/472
+				 */
 				'wp-edit-blocks',
-				// We add `$desktop_css` to apply to the `<body>` element on desktop and
+				// We add `$desktop_css` to apply to the `.is-desktop-preview` element on desktop and
 				// then we add `$html_typography` to apply to the `<html>` element in the device previews.
 				$desktop_css . $html_typography
 			);
