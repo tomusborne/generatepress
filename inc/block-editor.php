@@ -363,13 +363,7 @@ function generate_do_inline_block_editor_css( $for = 'block-content' ) {
 		$css->add_property( 'margin-top', '0' );
 	}
 
-	if ( $color_settings['h1_color'] ) {
-		$css->add_property( 'color', $color_settings['h1_color'] );
-	} elseif ( $color_settings['content_text_color'] ) {
-		$css->add_property( 'color', $color_settings['content_text_color'] );
-	} else {
-		$css->add_property( 'color', generate_get_option( 'text_color' ) );
-	}
+	$css->add_property( 'color', $color_settings['h1_color'] );
 
 	if ( $color_settings['content_title_color'] ) {
 		$css->set_selector( '.edit-post-visual-editor__post-title-wrapper h1' );
@@ -388,13 +382,7 @@ function generate_do_inline_block_editor_css( $for = 'block-content' ) {
 		$css->add_property( 'margin-top', '0' );
 	}
 
-	if ( $color_settings['h2_color'] ) {
-		$css->add_property( 'color', $color_settings['h2_color'] );
-	} elseif ( $color_settings['content_text_color'] ) {
-		$css->add_property( 'color', $color_settings['content_text_color'] );
-	} else {
-		$css->add_property( 'color', generate_get_option( 'text_color' ) );
-	}
+	$css->add_property( 'color', $color_settings['h2_color'] );
 
 	$css->set_selector( 'h3' );
 
@@ -408,13 +396,7 @@ function generate_do_inline_block_editor_css( $for = 'block-content' ) {
 		$css->add_property( 'margin-top', '0' );
 	}
 
-	if ( $color_settings['h3_color'] ) {
-		$css->add_property( 'color', $color_settings['h3_color'] );
-	} elseif ( $color_settings['content_text_color'] ) {
-		$css->add_property( 'color', $color_settings['content_text_color'] );
-	} else {
-		$css->add_property( 'color', generate_get_option( 'text_color' ) );
-	}
+	$css->add_property( 'color', $color_settings['h3_color'] );
 
 	$css->set_selector( 'h4' );
 
@@ -436,13 +418,7 @@ function generate_do_inline_block_editor_css( $for = 'block-content' ) {
 		}
 	}
 
-	if ( $color_settings['h4_color'] ) {
-		$css->add_property( 'color', $color_settings['h4_color'] );
-	} elseif ( $color_settings['content_text_color'] ) {
-		$css->add_property( 'color', $color_settings['content_text_color'] );
-	} else {
-		$css->add_property( 'color', generate_get_option( 'text_color' ) );
-	}
+	$css->add_property( 'color', $color_settings['h4_color'] );
 
 	$css->set_selector( 'h5' );
 
@@ -464,13 +440,7 @@ function generate_do_inline_block_editor_css( $for = 'block-content' ) {
 		}
 	}
 
-	if ( $color_settings['h5_color'] ) {
-		$css->add_property( 'color', $color_settings['h5_color'] );
-	} elseif ( $color_settings['content_text_color'] ) {
-		$css->add_property( 'color', $color_settings['content_text_color'] );
-	} else {
-		$css->add_property( 'color', generate_get_option( 'text_color' ) );
-	}
+	$css->add_property( 'color', $color_settings['h5_color'] );
 
 	$css->set_selector( 'h6' );
 
@@ -492,13 +462,7 @@ function generate_do_inline_block_editor_css( $for = 'block-content' ) {
 		}
 	}
 
-	if ( $color_settings['h6_color'] ) {
-		$css->add_property( 'color', $color_settings['h6_color'] );
-	} elseif ( $color_settings['content_text_color'] ) {
-		$css->add_property( 'color', $color_settings['content_text_color'] );
-	} else {
-		$css->add_property( 'color', generate_get_option( 'text_color' ) );
-	}
+	$css->add_property( 'color', $color_settings['h6_color'] );
 
 	$css->set_selector( 'a.button, .block-editor-block-list__layout .wp-block-button .wp-block-button__link' );
 
