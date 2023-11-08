@@ -102,7 +102,9 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 = 3.4.0 =
 
 * Important: Require PHP 7.4 or later
+* Accessibility: Add label to search modal input
 * Feature: Allow CSS variables and string-based values in Typography
+* Feature: Add read more label filters
 * Fix: Mobile menu toggle alignment when navigation above/below header
 * Fix: Disable nav search modal if using floats or font icons
 * Fix: Remove unnecessary white-space from .site-title and .site-description elements
@@ -111,6 +113,8 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 * Fix: Content width jump when loading editor
 * Fix: Editor losing content width switching code/visual editor
 * Fix: Remove prohibited attribute from header element
+* Fix: Heading text color in the editor
+* Fix: Wrong text domains
 
 = 3.3.1 =
 
