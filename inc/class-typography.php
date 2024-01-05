@@ -375,12 +375,6 @@ class GeneratePress_Typography {
 		$html_typography = self::get_css( 'core', 'html' );
 
 		if ( $html_typography ) {
-			/**
-			 * We don't want to apply our `html` `font-size` to the `<html>` element in the editor,
-			 * or it will apply to text everywhere, including the inspector controls.
-			 */
-			$desktop_css = str_replace( 'html', '.is-desktop-preview', $html_typography );
-
 			wp_add_inline_style(
 				/**
 				 * `wp-edit-blocks` is enqueued in the editor, including the iframes.
@@ -391,9 +385,7 @@ class GeneratePress_Typography {
 				 * Related: https://github.com/tomusborne/generatepress/issues/472
 				 */
 				'wp-edit-blocks',
-				// We add `$desktop_css` to apply to the `.is-desktop-preview` element on desktop and
-				// then we add `$html_typography` to apply to the `<html>` element in the device previews.
-				$desktop_css . $html_typography
+				$html_typography
 			);
 		}
 	}
