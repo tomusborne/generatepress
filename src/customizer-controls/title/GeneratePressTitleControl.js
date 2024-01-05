@@ -80,7 +80,7 @@ const GeneratePressToggleControl = wp.customize.Control.extend( {
 	/**
 	 * Initialize.
 	 *
-	 * @param {string} id - Control ID.
+	 * @param {string} id     - Control ID.
 	 * @param {Object} params - Control params.
 	 */
 	initialize( id, params ) {

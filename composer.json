@@ -22,7 +22,9 @@
         "wptrt/wpthemereview": "^0.2.1",
         "php-parallel-lint/php-parallel-lint": "^1.2.0",
         "phpcompatibility/phpcompatibility-wp": "^2.1.0",
-        "wp-cli/i18n-command": "^2.2.5"
+        "wp-cli/i18n-command": "^2.2.5",
+        "phpunit/phpunit": "^8.0",
+        "brain/monkey": "^2.6"
     },
     "scripts": {
         "php": [
@@ -31,7 +33,8 @@
 		],
         "lint:wpcs": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs",
         "lint:php": "@php ./vendor/bin/parallel-lint --exclude .git --exclude vendor .",
-        "make-pot": "wp i18n make-pot . languages/_s.pot"
+        "make-pot": "wp i18n make-pot . languages/_s.pot",
+		"test": "phpunit"
 	},
     "support": {
         "issues": "https://github.com/tomusborne/generatepress/issues",
@@ -41,5 +44,15 @@
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
-    }
+    },
+	"autoload": {
+		"classmap": [
+			"inc/"
+		]
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"GeneratePress\\Tests\\": "tests/"
+		}
+	}
 }
