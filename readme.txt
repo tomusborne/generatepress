@@ -133,6 +133,7 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 * Fix: Allow rgb() color values
 * Fix: JS error when toggling empty mobile menu
 * Fix: PHP notice when using SVG as normal and retina logo
+* Fix: Color picker outline
 * Tweak: Allow sub-menus to open using the spacebar
 * Tweak: Increase .has- class specificity
 
