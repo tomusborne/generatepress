@@ -453,12 +453,8 @@ if ( ! function_exists( 'generate_excerpt_more' ) ) {
 				' ... <a title="%1$s" class="read-more" href="%2$s" aria-label="%4$s">%3$s</a>',
 				the_title_attribute( 'echo=0' ),
 				esc_url( get_permalink( get_the_ID() ) ),
-				__( 'Read more', 'generatepress' ),
-				sprintf(
-					/* translators: Aria-label describing the read more button */
-					_x( 'More on %s', 'more on post title', 'generatepress' ),
-					the_title_attribute( 'echo=0' )
-				)
+				generate_get_read_more_text(),
+				generate_get_read_more_aria_label()
 			)
 		);
 	}
@@ -481,12 +477,8 @@ if ( ! function_exists( 'generate_content_more' ) ) {
 				'<p class="read-more-container"><a title="%1$s" class="read-more content-read-more" href="%2$s" aria-label="%4$s">%3$s</a></p>',
 				the_title_attribute( 'echo=0' ),
 				esc_url( get_permalink( get_the_ID() ) . apply_filters( 'generate_more_jump', '#more-' . get_the_ID() ) ),
-				__( 'Read more', 'generatepress' ),
-				sprintf(
-					/* translators: Aria-label describing the read more button */
-					_x( 'More on %s', 'more on post title', 'generatepress' ),
-					the_title_attribute( 'echo=0' )
-				)
+				generate_get_read_more_text(),
+				generate_get_read_more_aria_label()
 			)
 		);
 	}
@@ -576,4 +568,32 @@ function generate_do_post_navigation( $template ) {
 	if ( in_array( $template, $templates ) && apply_filters( 'generate_show_post_navigation', true ) ) {
 		generate_content_nav( 'nav-below' );
 	}
+}
+
+/**
+ * Returns the read more text for our posts.
+ *
+ * @since 3.4.0
+ */
+function generate_get_read_more_text() {
+	return apply_filters(
+		'generate_excerpt_more_text',
+		__( 'Read more', 'generatepress' )
+	);
+}
+
+/**
+ * Returns the read more `aria-label` for our posts.
+ *
+ * @since 3.4.0
+ */
+function generate_get_read_more_aria_label() {
+	return apply_filters(
+		'generate_excerpt_more_aria_label',
+		sprintf(
+			/* translators: Aria-label describing the read more button */
+			_x( 'Read more about %s', 'read more about post title', 'generatepress' ),
+			the_title_attribute( 'echo=0' )
+		)
+	);
 }
