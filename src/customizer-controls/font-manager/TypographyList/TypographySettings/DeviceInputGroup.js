@@ -7,6 +7,7 @@ const DeviceInputGroup = ( props ) => {
 	const {
 		label,
 		units,
+		unitCount = 7,
 		defaultUnit = '',
 		desktopValue,
 		desktopInitial,
@@ -34,6 +35,7 @@ const DeviceInputGroup = ( props ) => {
 					<UnitControl
 						key={ device }
 						units={ units }
+						unitCount={ unitCount }
 						value={ desktopValue }
 						placeholder={ desktopInitial }
 						onChange={ desktopOnChange }
@@ -45,6 +47,7 @@ const DeviceInputGroup = ( props ) => {
 					<UnitControl
 						key={ device }
 						units={ units }
+						unitCount={ unitCount }
 						value={ tabletValue }
 						placeholder={ tabletInitial }
 						onChange={ tabletOnChange }
@@ -56,6 +59,7 @@ const DeviceInputGroup = ( props ) => {
 					<UnitControl
 						key={ device }
 						units={ units }
+						unitCount={ unitCount }
 						value={ mobileValue }
 						placeholder={ mobileInitial }
 						onChange={ mobileOnChange }
