@@ -331,6 +331,7 @@ class GeneratePress_Typography {
 	public static function get_defaults() {
 		return array(
 			'selector' => '',
+			'customSelector' => '',
 			'fontFamily' => '',
 			'fontWeight' => '',
 			'textTransform' => '',
