@@ -1,6 +1,5 @@
 import { applyFilters } from '@wordpress/hooks';
 import typographyElements from './placeholders';
-import hasNumericValue from '../../utils/has-numeric-value';
 import { __ } from '@wordpress/i18n';
 
 const getElements = () => applyFilters( 'generate_typography_elements', typographyElements );
@@ -27,7 +26,7 @@ const getPlaceholder = ( settings, property ) => {
 		const desktopSettingName = property.replace( 'Tablet', '' );
 
 		placeholder = 'undefined' !== typeof elements[ settings.selector ].placeholders[ desktopSettingName ] ? elements[ settings.selector ].placeholders[ desktopSettingName ].value : placeholder;
-		placeholder = 'undefined' !== typeof settings[ desktopSettingName ] && hasNumericValue( settings[ desktopSettingName ] ) ? settings[ desktopSettingName ] : placeholder;
+		placeholder = 'undefined' !== typeof settings[ desktopSettingName ] && settings[ desktopSettingName ] ? settings[ desktopSettingName ] : placeholder;
 	}
 
 	if ( property.includes( 'Mobile' ) ) {
@@ -36,42 +35,11 @@ const getPlaceholder = ( settings, property ) => {
 
 		placeholder = 'undefined' !== typeof elements[ settings.selector ].placeholders[ desktopSettingName ] ? elements[ settings.selector ].placeholders[ desktopSettingName ].value : placeholder;
 		placeholder = 'undefined' !== typeof elements[ settings.selector ].placeholders[ tabletSettingName ] ? elements[ settings.selector ].placeholders[ tabletSettingName ].value : placeholder;
-		placeholder = 'undefined' !== typeof settings[ desktopSettingName ] && hasNumericValue( settings[ desktopSettingName ] ) ? settings[ desktopSettingName ] : placeholder;
-		placeholder = 'undefined' !== typeof settings[ tabletSettingName ] && hasNumericValue( settings[ tabletSettingName ] ) ? settings[ tabletSettingName ] : placeholder;
-	}
-
-	// Ditch the placeholder if our unit isn't the default.
-	if ( placeholder && ! property.includes( 'Tablet' ) && ! property.includes( 'Mobile' ) ) {
-		if ( elements[ settings.selector ].placeholders[ property ].unit !== settings[ property + 'Unit' ] ) {
-			placeholder = '';
-		}
+		placeholder = 'undefined' !== typeof settings[ desktopSettingName ] && settings[ desktopSettingName ] ? settings[ desktopSettingName ] : placeholder;
+		placeholder = 'undefined' !== typeof settings[ tabletSettingName ] && settings[ tabletSettingName ] ? settings[ tabletSettingName ] : placeholder;
 	}
 
 	return placeholder;
-};
-
-const getRangeProps = ( settings, property, type, fallback ) => {
-	const elements = getElements();
-
-	let rangeProps = 'undefined' !== typeof elements[ settings.selector ].placeholders[ property ] ? elements[ settings.selector ].placeholders[ property ][ type ] : fallback;
-
-	if ( '%' === settings[ property + 'Unit' ] ) {
-		if ( property.startsWith( 'fontSize' ) && 'max' === type ) {
-			rangeProps = 250;
-		}
-
-		if ( property.startsWith( 'lineHeight' ) ) {
-			if ( 'step' === type ) {
-				rangeProps = 1;
-			}
-
-			if ( 'max' === type ) {
-				rangeProps = 250;
-			}
-		}
-	}
-
-	return rangeProps;
 };
 
 const selectorHasMarginBottom = ( selector ) => {
@@ -175,11 +143,33 @@ const groupBy = function( arr, key, common ) {
 	}, {} );
 };
 
+function getMigratedUnits( font ) {
+	const numberFields = [ 'fontSize', 'lineHeight', 'letterSpacing', 'marginBottom' ];
+	const newValues = {};
+
+	numberFields.forEach( ( field ) => {
+		const unit = font[ field + 'Unit' ] || '';
+
+		[ '', 'Tablet', 'Mobile' ].forEach( ( device ) => {
+			const fieldName = field + device;
+
+			if ( 'number' === typeof font[ fieldName ] ) {
+				newValues[ fieldName ] = String( font[ fieldName ] + unit );
+			}
+		} );
+
+		if ( unit ) {
+			newValues[ field + 'Unit' ] = '';
+		}
+	} );
+
+	return newValues;
+}
+
 export {
 	getElements,
 	getElementLabel,
 	getPlaceholder,
-	getRangeProps,
 	selectorHasMarginBottom,
 	getElementOptions,
 	getFontFamilies,
@@ -187,4 +177,5 @@ export {
 	getElementGroups,
 	objectMapToArray,
 	groupBy,
+	getMigratedUnits,
 };
