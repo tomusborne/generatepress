@@ -1,5 +1,4 @@
 {
-	"parser": "babel-eslint",
 	"globals": {
 		"wp": true,
 		"wpApiSettings": true,

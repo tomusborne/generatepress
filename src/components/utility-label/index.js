@@ -23,6 +23,7 @@ const UtilityLabel = ( props ) => {
 	const {
 		label,
 		devices,
+		onClick = () => null,
 	} = props;
 
 	return (
@@ -58,6 +59,7 @@ const UtilityLabel = ( props ) => {
 								onClick={ () => {
 									wp.customize.previewedDevice.set( device );
 									setDevice( device );
+									onClick( device );
 								} }
 							>
 								{ getIcon( device ) }

@@ -3,7 +3,8 @@ import { useState, useEffect } from '@wordpress/element';
 import { Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import TypographyList from './TypographyList';
-import { getElements, selectorHasMarginBottom } from './utils';
+import { getMigratedUnits, selectorHasMarginBottom } from './utils';
+import { isEmpty } from 'lodash';
 
 const GeneratePressTypographyControlForm = ( props ) => {
 	const propValues = props.value;
@@ -12,11 +13,16 @@ const GeneratePressTypographyControlForm = ( props ) => {
 	const [ isUserInteraction, setIsUserInteraction ] = useState( false );
 
 	useEffect( () => {
+		let newFonts = [];
+
 		if ( Array.isArray( propValues ) ) {
-			setFonts( propValues );
+			newFonts = propValues;
 		} else if ( 'object' === typeof propValues ) {
-			setFonts( Object.values( propValues ) );
+			newFonts = Object.values( propValues );
 		}
+
+		setFonts( newFonts );
+		migrateOldUnits( newFonts );
 	}, [] );
 
 	useEffect( () => {
@@ -27,9 +33,35 @@ const GeneratePressTypographyControlForm = ( props ) => {
 		wp.customize.control( props.customizerSetting.id ).setting.set( fonts );
 	}, [ fonts ] );
 
-	const toggleClose = () => setOpen( 0 );
+	/**
+	 * Migrate our number fields with separate units to single values with
+	 * the units included.
+	 *
+	 * @param {Array} fontValues The existing font values.
+	 *
+	 * @since 3.4.0
+	 */
+	function migrateOldUnits( fontValues = [] ) {
+		let updateValues = false;
 
-	const elements = getElements();
+		fontValues.forEach( ( font, index ) => {
+			const newValues = getMigratedUnits( font );
+
+			if ( ! isEmpty( newValues ) ) {
+				fontValues[ index ] = {
+					...fontValues[ index ],
+					...newValues,
+				};
+				updateValues = true;
+			}
+		} );
+
+		if ( updateValues ) {
+			setFonts( fontValues );
+		}
+	}
+
+	const toggleClose = () => setOpen( 0 );
 
 	const updateFonts = ( fontValues ) => {
 		setIsUserInteraction( true );
@@ -52,24 +84,6 @@ const GeneratePressTypographyControlForm = ( props ) => {
 			module,
 			group,
 		};
-
-		const placeholders = elements[ value ].placeholders;
-
-		if ( placeholders ) {
-			// Set our default unit if it exists.
-			Object.keys( placeholders ).forEach( ( placeholder ) => {
-				const unit = elements[ value ].placeholders[ placeholder ].unit;
-
-				if ( unit ) {
-					const unitName = placeholder + 'Unit';
-
-					fontValues[ index ] = {
-						...fontValues[ index ],
-						[ unitName ]: unit,
-					};
-				}
-			} );
-		}
 
 		// Unset any margin values if margin isn't supported.
 		if ( ! selectorHasMarginBottom( value ) ) {
@@ -125,15 +139,12 @@ const GeneratePressTypographyControlForm = ( props ) => {
 						fontSize: '',
 						fontSizeTablet: '',
 						fontSizeMobile: '',
-						fontSizeUnit: 'px',
 						lineHeight: '',
 						lineHeightTablet: '',
 						lineHeightMobile: '',
-						lineHeightUnit: '',
 						letterSpacing: '',
 						letterSpacingTablet: '',
 						letterSpacingMobile: '',
-						letterSpacingUnit: 'px',
 					} );
 
 					updateFonts( fontValues );
