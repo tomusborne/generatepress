@@ -100,7 +100,8 @@
 			margin: 0;
 		}
 
-		.components-button.generate-color-manager--add-color {
+		.components-button.generate-color-manager--add-color,
+		.components-button.generate-color-manager--color-gen {
 			padding: 0;
 			width: 28px;
 			height: 28px;
@@ -110,6 +111,10 @@
 			border-radius: 100%;
 			background: #fff;
 			border: 1px solid #777;
+
+			&.is-pressed {
+				background: #000;
+			}
 
 			svg {
 				width: 20px;

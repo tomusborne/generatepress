@@ -7,6 +7,8 @@ import { SimpleDndList } from '../../components/dnd';
 import ColorPlaceholder from './components/ColorPlaceholder';
 import { AddColorButton, ColorManagerButton } from './components/buttons';
 import { __ } from '@wordpress/i18n';
+import { colord, extend } from 'colord';
+import mixPlugin from 'colord/plugins/mix';
 
 const GeneratePressColorManagerControlForm = ( props ) => {
 	const {
@@ -21,6 +23,8 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 	const [ initialized, setInitialized ] = useState( false );
 	const [ isReordering, setIsReordering ] = useState( false );
 	const [ reorderedColors, setReorderedColors ] = useState( [] );
+	const [ calculateColors, setCalculateColors ] = useState( false );
+	const [ showCalculateColors, setShowCalculateColors ] = useState( false );
 
 	// Set saved colors on first render
 	useEffect( () => {
@@ -29,6 +33,13 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 		setColors( initialColors );
 		setInitialized( true );
 	}, [] );
+
+	useEffect( () => {
+		const requiredColorsToCalculate = [ 'contrast', 'contrast-2', 'contrast-3', 'base', 'base-2', 'base-3', 'accent' ];
+		const allExist = requiredColorsToCalculate.every( ( slug ) => colors.some( ( item ) => item.slug === slug ) );
+
+		setShowCalculateColors( allExist );
+	}, [ JSON.stringify( colors ) ] );
 
 	/**
 	 * Save the value when changing the control.
@@ -127,6 +138,21 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 						onClick={ onClickReorder }
 					/>
 				</div>
+
+				{ !! showCalculateColors && (
+					<div className="generate-color-manager--item">
+						<ColorManagerButton
+							id={ 'color-gen' }
+							icon={ 'ai' }
+							text={ __( 'Set palette based on your accent color', 'generatepress' ) }
+							isPressed={ calculateColors }
+							disabled={ isReordering }
+							onClick={ () => {
+								setCalculateColors( ! calculateColors );
+							} }
+						/>
+					</div>
+				) }
 			</div>
 
 			{ ! isReordering
@@ -136,6 +162,37 @@ const GeneratePressColorManagerControlForm = ( props ) => {
 						onChangeColor={ updateColorValue }
 						onChangeSlug={ updateColorSlug }
 						onClickDeleteColor={ deleteColor }
+						onAccentColorChange={ ( accentColor ) => {
+							if ( ! calculateColors ) {
+								return;
+							}
+
+							extend( [ mixPlugin ] );
+							const calculatedColors = [
+								{ slug: 'contrast', color: colord( accentColor ).mix( '#000000', 0.9 ).toHex() },
+								{ slug: 'contrast-2', color: colord( accentColor ).mix( '#000000', 0.7 ).toHex() },
+								{ slug: 'contrast-3', color: colord( accentColor ).mix( '#000000', 0.5 ).toHex() },
+								{ slug: 'base', color: colord( accentColor ).mix( '#ffffff', 0.9 ).toHex() },
+								{ slug: 'base-2', color: colord( accentColor ).mix( '#ffffff', 0.95 ).toHex() },
+								{ slug: 'base-3', color: colord( accentColor ).mix( '#ffffff', 1 ).toHex() },
+								{ slug: 'accent', color: accentColor },
+							];
+
+							if ( colors.find( ( item ) => item.slug === 'accent-hover' ) ) {
+								calculatedColors.push( { slug: 'accent-hover', color: colord( accentColor ).mix( '#000000', 0.3 ).toHex() } );
+							}
+
+							const updatedColors = colors.map( ( item ) => {
+								const matchingItem = calculatedColors.find( ( secondItem ) => secondItem.slug === item.slug );
+								if ( matchingItem ) {
+									return { ...item, color: matchingItem.color };
+								}
+								return item;
+							} );
+
+							setColors( updatedColors );
+						} }
+						calculateColors={ calculateColors }
 					/>
 				)
 				: (

@@ -1,6 +1,7 @@
 import { registerPlugin } from '@wordpress/plugins';
 import { useEffect, useState } from '@wordpress/element';
 import domReady from '@wordpress/dom-ready';
+import { useSelect, select } from '@wordpress/data';
 
 function getContentWidth( layout, contentContainer = '' ) {
 	let contentWidth = '';
@@ -40,14 +41,31 @@ function getContentWidth( layout, contentContainer = '' ) {
 const ContentWidth = () => {
 	const [ sidebarLayout, setSidebarLayout ] = useState( generatepressBlockEditor.sidebarLayout );
 	const [ fullWidth, setFullWidth ] = useState( generatepressBlockEditor.contentAreaType );
-	const editorWrapperStyles = document.querySelector( '.editor-styles-wrapper' )?.style;
+
+	const {
+		deviceType,
+	} = useSelect( () => {
+		const {
+			__experimentalGetPreviewDeviceType: getPreviewDeviceType,
+		} = select( 'core/edit-post' );
+
+		if ( ! getPreviewDeviceType ) {
+			return {
+				deviceType: null,
+			};
+		}
+
+		return {
+			deviceType: getPreviewDeviceType(),
+		};
+	}, [] );
 
 	// We use editorWrapperStyles to update the content width when changing devices or code editor to visual editor.
 	// See https://github.com/tomusborne/generatepress/issues/493.
 	useEffect( () => {
 		const body = document.querySelector( '.editor-styles-wrapper' );
 		body?.style?.setProperty( '--content-width', getContentWidth( sidebarLayout, fullWidth ) );
-	}, [ sidebarLayout, fullWidth, JSON.stringify( editorWrapperStyles ) ] );
+	}, [ sidebarLayout, fullWidth, deviceType ] );
 
 	domReady( () => {
 		const sidebarSelect = document.getElementById( 'generate-sidebar-layout' );

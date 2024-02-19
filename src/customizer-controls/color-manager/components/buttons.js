@@ -2,11 +2,11 @@ import { Button, Tooltip } from '@wordpress/components';
 import getIcon from '../../../utils/get-icon';
 import { __ } from '@wordpress/i18n';
 
-export function ColorManagerButton( { id, text, onClick, icon, disabled } ) {
+export function ColorManagerButton( { id, text, onClick, icon, disabled, isPressed } ) {
 	const classname = `generate-color-manager--${ id }`;
 	return (
 		<Tooltip text={ text }>
-			<Button className={ classname } onClick={ onClick } disabled={ disabled }>
+			<Button className={ classname } onClick={ onClick } disabled={ disabled } isPressed={ isPressed }>
 				{ getIcon( icon ) }
 			</Button>
 		</Tooltip>
