@@ -159,7 +159,7 @@ class GeneratePress_Dashboard {
 					esc_attr( $tab['class'] ),
 					esc_html( $tab['name'] ),
 					! empty( $tab['external'] ) ? 'target="_blank" rel="noreferrer noopener"' : '',
-					! empty( $tab['id'] ) ? 'id="' . $tab['id'] . '"' : ''
+					! empty( $tab['id'] ) ? 'id="' . esc_attr( $tab['id'] ) . '"' : ''
 				);
 			}
 			?>
