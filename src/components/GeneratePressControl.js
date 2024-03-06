@@ -1,5 +1,5 @@
+import render from '../utils/react-render';
 import {
-	render,
 	unmountComponentAtNode,
 } from '@wordpress/element';
 

@@ -1,7 +1,7 @@
+import render from '../../utils/react-render';
 import GeneratePressTitleControlForm from './GeneratePressTitleControlForm';
 
 import {
-	render,
 	unmountComponentAtNode,
 } from '@wordpress/element';
 
