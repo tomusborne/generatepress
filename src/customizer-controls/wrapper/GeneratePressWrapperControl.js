@@ -1,7 +1,7 @@
+import render from '../../utils/react-render';
 import classnames from 'classnames';
 
 import {
-	render,
 	unmountComponentAtNode,
 } from '@wordpress/element';
 
