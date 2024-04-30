@@ -104,6 +104,8 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 	} );
 
 	const fontFamilyExists = ( fontFamily ) => fonts.filter( ( font ) => font.fontFamily === fontFamily ).length > 0;
+	const gpFontLibrary = generateCustomizerControls.gpFontLibrary;
+	const gpFontLibraryURI = generateCustomizerControls.gpFontLibraryURI;
 
 	return (
 		<div>
@@ -304,6 +306,29 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 					);
 				} )
 			}
+
+			{ !! gpFontLibrary.length > 0 && gpFontLibrary.map( ( font, index ) => (
+				<div className="generate-font-manager--item" key={ index }>
+					<div className="generate-font-manager--header">
+						<span
+							className="generate-font-manager--label"
+						>
+							{ font.name }
+						</span>
+
+						{ !! gpFontLibraryURI && (
+							<Tooltip text={ __( 'Font Library', 'generatepress' ) }>
+								<Button
+									className="generate-font-manager--open"
+									href={ gpFontLibraryURI }
+								>
+									{ getIcon( 'chevron-right' ) }
+								</Button>
+							</Tooltip>
+						) }
+					</div>
+				</div>
+			) ) }
 
 			<Button
 				isPrimary
