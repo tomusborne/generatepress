@@ -27,9 +27,7 @@ const GeneratePressToggleControl = wp.customize.Control.extend( {
 	 * @return {void}
 	 */
 	ready: function ready() {
-		const control = this;
-
-		control.renderContent();
+		// We don't need to re-render the entire control when the setting changes.
 	},
 
 	/**
