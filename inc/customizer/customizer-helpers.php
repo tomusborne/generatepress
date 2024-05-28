@@ -17,6 +17,7 @@ require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-react-cont
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-color-control.php';
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-range-control.php';
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-typography-control.php';
+require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-wrapper-control.php';
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-upsell-section.php';
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-upsell-control.php';
 require_once trailingslashit( dirname( __FILE__ ) ) . 'controls/class-deprecated.php';

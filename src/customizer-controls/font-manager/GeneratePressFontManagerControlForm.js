@@ -1,7 +1,7 @@
 import './style.scss';
 import googleFonts from './google-fonts.json';
 import getIcon from '../../utils/get-icon';
-import { useState } from '@wordpress/element';
+import { useState, useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import AdvancedSelect from '../../components/advanced-select';
 import { applyFilters } from '@wordpress/hooks';
@@ -14,7 +14,21 @@ import {
 } from '@wordpress/components';
 
 const GeneratePressFontManagerControlForm = ( props ) => {
+	const propValues = props.value;
 	const [ isOpen, setOpen ] = useState( 0 );
+	const [ fonts, setFonts ] = useState( [] );
+
+	useEffect( () => {
+		let newFonts = [];
+
+		if ( Array.isArray( propValues ) ) {
+			newFonts = propValues;
+		} else if ( 'object' === typeof propValues ) {
+			newFonts = Object.values( propValues );
+		}
+
+		setFonts( newFonts );
+	}, [] );
 
 	/**
 	 * Save the value when changing the control.
@@ -23,15 +37,16 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 	 * @return {void}
 	 */
 	const handleChangeComplete = ( value ) => {
+		setFonts( value );
 		wp.customize.control( props.customizerSetting.id ).setting.set( value );
 	};
 
 	const propagateChanges = ( currentFontFamily, previousFontFamily ) => {
 		const typographyControl = wp.customize.control( 'generate_settings[typography]' );
-		const fonts = typographyControl.setting.get();
-		const fontValues = [ ...fonts ];
+		const typographyValues = typographyControl.setting.get();
+		const fontValues = [ ...typographyValues ];
 
-		fonts.forEach( ( typography, index ) => {
+		typographyValues.forEach( ( typography, index ) => {
 			if (
 				( '' === typography.fontFamily && '' === previousFontFamily ) ||
 				typography.fontFamily !== previousFontFamily
@@ -52,13 +67,6 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 	const toggleClose = () => {
 		setOpen( 0 );
 	};
-
-	let fonts = props.value || [];
-
-	// Temporary fix for a bug that returned an object instead of an array.
-	if ( 'object' === typeof fonts ) {
-		fonts = Object.values( fonts );
-	}
 
 	const systemFontOptions = applyFilters(
 		'generate_font_manager_system_fonts',
@@ -96,6 +104,8 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 	} );
 
 	const fontFamilyExists = ( fontFamily ) => fonts.filter( ( font ) => font.fontFamily === fontFamily ).length > 0;
+	const gpFontLibrary = generateCustomizerControls.gpFontLibrary;
+	const gpFontLibraryURI = generateCustomizerControls.gpFontLibraryURI;
 
 	return (
 		<div>
@@ -296,6 +306,29 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 					);
 				} )
 			}
+
+			{ !! gpFontLibrary.length > 0 && gpFontLibrary.map( ( font, index ) => (
+				<div className="generate-font-manager--item" key={ index }>
+					<div className="generate-font-manager--header">
+						<span
+							className="generate-font-manager--label"
+						>
+							{ font.name }
+						</span>
+
+						{ !! gpFontLibraryURI && (
+							<Tooltip text={ __( 'Font Library', 'generatepress' ) }>
+								<Button
+									className="generate-font-manager--open"
+									href={ gpFontLibraryURI }
+								>
+									{ getIcon( 'chevron-right' ) }
+								</Button>
+							</Tooltip>
+						) }
+					</div>
+				</div>
+			) ) }
 
 			<Button
 				isPrimary
