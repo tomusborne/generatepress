@@ -106,6 +106,18 @@ const getFontFamilies = () => {
 		{ value: 'inherit', label: __( 'Inherit', 'generatepress' ) },
 		{ value: 'System Default', label: __( 'System Default', 'generatepress' ) },
 	];
+	const gpFontLibrary = generateCustomizerControls.gpFontLibrary;
+
+	if ( gpFontLibrary && gpFontLibrary.length > 0 ) {
+		gpFontLibrary.forEach( ( font ) => {
+			fontFamilies.push(
+				{
+					value: font.name,
+					label: font.name,
+				}
+			);
+		} );
+	}
 
 	if ( availableFonts.length > 0 ) {
 		availableFonts.forEach( ( value, i ) => {
