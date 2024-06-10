@@ -163,7 +163,7 @@ li > ul {
 	margin-left: 0.6em;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
 	.rtl .mobile-bar-items {
 		position: absolute;
 		left: 0;

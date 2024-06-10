@@ -1564,9 +1564,9 @@ nav.toggled ul ul.sub-menu {
 }
 
 /*--------------------------------------------------------------
-## Breakpoint (768px)
+## Breakpoint (767px)
 --------------------------------------------------------------*/
-@media (max-width: 768px) {
+@media (max-width: 767px) {
 	.hide-on-mobile {
 		display: none !important;
 	}

@@ -68,7 +68,7 @@
 	}
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 767px) and (max-width: 1024px) {
 	[class*="tablet-push-"],
 	[class*="tablet-pull-"] {
 		position: relative;
@@ -2435,9 +2435,9 @@ nav.toggled ul ul.sub-menu {
 }
 
 /*--------------------------------------------------------------
-# Breakpoint (768px)
+# Breakpoint (767px)
 --------------------------------------------------------------*/
-@media (max-width: 768px) {
+@media (max-width: 767px) {
 	/*--------------------------------------------------------------
 	## Links
 	--------------------------------------------------------------*/
