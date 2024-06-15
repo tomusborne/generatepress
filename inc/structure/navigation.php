@@ -371,6 +371,7 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 		if ( 'click-arrow' === generate_get_option( 'nav_dropdown_type' ) ) {
 			$role = 'button';
 			$tabindex = ' tabindex="0"';
+			$aria_label = sprintf(' aria-label="%s: submenu"', $title);
 		}
 
 		if ( isset( $args->container_class ) && 'main-nav' === $args->container_class ) {
@@ -417,7 +418,7 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 					}
 
 					$icon = generate_get_svg_icon( 'arrow' . $arrow_direction );
-					$title = $title . '<span role="' . $role . '" class="dropdown-menu-toggle"' . $tabindex . '>' . $icon . '</span>';
+					$title = $title . '<span role="' . $role . '" class="dropdown-menu-toggle"' . $tabindex . $aria_label . '>' . $icon . '</span>';
 				}
 			}
 		}
