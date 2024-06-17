@@ -73,7 +73,7 @@
 				}
 			}
 
-			var dropdownToggleLinks = document.querySelectorAll( '.main-nav .menu-item-has-children > a .dropdown-menu-toggle' );
+			var dropdownToggleLinks = document.querySelectorAll( '.main-nav .menu-item-has-children > .dropdown-menu-toggle' );
 			for ( i = 0; i < dropdownToggleLinks.length; i++ ) {
 				dropdownToggleLinks[ i ].addEventListener( 'click', dropdownClick, false );
 

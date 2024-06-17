@@ -365,67 +365,131 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 	 * @return string The menu item.
 	 */
 	function generate_dropdown_icon_to_menu_link( $title, $item, $args, $depth ) {
-		$role = 'presentation';
-		$tabindex = '';
-
-		if ( 'click-arrow' === generate_get_option( 'nav_dropdown_type' ) ) {
-			$role = 'button';
-			$tabindex = ' tabindex="0"';
-			$aria_label = sprintf(' aria-label="%s: submenu"', $title);
+		if( 'click-arrow' === generate_get_option( 'nav_dropdown_type' ) ){
+			return $title;
 		}
 
-		if ( isset( $args->container_class ) && 'main-nav' === $args->container_class ) {
-			foreach ( $item->classes as $value ) {
-				if ( 'menu-item-has-children' === $value ) {
-					$arrow_direction = 'down';
+		$settings = array(
+			'tag' => 'span',
+			'role' => 'presentation',
+            'attributes' => array(),
+		);
 
-					if ( 'primary' === $args->theme_location ) {
-						if ( 0 !== $depth ) {
-							$arrow_direction = 'right';
+		return generate_dropdown_arrow_markup($settings, $title, $item, $depth, $args);
+	}
+}
 
-							if ( 'left' === generate_get_option( 'nav_dropdown_direction' ) ) {
-								$arrow_direction = 'left';
-							}
-						}
+if ( ! function_exists( 'generate_dropdown_click_icon_to_menu_link' ) ) {
+	add_filter( 'walker_nav_menu_start_el', 'generate_dropdown_click_icon_to_menu_link', 10, 4 );
+	/**
+	 * Add dropdown icon button for 'click-arrow' nav_dropdown_type if menu item has children.
+	 *
+	 * @since 3.4.0
+	 *
+	 * @param string   $title The menu item title.
+	 * @param WP_Post  $item All of our menu item data.
+	 * @param stdClass $args All of our menu item args.
+	 * @param int      $depth Depth of menu item.
+	 * @return string The menu item.
+	 */
+	function generate_dropdown_click_icon_to_menu_link( $item_output, $item, $depth, $args ) {
+		if( 'click-arrow' !== generate_get_option( 'nav_dropdown_type' ) ){
+			return $item_output;
+		}
 
-						if ( 'nav-left-sidebar' === generate_get_navigation_location() ) {
-							$arrow_direction = 'right';
+		$settings = array(
+			'tag' => 'button',
+			'role' => 'button',
+            'attributes' => array(
+				'tabindex' => 'tabindex="0"',
+				'aria_label' => 'aria-label="'. esc_attr( $item->title ) . ': submenu"',
+			)
+		);
 
-							if ( 'both-right' === generate_get_layout() ) {
-								$arrow_direction = 'left';
-							}
-						}
+		return generate_dropdown_arrow_markup($settings, $item_output, $item, $depth, $args);
+	}
+}
 
-						if ( 'nav-right-sidebar' === generate_get_navigation_location() ) {
-							$arrow_direction = 'left';
+if ( ! function_exists( 'generate_dropdown_arrow_markup' ) ) {
+	/**
+	 * Generate dropdown arrow markup for menu items.
+	 *
+	 * Adds a dropdown arrow to menu items that have children, based on specified settings and context.
+	 *
+	 * @since 3.4.0
+	 * @param array    $settings The settings for the dropdown arrow element.
+	 * @param string   $output The current output of the menu item.
+	 * @param WP_Post  $item The current menu item.
+	 * @param int      $depth The depth of the menu item.
+	 * @param stdClass $args The menu item arguments.
+	 * @return string The modified menu item output.
+	 * @author Taylor Drayson
+	 */
+	function generate_dropdown_arrow_markup( $settings, $output, $item, $depth, $args ) {
+		if ( ! isset( $args->container_class ) || 'main-nav' !== $args->container_class ) {
+			return $output;
+		}
 
-							if ( 'both-left' === generate_get_layout() ) {
-								$arrow_direction = 'right';
-							}
-						}
+		if ( ! in_array( 'menu-item-has-children', $item->classes, true ) ) {
+			return $output;
+		}
 
-						if ( 'hover' !== generate_get_option( 'nav_dropdown_type' ) ) {
-							$arrow_direction = 'down';
-						}
-					}
+		$arrow_direction = 'down';
 
-					$arrow_direction = apply_filters( 'generate_menu_item_dropdown_arrow_direction', $arrow_direction, $args, $depth );
+		if ( 'primary' === $args->theme_location ) {
+			if ( 0 !== $depth ) {
+				$arrow_direction = 'right';
 
-					if ( 'down' === $arrow_direction ) {
-						$arrow_direction = '';
-					} else {
-						$arrow_direction = '-' . $arrow_direction;
-					}
-
-					$icon = generate_get_svg_icon( 'arrow' . $arrow_direction );
-					$title = $title . '<span role="' . $role . '" class="dropdown-menu-toggle"' . $tabindex . $aria_label . '>' . $icon . '</span>';
+				if ( 'left' === generate_get_option( 'nav_dropdown_direction' ) ) {
+					$arrow_direction = 'left';
 				}
+			}
+
+			if ( 'nav-left-sidebar' === generate_get_navigation_location() ) {
+				$arrow_direction = 'right';
+
+				if ( 'both-right' === generate_get_layout() ) {
+					$arrow_direction = 'left';
+				}
+			}
+
+			if ( 'nav-right-sidebar' === generate_get_navigation_location() ) {
+				$arrow_direction = 'left';
+
+				if ( 'both-left' === generate_get_layout() ) {
+					$arrow_direction = 'right';
+				}
+			}
+
+			if ( 'hover' !== generate_get_option( 'nav_dropdown_type' ) ) {
+				$arrow_direction = 'down';
 			}
 		}
 
-		return $title;
+		$arrow_direction = apply_filters( 'generate_menu_item_dropdown_arrow_direction', $arrow_direction, $args, $depth );
+
+		if ( 'down' === $arrow_direction ) {
+			$arrow_direction = '';
+		} else {
+			$arrow_direction = '-' . $arrow_direction;
+		}
+
+		$icon = generate_get_svg_icon( 'arrow' . $arrow_direction );
+
+		$arrow = sprintf(
+			'<%1$s role="%2$s" class="dropdown-menu-toggle"%3$s>%4$s</%1$s>',
+			$settings['tag'],
+			$settings['role'],
+			implode(' ',$settings['attributes']),
+			$icon
+		);
+
+		$output .= $arrow;
+
+		return $output;
 	}
 }
+
 
 if ( ! function_exists( 'generate_navigation_search' ) ) {
 	add_action( 'generate_inside_navigation', 'generate_navigation_search' );
