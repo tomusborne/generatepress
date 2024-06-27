@@ -112,7 +112,7 @@ const getFontFamilies = () => {
 		gpFontLibrary.forEach( ( font ) => {
 			fontFamilies.push(
 				{
-					value: font.name,
+					value: font.fontFamily ? font.fontFamily : font.name,
 					label: font.name,
 				}
 			);
