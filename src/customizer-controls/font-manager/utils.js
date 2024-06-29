@@ -110,10 +110,16 @@ const getFontFamilies = () => {
 
 	if ( gpFontLibrary && gpFontLibrary.length > 0 ) {
 		gpFontLibrary.forEach( ( font ) => {
+			const fontName = font.alias ? font.alias : font.name;
+			const fontFamily = font.fontFamily ? font.fontFamily : fontName;
+			const value = font.cssVariable
+				? `var(${ font.cssVariable })`
+				: fontFamily;
+
 			fontFamilies.push(
 				{
-					value: font.fontFamily ? font.fontFamily : font.name,
-					label: font.name,
+					value,
+					label: fontName,
 				}
 			);
 		} );
