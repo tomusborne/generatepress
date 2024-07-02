@@ -7,22 +7,28 @@ import {
 	select,
 } from '@wordpress/data';
 
+import { store as editorStore } from '@wordpress/editor';
+
 const SetResponsiveClasses = () => {
 	const {
 		deviceType,
 	} = useSelect( () => {
 		const {
-			__experimentalGetPreviewDeviceType: getPreviewDeviceType,
-		} = select( 'core/edit-post' );
+			getDeviceType: getPreviewDeviceType = () => false,
+		} = select( editorStore );
 
-		if ( ! getPreviewDeviceType ) {
+		if ( getPreviewDeviceType() ) {
 			return {
-				deviceType: null,
+				deviceType: getPreviewDeviceType(),
 			};
 		}
 
+		const {
+			__experimentalGetPreviewDeviceType: experimentalGetPreviewDeviceType = () => 'Desktop',
+		} = select( 'core/edit-post' );
+
 		return {
-			deviceType: getPreviewDeviceType(),
+			deviceType: experimentalGetPreviewDeviceType(),
 		};
 	}, [] );
 
