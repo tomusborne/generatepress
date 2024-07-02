@@ -222,7 +222,7 @@ if ( ! function_exists( 'generate_back_to_top' ) ) {
 		echo apply_filters( // phpcs:ignore
 			'generate_back_to_top_output',
 			sprintf(
-				'<a title="%1$s" aria-label="%1$s" rel="nofollow" href="#" class="generate-back-to-top" data-scroll-speed="%2$s" data-start-scroll="%3$s">
+				'<a title="%1$s" aria-label="%1$s" rel="nofollow" href="#" class="generate-back-to-top" data-scroll-speed="%2$s" data-start-scroll="%3$s" role="button">
 					%5$s
 				</a>',
 				esc_attr__( 'Scroll back to top', 'generatepress' ),
