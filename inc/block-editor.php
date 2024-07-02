@@ -264,23 +264,23 @@ function generate_do_inline_block_editor_css( $for = 'block-content' ) {
 
 	if ( 'never' !== $underline_links ) {
 		if ( 'always' === $underline_links ) {
-			$css->set_selector( '.wp-block a' );
+			$css->set_selector( ':where(.wp-block a)' );
 			$css->add_property( 'text-decoration', 'underline' );
 		}
 
 		if ( 'hover' === $underline_links ) {
-			$css->set_selector( '.wp-block a' );
+			$css->set_selector( ':where(.wp-block a)' );
 			$css->add_property( 'text-decoration', 'none' );
 
-			$css->set_selector( '.wp-block a:hover, .wp-block a:focus' );
+			$css->set_selector( ':where(.wp-block a:hover), :where(.wp-block a:focus)' );
 			$css->add_property( 'text-decoration', 'underline' );
 		}
 
 		if ( 'not-hover' === $underline_links ) {
-			$css->set_selector( '.wp-block a' );
+			$css->set_selector( ':where(.wp-block a)' );
 			$css->add_property( 'text-decoration', 'underline' );
 
-			$css->set_selector( '.wp-block a:hover, .wp-block a:focus' );
+			$css->set_selector( ':where(.wp-block a:hover), :where(.wp-block a:focus)' );
 			$css->add_property( 'text-decoration', 'none' );
 		}
 
@@ -501,7 +501,7 @@ function generate_do_inline_block_editor_css( $for = 'block-content' ) {
 		}
 	}
 
-	$css->set_selector( 'a, a:visited' );
+	$css->set_selector( 'a' );
 
 	if ( $color_settings['content_link_color'] ) {
 		$css->add_property( 'color', $color_settings['content_link_color'] );
