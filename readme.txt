@@ -99,6 +99,12 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 
 == Changelog ==
 
+= 3.5.0 =
+* Feature: Add support for more core block options
+* Feature: Add support for GPP Font Library in the Customizer
+* Fix: Underlined buttons in the editor
+* Tweak: Add minimal header/footer templates for future GPP site editor
+
 = 3.4.0 =
 
 * Important: Require PHP 7.4 or later
