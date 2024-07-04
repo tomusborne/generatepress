@@ -1,3 +1,5 @@
+import render from '../../utils/react-render';
+
 /**
  * WordPress dependencies
  */
@@ -12,7 +14,6 @@ import {
 } from '@wordpress/components';
 
 import {
-	render,
 	useState,
 	useEffect,
 } from '@wordpress/element';
