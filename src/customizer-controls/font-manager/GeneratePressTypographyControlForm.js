@@ -10,7 +10,6 @@ const GeneratePressTypographyControlForm = ( props ) => {
 	const propValues = props.value;
 	const [ fonts, setFonts ] = useState( [] );
 	const [ isOpen, setOpen ] = useState( 0 );
-	const [ isUserInteraction, setIsUserInteraction ] = useState( false );
 
 	useEffect( () => {
 		let newFonts = [];
@@ -24,14 +23,6 @@ const GeneratePressTypographyControlForm = ( props ) => {
 		setFonts( newFonts );
 		migrateOldUnits( newFonts );
 	}, [] );
-
-	useEffect( () => {
-		// Prevents the Customizer iframe refreshing on load.
-		const transport = isUserInteraction ? 'refresh' : 'postMessage';
-
-		wp.customize.control( props.customizerSetting.id ).setting.transport = transport;
-		wp.customize.control( props.customizerSetting.id ).setting.set( fonts );
-	}, [ fonts ] );
 
 	/**
 	 * Migrate our number fields with separate units to single values with
@@ -64,8 +55,8 @@ const GeneratePressTypographyControlForm = ( props ) => {
 	const toggleClose = () => setOpen( 0 );
 
 	const updateFonts = ( fontValues ) => {
-		setIsUserInteraction( true );
 		setFonts( fontValues );
+		wp.customize.control( props.customizerSetting.id ).setting.set( fontValues );
 	};
 
 	const deleteFont = ( fontIndex ) => {
@@ -126,7 +117,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 			<Button
 				isPrimary
 				onClick={ () => {
-					const fontValues = [ ...props.value ];
+					const fontValues = [ ...fonts ];
 
 					fontValues.push( {
 						selector: '',
