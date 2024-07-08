@@ -2,8 +2,15 @@ import './style.scss';
 import { __ } from '@wordpress/i18n';
 import { BaseControl } from '@wordpress/components';
 import ColorPicker from '../../components/color-picker';
+import { useState, useEffect } from '@wordpress/element';
 
 const GeneratePressColorControlForm = ( props ) => {
+	const [ value, setValue ] = useState( '' );
+
+	useEffect( () => {
+		setValue( props.value );
+	}, [] );
+
 	/**
 	 * Save the value when changing the colorpicker.
 	 *
@@ -12,6 +19,7 @@ const GeneratePressColorControlForm = ( props ) => {
 	 */
 	const handleChangeComplete = ( color ) => {
 		wp.customize.control( props.customizerSetting.id ).setting.set( color );
+		setValue( color );
 	};
 
 	const showLabel = ! props.choices.hideLabel || 'undefined' === typeof props.choices.hideLabel;
@@ -32,7 +40,7 @@ const GeneratePressColorControlForm = ( props ) => {
 				}
 
 				<ColorPicker
-					value={ props.value }
+					value={ value }
 					hideLabel={ true }
 					tooltipText={ props?.choices?.tooltip || __( 'Choose Color', 'generatepress' ) }
 					tooltipPosition={ 'top center' }
@@ -42,8 +50,8 @@ const GeneratePressColorControlForm = ( props ) => {
 					showPalette={ true }
 					variableNameIsDisabled={ true }
 					label={ props.label }
-					onChange={ ( value ) => {
-						handleChangeComplete( value );
+					onChange={ ( newValue ) => {
+						handleChangeComplete( newValue );
 					} }
 					onClickReset={ () => {
 						handleChangeComplete( props.defaultValue );

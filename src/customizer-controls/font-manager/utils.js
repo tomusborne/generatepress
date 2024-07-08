@@ -106,6 +106,24 @@ const getFontFamilies = () => {
 		{ value: 'inherit', label: __( 'Inherit', 'generatepress' ) },
 		{ value: 'System Default', label: __( 'System Default', 'generatepress' ) },
 	];
+	const gpFontLibrary = generateCustomizerControls.gpFontLibrary;
+
+	if ( gpFontLibrary && gpFontLibrary.length > 0 ) {
+		gpFontLibrary.forEach( ( font ) => {
+			const fontName = font.alias ? font.alias : font.name;
+			const fontFamily = font.fontFamily ? font.fontFamily : fontName;
+			const value = font.cssVariable
+				? `var(${ font.cssVariable })`
+				: fontFamily;
+
+			fontFamilies.push(
+				{
+					value,
+					label: fontName,
+				}
+			);
+		} );
+	}
 
 	if ( availableFonts.length > 0 ) {
 		availableFonts.forEach( ( value, i ) => {
