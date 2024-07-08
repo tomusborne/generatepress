@@ -43,7 +43,7 @@ const getPlaceholder = ( settings, property ) => {
 };
 
 const selectorHasMarginBottom = ( selector ) => {
-	return [ 'body', 'all-headings', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'widget-titles' ].includes( selector );
+	return [ 'body', 'all-headings', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'widget-titles', 'custom' ].includes( selector );
 };
 
 const getElementGroups = () => {
