@@ -117,7 +117,7 @@ const GeneratePressTypographyControlForm = ( props ) => {
 			<Button
 				isPrimary
 				onClick={ () => {
-					const fontValues = [ ...props.value ];
+					const fontValues = [ ...fonts ];
 
 					fontValues.push( {
 						selector: '',
