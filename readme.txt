@@ -104,6 +104,7 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 * Feature: Add support for GPP Font Library in the Customizer
 * Fix: Underlined buttons in the editor
 * Tweak: Add minimal header/footer templates for future GPP site editor
+* Tweak: Allow bottom margin value in custom typography elements
 
 = 3.4.0 =
 
