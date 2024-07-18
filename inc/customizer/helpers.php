@@ -370,11 +370,11 @@ function generate_do_control_inline_scripts() {
 			'palette' => $colors,
 			'showGoogleFonts' => apply_filters( 'generate_font_manager_show_google_fonts', true ),
 			'colorPickerShouldShift' => function_exists( 'did_filter' ),
-			'gpFontLibrary' => class_exists( 'GeneratePress_Font_Library' )
-				? GeneratePress_Font_Library::get_fonts()
+			'gpFontLibrary' => class_exists( 'GeneratePress_Pro_Font_Library' )
+				? GeneratePress_Pro_Font_Library::get_fonts()
 				: array(),
-			'gpFontLibraryURI' => class_exists( 'GeneratePress_Font_Library' )
-				? GeneratePress_Font_Library::get_font_library_uri()
+			'gpFontLibraryURI' => class_exists( 'GeneratePress_Pro_Font_Library' )
+				? GeneratePress_Pro_Font_Library::get_font_library_uri()
 				: '',
 		)
 	);
