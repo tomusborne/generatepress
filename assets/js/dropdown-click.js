@@ -52,10 +52,10 @@
 				}
 			}
 
+			var subMenuSelector = '.children';
+
 			if ( closestLi.querySelector( '.sub-menu' ) ) {
-				var subMenuSelector = '.sub-menu';
-			} else {
-				subMenuSelector = '.children';
+				subMenuSelector = '.sub-menu';
 			}
 
 			// Open the sub-menu

@@ -376,7 +376,7 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 			$tabindex = ' tabindex="0"';
 			$aria_label = sprintf(
 				' aria-label="%s"',
-				esc_attr__( 'Expand sub menu', 'generatepress' )
+				esc_attr__( 'Open Sub-Menu', 'generatepress' )
 			);
 			$aria_hidden = '';
 		}
