@@ -368,7 +368,6 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 		$role        = 'presentation';
 		$tabindex    = '';
 		$aria_label  = '';
-		$aria_hidden = ' aria-hidden="true"';
 		$style       = '';
 
 		if ( 'click-arrow' === generate_get_option( 'nav_dropdown_type' ) ) {
@@ -378,7 +377,6 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 				' aria-label="%s"',
 				esc_attr__( 'Open Sub-Menu', 'generatepress' )
 			);
-			$aria_hidden = '';
 		}
 
 		if ( 'click' === generate_get_option( 'nav_dropdown_type' ) ) {
@@ -429,7 +427,7 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 					}
 
 					$icon = generate_get_svg_icon( 'arrow' . $arrow_direction );
-					$title = $title . '<span role="' . $role . '" class="dropdown-menu-toggle"' . $tabindex . $aria_label . $aria_hidden . $style . '>' . $icon . '</span>';
+					$title = $title . '<span role="' . $role . '" class="dropdown-menu-toggle"' . $tabindex . $aria_label . $style . '>' . $icon . '</span>';
 				}
 			}
 		}
@@ -440,7 +438,7 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 
 add_filter( 'nav_menu_link_attributes', 'generate_set_menu_item_link_attributes', 10, 4 );
 /**
- * Add attributes to menu items.
+ * Add attributes to the menu item link when using the Click - Menu Item option.
  *
  * @since 3.5.0
  *
@@ -459,13 +457,11 @@ function generate_set_menu_item_link_attributes( $atts, $item, $args, $depth ) {
 		return $atts;
 	}
 
-	foreach ( $item->classes as $value ) {
-		if ( 'menu-item-has-children' === $value ) {
-			$atts['role'] = 'button';
-			$atts['aria-expanded'] = 'false';
-			$atts['aria-haspopup'] = 'true';
-			$atts['aria-label'] = esc_attr__( 'Open Sub-Menu', 'generatepress' );
-		}
+	if ( in_array( 'menu-item-has-children', $item->classes, true ) ) {
+		$atts['role'] = 'button';
+		$atts['aria-expanded'] = 'false';
+		$atts['aria-haspopup'] = 'true';
+		$atts['aria-label'] = esc_attr__( 'Open Sub-Menu', 'generatepress' );
 	}
 
 	return $atts;
