@@ -7,7 +7,7 @@
 		/**
 		 * Dropdown click
 		 *
-		 * @param {Object} e The event.
+		 * @param {Object} e     The event.
 		 * @param {Object} _this The clicked item.
 		 */
 		var dropdownClick = function( e, _this ) {
@@ -60,7 +60,16 @@
 		// Open the sub-menu by clicking on the entire link element
 		if ( body.classList.contains( 'dropdown-click-menu-item' ) ) {
 			for ( i = 0; i < parentElementLinks.length; i++ ) {
-				parentElementLinks[ i ].addEventListener( 'click', dropdownClick, true );
+				parentElementLinks[ i ].addEventListener( 'click', dropdownClick, false );
+
+				parentElementLinks[ i ].addEventListener( 'keydown', function( e ) {
+					var _this = this;
+
+					if ( 'Enter' === e.key || ' ' === e.key ) {
+						e.preventDefault();
+						dropdownClick( e, _this );
+					}
+				}, false );
 			}
 		}
 
@@ -80,7 +89,8 @@
 				dropdownToggleLinks[ i ].addEventListener( 'keydown', function( e ) {
 					var _this = this;
 
-					if ( 'Enter' === e.key ) {
+					if ( 'Enter' === e.key || ' ' === e.key ) {
+						e.preventDefault();
 						dropdownClick( e, _this );
 					}
 				}, false );
