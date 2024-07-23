@@ -88,7 +88,7 @@
 		/**
 		 * Start mobile menu toggle.
 		 *
-		 * @param {Object} e The event.
+		 * @param {Object} e     The event.
 		 * @param {Object} _this The clicked item.
 		 */
 		var toggleNav = function( e, _this ) {
@@ -166,7 +166,7 @@
 		/**
 		 * Open sub-menus
 		 *
-		 * @param {Object} e The event.
+		 * @param {Object} e     The event.
 		 * @param {Object} _this The clicked item.
 		 */
 		var toggleSubNav = function( e, _this ) {
