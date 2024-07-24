@@ -4,6 +4,28 @@
 	if ( 'querySelector' in document && 'addEventListener' in window ) {
 		var body = document.body,
 			i;
+
+		// Add missing aria roles and attributes for accessibility.
+		var allSubMenus = document.querySelectorAll( '.main-nav .sub-menu, .main-nav .children' );
+
+		if ( allSubMenus ) {
+			allSubMenus.forEach( function( subMenu ) {
+				var parentLi = subMenu.closest( 'li' );
+				var button = parentLi.querySelector( '[role="button"]' );
+
+				// Bail if no button to update
+				if ( ! button ) {
+					return;
+				}
+
+				if ( ! subMenu.id ) {
+					subMenu.id = parentLi.id + '-sub-menu';
+				}
+
+				button.setAttribute( 'aria-controls', subMenu.id );
+			} );
+		}
+
 		/**
 		 * Dropdown click
 		 *
