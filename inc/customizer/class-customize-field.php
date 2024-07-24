@@ -53,7 +53,7 @@ class GeneratePress_Customize_Field {
 		$control_args['type'] = 'generate-wrapper-control';
 
 		$wp_customize->add_control(
-			new GeneratePress_Customize_React_Control(
+			new GeneratePress_Customize_Wrapper_Control(
 				$wp_customize,
 				$id,
 				$control_args
