@@ -91,6 +91,15 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 
 		if ( 'click' === generate_get_option( 'nav_dropdown_type' ) || 'click-arrow' === generate_get_option( 'nav_dropdown_type' ) ) {
 			wp_enqueue_script( 'generate-dropdown-click', $dir_uri . "/assets/js/dropdown-click{$suffix}.js", array(), GENERATE_VERSION, true );
+
+			wp_localize_script(
+				'generate-dropdown-click',
+				'generatepressDropdownClick',
+				array(
+					'openSubMenuLabel' => esc_attr__( 'Open Sub-Menu', 'generatepress' ),
+					'closeSubMenuLabel' => esc_attr__( 'Close Sub-Menu', 'generatepress' ),
+				)
+			);
 		}
 
 		if ( apply_filters( 'generate_enable_modal_script', false ) ) {
