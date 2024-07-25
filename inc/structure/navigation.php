@@ -368,7 +368,6 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 		$role        = 'presentation';
 		$tabindex    = '';
 		$aria_label  = '';
-		$style       = '';
 
 		if ( 'click-arrow' === generate_get_option( 'nav_dropdown_type' ) ) {
 			$role = 'button';
@@ -377,10 +376,6 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 				' aria-label="%s"',
 				esc_attr__( 'Open Sub-Menu', 'generatepress' )
 			);
-		}
-
-		if ( 'click' === generate_get_option( 'nav_dropdown_type' ) ) {
-			$style = ' style="pointer-events: none;"';
 		}
 
 		if ( isset( $args->container_class ) && 'main-nav' === $args->container_class ) {
@@ -427,7 +422,7 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 					}
 
 					$icon = generate_get_svg_icon( 'arrow' . $arrow_direction );
-					$title = $title . '<span role="' . $role . '" class="dropdown-menu-toggle"' . $tabindex . $aria_label . $style . '>' . $icon . '</span>';
+					$title = $title . '<span role="' . $role . '" class="dropdown-menu-toggle"' . $tabindex . $aria_label . '>' . $icon . '</span>';
 				}
 			}
 		}
