@@ -5,7 +5,7 @@ License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options
 Requires at least: 7.4
-Tested up to: 6.4
+Tested up to: 6.6
 Stable tag: 3.4.0
 
 GeneratePress is a lightweight WordPress theme built with a focus on speed and usability.
@@ -105,6 +105,12 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 * Fix: Underlined buttons in the editor
 * Tweak: Add minimal header/footer templates for future GPP site editor
 * Tweak: Allow bottom margin value in custom typography elements
+* Accessibility: Add role to back to top button
+* Accessibility: Use h2 for comments title
+* Accessibility: Add aria-controls to menu dropdowns
+* Accessibility: Add aria-label to menu dropdown toggles
+* Accessibility: Add proper roles to menu dropdown toggles
+* Accessibility: Allow spacebar to open menu dropdowns
 
 = 3.4.0 =
 
