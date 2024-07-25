@@ -9,7 +9,11 @@
 			var button = parentLi.querySelector( '.dropdown-menu-toggle[role="button"]' );
 
 			if ( ! subMenu.id ) {
-				subMenu.id = parentLi.id + '-sub-menu';
+				var itemId = parentLi.id
+					? parentLi.id
+					: 'menu-item-' + Math.floor( Math.random() * 100000 ); // Just in case our menu item has no ID.
+
+				subMenu.id = itemId + '-sub-menu';
 			}
 
 			// Bail if no button to update
