@@ -365,12 +365,17 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 	 * @return string The menu item.
 	 */
 	function generate_dropdown_icon_to_menu_link( $title, $item, $args, $depth ) {
-		$role = 'presentation';
-		$tabindex = '';
+		$role        = 'presentation';
+		$tabindex    = '';
+		$aria_label  = '';
 
 		if ( 'click-arrow' === generate_get_option( 'nav_dropdown_type' ) ) {
 			$role = 'button';
 			$tabindex = ' tabindex="0"';
+			$aria_label = sprintf(
+				' aria-label="%s"',
+				esc_attr__( 'Open Sub-Menu', 'generatepress' )
+			);
 		}
 
 		if ( isset( $args->container_class ) && 'main-nav' === $args->container_class ) {
@@ -417,13 +422,44 @@ if ( ! function_exists( 'generate_dropdown_icon_to_menu_link' ) ) {
 					}
 
 					$icon = generate_get_svg_icon( 'arrow' . $arrow_direction );
-					$title = $title . '<span role="' . $role . '" class="dropdown-menu-toggle"' . $tabindex . '>' . $icon . '</span>';
+					$title = $title . '<span role="' . $role . '" class="dropdown-menu-toggle"' . $tabindex . $aria_label . '>' . $icon . '</span>';
 				}
 			}
 		}
 
 		return $title;
 	}
+}
+
+add_filter( 'nav_menu_link_attributes', 'generate_set_menu_item_link_attributes', 10, 4 );
+/**
+ * Add attributes to the menu item link when using the Click - Menu Item option.
+ *
+ * @since 3.5.0
+ *
+ * @param array    $atts The menu item attributes.
+ * @param WP_Post  $item The current menu item.
+ * @param stdClass $args The menu item args.
+ * @param int      $depth The depth of the menu item.
+ * @return array The menu item attributes.
+ */
+function generate_set_menu_item_link_attributes( $atts, $item, $args, $depth ) {
+	if ( ! isset( $args->container_class ) || 'main-nav' !== $args->container_class ) {
+		return $atts;
+	}
+
+	if ( 'click' !== generate_get_option( 'nav_dropdown_type' ) ) {
+		return $atts;
+	}
+
+	if ( in_array( 'menu-item-has-children', $item->classes, true ) ) {
+		$atts['role'] = 'button';
+		$atts['aria-expanded'] = 'false';
+		$atts['aria-haspopup'] = 'true';
+		$atts['aria-label'] = esc_attr__( 'Open Sub-Menu', 'generatepress' );
+	}
+
+	return $atts;
 }
 
 if ( ! function_exists( 'generate_navigation_search' ) ) {

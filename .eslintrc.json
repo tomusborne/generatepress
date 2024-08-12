@@ -7,6 +7,7 @@
 		"jQuery": "readonly",
 		"ajaxurl": "readonly",
 		"generatepressMenu": "readonly",
+		"generatepressDropdownClick": "readonly",
 		"generatepressNavSearch": "readonly",
 		"generateCustomizerControls": "readonly",
 		"generateDashboard": "readonly",

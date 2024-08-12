@@ -1,5 +1,5 @@
+import render from '../utils/react-render';
 import {
-	render,
 	unmountComponentAtNode,
 } from '@wordpress/element';
 
@@ -19,12 +19,7 @@ const GeneratePressControl = {
 		 * @return {void}
 		 */
 		ready: function ready() {
-			const control = this;
-
-			// Re-render control when setting changes.
-			control.setting.bind( () => {
-				control.renderContent();
-			} );
+			// We don't need to re-render the entire control when the setting changes.
 		},
 
 		/**
