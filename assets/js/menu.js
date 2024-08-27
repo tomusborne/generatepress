@@ -1,5 +1,33 @@
 ( function() {
 	'use strict';
+	var allSubMenus = document.querySelectorAll( '.main-nav .sub-menu, .main-nav .children' );
+
+	// Add missing aria roles and attributes for accessibility.
+	if ( allSubMenus ) {
+		allSubMenus.forEach( function( subMenu ) {
+			var parentLi = subMenu.closest( 'li' );
+			var button = parentLi.querySelector( '.dropdown-menu-toggle[role="button"]' );
+
+			if ( ! subMenu.id ) {
+				var itemId = parentLi.id
+					? parentLi.id
+					: 'menu-item-' + Math.floor( Math.random() * 100000 ); // Just in case our menu item has no ID.
+
+				subMenu.id = itemId + '-sub-menu';
+			}
+
+			// Bail if no button to update
+			if ( ! button ) {
+				button = parentLi.querySelector( 'a[role="button"]' );
+
+				if ( ! button ) {
+					return;
+				}
+			}
+
+			button.setAttribute( 'aria-controls', subMenu.id );
+		} );
+	}
 
 	if ( 'querySelector' in document && 'addEventListener' in window ) {
 		/**
@@ -54,10 +82,15 @@
 				var dropdownItems = nav.querySelectorAll( 'li.menu-item-has-children' );
 
 				for ( i = 0; i < dropdownItems.length; i++ ) {
-					dropdownItems[ i ].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'tabindex', '0' );
-					dropdownItems[ i ].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'role', 'button' );
-					dropdownItems[ i ].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'aria-expanded', 'false' );
-					dropdownItems[ i ].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'aria-label', generatepressMenu.openSubMenuLabel );
+					var toggle = dropdownItems[ i ].querySelector( '.dropdown-menu-toggle' );
+					var parentLi = toggle.closest( 'li' );
+					var subMenu = parentLi.querySelector( '.sub-menu, .children' );
+
+					toggle.setAttribute( 'tabindex', '0' );
+					toggle.setAttribute( 'role', 'button' );
+					toggle.setAttribute( 'aria-expanded', 'false' );
+					toggle.setAttribute( 'aria-controls', subMenu.id );
+					toggle.setAttribute( 'aria-label', generatepressMenu.openSubMenuLabel );
 				}
 			}
 		};
@@ -70,6 +103,7 @@
 					dropdownItems[ i ].querySelector( '.dropdown-menu-toggle' ).removeAttribute( 'tabindex' );
 					dropdownItems[ i ].querySelector( '.dropdown-menu-toggle' ).setAttribute( 'role', 'presentation' );
 					dropdownItems[ i ].querySelector( '.dropdown-menu-toggle' ).removeAttribute( 'aria-expanded' );
+					dropdownItems[ i ].querySelector( '.dropdown-menu-toggle' ).removeAttribute( 'aria-controls' );
 					dropdownItems[ i ].querySelector( '.dropdown-menu-toggle' ).removeAttribute( 'aria-label' );
 				}
 			}
@@ -88,7 +122,7 @@
 		/**
 		 * Start mobile menu toggle.
 		 *
-		 * @param {Object} e The event.
+		 * @param {Object} e     The event.
 		 * @param {Object} _this The clicked item.
 		 */
 		var toggleNav = function( e, _this ) {
@@ -166,7 +200,7 @@
 		/**
 		 * Open sub-menus
 		 *
-		 * @param {Object} e The event.
+		 * @param {Object} e     The event.
 		 * @param {Object} _this The clicked item.
 		 */
 		var toggleSubNav = function( e, _this ) {

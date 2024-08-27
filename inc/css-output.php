@@ -245,6 +245,11 @@ if ( ! function_exists( 'generate_base_css' ) ) {
 
 			$css->set_selector( '.dropdown-click .sfHover > a > .dropdown-menu-toggle > .gp-icon svg' );
 			$css->add_property( 'transform', 'rotate(180deg)' );
+
+			if ( 'click' === generate_get_option( 'nav_dropdown_type' ) ) {
+				$css->set_selector( '.menu-item-has-children  .dropdown-menu-toggle[role="presentation"]' );
+				$css->add_property( 'pointer-events', 'none' );
+			}
 		}
 
 		$css->set_selector( ':root' );

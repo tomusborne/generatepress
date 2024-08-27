@@ -1,7 +1,7 @@
+import render from '../../utils/react-render';
 import GeneratePressTitleControlForm from './GeneratePressTitleControlForm';
 
 import {
-	render,
 	unmountComponentAtNode,
 } from '@wordpress/element';
 
@@ -27,9 +27,7 @@ const GeneratePressToggleControl = wp.customize.Control.extend( {
 	 * @return {void}
 	 */
 	ready: function ready() {
-		const control = this;
-
-		control.renderContent();
+		// We don't need to re-render the entire control when the setting changes.
 	},
 
 	/**

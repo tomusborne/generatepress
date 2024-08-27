@@ -43,7 +43,7 @@ const getPlaceholder = ( settings, property ) => {
 };
 
 const selectorHasMarginBottom = ( selector ) => {
-	return [ 'body', 'all-headings', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'widget-titles' ].includes( selector );
+	return [ 'body', 'all-headings', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'widget-titles', 'custom' ].includes( selector );
 };
 
 const getElementGroups = () => {
@@ -106,6 +106,24 @@ const getFontFamilies = () => {
 		{ value: 'inherit', label: __( 'Inherit', 'generatepress' ) },
 		{ value: 'System Default', label: __( 'System Default', 'generatepress' ) },
 	];
+	const gpFontLibrary = generateCustomizerControls.gpFontLibrary;
+
+	if ( gpFontLibrary && gpFontLibrary.length > 0 ) {
+		gpFontLibrary.forEach( ( font ) => {
+			const fontName = font.alias ? font.alias : font.name;
+			const fontFamily = font.fontFamily ? font.fontFamily : fontName;
+			const value = font.cssVariable
+				? `var(${ font.cssVariable })`
+				: fontFamily;
+
+			fontFamilies.push(
+				{
+					value,
+					label: fontName,
+				}
+			);
+		} );
+	}
 
 	if ( availableFonts.length > 0 ) {
 		availableFonts.forEach( ( value, i ) => {
