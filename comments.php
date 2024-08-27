@@ -64,7 +64,7 @@ do_action( 'generate_before_comments' );
 		echo apply_filters(
 			'generate_comments_title_output',
 			sprintf(
-				'<h3 class="comments-title">%s</h3>',
+				'<h2 class="comments-title">%s</h2>',
 				esc_html( $comments_title )
 			),
 			$comments_title,

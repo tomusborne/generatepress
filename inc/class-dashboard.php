@@ -154,11 +154,12 @@ class GeneratePress_Dashboard {
 			<?php
 			foreach ( $tabs as $tab ) {
 				printf(
-					'<a href="%1$s" class="%2$s"%4$s>%3$s</a>',
+					'<a href="%1$s" class="%2$s"%4$s%5$s>%3$s</a>',
 					esc_url( $tab['url'] ),
 					esc_attr( $tab['class'] ),
 					esc_html( $tab['name'] ),
-					! empty( $tab['external'] ) ? 'target="_blank" rel="noreferrer noopener"' : ''
+					! empty( $tab['external'] ) ? 'target="_blank" rel="noreferrer noopener"' : '',
+					esc_attr( ! empty( $tab['id'] ) ? 'id=' . $tab['id'] : '' )
 				);
 			}
 			?>

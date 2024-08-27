@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Set our theme version.
-define( 'GENERATE_VERSION', '3.4.0' );
+define( 'GENERATE_VERSION', '3.5.0' );
 
 if ( ! function_exists( 'generate_setup' ) ) {
 	add_action( 'after_setup_theme', 'generate_setup' );
@@ -35,6 +35,7 @@ if ( ! function_exists( 'generate_setup' ) ) {
 		add_theme_support( 'customize-selective-refresh-widgets' );
 		add_theme_support( 'align-wide' );
 		add_theme_support( 'responsive-embeds' );
+		add_theme_support( 'appearance-tools' );
 
 		$color_palette = generate_get_editor_color_palette();
 
