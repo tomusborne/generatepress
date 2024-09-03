@@ -101,6 +101,8 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 == Changelog ==
 
 = 3.5.1 =
+* Tweak: Revert addition of appearance-tools theme support
+* Fix: Dropdown click conflict with off-canvas panel
 
 = 3.5.0 =
 * Feature: Add support for more core block options
