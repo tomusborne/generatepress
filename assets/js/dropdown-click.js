@@ -73,7 +73,7 @@
 		// Open the sub-menu by clicking on the entire link element
 		if ( body.classList.contains( 'dropdown-click-menu-item' ) ) {
 			for ( i = 0; i < parentElementLinks.length; i++ ) {
-				parentElementLinks[ i ].addEventListener( 'click', dropdownClick, false );
+				parentElementLinks[ i ].addEventListener( 'click', dropdownClick, true );
 
 				parentElementLinks[ i ].addEventListener( 'keydown', function( e ) {
 					var _this = this;

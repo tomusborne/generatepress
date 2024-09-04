@@ -7,7 +7,7 @@ Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, foote
 Requires at least: 6.1
 Requires PHP: 7.4
 Tested up to: 6.6
-Stable tag: 3.5.0
+Stable tag: 3.5.1
 
 GeneratePress is a lightweight WordPress theme built with a focus on speed and usability.
 
@@ -99,6 +99,10 @@ By Jed Watson
 MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 
 == Changelog ==
+
+= 3.5.1 =
+* Tweak: Revert addition of appearance-tools theme support
+* Fix: Dropdown click conflict with off-canvas panel
 
 = 3.5.0 =
 * Feature: Add support for more core block options
