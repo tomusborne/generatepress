@@ -40,12 +40,13 @@ function getContentWidth( layout, contentContainer = '' ) {
 const ContentWidth = () => {
 	const [ sidebarLayout, setSidebarLayout ] = useState( generatepressBlockEditor.sidebarLayout );
 	const [ fullWidth, setFullWidth ] = useState( generatepressBlockEditor.contentAreaType );
-	const editorWrapperStyles = document.querySelector( '.editor-styles-wrapper' )?.style;
+	const queryDocument = document.querySelector( 'iframe[name="editor-canvas"]' )?.contentDocument || document;
+	const editorWrapperStyles = queryDocument.querySelector( '.editor-styles-wrapper' )?.style;
 
 	// We use editorWrapperStyles to update the content width when changing devices or code editor to visual editor.
 	// See https://github.com/tomusborne/generatepress/issues/493.
 	useEffect( () => {
-		const body = document.querySelector( '.editor-styles-wrapper' );
+		const body = queryDocument.querySelector( '.editor-styles-wrapper' );
 		body?.style?.setProperty( '--content-width', getContentWidth( sidebarLayout, fullWidth ) );
 	}, [ sidebarLayout, fullWidth, JSON.stringify( editorWrapperStyles ) ] );
 
