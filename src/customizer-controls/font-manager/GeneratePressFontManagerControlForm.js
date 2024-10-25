@@ -333,7 +333,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 			<Button
 				isPrimary
 				onClick={ () => {
-					const fontValues = [ ...props.value ];
+					const fontValues = [ ...fonts ];
 
 					fontValues.push( {
 						fontFamily: '',
@@ -345,8 +345,7 @@ const GeneratePressFontManagerControlForm = ( props ) => {
 
 					handleChangeComplete( fontValues );
 
-					const itemCount = wp.customize.control( props.customizerSetting.id ).setting.get().length;
-					setOpen( itemCount );
+					setOpen( fontValues.length );
 				} }
 			>
 				{ __( 'Add Font', 'generatepress' ) }
