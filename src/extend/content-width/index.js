@@ -1,5 +1,6 @@
 import { registerPlugin } from '@wordpress/plugins';
-import { useEffect, useState } from '@wordpress/element';
+import { useLayoutEffect, useEffect, useState, useRef, useCallback } from '@wordpress/element';
+import { debounce } from '@wordpress/compose';
 import domReady from '@wordpress/dom-ready';
 
 function getContentWidth( layout, contentContainer = '' ) {
@@ -40,15 +41,51 @@ function getContentWidth( layout, contentContainer = '' ) {
 const ContentWidth = () => {
 	const [ sidebarLayout, setSidebarLayout ] = useState( generatepressBlockEditor.sidebarLayout );
 	const [ fullWidth, setFullWidth ] = useState( generatepressBlockEditor.contentAreaType );
-	const queryDocument = document.querySelector( 'iframe[name="editor-canvas"]' )?.contentDocument || document;
-	const editorWrapperStyles = queryDocument.querySelector( '.editor-styles-wrapper' )?.style;
+	const [ elementsExist, setElementsExist ] = useState( {
+		iframe: false,
+		textEditor: false,
+	} );
+	const observerRef = useRef( null );
+	const observerCallback = useCallback(
+		debounce( () => {
+			const iframeExists = Boolean( document.querySelector( 'iframe[name="editor-canvas"]' ) );
+			const textEditorExists = Boolean( document.querySelector( '.editor-text-editor' ) );
 
-	// We use editorWrapperStyles to update the content width when changing devices or code editor to visual editor.
-	// See https://github.com/tomusborne/generatepress/issues/493.
+			setElementsExist( ( prevState ) => {
+				if (
+					prevState.iframe !== iframeExists ||
+					prevState.textEditor !== textEditorExists
+				) {
+					return { iframe: iframeExists, textEditor: textEditorExists };
+				}
+				return prevState;
+			} );
+		}, 100 ),
+		[]
+	);
+
 	useEffect( () => {
+		observerCallback();
+
+		observerRef.current = new MutationObserver( observerCallback );
+		observerRef.current.observe( document.body, {
+			childList: true,
+			subtree: true,
+			attributes: false,
+			characterData: false,
+		} );
+
+		return () => observerRef.current.disconnect();
+	}, [] );
+
+	useLayoutEffect( () => {
+		const queryDocument = document.querySelector( 'iframe[name="editor-canvas"]' )?.contentDocument || document;
 		const body = queryDocument.querySelector( '.editor-styles-wrapper' );
-		body?.style?.setProperty( '--content-width', getContentWidth( sidebarLayout, fullWidth ) );
-	}, [ sidebarLayout, fullWidth, JSON.stringify( editorWrapperStyles ) ] );
+
+		if ( body ) {
+			body.style?.setProperty( '--content-width', getContentWidth( sidebarLayout, fullWidth ) );
+		}
+	}, [ sidebarLayout, fullWidth, elementsExist ] );
 
 	domReady( () => {
 		const sidebarSelect = document.getElementById( 'generate-sidebar-layout' );
