@@ -53,18 +53,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</p>
 
 				<?php elseif ( is_search() ) : ?>
-
-					<p><?php _e( 'Sorry, we couldn’t find what you’re looking for. Try a different search or browse our recent posts.', 'generatepress' ); ?></p>
+					<?php
+					$nothing_found_search = apply_filters(
+						'generate_search_not_found',
+						__( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'generatepress' )	
+					);
+					?>
+					<p><?php echo esc_html( $nothing_found_search ); ?></p>
 					<?php get_search_form(); ?>
 
 				<?php else : ?>
 					<?php
-					$nothing_found_message = apply_filters(
+					$nothing_found_other = apply_filters(
 						'generate_nothing_found_message',
 						__( 'It seems we can&rsquo;t find what you’re looking for. Perhaps searching can help.', 'generatepress' )
 					);
 					?>
-					<p><?php echo esc_html( $nothing_found_message ); ?></p>
+					<p><?php echo esc_html( $nothing_found_other ); ?></p>
 					<?php get_search_form(); ?>
 
 				<?php endif; ?>
