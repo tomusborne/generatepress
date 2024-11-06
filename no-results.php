@@ -55,7 +55,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php elseif ( is_search() ) : ?>
 					<?php
 					$nothing_found_search = apply_filters(
-						'generate_search_not_found',
+						'generate_not_found_search',
 						__( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'generatepress' )	
 					);
 					?>
@@ -65,7 +65,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php else : ?>
 					<?php
 					$nothing_found_other = apply_filters(
-						'generate_nothing_found_message',
+						'generate_not_found_other',
 						__( 'It seems we can&rsquo;t find what you’re looking for. Perhaps searching can help.', 'generatepress' )
 					);
 					?>
