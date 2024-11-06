@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-<div class="no-results not-found">
+<div class="no-results not-found" role="alert" aria-live="polite">
 	<div class="inside-article">
 		<?php
 		/**
@@ -53,13 +53,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</p>
 
 				<?php elseif ( is_search() ) : ?>
-
-					<p><?php _e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'generatepress' ); ?></p>
+					<?php
+					$nothing_found_search = apply_filters(
+						'generate_search_not_found',
+						__( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'generatepress' )	
+					);
+					?>
+					<p><?php echo esc_html( $nothing_found_search ); ?></p>
 					<?php get_search_form(); ?>
 
 				<?php else : ?>
-
-					<p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'generatepress' ); ?></p>
+					<?php
+					$nothing_found_other = apply_filters(
+						'generate_other_not_found',
+						__( 'It seems we can&rsquo;t find what you’re looking for. Perhaps searching can help.', 'generatepress' )
+					);
+					?>
+					<p><?php echo esc_html( $nothing_found_other ); ?></p>
 					<?php get_search_form(); ?>
 
 				<?php endif; ?>

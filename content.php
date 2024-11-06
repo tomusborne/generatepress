@@ -81,8 +81,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 				wp_link_pages(
 					array(
-						'before' => '<div class="page-links">' . __( 'Pages:', 'generatepress' ),
-						'after'  => '</div>',
+						'before'      => '<div class="page-links" role="navigation" aria-label="' . esc_attr__( 'Page Navigation', 'generatepress' ) . '">' . esc_html__( 'Pages:', 'generatepress' ),
+						'after'       => '</div>',
+						'link_before' => '<span class="page-link-item">',
+						'link_after'  => '</span>',
 					)
 				);
 				?>
