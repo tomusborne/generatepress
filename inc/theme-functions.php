@@ -45,17 +45,12 @@ if ( ! function_exists( 'generate_get_layout' ) ) {
 
 		if ( is_single() ) {
 			$layout = generate_get_option( 'single_layout_setting' );
-		}
-
-		if ( is_singular() ) {
+		} elseif ( is_singular() ) {
 			$layout_meta = get_post_meta( get_the_ID(), '_generate-sidebar-layout-meta', true );
 
-			if ( $layout_meta ) {
-				$layout = $layout_meta;
-			}
-		}
-
-		if ( is_home() || is_archive() || is_search() || is_tax() ) {
+			$layout = $layout_meta ?: $layout;
+			
+		} elseif ( is_home() || is_archive() || is_search() || is_tax() ) {
 			$layout = generate_get_option( 'blog_layout_setting' );
 		}
 
