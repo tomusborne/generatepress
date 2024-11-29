@@ -130,9 +130,8 @@ add_action( 'enqueue_block_assets', 'generate_add_editor_styles' );
 
 /**
  * Add CSS to the block editor to style blocks.
- * @since 3.5.1
  *
- * @return void
+ * @since 3.5.2
  */
 function generate_add_editor_styles() {
 	$main_path = get_template_directory() . '/assets/css/main.css';
