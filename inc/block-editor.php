@@ -126,6 +126,27 @@ function generate_add_inline_block_editor_styles( $editor_settings ) {
 	return $editor_settings;
 }
 
+add_action( 'enqueue_block_assets', 'generate_add_editor_styles' );
+
+/**
+ * Add CSS to the block editor to style blocks.
+ * @since 3.5.1
+ *
+ * @return void
+ */
+function generate_add_editor_styles() {
+	$main_path = get_template_directory() . '/assets/css/main.css';
+
+	if( file_exists( $main_path ) ) {
+		wp_enqueue_style(
+			'generate-main',
+			get_theme_file_uri( 'assets/css/main.css' ),
+			'',
+			filemtime( $main_path )
+		);
+	}
+}
+
 add_action( 'enqueue_block_editor_assets', 'generate_enqueue_google_fonts' );
 add_action( 'enqueue_block_editor_assets', 'generate_enqueue_backend_block_editor_assets' );
 /**
