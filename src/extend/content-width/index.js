@@ -1,6 +1,8 @@
 import { registerPlugin } from '@wordpress/plugins';
-import { useEffect, useState } from '@wordpress/element';
+import { useLayoutEffect, useState } from '@wordpress/element';
 import domReady from '@wordpress/dom-ready';
+import { store as editorStore } from '@wordpress/editor';
+import { useSelect } from '@wordpress/data';
 
 function getContentWidth( layout, contentContainer = '' ) {
 	let contentWidth = '';
@@ -40,14 +42,37 @@ function getContentWidth( layout, contentContainer = '' ) {
 const ContentWidth = () => {
 	const [ sidebarLayout, setSidebarLayout ] = useState( generatepressBlockEditor.sidebarLayout );
 	const [ fullWidth, setFullWidth ] = useState( generatepressBlockEditor.contentAreaType );
-	const editorWrapperStyles = document.querySelector( '.editor-styles-wrapper' )?.style;
 
-	// We use editorWrapperStyles to update the content width when changing devices or code editor to visual editor.
-	// See https://github.com/tomusborne/generatepress/issues/493.
-	useEffect( () => {
-		const body = document.querySelector( '.editor-styles-wrapper' );
-		body?.style?.setProperty( '--content-width', getContentWidth( sidebarLayout, fullWidth ) );
-	}, [ sidebarLayout, fullWidth, JSON.stringify( editorWrapperStyles ) ] );
+	const editorMode = useSelect( ( select ) => (
+		select( editorStore ).getEditorMode()
+	), [] );
+
+	const deviceType = useSelect( ( select ) => {
+		const { getDeviceType } = select( 'core/editor' ) || {};
+
+		if ( 'function' === typeof getDeviceType ) {
+			return getDeviceType();
+		}
+
+		const {
+			__experimentalGetPreviewDeviceType: experimentalGetPreviewDeviceType,
+		} = select( 'core/edit-post' );
+
+		if ( 'function' === typeof experimentalGetPreviewDeviceType ) {
+			return experimentalGetPreviewDeviceType();
+		}
+
+		return 'Desktop';
+	}, [] );
+
+	useLayoutEffect( () => {
+		const queryDocument = document.querySelector( 'iframe[name="editor-canvas"]' )?.contentDocument || document;
+		const body = queryDocument.querySelector( '.editor-styles-wrapper' );
+
+		if ( body ) {
+			body.style?.setProperty( '--content-width', getContentWidth( sidebarLayout, fullWidth ) );
+		}
+	}, [ sidebarLayout, fullWidth, editorMode, deviceType ] );
 
 	domReady( () => {
 		const sidebarSelect = document.getElementById( 'generate-sidebar-layout' );
@@ -55,7 +80,7 @@ const ContentWidth = () => {
 
 		if ( sidebarSelect ) {
 			sidebarSelect.onchange = ( event ) => {
-				setSidebarLayout( event.target.value || generatepressBlockEditor.globalSidebarLayout );
+				setSidebarLayout( event.target.value || generatepressBlockEditor.sidebarLayout );
 			};
 		}
 
