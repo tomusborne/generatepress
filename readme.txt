@@ -101,6 +101,7 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 == Changelog ==
 
 = 3.5.2 =
+* Fix: Inability to add more than one font in the Font Manager
 
 = 3.5.1 =
 * Tweak: Revert addition of appearance-tools theme support
