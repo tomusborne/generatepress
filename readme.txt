@@ -7,7 +7,7 @@ Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, foote
 Requires at least: 6.5
 Requires PHP: 7.4
 Tested up to: 6.7
-Stable tag: 3.5.2
+Stable tag: 3.5.1
 
 GeneratePress is a lightweight WordPress theme built with a focus on speed and usability.
 
