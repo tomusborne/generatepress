@@ -1,5 +1,5 @@
 import { registerPlugin } from '@wordpress/plugins';
-import { useLayoutEffect, useState } from '@wordpress/element';
+import { useEffect, useState } from '@wordpress/element';
 import domReady from '@wordpress/dom-ready';
 import { store as editorStore } from '@wordpress/editor';
 import { useSelect } from '@wordpress/data';
@@ -65,12 +65,26 @@ const ContentWidth = () => {
 		return 'Desktop';
 	}, [] );
 
-	useLayoutEffect( () => {
-		const queryDocument = document.querySelector( 'iframe[name="editor-canvas"]' )?.contentDocument || document;
+	useEffect( () => {
+		const iframe = document.querySelector( 'iframe[name="editor-canvas"]' );
+		const queryDocument = iframe?.contentDocument || document;
 		const body = queryDocument.querySelector( '.editor-styles-wrapper' );
 
 		if ( body ) {
-			body.style?.setProperty( '--content-width', getContentWidth( sidebarLayout, fullWidth ) );
+			const contentWidth = getContentWidth( sidebarLayout, fullWidth );
+			body.style.setProperty( '--content-width', contentWidth );
+		}
+
+		if ( iframe && 'loading' === iframe.contentDocument.readyState ) {
+			const handleLoad = () => {
+				if ( body ) {
+					const contentWidth = getContentWidth( sidebarLayout, fullWidth );
+					body.style.setProperty( '--content-width', contentWidth );
+				}
+			};
+
+			iframe.addEventListener( 'load', handleLoad, { once: true } );
+			return () => iframe.removeEventListener( 'load', handleLoad );
 		}
 	}, [ sidebarLayout, fullWidth, editorMode, deviceType ] );
 
