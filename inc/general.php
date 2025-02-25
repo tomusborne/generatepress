@@ -482,11 +482,12 @@ add_action( 'wp_footer', 'generate_do_a11y_scripts' );
  * @since 3.1.0
  */
 function generate_do_a11y_scripts() {
-	if ( apply_filters( 'generate_print_a11y_script', true ) ) {
-		// Add our small a11y script inline.
-		printf(
-			'<script id="generate-a11y">%s</script>',
-			'!function(){"use strict";if("querySelector"in document&&"addEventListener"in window){var e=document.body;e.addEventListener("mousedown",function(){e.classList.add("using-mouse")}),e.addEventListener("keydown",function(){e.classList.remove("using-mouse")})}}();'
+	if ( apply_filters( 'generate_print_a11y_script', true ) && function_exists( 'wp_print_inline_script_tag' ) ) {
+		wp_print_inline_script_tag(
+			'!function(){"use strict";if("querySelector"in document&&"addEventListener"in window){var e=document.body;e.addEventListener("mousedown",function(){e.classList.add("using-mouse")}),e.addEventListener("keydown",function(){e.classList.remove("using-mouse")})}}();',
+			array(
+				'id' => 'generate-a11y',
+			)
 		);
 	}
 }
