@@ -826,3 +826,19 @@ function generate_has_active_menu() {
 function generate_is_using_dynamic_typography() {
 	return generate_get_option( 'use_dynamic_typography' );
 }
+
+/**
+ * Add inline script.
+ *
+ * @param string $handle The script handle to attach the inline script to.
+ * @param array  $data   The data to be passed to the script.
+ * @param string $var    The JavaScript variable name to assign the data to.
+ * @param string $position The position to add the inline script.
+ */
+function generate_add_inline_script( $handle, $data, $var, $position = 'before' ) {
+	if ( ! empty( $data ) ) {
+		$json_data = wp_json_encode( $data );
+		$inline_script = "var $var = $json_data;";
+		wp_add_inline_script( $handle, $inline_script, $position );
+	}
+}
