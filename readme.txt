@@ -102,6 +102,11 @@ MIT License: https://github.com/JedWatson/react-select/blob/master/LICENSE
 
 = 3.6.0 =
 * Fix: Inability to add more than one font in the Font Manager
+* Tweak: Improve accessibility of navigation search modal
+* Tweak: Better support for full iframed editor
+* Tweak: Use passive event listening for a11y script
+* Tweak: Use `wp_print_inline_script_tag` for a11y script
+* Tweak: Use `wp_add_inline_script()` for inline script variables
 
 = 3.5.1 =
 * Tweak: Revert addition of appearance-tools theme support
