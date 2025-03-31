@@ -37,7 +37,7 @@ function generate_do_search_modal_trigger() {
 	}
 	?>
 	<span class="menu-bar-item">
-		<a href="#" role="button" aria-label="<?php _e( 'Open search', 'generatepress' ); ?>" data-gpmodal-trigger="gp-search"><?php echo generate_get_svg_icon( 'search', true ); // phpcs:ignore -- Escaped in function. ?></a>
+		<a href="#" role="button" aria-label="<?php _e( 'Open search', 'generatepress' ); ?>" aria-haspopup="dialog" aria-controls="gp-search" data-gpmodal-trigger="gp-search"><?php echo generate_get_svg_icon( 'search', true ); // phpcs:ignore -- Escaped in function. ?></a>
 	</span>
 	<?php
 }
