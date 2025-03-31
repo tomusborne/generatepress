@@ -492,7 +492,7 @@ add_action( 'wp_footer', 'generate_do_a11y_scripts' );
 function generate_do_a11y_scripts() {
 	if ( apply_filters( 'generate_print_a11y_script', true ) && function_exists( 'wp_print_inline_script_tag' ) ) {
 		wp_print_inline_script_tag(
-			'!function(){"use strict";if("querySelector"in document&&"addEventListener"in window){var e=document.body;e.addEventListener("mousedown",function(){e.classList.add("using-mouse")}),e.addEventListener("keydown",function(){e.classList.remove("using-mouse")})}}();',
+			'!function(){"use strict";if("querySelector"in document&&"addEventListener"in window){var e=document.body;e.addEventListener("pointerdown",(function(){e.classList.add("using-mouse")}),{passive:!0}),e.addEventListener("keydown",(function(){e.classList.remove("using-mouse")}),{passive:!0})}}();',
 			array(
 				'id' => 'generate-a11y',
 			)
