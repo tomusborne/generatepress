@@ -18,7 +18,7 @@ function generate_do_search_modal() {
 		return;
 	}
 	?>
-	<div class="gp-modal gp-search-modal" id="gp-search" role="dialog" aria-modal="true">
+	<div class="gp-modal gp-search-modal" id="gp-search" role="dialog" aria-modal="true" aria-label="<?php esc_attr_e( 'Search', 'generatepress' ); ?>">
 		<div class="gp-modal__overlay" tabindex="-1" data-gpmodal-close>
 			<div class="gp-modal__container">
 				<?php do_action( 'generate_inside_search_modal' ); ?>
