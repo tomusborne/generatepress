@@ -74,31 +74,35 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 
 		if ( generate_has_active_menu() ) {
 			wp_enqueue_script( 'generate-menu', $dir_uri . "/assets/js/menu{$suffix}.js", array(), GENERATE_VERSION, true );
-		}
 
-		wp_localize_script(
-			'generate-menu',
-			'generatepressMenu',
-			apply_filters(
+			$menu_script_args = apply_filters(
 				'generate_localize_js_args',
 				array(
 					'toggleOpenedSubMenus' => true,
-					'openSubMenuLabel' => esc_attr__( 'Open Sub-Menu', 'generatepress' ),
-					'closeSubMenuLabel' => esc_attr__( 'Close Sub-Menu', 'generatepress' ),
+					'openSubMenuLabel'     => esc_attr__( 'Open Sub-Menu', 'generatepress' ),
+					'closeSubMenuLabel'    => esc_attr__( 'Close Sub-Menu', 'generatepress' ),
 				)
-			)
-		);
+			);
+
+			generate_add_inline_script(
+				'generate-menu',
+				$menu_script_args,
+				'generatepressMenu'
+			);
+		}
 
 		if ( 'click' === generate_get_option( 'nav_dropdown_type' ) || 'click-arrow' === generate_get_option( 'nav_dropdown_type' ) ) {
 			wp_enqueue_script( 'generate-dropdown-click', $dir_uri . "/assets/js/dropdown-click{$suffix}.js", array(), GENERATE_VERSION, true );
 
-			wp_localize_script(
+			$dropdown_click_args = array(
+				'openSubMenuLabel'  => esc_attr__( 'Open Sub-Menu', 'generatepress' ),
+				'closeSubMenuLabel' => esc_attr__( 'Close Sub-Menu', 'generatepress' ),
+			);
+
+			generate_add_inline_script(
 				'generate-dropdown-click',
-				'generatepressDropdownClick',
-				array(
-					'openSubMenuLabel' => esc_attr__( 'Open Sub-Menu', 'generatepress' ),
-					'closeSubMenuLabel' => esc_attr__( 'Close Sub-Menu', 'generatepress' ),
-				)
+				$dropdown_click_args,
+				'generatepressDropdownClick'
 			);
 		}
 
@@ -109,28 +113,32 @@ if ( ! function_exists( 'generate_scripts' ) ) {
 		if ( 'enable' === generate_get_option( 'nav_search' ) ) {
 			wp_enqueue_script( 'generate-navigation-search', $dir_uri . "/assets/js/navigation-search{$suffix}.js", array(), GENERATE_VERSION, true );
 
-			wp_localize_script(
+			$nav_search_args = array(
+				'open'  => esc_attr__( 'Open Search Bar', 'generatepress' ),
+				'close' => esc_attr__( 'Close Search Bar', 'generatepress' ),
+			);
+
+			generate_add_inline_script(
 				'generate-navigation-search',
-				'generatepressNavSearch',
-				array(
-					'open' => esc_attr__( 'Open Search Bar', 'generatepress' ),
-					'close' => esc_attr__( 'Close Search Bar', 'generatepress' ),
-				)
+				$nav_search_args,
+				'generatepressNavSearch'
 			);
 		}
 
 		if ( 'enable' === generate_get_option( 'back_to_top' ) ) {
 			wp_enqueue_script( 'generate-back-to-top', $dir_uri . "/assets/js/back-to-top{$suffix}.js", array(), GENERATE_VERSION, true );
 
-			wp_localize_script(
-				'generate-back-to-top',
-				'generatepressBackToTop',
-				apply_filters(
-					'generate_back_to_top_js_args',
-					array(
-						'smooth' => true,
-					)
+			$back_to_top_args = apply_filters(
+				'generate_back_to_top_js_args',
+				array(
+					'smooth' => true,
 				)
+			);
+
+			generate_add_inline_script(
+				'generate-back-to-top',
+				$back_to_top_args,
+				'generatepressBackToTop'
 			);
 		}
 
@@ -482,11 +490,12 @@ add_action( 'wp_footer', 'generate_do_a11y_scripts' );
  * @since 3.1.0
  */
 function generate_do_a11y_scripts() {
-	if ( apply_filters( 'generate_print_a11y_script', true ) ) {
-		// Add our small a11y script inline.
-		printf(
-			'<script id="generate-a11y">%s</script>',
-			'!function(){"use strict";if("querySelector"in document&&"addEventListener"in window){var e=document.body;e.addEventListener("mousedown",function(){e.classList.add("using-mouse")}),e.addEventListener("keydown",function(){e.classList.remove("using-mouse")})}}();'
+	if ( apply_filters( 'generate_print_a11y_script', true ) && function_exists( 'wp_print_inline_script_tag' ) ) {
+		wp_print_inline_script_tag(
+			'!function(){"use strict";if("querySelector"in document&&"addEventListener"in window){var e=document.body;e.addEventListener("pointerdown",(function(){e.classList.add("using-mouse")}),{passive:!0}),e.addEventListener("keydown",(function(){e.classList.remove("using-mouse")}),{passive:!0})}}();',
+			array(
+				'id' => 'generate-a11y',
+			)
 		);
 	}
 }

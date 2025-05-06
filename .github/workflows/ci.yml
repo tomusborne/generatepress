@@ -35,7 +35,7 @@ jobs:
 
       - name: Check changed files
         id: 'js-files'
-        uses: tj-actions/changed-files@v35.4.3
+        uses: tj-actions/changed-files@v46
         with:
           files: |
             src/**/*.js
@@ -68,7 +68,7 @@ jobs:
 
       - name: Check changed files
         id: 'js-files'
-        uses: tj-actions/changed-files@v35.4.3
+        uses: tj-actions/changed-files@v46
         with:
           files: |
             src/**/*.js
@@ -102,7 +102,7 @@ jobs:
 
       - name: Check changed files
         id: 'js-files'
-        uses: tj-actions/changed-files@v35.4.3
+        uses: tj-actions/changed-files@v46
         with:
           files: |
             src/**/*.js
@@ -147,7 +147,7 @@ jobs:
 
       - name: Check changed files
         id: 'php-files'
-        uses: tj-actions/changed-files@v35.4.3
+        uses: tj-actions/changed-files@v46
         with:
           files: |
             **/*.php
@@ -180,7 +180,7 @@ jobs:
 
       - name: Check changed files
         id: 'php-files'
-        uses: tj-actions/changed-files@v35.4.3
+        uses: tj-actions/changed-files@v46
         with:
           files: |
             **/*.php
@@ -228,7 +228,7 @@ jobs:
         run: npm run action-package
 
       - name: Build zip package
-        uses: actions/upload-artifact@v3.1.0
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ github.event.inputs.name }}
           path: |
