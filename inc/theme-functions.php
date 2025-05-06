@@ -45,17 +45,12 @@ if ( ! function_exists( 'generate_get_layout' ) ) {
 
 		if ( is_single() ) {
 			$layout = generate_get_option( 'single_layout_setting' );
-		}
-
-		if ( is_singular() ) {
+		} elseif ( is_singular() ) {
 			$layout_meta = get_post_meta( get_the_ID(), '_generate-sidebar-layout-meta', true );
 
-			if ( $layout_meta ) {
-				$layout = $layout_meta;
-			}
-		}
-
-		if ( is_home() || is_archive() || is_search() || is_tax() ) {
+			$layout = $layout_meta ?: $layout;
+			
+		} elseif ( is_home() || is_archive() || is_search() || is_tax() ) {
 			$layout = generate_get_option( 'blog_layout_setting' );
 		}
 
@@ -434,71 +429,54 @@ function generate_get_schema_type() {
  * @return string Our final attribute to add to the element.
  */
 function generate_get_microdata( $context ) {
-	$data = false;
 
 	if ( 'microdata' !== generate_get_schema_type() ) {
-		return false;
-	}
+        return false;
+    }
 
-	if ( 'body' === $context ) {
-		$type = 'WebPage';
+    $schema_mapping = [
+        'header'         => 'WPHeader',
+        'navigation'     => 'SiteNavigationElement',
+        'sidebar'        => 'WPSideBar',
+        'footer'         => 'WPFooter',
+        'comment-body'   => 'Comment',
+    ];
 
-		if ( is_home() || is_archive() || is_attachment() || is_tax() || is_single() ) {
-			$type = 'Blog';
-		}
+    $data = false;
 
-		if ( is_search() ) {
-			$type = 'SearchResultsPage';
-		}
+    switch ( $context ) {
+        case 'body':
+            $type = 'WebPage';
 
-		$type = apply_filters( 'generate_body_itemtype', $type );
+            if ( is_home() || is_archive() || is_attachment() || is_tax() || is_single() ) {
+                $type = 'Blog';
+            } elseif ( is_search() ) {
+                $type = 'SearchResultsPage';
+            }
 
-		$data = sprintf(
-			'itemtype="https://schema.org/%s" itemscope',
-			esc_html( $type )
-		);
-	}
+            // Allow filters to modify the body type
+            $type = apply_filters( 'generate_body_itemtype', $type );
+            $data = sprintf( 'itemtype="https://schema.org/%s" itemscope', esc_html( $type ) );
+            break;
 
-	if ( 'header' === $context ) {
-		$data = 'itemtype="https://schema.org/WPHeader" itemscope';
-	}
+        case 'article':
+            $type = apply_filters( 'generate_article_itemtype', 'CreativeWork' );
+            $data = sprintf( 'itemtype="https://schema.org/%s" itemscope', esc_html( $type ) );
+            break;
 
-	if ( 'navigation' === $context ) {
-		$data = 'itemtype="https://schema.org/SiteNavigationElement" itemscope';
-	}
+        case 'post-author':
+        case 'comment-author':
+            $data = 'itemprop="author" itemtype="https://schema.org/Person" itemscope';
+            break;
 
-	if ( 'article' === $context ) {
-		$type = apply_filters( 'generate_article_itemtype', 'CreativeWork' );
+        default:
+            if ( isset( $schema_mapping[ $context ] ) ) {
+                $data = sprintf( 'itemtype="https://schema.org/%s" itemscope', esc_html( $schema_mapping[ $context ] ) );
+            }
+            break;
+    }
 
-		$data = sprintf(
-			'itemtype="https://schema.org/%s" itemscope',
-			esc_html( $type )
-		);
-	}
-
-	if ( 'post-author' === $context ) {
-		$data = 'itemprop="author" itemtype="https://schema.org/Person" itemscope';
-	}
-
-	if ( 'comment-body' === $context ) {
-		$data = 'itemtype="https://schema.org/Comment" itemscope';
-	}
-
-	if ( 'comment-author' === $context ) {
-		$data = 'itemprop="author" itemtype="https://schema.org/Person" itemscope';
-	}
-
-	if ( 'sidebar' === $context ) {
-		$data = 'itemtype="https://schema.org/WPSideBar" itemscope';
-	}
-
-	if ( 'footer' === $context ) {
-		$data = 'itemtype="https://schema.org/WPFooter" itemscope';
-	}
-
-	if ( $data ) {
-		return apply_filters( "generate_{$context}_microdata", $data );
-	}
+    return $data ? apply_filters( "generate_{$context}_microdata", $data ) : false;
 }
 
 /**

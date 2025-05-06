@@ -61,14 +61,9 @@ do_action( 'generate_before_comments' );
 		);
 
 		// phpcs:ignore -- Title escaped in output.
-		echo apply_filters(
-			'generate_comments_title_output',
-			sprintf(
-				'<h2 class="comments-title">%s</h2>',
-				esc_html( $comments_title )
-			),
-			$comments_title,
-			$comments_number
+		echo sprintf(
+			'<h2 class="comments-title">%s</h2>',
+			esc_html( apply_filters( 'generate_comments_title_output', $comments_title, $comments_number ) )
 		);
 
 		/**
@@ -124,7 +119,7 @@ do_action( 'generate_before_comments' );
 		<?php
 	endif;
 
-	comment_form();
+	comment_form( apply_filters( 'generate_comment_form_args', array() ) );
 	?>
 
 </div><!-- #comments -->
