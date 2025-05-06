@@ -6,8 +6,8 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: two-columns, three-columns, one-column, right-sidebar, left-sidebar, footer-widgets, blog, e-commerce, flexible-header, full-width-template, buddypress, custom-header, custom-background, custom-menu, custom-colors, sticky-post, threaded-comments, translation-ready, rtl-language-support, featured-images, theme-options
 Requires at least: 6.5
 Requires PHP: 7.4
-Tested up to: 6.7
-Stable tag: 3.5.1
+Tested up to: 6.8
+Stable tag: 3.6.0
 
 GeneratePress is a lightweight WordPress theme built with a focus on speed and usability.
 
